@@ -6,7 +6,32 @@ import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
 import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
+import Image from "next/image";
 import { CONTACTO } from "@/lib/contenido";
+
+// Muestra de la guía que recibirá (despacho ficticio, difuminada).
+const MUESTRA = [
+  { src: "/marca/muestra-1.webp", t: "Tu guía" },
+  { src: "/marca/muestra-2.webp", t: "Semáforo" },
+  { src: "/marca/muestra-3.webp", t: "Tu web" },
+  { src: "/marca/muestra-4.webp", t: "Competencia" },
+];
+function Muestra({ oscuro = false }: { oscuro?: boolean }) {
+  return (
+    <div>
+      <p className={`text-sm font-bold ${oscuro ? "text-estrella" : "text-noche-3"}`}>Si encajas, esto es lo que te preparamos gratis</p>
+      <ul className="mt-3 grid grid-cols-4 gap-2 sm:gap-3">
+        {MUESTRA.map((x, i) => (
+          <li key={x.src} className={`overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 ${i % 2 ? "rotate-2" : "-rotate-2"}`}>
+            <Image src={x.src} alt={`Guía de ejemplo: ${x.t.toLowerCase()}`} width={360} height={304} className="h-auto w-full" />
+            <p className="truncate px-1.5 py-1 text-[0.62rem] font-bold text-tinta sm:text-xs">{x.t}</p>
+          </li>
+        ))}
+      </ul>
+      <p className={`mt-2 text-xs ${oscuro ? "text-white/60" : "text-gris"}`}>Guía de ejemplo de un despacho ficticio. La tuya, con tus datos y 29 apartados.</p>
+    </div>
+  );
+}
 
 // El único test de la web: el test de idoneidad.
 // Una pregunta por pantalla, en tramos, con frases, datos curiosos y confeti.
@@ -433,6 +458,7 @@ export default function TestIdoneidad() {
           <p className="text-sm font-bold text-estrella">¡Ya está lo importante!</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">¿Afinamos tu nota?</p>
           <p className="mt-3 max-w-xl text-white/85">Diez toques más sobre tu web, Google y tus anuncios. Un minuto. Es opcional: si prefieres, terminamos ya.</p>
+          <div className="mt-6 max-w-xl"><Muestra oscuro /></div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setConExtra(true); setTi(TRAMOS.length - 1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
               Sí, afinar mi nota
@@ -453,6 +479,7 @@ export default function TestIdoneidad() {
             <p className="text-sm font-bold text-estrella">Último paso</p>
             <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le enviamos tu resultado?</p>
             <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables, encaje o no.</p>
+            <div className="mt-5"><Muestra oscuro /></div>
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
             <label className="text-sm font-bold">
@@ -563,6 +590,7 @@ export default function TestIdoneidad() {
                 <p className="mt-2 text-lg">Aún no hemos activado el envío en esta web de prueba, así que tus datos no se han enviado a ningún sitio.</p>
               </>
             )}
+            <div className="mt-6 rounded-2xl bg-white/70 p-4"><Muestra /></div>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/trabajos" className="rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">Ver nuestros trabajos</Link>
               <Link href="/estudio-gratuito#estudio" className="rounded-full border-2 border-noche px-6 py-3 font-bold hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
