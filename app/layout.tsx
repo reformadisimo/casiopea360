@@ -3,8 +3,8 @@ import "./globals.css";
 import Versionante from "@/components/Versionante";
 
 export const metadata: Metadata = {
-  title: "Reformadísimo",
-  description: "Reformas integrales en Madrid.",
+  title: "Casiopea 360",
+  description: "Marketing digital 360 con un solo proveedor.",
   robots: { index: false, follow: false },
 };
 
