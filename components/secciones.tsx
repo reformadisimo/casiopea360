@@ -690,6 +690,42 @@ export function SeccionLoFirmamos() {
   );
 }
 
+/* Lo que no podemos enseñar: trabajos confidenciales. */
+export function SeccionConfidenciales() {
+  return (
+    <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
+      <div aria-hidden="true" className="absolute inset-0 opacity-20"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]`}>
+        <div>
+          <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Bajo llave</p>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo que ves es solo una parte.</h2>
+          <p className="mt-5 text-lg text-white/80">
+            Muchos de nuestros mejores trabajos no los podemos enseñar: el cliente prefiere que su competencia no sepa quién está detrás de lo bien que le va. Nos encantaría publicarlos todos. En el estudio gratuito te contamos casos parecidos al tuyo.
+          </p>
+        </div>
+        <ul aria-hidden="true" className="grid grid-cols-3 gap-3">
+          {[0, 1, 2].map((i) => (
+            <li key={i} className="relative aspect-[3/4] overflow-hidden rounded-[1.4rem] bg-white/10 ring-1 ring-white/15">
+              <div className="absolute inset-0 scale-110 blur-md" style={{ background: ["linear-gradient(160deg,#1f6feb,#7c3aed)", "linear-gradient(160deg,#0f9d58,#0ea5a4)", "linear-gradient(160deg,#f59e0b,#e8457a)"][i] }} />
+              <div className="absolute inset-x-4 top-5 space-y-2 opacity-60">
+                <span className="block h-2.5 w-3/4 rounded-full bg-white/80" />
+                <span className="block h-2.5 w-1/2 rounded-full bg-white/60" />
+                <span className="mt-4 block h-16 rounded-xl bg-white/30" />
+              </div>
+              <span className="absolute inset-0 grid place-items-center">
+                <span className="grid h-14 w-14 place-items-center rounded-full bg-noche text-estrella shadow-xl ring-4 ring-estrella/30">
+                  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG.llave}</svg>
+                </span>
+              </span>
+              <span className="absolute inset-x-0 bottom-3 text-center text-xs font-bold text-white">Confidencial</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 /* Valor añadido: CRM a medida incluido. */
 export function SeccionCRM() {
   const columnas: [string, string[]][] = [

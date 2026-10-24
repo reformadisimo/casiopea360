@@ -287,6 +287,10 @@ export const PREGUNTAS = [
     r: "Con muchas: las que ves en nuestros trabajos y muchas más a lo largo de más de veintidós años, algunas durante muchos años seguidos. No damos una cifra porque preferimos enseñarte resultados, no números redondos. En el estudio gratuito te contamos casos parecidos al tuyo.",
   },
   {
+    p: "¿Trabajáis también para mi competencia?",
+    r: "Trabajamos para quien consideramos oportuno y no firmamos exclusividad por defecto. Si quieres que no trabajemos para tu competencia directa, se puede pactar, con una cuota más alta; hay clientes que lo han elegido y están encantados. Por cierto: muchos de nuestros mejores trabajos no los podemos enseñar, porque el cliente prefiere que su competencia no sepa quién está detrás.",
+  },
+  {
     p: "¿Y si lo pruebo y no me convence?",
     r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si después no te convence, te vas y te lo llevas todo.",
   },

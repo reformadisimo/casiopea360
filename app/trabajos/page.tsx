@@ -1,7 +1,7 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionOrigen, SeccionTrabajos } from "@/components/secciones";
+import { LlamadaFinal, SeccionOrigen, SeccionTrabajos, SeccionConfidenciales } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -23,6 +23,7 @@ export default function Trabajos() {
         videoAlt="Un equipo celebra un buen resultado delante del ordenador"
       />
       <SeccionTrabajos titulo={false} />
+      <SeccionConfidenciales />
       <FranjaVideos
         frase="Empresas de verdad, con clientes de verdad."
         detalle="Reformas, cerramientos, abogados, una app familiar. Distintos sectores, la misma forma de trabajar."
