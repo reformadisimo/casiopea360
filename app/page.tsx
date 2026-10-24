@@ -40,9 +40,9 @@ export default function Inicio() {
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
             <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo. Mejor. En días.</p>
-            <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin lidiar con cinco agencias.</h1>
+            <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor en proveedor.</h1>
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
-              Web, Google, anuncios, redes, CRM e IA con un solo equipo y una sola cuota fija. Tu web, en unos días y no en meses. Por menos de lo que te costaría contratarlo por separado, y sin que tengas que perseguir a nadie: cada día sabes qué hemos hecho por tu negocio.
+              <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo equipo y una cuota fija. Y cada día sabes qué hemos hecho por tu negocio.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>

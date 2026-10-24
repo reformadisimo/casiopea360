@@ -438,7 +438,7 @@ export function SeccionEspecialistas() {
 
         <div className="mt-12 overflow-hidden rounded-[2rem] border border-linea">
           <div className="grid grid-cols-2 bg-niebla text-sm font-extrabold sm:text-base">
-            <p className="p-4 sm:p-6">Cinco agencias especializadas</p>
+            <p className="p-4 sm:p-6">Un proveedor para cada cosa</p>
             <p className="bg-noche p-4 text-estrella sm:p-6">Casiopea 360</p>
           </div>
           {COMPARA.map(([ellos, nosotros]) => (
@@ -918,7 +918,7 @@ export function SeccionVelocidad() {
   );
 }
 
-/* El lío de los veinte proveedores frente a una sola factura. */
+/* El lío de un proveedor para cada cosa frente a una sola factura. */
 const PROVEEDORES_LIO = [
   "Agencia web", "Mantenimiento de WordPress", "Plugins de pago", "Alojamiento", "Agencia de velocidad", "Agencia SEO", "Google Ads", "Anuncios en Meta",
   "Community manager", "Diseñador", "Consultora de CRM", "Licencias de HubSpot", "Chatbot", "Reseñas", "Programa de citas", "Firma electrónica",
@@ -931,9 +931,9 @@ export function SeccionVeinteProveedores() {
       <div className={ENVOLTORIO}>
         <div className="max-w-4xl">
           <p className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-sm font-bold text-rose-800">El lío de siempre</p>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Veinte proveedores, veinte facturas y nadie que responda.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Un proveedor para cada cosa. Y nadie que responda.</h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
-            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes veinte proveedores, veinte facturas y veinte contraseñas. Y ninguno habla con los demás.
+            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes un proveedor para cada cosa, una factura de cada uno y una contraseña para cada sitio. Y ninguno habla con los demás.
           </p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
