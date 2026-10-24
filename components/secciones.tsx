@@ -1269,22 +1269,11 @@ export function SeccionEstudio() {
           <p className="text-sm font-bold uppercase tracking-wide">Y te dice cuánto ahorrarías</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
           <p className="mt-3 text-lg">Es lo que nos encontramos en casi todas las empresas: menos factura y mejores resultados. El estudio te lo dice al euro, con lo que pagas hoy delante.</p>
-          <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
-            <p className="text-sm font-bold text-gris">Reformadísimo</p>
-            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−23 %</p>
-            <p className="text-sm font-bold">en su presupuesto de marketing</p>
-            <p className="mt-2 text-[0.95rem]">Y deja de pagar el <b>100 %</b> de lo que pagaba a agencias.</p>
-            <p className="mt-3 text-xs text-gris">Previsto con su presupuesto de noviembre de 2026.</p>
-          </div>
-          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
-            <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
-            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−100 %</p>
-            <p className="text-sm font-bold">en SEO y mantenimiento de la web</p>
-            <p className="mt-2 text-[0.95rem]">Todo entra en la cuota. Y su inversión en anuncios, mejor aprovechada.</p>
-          </div>
+        {/* Casos de ahorro retirados el 24 oct 2026 hasta revisar las cifras con Ig (la cuota no estaba descontada). */}
+        <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+          <p className="text-sm font-bold text-gris">Así lo calculamos</p>
+          <p className="mt-2 text-lg">Ponemos todo lo que pagas hoy en marketing (agencias, proveedores, licencias y mantenimiento) frente a nuestra cuota, con todo dentro. Y lo que inviertes en anuncios, mejor aprovechado.</p>
         </div>
       </div>
       <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">
