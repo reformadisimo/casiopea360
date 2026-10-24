@@ -51,6 +51,14 @@ export default function Inicio() {
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
               <Link href="/test" className={BOTON_CLARO}>Haz el test en 1 minuto</Link>
             </div>
+            <ul className="mt-8 flex flex-wrap gap-2 text-sm font-bold">
+              {["Más de 22 años de oficio", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
+                <li key={t} className="flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-white ring-1 ring-white/15 backdrop-blur">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="mx-auto w-full max-w-xl px-2">
             <Constelacion />

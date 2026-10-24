@@ -34,7 +34,12 @@ function Cuenta({ valor, activo }: { valor: number; activo: boolean }) {
     id = requestAnimationFrame(paso);
     return () => cancelAnimationFrame(id);
   }, [activo, valor]);
-  return <>{formato(v)}</>;
+  return (
+    <span className="relative inline-block tabular-nums">
+      <span className="invisible">{formato(valor)}</span>
+      <span className="absolute inset-0">{formato(v)}</span>
+    </span>
+  );
 }
 
 export default function CifrasEquipo({ claro = false }: { claro?: boolean }) {

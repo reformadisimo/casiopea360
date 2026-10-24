@@ -66,7 +66,7 @@ export function BarraEstrella({ avance, oscuro = false, texto }: { avance: numbe
 
 // Burbuja de reacción que sale de la estrella.
 export function Reaccion({ texto, tono = "neutro", claro = false }: { texto: string; tono?: "bien" | "medio" | "mal" | "neutro"; claro?: boolean }) {
-  const fondo = { bien: "bg-emerald-500 text-white", medio: "bg-amber-400 text-tinta", mal: "bg-rose-500 text-white", neutro: claro ? "bg-white text-noche" : "bg-noche text-estrella" }[tono];
+  const fondo = { bien: "bg-emerald-600 text-white", medio: "bg-amber-400 text-tinta", mal: "bg-rose-600 text-white", neutro: claro ? "bg-white text-noche" : "bg-noche text-estrella" }[tono];
   return (
     <div className="flex items-end gap-2" aria-live="polite">
       <Estrella className="brinca h-10 w-10 shrink-0" />

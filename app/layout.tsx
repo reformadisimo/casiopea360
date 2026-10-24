@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Versionante from "@/components/Versionante";
 import Medicion from "@/components/Medicion";
-import Asistente from "@/components/Asistente";
+import AsistenteDiferido from "@/components/AsistenteDiferido";
 import Cabecera from "@/components/Cabecera";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
@@ -56,7 +56,7 @@ export default function RootLayout({
         <Pie />
         <Versionante />
         <Medicion />
-        <Asistente />
+        <AsistenteDiferido />
       </body>
     </html>
   );

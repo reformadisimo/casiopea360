@@ -621,7 +621,7 @@ export function SeccionPorQueBarato() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
               <div key={x.t} className="rounded-[1.6rem] bg-niebla p-6">
-                <p className="text-sm font-extrabold text-amber-700">0{i + 1}</p>
+                <p className="text-sm font-extrabold text-amber-800">0{i + 1}</p>
                 <p className="mt-1 text-xl font-extrabold">{x.t}</p>
                 <p className="mt-2 text-gris">{x.d}</p>
               </div>
@@ -669,7 +669,7 @@ export function SeccionLoFirmamos() {
                 <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
               </span>
               <div>
-                <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Compromiso {i + 1}</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Compromiso {i + 1}</p>
                 <p className="mt-0.5 text-xl font-extrabold">{x.t}</p>
                 <p className="mt-1.5 text-gris">{x.d}</p>
               </div>

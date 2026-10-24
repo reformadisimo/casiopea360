@@ -86,7 +86,7 @@ export default function TestRapido() {
               <button
                 type="button"
                 onClick={() => responder(true)}
-                className={`flex items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-6 py-5 text-2xl font-extrabold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-emerald-400 ${reaccion?.bien ? "salta ring-4 ring-white" : ""}`}
+                className={`flex items-center justify-center gap-3 rounded-2xl bg-emerald-600 px-6 py-5 text-2xl font-extrabold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-emerald-500 ${reaccion?.bien ? "salta ring-4 ring-white" : ""}`}
               >
                 <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
                 Sí
@@ -94,7 +94,7 @@ export default function TestRapido() {
               <button
                 type="button"
                 onClick={() => responder(false)}
-                className={`flex items-center justify-center gap-3 rounded-2xl bg-rose-500 px-6 py-5 text-2xl font-extrabold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-rose-400 ${reaccion && !reaccion.bien ? "salta ring-4 ring-white" : ""}`}
+                className={`flex items-center justify-center gap-3 rounded-2xl bg-rose-600 px-6 py-5 text-2xl font-extrabold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-rose-500 ${reaccion && !reaccion.bien ? "salta ring-4 ring-white" : ""}`}
               >
                 <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 No
