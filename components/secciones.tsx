@@ -1268,7 +1268,7 @@ export function SeccionEstudio() {
         <div>
           <p className="text-sm font-bold uppercase tracking-wide">Tu inversión, optimizada al máximo</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
-          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad para crecer más. Lo normal es que, solo con esa optimización, ya tengas mejores resultados con la misma inversión, y encima margen para subirla. El estudio te lo dice al euro.</p>
+          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad para crecer más. Y casi siempre, solo con esa optimización, ya tienes mejores resultados con la misma inversión, y encima margen para subirla. El estudio te lo dice al euro.</p>
           <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
