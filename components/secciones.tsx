@@ -1264,17 +1264,28 @@ export function SeccionEstudio() {
           </div>
         ))}
       </div>
-      <div className="mt-8 grid gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[1fr_1fr] lg:items-center">
+      <div className="mt-8 grid gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <p className="text-sm font-bold uppercase tracking-wide">Y te dice cuánto ahorrarías</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
           <p className="mt-3 text-lg">Es lo que nos encontramos en casi todas las empresas: menos factura y mejores resultados. El estudio te lo dice al euro, con lo que pagas hoy delante.</p>
+          <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
-        <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
-          <p className="text-sm font-bold text-gris">Un caso real: Reformadísimo</p>
-          <p className="mt-2 font-titular text-4xl font-extrabold text-emerald-700">16.368 € al año</p>
-          <p className="mt-2">de ahorro previsto: un <b>23 % menos</b> en su presupuesto de marketing. Deja de pagar 2.000 € al mes a dos agencias.</p>
-          <p className="mt-3 text-xs text-gris">Cálculo sobre su presupuesto de noviembre de 2026 frente a la media de junio a septiembre.</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <p className="text-sm font-bold text-gris">Reformadísimo</p>
+            <p className="mt-2 font-titular text-3xl font-extrabold text-emerald-700">16.368 €</p>
+            <p className="text-sm font-bold">de ahorro al año</p>
+            <p className="mt-2 text-[0.95rem]">Un <b>23 % menos</b> en su presupuesto de marketing. Deja de pagar 2.000 € al mes a dos agencias.</p>
+            <p className="mt-3 text-xs text-gris">Previsto: presupuesto de noviembre de 2026 frente a la media de junio a septiembre.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
+            <p className="mt-2 font-titular text-3xl font-extrabold text-emerald-700">5.550 €</p>
+            <p className="text-sm font-bold">al año que deja de pagar</p>
+            <p className="mt-2 text-[0.95rem]">400 € al mes de SEO y 750 € al año de mantenimiento. Y su web pasó de <b>56 a 94</b> de velocidad en el móvil.</p>
+            <p className="mt-3 text-xs text-gris">Su inversión en anuncios sigue, pero mejor aprovechada.</p>
+          </div>
         </div>
       </div>
       <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">

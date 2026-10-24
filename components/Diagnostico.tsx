@@ -7,9 +7,9 @@ import { CONTACTO } from "@/lib/contenido";
 // Mientras no haya canal de contacto configurado, avisa en vez de fingir que envía.
 const FACTURACION = ["Menos de 1 millón", "De 1 a 4 millones", "De 4 a 10 millones", "Más de 10 millones"];
 const EMPLEADOS = ["Menos de 10", "De 10 a 50", "De 50 a 250", "Más de 250"];
-const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "Más de 5.000 € al mes"];
+const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes"];
 const HOY = ["Una agencia", "Varios proveedores", "Alguien de la casa", "Nadie, por ahora"];
-const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1.500 a 3.000 € al mes", "Más de 3.000 € al mes", "No lo sé"];
+const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1.500 a 3.000 € al mes", "De 3.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes", "No lo sé"];
 const CAMBIAR = ["Lo antes posible", "En los próximos tres meses", "Más adelante", "No tengo prisa, solo estoy mirando"];
 const CONVENCE = ["Empezaríamos en cuanto podáis", "Lo hablaría con mi socio o la dirección", "Lo compararía con otras propuestas", "Solo quiero ver ideas"];
 const REUNION = ["Sí, esta misma semana", "Sí, en las próximas semanas", "Prefiero que me lo enviéis por correo"];
@@ -25,7 +25,7 @@ function encaje(d: FormData) {
   p += [3, 2, 0][CONVENCE.indexOf(v("convence"))] ?? 0;
   p += [2, 1, 0][REUNION.indexOf(v("reunion"))] ?? 0;
   p += [2, 1, 0][DECIDE.indexOf(v("decide"))] ?? 0;
-  p += [0, 1, 2, 2, 0][MARKETING.indexOf(v("marketing"))] ?? 0;
+  p += [0, 1, 2, 3, 3, 3, 0][MARKETING.indexOf(v("marketing"))] ?? 0;
   if (v("inversion") !== INVERSION[0]) p += 1;
   if (v("facturacion") !== FACTURACION[0]) p += 1;
   return p >= 10 ? "ENCAJE ALTO" : p >= 6 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
