@@ -39,8 +39,19 @@ export default function VideoFondo({
     if (quieto) return;
     // Los vídeos esperan a que la página haya terminado de cargar: primero se pinta el texto
     // (con la foto fija de fondo) y después arranca el movimiento.
+    // Los de cabecera esperan además a que la persona se mueva por la página (o a unos segundos),
+    // para que la primera impresión sea instantánea y la foto no compita con el texto.
     const listo = new Promise<void>((res) => {
-      const tras = () => setTimeout(res, 1500);
+      const tras = () => {
+        if (!prioridad) return void setTimeout(res, 1500);
+        const eventos = ["pointermove", "touchstart", "scroll", "keydown"] as const;
+        const ya = () => {
+          eventos.forEach((e) => window.removeEventListener(e, ya));
+          res();
+        };
+        eventos.forEach((e) => window.addEventListener(e, ya, { once: true, passive: true }));
+        setTimeout(ya, 9000);
+      };
       if (document.readyState === "complete") tras();
       else window.addEventListener("load", tras, { once: true });
     });
@@ -68,7 +79,7 @@ export default function VideoFondo({
       cancelado = true;
       io.disconnect();
     };
-  }, []);
+  }, [prioridad]);
 
   // Al añadir la fuente del vídeo, se carga y arranca.
   useEffect(() => {
