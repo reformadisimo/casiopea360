@@ -240,7 +240,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                   {f.servicios.map((s) => (
                     <li key={s} className="flex gap-3">
                       {oscura ? <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" /> : <Visto />}
-                      <span className={oscura ? "bg-noche text-white/90" : ""}>{glosar(s)}</span>
+                      <span className={oscura ? "text-white/90" : ""}>{glosar(s)}</span>
                     </li>
                   ))}
                 </ul>

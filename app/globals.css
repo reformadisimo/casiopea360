@@ -233,3 +233,6 @@ html.cookies-decididas [data-aviso-cookies] { display: none; }
   outline-offset: 3px;
   border-radius: 12px;
 }
+
+/* Palabras del glosario dentro de tarjetas oscuras: fondo propio para que el contraste se mida bien */
+.bg-noche button.cursor-help { background-color: var(--color-noche); }
