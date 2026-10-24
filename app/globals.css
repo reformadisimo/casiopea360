@@ -17,9 +17,13 @@
 html {
   scroll-behavior: smooth;
 }
+main {
+  background: #ffffff;
+}
 
 body {
-  background: #ffffff;
+  /* El lienzo arranca en azul noche (como la cabecera) y el contenido pone su blanco: sin destello blanco al cargar */
+  background: transparent;
   color: var(--color-tinta);
   font-family: var(--font-texto);
   font-size: 1.0625rem;

@@ -42,7 +42,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={titular.variable} suppressHydrationWarning>
+    <html lang="es" className={titular.variable} style={{ backgroundColor: "#0e1a3d" }} suppressHydrationWarning>
       <head>
         {/* Si ya se eligió sobre las cookies, se oculta el aviso antes de pintar nada. */}
         <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('casiopea-cookies'))document.documentElement.classList.add('cookies-decididas')}catch(e){}" }} />
