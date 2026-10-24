@@ -5,7 +5,7 @@ import LogoMarca from "@/components/LogoMarca";
 import TrasCarga from "@/components/TrasCarga";
 import CostesDiferido from "@/components/CostesDiferido";
 import MovilParte from "@/components/MovilParte";
-import Diagnostico from "@/components/Diagnostico";
+import DiagnosticoDiferido from "@/components/DiagnosticoDiferido";
 import {
   DOLORES,
   ESTUDIO,
@@ -962,7 +962,7 @@ export function SeccionSolicitud() {
             <div className="aspect-[16/10]"><VideoFondo nombre="mujer-cielo" alt="Una persona mira al cielo de noche" /></div>
           </div>
         </div>
-        <Diagnostico />
+        <DiagnosticoDiferido />
       </div>
     </section>
   );
