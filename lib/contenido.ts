@@ -295,6 +295,14 @@ export const PREGUNTAS = [
     r: "De las más rápidas de internet: es un compromiso. Tu web, cargada en 2 segundos como máximo y, lo ideal, en menos de medio segundo; y 100, 100, 100 en PageSpeed Insights, la herramienta de Google. No te diremos que lo clavamos a la primera, pero siempre estarás muy cerca de lo óptimo, como esta misma web. Para que te hagas una idea, solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google, según HTTP Archive.",
   },
   {
+    p: "¿Hacéis las webs en WordPress?",
+    r: "No. Hacemos código propio, a medida y sin plugins, con la tecnología que usan hoy las empresas más punteras, y la publicamos en la red mundial de Vercel. Por eso nuestras webs sacan 100 en PageSpeed y son mucho más difíciles de atacar. WordPress mueve el 42,6 % de las webs del mundo y es el blanco favorito: solo en 2025 aparecieron 11.334 fallos de seguridad nuevos en su ecosistema, el 91 % en plugins (Patchstack). Si ya tienes WordPress, te lo pasamos sin perder lo que tienes en Google.",
+  },
+  {
+    p: "¿Y si me hackean la web?",
+    r: "Ninguna web del mundo es invulnerable, pero la nuestra es muchísimo más difícil de atacar que un WordPress: no hay plugins ni panel de administración a la vista. Y si algo pasara, volvemos a la versión anterior en minutos, porque cada cambio queda guardado con su historial. En un WordPress hackeado, recuperarlo puede llevar días.",
+  },
+  {
     p: "¿Trabajáis también para mi competencia?",
     r: "Trabajamos para quien consideramos oportuno y no firmamos exclusividad por defecto. Si quieres que no trabajemos para tu competencia directa, se puede pactar, con una cuota más alta; hay clientes que lo han elegido y están encantados. Por cierto: muchos de nuestros mejores trabajos no los podemos enseñar, porque el cliente prefiere que su competencia no sepa quién está detrás.",
   },

@@ -811,6 +811,90 @@ export function SeccionVelocidad() {
   );
 }
 
+/* El lío de los veinte proveedores frente a una sola factura. */
+const PROVEEDORES_LIO = [
+  "Agencia web", "Mantenimiento de WordPress", "Plugins de pago", "Alojamiento", "Agencia de velocidad", "Agencia SEO", "Google Ads", "Anuncios en Meta",
+  "Community manager", "Diseñador", "Consultora de CRM", "Licencias de HubSpot", "Chatbot", "Reseñas", "Programa de citas", "Firma electrónica",
+  "Encuestas", "Medición de llamadas", "Copias y seguridad", "Editor de vídeo",
+];
+export function SeccionVeinteProveedores() {
+  const giros = [-4, 3, -2, 5, -5, 2, 4, -3, 3, -4, 2, -2, 5, -3, 1, -5, 4, -1, 3, -4];
+  return (
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <div className="max-w-4xl">
+          <p className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-sm font-bold text-rose-800">El lío de siempre</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Veinte proveedores, veinte facturas y nadie que responda.</h2>
+          <p className="mt-5 text-lg text-gris sm:text-xl">
+            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes veinte proveedores, veinte facturas y veinte contraseñas. Y ninguno habla con los demás.
+          </p>
+        </div>
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <ul aria-label="Proveedores que tendrías que contratar por separado" className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+            {PROVEEDORES_LIO.map((p, i) => (
+              <li key={p} className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm font-bold text-rose-900 shadow-sm" style={{ transform: `rotate(${giros[i]}deg)` }}>
+                <span className="block text-[0.7rem] font-extrabold uppercase tracking-wide text-rose-500">Factura {i + 1}</span>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <div className="relative rounded-[2rem] bg-noche p-8 text-white shadow-[0_30px_60px_-30px_rgba(14,26,61,0.8)] sm:p-10">
+            <span aria-hidden="true" className="absolute -right-3 -top-3 h-8 w-8 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
+            <p className="text-sm font-bold text-estrella">Con Casiopea 360</p>
+            <p className="mt-3 text-4xl font-extrabold sm:text-5xl">1 equipo.<br />1 factura.<br />Todo dentro.</p>
+            <p className="mt-5 text-lg text-white/85">Todo eso, arreglado por nosotros con la misma cuota. Nadie más lo hace así. Nosotros sí, y nos comprometemos a ello.</p>
+            <a href="#costes" className="mt-7 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Calcula lo que te ahorras</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Tecnología limpia, sin lastre: por qué podemos lo que otros no. */
+const COMPARA_TECNO: [string, string, string][] = [
+  ["Cómo se hace", "Una plantilla y decenas de plugins de terceros", "Código propio, a medida, sin plugins"],
+  ["Velocidad", "Depende de cada plugin; lo normal es que vaya lenta", "100, 100, 100 en PageSpeed, como esta web"],
+  ["Seguridad", "11.334 fallos de seguridad nuevos en su ecosistema en 2025; el 91 %, en plugins", "Sin plugins ni panel de administración a la vista: muchísimo más difícil de atacar"],
+  ["Si algo sale mal", "Restaurar copias, buscar al culpable, días de web caída", "Volvemos a la versión anterior en minutos"],
+  ["Cada cambio", "Una actualización puede romper otra cosa", "Revisado antes de publicar y guardado con su historial"],
+  ["Dónde vive", "Un servidor que hay que mantener y vigilar", "La red mundial de Vercel, cerca de cada visitante"],
+];
+export function SeccionTecnologia() {
+  return (
+    <section id="tecnologia" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Tecnología limpia, sin lastre</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo último en tecnología. Sin la carga de lo antiguo.</h2>
+          </div>
+          <p className="text-lg text-gris">
+            Muchas agencias no pueden cambiar: tienen equipos enteros montados sobre la tecnología de hace diez años, y empezar de nuevo les saldría carísimo. Nosotros no arrastramos esa carga. Trabajamos limpios, con lo mejor de hoy, y eso se nota en cada web.
+          </p>
+        </div>
+        <div className="mt-12 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
+          <div className="hidden grid-cols-[0.8fr_1fr_1fr] gap-3 bg-noche px-5 py-4 text-sm font-extrabold text-white sm:grid sm:px-7">
+            <span />
+            <span className="text-rose-300">Una web típica en WordPress</span>
+            <span className="text-estrella">Una web de Casiopea 360</span>
+          </div>
+          {COMPARA_TECNO.map(([q, a, b]) => (
+            <div key={q} className="grid items-start gap-2 border-t border-linea px-5 py-4 text-[0.95rem] first:border-t-0 sm:grid-cols-[0.8fr_1fr_1fr] sm:gap-3 sm:px-7">
+              <b>{q}</b>
+              <span className="flex gap-2 text-gris"><span aria-hidden="true" className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-400" /><span><b className="font-bold text-rose-700 sm:hidden">WordPress: </b>{a}</span></span>
+              <span className="flex gap-2"><span aria-hidden="true" className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" /><span><b className="font-bold text-emerald-700 sm:hidden">Casiopea: </b>{b}</span></span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 text-xs text-gris">
+          WordPress mueve el 42,6 % de las webs del mundo (W3Techs, 2026), y por eso es el blanco favorito de los ataques. Datos de seguridad: Patchstack, informe sobre la seguridad de WordPress en 2026. Ninguna web es invulnerable; la nuestra es mucho más difícil de atacar y mucho más fácil de recuperar.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* Valor añadido: CRM a medida incluido. */
 export function SeccionCRM() {
   const columnas: [string, string[]][] = [
