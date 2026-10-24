@@ -280,7 +280,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Garantizáis resultados?",
-    r: "Los resultados no los puede garantizar nadie con honradez, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos es nuestro esfuerzo, con todo lo que sabemos. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
+    r: "Los resultados no los puede garantizar nadie con honradez: ni el primer puesto en Google ni que una IA te recomiende, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos es nuestro esfuerzo, con todo lo que sabemos. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
   },
   {
     p: "¿Con cuántas empresas habéis trabajado?",
@@ -309,10 +309,6 @@ export const PREGUNTAS = [
   {
     p: "¿Cuánto tarda en notarse?",
     r: "La velocidad de la web, el primer día. La ficha de Google y las reseñas, en semanas. Google y las IA, entre 3 y 6 meses. Te lo contamos cada día para que veas por dónde va.",
-  },
-  {
-    p: "¿Garantizáis resultados?",
-    r: "No. Nadie honesto puede garantizar el primer puesto en Google o que una IA te recomiende. Lo que sí garantizamos es trabajo diario, medido y contado.",
   },
   {
     p: "¿Qué tengo que hacer yo?",
