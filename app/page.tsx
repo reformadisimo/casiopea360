@@ -49,14 +49,10 @@ export default function Inicio() {
       <main id="contenido">
         {/* Héroe: la constelación */}
         <section className="relative overflow-hidden bg-noche pb-16 pt-28 text-white sm:pb-24 sm:pt-36">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-60"
-            style={{
-              backgroundImage:
-                "radial-gradient(1px 1px at 12% 22%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 78% 14%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 64% 72%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 30% 82%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 90% 58%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 46% 40%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 64%, #fff 50%, transparent 51%)",
-            }}
-          />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            <VideoFondo nombre="constelaciones" alt="" />
+          </div>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/90 via-noche/55 to-noche/30" />
           <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
             <div>
               <h1 className="text-[2.6rem] font-extrabold sm:text-6xl">Todo tu marketing digital, con un solo equipo.</h1>
