@@ -11,14 +11,13 @@ export default function AsistenteDiferido() {
   useEffect(() => {
     // Aparece cuando la persona empieza a moverse por la página, o a los pocos segundos.
     const eventos = ["pointermove", "touchstart", "scroll", "keydown"] as const;
-    let t: ReturnType<typeof setTimeout>;
     const ya = () => {
       eventos.forEach((e) => window.removeEventListener(e, ya));
       clearTimeout(t);
       setListo(true);
     };
     eventos.forEach((e) => window.addEventListener(e, ya, { once: true, passive: true }));
-    t = setTimeout(ya, 7000);
+    const t = setTimeout(ya, 7000);
     return () => {
       eventos.forEach((e) => window.removeEventListener(e, ya));
       clearTimeout(t);
