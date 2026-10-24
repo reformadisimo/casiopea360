@@ -223,7 +223,7 @@ main > section:not(:first-child):not(:last-child):not(#solicitud) {
     }
   }
 }
-@keyframes revela { from { opacity: 0; transform: translateY(28px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes revela { from { transform: translateY(36px) scale(0.96); } to { transform: none; } }
 
 html.cookies-decididas [data-aviso-cookies] { display: none; }
 
