@@ -46,7 +46,7 @@ export default function QuienesSomos() {
       />
 
       <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
-        <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+        <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className={`${ENVOLTORIO} relative`}>
           <CifrasEquipo />
         </div>
@@ -92,7 +92,7 @@ export default function QuienesSomos() {
       </section>
 
       <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-        <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+        <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className={`${ENVOLTORIO} relative`}>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que creemos</p>
           <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Hacértelo mejor que quien te cobra el triple. Esa es la idea.</h2>

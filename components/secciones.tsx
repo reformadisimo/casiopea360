@@ -119,10 +119,10 @@ export function SeccionCaos() {
         </div>
 
         <div className="relative overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-10">
-          <div className="absolute inset-0 opacity-50">
+          <div className="absolute inset-0 opacity-90">
             <VideoFondo nombre="fibra-luz" alt="" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-noche via-noche/85 to-noche/50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-noche/90 via-noche/60 to-noche/10" />
           <div className="relative flex h-full flex-col">
             <p className="font-titular text-2xl font-extrabold sm:text-3xl">Así es con Casiopea 360</p>
             <p className="mt-2 text-white/80">Todos esos oficios en un solo equipo, conectados entre sí.</p>
@@ -383,10 +383,10 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
 export function SeccionParte() {
   return (
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div className="absolute inset-0 opacity-25">
+      <div className="absolute inset-0">
         <VideoFondo nombre="equipo-riendo" alt="" />
       </div>
-      <div className="absolute inset-0 bg-noche/75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-noche/90 via-noche/70 to-noche/40 lg:bg-gradient-to-r lg:from-noche lg:via-noche/80 lg:to-noche/20" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-14 lg:grid-cols-[1fr_auto]`}>
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Cada día sabes qué hemos hecho por tu negocio.</h2>
@@ -510,7 +510,7 @@ const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: s
 export function SeccionLoQueSea() {
   return (
     <section id="lo-que-sea" className="scroll-mt-24 relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 opacity-25">
+      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60">
         <VideoFondo nombre="constelaciones-azules" alt="" />
       </div>
       <div className={`${ENVOLTORIO} relative`}>
@@ -592,8 +592,8 @@ export function SeccionTambienIncluido() {
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TAMBIEN_INCLUIDO.slice(0, mitad).map((x, i) => tarjeta(x, i))}
           <li className="relative overflow-hidden rounded-[1.8rem] bg-noche text-white sm:col-span-2 lg:col-span-3">
-            <div aria-hidden="true" className="absolute inset-0 opacity-60"><VideoFondo nombre="holograma-redes" alt="" /></div>
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-noche via-noche/80 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-0"><VideoFondo nombre="holograma-redes" alt="" /></div>
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-noche via-noche/70 to-transparent" />
             <div className="relative flex flex-col gap-4 p-7 sm:flex-row sm:items-center sm:justify-between sm:p-10">
               <p className="max-w-xl text-2xl font-extrabold sm:text-3xl">Una sola cuota. Todo esto dentro. Y te lo gestionamos nosotros.</p>
               <a href="/estudio-gratuito" className="shrink-0 rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Pide tu estudio gratuito</a>
@@ -617,8 +617,8 @@ export function SeccionTambienIncluido() {
 export function SeccionComoEsPosible() {
   return (
     <section id="como-es-posible" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="equipo-celebra" alt="" /></div>
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-noche/70 via-noche/90 to-noche" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[70%]"><VideoFondo nombre="equipo-celebra" alt="" /></div>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-noche/45 via-noche/85 via-40% to-noche" />
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que nos dicen todos</p>
         <h2 className="mt-6 font-titular text-5xl font-extrabold leading-[1.02] sm:text-7xl">
@@ -687,7 +687,7 @@ export function SeccionComoEsPosible() {
 export function SeccionPromesas() {
   return (
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 opacity-30"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y a precio fijo.</h2>
@@ -807,7 +807,7 @@ export function SeccionLoFirmamos() {
 export function SeccionConfidenciales() {
   return (
     <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
-      <div aria-hidden="true" className="absolute inset-0 opacity-20"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Bajo llave</p>
@@ -875,7 +875,8 @@ export function SeccionVelocidad() {
   const notas: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Buenas prácticas"]];
   return (
     <section id="velocidad" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="fibra-luz" alt="" /></div>
+      <div aria-hidden="true" className="absolute inset-0 opacity-70"><VideoFondo nombre="fibra-luz" alt="" /></div>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-noche/85 via-noche/50 to-noche/20" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestro compromiso de velocidad</p>
@@ -1352,7 +1353,7 @@ export function LlamadaFinal() {
   return (
     <section className={`${ENVOLTORIO} py-20`}>
       <div className="relative overflow-hidden rounded-[2rem] bg-noche p-8 text-white sm:p-14">
-        <div aria-hidden="true" className="absolute inset-0 opacity-50"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+        <div aria-hidden="true" className="estrellas absolute inset-0 opacity-80"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
           <div>
             <h2 className="text-3xl font-extrabold sm:text-5xl">¿Empezamos por un estudio gratuito?</h2>

@@ -18,7 +18,7 @@ export default function CabeceraPagina({
 }) {
   return (
     <section className="relative overflow-hidden bg-noche pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50">
+      <div aria-hidden="true" className="estrellas pointer-events-none absolute inset-0 opacity-75">
         <VideoFondo nombre="constelaciones" alt="" prioridad />
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche via-noche/85 to-noche/50" />

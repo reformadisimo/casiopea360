@@ -40,7 +40,7 @@ export default function FranjaVideos({
   const [a, b, c, d] = clips;
   return (
     <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30">
+      <div aria-hidden="true" className="estrellas pointer-events-none absolute inset-0 opacity-60">
         <VideoFondo nombre="constelaciones-azules" alt="" />
       </div>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1.25fr]">

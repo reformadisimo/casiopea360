@@ -241,3 +241,6 @@ html.cookies-decididas [data-aviso-cookies] { display: none; }
 .brilla { animation: brilla 2.6s ease-in-out infinite; }
 @keyframes brilla { 0%, 100% { transform: scale(0.8) rotate(0deg); } 50% { transform: scale(1.15) rotate(20deg); } }
 @media (prefers-reduced-motion: reduce) { .brilla { animation: none; } }
+
+/* Constelaciones de fondo: más vivas y nítidas */
+.estrellas video, .estrellas img { filter: contrast(1.4) brightness(1.15) saturate(1.5); }
