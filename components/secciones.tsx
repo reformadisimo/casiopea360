@@ -291,6 +291,11 @@ export function SeccionOrigen() {
             <p className="mt-4 text-lg text-white/80">
               Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te cuenta cada día lo que pasa. Lo que antes eran semanas, ahora son minutos.
             </p>
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella">22+</p><p className="text-sm text-white/75">años de experiencia</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella">60.000 €</p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
+            </div>
+            <Link href="/quienes-somos" className="mt-6 inline-flex font-bold text-estrella hover:underline">Conoce quiénes somos →</Link>
           </div>
         </div>
       </div>

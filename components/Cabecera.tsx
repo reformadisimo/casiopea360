@@ -61,7 +61,7 @@ export default function Cabecera() {
           <Logo claro />
         </Link>
 
-        <nav ref={navRef} aria-label="Principal" className="hidden lg:block">
+        <nav ref={navRef} aria-label="Principal" className="hidden xl:block">
           <ul className="flex items-center gap-1 text-[0.95rem] font-bold text-white/85">
             {MENU.map((m) =>
               m.hijos ? (
@@ -76,7 +76,7 @@ export default function Cabecera() {
                     aria-expanded={abierto === m.texto}
                     aria-haspopup="true"
                     onClick={() => setAbierto(abierto === m.texto ? null : m.texto)}
-                    className="flex items-center gap-1.5 rounded-full px-3.5 py-2 hover:text-white"
+                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 hover:text-white"
                   >
                     {m.texto}
                     <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${abierto === m.texto ? "rotate-180" : ""}`}>
@@ -109,7 +109,7 @@ export default function Cabecera() {
                 </li>
               ) : (
                 <li key={m.texto}>
-                  <Link href={m.href} className="block rounded-full px-3.5 py-2 hover:text-white">
+                  <Link href={m.href} className="block whitespace-nowrap rounded-full px-3 py-2 hover:text-white">
                     {m.texto}
                   </Link>
                 </li>
@@ -131,7 +131,7 @@ export default function Cabecera() {
             aria-label={movil ? "Cerrar el menú" : "Abrir el menú"}
             aria-expanded={movil}
             onClick={() => setMovil(!movil)}
-            className="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/10 lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/10 xl:hidden"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
               {movil ? (
@@ -145,7 +145,7 @@ export default function Cabecera() {
       </div>
 
       {movil && (
-        <nav aria-label="Principal" className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-white/10 bg-noche px-4 pb-10 pt-4 lg:hidden">
+        <nav aria-label="Principal" className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-white/10 bg-noche px-4 pb-10 pt-4 xl:hidden">
           <ul className="space-y-1 text-white">
             {MENU.map((m) => (
               <li key={m.texto}>

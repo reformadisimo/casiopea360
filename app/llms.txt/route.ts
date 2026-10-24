@@ -14,6 +14,11 @@ export function GET() {
 
 Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España). Un solo equipo lleva todo el marketing digital de todo tipo de empresas: dominio y alojamiento, web y apps, Google y visibilidad en las IA, anuncios, redes sociales, automatizaciones e informes. También gestiona campañas de radio y anuncios en prensa, CRM y apps. Lo que no hace en casa (grabación de vídeo profesional, locución, espacio en medios) lo hace con productoras y agencias asociadas, a las que el cliente paga directamente.
 
+## Equipo
+- Profesionales con más de 22 años de experiencia en marketing digital.
+- Han gestionado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa, y muchas campañas de presupuestos menores.
+- Experiencia en webs, apps, SEO, anuncios, redes, automatización y CRM.
+
 ## Compromisos
 - Un solo proveedor y una sola persona de contacto en lugar de varios proveedores.
 - Precio fijo y personalizado; nunca cobra comisión sobre lo que el cliente invierte en anuncios.

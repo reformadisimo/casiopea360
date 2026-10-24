@@ -175,6 +175,22 @@ const LOGO_PREGUNTA: Record<string, string> = {
   t1: "WhatsApp", t2: "Claude", t3: "Gmail", t5: "Ficha de Google", c1: "Google Analytics", c2: "Search Console", m1: "Semrush", m2: "Instagram",
   m5: "Google", v3: "Google Analytics", v4: "WhatsApp", v5: "Gmail", k1: "YouTube", k4: "Gmail",
 };
+const ICONO_CTX: Record<string, string> = {
+  e1: "M4 21V8l8-5 8 5v13M9 21v-6h6v6",
+  e2: "M15 6.5A5.5 5.5 0 1 0 15 17.5M6 10h7M6 14h7",
+  e3: "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5",
+  e5: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 12h.01",
+  e6: "M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z",
+};
+const ANOTADO: Record<string, string> = {
+  e1: "Anotado: hablaremos de tu sector",
+  e2: "Anotado. No sale de tu navegador",
+  e3: "Anotado",
+  e4: "Perfecto, lo tendremos en cuenta",
+  e5: "Esa será nuestra prioridad",
+  e6: "Anotado: así sabremos lo que vale cada cliente que te traigamos",
+};
+
 const REACCION = [
   { t: "Aquí se te escapan clientes", c: "bg-rose-100 text-rose-800" },
   { t: "Mejorable, pero tiene arreglo", c: "bg-orange-100 text-orange-800" },
@@ -352,7 +368,11 @@ export default function TestCompleto() {
               <li key={q.id}>
                 <fieldset>
                   <legend className="flex items-start gap-3 text-lg font-bold">
-                    {LOGO_PREGUNTA[q.id] ? (
+                    {ICONO_CTX[q.id] ? (
+                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-estrella text-tinta">
+                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={ICONO_CTX[q.id]} /></svg>
+                      </span>
+                    ) : LOGO_PREGUNTA[q.id] ? (
                       <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla"><LogoMarca nombre={LOGO_PREGUNTA[q.id]} tam={22} /></span>
                     ) : (
                       <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla text-sm font-extrabold text-noche-3">{i + 1}</span>
@@ -372,11 +392,15 @@ export default function TestCompleto() {
                             activo ? "scale-[1.03] border-noche bg-noche font-bold text-white shadow-md" : "border-linea hover:-translate-y-0.5 hover:border-noche hover:shadow-sm"
                           }`}
                         >
+                          <span className={`mr-2 inline-block h-3 w-3 rounded-full border-2 align-[-1px] ${activo ? "border-estrella bg-estrella" : "border-linea"}`} aria-hidden="true" />
                           {o.t}
                         </button>
                       );
                     })}
                   </div>
+                  {bloque.contexto && resp[q.id] !== undefined && (
+                    <p key={resp[q.id]} className="aparece mt-3 inline-block rounded-full bg-noche px-3 py-1 text-sm font-bold text-estrella">{ANOTADO[q.id] ?? "Anotado"}</p>
+                  )}
                   {!bloque.contexto && resp[q.id] !== undefined && (
                     <p key={resp[q.id]} className={`aparece mt-3 inline-block rounded-full px-3 py-1 text-sm font-bold ${REACCION[q.o[resp[q.id]].v].c}`}>
                       {REACCION[q.o[resp[q.id]].v].t}

@@ -18,7 +18,7 @@ export default function Cookies() {
           <tr><td>Mapas de calor (Microsoft Clarity)</td><td>Ver de forma anónima dónde se pulsa y hasta dónde se lee, para mejorar la web</td><td>Sí</td></tr>
         </tbody>
       </table>
-      <p>Las cookies de medición y los mapas de calor solo se activan si las aceptas en el aviso de cookies, que tiene el botón de rechazar al mismo nivel que el de aceptar, como pide la Agencia Española de Protección de Datos. Si no hay ninguna herramienta de medición activa, no verás el aviso porque no usamos ninguna cookie que necesite tu permiso.</p>
+      <p>Las cookies de medición y los mapas de calor solo se activan si las aceptas en el aviso de cookies, que tiene el botón de rechazar al mismo nivel que el de aceptar, como pide la Agencia Española de Protección de Datos.</p>
       <h2>Cómo cambiar de opinión</h2>
       <p>Puedes cambiar tu elección en cualquier momento desde el enlace «Configurar cookies» del pie de la web, o borrando las cookies desde la configuración de tu navegador.</p>
     </PaginaLegal>

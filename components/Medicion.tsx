@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 // Medición con permiso: Tag Manager (con Google Analytics, Google Ads, el píxel de Meta y el resto dentro)
 // y Microsoft Clarity. Solo se cargan si el visitante acepta. Mientras no haya códigos en Vercel
-// (NEXT_PUBLIC_GTM_ID y NEXT_PUBLIC_CLARITY_ID), no se usa ninguna cookie y no sale ningún aviso.
+// (NEXT_PUBLIC_GTM_ID y NEXT_PUBLIC_CLARITY_ID), aceptar no carga nada: el aviso queda listo para el día que se pongan.
 const GTM = process.env.NEXT_PUBLIC_GTM_ID;
 const CLARITY = process.env.NEXT_PUBLIC_CLARITY_ID;
 const CLAVE = "casiopea-cookies";
@@ -17,7 +17,8 @@ export default function Medicion() {
   const [eleccion, setEleccion] = useState<Eleccion>(null);
   const [visible, setVisible] = useState(false);
   const [detalle, setDetalle] = useState(false);
-  const hayMedicion = Boolean(GTM || CLARITY);
+  // El aviso sale siempre; las herramientas solo se cargan si tienen su código y el visitante acepta.
+  const hayMedicion = true;
 
   useEffect(() => {
     if (!hayMedicion) return;
