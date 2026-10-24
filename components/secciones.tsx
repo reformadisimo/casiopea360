@@ -503,7 +503,7 @@ export function LlamadaFinal() {
   return (
     <section className={`${ENVOLTORIO} py-20`}>
       <div className="relative overflow-hidden rounded-[2rem] bg-noche p-8 text-white sm:p-14">
-        <div aria-hidden="true" className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: "url(/video/constelaciones.jpg)" }} />
+        <div aria-hidden="true" className="absolute inset-0 opacity-50"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
           <div>
             <h2 className="text-3xl font-extrabold sm:text-5xl">¿Empezamos por un estudio gratuito?</h2>

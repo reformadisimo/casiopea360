@@ -1,4 +1,5 @@
 import Link from "next/link";
+import VideoFondo from "@/components/VideoFondo";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
@@ -28,7 +29,9 @@ export default function Blog() {
       />
       <section className={`${ENVOLTORIO} py-16 sm:py-20`}>
         <Link href={`/blog/${destacado.slug}`} className="group grid overflow-hidden rounded-[2rem] bg-noche text-white lg:grid-cols-2">
-          <div className="relative min-h-[240px] bg-cover bg-center" style={{ backgroundImage: `url(/video/${destacado.video}.jpg)` }} aria-hidden="true" />
+          <div className="relative min-h-[260px] overflow-hidden" aria-hidden="true">
+            <VideoFondo nombre={destacado.video} alt="" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />
+          </div>
           <div className="p-7 sm:p-10">
             <p className="text-sm font-bold text-estrella">
               {destacado.categoria} · {destacado.lectura}
@@ -41,7 +44,9 @@ export default function Blog() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {resto.map((a) => (
             <Link key={a.slug} href={`/blog/${a.slug}`} className="group flex flex-col overflow-hidden rounded-[2rem] border border-linea hover:border-noche">
-              <div aria-hidden="true" className="aspect-[16/8] bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]" style={{ backgroundImage: `url(/video/${a.video}.jpg)` }} />
+              <div aria-hidden="true" className="relative aspect-[16/8] overflow-hidden">
+                <VideoFondo nombre={a.video} alt="" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />
+              </div>
               <div className="flex flex-1 flex-col p-7 sm:p-9">
               <p className="text-sm font-bold text-noche-3">
                 {a.categoria} · {a.lectura}

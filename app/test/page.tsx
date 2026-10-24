@@ -1,3 +1,4 @@
+import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import TestRapido from "@/components/TestRapido";
@@ -30,6 +31,14 @@ export default function Test() {
           <TestRapido />
         </div>
       </section>
+      <FranjaVideos
+        frase="Un minuto para hacerte una idea. Siete para saberlo todo."
+        clips={[
+          { nombre: "mujer-movil", alt: "Una mujer consulta su móvil" },
+          { nombre: "fibra-luz", alt: "Fibras de luz que se cruzan" },
+          { nombre: "hombre-celebra", alt: "Un empresario celebra delante de su ordenador" },
+        ]}
+      />
       <section id="completo" className="scroll-mt-24 bg-niebla py-16 sm:py-20">
         <span id="calculadora" className="block scroll-mt-24" aria-hidden="true" />
         <div className={ENVOLTORIO}>

@@ -1,3 +1,4 @@
+import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionOrigen, SeccionTrabajos } from "@/components/secciones";
@@ -22,6 +23,15 @@ export default function Trabajos() {
         videoAlt="Un empresario celebra delante de su ordenador"
       />
       <SeccionTrabajos titulo={false} />
+      <FranjaVideos
+        frase="Empresas de verdad, con clientes de verdad."
+        detalle="Reformas, cerramientos, abogados, una app familiar. Distintos sectores, la misma forma de trabajar."
+        clips={[
+          { nombre: "gran-via", alt: "La Gran Vía de Madrid de noche" },
+          { nombre: "despacho", alt: "Una reunión distendida en un despacho" },
+          { nombre: "arquitecto-mesa", alt: "Un arquitecto trabaja en su mesa" },
+        ]}
+      />
       <SeccionOrigen />
       <LlamadaFinal />
     </>

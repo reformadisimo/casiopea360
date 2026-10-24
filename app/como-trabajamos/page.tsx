@@ -1,3 +1,4 @@
+import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionGarantias, SeccionMetodo, SeccionParte } from "@/components/secciones";
@@ -22,6 +23,15 @@ export default function ComoTrabajamos() {
         videoAlt="Una brújula sobre un mapa"
       />
       <SeccionMetodo />
+      <FranjaVideos
+        frase="Casi todo por correo. Cero reuniones que no quieras."
+        detalle="Nos escribes, lo hacemos en 48 horas como máximo y te lo contamos en el parte del día."
+        clips={[
+          { nombre: "llamada-risa", alt: "Un cliente ríe al teléfono" },
+          { nombre: "equipo-riendo", alt: "Una mujer ríe en una reunión de equipo" },
+          { nombre: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
+        ]}
+      />
       <SeccionParte />
       <SeccionGarantias />
       <LlamadaFinal />

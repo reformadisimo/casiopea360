@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fragment } from "react";
+import VideoFondo from "@/components/VideoFondo";
 import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
@@ -37,6 +39,9 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
   if (!a) notFound();
   const fecha = new Date(a.fecha + "T12:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
   const otros = ARTICULOS.filter((x) => x.slug !== a.slug);
+  // El vídeo de apoyo va justo antes del segundo subtítulo
+  const titulos = a.cuerpo.map((b, i) => ("h2" in b ? i : -1)).filter((i) => i >= 0);
+  const mitad = titulos[1] ?? Math.floor(a.cuerpo.length / 2);
   return (
     <>
       <DatosEstructurados
@@ -61,7 +66,16 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
           <p className="mt-2">{a.respuesta}</p>
         </div>
         {a.cuerpo.map((b, i) => (
-          <Pinta key={i} b={b} />
+          <Fragment key={i}>
+            {i === mitad && (
+              <figure className="not-prose my-10 overflow-hidden rounded-[1.6rem] ring-1 ring-linea">
+                <div className="relative aspect-[16/9]">
+                  <VideoFondo nombre={a.apoyo.video} alt={a.apoyo.alt} />
+                </div>
+              </figure>
+            )}
+            <Pinta b={b} />
+          </Fragment>
         ))}
         <p>
           <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test en un minuto</Link>.

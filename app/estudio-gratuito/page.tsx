@@ -1,3 +1,4 @@
+import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SeccionEstudio, SeccionSolicitud } from "@/components/secciones";
@@ -22,6 +23,15 @@ export default function EstudioGratuito() {
         videoAlt="Una persona mira al cielo de noche"
       />
       <SeccionEstudio />
+      <FranjaVideos
+        frase="Miramos tu negocio con telescopio."
+        detalle="Tu web, tu ficha de Google, tus anuncios, tu competencia y lo que dicen de ti las IA. Todo, antes de proponerte nada."
+        clips={[
+          { nombre: "telescopios", alt: "Telescopios bajo un cielo estrellado" },
+          { nombre: "hombre-sonriendo", alt: "Un empresario sonríe satisfecho" },
+          { nombre: "constelaciones-azules", alt: "Constelaciones unidas por líneas de luz" },
+        ]}
+      />
       <SeccionSolicitud />
     </>
   );
