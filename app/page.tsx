@@ -4,11 +4,9 @@ import VideoFondo from "@/components/VideoFondo";
 import {
   BOTON,
   BOTON_CLARO,
-  BandaCompromisos,
   BandaVideo,
   CintaHerramientas,
   ENVOLTORIO,
-  SeccionCaos,
   SeccionEstudio,
   SeccionFrentes,
   SeccionEspecialistas,
@@ -18,8 +16,6 @@ import {
   SeccionPromesas,
   SeccionLoFirmamos,
   SeccionPorQueBarato,
-  SeccionMetodo,
-  SeccionOrigen,
   SeccionParte,
   SeccionPreguntas,
   SeccionPuntosDolor,
@@ -67,7 +63,6 @@ export default function Inicio() {
       <CintaHerramientas />
       <SeccionPromesas />
       <SeccionLoFirmamos />
-      <SeccionCaos />
       <SeccionPuntosDolor />
       <SeccionCostes />
       <SeccionPorQueBarato />
@@ -76,11 +71,8 @@ export default function Inicio() {
       <SeccionEspecialistas />
       <SeccionCRM />
       <SeccionTambienIncluido />
-      <BandaCompromisos />
-      <SeccionOrigen />
       <SeccionTrabajos />
       <SeccionParte />
-      <SeccionMetodo />
       <SeccionPreguntas todas={false} />
       <SeccionEstudio />
       <SeccionSolicitud />

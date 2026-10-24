@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
+import EnviarResultado from "@/components/EnviarResultado";
 import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 
 // Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
@@ -671,7 +672,8 @@ export default function TestCompleto() {
                   Repetir el test
                 </button>
               </div>
-              <p className="mt-6 text-sm text-white/60">Cifras orientativas, calculadas con tus respuestas en tu navegador. No se ha enviado ningún dato.</p>
+              <div className="mt-8"><EnviarResultado origen="test completo" /></div>
+              <p className="mt-6 text-sm text-white/60">Cifras orientativas, calculadas con tus respuestas en tu navegador. Solo nos llega algo si nos pides que te lo enviemos.</p>
             </div>
           </div>
         </div>

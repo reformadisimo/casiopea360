@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { FILAS, TAMANOS, type Fila } from "@/lib/costes";
 
 // Calculadora: marca lo que necesitas y mira lo que te costaría contratarlo por separado,
@@ -18,6 +19,25 @@ function Interruptor({ activo }: { activo: boolean }) {
 
 export default function CostesPorTamano() {
   const [t, setT] = useState(1);
+  const caja = useRef<HTMLDivElement>(null);
+  const resumen = useRef<HTMLDivElement>(null);
+  const [barra, setBarra] = useState(false);
+  // En el móvil, mientras recorres la lista, una barra abajo te va enseñando el total.
+  useEffect(() => {
+    const el = caja.current, res = resumen.current;
+    if (!el || !res) return;
+    let dentro = false, viendoResumen = false;
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) {
+        if (e.target === el) dentro = e.isIntersecting;
+        if (e.target === res) viendoResumen = e.isIntersecting;
+      }
+      setBarra(dentro && !viendoResumen);
+    });
+    io.observe(el);
+    io.observe(res);
+    return () => io.disconnect();
+  }, []);
   const [marcados, setMarcados] = useState<Set<string>>(() => new Set(FILAS.filter((f) => f.base).map((f) => f.id)));
   const cambiar = (id: string) =>
     setMarcados((m) => {
@@ -42,7 +62,7 @@ export default function CostesPorTamano() {
   ];
 
   return (
-    <div>
+    <div ref={caja}>
       <div role="tablist" aria-label="Tamaño de tu empresa" className="flex flex-wrap gap-2">
         {TAMANOS.map((n, i) => (
           <button
@@ -105,7 +125,7 @@ export default function CostesPorTamano() {
           </p>
         </div>
 
-        <div className="space-y-5 lg:sticky lg:top-28">
+        <div ref={resumen} className="space-y-5 lg:sticky lg:top-28">
           <div className="overflow-hidden rounded-[2rem] border-2 border-dashed border-rose-300 bg-white p-7" aria-live="polite">
             <p className="text-sm font-bold text-rose-700">Por separado, {TAMANOS[t].toLowerCase()}</p>
             <p key={`${r.mes}-${t}`} className="aparece mt-2 text-5xl font-extrabold">
@@ -176,6 +196,19 @@ export default function CostesPorTamano() {
           </div>
         </div>
       </div>
+      {barra && createPortal(
+        <div className="aparece fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-noche/95 px-4 py-3 pr-20 text-white backdrop-blur lg:hidden">
+          <button type="button" onClick={() => resumen.current?.scrollIntoView({ behavior: "smooth", block: "start" })} className="flex w-full items-center justify-between gap-3 text-left">
+            <span>
+              <span className="block text-xs text-white/70">Por separado, al mes</span>
+              <span className="text-xl font-extrabold text-estrella">{eur(r.mes)}</span>
+              <span className="ml-2 whitespace-nowrap text-xs text-white/70">{r.proveedores} proveedores</span>
+            </span>
+            <span className="shrink-0 rounded-full bg-estrella px-3 py-1.5 text-xs font-bold text-tinta">Ver total</span>
+          </button>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 }

@@ -35,6 +35,24 @@ function ConEnlaces({ texto }: { texto: string }) {
 
 export default function Asistente() {
   const [abierto, setAbierto] = useState(false);
+  const [burbuja, setBurbuja] = useState(false);
+
+  // Una sola vez por visita, a los 20 segundos, el asistente saluda con una pregunta útil.
+  useEffect(() => {
+    let visto = false;
+    try {
+      visto = sessionStorage.getItem("casiopea-burbuja") === "1";
+    } catch {}
+    if (visto) return;
+    const t = setTimeout(() => setBurbuja(true), 20000);
+    return () => clearTimeout(t);
+  }, []);
+  const quitarBurbuja = () => {
+    setBurbuja(false);
+    try {
+      sessionStorage.setItem("casiopea-burbuja", "1");
+    } catch {}
+  };
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
   const [texto, setTexto] = useState("");
   const [ocupado, setOcupado] = useState(false);
@@ -98,9 +116,30 @@ export default function Asistente() {
 
   return (
     <>
+      {burbuja && !abierto && (
+        <div className="burbuja fixed bottom-20 right-4 z-[60] max-w-[16rem] rounded-2xl rounded-br-md bg-white p-4 pr-9 text-sm text-tinta shadow-[0_18px_40px_-12px_rgba(14,26,61,0.5)] ring-1 ring-linea sm:bottom-24 sm:right-6">
+          <button type="button" onClick={quitarBurbuja} aria-label="Cerrar el mensaje" className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full text-gris hover:bg-niebla">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              quitarBurbuja();
+              setAbierto(true);
+            }}
+            className="text-left"
+          >
+            <b className="block">¿Te calculo lo que pagas hoy?</b>
+            <span className="text-gris">Dime qué tienes contratado y te digo cuánto te costaría todo por separado.</span>
+          </button>
+        </div>
+      )}
       <button
         type="button"
-        onClick={() => setAbierto((a) => !a)}
+        onClick={() => {
+          quitarBurbuja();
+          setAbierto((a) => !a);
+        }}
         aria-expanded={abierto}
         aria-controls="asistente"
         aria-label="Asistente de Casiopea 360" className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"

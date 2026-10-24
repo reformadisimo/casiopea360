@@ -15,13 +15,14 @@ export default function Privacidad() {
       <h2>Qué datos tratamos</h2>
       <ul>
         <li><strong>Los que nos das en el formulario del estudio gratuito:</strong> nombre y cargo, empresa, web, ciudad, sector, facturación aproximada, número de empleados, cómo lleváis hoy el marketing, inversión en anuncios, teléfono y correo.</li>
-        <li><strong>Los de los tests:</strong> tus respuestas, que se calculan en tu propio navegador y no se envían a ningún sitio salvo que pidas el estudio.</li>
+        <li><strong>Los de los tests:</strong> tus respuestas, que se calculan en tu propio navegador y no se envían a ningún sitio salvo que pidas el estudio o que te mandemos tu resultado por correo; en ese caso, tu nombre, tu correo y el resumen del resultado.</li>
         <li><strong>Los de navegación:</strong> solo si aceptas las cookies de medición (ver la política de cookies).</li>
       </ul>
       <h2>Para qué los usamos y con qué base legal</h2>
       <ul>
         <li><strong>Estudiar tu solicitud y contestarte</strong>, encaje o no. Base legal: tu consentimiento y la aplicación, a petición tuya, de medidas previas a un contrato.</li>
         <li><strong>Enviarte el estudio y, si lo pides, un presupuesto.</strong> Misma base legal.</li>
+        <li><strong>Mandarte por correo el resultado de tu test</strong>, si nos lo pides, y escribirte sobre él. Base legal: tu consentimiento.</li>
         <li><strong>Mandarte de vez en cuando correos con consejos o novedades</strong>, solo si lo aceptas expresamente. Puedes darte de baja en cualquier momento desde el propio correo.</li>
         <li><strong>Medir cómo se usa la web para mejorarla</strong>, solo con tu consentimiento de cookies.</li>
       </ul>

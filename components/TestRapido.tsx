@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
+import EnviarResultado from "@/components/EnviarResultado";
 import { BarraEstrella, Confeti, Estrella, Reaccion } from "@/components/JuegoTest";
 
 // Test rápido: siete preguntas de sí o no, una a una, con vídeo, reacción y confeti al final.
@@ -145,6 +146,12 @@ export default function TestRapido() {
               </ul>
             </div>
           )}
+          <div className="relative mt-10">
+            <EnviarResultado
+              origen="test rápido"
+              resumen={`Respuestas en verde: ${sies} de ${PREGUNTAS.length}. ${nivel.titulo}\n\nDónde estás perdiendo clientes:\n${PREGUNTAS.filter((_, i) => respuestas[i] === false).map((p) => "- " + p.consejo).join("\n") || "- En nada de lo que hemos preguntado. Enhorabuena."}`}
+            />
+          </div>
           <div className="relative mt-10 flex flex-col gap-3 sm:flex-row">
             <Link href="/estudio-gratuito" className="inline-flex justify-center rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2">
               Quiero mi estudio gratuito

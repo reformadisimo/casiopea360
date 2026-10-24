@@ -3,6 +3,7 @@ import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import LogoMarca from "@/components/LogoMarca";
 import TrasCarga from "@/components/TrasCarga";
+import { glosar } from "@/lib/glosario";
 import CostesDiferido from "@/components/CostesDiferido";
 import MovilParte from "@/components/MovilParte";
 import DiagnosticoDiferido from "@/components/DiagnosticoDiferido";
@@ -236,7 +237,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                   {f.servicios.map((s) => (
                     <li key={s} className="flex gap-3">
                       {oscura ? <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" /> : <Visto />}
-                      <span className={oscura ? "text-white/90" : ""}>{s}</span>
+                      <span className={oscura ? "text-white/90" : ""}>{glosar(s)}</span>
                     </li>
                   ))}
                 </ul>
@@ -537,7 +538,7 @@ export function SeccionTambienIncluido() {
         <div className="min-w-0">
           <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">✓ Incluido</p>
           <p className="mt-0.5 text-lg font-extrabold">{x.t}</p>
-          <p className="mt-1.5 text-[0.97rem] text-gris">{x.d}</p>
+          <p className="mt-1.5 text-[0.97rem] text-gris">{glosar(x.d)}</p>
         </div>
       </li>
     );
@@ -913,7 +914,7 @@ export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boo
               {q.p}
               <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-niebla text-xl transition-transform group-open:rotate-45">+</span>
             </summary>
-            <p className="mt-3 max-w-3xl text-gris">{q.r}</p>
+            <p className="mt-3 max-w-3xl text-gris">{glosar(q.r)}</p>
           </details>
         ))}
       </div>

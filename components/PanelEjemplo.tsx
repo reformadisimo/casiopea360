@@ -1131,7 +1131,8 @@ export default function PanelEjemplo() {
 
           {pestana === "trabajo" && (
             <>
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Cifra titulo="Entregadas a tiempo" valor={98} formato={(n) => `${n} %`} cambio={2} explicacion="Tareas de este mes hechas dentro del plazo prometido. 63 de 64." />
                 <Cifra titulo="Tareas hechas este mes" valor={64} cambio={9} explicacion="Cambios, campañas, artículos, diseños y correos." />
                 <Cifra titulo="Lo que nos pediste" valor={17} cambio={13} explicacion="Peticiones tuyas este mes. Todas hechas." />
                 <Cifra titulo="Tiempo medio de respuesta" valor={19} formato={(n) => `${n} h`} cambio={-12} invertir explicacion="Desde que pides algo hasta que está hecho. Máximo, 48 horas." />
