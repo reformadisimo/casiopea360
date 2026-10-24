@@ -42,7 +42,7 @@ export default function Inicio() {
               <Link prefetch={false} href="/trabajos" className={BOTON_CLARO}>Ver trabajos reales</Link>
             </div>
             <ul className="mt-8 grid grid-cols-2 gap-2 text-[0.8rem] font-bold sm:flex sm:flex-wrap sm:text-sm">
-              {["Más de 22 años de oficio", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
+              {["+22 años en marketing digital", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
                 <li key={t} className="flex min-h-9 items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 leading-tight text-white ring-1 ring-white/15 backdrop-blur sm:px-3.5">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
                   {t}

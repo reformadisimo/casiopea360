@@ -765,7 +765,7 @@ export function SeccionLoFirmamos() {
       <div className={ENVOLTORIO}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Más de 22 años de oficio</p>
+            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Más de 22 años de experiencia en marketing digital</p>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. Sin su factura.</h2>
           </div>
           <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>

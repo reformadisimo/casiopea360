@@ -12,7 +12,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Quiénes somos",
-  "Profesionales del marketing digital con más de 22 años de oficio y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y en días.",
+  "Profesionales con más de 22 años de experiencia en marketing digital y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y en días.",
   "/quienes-somos",
 );
 
@@ -39,7 +39,7 @@ export default function QuienesSomos() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Quiénes somos", ruta: "/quienes-somos" }])} />
       <CabeceraPagina
         titulo="Más de 22 años haciendo que el teléfono suene."
-        entradilla="Somos profesionales del marketing digital con más de veintidós años de oficio. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
+        entradilla="Somos profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="selfie-equipo"
         videoAlt="Un equipo se hace un selfie sonriendo"
