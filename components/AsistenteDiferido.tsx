@@ -9,10 +9,20 @@ const Asistente = dynamic(() => import("@/components/Asistente"), { ssr: false }
 export default function AsistenteDiferido() {
   const [listo, setListo] = useState(false);
   useEffect(() => {
-    const arrancar = () => setTimeout(() => setListo(true), 1200);
-    if (document.readyState === "complete") arrancar();
-    else window.addEventListener("load", arrancar, { once: true });
-    return () => window.removeEventListener("load", arrancar);
+    // Aparece cuando la persona empieza a moverse por la página, o a los pocos segundos.
+    const eventos = ["pointermove", "touchstart", "scroll", "keydown"] as const;
+    let t: ReturnType<typeof setTimeout>;
+    const ya = () => {
+      eventos.forEach((e) => window.removeEventListener(e, ya));
+      clearTimeout(t);
+      setListo(true);
+    };
+    eventos.forEach((e) => window.addEventListener(e, ya, { once: true, passive: true }));
+    t = setTimeout(ya, 7000);
+    return () => {
+      eventos.forEach((e) => window.removeEventListener(e, ya));
+      clearTimeout(t);
+    };
   }, []);
   return listo ? <Asistente /> : null;
 }

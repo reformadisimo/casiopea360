@@ -3,7 +3,7 @@ import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import LogoMarca from "@/components/LogoMarca";
 import TrasCarga from "@/components/TrasCarga";
-import CostesPorTamano from "@/components/CostesPorTamano";
+import CostesDiferido from "@/components/CostesDiferido";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
 import {
@@ -832,7 +832,7 @@ export function SeccionCostes() {
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Haz cuentas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
         <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa y marca lo que necesitas. Verás lo que pagarías contratándolo por separado, a cuántos proveedores y cuántas facturas. Spoiler: la suma asusta.</p>
-        <CostesPorTamano />
+        <CostesDiferido />
       </div>
     </section>
   );
