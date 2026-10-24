@@ -237,8 +237,8 @@ export const GARANTIAS = [
     texto: "Ni una respuesta a una reseña, ni un anuncio, ni un artículo se publica en tu nombre sin que lo hayas visto.",
   },
   {
-    titulo: "Los anuncios, sin comisión",
-    texto: "Pagas a Google o a Meta con tu tarjeta. Nosotros no tocamos ese dinero.",
+    titulo: "Precio fijo, sin comisiones",
+    texto: "Inviertas mil euros en anuncios o un millón, nunca te cobramos un porcentaje de lo que inviertes. Pagas a Google o a Meta con tu tarjeta; nosotros no tocamos ese dinero.",
   },
 ];
 
@@ -298,6 +298,10 @@ export const DOLORES = [
   {
     dolor: "Tengo pocas reseñas, y alguna mala sin contestar.",
     solucion: "Respondemos todas con tu visto bueno y pedimos opinión a tus clientes contentos.",
+  },
+  {
+    dolor: "Encima me cobran un porcentaje de lo que invierto en anuncios.",
+    solucion: "Precio fijo. Nunca cobramos comisión sobre tu inversión, sea la que sea.",
   },
   {
     dolor: "Me paso el día en reuniones con proveedores.",

@@ -297,7 +297,7 @@ export default function Inicio() {
                 ))}
               </div>
               <p className="mt-6 max-w-xl text-white/70">
-                Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
+                Además, tienes un enlace propio donde ves todos tus resultados en tiempo real, cuando quieras. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
               </p>
             </div>
             <MovilParte />
