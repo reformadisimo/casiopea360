@@ -76,6 +76,7 @@ const CONECTADO: [string, string][] = [
   ["LinkedIn", "Empresas"],
   ["TikTok", "Vídeos"],
   ["WhatsApp", "Mensajes"],
+  ["CRM", "Tus clientes"],
   ["Resend", "Correos"],
   ["Clarity", "Mapas de calor"],
   ["PageSpeed", "Velocidad"],
@@ -540,7 +541,7 @@ export default function PanelEjemplo() {
                 <Caja titulo="De dónde vienen tus contactos" fuente="Tag Manager y Analytics" ayuda="Cada persona que te contacta llega con una «etiqueta» que dice de dónde viene: Google, un anuncio concreto, Instagram, el mapa de Google, ChatGPT o un correo. Así sabemos qué funciona y dónde poner el dinero.">
                   <Rosco datos={ORIGEN} centro="312" sub="contactos" />
                 </Caja>
-                <Caja titulo="Herramientas conectadas" fuente="20 de 20 funcionando" ayuda="Todas las herramientas que miden tu negocio, conectadas en un solo sitio. El punto verde dice que están recibiendo datos ahora mismo.">
+                <Caja titulo="Herramientas conectadas" fuente="21 de 21 funcionando" ayuda="Todas las herramientas que miden tu negocio, conectadas en un solo sitio. El punto verde dice que están recibiendo datos ahora mismo.">
                   <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                     {CONECTADO.map(([n, d]) => (
                       <li key={n} className="flex items-center gap-2 rounded-xl border border-linea p-2">
@@ -589,7 +590,7 @@ export default function PanelEjemplo() {
                 </ol>
               </Caja>
 
-              <Caja titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Tu equipo comercial lo ve igual, en el móvil.">
+              <Caja titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Todo entra solo en tu CRM (el que ya tengas o uno que te creamos), y tu equipo comercial lo ve igual, en el móvil.">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[640px] text-left text-sm">
                     <thead className="text-gris">
@@ -810,7 +811,8 @@ export default function PanelEjemplo() {
                   <div className="rounded-2xl bg-emerald-50 p-5">
                     <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
                     <ul className="mt-3 space-y-2 text-sm">
-                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas"].map((t) => (
+                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
+                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas"].map((t) => (
                         <li key={t} className="flex gap-2"><span className="text-emerald-600">✓</span>{t}</li>
                       ))}
                     </ul>

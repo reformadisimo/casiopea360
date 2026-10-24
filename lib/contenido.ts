@@ -76,6 +76,7 @@ export const FRENTES: Frente[] = [
       "Correos que se envían solos para no perder a nadie que pidió información",
       "WhatsApp de empresa con respuestas ya preparadas",
       "Panel con cada conversación, para saber qué preocupa a tus clientes",
+      "Conectamos tu web y tus campañas con el CRM que ya uses, o te creamos uno a medida",
     ],
   },
 ];
@@ -101,6 +102,7 @@ export const OFICIOS = [
   "Gestión de reseñas",
   "Análisis y medición",
   "Automatización",
+  "CRM a medida",
   "Estudio de la competencia",
   "Legal y cumplimiento",
   "Pruebas y calidad",
@@ -286,6 +288,10 @@ export const PREGUNTAS = [
   {
     p: "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?",
     r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
+  },
+  {
+    p: "¿Os conectáis con mi CRM? ¿Y si no tengo?",
+    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre. Va incluido.",
   },
   {
     p: "¿Hacéis también radio o prensa?",
