@@ -204,7 +204,7 @@ export const PLAZOS = [
   { que: "Responderte", cuando: "El mismo día laborable" },
   { que: "Una página, un artículo o una calculadora nueva", cuando: "Máximo 48 horas" },
   { que: "Una campaña nueva o un cambio en los anuncios", cuando: "Máximo 48 horas" },
-  { que: "Una web nueva", cuando: "Unos días, no meses" },
+  { que: "Una web nueva", cuando: "Unos días: normalmente menos de una semana" },
   { que: "Una app o una integración grande", cuando: "Fecha cerrada desde el primer día" },
   { que: "Notarlo en los anuncios", cuando: "Días" },
   { que: "Notarlo en la ficha de Google", cuando: "Semanas" },
@@ -264,7 +264,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
-    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Una web nueva la tienes en unos días, no en los tres, cuatro o cinco meses habituales. Los proyectos más grandes, como una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
+    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Una web nueva la tienes en unos días, normalmente en menos de una semana según el volumen de trabajo, no en los tres, cuatro o cinco meses habituales. Los proyectos más grandes, como una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
@@ -292,7 +292,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto tardáis en hacer una web?",
-    r: "Unos días. Donde una agencia tarda tres, cuatro o cinco meses y te cobra hasta 25.000 €, nosotros te la tenemos en unos días, dentro de tu cuota. Nuestra intención es que además sea mejor; no podemos garantizarlo por escrito, pero hasta hoy lo hemos conseguido siempre.",
+    r: "Unos días, no meses. Según el volumen de trabajo que tengamos, pueden ser 48 horas, tres días o una semana; lo normal es no pasar de una semana. No te lo garantizamos por escrito, igual que quien te dice tres meses tampoco te lo garantiza y luego tarda cinco. Y nuestra intención es que además sea mejor que la de quien te cobra 25.000 €, dentro de tu cuota.",
   },
   {
     p: "¿Cómo podéis cobrar tan poco por tanto?",
@@ -422,7 +422,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   },
   {
     t: "En días, no en meses.",
-    d: "Donde otros tardan tres, cuatro o cinco meses en entregarte una web, tú la tienes en unos días. Y cada cambio, en 48 horas como máximo.",
+    d: "Donde otros tardan tres, cuatro o cinco meses en entregarte una web, tú la tienes en unos días: a veces 48 horas, normalmente menos de una semana. Y cada cambio del día a día, en 48 horas como máximo.",
     pie: "Lo caro de una agencia no es solo la factura: es todo lo que tardan. Aquí no esperas.",
   },
   {

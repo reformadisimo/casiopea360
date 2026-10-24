@@ -73,7 +73,7 @@ export default function CostesPorTamano() {
                 <div className="mt-1 h-3 rounded-full bg-rose-400" />
               </div>
               <div>
-                <div className="flex justify-between font-bold"><span>Casiopea 360</span><span className="text-emerald-700">Unos días</span></div>
+                <div className="flex justify-between font-bold"><span>Casiopea 360</span><span className="text-emerald-700">Unos días (normalmente menos de una semana)</span></div>
                 <div className="mt-1 h-3 w-[8%] min-w-6 rounded-full bg-emerald-500" />
               </div>
             </div>
