@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
+import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 
 // Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
 // El primer bloque (tu empresa) no puntúa: sirve para personalizar el resultado.
@@ -254,6 +255,10 @@ export default function TestCompleto() {
   const [saltados, setSaltados] = useState<string[]>([]);
   const [fiesta, setFiesta] = useState<string | null>(null);
   const [paso, setPaso] = useState(0); // 0..BLOQUES.length-1 bloques, BLOQUES.length gastos, TOTAL_PASOS resultado
+  const [qi, setQi] = useState(0); // pregunta dentro del bloque
+  const [reaccion, setReaccion] = useState<{ t: string; tono: "bien" | "medio" | "mal" | "neutro" } | null>(null);
+  const [confeti, setConfeti] = useState(0);
+  const espera = useRef<ReturnType<typeof setTimeout> | null>(null);
   const caja = useRef<HTMLDivElement>(null);
 
   const ir = (n: number) => {
@@ -266,6 +271,7 @@ export default function TestCompleto() {
     setGastos(Object.fromEntries(PROVEEDORES.map((p) => [p.id, 0])));
     setInversion(0);
     setComision(0);
+    setQi(0);
     ir(0);
   };
 
@@ -301,11 +307,47 @@ export default function TestCompleto() {
   }, [resp, gastos, inversion, comision, saltados]);
 
   const bloque = BLOQUES[paso];
-  const completo = bloque ? bloque.preguntas.every((q) => resp[q.id] !== undefined) : true;
   const respondidas = Object.keys(resp).length;
   const saltar = () => {
     if (bloque && !saltados.includes(bloque.id)) setSaltados([...saltados, bloque.id]);
+    setReaccion(null);
+    setQi(0);
     ir(paso + 1);
+  };
+  const terminarBloque = () => {
+    if (!bloque) return;
+    setSaltados((s) => s.filter((x) => x !== bloque.id));
+    setFiesta(ANIMO[paso % ANIMO.length]);
+    setConfeti(Date.now());
+    setTimeout(() => setFiesta(null), 1900);
+    setQi(0);
+    ir(paso + 1);
+  };
+  const siguiente = () => {
+    setReaccion(null);
+    if (!bloque) return;
+    if (qi < bloque.preguntas.length - 1) setQi(qi + 1);
+    else terminarBloque();
+  };
+  const atras = () => {
+    if (espera.current) clearTimeout(espera.current);
+    setReaccion(null);
+    if (qi > 0) return setQi(qi - 1);
+    if (paso > 0) {
+      const previo = BLOQUES[paso - 1];
+      setQi(previo ? previo.preguntas.length - 1 : 0);
+      ir(paso - 1);
+    }
+  };
+  const elegir = (q: Pregunta, j: number) => {
+    if (espera.current) clearTimeout(espera.current);
+    setResp((r) => ({ ...r, [q.id]: j }));
+    if (bloque?.contexto) setReaccion({ t: ANOTADO[q.id] ?? "Anotado", tono: "neutro" });
+    else {
+      const v = q.o[j].v;
+      setReaccion({ t: REACCION[v].t, tono: v >= 3 ? "bien" : v >= 1 ? "medio" : "mal" });
+    }
+    espera.current = setTimeout(siguiente, 1000);
   };
   const texto = (id: string) => {
     const q = BLOQUES[0].preguntas.find((x) => x.id === id);
@@ -339,7 +381,6 @@ export default function TestCompleto() {
     } catch {}
   }, [paso, r, resp, saltados, inversion]);
 
-  const selector = "mt-2 w-full rounded-xl border border-linea bg-white px-4 py-3 text-base font-normal focus:border-noche focus:outline-none";
   const color = (n: number) => (n >= 75 ? "bg-emerald-400" : n >= 45 ? "bg-estrella" : "bg-rose-400");
 
   return (
@@ -355,179 +396,159 @@ export default function TestCompleto() {
         </div>,
         document.body,
       )}
+      <Confeti disparo={confeti} />
       {paso < TOTAL_PASOS && (
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-gris">
-            <span className="font-bold text-tinta">
-              Bloque {paso + 1} de {TOTAL_PASOS}: {bloque ? bloque.titulo : "Lo que pagas hoy"}
-            </span>
-            <span>
-              {respondidas} de {totalPreguntas} preguntas
-            </span>
-          </div>
-          <div className="mt-3 flex gap-1.5" aria-hidden="true">
-            {Array.from({ length: TOTAL_PASOS }).map((_, i) => (
-              <div key={i} className={`h-2 flex-1 rounded-full transition-colors ${i < paso ? "bg-noche" : i === paso ? "bg-estrella" : "bg-linea"}`} />
-            ))}
-          </div>
+        <div className="mb-6">
+          <BarraEstrella
+            avance={respondidas / totalPreguntas}
+            texto={respondidas === 0 ? "Empieza cuando quieras: la estrella te acompaña hasta la meta" : `¡Llevas ${respondidas} de ${totalPreguntas}! Bloque ${paso + 1} de ${TOTAL_PASOS}`}
+          />
         </div>
       )}
 
-      {bloque && (
-        <div className="overflow-hidden rounded-[2rem] border border-linea bg-white">
-          <div className="relative overflow-hidden p-6 text-white sm:p-10">
-            <div aria-hidden="true" className="absolute inset-0">
-              <VideoFondo key={bloque.id} nombre={VIDEO_BLOQUE[bloque.id] ?? "constelaciones-azules"} alt="" />
+      {bloque && (() => {
+        const q = bloque.preguntas[qi] ?? bloque.preguntas[0];
+        const letras = "ABCDEF";
+        return (
+          <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
+            <div className="relative overflow-hidden px-6 py-7 text-white sm:px-10 sm:py-8">
+              <div aria-hidden="true" className="absolute inset-0">
+                <VideoFondo key={bloque.id} nombre={VIDEO_BLOQUE[bloque.id] ?? "constelaciones-azules"} alt="" />
+              </div>
+              <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-br opacity-[0.78] ${COLOR_BLOQUE[bloque.id] ?? "from-noche-3 to-noche"}`} />
+              <div className="relative z-10 flex flex-wrap items-center justify-between gap-5">
+                <div className="max-w-xl">
+                  <p className="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">Bloque {paso + 1} de {TOTAL_PASOS}</p>
+                  <p className="mt-2 text-3xl font-extrabold sm:text-4xl">{bloque.titulo}</p>
+                  <p className="mt-1 text-white/90">{bloque.intro}</p>
+                </div>
+                <div aria-hidden="true" className="flex flex-wrap gap-2.5">
+                  {(LOGOS_BLOQUE[bloque.id] ?? []).map((l, i) => (
+                    <span key={l} className="flota grid h-12 w-12 place-items-center rounded-2xl bg-white shadow-lg sm:h-14 sm:w-14" style={{ animationDelay: `${i * 0.35}s` }}>
+                      <LogoMarca nombre={l} tam={28} />
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-br opacity-[0.72] ${COLOR_BLOQUE[bloque.id] ?? "from-noche-3 to-noche"}`} />
-            <div className="relative z-10 max-w-xl">
-              <p className="text-sm font-bold text-white/75">Bloque {paso + 1} de {TOTAL_PASOS}</p>
-              <p className="mt-1 text-3xl font-extrabold sm:text-4xl">{bloque.titulo}</p>
-              <p className="mt-2 text-lg text-white/85">{bloque.intro}</p>
-            </div>
-            <div aria-hidden="true" className="relative z-10 mt-6 flex flex-wrap gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:max-w-[16rem] sm:-translate-y-1/2 sm:justify-end">
-              {(LOGOS_BLOQUE[bloque.id] ?? []).map((l, i) => (
-                <span key={l} className="flota grid h-14 w-14 place-items-center rounded-2xl bg-white shadow-lg sm:h-16 sm:w-16" style={{ animationDelay: `${i * 0.35}s` }}>
-                  <LogoMarca nombre={l} tam={32} />
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="p-6 sm:p-10">
-          <ol className="space-y-9">
-            {bloque.preguntas.map((q, i) => (
-              <li key={q.id}>
-                <fieldset>
-                  <legend className="flex items-start gap-3 text-lg font-bold">
-                    {ICONO_CTX[q.id] ? (
-                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-estrella text-tinta">
-                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={ICONO_CTX[q.id]} /></svg>
-                      </span>
-                    ) : LOGO_PREGUNTA[q.id] ? (
-                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla"><LogoMarca nombre={LOGO_PREGUNTA[q.id]} tam={22} /></span>
-                    ) : (
-                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla text-sm font-extrabold text-noche-3">{i + 1}</span>
-                    )}
-                    <span className="pt-1">{q.p}</span>
-                  </legend>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {q.o.map((o, j) => {
-                      const activo = resp[q.id] === j;
-                      return (
-                        <button
-                          key={o.t}
-                          type="button"
-                          aria-pressed={activo}
-                          onClick={() => setResp({ ...resp, [q.id]: j })}
-                          className={`rounded-full border px-4 py-2.5 text-left text-[0.95rem] transition-all ${
-                            activo ? "scale-[1.03] border-noche bg-noche font-bold text-white shadow-md" : "border-linea hover:-translate-y-0.5 hover:border-noche hover:shadow-sm"
-                          }`}
-                        >
-                          <span className={`mr-2 inline-block h-3 w-3 rounded-full border-2 align-[-1px] ${activo ? "border-estrella bg-estrella" : "border-linea"}`} aria-hidden="true" />
-                          {o.t}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {bloque.contexto && resp[q.id] !== undefined && (
-                    <p key={resp[q.id]} className="aparece mt-3 inline-block rounded-full bg-noche px-3 py-1 text-sm font-bold text-estrella">{ANOTADO[q.id] ?? "Anotado"}</p>
+
+            <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-6 sm:p-10">
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                {bloque.preguntas.map((x, i) => (
+                  <span key={x.id} className={`h-2.5 rounded-full transition-all ${i === qi ? "w-8 bg-estrella" : resp[x.id] !== undefined ? "w-2.5 bg-noche" : "w-2.5 bg-linea"}`} />
+                ))}
+                <span className="ml-2 text-sm font-bold text-gris">Pregunta {qi + 1} de {bloque.preguntas.length}</span>
+              </div>
+
+              <fieldset key={q.id} className="entra mt-6">
+                <legend className="flex items-start gap-4 text-2xl font-extrabold sm:text-3xl">
+                  {ICONO_CTX[q.id] ? (
+                    <span className="flota grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-estrella text-tinta shadow-md">
+                      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={ICONO_CTX[q.id]} /></svg>
+                    </span>
+                  ) : LOGO_PREGUNTA[q.id] ? (
+                    <span className="flota grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white shadow-md ring-1 ring-linea"><LogoMarca nombre={LOGO_PREGUNTA[q.id]} tam={32} /></span>
+                  ) : (
+                    <span className="flota grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-noche text-xl font-extrabold text-estrella shadow-md">{qi + 1}</span>
                   )}
-                  {!bloque.contexto && resp[q.id] !== undefined && (
-                    <p key={resp[q.id]} className={`aparece mt-3 inline-block rounded-full px-3 py-1 text-sm font-bold ${REACCION[q.o[resp[q.id]].v].c}`}>
-                      {REACCION[q.o[resp[q.id]].v].t}
-                    </p>
-                  )}
-                </fieldset>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              disabled={!completo}
-              onClick={() => {
-                setSaltados(saltados.filter((x) => x !== bloque.id));
-                setFiesta(ANIMO[paso % ANIMO.length]);
-                setTimeout(() => setFiesta(null), 1900);
-                ir(paso + 1);
-              }}
-              className="rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Siguiente bloque
-            </button>
-            <button type="button" onClick={saltar} className="rounded-full border border-linea px-5 py-3 text-sm font-bold text-gris hover:border-noche hover:text-tinta">
-              Saltar este bloque
-            </button>
-            {paso > 0 && (
-              <button type="button" onClick={() => ir(paso - 1)} className="font-bold underline underline-offset-4">
-                Volver
-              </button>
-            )}
-            {!completo && <span className="w-full text-sm text-gris">Contesta todas para seguir, o salta el bloque si no te apetece. Cuantas más contestes, más preciso será tu resultado.</span>}
+                  <span className="pt-1.5">{q.p}</span>
+                </legend>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {q.o.map((o, j) => (
+                    <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} />
+                  ))}
+                </div>
+              </fieldset>
+
+              <div className="mt-6 min-h-[3.5rem]">{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-linea pt-6">
+                {(paso > 0 || qi > 0) && (
+                  <button type="button" onClick={atras} className="rounded-full px-4 py-2.5 font-bold text-gris hover:bg-niebla hover:text-tinta">
+                    Atrás
+                  </button>
+                )}
+                {resp[q.id] !== undefined && !reaccion && (
+                  <button type="button" onClick={siguiente} className="rounded-full bg-estrella px-6 py-2.5 font-bold text-tinta hover:bg-estrella-2">
+                    {qi < bloque.preguntas.length - 1 ? "Siguiente" : "Terminar bloque"}
+                  </button>
+                )}
+                <button type="button" onClick={saltar} className="ml-auto rounded-full border border-linea px-5 py-2.5 text-sm font-bold text-gris hover:border-noche hover:text-tinta">
+                  Saltar este bloque
+                </button>
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
-      )}
+        );
+      })()}
 
       {paso === BLOQUES.length && (
-        <div className="overflow-hidden rounded-[2rem] border border-linea bg-white">
-          <div className="relative overflow-hidden p-6 text-white sm:p-10">
+        <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
+          <div className="relative overflow-hidden px-6 py-7 text-white sm:px-10 sm:py-8">
             <div aria-hidden="true" className="absolute inset-0"><VideoFondo nombre="papeles" alt="" /></div>
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-[#e8710a] to-[#0e1a3d] opacity-[0.86]" />
-            <div className="relative z-10 max-w-xl">
-              <p className="text-sm font-bold text-white/75">Último bloque</p>
-              <p className="mt-1 text-3xl font-extrabold sm:text-4xl">Lo que pagas hoy</p>
-              <p className="mt-2 text-lg text-white/85">Elige el tramo más parecido. Si no tienes ese proveedor, déjalo en «Nada». No hace falta ser exacto.</p>
-            </div>
-            <div aria-hidden="true" className="relative z-10 mt-6 flex gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2">
-              {["Google Ads", "Meta", "Semrush"].map((l, i) => (
-                <span key={l} className="flota grid h-14 w-14 place-items-center rounded-2xl bg-white shadow-lg sm:h-16 sm:w-16" style={{ animationDelay: `${i * 0.35}s` }}><LogoMarca nombre={l} tam={32} /></span>
-              ))}
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-[#e8710a] to-[#0e1a3d] opacity-[0.84]" />
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-5">
+              <div className="max-w-xl">
+                <p className="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">Último bloque</p>
+                <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Lo que pagas hoy</p>
+                <p className="mt-1 text-white/90">Toca el tramo más parecido. Si no tienes ese proveedor, déjalo en «Nada». No hace falta ser exacto.</p>
+              </div>
+              <div aria-hidden="true" className="flex gap-2.5">
+                {["Google Ads", "Meta", "Semrush"].map((l, i) => (
+                  <span key={l} className="flota grid h-12 w-12 place-items-center rounded-2xl bg-white shadow-lg sm:h-14 sm:w-14" style={{ animationDelay: `${i * 0.35}s` }}><LogoMarca nombre={l} tam={28} /></span>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="p-6 sm:p-10">
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {PROVEEDORES.map((p) => (
-              <label key={p.id} className="block text-sm font-bold">
-                {p.t}
-                <select className={selector} value={gastos[p.id]} onChange={(e) => setGastos({ ...gastos, [p.id]: Number(e.target.value) })}>
-                  {TRAMOS.map((t) => (
-                    <option key={t.t} value={t.v}>
-                      {t.t}
-                    </option>
-                  ))}
-                </select>
-              </label>
+          <div className="space-y-7 p-6 sm:p-10">
+            {PROVEEDORES.map((p, k) => (
+              <fieldset key={p.id}>
+                <legend className="text-lg font-extrabold">{p.t}</legend>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {TRAMOS.map((t) => {
+                    const activo = gastos[p.id] === t.v;
+                    const c = COLOR_OPCION[k % COLOR_OPCION.length];
+                    return (
+                      <button key={t.t} type="button" aria-pressed={activo} onClick={() => setGastos({ ...gastos, [p.id]: t.v })}
+                        style={activo ? { background: c, borderColor: c } : undefined}
+                        className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-all ${activo ? "salta text-white" : "border-linea bg-white hover:-translate-y-0.5 hover:border-noche"}`}>
+                        {t.t}
+                      </button>
+                    );
+                  })}
+                </div>
+              </fieldset>
             ))}
-            <label className="block text-sm font-bold">
-              Lo que inviertes en anuncios al mes
-              <select className={selector} value={inversion} onChange={(e) => setInversion(Number(e.target.value))}>
+            <fieldset>
+              <legend className="text-lg font-extrabold">Lo que inviertes en anuncios al mes</legend>
+              <div className="mt-3 flex flex-wrap gap-2">
                 {INVERSIONES.map((v) => (
-                  <option key={v} value={v}>
+                  <button key={v} type="button" aria-pressed={inversion === v} onClick={() => setInversion(v)}
+                    className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-all ${inversion === v ? "salta border-noche bg-noche text-white" : "border-linea bg-white hover:-translate-y-0.5 hover:border-noche"}`}>
                     {v === 0 ? "Nada" : `${fmt(v)} €${v === 20000 ? " o más" : ""}`}
-                  </option>
+                  </button>
                 ))}
-              </select>
-            </label>
-            <label className="block text-sm font-bold">
-              Comisión que te cobran sobre esa inversión
-              <select className={selector} value={COMISIONES.findIndex((c) => c.v === comision)} onChange={(e) => setComision(COMISIONES[Number(e.target.value)].v)}>
-                {COMISIONES.map((c, i) => (
-                  <option key={c.t} value={i}>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend className="text-lg font-extrabold">Comisión que te cobran sobre esa inversión</legend>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {COMISIONES.map((c) => (
+                  <button key={c.t} type="button" aria-pressed={comision === c.v && c.t !== "No lo sé"} onClick={() => setComision(c.v)}
+                    className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-all ${comision === c.v ? "salta border-rose-500 bg-rose-500 text-white" : "border-linea bg-white hover:-translate-y-0.5 hover:border-noche"}`}>
                     {c.t}
-                  </option>
+                  </button>
                 ))}
-              </select>
-            </label>
-          </div>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button type="button" onClick={() => ir(TOTAL_PASOS)} className="rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2">
-              Ver mi resultado
-            </button>
-            <button type="button" onClick={() => ir(paso - 1)} className="font-bold underline underline-offset-4">
-              Volver
-            </button>
-          </div>
+              </div>
+            </fieldset>
+            <div className="flex flex-wrap items-center gap-3 border-t border-linea pt-6">
+              <button type="button" onClick={atras} className="rounded-full px-4 py-2.5 font-bold text-gris hover:bg-niebla hover:text-tinta">
+                Atrás
+              </button>
+              <button type="button" onClick={() => { setConfeti(Date.now()); ir(TOTAL_PASOS); }} className="rounded-full bg-estrella px-7 py-3.5 text-lg font-extrabold text-tinta shadow-lg hover:bg-estrella-2">
+                Ver mi resultado
+              </button>
+            </div>
           </div>
         </div>
       )}

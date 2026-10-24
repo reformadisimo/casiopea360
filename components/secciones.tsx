@@ -468,6 +468,7 @@ const ICONO_SVG: Record<string, React.ReactNode> = {
   euro: <path d="M17 6a7 7 0 1 0 0 12M4 10h9M4 14h9" />,
   birrete: <path d="M2 9l10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6" />,
   video: <path d="M3 6h12v12H3zM15 10l6-3v10l-6-3" />,
+  escudo: <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6zM9 12l2 2 4-4" />,
   pincel: <path d="M18 3l3 3-9 9-3-3zM9 12c-2 0-4 1.5-4 4 0 1.5-1 2.5-2 3 4 1 8 0 8-4" />,
 };
 
@@ -520,30 +521,59 @@ export function SeccionLoQueSea() {
 
 /* Más servicios que entran en la cuota: la visión 360 completa. */
 export function SeccionTambienIncluido() {
+  const colores = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4"];
+  const tarjeta = (x: (typeof TAMBIEN_INCLUIDO)[number], i: number) => {
+    const c = colores[i % colores.length];
+    return (
+      <li key={x.t} className="group relative flex gap-4 overflow-hidden rounded-[1.6rem] bg-white p-5 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-[0_22px_40px_-20px_rgba(14,26,61,0.45)]">
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1" style={{ background: c }} />
+        <span aria-hidden="true" className="relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl text-white shadow-md transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ background: `linear-gradient(135deg, ${c}, ${c}bb)` }}>
+          <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+          {x.logo && (
+            <span className="absolute -bottom-1.5 -right-1.5 grid h-7 w-7 place-items-center rounded-full bg-white shadow ring-2 ring-white"><LogoMarca nombre={x.logo} tam={16} /></span>
+          )}
+        </span>
+        <div className="min-w-0">
+          <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">✓ Incluido</p>
+          <p className="mt-0.5 text-lg font-extrabold">{x.t}</p>
+          <p className="mt-1.5 text-[0.97rem] text-gris">{x.d}</p>
+        </div>
+      </li>
+    );
+  };
+  const mitad = Math.ceil(TAMBIEN_INCLUIDO.length / 2 / 3) * 3;
   return (
-    <section id="incluido" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
+    <section id="incluido" className="scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
-        <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Y también entra en tu cuota</p>
-        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
-        <p className="mt-5 max-w-3xl text-lg text-gris">
-          No es una lista para rellenar. Es lo que de verdad hace crecer a una empresa, y te montamos lo que tenga sentido para la tuya, cuando lo necesites.
-        </p>
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {TAMBIEN_INCLUIDO.map((x) => (
-            <li key={x.t} className="flex gap-4 rounded-[1.6rem] bg-white p-5 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 transition-transform hover:-translate-y-1">
-              <span aria-hidden="true" className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-noche text-estrella">
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
-                {x.logo && (
-                  <span className="absolute -bottom-1.5 -right-1.5 grid h-6 w-6 place-items-center rounded-full bg-white ring-2 ring-niebla"><LogoMarca nombre={x.logo} tam={14} /></span>
-                )}
-              </span>
-              <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">✓ Incluido</p>
-                <p className="mt-0.5 text-lg font-extrabold">{x.t}</p>
-                <p className="mt-1.5 text-[0.97rem] text-gris">{x.d}</p>
-              </div>
-            </li>
-          ))}
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
+          <div>
+            <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Y también entra en tu cuota</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
+            <p className="mt-5 text-lg text-gris">
+              No es una lista para rellenar. Es lo que de verdad hace crecer a una empresa, y te montamos lo que tenga sentido para la tuya, cuando lo necesites.
+            </p>
+            <div className="mt-7 inline-flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-linea">
+              <span className="font-titular text-5xl font-extrabold text-emerald-600">{TAMBIEN_INCLUIDO.length}</span>
+              <span className="text-[0.95rem] font-bold leading-snug">servicios más,<br />sin pagar un euro más</span>
+            </div>
+          </div>
+          <div aria-hidden="true" className="grid h-[300px] grid-cols-5 grid-rows-2 gap-3 sm:h-[360px]">
+            <div className="relative col-span-3 row-span-2 overflow-hidden rounded-[1.6rem] shadow-lg"><VideoFondo nombre="movil-personas" alt="" /></div>
+            <div className="relative col-span-2 overflow-hidden rounded-[1.6rem] shadow-lg"><VideoFondo nombre="neon-sonrisa" alt="" /></div>
+            <div className="relative col-span-2 overflow-hidden rounded-[1.6rem] shadow-lg"><VideoFondo nombre="equipo-celebra" alt="" /></div>
+          </div>
+        </div>
+        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {TAMBIEN_INCLUIDO.slice(0, mitad).map((x, i) => tarjeta(x, i))}
+          <li className="relative overflow-hidden rounded-[1.8rem] bg-noche text-white sm:col-span-2 lg:col-span-3">
+            <div aria-hidden="true" className="absolute inset-0 opacity-60"><VideoFondo nombre="holograma-redes" alt="" /></div>
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-noche via-noche/80 to-transparent" />
+            <div className="relative flex flex-col gap-4 p-7 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+              <p className="max-w-xl text-2xl font-extrabold sm:text-3xl">Una sola cuota. Todo esto dentro. Y te lo gestionamos nosotros.</p>
+              <a href="/estudio-gratuito" className="shrink-0 rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Pide tu estudio gratuito</a>
+            </div>
+          </li>
+          {TAMBIEN_INCLUIDO.slice(mitad).map((x, i) => tarjeta(x, i + mitad))}
         </ul>
         <p className="mt-10 max-w-3xl text-lg">
           <b>¿Se te ocurre algo que no está aquí?</b> Pídelo. Si te conviene, lo hacemos; si no, te lo decimos.
@@ -602,6 +632,47 @@ export function SeccionPorQueBarato() {
           <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="despacho" alt="Una persona trabaja tranquila en su despacho con el ordenador" /></div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* Lo que firmamos: seriedad de gran agencia, por escrito. */
+const SELLOS: { t: string; d: string; icono: string }[] = [
+  { icono: "firma", t: "Plazos por escrito", d: "Respuesta el mismo día, 48 horas para el día a día y fecha cerrada para lo grande. Por escrito desde el primer día." },
+  { icono: "llave", t: "Todo a tu nombre", d: "Web, dominio, cuentas de Google y de anuncios. Desde el primer día, y te lo llevas si te vas." },
+  { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
+  { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
+  { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
+  { icono: "calendario", t: "Seis meses y libre", d: "Seis meses de permanencia porque la web va regalada. Después, te quedas porque quieres." },
+];
+
+export function SeccionLoFirmamos() {
+  return (
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Más de 22 años de oficio</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. Sin su factura.</h2>
+          </div>
+          <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
+        </div>
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SELLOS.map((x, i) => (
+            <li key={x.t} className="group relative flex gap-5 rounded-[1.8rem] border border-linea p-6 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
+              <span aria-hidden="true" className="relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-full bg-noche text-estrella ring-4 ring-estrella/30 transition-transform group-hover:rotate-12">
+                <span className="absolute inset-1.5 rounded-full border border-dashed border-estrella/50" />
+                <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+              </span>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Compromiso {i + 1}</p>
+                <p className="mt-0.5 text-xl font-extrabold">{x.t}</p>
+                <p className="mt-1.5 text-gris">{x.d}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

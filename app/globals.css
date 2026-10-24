@@ -195,3 +195,16 @@ main > section:not(:first-child) {
 .titila { animation: titila 2.4s ease-in-out infinite; box-shadow: 0 0 10px 2px rgba(255, 197, 61, 0.7); }
 @keyframes titila { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.2); } }
 @media (prefers-reduced-motion: reduce) { .fiesta, .chispa, .titila { animation: none; } .chispa { display: none; } }
+
+/* Juego de los tests: confeti, opciones que saltan, estrella que viaja y burbuja de reacción */
+.confeti { position: absolute; top: -10px; width: 10px; height: 14px; border-radius: 3px; animation: confeti 1.6s cubic-bezier(.2,.7,.4,1) forwards; }
+@keyframes confeti { 0% { transform: translate(0,0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; } }
+.salta { animation: salta 0.45s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes salta { 0% { transform: scale(0.9); } 60% { transform: scale(1.06); } 100% { transform: scale(1.02); } }
+.entra { animation: entra 0.5s cubic-bezier(.2,.8,.3,1) both; }
+@keyframes entra { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+.burbuja { animation: burbuja 0.4s cubic-bezier(.3,1.5,.5,1) both; transform-origin: left bottom; }
+@keyframes burbuja { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+.brinca { animation: brinca 1.4s ease-in-out infinite; }
+@keyframes brinca { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .confeti, .salta, .entra, .burbuja, .brinca { animation: none; } .confeti { display: none; } }

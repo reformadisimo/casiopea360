@@ -16,8 +16,8 @@ import {
   SeccionTambienIncluido,
   SeccionCostes,
   SeccionPromesas,
+  SeccionLoFirmamos,
   SeccionPorQueBarato,
-  SeccionGarantias,
   SeccionMetodo,
   SeccionOrigen,
   SeccionParte,
@@ -61,6 +61,7 @@ export default function Inicio() {
 
       <CintaHerramientas />
       <SeccionPromesas />
+      <SeccionLoFirmamos />
       <SeccionCaos />
       <SeccionPuntosDolor />
       <SeccionCostes />
@@ -75,7 +76,6 @@ export default function Inicio() {
       <SeccionTrabajos />
       <SeccionParte />
       <SeccionMetodo />
-      <SeccionGarantias />
       <SeccionPreguntas />
       <SeccionEstudio />
       <SeccionSolicitud />

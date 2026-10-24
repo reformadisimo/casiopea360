@@ -103,13 +103,13 @@ export default function Asistente() {
         onClick={() => setAbierto((a) => !a)}
         aria-expanded={abierto}
         aria-controls="asistente"
-        className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche py-2.5 pl-2.5 pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+        aria-label="Asistente de Casiopea 360" className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
       >
         <span aria-hidden="true" className="relative block h-9 w-9">
           <img src="/marca/icono.svg" alt="" className="h-9 w-9 rounded-[0.6rem]" />
           <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-noche" />
         </span>
-        {abierto ? "Cerrar" : "¿Te ayudo?"}
+        <span className={abierto ? "" : "hidden sm:inline"}>{abierto ? "Cerrar" : "¿Te ayudo?"}</span>
       </button>
 
       {abierto && (
