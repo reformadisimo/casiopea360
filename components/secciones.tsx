@@ -277,7 +277,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
 export function SeccionOficios() {
   return (
     <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
-      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Veinticinco oficios, un solo equipo.</h2>
+      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Un especialista para cada oficio. Coordinados en un solo equipo.</h2>
       <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto, y lo vemos todo a la vez.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
         {OFICIOS.map((o) => (
@@ -610,7 +610,7 @@ export function SeccionTambienIncluido() {
   );
 }
 
-/* Las cuatro promesas: mejor, en días, por mucho menos y sin darte la lata. */
+/* Las cuatro promesas: mejor, en días, a precio fijo y sin perseguirnos. */
 /* «¿Cómo es posible?»: lo que dicen los clientes cuando lo ven funcionando. */
 export function SeccionComoEsPosible() {
   return (
@@ -688,7 +688,7 @@ export function SeccionPromesas() {
       <div aria-hidden="true" className="absolute inset-0 opacity-30"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
-        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y por mucho menos.</h2>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y a precio fijo.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">Ya sabemos que suena demasiado bien. Por eso no te pedimos que nos creas: pide el estudio gratuito y compáralo con lo que tienes hoy.</p>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROMESAS.map((x, i) => (
@@ -705,14 +705,14 @@ export function SeccionPromesas() {
   );
 }
 
-/* Por qué podemos cobrar tan poco. */
+/* Por qué podemos cobrar menos. */
 export function SeccionPorQueBarato() {
   return (
     <section id="barato" className="scroll-mt-24 bg-white py-20 sm:py-28">
       <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Sin trampa</p>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar tan poco? Así de sencillo.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar menos? Así de sencillo.</h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
               <div key={x.t} className="rounded-[1.6rem] bg-niebla p-6">
@@ -793,7 +793,7 @@ export function SeccionLoFirmamos() {
             <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG.escudo}</svg>
           </span>
           <p className="text-xl font-extrabold sm:text-2xl">
-            No te garantizamos resultados: te garantizamos nuestro esfuerzo. <span className="text-estrella">Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.</span>
+            Nos comprometemos por escrito: plazos, transparencia cada día y objetivos medibles. <span className="text-estrella">Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.</span>
           </p>
         </div>
       </div>
@@ -877,7 +877,7 @@ export function SeccionVelocidad() {
       <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestro compromiso de velocidad</p>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Tu web, de las más rápidas de internet.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Tu web, más rápida que la de la mayoría.</h2>
           <p className="mt-6 text-lg text-white/85">
             Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google. Una web lenta pierde visitas antes de que la vean, y Google lo tiene en cuenta al ordenar los resultados.
           </p>
@@ -1175,7 +1175,7 @@ export function SeccionGarantias() {
 }
 
 /* Preguntas frecuentes. */
-const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar tan poco por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?", "¿Y si me entra más trabajo del que puedo atender?"];
+const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar menos por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?", "¿Y si me entra más trabajo del que puedo atender?"];
 
 export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boolean; todas?: boolean }) {
   const lista = todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p));

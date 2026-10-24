@@ -280,7 +280,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Garantizáis resultados?",
-    r: "Los resultados no los puede garantizar nadie con honradez: ni el primer puesto en Google ni que una IA te recomiende, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos es nuestro esfuerzo, con todo lo que sabemos. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
+    r: "Los resultados no los puede garantizar nadie con honradez: ni el primer puesto en Google ni que una IA te recomiende, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos, por escrito, son los plazos, la transparencia de cada día y objetivos medibles que revisamos contigo. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
   },
   {
     p: "¿Con cuántas empresas habéis trabajado?",
@@ -292,7 +292,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Qué velocidad tendrá mi web?",
-    r: "De las más rápidas de internet: es un compromiso. Tu web, cargada en 2 segundos como máximo y, lo ideal, en menos de medio segundo; y 100, 100, 100 en PageSpeed Insights, la herramienta de Google. No te diremos que lo clavamos a la primera, pero siempre estarás muy cerca de lo óptimo, como esta misma web. Para que te hagas una idea, solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google, según HTTP Archive.",
+    r: "Más rápida que la de la mayoría: es un compromiso. Tu web, cargada en 2 segundos como máximo y, lo ideal, en menos de medio segundo; y 100, 100, 100 en PageSpeed Insights, la herramienta de Google. No te diremos que lo clavamos a la primera, pero siempre estarás muy cerca de lo óptimo, como esta misma web. Para que te hagas una idea, solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google, según HTTP Archive.",
   },
   {
     p: "¿Hacéis las webs en WordPress?",
@@ -315,7 +315,7 @@ export const PREGUNTAS = [
     r: "Unos días, no meses. Según el volumen de trabajo que tengamos, pueden ser 48 horas, tres días o una semana; lo normal es no pasar de una semana. No te lo garantizamos por escrito, igual que quien te dice tres meses tampoco te lo garantiza y luego tarda cinco. Y nuestra intención es que además sea mejor que la de quien te cobra 25.000 €, dentro de tu cuota.",
   },
   {
-    p: "¿Cómo podéis cobrar tan poco por tanto?",
+    p: "¿Cómo podéis cobrar menos por tanto?",
     r: "Porque no tenemos estructura que pagar: ni oficinas de lujo, ni capas de jefes, ni comerciales a comisión. Las herramientas profesionales las pagamos una vez y sirven a todos nuestros clientes, y la IA y la automatización hacen en horas lo que antes llevaba semanas. Ese ahorro no nos lo quedamos: lo volcamos en tu cuota, porque preferimos clientes para muchos años a facturas para hoy.",
   },
   {
@@ -446,7 +446,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "Mejor.",
     d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
-    pie: "No garantizamos resultados: garantizamos nuestro esfuerzo. Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+    pie: "Nos comprometemos por escrito: plazos, transparencia cada día y objetivos medibles. Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
   },
   {
     t: "En días, no en meses.",
@@ -454,18 +454,18 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
     pie: "Lo caro de una agencia no es solo la factura: es todo lo que tardan. Aquí no esperas.",
   },
   {
-    t: "Por mucho menos.",
-    d: "Una sola cuota fija, la misma para cualquier tamaño de empresa, que cuesta bastante menos que contratar cada cosa por separado.",
+    t: "A precio fijo.",
+    d: "Una sola cuota, la misma para cualquier tamaño de empresa y con todo dentro. Menos de lo que te costaría contratar cada cosa por separado, y sin sorpresas en la factura.",
     pie: "Seis meses de permanencia, porque la web te la regalamos. Después te quedas porque quieres y te vas cuando quieras.",
   },
   {
-    t: "Sin darte la lata.",
-    d: "Te lo gestionamos todo nosotros. Las menos reuniones posibles, casi todo por escrito y tu panel para mirarlo cuando te apetezca.",
+    t: "Sin perseguirnos.",
+    d: "Te lo gestionamos todo nosotros. Sin reuniones innecesarias, casi todo por escrito y tu panel para mirarlo cuando te apetezca.",
     pie: "Lo único que debería ocuparte son los resultados. Y vamos a por los mejores posibles.",
   },
 ];
 
-// Por qué podemos cobrar tan poco.
+// Por qué podemos cobrar menos.
 export const POR_QUE_BARATO: { t: string; d: string }[] = [
   { t: "Sin estructura que pagar", d: "Sin oficinas de lujo, sin capas de jefes y sin comerciales a comisión. Trabajamos en remoto, y ese dinero no sale de tu bolsillo." },
   { t: "Herramientas compartidas", d: "Las licencias profesionales de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
@@ -477,7 +477,7 @@ export const POR_QUE_BARATO: { t: string; d: string }[] = [
 export const CREEMOS: string[] = [
   "Que el buen marketing no debería ser un lujo. Queremos democratizar los precios.",
   "Que se crece con clientes a largo plazo, no a base de facturas.",
-  "Que un proveedor no debería darte la lata. Si nos tienes que perseguir, lo estamos haciendo mal.",
+  "Que a un proveedor no deberías tener que perseguirle. Si nos tienes que perseguir, lo estamos haciendo mal.",
   "Que la mejor tecnología tiene que estar al alcance de cualquier empresa, y nosotros la estrenamos cada semana.",
   "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
   "Que nuestro trabajo es ayudarte a crecer o, cuando toca, a estabilizarte y mantener lo que has construido.",

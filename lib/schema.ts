@@ -39,7 +39,7 @@ export function schemaOrganizacion() {
     },
     areaServed: { "@type": "Country", name: "España" },
     knowsLanguage: "es",
-    slogan: "Crece en digital sin lidiar con cinco agencias. Todo, mejor, en días y por mucho menos.",
+    slogan: "Crece en digital sin lidiar con cinco agencias. Todo. Mejor. En días.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Servicios de marketing digital 360",

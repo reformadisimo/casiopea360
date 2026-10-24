@@ -12,7 +12,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Quiénes somos",
-  "Profesionales del marketing digital con más de 22 años de oficio y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y por menos.",
+  "Profesionales del marketing digital con más de 22 años de oficio y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y en días.",
   "/quienes-somos",
 );
 
@@ -29,7 +29,7 @@ const COMO: [string, string][] = [
   ["Claros", "Por escrito y sin jerga. Si no se entiende, no lo hemos explicado bien."],
   ["Rápidos", "Respuesta el mismo día y lo del día a día en 48 horas. Lo grande, con fecha."],
   ["Sinceros", "Te decimos lo que no te conviene, aunque podamos cobrártelo."],
-  ["Sin lata", "Las menos reuniones posibles y casi todo por escrito. Tu tiempo es para tu negocio."],
+  ["Sin perseguirnos", "Sin reuniones innecesarias y casi todo por escrito. Tu tiempo es para tu negocio."],
   ["Tuyo", "La web, el dominio y las cuentas, a tu nombre desde el primer día."],
 ];
 
@@ -39,7 +39,7 @@ export default function QuienesSomos() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Quiénes somos", ruta: "/quienes-somos" }])} />
       <CabeceraPagina
         titulo="Más de 22 años haciendo que el teléfono suene."
-        entradilla="Somos profesionales del marketing digital con más de veintidós años de oficio. Lo hacemos todo, lo hacemos mejor y por mucho menos de lo que te costaría por separado. Y sin darte la lata."
+        entradilla="Somos profesionales del marketing digital con más de veintidós años de oficio. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="selfie-equipo"
         videoAlt="Un equipo se hace un selfie sonriendo"
@@ -105,7 +105,7 @@ export default function QuienesSomos() {
             ))}
           </ul>
           <p className="mt-10 max-w-3xl text-lg text-white/80">
-            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. No te garantizamos resultados, te garantizamos nuestro esfuerzo. Y hasta hoy, esos resultados han llegado en todas las empresas con las que hemos trabajado: las que ves en nuestros trabajos y muchas más en más de veintidós años.
+            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. Nos comprometemos por escrito con plazos, transparencia cada día y objetivos medibles. Y hasta hoy, esos resultados han llegado en todas las empresas con las que hemos trabajado: las que ves en nuestros trabajos y muchas más en más de veintidós años.
           </p>
         </div>
       </section>

@@ -117,7 +117,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿Me garantizáis el primer puesto?",
-        r: "No, y desconfía de quien lo haga. Te garantizamos el esfuerzo y la transparencia. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+        r: "No, y desconfía de quien lo haga. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
       },
     ],
     articulos: ["como-aparecer-en-chatgpt-y-google"],

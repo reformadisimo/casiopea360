@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 // y recoge el contacto de quien quiere que le llamemos.
 type Mensaje = { role: "user" | "assistant"; content: string };
 
-const SUGERENCIAS = ["¿Qué entra en la cuota?", "¿Cómo podéis cobrar tan poco?", "¿Hay permanencia?", "¿Hacéis tiendas online?"];
+const SUGERENCIAS = ["¿Qué entra en la cuota?", "¿Cómo podéis cobrar menos?", "¿Hay permanencia?", "¿Hacéis tiendas online?"];
 const SALUDO = "Hola. Soy el asistente de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar.";
 
 // Convierte las rutas internas (/test, /estudio-gratuito...) en enlaces.

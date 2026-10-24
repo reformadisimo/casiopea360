@@ -168,7 +168,7 @@ export default function CostesPorTamano() {
             <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y el CRM, ya hechos. ¿Otra web, otra landing, otra calculadora? Incluidas.</p>
             <a href="/estudio-gratuito" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Quiero mi estudio gratuito</a>
             <p className="mt-4 text-sm text-white/70">
-              <b className="text-estrella">Seis meses de permanencia</b>, porque la web te la regalamos. Después te vas cuando quieras. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar tan poco?</a>
+              <b className="text-estrella">Seis meses de permanencia</b>, porque la web te la regalamos. Después te vas cuando quieras. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar menos?</a>
             </p>
           </div>
         </div>
