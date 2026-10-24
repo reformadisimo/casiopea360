@@ -9,7 +9,7 @@ export default function Pie() {
     <footer className="bg-noche-2 text-white/85">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
-          <Logo claro completo />
+          <Logo claro />
           <p className="mt-4 max-w-xs text-[0.95rem]">
             Todo tu marketing digital con un solo equipo. Precio fijo, sin comisiones y un parte cada día.
           </p>

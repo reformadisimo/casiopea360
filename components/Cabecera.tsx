@@ -124,7 +124,7 @@ export default function Cabecera() {
             onClick={cerrarTodo}
             className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm"
           >
-            Estudio gratuito
+            Estudio<span className="max-[379px]:hidden"> gratuito</span>
           </Link>
           <button
             type="button"
