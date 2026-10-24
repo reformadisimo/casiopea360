@@ -9,30 +9,26 @@ const FACTURACION = ["Menos de 1 millón", "De 1 a 4 millones", "De 4 a 10 millo
 const EMPLEADOS = ["Menos de 10", "De 10 a 50", "De 50 a 250", "Más de 250"];
 const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "Más de 5.000 € al mes"];
 const HOY = ["Una agencia", "Varios proveedores", "Alguien de la casa", "Nadie, por ahora"];
-const MOMENTO = ["Quiero cambiar cuanto antes", "Lo estoy valorando para los próximos meses", "Quiero ver qué me proponéis", "De momento, solo curioseando"];
-const EMPEZAR = ["Este mes", "En uno a tres meses", "Más adelante", "Aún no lo sé"];
+const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1.500 a 3.000 € al mes", "Más de 3.000 € al mes", "No lo sé"];
+const CAMBIAR = ["Lo antes posible", "En los próximos tres meses", "Más adelante", "No tengo prisa, solo estoy mirando"];
+const CONVENCE = ["Empezaríamos en cuanto podáis", "Lo hablaría con mi socio o la dirección", "Lo compararía con otras propuestas", "Solo quiero ver ideas"];
+const REUNION = ["Sí, esta misma semana", "Sí, en las próximas semanas", "Prefiero que me lo enviéis por correo"];
 const DECIDE = ["Yo", "Lo decido con mi socio o la dirección", "Lo propongo y decide otra persona"];
 const URGE = ["Más clientes", "Una web nueva", "Dejar de coordinar proveedores", "Medir lo que funciona", "Pagar menos por lo mismo"];
 
 // Etiqueta interna para priorizar (solo la ve Casiopea en el correo).
 function encaje(d: FormData) {
-  let p = 0;
-  const m = String(d.get("momento"));
-  if (m === MOMENTO[0]) p += 3;
-  else if (m === MOMENTO[1]) p += 2;
-  else if (m === MOMENTO[2]) p += 1;
-  const e = String(d.get("empezar"));
-  if (e === EMPEZAR[0]) p += 2;
-  else if (e === EMPEZAR[1]) p += 1;
-  const q = String(d.get("decide"));
-  if (q === DECIDE[0]) p += 2;
-  else if (q === DECIDE[1]) p += 1;
-  const inv = String(d.get("inversion"));
-  if (inv !== INVERSION[0]) p += 1;
-  const f = String(d.get("facturacion"));
-  if (f !== FACTURACION[0]) p += 1;
-  if (m === MOMENTO[3]) return "SOLO CURIOSEA";
-  return p >= 7 ? "ENCAJE ALTO" : p >= 4 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
+  const v = (k: string) => String(d.get(k));
+  const cambiar = CAMBIAR.indexOf(v("cambiar"));
+  if (cambiar === 3 || v("convence") === CONVENCE[3]) return "SOLO CURIOSEA";
+  let p = [3, 2, 0][cambiar] ?? 0;
+  p += [3, 2, 0][CONVENCE.indexOf(v("convence"))] ?? 0;
+  p += [2, 1, 0][REUNION.indexOf(v("reunion"))] ?? 0;
+  p += [2, 1, 0][DECIDE.indexOf(v("decide"))] ?? 0;
+  p += [0, 1, 2, 2, 0][MARKETING.indexOf(v("marketing"))] ?? 0;
+  if (v("inversion") !== INVERSION[0]) p += 1;
+  if (v("facturacion") !== FACTURACION[0]) p += 1;
+  return p >= 10 ? "ENCAJE ALTO" : p >= 6 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
 }
 
 export default function Diagnostico() {
@@ -53,8 +49,10 @@ export default function Diagnostico() {
       `Empleados: ${d.get("empleados")}\n` +
       `Cómo llevan hoy el marketing: ${d.get("hoy")}\n` +
       `Inversión en anuncios: ${d.get("inversion")}\n` +
-      `En qué momento está: ${d.get("momento")}\n` +
-      `Cuándo le gustaría empezar: ${d.get("empezar")}\n` +
+      `Inversión en marketing sin anuncios: ${d.get("marketing")}\n` +
+      `Cuándo quiere cambiar: ${d.get("cambiar")}\n` +
+      `Si el estudio le convence: ${d.get("convence")}\n` +
+      `Reunión de 30 minutos: ${d.get("reunion")}\n` +
       `Quién decide: ${d.get("decide")}\n` +
       `Lo que más le urge: ${d.get("urge")}\n` +
       `Algo más: ${d.get("mas") || "-"}\n` +
@@ -133,9 +131,11 @@ export default function Diagnostico() {
       {desplegable("facturacion", "Facturación aproximada al año", FACTURACION)}
       {desplegable("empleados", "Empleados", EMPLEADOS)}
       {desplegable("hoy", "¿Quién os lleva hoy el marketing?", HOY)}
-      {desplegable("inversion", "Inversión en anuncios", INVERSION)}
-      {desplegable("momento", "¿En qué momento estás?", MOMENTO)}
-      {desplegable("empezar", "¿Cuándo te gustaría empezar?", EMPEZAR)}
+      {desplegable("inversion", "¿Cuánto inviertes al mes en anuncios?", INVERSION)}
+      {desplegable("marketing", "¿Cuánto inviertes al mes en marketing, sin contar anuncios? (agencias, proveedores, herramientas)", MARKETING)}
+      {desplegable("cambiar", "¿Cuándo quieres cambiar?", CAMBIAR)}
+      {desplegable("convence", "Si el estudio te convence, ¿qué harías?", CONVENCE)}
+      {desplegable("reunion", "¿Nos dedicarías 30 minutos para presentártelo?", REUNION)}
       {desplegable("decide", "¿Quién decide la contratación?", DECIDE)}
       {desplegable("urge", "¿Qué es lo que más te urge?", URGE)}
       <label className={`${etiqueta} sm:col-span-2`}>

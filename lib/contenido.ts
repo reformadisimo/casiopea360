@@ -472,7 +472,7 @@ export const ESTUDIO_BLOQUES: BloqueEstudio[] = [
       { t: "Calendario de contenidos de tres meses, con los artículos ya titulados" },
       { t: "Plan de los primeros 30 días, semana a semana" },
       { t: "Cuánto tarda en notarse cada cosa, sin prometer magia" },
-      { t: "Lo que te costaría por separado frente a hacerlo con nosotros" },
+      { t: "Cuánto ahorrarías, al euro: lo que pagas hoy frente a lo que pagarías con nosotros" },
     ],
   },
   {
@@ -493,7 +493,7 @@ export const ESTUDIO_TOTAL = ESTUDIO_BLOQUES.reduce((n, b) => n + b.items.length
 export const EMPEZAMOS: { t: string; d: string }[] = [
   { t: "Haz el test de idoneidad", d: "Dos minutos: nos cuentas tu empresa y en qué momento estás." },
   { t: "Lo revisamos", d: "Si vemos que podemos ayudarte de verdad, te lo decimos en 48 horas laborables. Y si no, también, con el porqué." },
-  { t: "Preparamos tu estudio gratuito", d: "Tu plan completo, hecho a medida, con la propuesta de rediseño de tu web." },
+  { t: "Preparamos tu estudio gratuito", d: "Tu plan completo, hecho a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías al euro." },
   { t: "Te lo presentamos y decides", d: "Con calma, en una videollamada o como prefieras. Y sin ningún compromiso." },
 ];
 
