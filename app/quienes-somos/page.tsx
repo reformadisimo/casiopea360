@@ -105,7 +105,7 @@ export default function QuienesSomos() {
             ))}
           </ul>
           <p className="mt-10 max-w-3xl text-lg text-white/80">
-            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. No podemos garantizarlo por escrito, pero lo intentamos con todas nuestras fuerzas, y hasta hoy no ha habido un solo caso en que no lo consiguiéramos.
+            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. No te garantizamos resultados, te garantizamos nuestro esfuerzo. Y hasta hoy, esos resultados han llegado en todas las empresas con las que hemos trabajado: las que ves en nuestros trabajos y muchas más en más de veintidós años.
           </p>
         </div>
       </section>

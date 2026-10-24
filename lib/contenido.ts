@@ -279,6 +279,14 @@ export const PREGUNTAS = [
     r: "Seis meses, porque la web te la regalamos. Después no hay ninguna: te quedas porque te compensa y te puedes ir cuando quieras, llevándote todo, que ya está a tu nombre.",
   },
   {
+    p: "¿Garantizáis resultados?",
+    r: "Los resultados no los puede garantizar nadie con honradez, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos es nuestro esfuerzo, con todo lo que sabemos. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
+  },
+  {
+    p: "¿Con cuántas empresas habéis trabajado?",
+    r: "Con muchas: las que ves en nuestros trabajos y muchas más a lo largo de más de veintidós años, algunas durante muchos años seguidos. No damos una cifra porque preferimos enseñarte resultados, no números redondos. En el estudio gratuito te contamos casos parecidos al tuyo.",
+  },
+  {
     p: "¿Y si lo pruebo y no me convence?",
     r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si después no te convence, te vas y te lo llevas todo.",
   },
@@ -316,7 +324,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
-    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, tu marca (logo, manual y papelería), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
+    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, el diseño de tu marca (logo, manual y papelería; la impresión va aparte), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
@@ -398,7 +406,7 @@ export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: str
   { icono: "carrito", logo: "Google", t: "Tienda online y Shopping", d: "Para vender por internet, con pagos y envíos, y tus productos con foto y precio en Google Shopping." },
   { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
   { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
-  { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería, nuevos o renovados." },
+  { icono: "pincel", t: "Tu marca", d: "Diseño de logo, colores, manual de marca, tarjetas y papelería. La impresión, si la necesitas, la encargas tú a la imprenta." },
   { icono: "telefono", t: "Medición de llamadas", d: "Cada llamada entra en tu CRM con el anuncio o la página que la trajo, no solo los formularios." },
   { icono: "lupa", t: "Vigilancia de tu competencia", d: "Cada mes, qué hacen tus competidores en Google, en anuncios y en redes, y cómo adelantarlos." },
   { icono: "video", logo: "YouTube", t: "Vídeos con IA y con móvil", d: "Vídeos cortos para redes y anuncios, montados por nosotros con tu material o con IA." },
@@ -410,7 +418,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "Mejor.",
     d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
-    pie: "No podemos garantizarlo por escrito, pero lo intentamos con todo lo que sabemos. Hasta hoy no ha habido un solo caso en que no lo consiguiéramos.",
+    pie: "No garantizamos resultados: garantizamos nuestro esfuerzo. Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
   },
   {
     t: "En días, no en meses.",

@@ -676,6 +676,14 @@ export function SeccionLoFirmamos() {
             </li>
           ))}
         </ul>
+        <div className="mt-8 flex flex-col gap-5 rounded-[2rem] bg-noche p-7 text-white sm:flex-row sm:items-center sm:p-9">
+          <span aria-hidden="true" className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-estrella text-tinta">
+            <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG.escudo}</svg>
+          </span>
+          <p className="text-xl font-extrabold sm:text-2xl">
+            No te garantizamos resultados: te garantizamos nuestro esfuerzo. <span className="text-estrella">Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.</span>
+          </p>
+        </div>
       </div>
     </section>
   );
