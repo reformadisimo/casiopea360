@@ -105,11 +105,9 @@ export default function Asistente() {
         aria-controls="asistente"
         className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche py-2.5 pl-2.5 pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
       >
-        <span aria-hidden="true" className="relative grid h-9 w-9 place-items-center rounded-full bg-estrella text-tinta">
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 5h16v11H9l-5 4zM8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" />
-          </svg>
-          <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-noche" />
+        <span aria-hidden="true" className="relative block h-9 w-9">
+          <img src="/marca/icono.svg" alt="" className="h-9 w-9 rounded-[0.6rem]" />
+          <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-noche" />
         </span>
         {abierto ? "Cerrar" : "¿Te ayudo?"}
       </button>
