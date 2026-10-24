@@ -5,7 +5,8 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato } from "@/components/secciones";
+import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -28,6 +29,7 @@ const COMO: [string, string][] = [
   ["Claros", "Por escrito y sin jerga. Si no se entiende, no lo hemos explicado bien."],
   ["Rápidos", "Respuesta el mismo día y lo del día a día en 48 horas. Lo grande, con fecha."],
   ["Sinceros", "Te decimos lo que no te conviene, aunque podamos cobrártelo."],
+  ["Sin lata", "Las menos reuniones posibles y casi todo por escrito. Tu tiempo es para tu negocio."],
   ["Tuyo", "La web, el dominio y las cuentas, a tu nombre desde el primer día."],
 ];
 
@@ -37,7 +39,7 @@ export default function QuienesSomos() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Quiénes somos", ruta: "/quienes-somos" }])} />
       <CabeceraPagina
         titulo="Más de 22 años haciendo que el teléfono suene."
-        entradilla="Somos un equipo de profesionales del marketing digital. Llevamos más de veintidós años en esto y lo hemos tocado todo: webs, apps, Google, anuncios, redes y automatización."
+        entradilla="Somos profesionales del marketing digital con más de veintidós años de oficio. Lo hacemos todo, lo hacemos mejor y por mucho menos de lo que te costaría por separado. Y sin darte la lata."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="selfie-equipo"
         videoAlt="Un equipo se hace un selfie sonriendo"
@@ -89,6 +91,27 @@ export default function QuienesSomos() {
         </div>
       </section>
 
+      <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
+        <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+        <div className={`${ENVOLTORIO} relative`}>
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que creemos</p>
+          <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Hacértelo mejor que quien te cobra el triple. Esa es la idea.</h2>
+          <ul className="mt-12 grid gap-4 lg:grid-cols-5">
+            {CREEMOS.map((c, i) => (
+              <li key={c} className="rounded-[1.6rem] bg-white/[0.07] p-6 ring-1 ring-white/15 backdrop-blur-sm">
+                <span aria-hidden="true" className="text-3xl font-extrabold text-estrella">{i + 1}</span>
+                <p className="mt-3 text-[1.05rem] text-white/90">{c}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 max-w-3xl text-lg text-white/80">
+            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. No podemos garantizarlo por escrito, pero lo intentamos con todas nuestras fuerzas, y hasta hoy no ha habido un solo caso en que no lo consiguiéramos.
+          </p>
+        </div>
+      </section>
+
+      <SeccionPorQueBarato />
+
       <FranjaVideos
         frase="Especialistas en todo, en la misma mesa."
         detalle="Cada frente con quien mejor lo domina, trabajando juntos para que todo empuje en la misma dirección."
@@ -102,7 +125,7 @@ export default function QuienesSomos() {
       <section className="py-20 sm:py-28">
         <div className={ENVOLTORIO}>
           <h2 className="text-4xl font-extrabold sm:text-5xl">Cómo somos</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {COMO.map(([t, d], i) => (
               <div key={t} className="rounded-[1.8rem] border border-linea p-6">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-estrella font-extrabold text-tinta">{i + 1}</span>

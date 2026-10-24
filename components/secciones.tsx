@@ -17,6 +17,8 @@ import {
   PREGUNTAS,
   TRABAJOS,
   TAMBIEN_INCLUIDO,
+  PROMESAS,
+  POR_QUE_BARATO,
 } from "@/lib/contenido";
 
 export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
@@ -540,6 +542,60 @@ export function SeccionTambienIncluido() {
         <p className="mt-10 max-w-3xl text-lg">
           <b>¿Se te ocurre algo que no está aquí?</b> Pídelo. Si te conviene, lo hacemos; si no, te lo decimos.
         </p>
+      </div>
+    </section>
+  );
+}
+
+/* Las tres promesas: mejor, por mucho menos y sin darte la lata. */
+export function SeccionPromesas() {
+  return (
+    <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
+      <div aria-hidden="true" className="absolute inset-0 opacity-30"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div className={`${ENVOLTORIO} relative`}>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras tres promesas</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Lo hacemos mejor y por mucho menos.</h2>
+        <p className="mt-6 max-w-3xl text-xl text-white/80">Ya sabemos que suena demasiado bien. Por eso no te pedimos que nos creas: pide el estudio gratuito y compáralo con lo que tienes hoy.</p>
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {PROMESAS.map((x, i) => (
+            <div key={x.t} className={`flex flex-col rounded-[2rem] p-7 sm:p-8 ${i === 1 ? "bg-estrella text-tinta" : "bg-white/[0.07] ring-1 ring-white/15 backdrop-blur-sm"}`}>
+              <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-full text-lg font-extrabold ${i === 1 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
+              <p className="mt-5 text-4xl font-extrabold sm:text-5xl">{x.t}</p>
+              <p className={`mt-4 flex-1 text-lg ${i === 1 ? "text-tinta/85" : "text-white/85"}`}>{x.d}</p>
+              <p className={`mt-5 border-t pt-4 text-[0.95rem] ${i === 1 ? "border-tinta/15 text-tinta/75" : "border-white/15 text-white/70"}`}>{x.pie}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Por qué podemos cobrar tan poco. */
+export function SeccionPorQueBarato() {
+  return (
+    <section id="barato" className="scroll-mt-24 bg-white py-20 sm:py-28">
+      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
+        <div>
+          <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Sin trampa</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar tan poco? Así de sencillo.</h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {POR_QUE_BARATO.map((x, i) => (
+              <div key={x.t} className="rounded-[1.6rem] bg-niebla p-6">
+                <p className="text-sm font-extrabold text-amber-700">0{i + 1}</p>
+                <p className="mt-1 text-xl font-extrabold">{x.t}</p>
+                <p className="mt-2 text-gris">{x.d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 max-w-2xl text-lg">
+            <b>Y porque nos gusta.</b> Disfrutamos haciendo crecer empresas, no a base de facturas, sino a base de resultados. Y estamos siempre estrenando la última tecnología.
+          </p>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="despacho" alt="Una persona trabaja tranquila en su despacho con el ordenador" /></div>
+        </div>
       </div>
     </section>
   );

@@ -240,7 +240,7 @@ export const GARANTIAS = [
   },
   {
     titulo: "Tu web, regalada",
-    texto: "No pagas la web: solo el mantenimiento mensual, con seis meses de compromiso. Después sigues porque te compensa, no porque no puedas irte.",
+    texto: "No pagas la web: solo la cuota mensual, con seis meses de permanencia. Después no hay ninguna: sigues porque te compensa y te vas cuando quieras.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -272,6 +272,18 @@ export const PREGUNTAS = [
   {
     p: "¿Cuánto cuesta?",
     r: "Una cuota mensual fija, la misma seas pyme, mediana o gran empresa, que lo incluye todo: web, CRM, Google, anuncios, redes, automatizaciones y cada cambio que pidas. Te la contamos en el estudio gratuito, junto con lo que haríamos por tu negocio. Por separado, todo eso te costaría bastante más: lo tienes calculado en la tabla de servicios.",
+  },
+  {
+    p: "¿Hay permanencia?",
+    r: "Seis meses, porque la web te la regalamos. Después no hay ninguna: te quedas porque te compensa y te puedes ir cuando quieras, llevándote todo, que ya está a tu nombre.",
+  },
+  {
+    p: "¿Cómo podéis cobrar tan poco por tanto?",
+    r: "Porque no tenemos estructura que pagar: ni oficinas de lujo, ni capas de jefes, ni comerciales a comisión. Las herramientas profesionales las pagamos una vez y sirven a todos nuestros clientes, y la IA y la automatización hacen en horas lo que antes llevaba semanas. Ese ahorro no nos lo quedamos: lo volcamos en tu cuota, porque preferimos clientes para muchos años a facturas para hoy.",
+  },
+  {
+    p: "¿De verdad lo hacéis mejor que quien me cobra 25.000 € por una web?",
+    r: "Esa es nuestra intención, y la de cada cosa que hacemos. No podemos garantizarlo por escrito, porque cada caso es distinto, pero lo intentamos con todas nuestras fuerzas y con más de veintidós años de experiencia, y hasta hoy no ha habido un solo caso en que no lo consiguiéramos. No hace falta que nos creas: en el estudio gratuito ves lo que haríamos antes de decidir nada.",
   },
   {
     p: "¿Cuánto tarda en notarse?",
@@ -378,4 +390,40 @@ export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: str
   { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
   { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
   { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería, nuevos o renovados." },
+];
+
+// Las tres promesas de Casiopea 360 (mensaje central, 24 oct 2026).
+export const PROMESAS: { t: string; d: string; pie: string }[] = [
+  {
+    t: "Mejor.",
+    d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
+    pie: "No podemos garantizarlo por escrito, pero lo intentamos con todo lo que sabemos. Hasta hoy no ha habido un solo caso en que no lo consiguiéramos.",
+  },
+  {
+    t: "Por mucho menos.",
+    d: "Una sola cuota fija, la misma para cualquier tamaño de empresa, que cuesta bastante menos que contratar cada cosa por separado.",
+    pie: "Seis meses de permanencia, porque la web te la regalamos. Después te quedas porque quieres y te vas cuando quieras.",
+  },
+  {
+    t: "Sin darte la lata.",
+    d: "Te lo gestionamos todo nosotros. Las menos reuniones posibles, casi todo por escrito y tu panel para mirarlo cuando te apetezca.",
+    pie: "Lo único que debería ocuparte son los resultados. Y vamos a por los mejores posibles.",
+  },
+];
+
+// Por qué podemos cobrar tan poco.
+export const POR_QUE_BARATO: { t: string; d: string }[] = [
+  { t: "Sin estructura que pagar", d: "Sin oficinas de lujo, sin capas de jefes y sin comerciales a comisión. Trabajamos en remoto, y ese dinero no sale de tu bolsillo." },
+  { t: "Herramientas compartidas", d: "Las licencias profesionales de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
+  { t: "La tecnología de hoy", d: "La IA y la automatización hacen lo repetitivo; las personas, lo que hay que pensar. Lo que antes llevaba semanas hoy lleva horas." },
+  { t: "Todo el margen, para ti", d: "Lo que otros gastan en estructura lo volcamos en tu cuota. Queremos clientes para muchos años, no facturas para hoy." },
+];
+
+// Lo que creemos (Quiénes somos).
+export const CREEMOS: string[] = [
+  "Que el buen marketing no debería ser un lujo. Queremos democratizar los precios.",
+  "Que se crece con clientes a largo plazo, no a base de facturas.",
+  "Que un proveedor no debería darte la lata. Si nos tienes que perseguir, lo estamos haciendo mal.",
+  "Que la mejor tecnología tiene que estar al alcance de cualquier empresa, y nosotros la estrenamos cada semana.",
+  "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
 ];
