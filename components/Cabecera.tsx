@@ -57,7 +57,7 @@ export default function Cabecera() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link prefetch={false} href="/" aria-label="Casiopea 360, inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
+        <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
           <Logo claro />
         </Link>
 

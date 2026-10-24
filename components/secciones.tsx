@@ -833,7 +833,7 @@ export function SeccionVeinteProveedores() {
           <ul aria-label="Proveedores que tendrías que contratar por separado" className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
             {PROVEEDORES_LIO.map((p, i) => (
               <li key={p} className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm font-bold text-rose-900 shadow-sm" style={{ transform: `rotate(${giros[i]}deg)` }}>
-                <span className="block text-[0.7rem] font-extrabold uppercase tracking-wide text-rose-500">Factura {i + 1}</span>
+                <span className="block text-[0.7rem] font-extrabold uppercase tracking-wide text-rose-700">Factura {i + 1}</span>
                 {p}
               </li>
             ))}

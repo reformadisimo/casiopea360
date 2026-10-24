@@ -81,13 +81,18 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
           <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test en un minuto</Link>.
         </p>
       </article>
-      <section className="mx-auto w-full max-w-3xl px-4 sm:px-6">
-        <p className="font-titular text-2xl font-extrabold">Sigue leyendo</p>
-        <ul className="mt-4 divide-y divide-linea border-y border-linea">
-          {otros.map((o) => (
+      <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6">
+        <p className="font-titular text-3xl font-extrabold">Sigue leyendo</p>
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {otros.slice(0, 3).map((o) => (
             <li key={o.slug}>
-              <Link href={`/blog/${o.slug}`} className="block py-4 text-lg font-bold hover:text-noche-3">
-                {o.titulo}
+              <Link href={`/blog/${o.slug}`} className="group block overflow-hidden rounded-[1.6rem] bg-white shadow-sm ring-1 ring-linea transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/video/${o.video}.webp`} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <span className="block p-5">
+                  <span className="text-sm font-bold text-noche-3">{o.categoria} · {o.lectura}</span>
+                  <span className="mt-1 block text-lg font-extrabold leading-snug">{o.titulo}</span>
+                </span>
               </Link>
             </li>
           ))}

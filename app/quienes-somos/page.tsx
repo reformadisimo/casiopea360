@@ -5,7 +5,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia } from "@/components/secciones";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -111,6 +111,7 @@ export default function QuienesSomos() {
       </section>
 
       <SeccionPorQueBarato />
+      <SeccionTecnologia />
 
       <FranjaVideos
         frase="Especialistas en todo, en la misma mesa."
