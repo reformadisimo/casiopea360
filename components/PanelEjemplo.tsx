@@ -12,7 +12,7 @@ const PESTANAS: [Pestana, string][] = [
   ["resumen", "Resumen"],
   ["clientes", "Clientes"],
   ["anuncios", "Anuncios"],
-  ["google", "Google e IA"],
+  ["google", "Google, Bing e IA"],
   ["redes", "Redes"],
   ["web", "Tu web"],
   ["gastos", "Gastos"],
@@ -44,12 +44,18 @@ const LOGO: Record<string, string> = {
 
 function Logo({ nombre, tam = 26 }: { nombre: string; tam?: number }) {
   const f = LOGO[nombre];
-  if (!f)
+  if (!f) {
+    const bing = /Bing|Microsoft/.test(nombre);
     return (
-      <span className="grid shrink-0 place-items-center rounded-lg bg-noche font-extrabold text-estrella" style={{ width: tam, height: tam, fontSize: tam * 0.42 }} aria-hidden="true">
-        {nombre.slice(0, 2)}
+      <span
+        className={`grid shrink-0 place-items-center rounded-lg font-extrabold ${bing ? "text-white" : "bg-noche text-estrella"}`}
+        style={{ width: tam, height: tam, fontSize: tam * (bing ? 0.6 : 0.42), background: bing ? "linear-gradient(135deg,#00b294,#0078d4)" : undefined }}
+        aria-hidden="true"
+      >
+        {bing ? "b" : nombre.slice(0, 2)}
       </span>
     );
+  }
   // eslint-disable-next-line @next/next/no-img-element
   return <img src={`/logos/herramientas/${f}`} alt="" width={tam} height={tam} className="shrink-0 rounded-md object-contain" loading="lazy" />;
 }
@@ -62,6 +68,9 @@ const CONECTADO: [string, string][] = [
   ["Meta", "Píxel y anuncios"],
   ["Ficha de Google", "Llamadas y reseñas"],
   ["Google Trends", "Qué se busca"],
+  ["Bing Webmaster", "Búsquedas en Bing"],
+  ["Microsoft Ads", "Anuncios en Bing"],
+  ["Ficha de Bing", "Mapa de Bing"],
   ["Semrush", "Posiciones"],
   ["Instagram", "Seguidores"],
   ["LinkedIn", "Empresas"],
@@ -85,7 +94,8 @@ const ORIGEN: [string, number, string][] = [
   ["Ficha de Google (mapa)", 12, "#1fa463"],
   ["ChatGPT y otras IA", 6, "#8b5cf6"],
   ["Correos de seguimiento", 6, "#ff7a45"],
-  ["Otros", 4, "#9aa3bd"],
+  ["Bing (sin pagar y anuncios)", 3, "#00a3a3"],
+  ["Otros", 1, "#9aa3bd"],
 ];
 
 const EMBUDO: [string, number, string][] = [
@@ -168,6 +178,7 @@ const ETIQUETAS: { nombre: string; que: string; para: string }[] = [
   { nombre: "Meta", que: "Píxel y API de conversiones de Meta", para: "Lo mismo en Instagram y Facebook, también cuando el navegador bloquea cookies." },
   { nombre: "LinkedIn", que: "Etiqueta de LinkedIn", para: "Medir los contactos de empresas que llegan desde LinkedIn." },
   { nombre: "TikTok", que: "Píxel de TikTok", para: "Medir lo que traen los vídeos y anuncios de TikTok." },
+  { nombre: "Microsoft Ads", que: "Etiqueta UET de Microsoft", para: "Medir los contactos que llegan desde los anuncios de Bing." },
   { nombre: "Clarity", que: "Mapas de calor y grabaciones anónimas", para: "Ver dónde pulsa la gente y dónde se atasca, para arreglarlo." },
   { nombre: "Resend", que: "Correos con seguimiento", para: "Saber qué correos se abren y cuáles traen clientes." },
   { nombre: "WhatsApp", que: "Botón con su propio evento", para: "Contar cada pulsación de WhatsApp y llamada desde la web." },
@@ -529,7 +540,7 @@ export default function PanelEjemplo() {
                 <Caja titulo="De dónde vienen tus contactos" fuente="Tag Manager y Analytics" ayuda="Cada persona que te contacta llega con una «etiqueta» que dice de dónde viene: Google, un anuncio concreto, Instagram, el mapa de Google, ChatGPT o un correo. Así sabemos qué funciona y dónde poner el dinero.">
                   <Rosco datos={ORIGEN} centro="312" sub="contactos" />
                 </Caja>
-                <Caja titulo="Herramientas conectadas" fuente="17 de 17 funcionando" ayuda="Todas las herramientas que miden tu negocio, conectadas en un solo sitio. El punto verde dice que están recibiendo datos ahora mismo.">
+                <Caja titulo="Herramientas conectadas" fuente="20 de 20 funcionando" ayuda="Todas las herramientas que miden tu negocio, conectadas en un solo sitio. El punto verde dice que están recibiendo datos ahora mismo.">
                   <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                     {CONECTADO.map(([n, d]) => (
                       <li key={n} className="flex items-center gap-2 rounded-xl border border-linea p-2">
@@ -713,6 +724,24 @@ export default function PanelEjemplo() {
                   </div>
                 </Caja>
               </div>
+              <Caja titulo="Bing: el buscador que tu competencia olvida" fuente="Bing Webmaster, Microsoft Ads y ficha de Bing" ayuda="En España casi todo el mundo busca en Google, pero Bing se lleva cerca del 3,5 % de las búsquedas, y en los ordenadores más del 12 %, porque viene de serie en Windows y en Edge. Además, Bing alimenta a Copilot y a otros asistentes de IA. Como casi nadie lo trabaja, es más fácil salir arriba y los anuncios suelen tener menos competencia. Va incluido en tu cuota.">
+                <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
+                  <div className="rounded-2xl bg-gradient-to-br from-[#00b294] to-[#0078d4] p-5 text-white">
+                    <p className="text-sm font-bold text-white/80">Cuota de búsquedas en España</p>
+                    <div className="mt-3 flex items-end gap-6">
+                      <div><p className="text-4xl font-extrabold">3,5 %</p><p className="text-xs text-white/80">en total</p></div>
+                      <div><p className="text-4xl font-extrabold">12 %</p><p className="text-xs text-white/80">en ordenadores</p></div>
+                    </div>
+                    <p className="mt-3 text-xs text-white/75">Fuente: StatCounter, septiembre de 2026. Viene de serie en Windows y en Edge.</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[["Visitas desde Bing", "312"], ["Contactos desde Bing", "11"], ["Puesto medio en Bing", "2,4.º"], ["Ficha de Bing: vistas", "1.940"], ["Anuncios de Bing: invertido", "120 €"], ["Coste por contacto en Bing", "21 €"]].map(([t, v]) => (
+                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-4 rounded-2xl bg-estrella/20 p-3 text-sm">Pocos contactos, pero baratos: en Bing compiten menos empresas y el clic suele salir más barato. Por eso estamos en todas partes: Google, Bing, Apple Maps y las IA.</p>
+              </Caja>
               <Caja titulo="Si preguntan a las IA, ¿te recomiendan?" fuente="ChatGPT, Gemini y Claude" ayuda="Cada semana preguntamos a ChatGPT, Gemini y Claude lo mismo que preguntaría un cliente: «¿qué empresa de climatización me recomiendas en Madrid?». Contamos en cuántas de 10 preguntas sales.">
                 <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
                   <div>
@@ -781,7 +810,7 @@ export default function PanelEjemplo() {
                   <div className="rounded-2xl bg-emerald-50 p-5">
                     <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
                     <ul className="mt-3 space-y-2 text-sm">
-                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo: técnico, contenidos, ficha de Google y visibilidad en las IA", "Gestión de anuncios en Google, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Rediseño del logo si lo necesitas"].map((t) => (
+                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Rediseño del logo si lo necesitas"].map((t) => (
                         <li key={t} className="flex gap-2"><span className="text-emerald-600">✓</span>{t}</li>
                       ))}
                     </ul>

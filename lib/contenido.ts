@@ -41,6 +41,7 @@ export const FRENTES: Frente[] = [
       "Que Google entienda tu web y te enseñe a quien te busca cerca",
       "Artículos que atraen clientes: los escribimos nosotros, tú solo los revisas",
       "Que ChatGPT y las demás IA te recomienden cuando preguntan por lo tuyo",
+      "También en Bing y Apple Maps: tu ficha en todos los mapas y buscadores, no solo en Google",
     ],
   },
   {
@@ -51,6 +52,7 @@ export const FRENTES: Frente[] = [
       "Revisamos en qué se va hoy tu dinero en anuncios",
       "Anuncios en Google que llevan a páginas hechas para que te contacten",
       "Anuncios en Instagram, Facebook y TikTok, con el tope de gasto que tú decidas",
+      "Anuncios en Bing, donde casi nadie compite y el clic suele salir más barato",
       "Cada semana miramos qué funciona y quitamos lo que no",
     ],
   },
@@ -284,6 +286,10 @@ export const PREGUNTAS = [
   {
     p: "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?",
     r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
+  },
+  {
+    p: "¿Y Bing? ¿Merece la pena?",
+    r: "Sí, y va incluido. En España Bing se lleva cerca del 3,5 % de las búsquedas, pero en los ordenadores pasa del 12 %, porque viene de serie en Windows y en Edge. Además alimenta a Copilot, el asistente de Microsoft. Como casi nadie lo trabaja, es más fácil salir arriba y los anuncios suelen costar menos. Ponemos tu web y tu ficha en Bing y, si conviene, campañas en Microsoft Ads.",
   },
   {
     p: "¿Cómo sabré qué funciona?",
