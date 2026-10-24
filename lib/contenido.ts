@@ -267,3 +267,31 @@ export const PREGUNTAS = [
     r: "Te damos las ideas, el guion, cómo grabarlo con el móvil, y lo montamos si nos lo das. Para grabarlo de forma profesional te ponemos en contacto con la agencia audiovisual con la que trabajamos. Es lo único que va aparte, y se lo pagas tú directamente: más transparente.",
   },
 ];
+
+// Puntos de dolor, en palabras del dueño del negocio, con su solución en una frase.
+export const DOLORES = [
+  {
+    dolor: "Mi web es vieja y tarda en cargar.",
+    solucion: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos.",
+  },
+  {
+    dolor: "Me busco en Google y no salgo.",
+    solucion: "Ponemos al día tu ficha de Google y tu web para que te encuentre quien está cerca.",
+  },
+  {
+    dolor: "Pago anuncios y no sé si sirven.",
+    solucion: "Vigilamos cada euro y te decimos cuánto te cuesta cada cliente.",
+  },
+  {
+    dolor: "Me escriben de noche y cuando contesto ya es tarde.",
+    solucion: "Un asistente atiende a cualquier hora y te avisa con todo apuntado.",
+  },
+  {
+    dolor: "Tengo pocas reseñas, y alguna mala sin contestar.",
+    solucion: "Respondemos todas con tu visto bueno y pedimos opinión a tus clientes contentos.",
+  },
+  {
+    dolor: "No tengo tiempo para las redes.",
+    solucion: "Te damos las ideas, los textos y el montaje. Tú solo grabas, si quieres.",
+  },
+];

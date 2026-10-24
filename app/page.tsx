@@ -4,7 +4,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
-import { FRENTES, OFICIOS, TRABAJOS, PASOS, PLAZOS, INFORMES, GARANTIAS, PREGUNTAS } from "@/lib/contenido";
+import { DOLORES, FRENTES, OFICIOS, TRABAJOS, PASOS, PLAZOS, INFORMES, GARANTIAS, PREGUNTAS } from "@/lib/contenido";
 
 const BOTON =
   "inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
@@ -119,6 +119,25 @@ export default function Inicio() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Puntos de dolor y soluciones */}
+        <section className="bg-niebla py-20 sm:py-28">
+          <div className={ENVOLTORIO}>
+            <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">¿Te suena alguno?</h2>
+            <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan los dueños de negocio, y lo que hacemos con ello.</p>
+            <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {DOLORES.map((d) => (
+                <li key={d.dolor} className="flex flex-col rounded-3xl bg-white p-6 sm:p-7">
+                  <p className="font-titular text-xl font-extrabold leading-snug">«{d.dolor}»</p>
+                  <div className="mt-5 flex gap-3 border-t border-linea pt-5">
+                    <span aria-hidden="true" className="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-estrella shadow-[0_0_0_5px_rgba(255,197,61,0.25)]" />
+                    <p className="text-gris"><span className="font-bold text-tinta">Lo arreglamos así: </span>{d.solucion}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
