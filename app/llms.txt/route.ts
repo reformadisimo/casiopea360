@@ -1,5 +1,5 @@
 import { SITIO } from "@/lib/navegacion";
-import { FRENTES, PREGUNTAS } from "@/lib/contenido";
+import { FRENTES, PREGUNTAS, TAMBIEN_INCLUIDO } from "@/lib/contenido";
 import { ARTICULOS } from "@/lib/blog";
 import { EMPRESA } from "@/lib/schema";
 
@@ -29,6 +29,9 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 
 ## Servicios
 ${FRENTES.map((f) => `- [${f.nombre}](${u}/servicios#${f.id}): ${f.frase}`).join("\n")}
+
+## También incluido en la cuota
+${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 
 ## Páginas
 - [Inicio](${u}/)

@@ -1030,7 +1030,7 @@ export default function PanelEjemplo() {
                     <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
                     <ul className="mt-3 space-y-2 text-sm">
                       {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
-                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas"].map((t) => (
+                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas", "Reservas online, reseñas, landings sin límite, encuestas y programa de recomendación", "Presupuestos con firma, tienda online, Google Shopping, web en varios idiomas y área privada para tus clientes"].map((t) => (
                         <li key={t} className="flex gap-2"><span className="text-emerald-700">✓</span>{t}</li>
                       ))}
                     </ul>

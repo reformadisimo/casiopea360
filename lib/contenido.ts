@@ -263,7 +263,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
-    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Los proyectos grandes, como una web nueva, una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
+    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Los proyectos grandes, como una web nueva, una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
@@ -292,6 +292,10 @@ export const PREGUNTAS = [
   {
     p: "¿Podéis hacer cualquier cosa que se me ocurra?",
     r: "Prácticamente sí: una app para iPhone y Android, un CRM, una campaña de radio, un anuncio en prensa, un vídeo profesional. Lo poco que no hacemos en casa, como grabar vídeo o la locución de un anuncio, lo hacemos con productoras y agencias con las que ya trabajamos, y tú no tienes que buscar a nadie. Eso sí: te diremos con sinceridad qué te conviene y qué no, y te preparamos un plan de inversión mes a mes y para el año, para sacar el máximo a cada euro.",
+  },
+  {
+    p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
+    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas y tu marca (logo, manual y papelería). Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
@@ -358,4 +362,20 @@ export const ESTUDIO = [
   { titulo: "Tu competencia y sus anuncios", texto: "Quién te gana y por qué, y qué anuncios están pagando, con datos públicos." },
   { titulo: "Lo que haríamos", texto: "Cada problema con su solución, un plan de 30 días y cuánto tarda en notarse." },
   { titulo: "La portada de tu web nueva", texto: "Para que veas, antes de decidir nada, cómo podría ser." },
+];
+
+// Más cosas que entran en la cuota, para la visión 360 (decidido por Ig el 24 oct 2026).
+export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: string }[] = [
+  { icono: "calendario", logo: "WhatsApp", t: "Reservas y citas online", d: "Tus clientes reservan solos desde la web y reciben el recordatorio por WhatsApp. Menos citas a las que no viene nadie." },
+  { icono: "estrella", logo: "Ficha de Google", t: "Reseñas", d: "Pedimos reseña después de cada venta y contestamos todas, en Google, Bing y Apple Maps." },
+  { icono: "pagina", t: "Landings sin límite", d: "Una página a medida para cada campaña, cada servicio o cada ciudad. ¿Otra? Incluida." },
+  { icono: "chat", logo: "Claude", t: "Asistente con IA", d: "En tu web y en WhatsApp, a cualquier hora. Responde, recoge los datos y los mete en tu CRM." },
+  { icono: "firma", t: "Presupuestos con firma", d: "Calculadoras y presupuestos online que tu cliente acepta y firma desde el móvil, sin papeles." },
+  { icono: "sonrisa", t: "Encuestas de satisfacción", d: "Saltan solas después de cada trabajo: detectan al cliente descontento a tiempo y al contento le piden la reseña." },
+  { icono: "regalo", t: "Programa de recomendación", d: "Trae a un amigo, con su código y su seguimiento en el CRM, para que el boca a boca se note." },
+  { icono: "idiomas", t: "Web en varios idiomas", d: "Inglés, francés o el idioma de tus clientes, bien traducido y posicionado en cada uno." },
+  { icono: "carrito", logo: "Google", t: "Tienda online y Shopping", d: "Para vender por internet, con pagos y envíos, y tus productos con foto y precio en Google Shopping." },
+  { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
+  { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
+  { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería, nuevos o renovados." },
 ];

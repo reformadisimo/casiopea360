@@ -16,6 +16,7 @@ import {
   PLAZOS,
   PREGUNTAS,
   TRABAJOS,
+  TAMBIEN_INCLUIDO,
 } from "@/lib/contenido";
 
 export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
@@ -447,6 +448,19 @@ const ICONO_SVG: Record<string, React.ReactNode> = {
   crm: <path d="M4 5h16v14H4zM8 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M6.5 16c.5-2 2-3 3.5-3s3 1 3.5 3M15 9h3M15 12h3" />,
   radio: <path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM6 11a6 6 0 0 0 12 0M12 17v4M9 21h6" />,
   prensa: <path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 12h7M7 15h4" />,
+  calendario: <path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M8 14h2M12 14h2M8 17h2" />,
+  estrella: <path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-3-5.4 3 1.1-6L3.2 9.4l6.1-.8z" />,
+  pagina: <path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 15h7M9 18h4" />,
+  chat: <path d="M4 5h16v11H9l-5 4zM8 10h.01M12 10h.01M16 10h.01" />,
+  firma: <path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18M15 4l4 4-6 6h-4v-4z" />,
+  sonrisa: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8 14c1 1.5 2.3 2 4 2s3-.5 4-2M9 9.5h.01M15 9.5h.01" />,
+  regalo: <path d="M4 10h16v4H4zM6 14h12v7H6zM12 10v11M12 10c-2 0-4-1-4-3s3-2 4 3c1-5 4-5 4-3s-2 3-4 3" />,
+  idiomas: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9" />,
+  carrito: <path d="M3 4h2l2.5 11h11L21 7H6.5M9 20h.01M17 20h.01" />,
+  tienda: <path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9c0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0M10 20v-5h4v5" />,
+  llave: <path d="M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4M12 15v2" />,
+  engranaje: <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" />,
+  pincel: <path d="M18 3l3 3-9 9-3-3zM9 12c-2 0-4 1.5-4 4 0 1.5-1 2.5-2 3 4 1 8 0 8-4" />,
 };
 
 const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: string }[] = [
@@ -490,6 +504,41 @@ export function SeccionLoQueSea() {
         </div>
         <p className="mt-10 max-w-3xl text-lg text-white/85">
           <b className="text-white">Nuestro consejo va por delante:</b> te recomendamos lo que te interesa y te desaconsejamos lo que no, aunque podamos hacerlo. Preferimos lo digital porque se mide al euro.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* Más servicios que entran en la cuota: la visión 360 completa. */
+export function SeccionTambienIncluido() {
+  return (
+    <section className="bg-niebla py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Y también entra en tu cuota</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          No es una lista para rellenar. Es lo que de verdad hace crecer a una empresa, y te montamos lo que tenga sentido para la tuya, cuando lo necesites.
+        </p>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {TAMBIEN_INCLUIDO.map((x) => (
+            <li key={x.t} className="flex gap-4 rounded-[1.6rem] bg-white p-5 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 transition-transform hover:-translate-y-1">
+              <span aria-hidden="true" className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-noche text-estrella">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+                {x.logo && (
+                  <span className="absolute -bottom-1.5 -right-1.5 grid h-6 w-6 place-items-center rounded-full bg-white ring-2 ring-niebla"><LogoMarca nombre={x.logo} tam={14} /></span>
+                )}
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">✓ Incluido</p>
+                <p className="mt-0.5 text-lg font-extrabold">{x.t}</p>
+                <p className="mt-1.5 text-[0.97rem] text-gris">{x.d}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-10 max-w-3xl text-lg">
+          <b>¿Se te ocurre algo que no está aquí?</b> Pídelo. Si te conviene, lo hacemos; si no, te lo decimos.
         </p>
       </div>
     </section>

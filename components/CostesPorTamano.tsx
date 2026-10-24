@@ -89,6 +89,7 @@ export default function CostesPorTamano() {
             <li>¿Cambiar de diseño el año que viene? <b className="text-white">Incluido.</b></li>
             <li>¿Otro CRM o más funciones? <b className="text-white">Incluido.</b></li>
             <li>¿Una calculadora, una landing o un informe nuevo? <b className="text-white">Incluido.</b></li>
+            <li>¿Reservas con WhatsApp, una tienda online o la web en inglés? <b className="text-white">Incluido.</b></li>
           </ul>
         </div>
       </div>

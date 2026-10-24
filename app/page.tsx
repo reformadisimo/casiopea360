@@ -13,6 +13,7 @@ import {
   SeccionFrentes,
   SeccionEspecialistas,
   SeccionCRM,
+  SeccionTambienIncluido,
   SeccionCostes,
   SeccionGarantias,
   SeccionMetodo,
@@ -64,6 +65,7 @@ export default function Inicio() {
       <SeccionFrentes />
       <SeccionEspecialistas />
       <SeccionCRM />
+      <SeccionTambienIncluido />
       <BandaCompromisos />
       <SeccionOrigen />
       <SeccionTrabajos />
