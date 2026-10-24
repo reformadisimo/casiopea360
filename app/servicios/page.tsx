@@ -1,7 +1,8 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { BandaCompromisos, LlamadaFinal, SeccionFrentes, SeccionOficios } from "@/components/secciones";
+import { BandaCompromisos,
+  SeccionEspecialistas, LlamadaFinal, SeccionFrentes, SeccionOficios } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas, schemaServicios } from "@/lib/schema";
 
@@ -35,6 +36,7 @@ export default function Servicios() {
           { nombre: "ninos-conexion", alt: "Líneas de luz conectan a varias personas con sus ordenadores" },
         ]}
       />
+      <SeccionEspecialistas />
       <BandaCompromisos />
       <SeccionOficios />
       <LlamadaFinal />

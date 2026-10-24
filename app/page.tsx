@@ -11,6 +11,7 @@ import {
   SeccionCaos,
   SeccionEstudio,
   SeccionFrentes,
+  SeccionEspecialistas,
   SeccionGarantias,
   SeccionMetodo,
   SeccionOrigen,
@@ -36,9 +37,10 @@ export default function Inicio() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/90 via-noche/55 to-noche/30" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
-            <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Todo tu marketing digital, con un solo equipo.</h1>
+            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo tu marketing digital, con un solo equipo</p>
+            <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin lidiar con cinco agencias.</h1>
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
-              Web, apps, Google, anuncios, redes y automatizaciones para tu empresa. Precio fijo, todo a tu nombre, y cada día sabes qué hemos hecho por tu negocio.
+              Web, apps, Google, anuncios, redes e IA. Especialistas en cada frente, en un solo equipo que responde, lo hace en 48 horas y te enseña cada día lo que ha hecho.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
@@ -57,6 +59,7 @@ export default function Inicio() {
       <SeccionPuntosDolor />
       <BandaVideo />
       <SeccionFrentes />
+      <SeccionEspecialistas />
       <BandaCompromisos />
       <SeccionOrigen />
       <SeccionTrabajos />

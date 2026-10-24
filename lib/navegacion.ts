@@ -4,7 +4,7 @@ export const SITIO = {
   // Mientras no esté comprado y apuntado el dominio, se usa la dirección de Vercel.
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://casiopea360.vercel.app",
   descripcion:
-    "Todo tu marketing digital con un solo equipo: web, apps, Google, anuncios, redes y automatizaciones. Precio fijo, sin comisiones y un parte cada día.",
+    "Crece en digital sin lidiar con cinco agencias: web, apps, Google, anuncios, redes e IA con un solo equipo de especialistas. Precio fijo, sin comisiones y un parte cada día.",
   // Mientras la web sea provisional, no se deja indexar. El día del lanzamiento: true.
   indexable: false,
 };

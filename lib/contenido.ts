@@ -282,6 +282,10 @@ export const PREGUNTAS = [
     r: "Lo mínimo: quince minutos para darnos los accesos, unas fotos de tus trabajos y tu visto bueno a lo que salga en tu nombre. Del resto nos ocupamos nosotros.",
   },
   {
+    p: "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?",
+    r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
+  },
+  {
     p: "¿Cómo sabré qué funciona?",
     r: "Tendrás tu propio panel de control, en el móvil y en tiempo real: cuántos contactos y clientes llegan, de dónde viene cada uno (Google, un anuncio concreto, Instagram, el mapa, ChatGPT, un correo), lo que cuesta cada cliente y todo lo que hemos hecho. Lo medimos con Tag Manager, Google Analytics, el píxel de Meta y las etiquetas de cada red, bien instalados desde el primer día. En esta web tienes un panel de ejemplo para verlo con tus propios ojos.",
   },

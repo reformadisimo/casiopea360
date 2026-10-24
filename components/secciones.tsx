@@ -377,6 +377,60 @@ export function SeccionParte() {
   );
 }
 
+/* La objeción «si hacéis de todo, lo haréis todo regular», respondida. */
+const COMPARA: [string, string][] = [
+  ["Cada una mira solo su trozo: clics, posiciones, seguidores.", "Miramos lo que te importa: clientes y ventas."],
+  ["La de anuncios no puede tocar tu web, aunque vea que falla.", "Quien lleva tus anuncios arregla tu web el mismo día."],
+  ["Si algo va mal, cada una culpa a la otra.", "Un solo responsable. Sin excusas ni ping-pong."],
+  ["Cinco informes distintos que no cuadran entre sí.", "Un panel con todo, en tiempo real y que cuadra."],
+  ["Semanas esperando a que alguien tenga hueco.", "Lo que pidas, en 48 horas como máximo."],
+];
+
+export function SeccionEspecialistas() {
+  return (
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">La pregunta que todos nos hacen</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">
+          «Si hacéis de todo, lo haréis todo regular.» <span className="text-noche-3">Es justo al revés.</span>
+        </h2>
+        <p className="mt-6 max-w-3xl text-xl text-gris">
+          Hacemos todo porque sabemos hacerlo todo bien. Y lo hacemos mejor precisamente porque lo hacemos todo: una campaña solo funciona si la web convence, la web solo vende si se mide, y lo que se mide solo sirve si alguien lo arregla al momento.
+        </p>
+
+        <div className="mt-12 overflow-hidden rounded-[2rem] border border-linea">
+          <div className="grid grid-cols-2 bg-niebla text-sm font-extrabold sm:text-base">
+            <p className="p-4 sm:p-6">Cinco agencias especializadas</p>
+            <p className="bg-noche p-4 text-estrella sm:p-6">Casiopea 360</p>
+          </div>
+          {COMPARA.map(([ellos, nosotros]) => (
+            <div key={ellos} className="grid grid-cols-2 border-t border-linea text-[0.95rem] sm:text-lg">
+              <p className="flex gap-3 p-4 text-gris sm:p-6"><span aria-hidden="true" className="mt-1 text-rose-500">✕</span>{ellos}</p>
+              <p className="flex gap-3 bg-noche/[0.03] p-4 font-bold sm:p-6"><span aria-hidden="true" className="mt-1 text-emerald-600">✓</span>{nosotros}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-16 text-center text-3xl font-extrabold sm:text-5xl">No somos generalistas. Somos especialistas en todo, en la misma mesa.</p>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {[
+            ["No nos creas: entra y compruébalo", "Webs con calculadoras y asistentes de IA, una app en las tiendas. Funcionando hoy, con empresas reales.", "/trabajos", "Ver los trabajos"],
+            ["Míralo tú, cada día", "En tu panel ves qué hemos hecho, qué funciona y de dónde viene cada cliente. Sin cajas negras.", "/panel", "Ver un panel de ejemplo"],
+            ["Compáranos con lo que tienes", "El estudio gratuito pone lado a lado lo que tienes hoy y lo que haríamos, con datos de tu empresa.", "/estudio-gratuito", "Pedir el estudio"],
+          ].map(([t, d, href, cta]) => (
+            <Link key={t} href={href} className="group flex flex-col rounded-[2rem] bg-noche p-7 text-white transition-transform hover:-translate-y-1">
+              <p className="text-2xl font-extrabold">{t}</p>
+              <p className="mt-3 flex-1 text-white/75">{d}</p>
+              <p className="mt-6 font-bold text-estrella group-hover:underline">{cta} →</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Método y plazos. */
 export function SeccionMetodo() {
   return (
