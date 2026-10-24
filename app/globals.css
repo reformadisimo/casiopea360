@@ -236,3 +236,8 @@ html.cookies-decididas [data-aviso-cookies] { display: none; }
 
 /* Palabras del glosario dentro de tarjetas oscuras: fondo propio para que el contraste se mida bien */
 .bg-noche button.cursor-help { background-color: var(--color-noche); }
+
+/* Estrellita de los compromisos: late y gira un poco */
+.brilla { animation: brilla 2.6s ease-in-out infinite; }
+@keyframes brilla { 0%, 100% { transform: scale(0.8) rotate(0deg); } 50% { transform: scale(1.15) rotate(20deg); } }
+@media (prefers-reduced-motion: reduce) { .brilla { animation: none; } }

@@ -655,7 +655,7 @@ export function SeccionPorQueBarato() {
         </div>
         <div className="relative">
           <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="despacho" alt="Una persona trabaja tranquila en su despacho con el ordenador" /></div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="mujer-celebra" alt="Una mujer celebra un buen resultado delante de su portátil" /></div>
         </div>
       </div>
     </section>
@@ -672,6 +672,18 @@ const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "calendario", t: "Seis meses y libre", d: "Seis meses de permanencia porque la web va regalada. Después, te quedas porque quieres." },
 ];
 
+const COLOR_SELLO: [string, string][] = [
+  ["linear-gradient(140deg,#3b82f6,#1d4ed8)", "rgba(29,78,216,0.7)"],
+  ["linear-gradient(140deg,#a855f7,#6d28d9)", "rgba(109,40,217,0.7)"],
+  ["linear-gradient(140deg,#22c55e,#047857)", "rgba(4,120,87,0.7)"],
+  ["linear-gradient(140deg,#f472b6,#be185d)", "rgba(190,24,93,0.7)"],
+  ["linear-gradient(140deg,#fbbf24,#d97706)", "rgba(217,119,6,0.7)"],
+  ["linear-gradient(140deg,#2dd4bf,#0f766e)", "rgba(15,118,110,0.7)"],
+];
+const Estrellita = () => (
+  <svg viewBox="0 0 24 24" className="h-5 w-5 drop-shadow"><path fill="#ffc53d" stroke="#0e1a3d" strokeWidth="1.2" strokeLinejoin="round" d="M12 2.5l2.6 6.4 6.9.5-5.3 4.4 1.7 6.7L12 16.8l-5.9 3.7 1.7-6.7-5.3-4.4 6.9-.5z" /></svg>
+);
+
 export function SeccionLoFirmamos() {
   return (
     <section className="relative overflow-hidden bg-white py-20 sm:py-28">
@@ -686,9 +698,14 @@ export function SeccionLoFirmamos() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SELLOS.map((x, i) => (
             <li key={x.t} className="group relative flex gap-5 rounded-[1.8rem] border border-linea p-6 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
-              <span aria-hidden="true" className="relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-full bg-noche text-estrella ring-4 ring-estrella/30 transition-transform group-hover:rotate-12">
-                <span className="absolute inset-1.5 rounded-full border border-dashed border-estrella/50" />
-                <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+              <span
+                aria-hidden="true"
+                className={`relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-[1.4rem] text-white shadow-[0_14px_28px_-12px_var(--sombra)] transition-transform duration-300 group-hover:rotate-0 group-hover:scale-110 ${i % 2 ? "rotate-6" : "-rotate-6"}`}
+                style={{ background: COLOR_SELLO[i % COLOR_SELLO.length][0], ["--sombra" as string]: COLOR_SELLO[i % COLOR_SELLO.length][1] }}
+              >
+                <span className="absolute inset-[3px] rounded-[1.2rem] bg-gradient-to-b from-white/25 to-transparent" />
+                <svg viewBox="0 0 24 24" className="relative h-9 w-9 drop-shadow" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+                <span className="brilla absolute -right-2 -top-2" style={{ animationDelay: `${i * 0.4}s` }}><Estrellita /></span>
               </span>
               <div>
                 <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Compromiso {i + 1}</p>
