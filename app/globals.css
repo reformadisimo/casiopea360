@@ -1,7 +1,106 @@
 @import "tailwindcss";
 
+@theme {
+  --color-noche: #0e1a3d;
+  --color-noche-2: #18295e;
+  --color-noche-3: #24387a;
+  --color-estrella: #ffc53d;
+  --color-estrella-2: #ffd978;
+  --color-niebla: #eef1f8;
+  --color-tinta: #141c33;
+  --color-gris: #535c7a;
+  --color-linea: #d9deeb;
+  --font-titular: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-texto: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: #fbf8f2;
-  color: #1f1f1f;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #ffffff;
+  color: var(--color-tinta);
+  font-family: var(--font-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titular);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-estrella);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* La constelacion: las lineas se dibujan una tras otra y las estrellas se encienden. */
+.trazo {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: trazar 0.7s ease-out forwards;
+}
+.estrella-punto {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: encender 0.5s ease-out forwards;
+}
+.estrella-rotulo {
+  opacity: 0;
+  animation: aparecer 0.6s ease-out forwards;
+}
+@keyframes trazar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes encender {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .trazo {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .estrella-punto,
+  .estrella-rotulo {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }
