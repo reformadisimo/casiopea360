@@ -23,6 +23,7 @@ export const FRENTES: Frente[] = [
     servicios: [
       "Tu dominio, tu correo y dónde vive tu web: nos ocupamos de todo",
       "Web hecha a tu medida, que carga rápido en el móvil",
+      "Rediseño de tu logo e imagen, si lo necesitas",
       "Calculadoras para que tus clientes vean precios al momento",
       "Apps para iPhone y Android, publicadas y cobrando",
       "Cambiar de web sin perder lo que ya habías ganado en Google",
@@ -254,6 +255,10 @@ export const PREGUNTAS = [
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
     r: "Como máximo 48 horas, para cualquier cosa: un cambio, una página nueva, una campaña. Normalmente mucho antes, porque intentamos ser lo más rápidos posible. Si algo grande necesita más tiempo, te lo decimos antes de empezar.",
+  },
+  {
+    p: "¿Me cobraréis aparte por cada cosa que os pida?",
+    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». Lo único que va aparte es la grabación de vídeo profesional y lo que inviertas en anuncios, que pagas tú directamente.",
   },
   {
     p: "¿Cuánto cuesta?",

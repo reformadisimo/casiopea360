@@ -110,7 +110,7 @@ export function SeccionCaos() {
             <dl className="mt-8 grid grid-cols-2 gap-3">
               {[
                 ["1", "persona de contacto"],
-                ["1", "factura, precio fijo"],
+                ["1", "cuota fija, todo incluido"],
                 ["48 h", "como máximo, para todo"],
                 ["0 %", "de comisión en tus anuncios"],
               ].map(([n, t]) => (
