@@ -931,9 +931,9 @@ export function SeccionVeinteProveedores() {
       <div className={ENVOLTORIO}>
         <div className="max-w-4xl">
           <p className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-sm font-bold text-rose-800">El lío de siempre</p>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Un proveedor para cada cosa. Y nadie que responda.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Cada proveedor a lo suyo. Y tú, en medio, coordinándolos a todos.</h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
-            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes un proveedor para cada cosa, una factura de cada uno y una contraseña para cada sitio. Y ninguno habla con los demás.
+            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes un proveedor para cada cosa, una factura de cada uno y una contraseña para cada sitio. Ninguno habla con los demás. Y cuando algo falla, nadie responde.
           </p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
@@ -947,9 +947,9 @@ export function SeccionVeinteProveedores() {
           </ul>
           <div className="relative rounded-[2rem] bg-noche p-8 text-white shadow-[0_30px_60px_-30px_rgba(14,26,61,0.8)] sm:p-10">
             <span aria-hidden="true" className="absolute -right-3 -top-3 h-8 w-8 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
-            <p className="text-sm font-bold text-estrella">Con Casiopea 360</p>
+            <p className="text-sm font-bold text-estrella">Te facilitamos la vida.</p>
             <p className="mt-3 text-4xl font-extrabold sm:text-5xl">1 equipo.<br />1 factura.<br />Todo dentro.</p>
-            <p className="mt-5 text-lg text-white/85">Todo eso, arreglado por nosotros con la misma cuota. Nadie más lo hace así. Nosotros sí, y nos comprometemos a ello.</p>
+            <p className="mt-5 text-lg text-white/85">Un solo equipo que lo hace todo. Y responde. Todo eso, con la misma cuota.</p>
             <a href="#costes" className="mt-7 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Calcula lo que te ahorras</a>
           </div>
         </div>
