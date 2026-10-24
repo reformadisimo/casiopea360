@@ -758,6 +758,56 @@ export function SeccionIncluidoCompacta() {
   );
 }
 
+/* Velocidad: el compromiso, con esta web como prueba. */
+export function SeccionVelocidad() {
+  const notas: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Buenas prácticas"]];
+  return (
+    <section id="velocidad" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
+      <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="fibra-luz" alt="" /></div>
+      <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
+        <div>
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestro compromiso de velocidad</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Tu web, de las más rápidas de internet.</h2>
+          <p className="mt-6 text-lg text-white/85">
+            Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google. Una web lenta pierde visitas antes de que la vean, y Google lo tiene en cuenta al ordenar los resultados.
+          </p>
+          <ul className="mt-8 space-y-3 text-lg">
+            {[
+              "Tu web cargada en 2 segundos como máximo. Lo ideal, menos de medio segundo.",
+              "100, 100, 100 en PageSpeed Insights, la herramienta de Google que mide rendimiento, accesibilidad y buenas prácticas.",
+              "No te diremos que lo clavamos a la primera, pero siempre vas a estar muy cerca de lo óptimo y muy por encima de la media.",
+            ].map((t) => (
+              <li key={t} className="flex gap-3">
+                <span aria-hidden="true" className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-emerald-500 text-sm font-extrabold text-white">✓</span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-white/60">Dato: HTTP Archive, Web Almanac 2025 (webs de todo el mundo). Las notas de PageSpeed varían un poco en cada medición.</p>
+        </div>
+        <div className="rounded-[2rem] bg-white/[0.07] p-7 ring-1 ring-white/15 backdrop-blur-sm sm:p-9">
+          <p className="text-sm font-bold text-estrella">Predicamos con el ejemplo</p>
+          <p className="mt-2 text-2xl font-extrabold">Esta misma web, medida en PageSpeed Insights</p>
+          <div className="mt-7 grid grid-cols-3 gap-4">
+            {notas.map(([n, t]) => (
+              <div key={t} className="text-center">
+                <div className="mx-auto grid h-24 w-24 place-items-center rounded-full sm:h-28 sm:w-28" style={{ background: "conic-gradient(#10b981 360deg, transparent 0)" }}>
+                  <div className="grid h-[86%] w-[86%] place-items-center rounded-full bg-noche">
+                    <span className="text-3xl font-extrabold text-emerald-400 sm:text-4xl">{n}</span>
+                  </div>
+                </div>
+                <p className="mt-3 text-sm font-bold text-white/85">{t}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-7 text-white/75">Y en ordenador, lo principal carga en unas seis décimas de segundo. Si quieres, mide tu web ahora en PageSpeed y compárala.</p>
+          <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Medir mi web en PageSpeed</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Valor añadido: CRM a medida incluido. */
 export function SeccionCRM() {
   const columnas: [string, string[]][] = [

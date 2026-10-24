@@ -15,6 +15,7 @@ import {
   SeccionCostes,
   SeccionPromesas,
   SeccionLoFirmamos,
+  SeccionVelocidad,
   SeccionPorQueBarato,
   SeccionParte,
   SeccionPreguntas,
@@ -63,6 +64,7 @@ export default function Inicio() {
       <CintaHerramientas />
       <SeccionPromesas />
       <SeccionLoFirmamos />
+      <SeccionVelocidad />
       <SeccionPuntosDolor />
       <SeccionCostes />
       <SeccionPorQueBarato />

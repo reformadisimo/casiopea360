@@ -291,6 +291,10 @@ export const PREGUNTAS = [
     r: "Es justo lo que buscamos: que no des abasto. Y nos ha pasado. Si llega el momento, bajamos la publicidad o la pausamos en el momento y ajustamos para que te lleguen solo las peticiones que puedes asumir. Lo hacemos rápido, que es otro de nuestros puntos fuertes, y cuando vuelvas a tener hueco, lo subimos otra vez.",
   },
   {
+    p: "¿Qué velocidad tendrá mi web?",
+    r: "De las más rápidas de internet: es un compromiso. Tu web, cargada en 2 segundos como máximo y, lo ideal, en menos de medio segundo; y 100, 100, 100 en PageSpeed Insights, la herramienta de Google. No te diremos que lo clavamos a la primera, pero siempre estarás muy cerca de lo óptimo, como esta misma web. Para que te hagas una idea, solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google, según HTTP Archive.",
+  },
+  {
     p: "¿Trabajáis también para mi competencia?",
     r: "Trabajamos para quien consideramos oportuno y no firmamos exclusividad por defecto. Si quieres que no trabajemos para tu competencia directa, se puede pactar, con una cuota más alta; hay clientes que lo han elegido y están encantados. Por cierto: muchos de nuestros mejores trabajos no los podemos enseñar, porque el cliente prefiere que su competencia no sepa quién está detrás.",
   },

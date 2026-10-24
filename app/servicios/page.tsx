@@ -2,7 +2,7 @@ import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { BandaCompromisos,
-  SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios } from "@/components/secciones";
+  SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionVelocidad, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas, schemaServicios } from "@/lib/schema";
 
@@ -39,6 +39,7 @@ export default function Servicios() {
       <SeccionEspecialistas />
       <SeccionCostes />
       <SeccionPorQueBarato />
+      <SeccionVelocidad />
       <BandaCompromisos />
       <SeccionCRM />
       <SeccionLoQueSea />
