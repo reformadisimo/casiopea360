@@ -3,6 +3,7 @@ import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import LogoMarca from "@/components/LogoMarca";
 import TrasCarga from "@/components/TrasCarga";
+import Comisiones from "@/components/Comisiones";
 import { glosar } from "@/lib/glosario";
 import CostesDiferido from "@/components/CostesDiferido";
 import MovilParte from "@/components/MovilParte";
@@ -164,6 +165,7 @@ export function SeccionPuntosDolor() {
             </li>
           ))}
         </ul>
+        <div className="mt-10"><Comisiones /></div>
       </div>
     </section>
   );
@@ -201,9 +203,10 @@ export function BandaVideo() {
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/35 to-transparent" />
       <div className={`${ENVOLTORIO} relative flex h-full items-end pb-14`}>
-        <p className="max-w-3xl font-titular text-4xl font-extrabold text-white sm:text-6xl">
-          Tú diriges tu empresa. Nosotros, que el teléfono suene.
-        </p>
+        <div className="max-w-3xl">
+          <p className="font-titular text-4xl font-extrabold text-white sm:text-6xl">Nuestro objetivo: que no des abasto.</p>
+          <p className="mt-4 text-lg text-white/85 sm:text-xl">Y si un día te llega más trabajo del que puedes atender, bajamos la publicidad en ese momento. Nos ha pasado, y es el mejor problema que se puede tener.</p>
+        </div>
       </div>
     </section>
   );

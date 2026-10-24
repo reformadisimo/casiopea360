@@ -387,6 +387,18 @@ export const DOLORES = [
     dolor: "Me paso el día en reuniones con proveedores.",
     solucion: "Un solo interlocutor y casi todo por correo. Te quitamos el menor tiempo posible.",
   },
+  {
+    dolor: "Cada proveedor le echa la culpa al otro.",
+    solucion: "Un solo equipo responsable de todo. Si algo falla, es cosa nuestra, y lo arreglamos.",
+  },
+  {
+    dolor: "Mi agencia tiene mi web y mis cuentas. Si me voy, lo pierdo todo.",
+    solucion: "Todo a tu nombre desde el primer día: web, dominio y cuentas. Si un día te vas, te lo llevas.",
+  },
+  {
+    dolor: "Una web nueva tarda meses y cada cambio es otro presupuesto.",
+    solucion: "Tu web en unos días, y cada cambio del día a día en 48 horas, incluido en la cuota.",
+  },
 ];
 
 // Qué incluye el estudio gratuito (sacado de las guías de AMS y Tierno Centella).
