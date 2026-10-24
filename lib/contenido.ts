@@ -277,7 +277,7 @@ export const PREGUNTAS = [
   },
 ];
 
-// Puntos de dolor, en palabras del dueño del negocio, con su solución en una frase.
+// Puntos de dolor, en palabras de quien dirige la empresa, con su solución en una frase.
 export const DOLORES = [
   {
     dolor: "Mi web es vieja y tarda en cargar.",
@@ -300,7 +300,7 @@ export const DOLORES = [
     solucion: "Respondemos todas con tu visto bueno y pedimos opinión a tus clientes contentos.",
   },
   {
-    dolor: "No tengo tiempo para las redes.",
-    solucion: "Te damos las ideas, los textos y el montaje. Tú solo grabas, si quieres.",
+    dolor: "Me paso el día en reuniones con proveedores.",
+    solucion: "Un solo interlocutor y casi todo por correo. Te quitamos el menor tiempo posible.",
   },
 ];

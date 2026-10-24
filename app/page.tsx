@@ -81,7 +81,7 @@ export default function Inicio() {
         <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">¿Cómo trabajas hoy?</h2>
           <p className="mt-5 max-w-2xl text-lg text-gris">
-            Seguramente tienes un SEO, alguien para los anuncios, un diseñador, quien te lleva las redes… y tú en medio, coordinando a todos y repitiendo lo mismo a cada uno.
+            Seguramente tienes una agencia para la web, un SEO, otra empresa para los anuncios, alguien para las redes… Cada uno a lo suyo. Una reunión con este, una llamada con el otro, otro correo más, y tú en medio, coordinando a todos y repitiendo lo mismo a cada uno.
           </p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -102,8 +102,9 @@ export default function Inicio() {
             <div className="relative overflow-hidden rounded-3xl bg-noche p-6 text-white sm:p-8">
               <p className="font-titular text-2xl font-extrabold">1 equipo. Lo hacemos todo, tú solo decides.</p>
               <p className="mt-5 text-white/80">
-                Una sola persona de contacto, una sola factura y todo conectado en el mismo informe. Como lo vemos todo junto, lo que descubrimos en los datos se arregla en la web el mismo día.
+                Una sola persona de contacto, una sola factura y todo conectado en el mismo informe. Casi todo por correo, con respuestas rápidas y sin reuniones que no hagan falta. Como lo vemos todo junto, lo que descubrimos en los datos se arregla en la web el mismo día.
               </p>
+              <p className="mt-5 font-titular text-xl font-extrabold text-estrella">Ir de un proveedor a otro se acabó.</p>
               <div className="mt-8 grid grid-cols-3 gap-3 text-center">
                 <div className="rounded-2xl bg-white/10 px-2 py-4">
                   <p className="font-titular text-3xl font-extrabold text-estrella">1</p>
@@ -126,7 +127,7 @@ export default function Inicio() {
         <section className="bg-niebla py-20 sm:py-28">
           <div className={ENVOLTORIO}>
             <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">¿Te suena alguno?</h2>
-            <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan los dueños de negocio, y lo que hacemos con ello.</p>
+            <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan directores y dueños de empresa, y lo que hacemos con ello.</p>
             <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {DOLORES.map((d) => (
                 <li key={d.dolor} className="flex flex-col rounded-3xl bg-white p-6 sm:p-7">
