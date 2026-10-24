@@ -180,7 +180,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Ideas, publicaciones y guiones para Instagram, Facebook, LinkedIn y TikTok. Te enseñamos a grabar con el móvil y nos ocupamos del montaje.",
     video: "movil-corazones",
     videoAlt: "Corazones salen de la pantalla de un móvil",
-    color: "#e8457a",
+    color: "#be185d",
     dolores: [
       { dolor: "«No tengo tiempo para las redes.»", arreglo: "Te damos las ideas y el guion. Tú grabas un minuto con el móvil; el resto es cosa nuestra." },
       { dolor: "«Publico y no pasa nada.»", arreglo: "Contamos lo que tus clientes quieren ver: tu trabajo, tu equipo y los resultados." },
@@ -225,7 +225,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Un asistente con inteligencia artificial que atiende en tu web a cualquier hora, también por voz. Correos y WhatsApp que se envían solos. Y un panel con cada conversación.",
     video: "neon-llamada",
     videoAlt: "Una mujer habla por el móvil entre luces de neón",
-    color: "#0f9d8f",
+    color: "#0f766e",
     dolores: [
       { dolor: "«Me escriben de noche y cuando contesto ya es tarde.»", arreglo: "Un asistente atiende a cualquier hora y te avisa con todo apuntado." },
       { dolor: "«Se me olvida volver a llamar.»", arreglo: "Correos y recordatorios que se envían solos para no perder a nadie que pidió información." },
@@ -270,7 +270,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. ¿Ya tienes uno? Lo conectamos al tuyo.",
     video: "puntos-luz",
     videoAlt: "Puntos de luz conectados entre sí",
-    color: "#f59e0b",
+    color: "#b45309",
     dolores: [
       { dolor: "«No sé de dónde vienen mis clientes.»", arreglo: "Cada contacto entra con la página y el anuncio de donde vino." },
       { dolor: "«Pago licencias por cada persona del equipo.»", arreglo: "Tu CRM es tuyo, sin licencias por usuario, y entra en tu cuota." },

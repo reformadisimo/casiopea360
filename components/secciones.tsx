@@ -247,7 +247,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                   ))}
                 </ul>
                 {servicioDeFrente(f.id) && (
-                  <Link href={`/servicios/${servicioDeFrente(f.id)!.slug}`} className={`mt-6 inline-flex items-center gap-2 font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>
+                  <Link href={`/servicios/${servicioDeFrente(f.id)!.slug}`} className={`mt-6 inline-flex items-center gap-2 font-bold ${oscura ? "bg-noche text-estrella" : "text-noche-3"}`}>
                     Más sobre {f.nombre} <span aria-hidden="true">→</span>
                   </Link>
                 )}

@@ -24,7 +24,7 @@ export const CASOS: Caso[] = [
       "Caso Reformadísimo: web con calculadoras de precio, asistente con inteligencia artificial que atiende por voz y medición completa. Desde 2012 y más de 1.150 obras.",
     video: "arquitecto-mesa",
     videoAlt: "Un arquitecto trabaja en su mesa",
-    color: "#e37400",
+    color: "#c2410c",
     reto:
       "Es nuestra propia empresa de reformas integrales en Madrid. Lo que ofrecemos a nuestros clientes lo probamos primero aquí: si no trae clientes a una empresa real, no lo vendemos.",
     hicimos: [
@@ -96,7 +96,7 @@ export const CASOS: Caso[] = [
       "Caso Tierno Centella: catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés para un despacho laboralista. Velocidad en el móvil de 49 a 94 sobre 100.",
     video: "despacho",
     videoAlt: "Una reunión distendida en un despacho",
-    color: "#0f9d8f",
+    color: "#0f766e",
     reto:
       "Un despacho de abogados laboralistas con una web lenta en el móvil. La idea: que quien tiene un problema laboral encuentre respuestas y herramientas gratis, y confíe en quien se las da.",
     hicimos: [
