@@ -21,6 +21,7 @@ export default function Diagnostico() {
       `Nombre y cargo: ${d.get("nombre")}\n` +
       `Empresa: ${d.get("empresa")}\n` +
       `Web: ${d.get("web")}\n` +
+      `Dónde están: ${d.get("ciudad")}\n` +
       `A qué se dedica: ${d.get("sector")}\n` +
       `Facturación aproximada: ${d.get("facturacion")}\n` +
       `Empleados: ${d.get("empleados")}\n` +
@@ -72,6 +73,10 @@ export default function Diagnostico() {
         <input name="web" placeholder="Si no tenéis, déjalo en blanco" className={campo} />
       </label>
       <label className={etiqueta}>
+        Dónde estáis
+        <input name="ciudad" required placeholder="Ciudad o provincia" className={campo} />
+      </label>
+      <label className={etiqueta}>
         A qué os dedicáis
         <input name="sector" required placeholder="Ej.: carpintería de aluminio" className={campo} />
       </label>
@@ -94,7 +99,7 @@ export default function Diagnostico() {
         >
           Solicitar mi estudio gratuito
         </button>
-        <p className="mt-3 text-sm text-white/70">Lo revisa una persona y te contestamos lo antes posible.</p>
+        <p className="mt-3 text-sm text-white/70">Lo revisa una persona y te escribimos siempre, encaje o no.</p>
         {estado === "sin-canal" && (
           <p role="status" className="mt-3 rounded-xl bg-white/10 px-4 py-3 text-sm text-white">
             Aún no hemos activado el envío de esta web de prueba. Tus datos no se han enviado a ningún sitio.

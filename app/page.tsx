@@ -396,7 +396,7 @@ export default function Inicio() {
                 Prepararlo es mucho trabajo, así que no lo hacemos a todo el mundo: solo a empresas a las que creemos que podemos ayudar de verdad y con las que podríamos acabar trabajando juntos.
               </p>
               <p className="mt-4 text-lg text-white/80">
-                Cuéntanos un poco de tu empresa. Lo revisamos y te llamamos lo antes posible para ver si encaja.
+                Cuéntanos un poco de tu empresa. Analizamos cada caso con calma y te escribimos siempre: si vemos que podemos ayudarte, para preparar tu estudio; y si creemos que no somos lo que necesitas, también, y te explicamos por qué.
               </p>
               <div className="mt-8 hidden overflow-hidden rounded-3xl lg:block">
                 <div className="aspect-[16/10]"><VideoFondo nombre="llamada-sonrisa" alt="Un hombre sonríe mientras lee su móvil" /></div>
