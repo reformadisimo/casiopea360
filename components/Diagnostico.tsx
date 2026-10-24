@@ -11,9 +11,9 @@ const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al
 const HOY = ["Una agencia", "Varios proveedores", "Alguien de la casa", "Nadie, por ahora"];
 
 export default function Diagnostico() {
-  const [estado, setEstado] = useState<"" | "sin-canal">("");
+  const [estado, setEstado] = useState<"" | "sin-canal" | "enviando" | "enviado">("");
 
-  function enviar(e: React.FormEvent<HTMLFormElement>) {
+  async function enviar(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const d = new FormData(e.currentTarget);
     const texto =
@@ -29,6 +29,25 @@ export default function Diagnostico() {
       `Inversión en anuncios: ${d.get("inversion")}\n` +
       `Teléfono: ${d.get("telefono")}\n` +
       `Correo: ${d.get("correo")}`;
+    // Si ha hecho el test completo en esta visita, sus respuestas viajan con la solicitud.
+    let test = "";
+    try {
+      test = sessionStorage.getItem("casiopea-test") ?? "";
+    } catch {}
+    const completo = test ? `${texto}\n\n--- Resultado de su test completo ---\n${test}` : texto;
+    setEstado("enviando");
+    try {
+      const r = await fetch("/api/solicitud", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texto: completo, correo: d.get("correo"), nombre: d.get("nombre"), trampa: d.get("sitio_web") }),
+      });
+      if (r.ok) {
+        setEstado("enviado");
+        return;
+      }
+    } catch {}
+    setEstado("");
     if (CONTACTO.whatsapp) {
       window.open(`https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
       return;
@@ -93,13 +112,23 @@ export default function Diagnostico() {
         <input name="correo" required type="email" autoComplete="email" className={campo} />
       </label>
       <div className="sm:col-span-2">
+        <label className="hidden" aria-hidden="true">
+          No rellenes esto
+          <input name="sitio_web" tabIndex={-1} autoComplete="off" />
+        </label>
         <button
           type="submit"
-          className="w-full rounded-full bg-estrella px-7 py-4 text-lg font-bold text-tinta transition-colors hover:bg-estrella-2 sm:w-auto"
+          disabled={estado === "enviando" || estado === "enviado"}
+          className="w-full rounded-full bg-estrella px-7 py-4 text-lg font-bold text-tinta transition-colors hover:bg-estrella-2 disabled:opacity-60 sm:w-auto"
         >
-          Solicitar mi estudio gratuito
+          {estado === "enviando" ? "Enviando…" : estado === "enviado" ? "Recibido" : "Solicitar mi estudio gratuito"}
         </button>
         <p className="mt-3 text-sm text-white/70">Lo revisa una persona y te escribimos siempre, encaje o no.</p>
+        {estado === "enviado" && (
+          <p role="status" className="mt-3 rounded-xl bg-emerald-500/20 px-4 py-3 text-sm font-bold text-white">
+            Recibido. Te hemos enviado un correo de confirmación y te contestamos personalmente en un máximo de 48 horas laborables.
+          </p>
+        )}
         {estado === "sin-canal" && (
           <p role="status" className="mt-3 rounded-xl bg-white/10 px-4 py-3 text-sm text-white">
             Aún no hemos activado el envío de esta web de prueba. Tus datos no se han enviado a ningún sitio.

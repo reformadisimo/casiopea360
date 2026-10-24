@@ -117,7 +117,7 @@ export function SeccionCaos() {
               {[
                 ["1", "persona de contacto"],
                 ["1", "cuota fija, todo incluido"],
-                ["48 h", "como máximo, para todo"],
+                ["48 h", "como máximo, lo del día a día"],
                 ["0 %", "de comisión en tus anuncios"],
               ].map(([n, t]) => (
                 <div key={t} className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
@@ -170,7 +170,7 @@ export function BandaCompromisos() {
       <div className={`${ENVOLTORIO} grid gap-10 sm:grid-cols-2 lg:grid-cols-4`}>
         {[
           ["1 equipo", "en lugar de veinticinco proveedores"],
-          ["48 horas", "como máximo, para todo lo que pidas"],
+          ["48 horas", "como máximo, para lo del día a día"],
           ["0 %", "de comisión sobre lo que inviertas"],
           ["Cada día", "un parte de lo que hemos hecho"],
         ].map(([n, t]) => (
@@ -388,7 +388,7 @@ const COMPARA: [string, string][] = [
   ["La de anuncios no puede tocar tu web, aunque vea que falla.", "Quien lleva tus anuncios arregla tu web el mismo día."],
   ["Si algo va mal, cada una culpa a la otra.", "Un solo responsable. Sin excusas ni ping-pong."],
   ["Cinco informes distintos que no cuadran entre sí.", "Un panel con todo, en tiempo real y que cuadra."],
-  ["Semanas esperando a que alguien tenga hueco.", "Lo que pidas, en 48 horas como máximo."],
+  ["Semanas esperando a que alguien tenga hueco.", "Respuesta el mismo día. Lo de cada día, en 48 horas."],
 ];
 
 export function SeccionEspecialistas() {
@@ -548,10 +548,10 @@ export function SeccionMetodo() {
 
       <div className="mt-16 grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div className="overflow-hidden rounded-[2rem]">
-          <div className="aspect-[16/10]"><VideoFondo nombre="brujula" alt="Una brújula de latón sobre un mapa" /></div>
+          <div className="aspect-[16/10]"><VideoFondo nombre="mano-pantalla" alt="Una mano toca una pantalla luminosa" /></div>
         </div>
         <div>
-          <h3 className="text-2xl font-extrabold sm:text-3xl">Lo que pides, en 48 horas como máximo</h3>
+          <h3 className="text-2xl font-extrabold sm:text-3xl">Lo de cada día, en 48 horas. Lo grande, con fecha.</h3>
           <table className="mt-4 w-full text-left">
             <tbody>
               {PLAZOS.map((p) => (

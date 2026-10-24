@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Versionante from "@/components/Versionante";
+import Medicion from "@/components/Medicion";
 import Cabecera from "@/components/Cabecera";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
@@ -57,6 +58,7 @@ export default function RootLayout({
         <main id="contenido">{children}</main>
         <Pie />
         <Versionante />
+        <Medicion />
       </body>
     </html>
   );

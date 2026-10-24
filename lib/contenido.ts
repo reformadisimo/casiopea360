@@ -201,9 +201,10 @@ export const PASOS = [
 
 export const PLAZOS = [
   { que: "Cambiar un texto, una foto o un horario", cuando: "Minutos u horas" },
+  { que: "Responderte", cuando: "El mismo día laborable" },
   { que: "Una página, un artículo o una calculadora nueva", cuando: "Máximo 48 horas" },
-  { que: "Cualquier otra cosa que nos pidas", cuando: "Máximo 48 horas" },
-  { que: "Resolver una duda", cuando: "El mismo día" },
+  { que: "Una campaña nueva o un cambio en los anuncios", cuando: "Máximo 48 horas" },
+  { que: "Una web nueva, una app o una integración", cuando: "Fecha cerrada desde el primer día" },
   { que: "Notarlo en los anuncios", cuando: "Días" },
   { que: "Notarlo en la ficha de Google", cuando: "Semanas" },
   { que: "Notarlo en Google y en las IA", cuando: "De 3 a 6 meses" },
@@ -262,7 +263,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
-    r: "Como máximo 48 horas, para cualquier cosa: un cambio, una página nueva, una campaña. Normalmente mucho antes, porque intentamos ser lo más rápidos posible. Si algo grande necesita más tiempo, te lo decimos antes de empezar.",
+    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Los proyectos grandes, como una web nueva, una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",

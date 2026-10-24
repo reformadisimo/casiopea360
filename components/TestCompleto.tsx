@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 
 // Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
@@ -104,7 +104,7 @@ const BLOQUES: Bloque[] = [
       { id: "c2", p: "¿Entiendes esos informes?", o: SINO_NOSE("Sí, son claros", "A medias", "No, o no hay"), fallo: "Los informes que recibes no se entienden, así que no sirven para decidir.", arreglo: "Informes en lenguaje claro: contactos, clientes y lo que cuesta cada uno.", peso: 1 },
       { id: "c3", p: "¿Cuántos proveedores distintos llevan tu marketing digital?", o: [{ t: "Uno solo", v: 3 }, { t: "Dos o tres", v: 1 }, { t: "Cuatro o más", v: 0 }, { t: "Lo hacemos en casa como podemos", v: 0 }], fallo: "Tienes varios proveedores y nadie mira el conjunto: tú haces de coordinador.", arreglo: "Un solo equipo para todo, con una sola persona de contacto.", peso: 3 },
       { id: "c4", p: "¿Cuántas horas a la semana dedicas a reuniones, llamadas y correos con proveedores?", o: [{ t: "Menos de una", v: 3 }, { t: "Entre 2 y 4", v: 1 }, { t: "Entre 5 y 8", v: 0 }, { t: "Más de 8", v: 0 }], fallo: "Pierdes muchas horas coordinando proveedores, horas que no dedicas a tu negocio.", arreglo: "Todo por correo con un solo equipo: sin reuniones salvo que tú las quieras.", peso: 2 },
-      { id: "c5", p: "Cuando pides algo, ¿cuánto tardan de media en hacerlo?", o: SINO_NOSE("Menos de 48 horas", "Una semana", "Más, o depende"), fallo: "Lo que pides tarda semanas: las oportunidades no esperan.", arreglo: "Máximo 48 horas para cualquier cosa que pidas.", peso: 2 },
+      { id: "c5", p: "Cuando pides algo, ¿cuánto tardan de media en hacerlo?", o: SINO_NOSE("Menos de 48 horas", "Una semana", "Más, o depende"), fallo: "Lo que pides tarda semanas: las oportunidades no esperan.", arreglo: "Respuesta el mismo día, 48 horas para lo del día a día y fecha cerrada para lo grande.", peso: 2 },
     ],
   },
   {
@@ -287,6 +287,25 @@ export default function TestCompleto() {
       : r.nota >= 45
         ? { t: "Vas a medias", d: "Tienes piezas sueltas que funcionan, pero se te escapan clientes en varios sitios. Todo esto tiene arreglo, y rápido." }
         : { t: "Hay muchísimo margen", d: "Ahora mismo estás dejando la mayoría de los clientes de internet a tu competencia. La buena noticia: es donde antes se nota el cambio." };
+
+  // Al ver el resultado, se guarda un resumen en esta visita para que viaje con la solicitud del estudio.
+  useEffect(() => {
+    if (paso !== TOTAL_PASOS) return;
+    const perfil = BLOQUES[0].preguntas.map((q) => `${q.p} ${resp[q.id] !== undefined ? q.o[resp[q.id]].t : "(sin contestar)"}`).join("\n");
+    const resumen = [
+      `Nota: ${r.nota}/100`,
+      `Por áreas: ${r.areas.map((a) => `${a.titulo} ${a.nota}`).join(", ")}`,
+      `Gasto declarado: ${fmt(r.totalMes)} €/mes en proveedores y comisiones; ${fmt(inversion)} €/mes de inversión en anuncios`,
+      saltados.length ? `Bloques saltados: ${saltados.join(", ")}` : "",
+      perfil,
+      `Fallos principales:\n- ${r.fallos.slice(0, 10).map((q) => q.fallo).join("\n- ")}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    try {
+      sessionStorage.setItem("casiopea-test", resumen);
+    } catch {}
+  }, [paso, r, resp, saltados, inversion]);
 
   const selector = "mt-2 w-full rounded-xl border border-linea bg-white px-4 py-3 text-base font-normal focus:border-noche focus:outline-none";
   const color = (n: number) => (n >= 75 ? "bg-emerald-400" : n >= 45 ? "bg-estrella" : "bg-rose-400");

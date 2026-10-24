@@ -12,12 +12,12 @@ export function GET() {
 
 > ${SITIO.descripcion}
 
-Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España). Un solo equipo lleva todo el marketing digital de empresas medianas y grandes: dominio y alojamiento, web y apps, Google y visibilidad en las IA, anuncios, redes sociales, automatizaciones e informes. Lo único que no hace directamente es grabar vídeo profesional: da ideas y guiones, monta lo que le den y pone en contacto con una agencia audiovisual, a la que el cliente paga directamente.
+Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España). Un solo equipo lleva todo el marketing digital de todo tipo de empresas: dominio y alojamiento, web y apps, Google y visibilidad en las IA, anuncios, redes sociales, automatizaciones e informes. También gestiona campañas de radio y anuncios en prensa, CRM y apps. Lo que no hace en casa (grabación de vídeo profesional, locución, espacio en medios) lo hace con productoras y agencias asociadas, a las que el cliente paga directamente.
 
 ## Compromisos
 - Un solo proveedor y una sola persona de contacto en lugar de varios proveedores.
 - Precio fijo y personalizado; nunca cobra comisión sobre lo que el cliente invierte en anuncios.
-- Como máximo 48 horas para cualquier cosa que pida el cliente.
+- Respuesta el mismo día laborable; los cambios y tareas del día a día, en 48 horas como máximo; los proyectos grandes (web nueva, app, integraciones), con fecha cerrada desde el inicio.
 - Parte diario, resumen semanal, balance mensual y un enlace con resultados en tiempo real.
 - Todo (web, dominio, cuentas) a nombre del cliente desde el primer día.
 - Estudio gratuito previo, preparado a mano para empresas que encajan.

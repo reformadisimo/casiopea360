@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import BotonCookies from "@/components/BotonCookies";
 import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
 
 export default function Pie() {
@@ -58,6 +59,7 @@ export default function Pie() {
                 </Link>
               </li>
             ))}
+            <BotonCookies />
           </ul>
         </div>
       </div>

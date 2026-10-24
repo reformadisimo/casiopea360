@@ -7,9 +7,10 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-type Pestana = "resumen" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
+type Pestana = "resumen" | "peticiones" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
 const PESTANAS: [Pestana, string][] = [
   ["resumen", "Resumen"],
+  ["peticiones", "Tus peticiones"],
   ["clientes", "Clientes"],
   ["anuncios", "Anuncios"],
   ["google", "Google, Bing e IA"],
@@ -210,6 +211,30 @@ const EVENTOS: [string, string, string][] = [
   ["contacto", "Nueva petición de presupuesto", "Formulario · Aerotermia · Google Ads"],
 ];
 
+type Estado = "Recibida" | "En curso" | "Esperando tu aprobación" | "Hecha";
+type Peticion = { id: number; que: string; area: string; pedida: string; prometida: string; estado: Estado; entregada?: string };
+const PETICIONES_INICIALES: Peticion[] = [
+  { id: 1, que: "Banner de la campaña de aerotermia para Instagram", area: "Diseño", pedida: "Hoy, 09:10", prometida: "Mañana, 09:10", estado: "Esperando tu aprobación" },
+  { id: 2, que: "Página nueva: mantenimiento para comunidades", area: "Web", pedida: "Ayer, 17:40", prometida: "Lunes, 17:40", estado: "En curso" },
+  { id: 3, que: "Subir el presupuesto de la campaña de aire acondicionado", area: "Anuncios", pedida: "Ayer, 12:05", prometida: "Hoy, 12:05", estado: "Hecha", entregada: "Ayer, 13:20" },
+  { id: 4, que: "Artículo: ayudas para aerotermia en 2027", area: "Contenido", pedida: "Lunes", prometida: "Miércoles", estado: "Esperando tu aprobación" },
+  { id: 5, que: "Conectar el formulario con el CRM del equipo comercial", area: "Automatización", pedida: "Lunes", prometida: "Viernes 23 (proyecto)", estado: "En curso" },
+  { id: 6, que: "Cambiar el horario de agosto en la ficha de Google", area: "Google", pedida: "Lunes, 10:00", prometida: "Lunes, 18:00", estado: "Hecha", entregada: "Lunes, 10:25" },
+  { id: 7, que: "Nuevo anuncio de radio para la campaña de verano", area: "Radio", pedida: "Viernes", prometida: "Fecha cerrada: 15 de mayo", estado: "En curso" },
+];
+const COLOR_ESTADO: Record<Estado, string> = {
+  Recibida: "bg-sky-100 text-sky-800",
+  "En curso": "bg-violet-100 text-violet-800",
+  "Esperando tu aprobación": "bg-estrella/40 text-tinta",
+  Hecha: "bg-emerald-100 text-emerald-800",
+};
+const DOCUMENTOS: [string, string][] = [
+  ["Informe mensual de septiembre", "Informe"],
+  ["Factura de septiembre", "Factura"],
+  ["Informe mensual de agosto", "Informe"],
+  ["Factura de agosto", "Factura"],
+];
+
 const MESES = ["May", "Jun", "Jul", "Ago", "Sep", "Oct"];
 // Lo variable de cada mes: inversión en anuncios, vídeo profesional y notas de prensa (opcionales).
 const GASTO_MES: { google: number; meta: number; video: number; prensa: number; clientes: number }[] = [
@@ -374,15 +399,17 @@ function Medidor({ valor, etiqueta }: { valor: number; etiqueta: string }) {
   );
 }
 
-function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion }: { titulo: string; valor: number; formato?: (n: number) => string; cambio: number; invertir?: boolean; explicacion: string }) {
-  const bueno = invertir ? cambio < 0 : cambio > 0;
+function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion }: { titulo: string; valor: number; formato?: (n: number) => string; cambio?: number; invertir?: boolean; explicacion: string }) {
+  const bueno = cambio === undefined ? true : invertir ? cambio < 0 : cambio > 0;
   return (
     <div className="rounded-3xl border border-linea bg-white p-5">
       <p className="text-sm font-bold text-gris">{titulo}</p>
       <p className="mt-1 text-3xl font-extrabold sm:text-4xl"><Contador valor={valor} formato={formato} /></p>
-      <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-600" : "text-rose-600"}`}>
-        {cambio > 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">que el mes pasado</span>
-      </p>
+      {cambio !== undefined && (
+        <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-600" : "text-rose-600"}`}>
+          {cambio > 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">que el mes pasado</span>
+        </p>
+      )}
       <p className="mt-2 text-sm text-gris">{explicacion}</p>
     </div>
   );
@@ -405,6 +432,17 @@ export default function PanelEjemplo() {
   const [ahora, setAhora] = useState(14);
   const [segundos, setSegundos] = useState(0);
   const [pedido, setPedido] = useState("");
+  const [peticiones, setPeticiones] = useState<Peticion[]>(PETICIONES_INICIALES);
+  const [nueva, setNueva] = useState("");
+  const cambiaEstado = (id: number, estado: Estado) =>
+    setPeticiones((ps) => ps.map((p) => (p.id === id ? { ...p, estado, entregada: estado === "Hecha" ? "Ahora mismo" : p.entregada } : p)));
+  const anadir = () => {
+    if (!nueva.trim()) return;
+    const id = Date.now();
+    setPeticiones((ps) => [{ id, que: nueva.trim(), area: "Nueva", pedida: "Ahora mismo", prometida: "Dentro de 48 horas", estado: "Recibida" }, ...ps]);
+    setNueva("");
+    setTimeout(() => cambiaEstado(id, "En curso"), 3500);
+  };
   const [enviado, setEnviado] = useState(false);
   const contador = useRef(0);
 
@@ -556,6 +594,59 @@ export default function PanelEjemplo() {
                   </ul>
                 </Caja>
               </div>
+            </>
+          )}
+
+          {pestana === "peticiones" && (
+            <>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Cifra titulo="En curso" valor={peticiones.filter((p) => p.estado === "En curso" || p.estado === "Recibida").length} explicacion="Lo que estamos haciendo ahora mismo." />
+                <Cifra titulo="Esperan tu visto bueno" valor={peticiones.filter((p) => p.estado === "Esperando tu aprobación").length} explicacion="Nada se publica sin que tú lo apruebes." />
+                <Cifra titulo="Hechas este mes" valor={17 + peticiones.filter((p) => p.entregada === "Ahora mismo").length} cambio={13} explicacion="Peticiones tuyas terminadas en octubre." />
+                <Cifra titulo="Plazos cumplidos" valor={96} formato={(n) => `${n} %`} explicacion="Entregas hechas dentro de la fecha que te dimos." />
+              </div>
+              <Caja titulo="Pide lo que necesites" fuente="Te respondemos el mismo día" ayuda="Escribe aquí lo que quieras: un cambio en la web, un anuncio nuevo, un artículo. Lo del día a día queda hecho en 48 horas como máximo; lo grande, con una fecha cerrada que te damos al momento. Ves quién lo lleva y en qué punto está, sin tener que preguntar.">
+                <form className="flex flex-col gap-3 sm:flex-row" onSubmit={(e) => { e.preventDefault(); anadir(); }}>
+                  <label htmlFor="nueva-peticion" className="sr-only">Nueva petición</label>
+                  <input id="nueva-peticion" value={nueva} onChange={(e) => setNueva(e.target.value)} placeholder="Por ejemplo: cambiar las fotos de la portada" className="flex-1 rounded-full border border-linea px-5 py-3 focus:border-noche focus:outline-none" />
+                  <button type="submit" className="rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Nueva petición</button>
+                </form>
+                <p className="mt-2 text-xs text-gris">Demostración: prueba a escribir algo y verás cómo entra y pasa a «En curso».</p>
+              </Caja>
+              <Caja titulo="Tus peticiones" fuente="Al día" ayuda="Todo lo que nos has pedido, con la fecha en que lo pediste, la fecha que te prometimos y en qué punto está. Si algo necesita tu visto bueno, lo apruebas o pides cambios aquí mismo.">
+                <ul className="space-y-3">
+                  {peticiones.map((p) => (
+                    <li key={p.id} className="pn-entra rounded-2xl border border-linea p-4">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="font-extrabold">{p.que}</p>
+                          <p className="mt-1 text-sm text-gris">
+                            <span className="font-bold text-tinta">{p.area}</span> · Pedida: {p.pedida} · Prometida: {p.prometida}
+                            {p.entregada && <> · <span className="font-bold text-emerald-700">Entregada: {p.entregada}</span></>}
+                          </p>
+                        </div>
+                        <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${COLOR_ESTADO[p.estado]}`}>{p.estado}</span>
+                      </div>
+                      {p.estado === "Esperando tu aprobación" && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <button type="button" onClick={() => cambiaEstado(p.id, "Hecha")} className="rounded-full bg-noche px-4 py-2 text-sm font-bold text-white hover:bg-noche-2">Aprobar</button>
+                          <button type="button" onClick={() => cambiaEstado(p.id, "En curso")} className="rounded-full border border-linea px-4 py-2 text-sm font-bold hover:border-noche">Pedir cambios</button>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </Caja>
+              <Caja titulo="Informes y facturas" fuente="Para descargar" ayuda="Tus informes mensuales y tus facturas, siempre a mano. Sin pedirlos por correo.">
+                <ul className="grid gap-3 sm:grid-cols-2">
+                  {DOCUMENTOS.map(([n, t]) => (
+                    <li key={n} className="flex items-center gap-3 rounded-2xl bg-niebla p-4">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl bg-white text-xs font-extrabold text-rose-600">PDF</span>
+                      <span className="min-w-0 flex-1"><span className="block font-bold">{n}</span><span className="block text-xs text-gris">{t} · en la demostración no se descarga</span></span>
+                    </li>
+                  ))}
+                </ul>
+              </Caja>
             </>
           )}
 
