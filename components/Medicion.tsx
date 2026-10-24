@@ -68,7 +68,7 @@ export default function Medicion() {
         <div data-aviso-cookies role="dialog" aria-live="polite" aria-label="Aviso de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-3xl bg-white p-5 text-tinta shadow-[0_24px_60px_-12px_rgba(14,26,61,0.45)] ring-1 ring-linea sm:p-6">
           <p className="font-extrabold">¿Nos dejas medir cómo se usa la web?</p>
           <p className="mt-1 text-sm text-gris">
-            Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity) solo si aceptas. Nos sirven para saber qué funciona y mejorar la web. <Link href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.
+            Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity) solo si aceptas. Nos sirven para saber qué funciona y mejorar la web. <Link prefetch={false} href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.
           </p>
           {detalle && (
             <ul className="mt-3 space-y-1 rounded-2xl bg-niebla p-3 text-sm">
