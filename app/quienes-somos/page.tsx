@@ -12,7 +12,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Quiénes somos",
-  "Un equipo de profesionales con más de 22 años de experiencia en marketing digital: webs, apps, Google, anuncios, redes y automatización. Hemos gestionado cuentas de Google Ads de hasta 60.000 € al mes.",
+  "Profesionales del marketing digital con más de 22 años de oficio y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y por menos.",
   "/quienes-somos",
 );
 

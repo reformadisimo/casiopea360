@@ -1,5 +1,5 @@
 import { SITIO } from "@/lib/navegacion";
-import { FRENTES, PREGUNTAS } from "@/lib/contenido";
+import { FRENTES, PREGUNTAS, TAMBIEN_INCLUIDO } from "@/lib/contenido";
 
 // Datos de la empresa titular (los mismos que en el aviso legal).
 export const EMPRESA = {
@@ -38,13 +38,14 @@ export function schemaOrganizacion() {
     },
     areaServed: { "@type": "Country", name: "España" },
     knowsLanguage: "es",
+    slogan: "Crece en digital sin lidiar con cinco agencias. Todo, mejor, en días y por mucho menos.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Servicios de marketing digital 360",
-      itemListElement: FRENTES.map((f) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: f.nombre, description: f.frase },
-      })),
+      itemListElement: [
+        ...FRENTES.map((f) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: f.nombre, description: f.frase } })),
+        ...TAMBIEN_INCLUIDO.map((x) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: x.t, description: x.d } })),
+      ],
     },
   };
 }
@@ -93,7 +94,7 @@ export function schemaServicios() {
   }));
 }
 
-export function schemaArticulo(a: { titulo: string; descripcion: string; slug: string; fecha: string }) {
+export function schemaArticulo(a: { titulo: string; descripcion: string; slug: string; fecha: string; video?: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -103,7 +104,7 @@ export function schemaArticulo(a: { titulo: string; descripcion: string; slug: s
     dateModified: a.fecha,
     inLanguage: "es-ES",
     mainEntityOfPage: url(`/blog/${a.slug}`),
-    image: url("/video/constelaciones.jpg"),
+    image: url(`/video/${a.video ?? "constelaciones"}.jpg`),
     author: { "@type": "Organization", name: SITIO.nombre, url: url("/") },
     publisher: { "@id": url("/#empresa") },
   };

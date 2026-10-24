@@ -899,7 +899,7 @@ export function SeccionGarantias() {
 }
 
 /* Preguntas frecuentes. */
-const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar tan poco por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?"];
+const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar tan poco por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?", "¿Y si me entra más trabajo del que puedo atender?"];
 
 export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boolean; todas?: boolean }) {
   const lista = todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p));

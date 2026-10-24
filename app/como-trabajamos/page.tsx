@@ -6,8 +6,8 @@ import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
-  "Cómo trabajamos",
-  "Estudio gratuito, web hecha antes de decidir, respuesta el mismo día, 48 horas para lo del día a día, fecha cerrada para lo grande y un parte cada día. Así trabajamos en Casiopea 360.",
+  "Cómo trabajamos: pídelo y lo hacemos",
+  "Respuesta el mismo día, 48 horas para el día a día, tu web en unos días y un parte diario. Casi todo por escrito y sin reuniones que no hagan falta.",
   "/como-trabajamos",
 );
 
