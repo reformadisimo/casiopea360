@@ -192,7 +192,8 @@ export const PASOS = [
 
 export const PLAZOS = [
   { que: "Cambiar un texto, una foto o un horario", cuando: "Minutos u horas" },
-  { que: "Una página o un artículo nuevo", cuando: "24 a 48 horas" },
+  { que: "Una página, un artículo o una calculadora nueva", cuando: "Máximo 48 horas" },
+  { que: "Cualquier otra cosa que nos pidas", cuando: "Máximo 48 horas" },
   { que: "Resolver una duda", cuando: "El mismo día" },
   { que: "Notarlo en los anuncios", cuando: "Días" },
   { que: "Notarlo en la ficha de Google", cuando: "Semanas" },
@@ -249,6 +250,14 @@ export const PREGUNTAS = [
   {
     p: "Me lo lleva un sobrino, o un conocido. ¿Para qué cambiar?",
     r: "Si te funciona, genial. Normalmente esa persona lleva una parte, la web o las redes. Una empresa que capta clientes por internet necesita unos veinte oficios trabajando juntos, y eso es lo que hacemos.",
+  },
+  {
+    p: "¿Cuánto tardáis en hacer lo que os pido?",
+    r: "Como máximo 48 horas, para cualquier cosa: un cambio, una página nueva, una campaña. Normalmente mucho antes, porque intentamos ser lo más rápidos posible. Si algo grande necesita más tiempo, te lo decimos antes de empezar.",
+  },
+  {
+    p: "¿Cuánto cuesta?",
+    r: "Depende de lo que necesite tu negocio, así que el precio es personalizado. Empieza por el diagnóstico gratis: te decimos qué haríamos y cuánto costaría, sin compromiso.",
   },
   {
     p: "¿Cuánto tarda en notarse?",

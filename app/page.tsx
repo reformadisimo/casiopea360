@@ -158,17 +158,29 @@ export default function Inicio() {
 
         {/* Los oficios */}
         <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
-          <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Veinticinco oficios. Un solo proveedor.</h2>
+          <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Lo normal: veinticinco proveedores.</h2>
           <p className="mt-5 max-w-2xl text-lg text-gris">
-            Una web que trae clientes necesita todo esto trabajando a la vez. Contratarlo por separado es carísimo y nadie lo coordina. Con nosotros viene junto.
+            Una web que trae clientes necesita todos estos oficios trabajando a la vez. Lo normal es buscarlos por separado: cada uno con su plazo, su factura y su forma de trabajar. Un cambio puede tardar semanas, y nadie mira el conjunto.
           </p>
           <ul className="mt-10 flex flex-wrap gap-2.5">
             {OFICIOS.map((o) => (
-              <li key={o} className="rounded-full border border-linea bg-white px-4 py-2 text-[0.95rem] font-bold text-tinta">
+              <li key={o} className="rounded-full border border-dashed border-linea bg-white px-4 py-2 text-[0.95rem] text-gris">
                 {o}
               </li>
             ))}
           </ul>
+          <div className="mt-12 grid items-center gap-8 rounded-3xl bg-noche p-7 text-white sm:p-10 lg:grid-cols-[1fr_auto]">
+            <div>
+              <p className="font-titular text-3xl font-extrabold sm:text-4xl">Con Casiopea 360, uno solo.</p>
+              <p className="mt-3 max-w-2xl text-lg text-white/80">
+                Todos esos oficios en un mismo equipo, con una sola persona de contacto. Y un compromiso: como máximo 48 horas para todo lo que nos pidas. Normalmente, mucho antes.
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="font-titular text-7xl font-extrabold leading-none text-estrella">48 h</p>
+              <p className="mt-2 text-sm text-white/70">como máximo, para todo</p>
+            </div>
+          </div>
         </section>
 
         {/* Los cinco frentes */}
@@ -310,7 +322,7 @@ export default function Inicio() {
               <div className="aspect-[16/10]"><VideoFondo nombre="hombre-sonriendo" alt="Un profesional sonríe en su oficina" /></div>
             </div>
             <div>
-              <h3 className="text-2xl font-extrabold">Cuándo está lo que pides</h3>
+              <h3 className="text-2xl font-extrabold">Lo que pides, en 48 horas como máximo</h3>
               <table className="mt-4 w-full text-left">
                 <tbody>
                   {PLAZOS.map((p) => (
@@ -321,7 +333,7 @@ export default function Inicio() {
                   ))}
                 </tbody>
               </table>
-              <p className="mt-4 text-sm text-gris">Nada de «eso son 100 € más» por cada cambio.</p>
+              <p className="mt-4 text-sm text-gris">Lo que tarda Google en notarlo no depende de nosotros, y te lo decimos claro desde el principio. Y nada de «eso son 100 € más» por cada cambio.</p>
             </div>
           </div>
         </section>
