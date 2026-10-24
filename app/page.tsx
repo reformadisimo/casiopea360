@@ -211,6 +211,27 @@ export default function Inicio() {
           </div>
         </section>
 
+        {/* Por qué existe Casiopea */}
+        <section className="relative overflow-hidden bg-noche text-white">
+          <div className="grid lg:grid-cols-2">
+            <div className="relative min-h-[320px] lg:min-h-[520px]">
+              <VideoFondo nombre="arquitecto-mesa" alt="Un hombre trabaja en su mesa de diseño" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-noche/60 lg:to-noche" />
+            </div>
+            <div className="flex items-center px-4 py-16 sm:px-10 lg:px-16">
+              <div className="max-w-xl">
+                <h2 className="text-4xl font-extrabold sm:text-5xl">La empresa que nos habría gustado contratar.</h2>
+                <p className="mt-6 text-lg text-white/80">
+                  Cuando montamos nuestros primeros negocios, hacer una web tardaba meses y cualquier cambio era eterno. Teníamos un proveedor para cada cosa y ninguno hablaba con los demás.
+                </p>
+                <p className="mt-4 text-lg text-white/80">
+                  Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te cuenta cada día lo que pasa. Lo que antes eran semanas, ahora son minutos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Trabajos reales */}
         <section id="trabajos" className={`${ENVOLTORIO} scroll-mt-6 py-20 sm:py-28`}>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Trabajos reales, funcionando hoy.</h2>
