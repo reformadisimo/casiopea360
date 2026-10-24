@@ -157,7 +157,7 @@ export function SeccionPuntosDolor() {
       <div className={ENVOLTORIO}>
         <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">¿Te suena alguno?</h2>
         <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan directores y dueños de empresa, y lo que hacemos con ello.</p>
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="carrusel mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {DOLORES.map((d, i) => (
             <li key={d.dolor} className={`flex flex-col rounded-3xl p-6 sm:p-7 ${i === 0 ? "bg-noche text-white" : "bg-white"}`}>
               <p className="font-titular text-xl font-extrabold leading-snug">«{d.dolor}»</p>
@@ -229,7 +229,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
             <p className="mt-5 max-w-2xl text-lg text-gris">Del dominio y el servidor a la última reseña. Tú no tienes que buscar a nadie más ni tocar nada.</p>
           </>
         )}
-        <div className={`${completa ? "" : "mt-12"} grid gap-5 lg:grid-cols-6`}>
+        <div className={`carrusel ${completa ? "" : "mt-12"} grid gap-5 lg:grid-cols-6`}>
           {FRENTES.map((f, i) => {
             const ancho = i < 2 ? "lg:col-span-3" : "lg:col-span-2";
             const oscura = i === 0 || i === 4;
@@ -334,7 +334,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
           <p className="mt-5 max-w-2xl text-lg text-gris">Webs, apps y asistentes que ya traen clientes, a nuestra propia empresa y a quienes confían en nosotros. Y muchos más que no podemos enseñar: hay clientes que prefieren discreción.</p>
         </>
       )}
-      <div className={`${titulo ? "mt-12" : ""} grid gap-6 md:grid-cols-2`}>
+      <div className={`carrusel ${titulo ? "mt-12" : ""} grid gap-6 md:grid-cols-2`}>
         {trabajos.map((t, i) => (
           <article key={t.nombre} className={`group flex flex-col rounded-[2rem] p-7 sm:p-9 ${i % 3 === 0 ? "bg-noche text-white" : "border border-linea bg-white"}`}>
             {t.logo && (
@@ -393,7 +393,7 @@ export function SeccionParte() {
           <p className="mt-5 max-w-xl text-lg text-white/80">
             Sin entrar en ninguna herramienta ni entender de números. Te llega un mensaje corto por WhatsApp, por correo o por Slack, como prefieras.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i) => (
               <div key={i.cuando} className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
                 <p className="font-titular text-xl font-extrabold text-estrella">{i.cuando}</p>
@@ -453,7 +453,7 @@ export function SeccionEspecialistas() {
 
         <p className="mt-16 text-center text-3xl font-extrabold sm:text-5xl">No somos generalistas. Somos especialistas en todo, en la misma mesa.</p>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="carrusel mt-12 grid gap-5 md:grid-cols-3">
           {[
             ["No nos creas: entra y compruébalo", "Webs con calculadoras y asistentes de IA, una app en las tiendas. Funcionando hoy, con empresas reales.", "/trabajos", "Ver los trabajos"],
             ["Míralo tú, cada día", "En tu panel ves qué hemos hecho, qué funciona y de dónde viene cada cliente. Sin cajas negras.", "/panel", "Ver un panel de ejemplo"],
@@ -519,7 +519,7 @@ export function SeccionLoQueSea() {
         <p className="mt-6 max-w-3xl text-xl text-white/80">
           Una app, un CRM, una campaña de radio, un vídeo profesional. Lo hacemos nosotros, y lo poco que no hacemos en casa lo hacemos con las productoras y agencias con las que ya trabajamos. Tú no tienes que buscar a nadie.
         </p>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {LO_QUE_SEA.map((x) => (
             <div key={x.t} className="flex flex-col rounded-[1.8rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm transition-transform hover:-translate-y-1">
               <div className="flex items-center gap-3">
@@ -589,7 +589,7 @@ export function SeccionTambienIncluido() {
             <div className="relative col-span-2 overflow-hidden rounded-[1.6rem] shadow-lg"><VideoFondo nombre="equipo-celebra" alt="" /></div>
           </div>
         </div>
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="carrusel mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TAMBIEN_INCLUIDO.slice(0, mitad).map((x, i) => tarjeta(x, i))}
           <li className="relative overflow-hidden rounded-[1.8rem] bg-noche text-white sm:col-span-2 lg:col-span-3">
             <div aria-hidden="true" className="absolute inset-0"><VideoFondo nombre="holograma-redes" alt="" /></div>
@@ -625,9 +625,9 @@ export function SeccionComoEsPosible() {
           «Pero… <span className="text-estrella">¿cómo es posible?</span>»
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-white/85">
-          Nuestros clientes no se lo creen hasta que lo ven. Y cuando lo ven, todos hacen la misma pregunta: ¿cómo es posible que por una cuota tenga una web mejor, mi CRM, todas las landings que quiera, mi asistente con IA y resultados, y además en días? <b className="text-white">Es posible. Lo hacemos cada día.</b>
+          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings sin límite y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b>
         </p>
-        <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="carrusel mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {COMO_ES_POSIBLE.map((x, i) => (
             <li key={x.tema} className="flex flex-col rounded-3xl bg-white p-6 text-tinta shadow-[0_24px_50px_-28px_rgba(0,0,0,0.8)]">
               <p className="text-sm font-extrabold uppercase tracking-wide" style={{ color: ["#1d4ed8", "#6d28d9", "#047857", "#be185d", "#b45309", "#0f766e"][i % 6] }}>{x.tema}</p>
@@ -692,7 +692,7 @@ export function SeccionPromesas() {
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y a precio fijo.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">Ya sabemos que suena demasiado bien. Por eso no te pedimos que nos creas: pide el estudio gratuito y compáralo con lo que tienes hoy.</p>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROMESAS.map((x, i) => (
             <div key={x.t} className={`flex flex-col rounded-[2rem] p-7 sm:p-8 ${i === 2 ? "bg-estrella text-tinta" : "bg-white/[0.07] ring-1 ring-white/15 backdrop-blur-sm"}`}>
               <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-full text-lg font-extrabold ${i === 2 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
@@ -715,7 +715,7 @@ export function SeccionPorQueBarato() {
         <div>
           <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Sin trampa</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar menos? Así de sencillo.</h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
               <div key={x.t} className="rounded-[1.6rem] bg-niebla p-6">
                 <p className="text-sm font-extrabold text-amber-800">0{i + 1}</p>
@@ -770,7 +770,7 @@ export function SeccionLoFirmamos() {
           </div>
           <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
         </div>
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SELLOS.map((x, i) => (
             <li key={x.t} className="group relative flex gap-5 rounded-[1.8rem] border border-linea p-6 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
               <span
@@ -1123,7 +1123,7 @@ export function SeccionMetodo() {
     <section id="metodo" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
       <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Cómo trabajamos, paso a paso.</h2>
       <p className="mt-5 max-w-2xl text-lg text-gris">Casi todo por internet y por escrito. Sin reuniones que no hagan falta y dándote el menor trabajo posible.</p>
-      <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <ol className="carrusel mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {PASOS.map((p, i) => (
           <li key={p.titulo} className="border-t-2 border-noche pt-5">
             <p className="font-titular text-6xl font-extrabold text-estrella">{i + 1}</p>
@@ -1245,7 +1245,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Cómo empezamos</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son dos minutos.</h2>
-        <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
             <li key={x.t} className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
               <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-2xl text-xl font-extrabold text-white shadow-md" style={{ background: colores[i] }}>{i + 1}</span>
@@ -1336,7 +1336,7 @@ export function SeccionEstudio() {
       <p className="mt-5 max-w-3xl text-lg text-gris sm:text-xl">
         {ESTUDIO_TOTAL} apartados hechos a medida para tu empresa, con datos reales y fechados, y la propuesta de rediseño completo de tu web. Por eso no se lo hacemos a todo el mundo.
       </p>
-      <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="carrusel mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {ESTUDIO_BLOQUES.map((b, k) => (
           <div key={b.titulo} className="relative overflow-hidden rounded-[1.8rem] bg-white p-6 shadow-sm ring-1 ring-linea sm:p-7">
             <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: b.color }} />

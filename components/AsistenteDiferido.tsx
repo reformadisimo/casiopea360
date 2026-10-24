@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 // El asistente se carga cuando la página ya está pintada y tranquila, para no restar velocidad.
 const Asistente = dynamic(() => import("@/components/Asistente"), { ssr: false });
 const AvisoSalida = dynamic(() => import("@/components/AvisoSalida"), { ssr: false });
+const Carruseles = dynamic(() => import("@/components/Carruseles"), { ssr: false });
 
 export default function AsistenteDiferido() {
   const [listo, setListo] = useState(false);
@@ -28,6 +29,7 @@ export default function AsistenteDiferido() {
     <>
       <Asistente />
       <AvisoSalida />
+      <Carruseles />
     </>
   ) : null;
 }

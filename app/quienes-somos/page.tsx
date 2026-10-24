@@ -75,7 +75,7 @@ export default function QuienesSomos() {
       <section className="bg-niebla py-20 sm:py-28">
         <div className={ENVOLTORIO}>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Lo hemos hecho todo. Y lo seguimos haciendo cada día.</h2>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {HECHO.map((h) => (
               <div key={h.t} className="flex flex-col rounded-[1.8rem] bg-white p-6 transition-transform hover:-translate-y-1 sm:p-7">
                 <div className="flex gap-2">
@@ -96,7 +96,7 @@ export default function QuienesSomos() {
         <div className={`${ENVOLTORIO} relative`}>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que creemos</p>
           <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Hacértelo mejor que quien te cobra el triple. Esa es la idea.</h2>
-          <ul className="mt-12 grid gap-4 lg:grid-cols-5">
+          <ul className="carrusel mt-12 grid gap-4 lg:grid-cols-5">
             {CREEMOS.map((c, i) => (
               <li key={c} className="rounded-[1.6rem] bg-white/[0.07] p-6 ring-1 ring-white/15 backdrop-blur-sm">
                 <span aria-hidden="true" className="text-3xl font-extrabold text-estrella">{i + 1}</span>
@@ -126,7 +126,7 @@ export default function QuienesSomos() {
       <section className="py-20 sm:py-28">
         <div className={ENVOLTORIO}>
           <h2 className="text-4xl font-extrabold sm:text-5xl">Cómo somos</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {COMO.map(([t, d], i) => (
               <div key={t} className="rounded-[1.8rem] border border-linea p-6">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-estrella font-extrabold text-tinta">{i + 1}</span>

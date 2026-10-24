@@ -244,3 +244,36 @@ html.cookies-decididas [data-aviso-cookies] { display: none; }
 
 /* Constelaciones de fondo: más vivas y nítidas */
 .estrellas video, .estrellas img { filter: contrast(1.4) brightness(1.15) saturate(1.5); }
+
+/* Carruseles en el móvil: las listas de tarjetas se deslizan con el dedo en vez de apilarse. */
+@media (max-width: 639px) {
+  .carrusel {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px !important;
+    margin-inline: -16px;
+    padding: 4px 16px 8px;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .carrusel::-webkit-scrollbar { display: none; }
+  .carrusel > * {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+    margin: 0 !important;
+    animation: none !important;
+  }
+  .carrusel > *:only-child { flex-basis: 100%; }
+}
+.puntos-carrusel { display: none; }
+@media (max-width: 639px) {
+  .puntos-carrusel { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; }
+  .puntos-carrusel span { height: 7px; width: 7px; border-radius: 99px; background: currentColor; opacity: 0.25; transition: all 0.25s; }
+  .puntos-carrusel span.activo { width: 22px; opacity: 0.9; }
+  .puntos-carrusel em { font-style: normal; font-size: 12px; font-weight: 700; opacity: 0.6; margin-left: 8px; }
+}
+
+/* Barra de progreso de lectura */
+.progreso-lectura { position: fixed; left: 0; right: 0; top: 0; z-index: 70; height: 3px; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #ffc53d, #ff9f1c); pointer-events: none; }
