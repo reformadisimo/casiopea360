@@ -265,7 +265,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
-    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». El SEO también va incluido: muchas agencias lo cobran como cuota aparte. Solo va aparte lo que pagas directamente a otros: lo que inviertas en anuncios, la grabación de vídeo profesional y, si quieres, una nota de prensa o un artículo en un medio, que cobra el propio medio. Te lo proponemos con su precio y no se compra nada sin tu visto bueno.",
+    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». El SEO también va incluido: muchas agencias lo cobran como cuota aparte. Solo va aparte lo que pagas directamente a otros: lo que inviertas en anuncios, la grabación de vídeo profesional y, si quieres, el espacio en radio o prensa o un artículo en un medio, que cobra el propio medio. Te lo proponemos con su precio y no se compra nada sin tu visto bueno.",
   },
   {
     p: "¿Cuánto cuesta?",
@@ -286,6 +286,10 @@ export const PREGUNTAS = [
   {
     p: "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?",
     r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
+  },
+  {
+    p: "¿Hacéis también radio o prensa?",
+    r: "Sí. Preferimos lo digital porque se mide al euro, pero la radio la recomendamos en muchos casos: empuja todo lo demás y hace que tus campañas de internet rindan más. Te hacemos el guion, la grabación con voces profesionales, elegimos emisoras y franjas, y tratamos con las emisoras. La prensa escrita no solemos aconsejarla, pero si la quieres te diseñamos el anuncio y hablamos con los periódicos. Todo eso va incluido en la cuota; el espacio en la emisora o el periódico lo pagas tú directamente al medio.",
   },
   {
     p: "¿Y Bing? ¿Merece la pena?",

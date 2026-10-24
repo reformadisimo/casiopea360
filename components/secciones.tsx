@@ -436,6 +436,46 @@ export function SeccionEspecialistas() {
   );
 }
 
+/* Fuera de internet: radio (la recomendamos) y prensa escrita (si el cliente la quiere). */
+export function SeccionFueraInternet() {
+  return (
+    <section className="bg-niebla py-20 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">360 de verdad</p>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Y si hace falta, también fuera de internet.</h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          Preferimos lo digital porque se mide al euro. Pero si a tu negocio le conviene la radio, o quieres un anuncio en el periódico, también te lo llevamos. Sin buscar a nadie más.
+        </p>
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="relative overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-9">
+            <span className="inline-block rounded-full bg-estrella px-3 py-1 text-xs font-extrabold text-tinta">Lo recomendamos</span>
+            <p className="mt-4 text-3xl font-extrabold">Campañas de radio</p>
+            <p className="mt-3 text-white/80">La radio empuja todo lo demás: después de oír tu anuncio, mucha gente te busca en Google. Bien hecha, hace que tus campañas de internet rindan más.</p>
+            <ul className="mt-5 space-y-2 text-white/90">
+              {["Idea y guion del anuncio", "Grabación con voces profesionales y música", "Elección de emisoras, franjas y fechas", "Trato y negociación con las emisoras o la central de medios", "Medimos el efecto: cuánto suben las búsquedas de tu marca"].map((t) => (
+                <li key={t} className="flex gap-2"><span aria-hidden="true" className="text-estrella">✓</span>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-[2rem] border border-linea bg-white p-7 sm:p-9">
+            <span className="inline-block rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Si tú lo quieres</span>
+            <p className="mt-4 text-3xl font-extrabold">Prensa escrita</p>
+            <p className="mt-3 text-gris">No solemos aconsejarla: es cara y no se puede medir bien. Pero si te interesa, por ejemplo en un periódico local o una revista de tu sector, te lo resolvemos.</p>
+            <ul className="mt-5 space-y-2">
+              {["Redacción y diseño del anuncio", "Contacto con periódicos y revistas", "Comparativa de precios y formatos", "Nada se contrata sin tu visto bueno"].map((t) => (
+                <li key={t} className="flex gap-2"><span aria-hidden="true" className="text-emerald-600">✓</span>{t}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p className="mt-6 rounded-2xl bg-white p-5 text-[0.95rem]">
+          <b>Cómo se paga:</b> la idea, el guion, el diseño y toda la gestión van incluidos en tu cuota. El espacio en la emisora o en el periódico lo pagas tú directamente al medio, igual que pagas a Google o a Meta tus anuncios. Sin comisiones nuestras.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* Método y plazos. */
 export function SeccionMetodo() {
   return (

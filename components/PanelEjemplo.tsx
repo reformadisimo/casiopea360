@@ -805,12 +805,12 @@ export default function PanelEjemplo() {
 
           {pestana === "gastos" && (
             <>
-              <Caja titulo="Qué va incluido y qué va aparte" fuente="Así de claro" ayuda="Pagas una cuota fija al mes que lo incluye todo. Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, el vídeo profesional y, si quieres, una nota de prensa o un artículo en un medio.">
+              <Caja titulo="Qué va incluido y qué va aparte" fuente="Así de claro" ayuda="Pagas una cuota fija al mes que lo incluye todo. Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, el vídeo profesional, el espacio en radio o prensa y, si quieres, una nota de prensa o un artículo en un medio.">
                 <div className="grid gap-4 lg:grid-cols-2">
                   <div className="rounded-2xl bg-emerald-50 p-5">
                     <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
                     <ul className="mt-3 space-y-2 text-sm">
-                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Rediseño del logo si lo necesitas"].map((t) => (
+                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas"].map((t) => (
                         <li key={t} className="flex gap-2"><span className="text-emerald-600">✓</span>{t}</li>
                       ))}
                     </ul>
@@ -821,6 +821,7 @@ export default function PanelEjemplo() {
                       <li><b>Lo que inviertes en anuncios.</b> Lo pagas tú directamente a Google o a Meta, con tu tarjeta. Nosotros no cobramos ningún porcentaje.</li>
                       <li><b>La grabación de vídeo profesional.</b> La hace una productora audiovisual asociada y le pagas a ella directamente. El guion y el montaje van incluidos.</li>
                       <li><b>Notas de prensa y artículos en medios.</b> Los enlaces de calidad desde periódicos y revistas los cobra el medio. Te proponemos el medio con su precio y no se compra nada sin tu sí.</li>
+                      <li><b>El espacio en radio o prensa.</b> Si hacemos una campaña de radio o un anuncio en un periódico, la emisora o el periódico te cobran a ti directamente. La idea, el guion, las voces y la gestión van incluidos.</li>
                     </ul>
                   </div>
                 </div>
