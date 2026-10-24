@@ -11,7 +11,7 @@ import {
   SeccionFrentes,
   SeccionEspecialistas,
   SeccionCRM,
-  SeccionTambienIncluido,
+  SeccionIncluidoCompacta,
   SeccionCostes,
   SeccionPromesas,
   SeccionLoFirmamos,
@@ -70,7 +70,7 @@ export default function Inicio() {
       <SeccionFrentes />
       <SeccionEspecialistas />
       <SeccionCRM />
-      <SeccionTambienIncluido />
+      <SeccionIncluidoCompacta />
       <SeccionTrabajos />
       <SeccionParte />
       <SeccionPreguntas todas={false} />

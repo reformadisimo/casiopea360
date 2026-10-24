@@ -727,6 +727,37 @@ export function SeccionConfidenciales() {
   );
 }
 
+/* Versión compacta de todo lo incluido, para la portada (la completa está en Servicios). */
+export function SeccionIncluidoCompacta() {
+  const colores = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4"];
+  const todo = [...FRENTES.map((f) => f.nombre), "CRM a medida", ...TAMBIEN_INCLUIDO.map((x) => x.t)];
+  return (
+    <section className="bg-niebla py-20 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-3xl">
+            <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Todo esto entra en tu cuota</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
+          </div>
+          <p className="flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm ring-1 ring-linea">
+            <span className="font-titular text-4xl font-extrabold text-emerald-600">{todo.length}</span>
+            <span className="text-sm font-bold leading-snug">servicios, una sola cuota</span>
+          </p>
+        </div>
+        <ul className="mt-10 flex flex-wrap gap-2.5">
+          {todo.map((t, i) => (
+            <li key={t} className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[0.95rem] font-bold shadow-sm ring-1 ring-black/5">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full" style={{ background: colores[i % colores.length] }} />
+              {t}
+            </li>
+          ))}
+        </ul>
+        <a href="/servicios#incluido" className="mt-8 inline-flex rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">Ver todo lo que incluye</a>
+      </div>
+    </section>
+  );
+}
+
 /* Valor añadido: CRM a medida incluido. */
 export function SeccionCRM() {
   const columnas: [string, string[]][] = [
