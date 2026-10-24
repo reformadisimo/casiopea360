@@ -170,7 +170,7 @@ export function BandaCompromisos() {
           ["Cada día", "un parte de lo que hemos hecho"],
         ].map(([n, t]) => (
           <div key={n}>
-            <p className="whitespace-nowrap font-titular text-5xl font-extrabold leading-none text-noche sm:text-6xl lg:text-5xl xl:text-6xl">{n}</p>
+            <p className="whitespace-nowrap font-titular text-5xl font-extrabold leading-none text-noche sm:text-6xl lg:text-5xl">{n}</p>
             <p className="mt-3 text-lg font-bold text-noche/75">{t}</p>
           </div>
         ))}
