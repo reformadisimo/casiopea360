@@ -609,12 +609,12 @@ export default function TestCompleto() {
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
               <div>
                 <p className="text-sm font-bold opacity-70">En proveedores y comisiones</p>
-                <p className="mt-1 text-4xl font-extrabold">{fmt(r.totalMes * 12)} €</p>
-                <p className="text-sm">al año{r.numProveedores > 0 ? `, repartidos entre ${r.numProveedores} proveedor${r.numProveedores === 1 ? "" : "es"}` : ""}</p>
+                <p className="mt-1 text-4xl font-extrabold">{r.totalMes > 0 ? `${fmt(r.totalMes * 12)} €` : "Sin datos"}</p>
+                <p className="text-sm">{r.totalMes > 0 ? `al año${r.numProveedores > 0 ? `, repartidos entre ${r.numProveedores} proveedor${r.numProveedores === 1 ? "" : "es"}` : ""}` : "Rellena el bloque «Lo que pagas hoy» para calcularlo."}</p>
               </div>
               <div>
                 <p className="text-sm font-bold opacity-70">Solo en comisiones de anuncios</p>
-                <p className="mt-1 text-4xl font-extrabold">{fmt(r.comisionMes * 12)} €</p>
+                <p className="mt-1 text-4xl font-extrabold">{inversion > 0 ? `${fmt(r.comisionMes * 12)} €` : "Sin datos"}</p>
                 <p className="text-sm">al año. Con nosotros serían 0 €.</p>
               </div>
               <div>

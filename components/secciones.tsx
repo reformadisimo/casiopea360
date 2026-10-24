@@ -1103,8 +1103,9 @@ export function SeccionEstudio() {
       <p className="mt-5 max-w-2xl text-lg text-gris">Lo preparamos a mano, para tu empresa, con datos reales y fechados. Esto es lo que incluye.</p>
       <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {ESTUDIO.map((e, i) => (
-          <li key={e.titulo} className={`rounded-3xl p-6 ${i === ESTUDIO.length - 1 ? "bg-noche text-white" : "border border-linea"}`}>
-            <Punto />
+          <li key={e.titulo} className={`group relative overflow-hidden rounded-3xl p-6 transition-all hover:-translate-y-1 ${i === ESTUDIO.length - 1 ? "bg-noche text-white" : "bg-white shadow-sm ring-1 ring-linea"}`}>
+            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1" style={{ background: ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#ef4444", "#ffc53d"][i % 8] }} />
+            <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-2xl text-lg font-extrabold text-white shadow-md transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ background: ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#ef4444", "#d99a00"][i % 8] }}>{i + 1}</span>
             <h3 className="mt-4 text-xl font-extrabold">{e.titulo}</h3>
             <p className={`mt-2 ${i === ESTUDIO.length - 1 ? "text-white/80" : "text-gris"}`}>{e.texto}</p>
           </li>
