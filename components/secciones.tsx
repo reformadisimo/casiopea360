@@ -1,3 +1,5 @@
+import { servicioDeFrente } from "@/lib/servicios";
+import { casoDe } from "@/lib/casos";
 import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
@@ -244,6 +246,11 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                     </li>
                   ))}
                 </ul>
+                {servicioDeFrente(f.id) && (
+                  <Link href={`/servicios/${servicioDeFrente(f.id)!.slug}`} className={`mt-6 inline-flex items-center gap-2 font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>
+                    Más sobre {f.nombre} <span aria-hidden="true">→</span>
+                  </Link>
+                )}
               </article>
             );
           })}
@@ -340,16 +347,26 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
             <p className={`text-sm font-bold ${i % 3 === 0 ? "text-estrella" : "text-noche-3"}`}>{t.sector}</p>
             {titulo ? <h3 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h3> : <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h2>}
             <p className={`mt-4 flex-1 text-lg ${i % 3 === 0 ? "text-white/80" : "text-gris"}`}>{t.resumen}</p>
-            <a
-              href={t.url}
-              target="_blank"
-              rel="noopener"
-              className={`mt-7 inline-flex w-fit items-center rounded-full border-2 px-5 py-2.5 font-bold ${
-                i % 3 === 0 ? "border-white text-white hover:bg-white hover:text-noche" : "border-noche text-noche hover:bg-noche hover:text-white"
-              }`}
-            >
-              {t.enlaceTexto}
-            </a>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {casoDe(t.nombre) && (
+                <Link
+                  href={`/trabajos/${casoDe(t.nombre)!.slug}`}
+                  className={`inline-flex w-fit items-center rounded-full px-5 py-2.5 font-bold ${i % 3 === 0 ? "bg-estrella text-tinta hover:bg-estrella-2" : "bg-noche text-white hover:bg-noche-2"}`}
+                >
+                  Ver el caso
+                </Link>
+              )}
+              <a
+                href={t.url}
+                target="_blank"
+                rel="noopener"
+                className={`inline-flex w-fit items-center rounded-full border-2 px-5 py-2.5 font-bold ${
+                  i % 3 === 0 ? "border-white text-white hover:bg-white hover:text-noche" : "border-noche text-noche hover:bg-noche hover:text-white"
+                }`}
+              >
+                {t.enlaceTexto}
+              </a>
+            </div>
           </article>
         ))}
       </div>
@@ -755,7 +772,7 @@ export function SeccionIncluidoCompacta() {
             </li>
           ))}
         </ul>
-        <a href="/servicios#incluido" className="mt-8 inline-flex rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">Ver todo lo que incluye</a>
+        <Link href="/servicios#incluido" className="mt-8 inline-flex rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">Ver todo lo que incluye</Link>
       </div>
     </section>
   );

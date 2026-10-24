@@ -1,3 +1,4 @@
+import { servicioDeFrente } from "@/lib/servicios";
 import { SITIO } from "@/lib/navegacion";
 import { FRENTES, PREGUNTAS, TAMBIEN_INCLUIDO } from "@/lib/contenido";
 
@@ -90,7 +91,7 @@ export function schemaServicios() {
     description: `${f.frase} ${f.servicios.join(". ")}.`,
     provider: { "@id": url("/#empresa") },
     areaServed: { "@type": "Country", name: "España" },
-    url: url(`/servicios#${f.id}`),
+    url: url(servicioDeFrente(f.id) ? `/servicios/${servicioDeFrente(f.id)!.slug}` : `/servicios#${f.id}`),
   }));
 }
 

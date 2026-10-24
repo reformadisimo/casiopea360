@@ -1,5 +1,7 @@
+import { PAGINAS_SERVICIO } from "@/lib/servicios";
+import { CASOS } from "@/lib/casos";
 import { SITIO } from "@/lib/navegacion";
-import { FRENTES, PREGUNTAS, TAMBIEN_INCLUIDO, POR_QUE_BARATO } from "@/lib/contenido";
+import { PREGUNTAS, TAMBIEN_INCLUIDO, POR_QUE_BARATO } from "@/lib/contenido";
 import { ARTICULOS } from "@/lib/blog";
 import { EMPRESA } from "@/lib/schema";
 
@@ -32,7 +34,7 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 ${POR_QUE_BARATO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 
 ## Servicios
-${FRENTES.map((f) => `- [${f.nombre}](${u}/servicios#${f.id}): ${f.frase}`).join("\n")}
+${PAGINAS_SERVICIO.map((p) => `- [${p.nombre}](${u}/servicios/${p.slug}): ${p.descripcionSeo}`).join("\n")}
 
 ## También incluido en la cuota
 ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
@@ -42,6 +44,7 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 - [Servicios](${u}/servicios)
 - [Cómo trabajamos](${u}/como-trabajamos)
 - [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos, Tierno Centella.
+${CASOS.map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}
 - [Test rápido y test completo](${u}/test)
 - [Estudio gratuito](${u}/estudio-gratuito)
 - [Preguntas frecuentes](${u}/preguntas)

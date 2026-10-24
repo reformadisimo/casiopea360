@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITIO } from "@/lib/navegacion";
 import { ARTICULOS } from "@/lib/blog";
+import { PAGINAS_SERVICIO } from "@/lib/servicios";
+import { CASOS } from "@/lib/casos";
+import { TRABAJOS } from "@/lib/contenido";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const hoy = new Date();
@@ -20,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ] as const;
   return [
     ...fijas.map(([ruta, prioridad]) => ({ url: `${SITIO.url}${ruta}`, lastModified: hoy, priority: prioridad })),
+    ...PAGINAS_SERVICIO.map((p) => ({ url: `${SITIO.url}/servicios/${p.slug}`, lastModified: hoy, priority: 0.85 })),
+    ...CASOS.filter((c) => TRABAJOS.find((t) => t.nombre === c.nombre)?.publicado).map((c) => ({ url: `${SITIO.url}/trabajos/${c.slug}`, lastModified: hoy, priority: 0.7 })),
     ...ARTICULOS.map((a) => ({ url: `${SITIO.url}/blog/${a.slug}`, lastModified: new Date(a.fecha), priority: 0.6 })),
   ];
 }

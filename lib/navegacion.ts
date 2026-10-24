@@ -12,12 +12,12 @@ export const SITIO = {
 export type Enlace = { texto: string; href: string; detalle?: string };
 
 export const SERVICIOS_MENU: Enlace[] = [
-  { texto: "Web y apps", href: "/servicios#web", detalle: "Tu escaparate y tu app, rápidos y tuyos" },
-  { texto: "Google y las IA", href: "/servicios#google", detalle: "Que te encuentre quien te busca" },
-  { texto: "Anuncios", href: "/servicios#anuncios", detalle: "Cada euro vigilado, sin comisiones" },
-  { texto: "Redes y contenido", href: "/servicios#redes", detalle: "Que se vea lo bien que trabajas" },
-  { texto: "Automatización e IA", href: "/servicios#automatizacion", detalle: "Contactos que no se pierden" },
-  { texto: "Tu CRM a medida", href: "/servicios#crm", detalle: "Sabes de dónde viene cada cliente" },
+  { texto: "Web y apps", href: "/servicios/diseno-web", detalle: "Tu escaparate y tu app, rápidos y tuyos" },
+  { texto: "Google y las IA", href: "/servicios/seo-google-ia", detalle: "Que te encuentre quien te busca" },
+  { texto: "Anuncios", href: "/servicios/publicidad-google-ads-redes", detalle: "Cada euro vigilado, sin comisiones" },
+  { texto: "Redes y contenido", href: "/servicios/redes-sociales", detalle: "Que se vea lo bien que trabajas" },
+  { texto: "Automatización e IA", href: "/servicios/automatizacion-ia", detalle: "Contactos que no se pierden" },
+  { texto: "Tu CRM a medida", href: "/servicios/crm-a-medida", detalle: "Sabes de dónde viene cada cliente" },
   { texto: "Reservas, reseñas y tienda", href: "/servicios#incluido", detalle: "Y mucho más, dentro de tu cuota" },
   { texto: "Apps y lo que se te ocurra", href: "/servicios#lo-que-sea", detalle: "Si te conviene, lo hacemos" },
   { texto: "Radio y fuera de internet", href: "/servicios#fuera", detalle: "Campañas que empujan lo digital" },
