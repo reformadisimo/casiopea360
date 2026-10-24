@@ -29,10 +29,10 @@ export default function Preguntas() {
         detalle="Escríbenos lo que quieras saber. Sin comerciales insistiendo y sin letra pequeña."
         etiquetas={["Respuesta el mismo día", "Por escrito", "Sin compromiso"]}
         clips={[
-          { nombre: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
+          { nombre: "neon-sonrisa", alt: "Una mujer sonríe mirando su tableta entre luces de neón" },
           { nombre: "hombre-sonriendo", alt: "Un hombre sonríe en su oficina" },
           { nombre: "llamada-risa", alt: "Un hombre ríe al teléfono" },
-          { nombre: "puntos-luz", alt: "Puntos de luz conectados entre sí" },
+          { nombre: "mano-pantalla", alt: "Una mano toca una pantalla luminosa" },
         ]}
       />
       <LlamadaFinal />

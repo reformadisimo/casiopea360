@@ -19,8 +19,8 @@ export default function Servicios() {
         titulo="Todo lo digital, con un solo equipo."
         entradilla="Cinco frentes que normalmente llevan cinco empresas distintas. Con nosotros, uno solo, conectado y con un parte cada día."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Servicios" }]}
-        video="fibra-luz"
-        videoAlt="Fibras de luz que se cruzan y se conectan"
+        video="holograma-redes"
+        videoAlt="Iconos de redes sociales flotan sobre un móvil"
       />
       <SeccionFrentes completa />
       <FranjaVideos
@@ -29,10 +29,10 @@ export default function Servicios() {
         detalle="Lo que pasa en tus anuncios se arregla en tu web el mismo día. Lo que preguntan tus clientes se convierte en artículo. Un solo equipo mirando el conjunto."
         etiquetas={["Web", "Google y las IA", "Anuncios", "Redes", "Automatización"]}
         clips={[
-          { nombre: "llamada-sonrisa", alt: "Un hombre sonríe mirando su móvil de noche" },
-          { nombre: "puntos-luz", alt: "Puntos de luz conectados entre sí" },
-          { nombre: "mujer-movil", alt: "Una mujer consulta su móvil" },
-          { nombre: "madrid-noche", alt: "Madrid de noche, a vista de pájaro" },
+          { nombre: "holograma-mesa", alt: "Dos personas ríen alrededor de un holograma" },
+          { nombre: "movil-personas", alt: "Personas en holograma conversando sobre un móvil" },
+          { nombre: "neon-llamada", alt: "Una mujer habla por el móvil entre luces de neón" },
+          { nombre: "ninos-conexion", alt: "Líneas de luz conectan a varias personas con sus ordenadores" },
         ]}
       />
       <BandaCompromisos />

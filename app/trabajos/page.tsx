@@ -19,8 +19,8 @@ export default function Trabajos() {
         titulo="Trabajos reales, funcionando hoy."
         entradilla="Webs con calculadoras y asistentes de IA, una app en las dos tiendas cobrando suscripciones. Entra y pruébalos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Trabajos" }]}
-        video="hombre-celebra"
-        videoAlt="Un empresario celebra delante de su ordenador"
+        video="equipo-celebra"
+        videoAlt="Un equipo celebra un buen resultado delante del ordenador"
       />
       <SeccionTrabajos titulo={false} />
       <FranjaVideos

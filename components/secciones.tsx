@@ -170,7 +170,7 @@ export function BandaCompromisos() {
           ["Cada día", "un parte de lo que hemos hecho"],
         ].map(([n, t]) => (
           <div key={n}>
-            <p className="font-titular text-5xl font-extrabold leading-none text-noche sm:text-6xl">{n}</p>
+            <p className="whitespace-nowrap font-titular text-5xl font-extrabold leading-none text-noche sm:text-6xl lg:text-5xl xl:text-6xl">{n}</p>
             <p className="mt-3 text-lg font-bold text-noche/75">{t}</p>
           </div>
         ))}
@@ -184,9 +184,9 @@ export function BandaVideo() {
   return (
     <section aria-label="Mientras tú atiendes tu negocio" className="relative h-[70vh] min-h-[420px] overflow-hidden bg-noche">
       <div className="absolute inset-0 grid grid-cols-1 sm:grid-cols-3">
-        <div className="relative h-full"><VideoFondo nombre="mujer-celebra" alt="Una directiva celebra un buen resultado delante de su portátil" /></div>
-        <div className="relative hidden h-full sm:block"><VideoFondo nombre="madrid-noche" alt="Madrid de noche, a vista de pájaro" /></div>
-        <div className="relative hidden h-full sm:block"><VideoFondo nombre="hombre-celebra" alt="Un empresario celebra delante de su ordenador" /></div>
+        <div className="relative h-full"><VideoFondo nombre="neon-sonrisa" alt="Una mujer sonríe mirando su tableta entre luces de neón" /></div>
+        <div className="relative hidden h-full sm:block"><VideoFondo nombre="holograma-mesa" alt="Dos personas ríen alrededor de un holograma" /></div>
+        <div className="relative hidden h-full sm:block"><VideoFondo nombre="equipo-celebra" alt="Un equipo celebra un buen resultado delante del ordenador" /></div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/35 to-transparent" />
       <div className={`${ENVOLTORIO} relative flex h-full items-end pb-14`}>

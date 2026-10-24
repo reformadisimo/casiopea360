@@ -124,7 +124,7 @@ export const ARTICULOS: Articulo[] = [
   {
     slug: "como-aparecer-en-chatgpt-y-google",
     video: "sonrisa-luces",
-    apoyo: { video: "puntos-luz", alt: "Puntos de luz conectados, como la información que leen las IA" },
+    apoyo: { video: "ojo-pantallas", alt: "Datos y pantallas reflejados en unas gafas" },
     titulo: "Cómo aparecer en ChatGPT y en Google cuando buscan lo que haces",
     descripcion:
       "Cada vez más clientes preguntan a ChatGPT o Gemini antes de buscar en Google. Te contamos qué se sabe hoy sobre cómo eligen a quién recomendar y qué puedes hacer, sin promesas mágicas.",

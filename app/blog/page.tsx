@@ -24,8 +24,8 @@ export default function Blog() {
         titulo="Marketing digital, contado claro."
         entradilla="Lo que aprendemos cada día con nuestras empresas y nuestros clientes, sin jerga y con ejemplos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Blog" }]}
-        video="equipo-riendo"
-        videoAlt="Un equipo ríe en una reunión"
+        video="movil-corazones"
+        videoAlt="Un hombre sonríe al recibir me gusta en su móvil"
       />
       <section className={`${ENVOLTORIO} py-16 sm:py-20`}>
         <Link href={`/blog/${destacado.slug}`} className="group grid overflow-hidden rounded-[2rem] bg-noche text-white lg:grid-cols-2">
