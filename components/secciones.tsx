@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import MovilParte from "@/components/MovilParte";
@@ -306,6 +307,17 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
       <div className={`${titulo ? "mt-12" : ""} grid gap-6 md:grid-cols-2`}>
         {trabajos.map((t, i) => (
           <article key={t.nombre} className={`group flex flex-col rounded-[2rem] p-7 sm:p-9 ${i % 3 === 0 ? "bg-noche text-white" : "border border-linea bg-white"}`}>
+            {t.logo && (
+              <div className="mb-6 flex h-16 items-center">
+                <Image
+                  src={t.logo.src}
+                  alt={`Logotipo de ${t.nombre}`}
+                  width={t.logo.ancho}
+                  height={t.logo.alto}
+                  className={`h-full w-auto object-contain ${t.logo.ancho === t.logo.alto ? "rounded-2xl" : ""}`}
+                />
+              </div>
+            )}
             <p className={`text-sm font-bold ${i % 3 === 0 ? "text-estrella" : "text-noche-3"}`}>{t.sector}</p>
             <h3 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h3>
             <p className={`mt-4 flex-1 text-lg ${i % 3 === 0 ? "text-white/80" : "text-gris"}`}>{t.resumen}</p>

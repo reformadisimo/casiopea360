@@ -113,12 +113,14 @@ export type Trabajo = {
   resumen: string;
   url: string;
   enlaceTexto: string;
+  logo?: { src: string; ancho: number; alto: number };
   publicado: boolean; // false = preparado, pero oculto hasta que el cliente dé el sí
 };
 
 export const TRABAJOS: Trabajo[] = [
   {
     nombre: "Reformadísimo",
+    logo: { src: "/logos/reformadisimo.png", ancho: 687, alto: 187 },
     sector: "Reformas integrales en Madrid",
     resumen:
       "Nuestra propia empresa, desde 2012 y con más de 1.150 obras. Web con calculadoras de precio, una asistente con inteligencia artificial que atiende por voz y medición completa.",
@@ -128,6 +130,7 @@ export const TRABAJOS: Trabajo[] = [
   },
   {
     nombre: "Mi Estela",
+    logo: { src: "/logos/mi-estela.png", ancho: 240, alto: 240 },
     sector: "App familiar para iPhone y Android",
     resumen:
       "De la idea a la App Store y Google Play en unos 120 días, con suscripción de pago. Mapa en tiempo real, avisos de llegada, chat, llamadas, asistente con IA y 17 idiomas.",
@@ -137,6 +140,7 @@ export const TRABAJOS: Trabajo[] = [
   },
   {
     nombre: "AMS Cerramientos",
+    logo: { src: "/logos/ams.png", ancho: 640, alto: 214 },
     sector: "Ventanas y cerramientos",
     resumen:
       "Web con configurador que da el precio al momento, páginas por zona y una velocidad en el móvil que pasó de 56 a 94 sobre 100.",
@@ -146,6 +150,7 @@ export const TRABAJOS: Trabajo[] = [
   },
   {
     nombre: "Tierno Centella",
+    logo: { src: "/logos/tierno-centella.png", ancho: 500, alto: 148 },
     sector: "Despacho de abogados laboralistas",
     resumen:
       "Catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés. La velocidad en el móvil pasó de 49 a 94 sobre 100.",
