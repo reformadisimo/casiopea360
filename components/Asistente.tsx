@@ -44,7 +44,14 @@ export default function Asistente() {
       visto = sessionStorage.getItem("casiopea-burbuja") === "1";
     } catch {}
     if (visto) return;
-    const t = setTimeout(() => setBurbuja(true), 20000);
+    // Si el aviso de cookies sigue en pantalla, espera a que lo cierren para no taparlo.
+    let t: ReturnType<typeof setTimeout>;
+    const intentar = () => {
+      const aviso = document.querySelector<HTMLElement>("[data-aviso-cookies]");
+      if (aviso && aviso.offsetParent !== null) t = setTimeout(intentar, 4000);
+      else setBurbuja(true);
+    };
+    t = setTimeout(intentar, 20000);
     return () => clearTimeout(t);
   }, []);
   const quitarBurbuja = () => {
