@@ -2,7 +2,7 @@ import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 
 // Franja de título de las páginas interiores: texto a la izquierda y un vídeo con personas o luz a la derecha.
-// En el móvil, el vídeo queda de fondo, suave, detrás del texto.
+// En el móvil, el vídeo va debajo del texto, en su tarjeta y bien visible.
 export default function CabeceraPagina({
   titulo,
   entradilla,
@@ -22,11 +22,6 @@ export default function CabeceraPagina({
         <VideoFondo nombre="constelaciones" alt="" prioridad />
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche via-noche/85 to-noche/50" />
-      {video && (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30 lg:hidden">
-          <VideoFondo nombre={video} alt="" />
-        </div>
-      )}
       <div className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 ${video ? "lg:grid-cols-[1.15fr_1fr]" : ""}`}>
         <div>
           <nav aria-label="Estás aquí" className="text-sm text-white/65">
@@ -51,9 +46,9 @@ export default function CabeceraPagina({
           {entradilla && <p className="mt-5 max-w-2xl text-lg text-white/80 sm:text-xl">{entradilla}</p>}
         </div>
         {video && (
-          <div className="relative hidden lg:block">
+          <div className="relative mt-2 lg:mt-0">
             <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] ring-1 ring-white/15">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.6rem] ring-1 ring-white/15 lg:aspect-[4/3] lg:rounded-[2rem]">
               <VideoFondo nombre={video} alt={videoAlt} />
             </div>
             <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
