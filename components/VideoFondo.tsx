@@ -101,7 +101,8 @@ export default function VideoFondo({
         alt=""
         aria-hidden="true"
         loading={prioridad ? "eager" : "lazy"}
-        fetchPriority={prioridad ? "high" : "auto"}
+          // La foto de cabecera es decoración: se pide pronto pero sin quitar ancho de banda al texto.
+        fetchPriority={prioridad ? "low" : "auto"}
         decoding="async"
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
         />

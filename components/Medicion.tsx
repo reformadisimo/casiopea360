@@ -15,7 +15,9 @@ type Eleccion = "aceptadas" | "rechazadas" | null;
 
 export default function Medicion() {
   const [eleccion, setEleccion] = useState<Eleccion>(null);
-  const [visible, setVisible] = useState(false);
+  // El aviso viene ya pintado desde el servidor (así no aparece de golpe más tarde);
+  // si ya se decidió, un script en <head> lo oculta antes de pintar.
+  const [visible, setVisible] = useState(true);
   const [detalle, setDetalle] = useState(false);
   // El aviso sale siempre; las herramientas solo se cargan si tienen su código y el visitante acepta.
   const hayMedicion = true;
@@ -29,6 +31,7 @@ export default function Medicion() {
     setEleccion(guardada);
     setVisible(!guardada);
     const abrir = () => {
+      document.documentElement.classList.remove("cookies-decididas");
       setDetalle(true);
       setVisible(true);
     };
@@ -62,7 +65,7 @@ export default function Medicion() {
         </Script>
       )}
       {visible && (
-        <div role="dialog" aria-live="polite" aria-label="Aviso de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-3xl bg-white p-5 text-tinta shadow-[0_24px_60px_-12px_rgba(14,26,61,0.45)] ring-1 ring-linea sm:p-6">
+        <div data-aviso-cookies role="dialog" aria-live="polite" aria-label="Aviso de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-3xl bg-white p-5 text-tinta shadow-[0_24px_60px_-12px_rgba(14,26,61,0.45)] ring-1 ring-linea sm:p-6">
           <p className="font-extrabold">¿Nos dejas medir cómo se usa la web?</p>
           <p className="mt-1 text-sm text-gris">
             Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity) solo si aceptas. Nos sirven para saber qué funciona y mejorar la web. <Link href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.

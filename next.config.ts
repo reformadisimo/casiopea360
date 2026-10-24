@@ -11,6 +11,8 @@ const seguridad = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // El CSS va dentro del HTML: una petición menos que bloquee el primer pintado.
+  experimental: { inlineCss: true },
   async headers() {
     return [{ source: "/:path*", headers: seguridad }];
   },

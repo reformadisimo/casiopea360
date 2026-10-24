@@ -12,7 +12,7 @@ import { schemaOrganizacion, schemaWeb } from "@/lib/schema";
 
 const titular = localFont({
   // Una sola fuente variable para todos los grosores: un archivo en lugar de cuatro.
-  src: [{ path: "./fonts/schibsted-grotesk-latin-wght-normal.woff2", weight: "400 900", style: "normal" }],
+  src: [{ path: "./fonts/schibsted-grotesk-latin-wght-normal.woff2", weight: "400 800", style: "normal" }],
   variable: "--font-schibsted",
   display: "swap",
 });
@@ -42,7 +42,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={titular.variable}>
+    <html lang="es" className={titular.variable} suppressHydrationWarning>
+      <head>
+        {/* Si ya se eligió sobre las cookies, se oculta el aviso antes de pintar nada. */}
+        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('casiopea-cookies'))document.documentElement.classList.add('cookies-decididas')}catch(e){}" }} />
+      </head>
       <body>
         <a
           href="#contenido"
