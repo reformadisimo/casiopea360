@@ -410,16 +410,93 @@ export const DOLORES = [
 ];
 
 // Qué incluye el estudio gratuito (sacado de las guías de AMS y Tierno Centella).
-export const ESTUDIO = [
-  { titulo: "Tu situación en cinco minutos", texto: "Un resumen claro y un semáforo por áreas: qué está en verde, qué en ámbar y qué en rojo." },
-  { titulo: "Tu web, a examen", texto: "Velocidad en el móvil, fallos y todo lo que hoy te hace perder clientes." },
-  { titulo: "Cómo te encuentran en Google", texto: "Qué buscan tus clientes, dónde sales tú y dónde sale tu competencia." },
-  { titulo: "Qué dicen de ti las IA", texto: "Preguntamos a ChatGPT y a Gemini lo que preguntaría un cliente, y vemos si te recomiendan." },
-  { titulo: "Tu ficha de Google y tus reseñas", texto: "Tu nota, las reseñas sin contestar y lo que haría falta para subir." },
-  { titulo: "Tu competencia y sus anuncios", texto: "Quién te gana y por qué, y qué anuncios están pagando, con datos públicos." },
-  { titulo: "Lo que haríamos", texto: "Cada problema con su solución, un plan de 30 días y cuánto tarda en notarse." },
-  { titulo: "La portada de tu web nueva", texto: "Para que veas, antes de decidir nada, cómo podría ser." },
+// Lo que incluye el estudio gratuito (según las guías reales de AMS y Tierno, 24 oct 2026).
+// caso: true = «según tu caso», no se hace en todos los estudios.
+export type BloqueEstudio = { titulo: string; icono: string; color: string; items: { t: string; caso?: boolean }[] };
+export const ESTUDIO_BLOQUES: BloqueEstudio[] = [
+  {
+    titulo: "Dónde estás hoy",
+    icono: "lupa",
+    color: "#1d4ed8",
+    items: [
+      { t: "Lo esencial en un minuto: tu situación con un semáforo por áreas" },
+      { t: "Cómo te encuentra hoy un cliente: qué busca, qué ve, cómo compara y por qué elige" },
+      { t: "Lo que ya tienes y vale mucho" },
+      { t: "Tu web actual a examen: velocidad en el móvil, fallos y qué mejorar" },
+      { t: "Cómo te ve Google y si las IA te recomiendan" },
+      { t: "Tu ficha de Google y tus reseñas: tu nota, las que están sin contestar y qué falta para subir" },
+      { t: "Por qué se te escapan clientes" },
+      { t: "¿Tienes tú las llaves de todo? De quién son tu dominio, tu web y tus cuentas" },
+    ],
+  },
+  {
+    titulo: "Tu competencia, sin secretos",
+    icono: "estrella",
+    color: "#6d28d9",
+    items: [
+      { t: "Tus competidores en tu zona: quién gana y por qué" },
+      { t: "Sus anuncios reales en Google y en redes: qué hacen bien y qué no copiaríamos" },
+      { t: "Portales y redes: dónde estás, dónde deberías estar y dónde no merece la pena" },
+    ],
+  },
+  {
+    titulo: "Tu web, rediseñada",
+    icono: "pincel",
+    color: "#be185d",
+    items: [
+      { t: "Propuesta de rediseño completo: maquetas de tu portada y tus páginas clave en el móvil" },
+      { t: "El mapa de tu web nueva: todas las páginas que tendría, también por zona o por servicio" },
+      { t: "Tu asistente con IA: cómo atendería a tus clientes a cualquier hora" },
+      { t: "Calculadora o configurador de precios", caso: true },
+      { t: "Tu imagen y tu logo: si conviene retocarlos y cómo", caso: true },
+      { t: "Cómo se haría el cambio sin perder lo ganado en Google" },
+    ],
+  },
+  {
+    titulo: "Anuncios y contactos",
+    icono: "euro",
+    color: "#047857",
+    items: [
+      { t: "Tus anuncios hoy, el borrador de los nuevos y adónde llega el cliente después del clic" },
+      { t: "Dónde se va cada euro que inviertes y cuánto te cuesta cada cliente" },
+      { t: "WhatsApp de empresa y respuestas automáticas, para que no se te escape nadie" },
+      { t: "Tu CRM a medida, o cómo conectar el que ya usas", caso: true },
+      { t: "El camino del cliente: del primer clic hasta que firma, con su seguimiento" },
+    ],
+  },
+  {
+    titulo: "Tu plan",
+    icono: "calendario",
+    color: "#b45309",
+    items: [
+      { t: "Calendario de contenidos de tres meses, con los artículos ya titulados" },
+      { t: "Plan de los primeros 30 días, semana a semana" },
+      { t: "Cuánto tarda en notarse cada cosa, sin prometer magia" },
+      { t: "Lo que te costaría por separado frente a hacerlo con nosotros" },
+    ],
+  },
+  {
+    titulo: "Cómo trabajaríamos",
+    icono: "chat",
+    color: "#0f766e",
+    items: [
+      { t: "Qué recibirías cada día, cada semana y cada mes" },
+      { t: "Cómo pides un cambio: tan fácil como un WhatsApp" },
+      { t: "Los accesos que hacen falta, siempre a tu nombre, y las preguntas que te haríamos" },
+    ],
+  },
 ];
+export const ESTUDIO = ESTUDIO_BLOQUES.flatMap((b) => b.items.map((x) => ({ titulo: b.titulo, texto: x.t + (x.caso ? " (según tu caso)" : "") })));
+export const ESTUDIO_TOTAL = ESTUDIO_BLOQUES.reduce((n, b) => n + b.items.length, 0);
+
+// Cómo empezamos: del test de idoneidad a tu estudio.
+export const EMPEZAMOS: { t: string; d: string }[] = [
+  { t: "Haz el test de idoneidad", d: "Dos minutos: nos cuentas tu empresa y en qué momento estás." },
+  { t: "Lo revisamos", d: "Si vemos que podemos ayudarte de verdad, te lo decimos en 48 horas laborables. Y si no, también, con el porqué." },
+  { t: "Preparamos tu estudio gratuito", d: "Tu plan completo, hecho a medida, con la propuesta de rediseño de tu web." },
+  { t: "Te lo presentamos y decides", d: "Con calma, en una videollamada o como prefieras. Y sin ningún compromiso." },
+];
+
 
 // Más cosas que entran en la cuota, para la visión 360 (decidido por Ig el 24 oct 2026).
 export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: string }[] = [

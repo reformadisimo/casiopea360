@@ -12,7 +12,9 @@ import MovilParte from "@/components/MovilParte";
 import DiagnosticoDiferido from "@/components/DiagnosticoDiferido";
 import {
   DOLORES,
-  ESTUDIO,
+  ESTUDIO_BLOQUES,
+  ESTUDIO_TOTAL,
+  EMPEZAMOS,
   FRENTES,
   GARANTIAS,
   INFORMES,
@@ -1203,22 +1205,101 @@ export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boo
 }
 
 /* Qué incluye el estudio gratuito. */
+/* Cómo empezamos: test de idoneidad, revisión, estudio y decisión. */
+export function SeccionEmpezamos({ base = "" }: { base?: string }) {
+  const colores = ["#1d4ed8", "#6d28d9", "#be185d", "#047857"];
+  return (
+    <section id="como-empezamos" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Cómo empezamos</p>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son dos minutos.</h2>
+        <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {EMPEZAMOS.map((x, i) => (
+            <li key={x.t} className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
+              <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-2xl text-xl font-extrabold text-white shadow-md" style={{ background: colores[i] }}>{i + 1}</span>
+              <h3 className="mt-4 text-xl font-extrabold">{x.t}</h3>
+              <p className="mt-2 text-gris">{x.d}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link href={`${base}#solicitud`} className={BOTON}>Hacer el test de idoneidad</Link>
+          <Link href={`${base}#estudio`} className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Todo lo que incluye el estudio gratuito. */
 export function SeccionEstudio() {
   return (
-    <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
-      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu estudio gratuito, a medida.</h2>
-      <p className="mt-5 max-w-2xl text-lg text-gris">Lo preparamos uno a uno, para tu empresa, con datos reales y fechados. Esto es lo que incluye.</p>
-      <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {ESTUDIO.map((e, i) => (
-          <li key={e.titulo} className={`group relative overflow-hidden rounded-3xl p-6 transition-all hover:-translate-y-1 ${i === ESTUDIO.length - 1 ? "bg-noche text-white" : "bg-white shadow-sm ring-1 ring-linea"}`}>
-            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1" style={{ background: ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#ef4444", "#ffc53d"][i % 8] }} />
-            <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-2xl text-lg font-extrabold text-white shadow-md transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ background: ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#ef4444", "#d99a00"][i % 8] }}>{i + 1}</span>
-            <h3 className="mt-4 text-xl font-extrabold">{e.titulo}</h3>
-            <p className={`mt-2 ${i === ESTUDIO.length - 1 ? "text-white/80" : "text-gris"}`}>{e.texto}</p>
+    <section id="estudio" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
+      <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu estudio gratuito</p>
+      <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No es un informe. Es tu plan completo.</h2>
+      <p className="mt-5 max-w-3xl text-lg text-gris sm:text-xl">
+        {ESTUDIO_TOTAL} apartados hechos a medida para tu empresa, con datos reales y fechados, y la propuesta de rediseño completo de tu web. Por eso no se lo hacemos a todo el mundo.
+      </p>
+      <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {ESTUDIO_BLOQUES.map((b, k) => (
+          <div key={b.titulo} className="relative overflow-hidden rounded-[1.8rem] bg-white p-6 shadow-sm ring-1 ring-linea sm:p-7">
+            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: b.color }} />
+            <div className="flex items-center gap-3">
+              <span aria-hidden="true" className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-md ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: b.color }}>
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[b.icono]}</svg>
+              </span>
+              <h3 className="text-xl font-extrabold">{b.titulo}</h3>
+            </div>
+            <ul className="mt-5 space-y-2.5">
+              {b.items.map((x) => (
+                <li key={x.t} className="flex gap-2.5 text-[0.98rem]">
+                  <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full" style={{ background: b.color }} />
+                  <span>
+                    {x.t}
+                    {x.caso && <span className="ml-1.5 whitespace-nowrap rounded-full bg-niebla px-2 py-0.5 text-xs font-bold text-gris">según tu caso</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">
+        <p className="text-xl font-extrabold sm:text-2xl">
+          Es una guía viva: se actualiza mientras la comentamos contigo. <span className="text-estrella">En una consultora, esto es un proyecto de pago. Para las empresas que encajan, es nuestro regalo.</span>
+        </p>
+        <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
+      </div>
+    </section>
+  );
+}
+
+/* «¿Quieres ver ejemplos?»: las cuatro webs que enseñamos por ahora. */
+export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
+  const lista = [
+    { n: "Reformadísimo", d: "Reformas integrales", url: "https://www.reformadisimo.es" },
+    { n: "AMS Cerramientos", d: "Ventanas y cerramientos", url: "https://ams-cerramientos-ejemplo.vercel.app" },
+    { n: "Tierno Centella", d: "Abogados laboralistas", url: "https://tierno-centella-web.vercel.app" },
+    { n: "Mi Estela", d: "App para iPhone y Android", url: "https://miestela.app" },
+  ];
+  return (
+    <div className={`mt-8 rounded-[1.8rem] p-6 ${claro ? "bg-niebla" : "bg-white/[0.07] ring-1 ring-white/15"}`}>
+      <p className="text-lg font-extrabold">¿Quieres ver ejemplos de nuestros trabajos?</p>
+      <p className={`mt-1 text-sm ${claro ? "text-gris" : "text-white/75"}`}>Entra y pruébalos: están funcionando hoy.</p>
+      <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+        {lista.map((x) => (
+          <li key={x.n}>
+            <a href={x.url} target="_blank" rel="noopener" className={`flex items-center justify-between gap-3 rounded-2xl px-4 py-3 font-bold transition-colors ${claro ? "bg-white ring-1 ring-linea hover:ring-noche" : "bg-white/10 hover:bg-white/20"}`}>
+              <span>
+                {x.n}
+                <span className={`block text-xs font-normal ${claro ? "text-gris" : "text-white/70"}`}>{x.d}</span>
+              </span>
+              <span aria-hidden="true" className="text-estrella">↗</span>
+            </a>
           </li>
         ))}
-      </ol>
-    </section>
+      </ul>
+    </div>
   );
 }
 
@@ -1228,16 +1309,15 @@ export function SeccionSolicitud() {
     <section id="solicitud" className="scroll-mt-24 bg-noche py-20 text-white sm:py-28">
       <div className={`${ENVOLTORIO} grid gap-12 lg:grid-cols-[0.9fr_1.1fr]`}>
         <div>
-          <h2 className="text-4xl font-extrabold sm:text-5xl">Solicita tu estudio gratuito.</h2>
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Paso 1 · Dos minutos</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
             Prepararlo es mucho trabajo, así que no lo hacemos a todo el mundo: solo a empresas a las que creemos que podemos ayudar de verdad y con las que podríamos acabar trabajando juntos.
           </p>
           <p className="mt-4 text-lg text-white/80">
-            Cuéntanos un poco de tu empresa. Analizamos cada caso con calma y te escribimos siempre: si vemos que podemos ayudarte, para preparar tu estudio; y si creemos que no somos lo que necesitas, también, y te explicamos por qué.
+            Cuéntanos un poco de tu empresa y de tu momento. Analizamos cada caso con calma y te escribimos siempre: si vemos que podemos ayudarte, para preparar tu estudio; y si creemos que no somos lo que necesitas, también, y te explicamos por qué.
           </p>
-          <div className="mt-8 hidden overflow-hidden rounded-[2rem] lg:block">
-            <div className="aspect-[16/10]"><VideoFondo nombre="mujer-cielo" alt="Una persona mira al cielo de noche" /></div>
-          </div>
+          <EjemplosTrabajos />
         </div>
         <DiagnosticoDiferido />
       </div>

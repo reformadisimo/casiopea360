@@ -8,6 +8,7 @@ import {
   CintaHerramientas,
   ENVOLTORIO,
   SeccionEstudio,
+  SeccionEmpezamos,
   SeccionFrentes,
   SeccionEspecialistas,
   SeccionCRM,
@@ -82,6 +83,7 @@ export default function Inicio() {
       <SeccionTrabajos />
       <SeccionParte />
       <SeccionPreguntas todas={false} />
+      <SeccionEmpezamos />
       <SeccionEstudio />
       <SeccionSolicitud />
     </>

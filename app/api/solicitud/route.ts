@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const remitente = process.env.SOLICITUD_REMITENTE;
   if (!clave || !destino || !remitente) return NextResponse.json({ ok: false, configurado: false }, { status: 503 });
 
-  let datos: { texto?: string; correo?: string; nombre?: string; trampa?: string };
+  let datos: { texto?: string; correo?: string; nombre?: string; trampa?: string; encaje?: string };
   try {
     datos = await req.json();
   } catch {
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       body: JSON.stringify(cuerpo),
     });
 
-  const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `Solicitud de estudio gratuito: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto });
+  const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test de idoneidad: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto });
   if (!aviso.ok) return NextResponse.json({ ok: false }, { status: 502 });
 
   // Acuse de recibo al solicitante: siempre contestamos, encaje o no.
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     from: remitente,
     to: [correo],
     subject: "Hemos recibido tu solicitud · Casiopea 360",
-    text: `Hola${datos.nombre ? " " + String(datos.nombre).split(" ")[0] : ""}:\n\nGracias por pedir tu estudio gratuito. Lo hemos recibido y te contestamos personalmente en un máximo de 48 horas laborables, encaje o no tu empresa con lo que hacemos.\n\nUn saludo,\nEl equipo de Casiopea 360`,
+    text: `Hola${datos.nombre ? " " + String(datos.nombre).split(" ")[0] : ""}:\n\nGracias por hacer el test de idoneidad. Lo hemos recibido y te contestamos en un máximo de 48 horas laborables, encaje o no tu empresa con lo que hacemos.\n\nMientras tanto, puedes ver algunos de nuestros trabajos:\n- Reformadísimo: https://www.reformadisimo.es\n- AMS Cerramientos: https://ams-cerramientos-ejemplo.vercel.app\n- Tierno Centella: https://tierno-centella-web.vercel.app\n- Mi Estela: https://miestela.app\n\nUn saludo,\nEl equipo de Casiopea 360`,
   }).catch(() => null);
 
   return NextResponse.json({ ok: true });

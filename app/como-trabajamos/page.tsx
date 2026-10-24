@@ -1,7 +1,7 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte } from "@/components/secciones";
+import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -22,6 +22,7 @@ export default function ComoTrabajamos() {
         video="mano-pantalla"
         videoAlt="Una mano toca una pantalla luminosa"
       />
+      <SeccionEmpezamos base="/estudio-gratuito" />
       <SeccionMetodo />
       <FranjaVideos
         frase="Casi todo por correo. Cero reuniones que no quieras."
