@@ -78,7 +78,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
           </Fragment>
         ))}
         <p>
-          <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test en un minuto</Link>.
+          <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test de idoneidad</Link>.
         </p>
       </article>
       <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6">

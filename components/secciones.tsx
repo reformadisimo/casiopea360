@@ -1283,6 +1283,7 @@ export function SeccionEstudioResumen() {
           </li>
         ))}
       </ul>
+      <MuestraEstudio />
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
         <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
@@ -1327,6 +1328,35 @@ export function SeccionSaberMas() {
   );
 }
 
+/* Muestra de cómo es por dentro un estudio (guía de ejemplo de un despacho inventado, difuminada). */
+export function MuestraEstudio() {
+  const pags = [
+    { src: "/marca/muestra-1.webp", t: "La portada de tu guía" },
+    { src: "/marca/muestra-2.webp", t: "Tu situación, con semáforo" },
+    { src: "/marca/muestra-3.webp", t: "Tu web, rediseñada" },
+    { src: "/marca/muestra-4.webp", t: "Tus anuncios frente a tu competencia" },
+  ];
+  return (
+    <div className="mt-12">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="text-sm font-bold text-noche-3">Así es por dentro</p>
+          <p className="mt-1 text-2xl font-extrabold sm:text-3xl">Un vistazo a una guía de ejemplo.</p>
+        </div>
+        <p className="text-sm text-gris">Guía de ejemplo de un despacho ficticio. El tuyo, con tus datos.</p>
+      </div>
+      <ul className="carrusel mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {pags.map((x, i) => (
+          <li key={x.src} className={`overflow-hidden rounded-[1.4rem] bg-white shadow-[0_20px_40px_-24px_rgba(14,26,61,0.55)] ring-1 ring-linea transition-transform hover:-translate-y-1 ${i % 2 ? "lg:rotate-1" : "lg:-rotate-1"}`}>
+            <Image src={x.src} alt={`Guía de ejemplo: ${x.t.toLowerCase()}`} width={720} height={608} className="h-auto w-full" />
+            <p className="px-4 py-3 text-sm font-bold">{x.t}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /* Todo lo que incluye el estudio gratuito. */
 export function SeccionEstudio() {
   return (
@@ -1360,6 +1390,7 @@ export function SeccionEstudio() {
           </div>
         ))}
       </div>
+      <MuestraEstudio />
       <div className="mt-8 grid gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <p className="text-sm font-bold uppercase tracking-wide">Tu inversión, optimizada al máximo</p>
@@ -1425,17 +1456,15 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
 export function SeccionSolicitud() {
   return (
     <section id="solicitud" className="scroll-mt-24 bg-noche py-20 text-white sm:py-28">
-      <div className={`${ENVOLTORIO} grid gap-12 lg:grid-cols-[0.9fr_1.1fr]`}>
-        <div>
-          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Paso 1 · Dos minutos</p>
+      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
+        <div className="lg:sticky lg:top-28">
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Unos 4 minutos · Una pregunta cada vez</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
-            Prepararlo es mucho trabajo, así que no lo hacemos a todo el mundo: solo a empresas a las que creemos que podemos ayudar de verdad y con las que podríamos acabar trabajando juntos.
+            Preparar un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar de verdad. Contesta tocando, sin escribir, y al final te damos tu nota.
           </p>
-          <p className="mt-4 text-lg text-white/80">
-            Cuéntanos un poco de tu empresa y de tu momento. Analizamos cada caso con calma y te escribimos siempre: si vemos que podemos ayudarte, para preparar tu estudio; y si creemos que no somos lo que necesitas, también, y te explicamos por qué.
-          </p>
-          <EjemplosTrabajos />
+          <p className="mt-4 text-lg text-white/80">Te escribimos siempre: si encajas, para preparar tu estudio; y si no, también, con el porqué.</p>
+          <div className="hidden lg:block"><EjemplosTrabajos /></div>
         </div>
         <DiagnosticoDiferido />
       </div>
@@ -1456,7 +1485,7 @@ export function LlamadaFinal() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/estudio-gratuito" className={BOTON}>Solicitar estudio</Link>
-            <Link href="/test" className={BOTON_CLARO}>Hacer el test</Link>
+            <Link href="/test" className={BOTON_CLARO}>Hacer el test de idoneidad</Link>
           </div>
         </div>
       </div>
