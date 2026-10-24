@@ -165,7 +165,7 @@ export const TRABAJOS: Trabajo[] = [
 
 export const PASOS = [
   {
-    titulo: "Diagnóstico gratis",
+    titulo: "Estudio gratuito",
     texto: "Miramos tu web, tu ficha de Google, tus anuncios y tu competencia. Con datos y fechas, sin rodeos.",
   },
   {
@@ -245,7 +245,7 @@ export const GARANTIAS = [
 export const PREGUNTAS = [
   {
     p: "Ya tengo web. ¿Hay que tirarla?",
-    r: "No necesariamente. En el diagnóstico te decimos qué vale y qué no. Si cambiamos de web, redirigimos todas las direcciones antiguas para que no pierdas lo que ya tienes en Google.",
+    r: "No necesariamente. En el estudio gratuito te decimos qué vale y qué no. Si cambiamos de web, redirigimos todas las direcciones antiguas para que no pierdas lo que ya tienes en Google.",
   },
   {
     p: "Me lo lleva un sobrino, o un conocido. ¿Para qué cambiar?",
@@ -257,7 +257,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto cuesta?",
-    r: "Depende de lo que necesite tu negocio, así que el precio es personalizado. Empieza por el diagnóstico gratis: te decimos qué haríamos y cuánto costaría, sin compromiso.",
+    r: "Depende de lo que necesite tu negocio, así que el precio es personalizado. Empieza por el estudio gratuito: te decimos qué haríamos y cuánto costaría, sin compromiso.",
   },
   {
     p: "¿Cuánto tarda en notarse?",
@@ -307,4 +307,16 @@ export const DOLORES = [
     dolor: "Me paso el día en reuniones con proveedores.",
     solucion: "Un solo interlocutor y casi todo por correo. Te quitamos el menor tiempo posible.",
   },
+];
+
+// Qué incluye el estudio gratuito (sacado de las guías de AMS y Tierno Centella).
+export const ESTUDIO = [
+  { titulo: "Tu situación en cinco minutos", texto: "Un resumen claro y un semáforo por áreas: qué está en verde, qué en ámbar y qué en rojo." },
+  { titulo: "Tu web, a examen", texto: "Velocidad en el móvil, fallos y todo lo que hoy te hace perder clientes." },
+  { titulo: "Cómo te encuentran en Google", texto: "Qué buscan tus clientes, dónde sales tú y dónde sale tu competencia." },
+  { titulo: "Qué dicen de ti las IA", texto: "Preguntamos a ChatGPT y a Gemini lo que preguntaría un cliente, y vemos si te recomiendan." },
+  { titulo: "Tu ficha de Google y tus reseñas", texto: "Tu nota, las reseñas sin contestar y lo que haría falta para subir." },
+  { titulo: "Tu competencia y sus anuncios", texto: "Quién te gana y por qué, y qué anuncios están pagando, con datos públicos." },
+  { titulo: "Lo que haríamos", texto: "Cada problema con su solución, un plan de 30 días y cuánto tarda en notarse." },
+  { titulo: "La portada de tu web nueva", texto: "Para que veas, antes de decidir nada, cómo podría ser." },
 ];

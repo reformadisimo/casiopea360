@@ -4,7 +4,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
-import { DOLORES, FRENTES, OFICIOS, TRABAJOS, PASOS, PLAZOS, INFORMES, GARANTIAS, PREGUNTAS } from "@/lib/contenido";
+import { DOLORES, ESTUDIO, FRENTES, OFICIOS, TRABAJOS, PASOS, PLAZOS, INFORMES, GARANTIAS, PREGUNTAS } from "@/lib/contenido";
 
 const BOTON =
   "inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
@@ -41,7 +41,7 @@ export default function Inicio() {
             <a href="#preguntas" className="hover:text-white">Preguntas</a>
           </nav>
           <a href="#diagnostico" className="rounded-full bg-estrella px-4 py-2 text-sm font-bold text-tinta hover:bg-estrella-2 sm:px-5">
-            Diagnóstico gratis
+            Estudio gratuito
           </a>
         </div>
       </header>
@@ -64,7 +64,7 @@ export default function Inicio() {
                 Web, apps, Google, anuncios, redes y automatizaciones para tu empresa. Todo a tu nombre, y cada día sabes qué hemos hecho por tu negocio.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href="#diagnostico" className={BOTON}>Pide tu diagnóstico gratis</a>
+                <a href="#diagnostico" className={BOTON}>Solicita tu estudio gratuito</a>
                 <a href="#trabajos" className="inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-3.5 font-bold text-white hover:border-white">
                   Ver trabajos reales
                 </a>
@@ -370,13 +370,33 @@ export default function Inicio() {
           </div>
         </section>
 
-        {/* Diagnóstico */}
+        {/* Qué incluye el estudio gratuito */}
+        <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
+          <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Tu estudio gratuito, a medida.</h2>
+          <p className="mt-5 max-w-2xl text-lg text-gris">
+            Lo preparamos a mano, para tu empresa, con datos reales y fechados. Esto es lo que incluye.
+          </p>
+          <ol className="mt-12 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            {ESTUDIO.map((e) => (
+              <li key={e.titulo} className="rounded-3xl border border-linea p-6">
+                <span aria-hidden="true" className="block h-3 w-3 rounded-full bg-estrella shadow-[0_0_0_5px_rgba(255,197,61,0.25)]" />
+                <h3 className="mt-4 text-xl font-extrabold">{e.titulo}</h3>
+                <p className="mt-2 text-gris">{e.texto}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* Test de idoneidad */}
         <section id="diagnostico" className="scroll-mt-6 bg-noche py-20 text-white sm:py-28">
           <div className={`${ENVOLTORIO} grid gap-12 lg:grid-cols-[0.9fr_1.1fr]`}>
             <div>
-              <h2 className="text-4xl font-extrabold sm:text-5xl">Empieza por un diagnóstico gratis.</h2>
+              <h2 className="text-4xl font-extrabold sm:text-5xl">Solicita tu estudio gratuito.</h2>
               <p className="mt-5 text-lg text-white/80">
-                Miramos tu web, tu ficha de Google, tus anuncios y tu competencia, y te lo contamos claro: qué funciona, qué no y qué haríamos. Sin compromiso.
+                Prepararlo es mucho trabajo, así que no lo hacemos a todo el mundo: solo a empresas a las que creemos que podemos ayudar de verdad y con las que podríamos acabar trabajando juntos.
+              </p>
+              <p className="mt-4 text-lg text-white/80">
+                Cuéntanos un poco de tu empresa. Lo revisamos y te llamamos lo antes posible para ver si encaja.
               </p>
               <div className="mt-8 hidden overflow-hidden rounded-3xl lg:block">
                 <div className="aspect-[16/10]"><VideoFondo nombre="llamada-sonrisa" alt="Un hombre sonríe mientras lee su móvil" /></div>
