@@ -17,5 +17,5 @@ export default function DiagnosticoDiferido() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
-  return <div ref={ref} className="min-h-[1170px] sm:min-h-[900px]">{ver && <TestIdoneidad />}</div>;
+  return <div ref={ref} className={ver ? "" : "min-h-[1170px] sm:min-h-[900px]"}>{ver && <TestIdoneidad />}</div>;
 }
