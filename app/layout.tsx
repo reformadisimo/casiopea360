@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Versionante from "@/components/Versionante";
+import Cabecera from "@/components/Cabecera";
+import Pie from "@/components/Pie";
+import DatosEstructurados from "@/components/DatosEstructurados";
+import { SITIO } from "@/lib/navegacion";
+import { schemaOrganizacion, schemaWeb } from "@/lib/schema";
 
 const titular = localFont({
   src: [
@@ -14,12 +19,25 @@ const titular = localFont({
   display: "swap",
 });
 
-
 export const metadata: Metadata = {
-  title: "Casiopea 360 · Todo tu marketing digital, con un solo equipo",
-  description:
-    "Web, apps, Google, anuncios, redes y automatizaciones para tu empresa, con un solo proveedor. Todo a tu nombre y un parte cada día.",
-  robots: { index: false, follow: false },
+  metadataBase: new URL(SITIO.url),
+  title: {
+    default: "Casiopea 360 · Todo tu marketing digital, con un solo equipo",
+    template: "%s · Casiopea 360",
+  },
+  description: SITIO.descripcion,
+  applicationName: SITIO.nombre,
+  alternates: { canonical: "/" },
+  robots: SITIO.indexable ? { index: true, follow: true } : { index: false, follow: false },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: SITIO.nombre,
+    title: "Casiopea 360 · Todo tu marketing digital, con un solo equipo",
+    description: SITIO.descripcion,
+    images: [{ url: "/video/constelaciones.jpg", width: 1280, height: 720, alt: "Constelación de Casiopea" }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
@@ -28,7 +46,16 @@ export default function RootLayout({
   return (
     <html lang="es" className={titular.variable}>
       <body>
-        {children}
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2"
+        >
+          Saltar al contenido
+        </a>
+        <DatosEstructurados datos={[schemaOrganizacion(), schemaWeb()]} />
+        <Cabecera />
+        <main id="contenido">{children}</main>
+        <Pie />
         <Versionante />
       </body>
     </html>

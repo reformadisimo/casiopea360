@@ -141,7 +141,7 @@ export const TRABAJOS: Trabajo[] = [
       "Web con configurador que da el precio al momento, páginas por zona y una velocidad en el móvil que pasó de 56 a 94 sobre 100.",
     url: "https://ams-cerramientos-ejemplo.vercel.app",
     enlaceTexto: "Ver la web",
-    publicado: false,
+    publicado: true,
   },
   {
     nombre: "Tierno Centella",
@@ -150,7 +150,7 @@ export const TRABAJOS: Trabajo[] = [
       "Catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés. La velocidad en el móvil pasó de 49 a 94 sobre 100.",
     url: "https://tierno-centella-web.vercel.app",
     enlaceTexto: "Ver la web",
-    publicado: false,
+    publicado: true,
   },
   {
     // PENDIENTE: web por hacer. Texto provisional hasta que exista.
@@ -295,10 +295,7 @@ export const DOLORES = [
     dolor: "Me escriben de noche y cuando contesto ya es tarde.",
     solucion: "Un asistente atiende a cualquier hora y te avisa con todo apuntado.",
   },
-  {
-    dolor: "Tengo pocas reseñas, y alguna mala sin contestar.",
-    solucion: "Respondemos todas con tu visto bueno y pedimos opinión a tus clientes contentos.",
-  },
+
   {
     dolor: "Encima me cobran un porcentaje de lo que invierto en anuncios.",
     solucion: "Precio fijo. Nunca cobramos comisión sobre tu inversión, sea la que sea.",

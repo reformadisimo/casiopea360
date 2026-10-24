@@ -15,7 +15,7 @@ export default function Logo({ claro = false }: { claro?: boolean }) {
           <circle key={`${x}-${y}`} cx={x} cy={y} r="2.6" fill="#ffc53d" />
         ))}
       </svg>
-      <span className="font-titular text-[1.2rem] font-extrabold tracking-tight" style={{ color }}>
+      <span className="whitespace-nowrap font-titular text-[1.2rem] font-extrabold tracking-tight" style={{ color }}>
         Casiopea<span className="font-medium"> 360</span>
       </span>
     </span>

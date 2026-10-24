@@ -104,3 +104,72 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
+@keyframes deslizar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Texto largo del blog y de las páginas legales. */
+.prosa {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-tinta);
+}
+.prosa > * + * {
+  margin-top: 1.25em;
+}
+.prosa h2 {
+  margin-top: 2.2em;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+.prosa h3 {
+  margin-top: 1.8em;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+.prosa ul,
+.prosa ol {
+  padding-left: 1.3em;
+}
+.prosa ul {
+  list-style: disc;
+}
+.prosa ol {
+  list-style: decimal;
+}
+.prosa li + li {
+  margin-top: 0.4em;
+}
+.prosa li::marker {
+  color: var(--color-noche-3);
+}
+.prosa a {
+  color: var(--color-noche-3);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prosa strong {
+  font-weight: 700;
+}
+.prosa blockquote {
+  border-left: 4px solid var(--color-estrella);
+  padding-left: 1em;
+  color: var(--color-gris);
+}
+.prosa table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+.prosa th,
+.prosa td {
+  border-bottom: 1px solid var(--color-linea);
+  padding: 0.6em 0.5em;
+  text-align: left;
+}

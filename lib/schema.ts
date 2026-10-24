@@ -1,0 +1,110 @@
+import { SITIO } from "@/lib/navegacion";
+import { FRENTES, PREGUNTAS } from "@/lib/contenido";
+
+// Datos de la empresa titular (los mismos que en el aviso legal).
+export const EMPRESA = {
+  razonSocial: "AYR GALIC CONSULTANTS, S.L.",
+  cif: "B83340430",
+  calle: "Calle Santiago Cordero, 1A",
+  cp: "28029",
+  ciudad: "Madrid",
+  registro:
+    "Inscrita en el Registro Mercantil de Madrid, tomo 17722, folio 165, sección octava, hoja M-305353, inscripción 1ª",
+  // PENDIENTE: correo propio de Casiopea cuando esté el dominio.
+  correo: "hola@casiopea360.es",
+};
+
+const url = (ruta = "/") => `${SITIO.url}${ruta}`;
+
+export function schemaOrganizacion() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": url("/#empresa"),
+    name: SITIO.nombre,
+    url: url("/"),
+    description: SITIO.descripcion,
+    logo: url("/icon.svg"),
+    image: url("/video/constelaciones.jpg"),
+    email: EMPRESA.correo,
+    legalName: EMPRESA.razonSocial,
+    taxID: EMPRESA.cif,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: EMPRESA.calle,
+      postalCode: EMPRESA.cp,
+      addressLocality: EMPRESA.ciudad,
+      addressCountry: "ES",
+    },
+    areaServed: { "@type": "Country", name: "España" },
+    knowsLanguage: "es",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Servicios de marketing digital 360",
+      itemListElement: FRENTES.map((f) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: f.nombre, description: f.frase },
+      })),
+    },
+  };
+}
+
+export function schemaWeb() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": url("/#web"),
+    name: SITIO.nombre,
+    url: url("/"),
+    inLanguage: "es-ES",
+    publisher: { "@id": url("/#empresa") },
+  };
+}
+
+export function schemaMigas(migas: { texto: string; ruta: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: migas.map((m, i) => ({ "@type": "ListItem", position: i + 1, name: m.texto, item: url(m.ruta) })),
+  };
+}
+
+export function schemaPreguntas() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: PREGUNTAS.map((q) => ({
+      "@type": "Question",
+      name: q.p,
+      acceptedAnswer: { "@type": "Answer", text: q.r },
+    })),
+  };
+}
+
+export function schemaServicios() {
+  return FRENTES.map((f) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: f.nombre,
+    description: `${f.frase} ${f.servicios.join(". ")}.`,
+    provider: { "@id": url("/#empresa") },
+    areaServed: { "@type": "Country", name: "España" },
+    url: url(`/servicios#${f.id}`),
+  }));
+}
+
+export function schemaArticulo(a: { titulo: string; descripcion: string; slug: string; fecha: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: a.titulo,
+    description: a.descripcion,
+    datePublished: a.fecha,
+    dateModified: a.fecha,
+    inLanguage: "es-ES",
+    mainEntityOfPage: url(`/blog/${a.slug}`),
+    image: url("/video/constelaciones.jpg"),
+    author: { "@type": "Organization", name: SITIO.nombre, url: url("/") },
+    publisher: { "@id": url("/#empresa") },
+  };
+}
