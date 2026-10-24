@@ -367,8 +367,9 @@ export function SeccionParte() {
             ))}
           </div>
           <p className="mt-6 max-w-xl text-white/70">
-            Además, tienes un enlace propio donde ves todos tus resultados en tiempo real, cuando quieras. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
+            Además, tienes tu propio panel de control, donde ves en tiempo real de dónde viene cada cliente, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
           </p>
+          <Link href="/panel" className={`${BOTON} mt-6 inline-flex`}>Ver un panel de ejemplo</Link>
         </div>
         <MovilParte />
       </div>

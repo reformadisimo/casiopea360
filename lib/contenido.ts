@@ -263,7 +263,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
-    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». Lo único que va aparte es la grabación de vídeo profesional y lo que inviertas en anuncios, que pagas tú directamente.",
+    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». El SEO también va incluido: muchas agencias lo cobran como cuota aparte. Solo va aparte lo que pagas directamente a otros: lo que inviertas en anuncios, la grabación de vídeo profesional y, si quieres, una nota de prensa o un artículo en un medio, que cobra el propio medio. Te lo proponemos con su precio y no se compra nada sin tu visto bueno.",
   },
   {
     p: "¿Cuánto cuesta?",
@@ -282,8 +282,12 @@ export const PREGUNTAS = [
     r: "Lo mínimo: quince minutos para darnos los accesos, unas fotos de tus trabajos y tu visto bueno a lo que salga en tu nombre. Del resto nos ocupamos nosotros.",
   },
   {
+    p: "¿Cómo sabré qué funciona?",
+    r: "Tendrás tu propio panel de control, en el móvil y en tiempo real: cuántos contactos y clientes llegan, de dónde viene cada uno (Google, un anuncio concreto, Instagram, el mapa, ChatGPT, un correo), lo que cuesta cada cliente y todo lo que hemos hecho. Lo medimos con Tag Manager, Google Analytics, el píxel de Meta y las etiquetas de cada red, bien instalados desde el primer día. En esta web tienes un panel de ejemplo para verlo con tus propios ojos.",
+  },
+  {
     p: "¿Y el vídeo?",
-    r: "Te damos las ideas, el guion, cómo grabarlo con el móvil, y lo montamos si nos lo das. Para grabarlo de forma profesional te ponemos en contacto con la agencia audiovisual con la que trabajamos. Es lo único que va aparte, y se lo pagas tú directamente: más transparente.",
+    r: "Te damos las ideas, el guion, cómo grabarlo con el móvil, y lo montamos si nos lo das. Para grabarlo de forma profesional te ponemos en contacto con la agencia audiovisual con la que trabajamos. Va aparte, y se lo pagas tú directamente: más transparente. Lo mismo que lo que inviertas en anuncios o una nota de prensa en un medio, si la quieres.",
   },
 ];
 

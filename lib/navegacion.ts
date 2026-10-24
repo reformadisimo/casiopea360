@@ -21,7 +21,13 @@ export const SERVICIOS_MENU: Enlace[] = [
 
 export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
   { texto: "Servicios", href: "/servicios", hijos: SERVICIOS_MENU },
-  { texto: "Cómo trabajamos", href: "/como-trabajamos" },
+  {
+    texto: "Cómo trabajamos",
+    href: "/como-trabajamos",
+    hijos: [
+      { texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
+    ],
+  },
   { texto: "Trabajos", href: "/trabajos" },
   {
     texto: "Haz el test",

@@ -3,7 +3,7 @@ import Logo from "@/components/Logo";
 import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
 
 export default function Pie() {
-  const empresa = MENU.filter((m) => !m.hijos);
+  const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Haz el test"), { texto: "Panel de ejemplo", href: "/panel" }];
   return (
     <footer className="bg-noche-2 text-white/75">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
