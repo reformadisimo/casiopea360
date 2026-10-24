@@ -240,7 +240,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                   {f.servicios.map((s) => (
                     <li key={s} className="flex gap-3">
                       {oscura ? <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" /> : <Visto />}
-                      <span className={oscura ? "text-white/90" : ""}>{glosar(s)}</span>
+                      <span className={oscura ? "bg-noche text-white/90" : ""}>{glosar(s)}</span>
                     </li>
                   ))}
                 </ul>
@@ -338,7 +338,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
               </div>
             )}
             <p className={`text-sm font-bold ${i % 3 === 0 ? "text-estrella" : "text-noche-3"}`}>{t.sector}</p>
-            <h3 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h3>
+            {titulo ? <h3 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h3> : <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t.nombre}</h2>}
             <p className={`mt-4 flex-1 text-lg ${i % 3 === 0 ? "text-white/80" : "text-gris"}`}>{t.resumen}</p>
             <a
               href={t.url}
