@@ -640,7 +640,7 @@ export default function TestCompleto() {
             <div className="relative max-w-2xl">
               <p className="text-3xl font-extrabold sm:text-4xl">Pide tu presupuesto</p>
               <p className="mt-4 text-lg text-white/85">
-                Te preparamos un estudio gratuito y una cuota mensual fija, hecha para tu empresa, que lo incluye <strong className="text-white">absolutamente todo</strong>: web, Google, anuncios, redes, automatizaciones, informes diarios y cada cambio que pidas en 48 horas. Sin comisiones sobre lo que inviertas y sin sorpresas.
+                Te preparamos un estudio gratuito y una cuota mensual fija, la misma para cualquier tamaño de empresa, que lo incluye <strong className="text-white">absolutamente todo</strong>: web, Google, anuncios, redes, automatizaciones, informes diarios y cada cambio que pidas en 48 horas. Sin comisiones sobre lo que inviertas y sin sorpresas.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href="/estudio-gratuito" className="rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2">

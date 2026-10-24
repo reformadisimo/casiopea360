@@ -21,7 +21,7 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 
 ## Compromisos
 - Un solo proveedor y una sola persona de contacto en lugar de varios proveedores.
-- Precio fijo y personalizado; nunca cobra comisión sobre lo que el cliente invierte en anuncios.
+- Una cuota mensual fija, la misma para pymes, medianas y grandes empresas, que lo incluye todo; nunca cobra comisión sobre lo que el cliente invierte en anuncios.
 - Respuesta el mismo día laborable; los cambios y tareas del día a día, en 48 horas como máximo; los proyectos grandes (web nueva, app, integraciones), con fecha cerrada desde el inicio.
 - Parte diario, resumen semanal, balance mensual y un enlace con resultados en tiempo real.
 - Todo (web, dominio, cuentas) a nombre del cliente desde el primer día.

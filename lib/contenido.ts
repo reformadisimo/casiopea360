@@ -271,7 +271,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto cuesta?",
-    r: "Depende de lo que necesite tu negocio, así que el precio es personalizado. Empieza por el estudio gratuito: te decimos qué haríamos y cuánto costaría, sin compromiso.",
+    r: "Una cuota mensual fija, la misma seas pyme, mediana o gran empresa, que lo incluye todo: web, CRM, Google, anuncios, redes, automatizaciones y cada cambio que pidas. Te la contamos en el estudio gratuito, junto con lo que haríamos por tu negocio. Por separado, todo eso te costaría bastante más: lo tienes calculado en la tabla de servicios.",
   },
   {
     p: "¿Cuánto tarda en notarse?",

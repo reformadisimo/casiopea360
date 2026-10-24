@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import LogoMarca from "@/components/LogoMarca";
+import CostesPorTamano from "@/components/CostesPorTamano";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
 import {
@@ -593,61 +594,15 @@ export function SeccionFueraInternet() {
   );
 }
 
-/* Lo que costaría por separado: precios orientativos del mercado español. */
-const POR_SEPARADO: { que: string; rango: string; media: number; mensual: boolean; nota?: string }[] = [
-  { que: "Un SEO que te posicione en Google", rango: "400 – 1.800 € al mes", media: 900, mensual: true },
-  { que: "Quien te lleve las campañas de Google Ads", rango: "350 – 1.500 € al mes", media: 900, mensual: true, nota: "o un 10-20 % de lo que inviertes" },
-  { que: "Quien te lleve los anuncios de Instagram y Facebook", rango: "350 – 1.500 € al mes", media: 900, mensual: true },
-  { que: "Redes sociales y contenido", rango: "300 – 1.200 € al mes", media: 800, mensual: true },
-  { que: "Una web a medida, con calculadoras y asistente de IA", rango: "De 6.000 a más de 15.000 €", media: 12000, mensual: false, nota: "y cada cambio, aparte" },
-  { que: "Un CRM a medida", rango: "15.000 – 35.000 €", media: 25000, mensual: false, nota: "más 200-800 € al mes de mantenimiento" },
-];
-
+/* Lo que costaría por separado, según el tamaño de la empresa. */
 export function SeccionCostes() {
-  const mensual = POR_SEPARADO.filter((x) => x.mensual).reduce((a, x) => a + x.media, 0);
-  const fmt = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return (
     <section className="relative overflow-hidden bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Haz cuentas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
-        <p className="mt-5 max-w-3xl text-lg text-gris">Precios orientativos del mercado en España. En tu caso puede ser algo más o algo menos, pero la suma siempre asusta.</p>
-
-        <div className="mt-12 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
-          <div className="hidden grid-cols-[1.4fr_1fr_0.7fr] bg-noche px-6 py-4 text-sm font-extrabold text-white sm:grid">
-            <span>Lo que necesitas</span><span>Lo que suelen cobrar</span><span className="text-estrella">Con Casiopea 360</span>
-          </div>
-          {POR_SEPARADO.map((x) => (
-            <div key={x.que} className="grid gap-1 border-t border-linea px-6 py-4 first:border-t-0 sm:grid-cols-[1.4fr_1fr_0.7fr] sm:items-center sm:gap-4">
-              <span className="font-bold">{x.que}</span>
-              <span className="text-gris">
-                <span className="font-extrabold text-tinta">{x.rango}</span>
-                {x.nota && <span className="block text-sm">{x.nota}</span>}
-              </span>
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-sm font-extrabold text-emerald-800"><span aria-hidden="true">✓</span>Incluido</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          <div className="rounded-[2rem] border-2 border-dashed border-rose-300 bg-white p-7">
-            <p className="text-sm font-bold text-rose-700">Por separado, con precios medios</p>
-            <p className="mt-2 text-5xl font-extrabold">{fmt(mensual)} € <span className="text-2xl text-gris">al mes</span></p>
-            <p className="mt-2 text-gris">Unos <b className="text-tinta">{fmt(mensual * 12)} € al año</b> solo en lo mensual. Y aparte, la web (fácilmente más de 10.000 €) y el CRM (15.000 € o más). Con cuatro o cinco proveedores que no hablan entre sí.</p>
-          </div>
-          <div className="rounded-[2rem] bg-noche p-7 text-white">
-            <p className="text-sm font-bold text-estrella">Con Casiopea 360</p>
-            <p className="mt-2 text-4xl font-extrabold">Una cuota fija. Todo incluido.</p>
-            <ul className="mt-4 space-y-2 text-white/85">
-              <li>¿Te arrepientes de la web y quieres otra? <b className="text-white">Incluida.</b></li>
-              <li>¿Quieres cambiar de web mañana? <b className="text-white">Incluido.</b></li>
-              <li>¿Necesitas otro CRM o una calculadora nueva? <b className="text-white">Incluido.</b></li>
-              <li>¿Una campaña nueva el viernes? <b className="text-white">Incluida, sin comisión.</b></li>
-            </ul>
-            <p className="mt-4 text-sm text-white/65">Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, la grabación de vídeo profesional y el espacio en radio o prensa.</p>
-          </div>
-        </div>
-        <p className="mt-6 text-xs text-gris">Rangos orientativos de precios en España en 2026, según guías de precios de Cronoshare y Duotach. No son ofertas de ninguna empresa concreta.</p>
+        <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa. Son precios orientativos del mercado en España: en tu caso puede ser algo más o algo menos, pero la suma siempre asusta.</p>
+        <CostesPorTamano />
       </div>
     </section>
   );
