@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
 import LogoMarca from "@/components/LogoMarca";
+import TrasCarga from "@/components/TrasCarga";
 import CostesPorTamano from "@/components/CostesPorTamano";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
@@ -69,7 +70,7 @@ export function CintaHerramientas() {
       <div className="flex w-max animate-[deslizar_55s_linear_infinite] gap-4 motion-reduce:animate-none">
         {fila.map((h, i) => (
           <span key={`${h}-${i}`} aria-hidden={i >= HERRAMIENTAS.length} className="flex items-center gap-3 whitespace-nowrap rounded-full bg-white px-4 py-2 font-titular text-base font-bold text-tinta shadow-sm">
-            <LogoMarca nombre={h} tam={24} />
+            <TrasCarga hueco={<span className="inline-block h-6 w-6" />}><LogoMarca nombre={h} tam={24} /></TrasCarga>
             {h}
           </span>
         ))}
@@ -794,7 +795,7 @@ export function SeccionCostes() {
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Haz cuentas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
-        <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa. Son precios orientativos del mercado en España: en tu caso puede ser algo más o algo menos, pero la suma siempre asusta.</p>
+        <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa y marca lo que necesitas. Verás lo que pagarías contratándolo por separado, a cuántos proveedores y cuántas facturas. Spoiler: la suma asusta.</p>
         <CostesPorTamano />
       </div>
     </section>
@@ -862,12 +863,15 @@ export function SeccionGarantias() {
 }
 
 /* Preguntas frecuentes. */
-export function SeccionPreguntas({ titulo = true }: { titulo?: boolean }) {
+const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar tan poco por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?"];
+
+export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boolean; todas?: boolean }) {
+  const lista = todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p));
   return (
     <section id="preguntas" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
       {titulo && <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Lo que nos suelen preguntar.</h2>}
       <div className={`${titulo ? "mt-10" : ""} divide-y divide-linea border-y border-linea`}>
-        {PREGUNTAS.map((q) => (
+        {lista.map((q) => (
           <details key={q.p} className="group py-5">
             <summary className="flex cursor-pointer items-center justify-between gap-6 text-lg font-bold">
               {q.p}
@@ -877,6 +881,11 @@ export function SeccionPreguntas({ titulo = true }: { titulo?: boolean }) {
           </details>
         ))}
       </div>
+      {!todas && (
+        <a href="/preguntas" className="mt-8 inline-flex rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">
+          Ver todas las preguntas
+        </a>
+      )}
     </section>
   );
 }

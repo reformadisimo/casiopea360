@@ -17,6 +17,17 @@ export default function VideoFondo({
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [cargar, setCargar] = useState(false);
+  // Las fotos que no son de la cabecera esperan a que la página termine de cargar,
+  // para que lo primero que se descargue sea lo que se ve al abrir.
+  const [foto, setFoto] = useState(prioridad);
+
+  useEffect(() => {
+    if (prioridad) return;
+    const ya = () => setFoto(true);
+    if (document.readyState === "complete") ya();
+    else window.addEventListener("load", ya, { once: true });
+    return () => window.removeEventListener("load", ya);
+  }, [prioridad]);
 
   useEffect(() => {
     const v = ref.current;
@@ -72,8 +83,9 @@ export default function VideoFondo({
   // el vídeo aparece encima cuando ya está cargando.
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      {foto && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
         src={`/video/${nombre}.webp`}
         alt=""
         aria-hidden="true"
@@ -81,7 +93,8 @@ export default function VideoFondo({
         fetchPriority={prioridad ? "high" : "auto"}
         decoding="async"
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
-      />
+        />
+      )}
       <video
         ref={ref}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${cargar ? "opacity-100" : "opacity-0"} ${className}`}

@@ -57,7 +57,7 @@ export default function Cabecera() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" aria-label="Casiopea 360, inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
+        <Link prefetch={false} href="/" aria-label="Casiopea 360, inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
           <Logo claro />
         </Link>
 
@@ -87,14 +87,14 @@ export default function Cabecera() {
                     <div className={`absolute top-full pt-2 ${m.hijos.length > 5 ? "left-0 w-[42rem]" : "left-1/2 w-80 -translate-x-1/2"}`}>
                       <ul className={`overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)] ${m.hijos.length > 5 ? "grid grid-cols-2" : ""}`}>
                         <li className="col-span-2">
-                          <Link href={m.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
+                          <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
                             <span className="block font-bold">Ver todo</span>
                             <span className="block text-sm font-normal text-gris">{m.texto}, de un vistazo</span>
                           </Link>
                         </li>
                         {m.hijos.map((h) => (
                           <li key={h.href}>
-                            <Link href={h.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
+                            <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
                               <span className="flex items-center gap-2.5 font-bold">
                                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-estrella" />
                                 {h.texto}
@@ -109,7 +109,7 @@ export default function Cabecera() {
                 </li>
               ) : (
                 <li key={m.texto}>
-                  <Link href={m.href} className="block whitespace-nowrap rounded-full px-3 py-2 hover:text-white">
+                  <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-3 py-2 hover:text-white">
                     {m.texto}
                   </Link>
                 </li>
@@ -119,7 +119,7 @@ export default function Cabecera() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
+          <Link prefetch={false}
             href="/estudio-gratuito"
             onClick={cerrarTodo}
             className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm"
@@ -149,14 +149,14 @@ export default function Cabecera() {
           <ul className="space-y-1 text-white">
             {MENU.map((m) => (
               <li key={m.texto}>
-                <Link href={m.href} onClick={cerrarTodo} className="block rounded-xl px-3 py-3 text-lg font-bold hover:bg-white/10">
+                <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="block rounded-xl px-3 py-3 text-lg font-bold hover:bg-white/10">
                   {m.texto}
                 </Link>
                 {m.hijos && (
                   <ul className="mb-2 ml-3 border-l border-white/15 pl-3">
                     {m.hijos.map((h) => (
                       <li key={h.href}>
-                        <Link href={h.href} onClick={cerrarTodo} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-white/80 hover:bg-white/10">
+                        <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-white/80 hover:bg-white/10">
                           <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
                           {h.texto}
                         </Link>

@@ -1,5 +1,5 @@
 import { resumenWeb } from "@/lib/resumen";
-import { MES, TAMANOS, UNA_VEZ } from "@/lib/costes";
+import { FILAS, TAMANOS } from "@/lib/costes";
 import { ARTICULOS } from "@/lib/blog";
 import { CREEMOS, DOLORES, ESTUDIO, FRENTES, GARANTIAS, INFORMES, OFICIOS, PASOS, PLAZOS, PROMESAS, TRABAJOS } from "@/lib/contenido";
 
@@ -7,8 +7,8 @@ const eur = (n: number) => `${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} �
 
 // Todo lo que sabe el asistente: el resumen de la web y los datos de cada sección.
 export function conocimientoAsistente() {
-  const costes = [...MES, ...UNA_VEZ]
-    .map((f) => `- ${f.que}: ${TAMANOS.map((t, i) => `${t} ${eur(f.valores[i])}`).join(" · ")}${MES.includes(f) ? " al mes" : " una sola vez"}${f.nota ? ` (${f.nota})` : ""}`)
+  const costes = FILAS
+    .map((f) => `- ${f.que}: ${TAMANOS.map((t, i) => `${t} ${eur(f.valores[i])}`).join(" · ")}${f.mensual ? " al mes" : " una sola vez"} (lo haría: ${f.quien}${f.extra ? "; estimación nuestra" : ""})`)
     .join("\n");
   return `# Conocimiento de Casiopea 360
 

@@ -26,17 +26,14 @@ import {
   SeccionSolicitud,
   SeccionTrabajos,
 } from "@/components/secciones";
-import DatosEstructurados from "@/components/DatosEstructurados";
-import { schemaPreguntas } from "@/lib/schema";
 
 export default function Inicio() {
   return (
     <>
-      <DatosEstructurados datos={schemaPreguntas()} />
 
       {/* Héroe: la constelación */}
       <section className="relative overflow-hidden bg-noche pb-20 pt-32 text-white sm:pb-28 sm:pt-40">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(80,120,255,0.35),transparent_45%),radial-gradient(circle_at_80%_60%,rgba(60,90,255,0.3),transparent_40%),radial-gradient(1.5px_1.5px_at_10%_20%,#fff,transparent),radial-gradient(1.5px_1.5px_at_30%_70%,#cfe0ff,transparent),radial-gradient(1px_1px_at_60%_15%,#fff,transparent),radial-gradient(1.5px_1.5px_at_85%_40%,#fff,transparent),radial-gradient(1px_1px_at_70%_85%,#cfe0ff,transparent),radial-gradient(1.5px_1.5px_at_45%_45%,#fff,transparent)]">
           <VideoFondo nombre="constelaciones" alt="" prioridad />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
@@ -49,7 +46,7 @@ export default function Inicio() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
-              <Link href="/test" className={BOTON_CLARO}>Haz el test en 1 minuto</Link>
+              <Link prefetch={false} href="/test" className={BOTON_CLARO}>Haz el test en 1 minuto</Link>
             </div>
             <ul className="mt-8 flex flex-wrap gap-2 text-sm font-bold">
               {["Más de 22 años de oficio", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
@@ -84,7 +81,7 @@ export default function Inicio() {
       <SeccionTrabajos />
       <SeccionParte />
       <SeccionMetodo />
-      <SeccionPreguntas />
+      <SeccionPreguntas todas={false} />
       <SeccionEstudio />
       <SeccionSolicitud />
     </>
