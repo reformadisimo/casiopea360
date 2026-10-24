@@ -34,7 +34,7 @@ export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
     href: "/test",
     hijos: [
       { texto: "Test rápido", href: "/test#rapido", detalle: "Un minuto: ¿cómo está tu marketing?" },
-      { texto: "Test completo", href: "/test#completo", detalle: "30 preguntas: tu nota, lo que pagas y qué mejorar" },
+      { texto: "Test completo", href: "/test#completo", detalle: "50 preguntas: tu nota, lo que pagas y qué mejorar" },
     ],
   },
   { texto: "Blog", href: "/blog" },

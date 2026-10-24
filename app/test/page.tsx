@@ -9,7 +9,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Test de marketing digital: rápido y completo",
-  "Un test de un minuto y otro completo de 30 preguntas: tu nota por áreas, lo que pagas hoy y dónde se te escapan clientes. Gratis y sin dejar tus datos.",
+  "Un test de un minuto y otro completo de 50 preguntas: tu nota por áreas, lo que pagas hoy y dónde se te escapan clientes. Gratis y sin dejar tus datos.",
   "/test",
 );
 
@@ -32,7 +32,7 @@ export default function Test() {
         </div>
       </section>
       <FranjaVideos
-        frase="Un minuto para hacerte una idea. Siete para saberlo todo."
+        frase="Un minuto para hacerte una idea. Doce para saberlo todo."
         clips={[
           { nombre: "mujer-movil", alt: "Una mujer consulta su móvil" },
           { nombre: "fibra-luz", alt: "Fibras de luz que se cruzan" },
@@ -42,9 +42,9 @@ export default function Test() {
       <section id="completo" className="scroll-mt-24 bg-niebla py-16 sm:py-20">
         <span id="calculadora" className="block scroll-mt-24" aria-hidden="true" />
         <div className={ENVOLTORIO}>
-          <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Unos 7 minutos · 30 preguntas</p>
+          <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Unos 12 minutos · 50 preguntas · puedes saltar bloques</p>
           <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Test completo: tu marketing, a fondo</h2>
-          <p className="mt-3 max-w-2xl text-lg text-gris">Web, Google y las IA, anuncios, redes, atención a clientes, informes y lo que pagas hoy. Al final: tu nota por áreas, lo que te cuesta en dinero y en horas, dónde se te escapan clientes y qué haríamos primero.</p>
+          <p className="mt-3 max-w-2xl text-lg text-gris">Tu empresa, tu web, Google y las IA, anuncios, redes, atención a clientes, competencia, ventas, contenido y lo que pagas hoy. Si un bloque no te apetece, te lo saltas. Al final: tu nota por áreas, lo que te cuesta en dinero y en horas, dónde se te escapan clientes y qué haríamos primero.</p>
           <div className="mt-10">
             <TestCompleto />
           </div>

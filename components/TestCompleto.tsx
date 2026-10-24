@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
-// Test completo: 30 preguntas en 6 bloques más un bloque de gastos.
+// Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
+// El primer bloque (tu empresa) no puntúa: sirve para personalizar el resultado.
 // Da una nota por área, lo que pagas hoy (dinero y tiempo), dónde se escapan clientes
 // y qué haríamos primero. No da nuestro precio: invita a pedir presupuesto.
 // Todo se calcula en el navegador; no se envía nada.
 
 type Opcion = { t: string; v: number }; // v: 0 a 3 puntos
 type Pregunta = { id: string; p: string; o: Opcion[]; fallo: string; arreglo: string; peso: number };
-type Bloque = { id: string; titulo: string; intro: string; preguntas: Pregunta[] };
+type Bloque = { id: string; titulo: string; intro: string; preguntas: Pregunta[]; contexto?: boolean };
 
 const SINO_NOSE = (si: string, aMedias: string, no: string): Opcion[] => [
   { t: si, v: 3 },
@@ -19,6 +20,20 @@ const SINO_NOSE = (si: string, aMedias: string, no: string): Opcion[] => [
 ];
 
 const BLOQUES: Bloque[] = [
+  {
+    id: "empresa",
+    titulo: "Tu empresa",
+    contexto: true,
+    intro: "Para que el resultado hable de tu caso y no de una empresa cualquiera. No puntúa.",
+    preguntas: [
+      { id: "e1", p: "¿A qué se dedica tu empresa?", o: [{ t: "Servicios a particulares", v: 0 }, { t: "Servicios a empresas", v: 0 }, { t: "Tienda o comercio", v: 0 }, { t: "Industria o fabricación", v: 0 }, { t: "Salud o bienestar", v: 0 }, { t: "Otra", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+      { id: "e2", p: "¿Cuánto factura al año, más o menos?", o: [{ t: "Menos de 500.000 €", v: 0 }, { t: "De 500.000 € a 4 millones", v: 0 }, { t: "De 4 a 20 millones", v: 0 }, { t: "Más de 20 millones", v: 0 }, { t: "Prefiero no decirlo", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+      { id: "e3", p: "¿Cuántas personas trabajan en ella?", o: [{ t: "Menos de 10", v: 0 }, { t: "De 10 a 50", v: 0 }, { t: "De 50 a 250", v: 0 }, { t: "Más de 250", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+      { id: "e4", p: "¿Dónde están tus clientes?", o: [{ t: "En mi ciudad o provincia", v: 0 }, { t: "En toda España", v: 0 }, { t: "También fuera de España", v: 0 }, { t: "Solo vendo por internet", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+      { id: "e5", p: "¿Qué es lo que más quieres conseguir este año?", o: [{ t: "Más clientes", v: 0 }, { t: "Clientes más rentables", v: 0 }, { t: "Pagar menos por el marketing", v: 0 }, { t: "Dejar de perseguir a proveedores", v: 0 }, { t: "Abrir un mercado nuevo", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+      { id: "e6", p: "¿Cuánto vale de media un cliente para ti?", o: [{ t: "Menos de 300 €", v: 0 }, { t: "De 300 € a 3.000 €", v: 0 }, { t: "De 3.000 € a 30.000 €", v: 0 }, { t: "Más de 30.000 €", v: 0 }], fallo: "", arreglo: "", peso: 0 },
+    ],
+  },
   {
     id: "web",
     titulo: "Tu web",
@@ -91,6 +106,41 @@ const BLOQUES: Bloque[] = [
       { id: "c5", p: "Cuando pides algo, ¿cuánto tardan de media en hacerlo?", o: SINO_NOSE("Menos de 48 horas", "Una semana", "Más, o depende"), fallo: "Lo que pides tarda semanas: las oportunidades no esperan.", arreglo: "Máximo 48 horas para cualquier cosa que pidas.", peso: 2 },
     ],
   },
+  {
+    id: "marca",
+    titulo: "Competencia y marca",
+    intro: "Cómo te ven al lado de los que compiten contigo por el mismo cliente.",
+    preguntas: [
+      { id: "m1", p: "¿Sabes quiénes son tus tres competidores principales en internet?", o: SINO_NOSE("Sí, y los vigilamos", "Más o menos", "No"), fallo: "No vigilas a tu competencia en internet: no sabes qué hacen para quitarte clientes.", arreglo: "Seguimiento mensual de tu competencia: posiciones, anuncios, precios y reseñas.", peso: 2 },
+      { id: "m2", p: "Al lado de tu competencia, tu web y tus redes parecen…", o: SINO_NOSE("Mejores", "Parecidas", "Peores"), fallo: "Tu imagen digital está por debajo de la de tu competencia: el cliente compara y se va.", arreglo: "Web e imagen que te pongan por delante de tu competencia desde el primer vistazo.", peso: 2 },
+      { id: "m3", p: "¿Está claro en tu web por qué elegirte a ti y no a otro?", o: SINO_NOSE("Sí, en la primera pantalla", "Hay que buscarlo", "No"), fallo: "Tu web no explica por qué elegirte: pareces uno más.", arreglo: "Mensaje claro en la primera pantalla: qué haces, para quién y por qué tú.", peso: 3 },
+      { id: "m4", p: "¿Salen en tu web casos reales, opiniones o resultados de clientes?", o: SINO_NOSE("Sí, con nombre y foto", "Algunos, genéricos", "No"), fallo: "No enseñas pruebas reales: sin casos ni opiniones, cuesta confiar.", arreglo: "Casos reales y opiniones de clientes en las páginas que venden.", peso: 2 },
+      { id: "m5", p: "¿Apareces en medios, directorios o rankings de tu sector?", o: SINO_NOSE("Sí, en varios", "En alguno", "No"), fallo: "No apareces en medios ni directorios: Google y las IA te dan menos autoridad.", arreglo: "Presencia en directorios del sector y propuestas de medios, siempre con tu visto bueno.", peso: 1 },
+    ],
+  },
+  {
+    id: "ventas",
+    titulo: "Ventas y seguimiento",
+    intro: "Lo que pasa entre que alguien te contacta y te paga. Aquí se pierde mucho dinero sin hacer ruido.",
+    preguntas: [
+      { id: "v1", p: "De cada 10 personas que piden presupuesto, ¿cuántas acaban comprando?", o: [{ t: "Más de 4", v: 3 }, { t: "Entre 2 y 4", v: 2 }, { t: "Menos de 2", v: 0 }, { t: "No lo sé", v: 0 }], fallo: "No sabes cuántos presupuestos cierras, o cierras pocos: ahí hay ventas que se escapan.", arreglo: "Medir el cierre de cada presupuesto y mejorar lo que hace que se caigan.", peso: 3 },
+      { id: "v2", p: "¿Cuánto tardáis en enviar un presupuesto?", o: [{ t: "El mismo día", v: 3 }, { t: "Dos o tres días", v: 2 }, { t: "Una semana o más", v: 0 }], fallo: "Tardáis en enviar presupuestos: quien llega antes, suele ganar.", arreglo: "Calculadoras y plantillas para que el cliente tenga una cifra orientativa al momento.", peso: 2 },
+      { id: "v3", p: "¿Sabes qué canal te trae los clientes que más facturan?", o: SINO_NOSE("Sí", "Me hago una idea", "No"), fallo: "No sabes qué canal trae los mejores clientes: inviertes a ciegas.", arreglo: "Atribución completa: de dónde viene cada cliente y cuánto factura.", peso: 3 },
+      { id: "v4", p: "¿Tu equipo comercial recibe al momento cada contacto nuevo?", o: SINO_NOSE("Sí, con aviso al móvil", "Lo mira cuando puede", "No hay un sistema"), fallo: "Los contactos nuevos no llegan al momento a quien vende: se enfrían.", arreglo: "Aviso instantáneo a tu comercial con todo lo que el cliente ha hecho en la web.", peso: 2 },
+      { id: "v5", p: "¿Vuelves a contactar con clientes antiguos para que repitan o te recomienden?", o: SINO_NOSE("Sí, con un plan", "A veces", "Nunca"), fallo: "No trabajas a tus clientes antiguos: son los más fáciles de volver a vender.", arreglo: "Correos y mensajes a clientes antiguos para repetir y recomendar.", peso: 1 },
+    ],
+  },
+  {
+    id: "contenido",
+    titulo: "Contenido y vídeo",
+    intro: "Lo que cuentas y cómo lo cuentas. Es lo que hace que te elijan antes de hablar contigo.",
+    preguntas: [
+      { id: "k1", p: "¿Tienes fotos y vídeos propios de tu trabajo, o usas imágenes de banco?", o: SINO_NOSE("Propios y buenos", "Mezcla", "De banco o ninguno"), fallo: "No tienes fotos ni vídeos propios: tu web parece la de cualquiera.", arreglo: "Guiones y plan de grabación; montamos lo que grabes o coordinamos una productora.", peso: 2 },
+      { id: "k2", p: "¿Respondes en tu web las preguntas que más te hacen los clientes?", o: SINO_NOSE("Sí, todas", "Algunas", "No"), fallo: "Tu web no responde las dudas de tus clientes: te llaman para preguntar, o se van.", arreglo: "Preguntas frecuentes y artículos con las dudas reales de tus clientes.", peso: 2 },
+      { id: "k3", p: "¿Tienes precios orientativos o una calculadora en la web?", o: SINO_NOSE("Sí", "Solo «pide presupuesto»", "No"), fallo: "Sin precios orientativos, muchos no se atreven a escribirte.", arreglo: "Calculadora de precio orientativo que además te trae contactos.", peso: 2 },
+      { id: "k4", p: "¿Envías correos o boletines a tus clientes y contactos?", o: SINO_NOSE("Sí, con regularidad", "De vez en cuando", "Nunca"), fallo: "No mantienes el contacto por correo: te olvidan entre compra y compra.", arreglo: "Boletín mensual sencillo y correos automáticos según lo que interesa a cada uno.", peso: 1 },
+    ],
+  },
 ];
 
 const HORAS = [0.5, 3, 6.5, 10]; // horas semanales según la respuesta de c4
@@ -131,6 +181,7 @@ export default function TestCompleto() {
   const [gastos, setGastos] = useState<Record<string, number>>(Object.fromEntries(PROVEEDORES.map((p) => [p.id, 0])));
   const [inversion, setInversion] = useState(0);
   const [comision, setComision] = useState(0);
+  const [saltados, setSaltados] = useState<string[]>([]);
   const [paso, setPaso] = useState(0); // 0..BLOQUES.length-1 bloques, BLOQUES.length gastos, TOTAL_PASOS resultado
   const caja = useRef<HTMLDivElement>(null);
 
@@ -140,6 +191,7 @@ export default function TestCompleto() {
   };
   const reiniciar = () => {
     setResp({});
+    setSaltados([]);
     setGastos(Object.fromEntries(PROVEEDORES.map((p) => [p.id, 0])));
     setInversion(0);
     setComision(0);
@@ -147,12 +199,14 @@ export default function TestCompleto() {
   };
 
   const r = useMemo(() => {
-    const areas = BLOQUES.map((b) => {
-      const max = b.preguntas.reduce((a, q) => a + 3 * q.peso, 0);
-      const pts = b.preguntas.reduce((a, q) => a + val(q, resp) * q.peso, 0);
+    const puntuan = BLOQUES.filter((b) => !b.contexto && !saltados.includes(b.id));
+    const areas = puntuan.map((b) => {
+      const resp_ = b.preguntas.filter((q) => resp[q.id] !== undefined);
+      const max = resp_.reduce((a, q) => a + 3 * q.peso, 0) || 1;
+      const pts = resp_.reduce((a, q) => a + val(q, resp) * q.peso, 0);
       return { id: b.id, titulo: b.titulo, nota: Math.round((pts / max) * 100) };
     });
-    const todas = BLOQUES.flatMap((b) => b.preguntas);
+    const todas = puntuan.flatMap((b) => b.preguntas).filter((q) => resp[q.id] !== undefined);
     const max = todas.reduce((a, q) => a + 3 * q.peso, 0);
     const pts = todas.reduce((a, q) => a + val(q, resp) * q.peso, 0);
     const fallos = todas
@@ -164,7 +218,7 @@ export default function TestCompleto() {
     const tiempoMes = horasSemana * 4.33 * VALOR_HORA;
     return {
       areas,
-      nota: Math.round((pts / max) * 100),
+      nota: max ? Math.round((pts / max) * 100) : 0,
       fallos,
       horasAno: Math.round(horasSemana * 46),
       proveedoresMes,
@@ -173,11 +227,19 @@ export default function TestCompleto() {
       numProveedores: Object.values(gastos).filter((v) => v > 0).length,
       totalMes: proveedoresMes + comisionMes,
     };
-  }, [resp, gastos, inversion, comision]);
+  }, [resp, gastos, inversion, comision, saltados]);
 
   const bloque = BLOQUES[paso];
   const completo = bloque ? bloque.preguntas.every((q) => resp[q.id] !== undefined) : true;
   const respondidas = Object.keys(resp).length;
+  const saltar = () => {
+    if (bloque && !saltados.includes(bloque.id)) setSaltados([...saltados, bloque.id]);
+    ir(paso + 1);
+  };
+  const texto = (id: string) => {
+    const q = BLOQUES[0].preguntas.find((x) => x.id === id);
+    return q && resp[id] !== undefined ? q.o[resp[id]].t : null;
+  };
   const totalPreguntas = BLOQUES.reduce((a, b) => a + b.preguntas.length, 0);
 
   const nivel =
@@ -248,17 +310,23 @@ export default function TestCompleto() {
             <button
               type="button"
               disabled={!completo}
-              onClick={() => ir(paso + 1)}
+              onClick={() => {
+                setSaltados(saltados.filter((x) => x !== bloque.id));
+                ir(paso + 1);
+              }}
               className="rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Siguiente bloque
+            </button>
+            <button type="button" onClick={saltar} className="rounded-full border border-linea px-5 py-3 text-sm font-bold text-gris hover:border-noche hover:text-tinta">
+              Saltar este bloque
             </button>
             {paso > 0 && (
               <button type="button" onClick={() => ir(paso - 1)} className="font-bold underline underline-offset-4">
                 Volver
               </button>
             )}
-            {!completo && <span className="text-sm text-gris">Contesta todas para seguir.</span>}
+            {!completo && <span className="w-full text-sm text-gris">Contesta todas para seguir, o salta el bloque si no te apetece. Cuantas más contestes, más preciso será tu resultado.</span>}
           </div>
         </div>
       )}
@@ -324,6 +392,21 @@ export default function TestCompleto() {
                 </p>
                 <p className="mt-5 text-2xl font-extrabold">{nivel.t}</p>
                 <p className="mt-2 text-white/80">{nivel.d}</p>
+                {(texto("e1") || texto("e5")) && (
+                  <p className="mt-5 rounded-2xl bg-white/10 p-4 text-sm text-white/85">
+                    <b className="text-estrella">Tu caso: </b>
+                    {[
+                      texto("e1") && texto("e1") !== "Otra" ? texto("e1") : null,
+                      texto("e4") ? ({ "En mi ciudad o provincia": "clientes en tu zona", "En toda España": "clientes en toda España", "También fuera de España": "clientes también fuera de España", "Solo vendo por internet": "venta solo por internet" } as Record<string, string>)[texto("e4")!] : null,
+                    ]
+                      .filter(Boolean)
+                      .join(", ")}
+                    {texto("e5") && <>. Tu prioridad: <b className="text-white">{texto("e5")?.toLowerCase()}</b>. El estudio gratuito empieza por ahí.</>}
+                  </p>
+                )}
+                {saltados.length > 0 && (
+                  <p className="mt-3 text-sm text-white/60">Has saltado {saltados.length} bloque{saltados.length === 1 ? "" : "s"}. La nota se calcula solo con lo que has contestado.</p>
+                )}
               </div>
             </div>
             <div className="rounded-[2rem] border border-linea bg-white p-7 sm:p-10">
@@ -359,8 +442,8 @@ export default function TestCompleto() {
               </div>
               <div>
                 <p className="text-sm font-bold opacity-70">En tu propio tiempo</p>
-                <p className="mt-1 text-4xl font-extrabold">{r.horasAno} h</p>
-                <p className="text-sm">al año coordinando proveedores, unos {fmt(r.tiempoMes * 12)} € si tu hora vale {VALOR_HORA} €.</p>
+                <p className="mt-1 text-4xl font-extrabold">{resp.c4 === undefined ? "Sin datos" : `${r.horasAno} h`}</p>
+                <p className="text-sm">{resp.c4 === undefined ? "Contesta el bloque de medición y proveedores para calcularlo." : `al año coordinando proveedores, unos ${fmt(r.tiempoMes * 12)} € si tu hora vale ${VALOR_HORA} €.`}</p>
               </div>
             </div>
           </div>
