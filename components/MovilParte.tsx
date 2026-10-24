@@ -18,19 +18,19 @@ export default function MovilParte() {
               <p className="mt-1">Ayer entraron 84 personas en tu web y te escribieron 5: 3 por WhatsApp, 1 por teléfono y 1 por el formulario.</p>
               <p className="mt-1">Los anuncios gastaron 11,40 €.</p>
               <p className="mt-1">Todo funciona bien.</p>
-              <p className="mt-1 text-right text-[0.68rem] text-[#777]">08:02</p>
+              <p className="mt-1 text-right text-[0.68rem] text-[#5f5f5f]">08:02</p>
             </div>
             <div className="max-w-[88%] rounded-lg rounded-tl-none bg-white p-2.5 shadow-sm">
               <p>Hay una reseña nueva de 5 estrellas. Te dejamos la respuesta preparada: ¿la publicamos?</p>
-              <p className="mt-1 text-right text-[0.68rem] text-[#777]">08:03</p>
+              <p className="mt-1 text-right text-[0.68rem] text-[#5f5f5f]">08:03</p>
             </div>
             <div className="ml-auto max-w-[70%] rounded-lg rounded-tr-none bg-[#dcf8c6] p-2.5 shadow-sm">
               <p>Sí, adelante</p>
-              <p className="mt-1 text-right text-[0.68rem] text-[#777]">08:15</p>
+              <p className="mt-1 text-right text-[0.68rem] text-[#5f5f5f]">08:15</p>
             </div>
             <div className="max-w-[88%] rounded-lg rounded-tl-none bg-white p-2.5 shadow-sm">
               <p>Publicada. Que tengas buen día.</p>
-              <p className="mt-1 text-right text-[0.68rem] text-[#777]">08:16</p>
+              <p className="mt-1 text-right text-[0.68rem] text-[#5f5f5f]">08:16</p>
             </div>
           </div>
         </div>

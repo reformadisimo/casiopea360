@@ -53,11 +53,11 @@ export default function Cabecera() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        solida || movil ? "bg-noche/95 shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
+        solida || movil ? "bg-[linear-gradient(90deg,rgba(18,40,190,0.97)_0%,rgba(14,26,61,0.97)_32%,rgba(14,26,61,0.97)_100%)] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" aria-label="Casiopea 360, inicio" onClick={cerrarTodo}>
+        <Link href="/" aria-label="Casiopea 360, inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
           <Logo claro />
         </Link>
 

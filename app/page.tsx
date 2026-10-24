@@ -13,6 +13,7 @@ import {
   SeccionFrentes,
   SeccionEspecialistas,
   SeccionCRM,
+  SeccionCostes,
   SeccionGarantias,
   SeccionMetodo,
   SeccionOrigen,
@@ -33,7 +34,7 @@ export default function Inicio() {
       {/* Héroe: la constelación */}
       <section className="relative overflow-hidden bg-noche pb-20 pt-32 text-white sm:pb-28 sm:pt-40">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <VideoFondo nombre="constelaciones" alt="" />
+          <VideoFondo nombre="constelaciones" alt="" prioridad />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/90 via-noche/55 to-noche/30" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
@@ -58,6 +59,7 @@ export default function Inicio() {
       <CintaHerramientas />
       <SeccionCaos />
       <SeccionPuntosDolor />
+      <SeccionCostes />
       <BandaVideo />
       <SeccionFrentes />
       <SeccionEspecialistas />

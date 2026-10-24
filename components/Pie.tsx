@@ -6,7 +6,7 @@ import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
 export default function Pie() {
   const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Haz el test"), { texto: "Panel de ejemplo", href: "/panel" }];
   return (
-    <footer className="bg-noche-2 text-white/75">
+    <footer className="bg-noche-2 text-white/85">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <Logo claro />
@@ -25,7 +25,7 @@ export default function Pie() {
           <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             {SERVICIOS_MENU.map((s) => (
               <li key={s.href}>
-                <Link href={s.href} className="hover:text-white">
+                <Link href={s.href} className="inline-block py-1 hover:text-white">
                   {s.texto}
                 </Link>
               </li>
@@ -37,13 +37,13 @@ export default function Pie() {
           <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             {empresa.map((m) => (
               <li key={m.href}>
-                <Link href={m.href} className="hover:text-white">
+                <Link href={m.href} className="inline-block py-1 hover:text-white">
                   {m.texto}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/test" className="hover:text-white">
+              <Link href="/test" className="inline-block py-1 hover:text-white">
                 Haz el test
               </Link>
             </li>
@@ -54,7 +54,7 @@ export default function Pie() {
           <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             {LEGALES.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-white">
+                <Link href={l.href} className="inline-block py-1 hover:text-white">
                   {l.texto}
                 </Link>
               </li>

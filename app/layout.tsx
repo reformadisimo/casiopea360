@@ -10,12 +10,8 @@ import { SITIO } from "@/lib/navegacion";
 import { schemaOrganizacion, schemaWeb } from "@/lib/schema";
 
 const titular = localFont({
-  src: [
-    { path: "./fonts/schibsted-grotesk-latin-400-normal.woff2", weight: "400" },
-    { path: "./fonts/schibsted-grotesk-latin-500-normal.woff2", weight: "500" },
-    { path: "./fonts/schibsted-grotesk-latin-700-normal.woff2", weight: "700" },
-    { path: "./fonts/schibsted-grotesk-latin-800-normal.woff2", weight: "800" },
-  ],
+  // Una sola fuente variable para todos los grosores: un archivo en lugar de cuatro.
+  src: [{ path: "./fonts/schibsted-grotesk-latin-wght-normal.woff2", weight: "400 900", style: "normal" }],
   variable: "--font-schibsted",
   display: "swap",
 });

@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
+import VideoFondo from "@/components/VideoFondo";
 
 // Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
 // El primer bloque (tu empresa) no puntúa: sirve para personalizar el resultado.
@@ -157,6 +159,19 @@ const LOGOS_BLOQUE: Record<string, string[]> = {
   ventas: ["WhatsApp", "Gmail", "Google Analytics"],
   contenido: ["YouTube", "Instagram", "Gmail"],
 };
+const VIDEO_BLOQUE: Record<string, string> = {
+  empresa: "despacho",
+  web: "mano-pantalla",
+  google: "ojo-pantallas",
+  anuncios: "movil-corazones",
+  redes: "holograma-redes",
+  atencion: "neon-llamada",
+  control: "puntos-luz",
+  marca: "equipo-celebra",
+  ventas: "hombre-celebra",
+  contenido: "neon-sonrisa",
+};
+const ANIMO = ["¡Bien! Un bloque menos", "¡Vas como un cohete!", "¡Genial, sigue así!", "¡Ya queda menos!", "¡Estás a tope!", "¡Casi lo tienes!"];
 const COLOR_BLOQUE: Record<string, string> = {
   empresa: "from-[#24387a] to-[#0e1a3d]",
   web: "from-[#1f6feb] to-[#0e1a3d]",
@@ -237,6 +252,7 @@ export default function TestCompleto() {
   const [inversion, setInversion] = useState(0);
   const [comision, setComision] = useState(0);
   const [saltados, setSaltados] = useState<string[]>([]);
+  const [fiesta, setFiesta] = useState<string | null>(null);
   const [paso, setPaso] = useState(0); // 0..BLOQUES.length-1 bloques, BLOQUES.length gastos, TOTAL_PASOS resultado
   const caja = useRef<HTMLDivElement>(null);
 
@@ -327,7 +343,18 @@ export default function TestCompleto() {
   const color = (n: number) => (n >= 75 ? "bg-emerald-400" : n >= 45 ? "bg-estrella" : "bg-rose-400");
 
   return (
-    <div ref={caja} className="scroll-mt-28">
+    <div ref={caja} className="relative scroll-mt-28">
+      {fiesta && typeof document !== "undefined" && createPortal(
+        <div aria-live="polite" className="pointer-events-none fixed inset-x-0 top-24 z-50 flex justify-center px-4">
+          <div className="fiesta relative rounded-full bg-noche px-6 py-3 text-lg font-extrabold text-estrella shadow-2xl ring-2 ring-estrella">
+            {fiesta}
+            {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+              <span key={i} aria-hidden="true" className="chispa absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-estrella" style={{ ["--ang" as string]: `${i * 45}deg` }} />
+            ))}
+          </div>
+        </div>,
+        document.body,
+      )}
       {paso < TOTAL_PASOS && (
         <div className="mb-8">
           <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-gris">
@@ -348,13 +375,17 @@ export default function TestCompleto() {
 
       {bloque && (
         <div className="overflow-hidden rounded-[2rem] border border-linea bg-white">
-          <div className={`relative overflow-hidden bg-gradient-to-br ${COLOR_BLOQUE[bloque.id] ?? "from-noche-3 to-noche"} p-6 text-white sm:p-10`}>
+          <div className="relative overflow-hidden p-6 text-white sm:p-10">
+            <div aria-hidden="true" className="absolute inset-0">
+              <VideoFondo key={bloque.id} nombre={VIDEO_BLOQUE[bloque.id] ?? "constelaciones-azules"} alt="" />
+            </div>
+            <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-br opacity-[0.72] ${COLOR_BLOQUE[bloque.id] ?? "from-noche-3 to-noche"}`} />
             <div className="relative z-10 max-w-xl">
               <p className="text-sm font-bold text-white/75">Bloque {paso + 1} de {TOTAL_PASOS}</p>
               <p className="mt-1 text-3xl font-extrabold sm:text-4xl">{bloque.titulo}</p>
               <p className="mt-2 text-lg text-white/85">{bloque.intro}</p>
             </div>
-            <div aria-hidden="true" className="mt-6 flex flex-wrap gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:max-w-[16rem] sm:-translate-y-1/2 sm:justify-end">
+            <div aria-hidden="true" className="relative z-10 mt-6 flex flex-wrap gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:max-w-[16rem] sm:-translate-y-1/2 sm:justify-end">
               {(LOGOS_BLOQUE[bloque.id] ?? []).map((l, i) => (
                 <span key={l} className="flota grid h-14 w-14 place-items-center rounded-2xl bg-white shadow-lg sm:h-16 sm:w-16" style={{ animationDelay: `${i * 0.35}s` }}>
                   <LogoMarca nombre={l} tam={32} />
@@ -416,6 +447,8 @@ export default function TestCompleto() {
               disabled={!completo}
               onClick={() => {
                 setSaltados(saltados.filter((x) => x !== bloque.id));
+                setFiesta(ANIMO[paso % ANIMO.length]);
+                setTimeout(() => setFiesta(null), 1900);
                 ir(paso + 1);
               }}
               className="rounded-full bg-estrella px-7 py-3.5 font-bold text-tinta hover:bg-estrella-2 disabled:cursor-not-allowed disabled:opacity-40"
@@ -437,9 +470,22 @@ export default function TestCompleto() {
       )}
 
       {paso === BLOQUES.length && (
-        <div className="rounded-[2rem] border border-linea bg-white p-6 sm:p-10">
-          <p className="text-3xl font-extrabold sm:text-4xl">Lo que pagas hoy</p>
-          <p className="mt-2 text-lg text-gris">Elige el tramo más parecido. Si no tienes ese proveedor, déjalo en «Nada». No hace falta ser exacto.</p>
+        <div className="overflow-hidden rounded-[2rem] border border-linea bg-white">
+          <div className="relative overflow-hidden p-6 text-white sm:p-10">
+            <div aria-hidden="true" className="absolute inset-0"><VideoFondo nombre="papeles" alt="" /></div>
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-[#e8710a] to-[#0e1a3d] opacity-[0.86]" />
+            <div className="relative z-10 max-w-xl">
+              <p className="text-sm font-bold text-white/75">Último bloque</p>
+              <p className="mt-1 text-3xl font-extrabold sm:text-4xl">Lo que pagas hoy</p>
+              <p className="mt-2 text-lg text-white/85">Elige el tramo más parecido. Si no tienes ese proveedor, déjalo en «Nada». No hace falta ser exacto.</p>
+            </div>
+            <div aria-hidden="true" className="relative z-10 mt-6 flex gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2">
+              {["Google Ads", "Meta", "Semrush"].map((l, i) => (
+                <span key={l} className="flota grid h-14 w-14 place-items-center rounded-2xl bg-white shadow-lg sm:h-16 sm:w-16" style={{ animationDelay: `${i * 0.35}s` }}><LogoMarca nombre={l} tam={32} /></span>
+              ))}
+            </div>
+          </div>
+          <div className="p-6 sm:p-10">
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {PROVEEDORES.map((p) => (
               <label key={p.id} className="block text-sm font-bold">
@@ -482,14 +528,18 @@ export default function TestCompleto() {
               Volver
             </button>
           </div>
+          </div>
         </div>
       )}
 
       {paso === TOTAL_PASOS && (
         <div className="space-y-6" aria-live="polite">
           <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
-            <div className="flex flex-col justify-between rounded-[2rem] bg-noche p-7 text-white sm:p-10">
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-10">
               <div>
+                {[[8, 12], [82, 8], [90, 40], [70, 70], [12, 75], [45, 6]].map(([x, y], i) => (
+                  <span key={i} aria-hidden="true" className="titila absolute h-2 w-2 rounded-full bg-estrella" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * 0.4}s` }} />
+                ))}
                 <p className="text-sm text-white/70">Tu nota de marketing digital</p>
                 <p className="mt-2 text-7xl font-extrabold leading-none text-estrella sm:text-8xl">
                   {r.nota}

@@ -180,3 +180,18 @@ details > summary::-webkit-details-marker {
 .aparece { animation: aparece 0.35s ease-out both; }
 @keyframes aparece { from { opacity: 0; transform: translateY(-4px) scale(0.96); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .flota, .aparece { animation: none; } }
+
+/* Rendimiento: las secciones fuera de pantalla no se pintan hasta que hacen falta. */
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* Test: celebración al terminar un bloque y estrellas en el resultado */
+.fiesta { animation: fiesta 1.9s ease-out both; }
+@keyframes fiesta { 0% { opacity: 0; transform: translateY(-14px) scale(0.85); } 12% { opacity: 1; transform: translateY(0) scale(1.06); } 20% { transform: scale(1); } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(-8px); } }
+.chispa { animation: chispa 0.9s ease-out both; }
+@keyframes chispa { from { transform: translate(-50%, -50%) rotate(var(--ang)) translateX(0); opacity: 1; } to { transform: translate(-50%, -50%) rotate(var(--ang)) translateX(90px); opacity: 0; } }
+.titila { animation: titila 2.4s ease-in-out infinite; box-shadow: 0 0 10px 2px rgba(255, 197, 61, 0.7); }
+@keyframes titila { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.2); } }
+@media (prefers-reduced-motion: reduce) { .fiesta, .chispa, .titila { animation: none; } .chispa { display: none; } }

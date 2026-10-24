@@ -299,7 +299,7 @@ function Caja({ titulo, fuente, ayuda, children, className = "" }: { titulo: str
   return (
     <section className={`min-w-0 rounded-3xl border border-linea bg-white p-5 sm:p-7 ${className}`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="text-lg font-extrabold sm:text-xl">{titulo}</h3>
+        <h2 className="text-lg font-extrabold sm:text-xl">{titulo}</h2>
         <div className="flex items-center gap-2">
           {fuente && <span className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">{fuente}</span>}
           {ayuda && (
@@ -431,7 +431,7 @@ function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion }
       <p className="text-sm font-bold text-gris">{titulo}</p>
       <p className="mt-1 text-3xl font-extrabold sm:text-4xl"><Contador valor={valor} formato={formato} /></p>
       {cambio !== undefined && (
-        <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-600" : "text-rose-600"}`}>
+        <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
           {cambio > 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">que el mes pasado</span>
         </p>
       )}
@@ -550,7 +550,7 @@ export default function PanelEjemplo() {
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
 
-        <nav aria-label="Secciones del panel" className="sticky top-[72px] z-20 -mx-4 mt-0 overflow-x-auto bg-niebla/95 px-4 py-3 backdrop-blur sm:mx-0 sm:px-0">
+        <nav aria-label="Secciones del panel" className="sticky top-[76px] z-20 sm:top-[80px] -mx-4 mt-0 overflow-x-auto bg-niebla/95 px-4 py-3 backdrop-blur sm:mx-0 sm:px-0">
           <ul className="flex gap-2">
             {PESTANAS.map(([id, texto]) => (
               <li key={id}>
@@ -624,7 +624,7 @@ export default function PanelEjemplo() {
                           <span className="block truncate text-xs font-bold">{n}</span>
                           <span className="block truncate text-[0.7rem] text-gris">{d}</span>
                         </span>
-                        <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" aria-label="Conectada" />
+                        <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" role="img" aria-label="Conectada" />
                       </li>
                     ))}
                   </ul>
@@ -911,7 +911,7 @@ export default function PanelEjemplo() {
                           <td className="py-3 font-bold">{b}</td>
                           <td className="py-3">{num(v)}</td>
                           <td className="py-3"><span className={`rounded-full px-3 py-1 text-xs font-extrabold ${hoyP <= 3 ? "bg-emerald-100 text-emerald-800" : "bg-niebla"}`}>{hoyP}.º</span></td>
-                          <td className="py-3 text-gris">{antes}.º <span className="font-bold text-emerald-600">▲ {antes - hoyP}</span></td>
+                          <td className="py-3 text-gris">{antes}.º <span className="font-bold text-emerald-700">▲ {antes - hoyP}</span></td>
                         </tr>
                       ))}
                     </tbody>
@@ -969,7 +969,7 @@ export default function PanelEjemplo() {
                   </div>
                   <ul className="flex gap-3">
                     {["ChatGPT", "Gemini", "Claude"].map((n) => (
-                      <li key={n} className="flex flex-col items-center gap-1 rounded-2xl bg-niebla p-3"><Logo nombre={n} tam={30} /><span className="text-xs font-bold">{n}</span><span className="text-xs text-emerald-600">Te recomienda</span></li>
+                      <li key={n} className="flex flex-col items-center gap-1 rounded-2xl bg-niebla p-3"><Logo nombre={n} tam={30} /><span className="text-xs font-bold">{n}</span><span className="text-xs text-emerald-700">Te recomienda</span></li>
                     ))}
                   </ul>
                 </div>
@@ -984,7 +984,7 @@ export default function PanelEjemplo() {
                   <div className="flex items-center gap-3">
                     <Logo nombre={r.red} tam={34} />
                     <p className="text-3xl font-extrabold"><Contador valor={r.serie[r.serie.length - 1]} /></p>
-                    <span className="text-sm font-bold text-emerald-600">+{num(r.serie[r.serie.length - 1] - r.serie[r.serie.length - 4])} en 3 meses</span>
+                    <span className="text-sm font-bold text-emerald-700">+{num(r.serie[r.serie.length - 1] - r.serie[r.serie.length - 4])} en 3 meses</span>
                   </div>
                   <div className="mt-3"><Linea serie={r.serie} color={r.color} /></div>
                   <p className="mt-3 text-sm text-gris">{r.extra}</p>
@@ -1031,7 +1031,7 @@ export default function PanelEjemplo() {
                     <ul className="mt-3 space-y-2 text-sm">
                       {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
                         "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas"].map((t) => (
-                        <li key={t} className="flex gap-2"><span className="text-emerald-600">✓</span>{t}</li>
+                        <li key={t} className="flex gap-2"><span className="text-emerald-700">✓</span>{t}</li>
                       ))}
                     </ul>
                   </div>
@@ -1050,7 +1050,7 @@ export default function PanelEjemplo() {
                 <Caja titulo="Lo que has gastado este mes" fuente="Octubre" ayuda="El desglose de lo que te ha costado el marketing este mes. La cuota es fija; lo demás depende de lo que decidas invertir.">
                   <ul className="divide-y divide-linea text-sm">
                     <li className="flex justify-between py-2"><span>Cuota mensual (todo incluido)</span><b>La que acordemos</b></li>
-                    <li className="flex justify-between py-2"><span>SEO, web, servidor y dominio</span><b className="text-emerald-600">0 € (incluido)</b></li>
+                    <li className="flex justify-between py-2"><span>SEO, web, servidor y dominio</span><b className="text-emerald-700">0 € (incluido)</b></li>
                     <li className="flex justify-between py-2"><span>Inversión en Google Ads</span><b>{eur(gastoMes.google)}</b></li>
                     <li className="flex justify-between py-2"><span>Inversión en Instagram y Facebook</span><b>{eur(gastoMes.meta)}</b></li>
                     <li className="flex justify-between py-2"><span>Vídeo profesional (opcional)</span><b>{eur(gastoMes.video)}</b></li>
@@ -1118,7 +1118,7 @@ export default function PanelEjemplo() {
                   <p className="mt-3 text-sm text-gris">Se lee: viene de Instagram, de la campaña de otoño, del reel de la instalación.</p>
                 </Caja>
                 <Caja titulo="Aunque bloqueen cookies" fuente="Conversiones desde el servidor" ayuda="Cada vez más navegadores bloquean las cookies. Por eso enviamos también los contactos directamente desde tu servidor a Google y a Meta, respetando siempre lo que la persona haya aceptado.">
-                  <p className="text-4xl font-extrabold text-emerald-600">97 %</p>
+                  <p className="text-4xl font-extrabold text-emerald-700">97 %</p>
                   <p className="text-sm text-gris">de los contactos queda atribuido a su origen. Sin esto, una parte importante se quedaría sin saber de dónde viene.</p>
                 </Caja>
                 <Caja titulo="Cookies y privacidad" fuente="Como pide la ley" ayuda="El banner de cookies cumple con la normativa española. Si alguien no acepta, no se le sigue: solo se cuenta de forma anónima.">
