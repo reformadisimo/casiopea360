@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
+import LogoMarca from "@/components/LogoMarca";
 import MovilParte from "@/components/MovilParte";
 import Diagnostico from "@/components/Diagnostico";
 import {
@@ -38,9 +39,13 @@ const HERRAMIENTAS = [
   "Google Ads",
   "Search Console",
   "Analytics",
+  "Google Maps",
+  "Bing",
   "Meta",
+  "Facebook",
   "Instagram",
   "TikTok",
+  "YouTube",
   "LinkedIn",
   "WhatsApp Business",
   "ChatGPT",
@@ -57,11 +62,11 @@ export function CintaHerramientas() {
   const fila = [...HERRAMIENTAS, ...HERRAMIENTAS];
   return (
     <section aria-label="Plataformas con las que trabajamos cada día" className="overflow-hidden border-y border-white/10 bg-noche-2 py-5">
-      <div className="flex w-max animate-[deslizar_45s_linear_infinite] gap-10 motion-reduce:animate-none">
+      <div className="flex w-max animate-[deslizar_55s_linear_infinite] gap-4 motion-reduce:animate-none">
         {fila.map((h, i) => (
-          <span key={`${h}-${i}`} aria-hidden={i >= HERRAMIENTAS.length} className="flex items-center gap-10 whitespace-nowrap font-titular text-lg font-bold text-white/55">
+          <span key={`${h}-${i}`} aria-hidden={i >= HERRAMIENTAS.length} className="flex items-center gap-3 whitespace-nowrap rounded-full bg-white px-4 py-2 font-titular text-base font-bold text-tinta shadow-sm">
+            <LogoMarca nombre={h} tam={24} />
             {h}
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella/70" />
           </span>
         ))}
       </div>

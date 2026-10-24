@@ -2,17 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import LogoMarca from "@/components/LogoMarca";
 
 // Test rápido: siete preguntas de sí o no y un resultado al momento.
 // Todo se calcula en el navegador; no se envía nada.
 const PREGUNTAS = [
-  { p: "¿Tu web carga rápido en el móvil?", consejo: "Una web lenta pierde a la mitad de las visitas antes de que la vean." },
-  { p: "¿Sales en Google cuando buscan lo que haces en tu zona?", consejo: "Si no sales, esos clientes se los lleva tu competencia." },
-  { p: "¿Contestas todas las reseñas de Google?", consejo: "Las reseñas sin respuesta restan confianza, sobre todo las malas." },
-  { p: "¿Sabes cuánto te cuesta cada cliente que llega por internet?", consejo: "Sin ese dato, no sabes si tus anuncios ganan o pierden dinero." },
-  { p: "¿Alguien atiende los mensajes que llegan de noche o en fin de semana?", consejo: "Quien escribe a las once de la noche y no recibe respuesta, escribe a otro." },
-  { p: "¿Un solo proveedor lleva todo tu marketing digital?", consejo: "Con varios proveedores, nadie mira el conjunto y tú haces de coordinador." },
-  { p: "¿Recibes cada semana un informe claro de resultados?", consejo: "Lo que no se mide no se puede mejorar." },
+  { logo: "PageSpeed", p: "¿Tu web carga rápido en el móvil?", consejo: "Una web lenta pierde a la mitad de las visitas antes de que la vean." },
+  { logo: "Google", p: "¿Sales en Google cuando buscan lo que haces en tu zona?", consejo: "Si no sales, esos clientes se los lleva tu competencia." },
+  { logo: "Ficha de Google", p: "¿Contestas todas las reseñas de Google?", consejo: "Las reseñas sin respuesta restan confianza, sobre todo las malas." },
+  { logo: "Google Analytics", p: "¿Sabes cuánto te cuesta cada cliente que llega por internet?", consejo: "Sin ese dato, no sabes si tus anuncios ganan o pierden dinero." },
+  { logo: "WhatsApp", p: "¿Alguien atiende los mensajes que llegan de noche o en fin de semana?", consejo: "Quien escribe a las once de la noche y no recibe respuesta, escribe a otro." },
+  { logo: "Google Ads", p: "¿Un solo proveedor lleva todo tu marketing digital?", consejo: "Con varios proveedores, nadie mira el conjunto y tú haces de coordinador." },
+  { logo: "Gmail", p: "¿Recibes cada semana un informe claro de resultados?", consejo: "Lo que no se mide no se puede mejorar." },
 ];
 
 export default function TestRapido() {
@@ -57,9 +58,14 @@ export default function TestRapido() {
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/15" aria-hidden="true">
             <div className="h-full rounded-full bg-estrella transition-all duration-300" style={{ width: `${(paso / PREGUNTAS.length) * 100}%` }} />
           </div>
-          <p className="mt-10 font-titular text-3xl font-extrabold sm:text-4xl" aria-live="polite">
-            {PREGUNTAS[paso].p}
-          </p>
+          <div key={paso} className="aparece mt-10 flex items-start gap-4">
+            <span className="flota grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white shadow-lg">
+              <LogoMarca nombre={PREGUNTAS[paso].logo} tam={36} />
+            </span>
+            <p className="font-titular text-3xl font-extrabold sm:text-4xl" aria-live="polite">
+              {PREGUNTAS[paso].p}
+            </p>
+          </div>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:max-w-md">
             <button type="button" onClick={() => responder(true)} className="rounded-2xl bg-estrella px-6 py-5 text-xl font-bold text-tinta hover:bg-estrella-2">
               Sí
@@ -86,8 +92,8 @@ export default function TestRapido() {
               <ul className="mt-3 space-y-3">
                 {PREGUNTAS.map((q, i) =>
                   respuestas[i] === false ? (
-                    <li key={q.p} className="flex gap-3 text-white/85">
-                      <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />
+                    <li key={q.p} className="flex items-start gap-3 text-white/85">
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white"><LogoMarca nombre={q.logo} tam={20} /></span>
                       {q.consejo}
                     </li>
                   ) : null,

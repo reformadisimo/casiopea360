@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
+import LogoMarca from "@/components/LogoMarca";
 
 // Test completo: 50 preguntas en 10 bloques más un bloque de gastos. Cada bloque se puede saltar.
 // El primer bloque (tu empresa) no puntúa: sirve para personalizar el resultado.
@@ -143,6 +144,44 @@ const BLOQUES: Bloque[] = [
   },
 ];
 
+// Logos de cada bloque y de cada pregunta, para que el test se lea de un vistazo.
+const LOGOS_BLOQUE: Record<string, string[]> = {
+  empresa: ["Google Maps", "Google", "LinkedIn"],
+  web: ["Google Chrome", "PageSpeed", "Google"],
+  google: ["Google", "Ficha de Google", "Bing", "ChatGPT", "Gemini"],
+  anuncios: ["Google Ads", "Meta", "TikTok", "Bing"],
+  redes: ["Instagram", "Facebook", "TikTok", "YouTube", "LinkedIn"],
+  atencion: ["WhatsApp", "Gmail", "Claude"],
+  control: ["Google Analytics", "Tag Manager", "Search Console"],
+  marca: ["Semrush", "Google", "ChatGPT"],
+  ventas: ["WhatsApp", "Gmail", "Google Analytics"],
+  contenido: ["YouTube", "Instagram", "Gmail"],
+};
+const COLOR_BLOQUE: Record<string, string> = {
+  empresa: "from-[#24387a] to-[#0e1a3d]",
+  web: "from-[#1f6feb] to-[#0e1a3d]",
+  google: "from-[#1a73e8] to-[#188038]",
+  anuncios: "from-[#f9ab00] to-[#e8710a]",
+  redes: "from-[#c13584] to-[#5851db]",
+  atencion: "from-[#128c7e] to-[#075e54]",
+  control: "from-[#e37400] to-[#24387a]",
+  marca: "from-[#ff642d] to-[#24387a]",
+  ventas: "from-[#0f9d58] to-[#0e1a3d]",
+  contenido: "from-[#ff0000] to-[#8a1538]",
+};
+const LOGO_PREGUNTA: Record<string, string> = {
+  e4: "Google Maps", w1: "Google", w2: "PageSpeed", g1: "Google", g2: "Ficha de Google", g3: "Ficha de Google", g4: "Ficha de Google",
+  g5: "ChatGPT", a1: "Google Ads", a2: "Google Analytics", a4: "Meta", r1: "Instagram", r2: "TikTok", r3: "Facebook", r4: "YouTube",
+  t1: "WhatsApp", t2: "Claude", t3: "Gmail", t5: "Ficha de Google", c1: "Google Analytics", c2: "Search Console", m1: "Semrush", m2: "Instagram",
+  m5: "Google", v3: "Google Analytics", v4: "WhatsApp", v5: "Gmail", k1: "YouTube", k4: "Gmail",
+};
+const REACCION = [
+  { t: "Aquí se te escapan clientes", c: "bg-rose-100 text-rose-800" },
+  { t: "Mejorable, pero tiene arreglo", c: "bg-orange-100 text-orange-800" },
+  { t: "No está mal", c: "bg-amber-100 text-amber-800" },
+  { t: "Muy bien, esto suma", c: "bg-emerald-100 text-emerald-800" },
+];
+
 const HORAS = [0.5, 3, 6.5, 10]; // horas semanales según la respuesta de c4
 const VALOR_HORA = 60; // valor orientativo de una hora de dirección
 
@@ -273,16 +312,33 @@ export default function TestCompleto() {
       )}
 
       {bloque && (
-        <div className="rounded-[2rem] border border-linea bg-white p-6 sm:p-10">
-          <p className="text-3xl font-extrabold sm:text-4xl">{bloque.titulo}</p>
-          <p className="mt-2 text-lg text-gris">{bloque.intro}</p>
-          <ol className="mt-8 space-y-9">
+        <div className="overflow-hidden rounded-[2rem] border border-linea bg-white">
+          <div className={`relative overflow-hidden bg-gradient-to-br ${COLOR_BLOQUE[bloque.id] ?? "from-noche-3 to-noche"} p-6 text-white sm:p-10`}>
+            <div className="relative z-10 max-w-xl">
+              <p className="text-sm font-bold text-white/75">Bloque {paso + 1} de {TOTAL_PASOS}</p>
+              <p className="mt-1 text-3xl font-extrabold sm:text-4xl">{bloque.titulo}</p>
+              <p className="mt-2 text-lg text-white/85">{bloque.intro}</p>
+            </div>
+            <div aria-hidden="true" className="mt-6 flex flex-wrap gap-3 sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:max-w-[16rem] sm:-translate-y-1/2 sm:justify-end">
+              {(LOGOS_BLOQUE[bloque.id] ?? []).map((l, i) => (
+                <span key={l} className="flota grid h-14 w-14 place-items-center rounded-2xl bg-white shadow-lg sm:h-16 sm:w-16" style={{ animationDelay: `${i * 0.35}s` }}>
+                  <LogoMarca nombre={l} tam={32} />
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="p-6 sm:p-10">
+          <ol className="space-y-9">
             {bloque.preguntas.map((q, i) => (
               <li key={q.id}>
                 <fieldset>
-                  <legend className="text-lg font-bold">
-                    <span className="mr-2 text-gris">{i + 1}.</span>
-                    {q.p}
+                  <legend className="flex items-start gap-3 text-lg font-bold">
+                    {LOGO_PREGUNTA[q.id] ? (
+                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla"><LogoMarca nombre={LOGO_PREGUNTA[q.id]} tam={22} /></span>
+                    ) : (
+                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-niebla text-sm font-extrabold text-noche-3">{i + 1}</span>
+                    )}
+                    <span className="pt-1">{q.p}</span>
                   </legend>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {q.o.map((o, j) => {
@@ -293,8 +349,8 @@ export default function TestCompleto() {
                           type="button"
                           aria-pressed={activo}
                           onClick={() => setResp({ ...resp, [q.id]: j })}
-                          className={`rounded-full border px-4 py-2.5 text-left text-[0.95rem] transition-colors ${
-                            activo ? "border-noche bg-noche font-bold text-white" : "border-linea hover:border-noche"
+                          className={`rounded-full border px-4 py-2.5 text-left text-[0.95rem] transition-all ${
+                            activo ? "scale-[1.03] border-noche bg-noche font-bold text-white shadow-md" : "border-linea hover:-translate-y-0.5 hover:border-noche hover:shadow-sm"
                           }`}
                         >
                           {o.t}
@@ -302,6 +358,11 @@ export default function TestCompleto() {
                       );
                     })}
                   </div>
+                  {!bloque.contexto && resp[q.id] !== undefined && (
+                    <p key={resp[q.id]} className={`aparece mt-3 inline-block rounded-full px-3 py-1 text-sm font-bold ${REACCION[q.o[resp[q.id]].v].c}`}>
+                      {REACCION[q.o[resp[q.id]].v].t}
+                    </p>
+                  )}
                 </fieldset>
               </li>
             ))}
@@ -327,6 +388,7 @@ export default function TestCompleto() {
               </button>
             )}
             {!completo && <span className="w-full text-sm text-gris">Contesta todas para seguir, o salta el bloque si no te apetece. Cuantas más contestes, más preciso será tu resultado.</span>}
+          </div>
           </div>
         </div>
       )}

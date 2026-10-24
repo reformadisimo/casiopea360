@@ -173,3 +173,10 @@ details > summary::-webkit-details-marker {
   padding: 0.6em 0.5em;
   text-align: left;
 }
+
+/* Test: logos que flotan y reacciones que aparecen */
+.flota { animation: flota 3.2s ease-in-out infinite; }
+@keyframes flota { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+.aparece { animation: aparece 0.35s ease-out both; }
+@keyframes aparece { from { opacity: 0; transform: translateY(-4px) scale(0.96); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .flota, .aparece { animation: none; } }
