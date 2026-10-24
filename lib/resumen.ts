@@ -26,7 +26,7 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 - Todo (web, dominio, cuentas) a nombre del cliente desde el primer día.
 - Seis meses de permanencia, porque la web va regalada; después no hay permanencia y el cliente puede irse cuando quiera.
 - Las menos reuniones posibles: casi todo por escrito y un panel para ver el trabajo.
-- Estudio gratuito previo, preparado a mano para empresas que encajan.
+- Estudio gratuito previo, preparado a medida, uno a uno, para empresas que encajan.
 
 ## Por qué cuesta menos
 ${POR_QUE_BARATO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}

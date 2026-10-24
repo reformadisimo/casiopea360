@@ -320,7 +320,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
       {titulo && (
         <>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Trabajos reales, funcionando hoy.</h2>
-          <p className="mt-5 max-w-2xl text-lg text-gris">Lo construimos primero para nosotros. Lo que te ofrecemos ya trae clientes a nuestras propias empresas.</p>
+          <p className="mt-5 max-w-2xl text-lg text-gris">Webs, apps y asistentes que ya traen clientes, a nuestra propia empresa y a quienes confían en nosotros. Y muchos más que no podemos enseñar: hay clientes que prefieren discreción.</p>
         </>
       )}
       <div className={`${titulo ? "mt-12" : ""} grid gap-6 md:grid-cols-2`}>
@@ -1100,7 +1100,7 @@ export function SeccionEstudio() {
   return (
     <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
       <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu estudio gratuito, a medida.</h2>
-      <p className="mt-5 max-w-2xl text-lg text-gris">Lo preparamos a mano, para tu empresa, con datos reales y fechados. Esto es lo que incluye.</p>
+      <p className="mt-5 max-w-2xl text-lg text-gris">Lo preparamos uno a uno, para tu empresa, con datos reales y fechados. Esto es lo que incluye.</p>
       <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {ESTUDIO.map((e, i) => (
           <li key={e.titulo} className={`group relative overflow-hidden rounded-3xl p-6 transition-all hover:-translate-y-1 ${i === ESTUDIO.length - 1 ? "bg-noche text-white" : "bg-white shadow-sm ring-1 ring-linea"}`}>

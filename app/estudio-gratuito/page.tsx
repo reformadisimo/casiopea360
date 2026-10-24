@@ -7,7 +7,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Estudio gratuito de tu marketing digital",
-  "Analizamos tu web, tu ficha de Google, tus anuncios, tu competencia y cómo te ven las IA. Lo preparamos a mano para empresas a las que podemos ayudar.",
+  "Analizamos tu web, tu ficha de Google, tus anuncios, tu competencia y cómo te ven las IA. Lo preparamos a medida para empresas a las que podemos ayudar.",
   "/estudio-gratuito",
 );
 
@@ -16,7 +16,7 @@ export default function EstudioGratuito() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
       <CabeceraPagina
-        titulo="Tu estudio gratuito, hecho a mano."
+        titulo="Tu estudio gratuito, hecho a medida."
         entradilla="Te contamos cómo está hoy tu marketing, qué te está haciendo perder clientes y qué haríamos. Con datos reales y sin compromiso."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
         video="mujer-cielo"
