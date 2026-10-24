@@ -1274,17 +1274,16 @@ export function SeccionEstudio() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
             <p className="text-sm font-bold text-gris">Reformadísimo</p>
-            <p className="mt-2 font-titular text-3xl font-extrabold text-emerald-700">16.368 €</p>
-            <p className="text-sm font-bold">de ahorro al año</p>
-            <p className="mt-2 text-[0.95rem]">Un <b>23 % menos</b> en su presupuesto de marketing. Deja de pagar 2.000 € al mes a dos agencias.</p>
-            <p className="mt-3 text-xs text-gris">Previsto: presupuesto de noviembre de 2026 frente a la media de junio a septiembre.</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−23 %</p>
+            <p className="text-sm font-bold">en su presupuesto de marketing</p>
+            <p className="mt-2 text-[0.95rem]">Y deja de pagar el <b>100 %</b> de lo que pagaba a agencias.</p>
+            <p className="mt-3 text-xs text-gris">Previsto con su presupuesto de noviembre de 2026.</p>
           </div>
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
             <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
-            <p className="mt-2 font-titular text-3xl font-extrabold text-emerald-700">5.550 €</p>
-            <p className="text-sm font-bold">al año que deja de pagar</p>
-            <p className="mt-2 text-[0.95rem]">400 € al mes de SEO y 750 € al año de mantenimiento. Y su web pasó de <b>56 a 94</b> de velocidad en el móvil.</p>
-            <p className="mt-3 text-xs text-gris">Su inversión en anuncios sigue, pero mejor aprovechada.</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−100 %</p>
+            <p className="text-sm font-bold">en SEO y mantenimiento de la web</p>
+            <p className="mt-2 text-[0.95rem]">Todo entra en la cuota. Y su inversión en anuncios, mejor aprovechada.</p>
           </div>
         </div>
       </div>
