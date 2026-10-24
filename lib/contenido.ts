@@ -299,7 +299,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Os conectáis con mi CRM? ¿Y si no tengo?",
-    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre. Va incluido.",
+    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre, sin licencias por usuario. Va incluido en tu cuota. Con él hacemos los seguimientos: nada de boletines masivos, sino el mensaje justo a quien lo necesita.",
   },
   {
     p: "¿Hacéis también radio o prensa?",

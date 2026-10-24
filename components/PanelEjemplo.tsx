@@ -6,11 +6,13 @@
 // Instagram, LinkedIn, TikTok, Resend (correos), PageSpeed, Clarity y Vercel. Todo pasa por Tag Manager.
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import LogoMarca from "@/components/LogoMarca";
 
-type Pestana = "resumen" | "peticiones" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
+type Pestana = "resumen" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
 const PESTANAS: [Pestana, string][] = [
   ["resumen", "Resumen"],
   ["peticiones", "Tus peticiones"],
+  ["crm", "Tu CRM"],
   ["clientes", "Clientes"],
   ["anuncios", "Anuncios"],
   ["google", "Google, Bing e IA"],
@@ -235,6 +237,29 @@ const DOCUMENTOS: [string, string][] = [
   ["Factura de agosto", "Factura"],
 ];
 
+// CRM de ejemplo: cada contacto entra solo con su origen y avanza por fases hasta cliente.
+const FASES = ["Nuevo", "Contactado", "Presupuesto enviado", "Negociando", "Cliente", "No sigue"] as const;
+type Fase = (typeof FASES)[number];
+type Ficha = { id: number; nombre: string; tema: string; origen: string; valor: number; fase: Fase; seguimiento: string; canal: "WhatsApp" | "Llamada" | "Correo"; historia: [string, string][] };
+const FICHAS_INICIALES: Ficha[] = [
+  { id: 1, nombre: "L. M.", tema: "Aerotermia para un chalet", origen: "Google Ads · Aerotermia", valor: 9400, fase: "Nuevo", seguimiento: "Hoy, en 5 minutos", canal: "Llamada", historia: [["Hoy, 10:31", "Entra solo desde el formulario de la web"], ["Hoy, 10:29", "Usa la calculadora de ahorro"], ["Hoy, 10:24", "Llega desde un anuncio de Google"]] },
+  { id: 2, nombre: "Comunidad Av. Europa 14", tema: "Climatización del portal", origen: "Google sin pagar", valor: 18600, fase: "Contactado", seguimiento: "Mañana, 10:00", canal: "Correo", historia: [["Ayer, 12:10", "Llamada: quieren visita la semana que viene"], ["Ayer, 09:20", "Llama desde la ficha de Google"]] },
+  { id: 3, nombre: "J. R.", tema: "Split en dos dormitorios", origen: "Instagram · reel", valor: 2900, fase: "Presupuesto enviado", seguimiento: "Hoy, 17:00", canal: "WhatsApp", historia: [["Lunes", "Presupuesto enviado: 2.900 €"], ["Lunes", "Visita hecha"], ["Viernes", "Escribe por WhatsApp desde Instagram"]] },
+  { id: 4, nombre: "Oficinas Grupo Norte", tema: "Mantenimiento anual", origen: "ChatGPT", valor: 7200, fase: "Negociando", seguimiento: "Jueves, 12:00", canal: "Llamada", historia: [["Martes", "Piden ajustar el precio de la segunda sede"], ["Lunes", "Presupuesto enviado: 7.200 €/año"], ["Jueves", "Llegan desde ChatGPT a la página de empresa"]] },
+  { id: 5, nombre: "A. G.", tema: "Caldera que no arranca", origen: "Ficha de Google", valor: 1450, fase: "Cliente", seguimiento: "En 15 días: pedir reseña", canal: "WhatsApp", historia: [["Miércoles", "Firmado: 1.450 €"], ["Lunes", "Llamada desde el mapa de Google"]] },
+  { id: 6, nombre: "M. T.", tema: "Suelo radiante", origen: "Seguimiento n.º 3", valor: 11800, fase: "Cliente", seguimiento: "En 6 meses: revisión", canal: "Correo", historia: [["Martes", "Firmado: 11.800 €"], ["Hace 3 semanas", "Recibe el seguimiento n.º 3 y vuelve a escribir"], ["Hace 5 semanas", "Pide presupuesto y se enfría"]] },
+  { id: 7, nombre: "P. S.", tema: "Aire acondicionado en tienda", origen: "Anuncios de Instagram", valor: 4300, fase: "No sigue", seguimiento: "En marzo: volver a escribir", canal: "WhatsApp", historia: [["Viernes", "No sigue: lo deja para primavera"], ["Lunes", "Presupuesto enviado: 4.300 €"]] },
+];
+const COLOR_FASE: Record<Fase, string> = {
+  Nuevo: "bg-sky-100 text-sky-800",
+  Contactado: "bg-indigo-100 text-indigo-800",
+  "Presupuesto enviado": "bg-violet-100 text-violet-800",
+  Negociando: "bg-estrella/40 text-tinta",
+  Cliente: "bg-emerald-100 text-emerald-800",
+  "No sigue": "bg-niebla text-gris",
+};
+const LOGO_CANAL: Record<Ficha["canal"], string> = { WhatsApp: "WhatsApp", Llamada: "Ficha de Google", Correo: "Gmail" };
+
 const MESES = ["May", "Jun", "Jul", "Ago", "Sep", "Oct"];
 // Lo variable de cada mes: inversión en anuncios, vídeo profesional y notas de prensa (opcionales).
 const GASTO_MES: { google: number; meta: number; video: number; prensa: number; clientes: number }[] = [
@@ -434,6 +459,11 @@ export default function PanelEjemplo() {
   const [pedido, setPedido] = useState("");
   const [peticiones, setPeticiones] = useState<Peticion[]>(PETICIONES_INICIALES);
   const [nueva, setNueva] = useState("");
+  const [fichas, setFichas] = useState<Ficha[]>(FICHAS_INICIALES);
+  const [abierta, setAbierta] = useState<number>(1);
+  const [hechos, setHechos] = useState<number[]>([]);
+  const mover = (id: number, fase: Fase) =>
+    setFichas((fs) => fs.map((f) => (f.id === id ? { ...f, fase, historia: [["Ahora mismo", `Pasa a «${fase}»`], ...f.historia] } : f)));
   const cambiaEstado = (id: number, estado: Estado) =>
     setPeticiones((ps) => ps.map((p) => (p.id === id ? { ...p, estado, entregada: estado === "Hecha" ? "Ahora mismo" : p.entregada } : p)));
   const anadir = () => {
@@ -468,6 +498,12 @@ export default function PanelEjemplo() {
       clearInterval(t);
       clearInterval(s);
     };
+  }, []);
+
+  // Se puede abrir una pestaña concreta con el enlace, p. ej. /panel#crm
+  useEffect(() => {
+    const h = window.location.hash.replace("#", "");
+    if (PESTANAS.some(([id]) => id === h)) setPestana(h as Pestana);
   }, []);
 
   useEffect(() => {
@@ -647,6 +683,97 @@ export default function PanelEjemplo() {
                   ))}
                 </ul>
               </Caja>
+            </>
+          )}
+
+          {pestana === "crm" && (
+            <>
+              <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
+                <p className="text-sm font-bold text-estrella">Tu CRM, hecho a medida e incluido</p>
+                <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Cada contacto entra solo, con de dónde vino. Tú solo lo mueves hasta cliente.</p>
+                <p className="mt-2 text-white/75">Formulario, chat, WhatsApp, llamadas desde Google y calculadoras crean la ficha sin que nadie escriba nada. Y los seguimientos te avisan de a quién llamar hoy. Nada de boletines masivos: un mensaje a la persona justa en el momento justo.</p>
+              </section>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Cifra titulo="Contactos este mes" valor={312} cambio={16} explicacion="Todos entran solos en tu CRM." />
+                <Cifra titulo="En juego ahora" valor={fichas.filter((f) => ["Contactado", "Presupuesto enviado", "Negociando"].includes(f.fase)).reduce((a, f) => a + f.valor, 0)} formato={eur} explicacion="Presupuestos abiertos que aún se pueden ganar." />
+                <Cifra titulo="Ganado este mes" valor={fichas.filter((f) => f.fase === "Cliente").reduce((a, f) => a + f.valor, 0) + 298300} formato={eur} cambio={14} explicacion="Presupuestos firmados que vinieron por internet." />
+                <Cifra titulo="Cierre de presupuestos" valor={41} formato={(n) => `${n} %`} cambio={6} explicacion="De cada 100 presupuestos enviados, cuántos se firman." />
+              </div>
+              <Caja titulo="Tus contactos, fase a fase" fuente="Se actualiza solo" ayuda="Cada columna es una fase. Pulsa en un contacto para ver su ficha, de dónde vino, todo lo que ha pasado y cuándo toca el siguiente seguimiento. Puedes moverlo de fase con un toque.">
+                <div className="-mx-1 overflow-x-auto pb-2">
+                  <div className="flex min-w-max gap-3 px-1">
+                    {FASES.map((fase) => {
+                      const deFase = fichas.filter((f) => f.fase === fase);
+                      return (
+                        <div key={fase} className="w-56 shrink-0 rounded-2xl bg-niebla p-3">
+                          <p className="flex items-center justify-between text-sm font-extrabold">{fase}<span className="rounded-full bg-white px-2 text-xs text-gris">{deFase.length}</span></p>
+                          <ul className="mt-3 space-y-2">
+                            {deFase.map((f) => (
+                              <li key={f.id}>
+                                <button type="button" onClick={() => setAbierta(f.id)} className={`pn-entra w-full rounded-xl bg-white p-3 text-left shadow-sm transition-all hover:-translate-y-0.5 ${abierta === f.id ? "ring-2 ring-noche" : ""}`}>
+                                  <span className="block text-sm font-extrabold">{f.nombre}</span>
+                                  <span className="block text-xs text-gris">{f.tema}</span>
+                                  <span className="mt-2 flex items-center justify-between text-xs"><span className="truncate text-noche-3">{f.origen}</span><b>{eur(f.valor)}</b></span>
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                {(() => {
+                  const f = fichas.find((x) => x.id === abierta);
+                  if (!f) return null;
+                  const i = FASES.indexOf(f.fase);
+                  return (
+                    <div className="mt-4 grid gap-4 rounded-2xl border border-linea p-5 lg:grid-cols-[1fr_1.2fr]">
+                      <div>
+                        <p className="text-xl font-extrabold">{f.nombre}</p>
+                        <p className="text-gris">{f.tema}</p>
+                        <p className="mt-3 text-sm"><b>De dónde vino:</b> {f.origen}</p>
+                        <p className="text-sm"><b>Valor:</b> {eur(f.valor)}</p>
+                        <p className="mt-2"><span className={`rounded-full px-3 py-1 text-xs font-bold ${COLOR_FASE[f.fase]}`}>{f.fase}</span></p>
+                        <p className="mt-3 flex items-center gap-2 rounded-xl bg-estrella/20 p-3 text-sm"><LogoMarca nombre={LOGO_CANAL[f.canal]} tam={20} /><span><b>Siguiente seguimiento:</b> {f.canal.toLowerCase()} · {f.seguimiento}</span></p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {i < 4 && <button type="button" onClick={() => mover(f.id, FASES[i + 1])} className="rounded-full bg-noche px-4 py-2 text-sm font-bold text-white">Pasar a «{FASES[i + 1]}»</button>}
+                          {f.fase !== "Cliente" && f.fase !== "No sigue" && <button type="button" onClick={() => mover(f.id, "Cliente")} className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-bold text-white">Ganado</button>}
+                          {f.fase !== "No sigue" && <button type="button" onClick={() => mover(f.id, "No sigue")} className="rounded-full border border-linea px-4 py-2 text-sm font-bold">No sigue</button>}
+                        </div>
+                      </div>
+                      <ol className="relative space-y-3 border-l-2 border-estrella pl-5">
+                        {f.historia.map(([cuando, que], k) => (
+                          <li key={k} className="relative"><span className="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-noche ring-4 ring-white" /><p className="text-xs font-bold text-gris">{cuando}</p><p className="text-sm">{que}</p></li>
+                        ))}
+                      </ol>
+                    </div>
+                  );
+                })()}
+              </Caja>
+              <div className="grid gap-5 lg:grid-cols-2">
+                <Caja titulo="Seguimientos de hoy" fuente="Te avisa el CRM" ayuda="El CRM te dice a quién escribir o llamar hoy y por qué, para que nadie que dudaba se quede sin respuesta. Algunos salen solos (un WhatsApp o un correo); otros te tocan a ti, como una llamada.">
+                  <ul className="space-y-2">
+                    {fichas.filter((f) => /Hoy|Mañana/.test(f.seguimiento)).map((f) => (
+                      <li key={f.id} className={`flex items-center gap-3 rounded-2xl border border-linea p-3 ${hechos.includes(f.id) ? "opacity-50" : ""}`}>
+                        <LogoMarca nombre={LOGO_CANAL[f.canal]} tam={24} />
+                        <span className="min-w-0 flex-1"><span className="block text-sm font-bold">{f.canal} a {f.nombre}</span><span className="block truncate text-xs text-gris">{f.tema} · {f.seguimiento}</span></span>
+                        <button type="button" onClick={() => setHechos(hechos.includes(f.id) ? hechos.filter((x) => x !== f.id) : [...hechos, f.id])} className={`rounded-full px-3 py-1.5 text-xs font-bold ${hechos.includes(f.id) ? "bg-emerald-100 text-emerald-800" : "bg-noche text-white"}`}>{hechos.includes(f.id) ? "Hecho" : "Marcar hecho"}</button>
+                      </li>
+                    ))}
+                  </ul>
+                </Caja>
+                <Caja titulo="Qué canal trae clientes de verdad" fuente="Del CRM, no de los clics" ayuda="Aquí no contamos visitas ni clics: contamos clientes que han firmado y lo que han facturado, según de dónde vinieron. Es el dato que decide dónde poner el dinero.">
+                  <ul className="space-y-3">
+                    {([["Anuncios de Google", 128000], ["Google sin pagar", 84000], ["Ficha de Google", 41000], ["Instagram y Facebook", 36000], ["Seguimientos", 22000], ["ChatGPT y otras IA", 7300]] as [string, number][]).map(([c, v]) => (
+                      <li key={c}>
+                        <div className="flex justify-between text-sm"><span>{c}</span><b>{eur(v)}</b></div>
+                        <div className="mt-1 h-2.5 overflow-hidden rounded-full bg-niebla"><div className="h-full rounded-full bg-emerald-500" style={{ width: `${(v / 128000) * 100}%` }} /></div>
+                      </li>
+                    ))}
+                  </ul>
+                </Caja>
+              </div>
             </>
           )}
 

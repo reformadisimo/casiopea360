@@ -12,6 +12,7 @@ import {
   SeccionEstudio,
   SeccionFrentes,
   SeccionEspecialistas,
+  SeccionCRM,
   SeccionGarantias,
   SeccionMetodo,
   SeccionOrigen,
@@ -60,6 +61,7 @@ export default function Inicio() {
       <BandaVideo />
       <SeccionFrentes />
       <SeccionEspecialistas />
+      <SeccionCRM />
       <BandaCompromisos />
       <SeccionOrigen />
       <SeccionTrabajos />

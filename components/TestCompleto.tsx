@@ -139,7 +139,7 @@ const BLOQUES: Bloque[] = [
       { id: "k1", p: "¿Tienes fotos y vídeos propios de tu trabajo, o usas imágenes de banco?", o: SINO_NOSE("Propios y buenos", "Mezcla", "De banco o ninguno"), fallo: "No tienes fotos ni vídeos propios: tu web parece la de cualquiera.", arreglo: "Guiones y plan de grabación; montamos lo que grabes o coordinamos una productora.", peso: 2 },
       { id: "k2", p: "¿Respondes en tu web las preguntas que más te hacen los clientes?", o: SINO_NOSE("Sí, todas", "Algunas", "No"), fallo: "Tu web no responde las dudas de tus clientes: te llaman para preguntar, o se van.", arreglo: "Preguntas frecuentes y artículos con las dudas reales de tus clientes.", peso: 2 },
       { id: "k3", p: "¿Tienes precios orientativos o una calculadora en la web?", o: SINO_NOSE("Sí", "Solo «pide presupuesto»", "No"), fallo: "Sin precios orientativos, muchos no se atreven a escribirte.", arreglo: "Calculadora de precio orientativo que además te trae contactos.", peso: 2 },
-      { id: "k4", p: "¿Envías correos o boletines a tus clientes y contactos?", o: SINO_NOSE("Sí, con regularidad", "De vez en cuando", "Nunca"), fallo: "No mantienes el contacto por correo: te olvidan entre compra y compra.", arreglo: "Boletín mensual sencillo y correos automáticos según lo que interesa a cada uno.", peso: 1 },
+      { id: "k4", p: "Cuando alguien te pide información y no compra, ¿le haces seguimiento?", o: SINO_NOSE("Sí, con avisos y mensajes programados", "Cuando nos acordamos", "No"), fallo: "Sin seguimiento, los que dudan se olvidan de ti y acaban comprando a otro.", arreglo: "Seguimientos automáticos desde tu CRM: un mensaje o una llamada en el momento justo, nada de boletines masivos.", peso: 2 },
     ],
   },
 ];

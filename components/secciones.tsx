@@ -495,6 +495,64 @@ export function SeccionLoQueSea() {
   );
 }
 
+/* Valor añadido: CRM a medida incluido. */
+export function SeccionCRM() {
+  const columnas: [string, string[]][] = [
+    ["Nuevo", ["Aerotermia · Google Ads", "Reforma · Instagram"]],
+    ["Presupuesto", ["Mantenimiento · ChatGPT"]],
+    ["Cliente", ["Suelo radiante · Seguimiento", "Caldera · Mapa de Google"]],
+  ];
+  return (
+    <section className="overflow-hidden bg-white py-20 sm:py-28">
+      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]`}>
+        <div>
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Valor añadido · incluido en tu cuota</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Tu propio CRM, hecho a medida.</h2>
+          <p className="mt-5 text-lg text-gris">Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. Sin licencias que pagar por usuario.</p>
+          <ul className="mt-7 space-y-3 text-[1.05rem]">
+            {[
+              "Cada contacto entra solo: formulario, chat, WhatsApp, llamadas y calculadoras, con la página y el anuncio de donde vino.",
+              "Lo mueves de fase con un toque, del primer contacto a cliente firmado.",
+              "Seguimientos que te avisan o salen solos. Nada de boletines masivos: el mensaje justo a la persona justa.",
+              "Ves qué canal trae clientes que firman, no solo clics.",
+              "En el móvil, para ti y tu equipo. Tus datos, a tu nombre.",
+              "¿Ya tienes uno? Lo conectamos al tuyo: HubSpot, Zoho, Pipedrive o el que uses.",
+            ].map((t) => (
+              <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-noche text-xs text-estrella">✓</span>{t}</li>
+            ))}
+          </ul>
+          <Link href="/panel#crm" className={`${BOTON} mt-8 inline-flex`}>Ver un CRM de ejemplo</Link>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-4 rounded-[2.6rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
+          <div className="relative rounded-[2rem] bg-noche p-5 shadow-2xl sm:p-7">
+            <div className="flex items-center justify-between text-white">
+              <p className="font-extrabold">Tus contactos</p>
+              <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-bold"><span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />Entrando solos</span>
+            </div>
+            <div className="mt-5 grid grid-cols-3 gap-3">
+              {columnas.map(([t, items]) => (
+                <div key={t} className="rounded-2xl bg-white/[0.07] p-3">
+                  <p className="text-xs font-extrabold text-white/80">{t}</p>
+                  <ul className="mt-2 space-y-2">
+                    {items.map((x, i) => (
+                      <li key={x} className="flota rounded-xl bg-white p-2.5 text-[0.7rem] font-bold leading-tight text-tinta shadow sm:text-xs" style={{ animationDelay: `${i * 0.6}s` }}>{x}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 flex items-center gap-3 rounded-2xl bg-estrella p-3 text-sm font-bold text-tinta">
+              <LogoMarca nombre="WhatsApp" tam={22} />
+              Hoy: escribir a J. R., presupuesto de hace 3 días
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Fuera de internet: radio (la recomendamos) y prensa escrita (si el cliente la quiere). */
 export function SeccionFueraInternet() {
   return (
