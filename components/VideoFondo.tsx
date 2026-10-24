@@ -4,6 +4,31 @@ import { useEffect, useRef, useState } from "react";
 
 // Vídeo de ambiente: mudo, en bucle, solo se carga cuando asoma en pantalla.
 // Con "reducir movimiento" activado se queda en su foto fija.
+// El iPhone a veces no deja arrancar vídeos solos (modo de ahorro de batería, o si no ve el vídeo como mudo).
+// Si falla, lo intentamos de nuevo con el primer toque o desplazamiento de la persona, que sí lo permite.
+const pendientes = new Set<HTMLVideoElement>();
+let escuchando = false;
+function reintentar() {
+  pendientes.forEach((v) => {
+    if (v.dataset.visible !== "1") return;
+    v.muted = true;
+    v.play().then(() => pendientes.delete(v)).catch(() => {});
+  });
+}
+function arrancar(v: HTMLVideoElement) {
+  v.muted = true;
+  v.defaultMuted = true;
+  v.setAttribute("muted", "");
+  v.play()
+    .then(() => pendientes.delete(v))
+    .catch(() => {
+      pendientes.add(v);
+      if (escuchando) return;
+      escuchando = true;
+      ["touchend", "click", "scroll", "keydown"].forEach((e) => window.addEventListener(e, reintentar, { passive: true }));
+    });
+}
+
 export default function VideoFondo({
   nombre,
   className = "",
@@ -61,11 +86,12 @@ export default function VideoFondo({
       (entradas) => {
         for (const e of entradas) {
           visible = e.isIntersecting;
+          v.dataset.visible = visible ? "1" : "0";
           if (visible) {
             listo.then(() => {
               if (cancelado || !visible) return;
               setCargar(true);
-              v.play().catch(() => {});
+              arrancar(v);
             });
           } else {
             v.pause();
@@ -87,7 +113,7 @@ export default function VideoFondo({
     const v = ref.current;
     if (!v) return;
     v.load();
-    v.play().catch(() => {});
+    arrancar(v);
   }, [cargar]);
 
   // La foto fija va como imagen ligera (WebP) que solo se descarga cuando asoma;
