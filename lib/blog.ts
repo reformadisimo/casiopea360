@@ -114,7 +114,7 @@ export const ARTICULOS: Articulo[] = [
         ],
       },
       {
-        p: "Así trabajamos en Casiopea 360: nunca cobramos un porcentaje de lo que inviertes, sean mil euros o un millón. Si quieres saber cuánto pagas hoy entre comisiones y proveedores, prueba nuestra calculadora: tarda un minuto y no pide tus datos.",
+        p: "Así trabajamos en Casiopea 360: nunca cobramos un porcentaje de lo que inviertes, sean mil euros o un millón. Si quieres saber cuánto pagas hoy entre comisiones y proveedores, prueba nuestro test completo: te lo calcula al momento y no pide tus datos.",
       },
     ],
   },

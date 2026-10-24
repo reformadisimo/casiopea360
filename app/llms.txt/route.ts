@@ -30,7 +30,7 @@ ${FRENTES.map((f) => `- [${f.nombre}](${u}/servicios#${f.id}): ${f.frase}`).join
 - [Servicios](${u}/servicios)
 - [Cómo trabajamos](${u}/como-trabajamos)
 - [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos, Tierno Centella.
-- [Test y calculadora](${u}/test)
+- [Test rápido y test completo](${u}/test)
 - [Estudio gratuito](${u}/estudio-gratuito)
 - [Preguntas frecuentes](${u}/preguntas)
 

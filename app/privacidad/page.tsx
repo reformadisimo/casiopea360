@@ -15,7 +15,7 @@ export default function Privacidad() {
       <h2>Qué datos tratamos</h2>
       <ul>
         <li><strong>Los que nos das en el formulario del estudio gratuito:</strong> nombre y cargo, empresa, web, ciudad, sector, facturación aproximada, número de empleados, cómo lleváis hoy el marketing, inversión en anuncios, teléfono y correo.</li>
-        <li><strong>Los del test y la calculadora:</strong> tus respuestas, que se calculan en tu propio navegador y no se envían a ningún sitio salvo que pidas el estudio.</li>
+        <li><strong>Los de los tests:</strong> tus respuestas, que se calculan en tu propio navegador y no se envían a ningún sitio salvo que pidas el estudio.</li>
         <li><strong>Los de navegación:</strong> solo si aceptas las cookies de medición (ver la política de cookies).</li>
       </ul>
       <h2>Para qué los usamos y con qué base legal</h2>

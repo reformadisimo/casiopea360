@@ -1,14 +1,14 @@
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import TestRapido from "@/components/TestRapido";
-import CalculadoraGastos from "@/components/CalculadoraGastos";
+import TestCompleto from "@/components/TestCompleto";
 import { ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
-  "Test y calculadora de marketing digital",
-  "Descubre en un minuto cómo está tu marketing digital y suma lo que pagas hoy a todos tus proveedores. Gratis y sin dejar tus datos.",
+  "Test de marketing digital: rápido y completo",
+  "Un test de un minuto y otro completo de 30 preguntas: tu nota por áreas, lo que pagas hoy y dónde se te escapan clientes. Gratis y sin dejar tus datos.",
   "/test",
 );
 
@@ -18,24 +18,26 @@ export default function Test() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Haz el test", ruta: "/test" }])} />
       <CabeceraPagina
         titulo="¿Cómo está tu marketing digital?"
-        entradilla="Dos herramientas gratis, sin dejar tus datos: un test de un minuto y una calculadora de lo que pagas hoy."
+        entradilla="Dos tests gratis y sin dejar tus datos: uno de un minuto para hacerte una idea y otro completo, a fondo, que te dice tu nota, lo que pagas y por dónde se te escapan clientes."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
         video="mujer-celebra"
         videoAlt="Una directiva celebra un buen resultado"
       />
       <section id="rapido" className={`${ENVOLTORIO} scroll-mt-24 py-16 sm:py-20`}>
         <h2 className="text-3xl font-extrabold sm:text-5xl">Test rápido</h2>
-        <p className="mt-3 max-w-2xl text-lg text-gris">Siete preguntas de sí o no. Al final te decimos dónde estás perdiendo clientes.</p>
+        <p className="mt-3 max-w-2xl text-lg text-gris">Siete preguntas de sí o no. Un minuto para hacerte una idea.</p>
         <div className="mt-10">
           <TestRapido />
         </div>
       </section>
-      <section id="calculadora" className="scroll-mt-24 bg-niebla py-16 sm:py-20">
+      <section id="completo" className="scroll-mt-24 bg-niebla py-16 sm:py-20">
+        <span id="calculadora" className="block scroll-mt-24" aria-hidden="true" />
         <div className={ENVOLTORIO}>
-          <h2 className="text-3xl font-extrabold sm:text-5xl">Calculadora de lo que pagas hoy</h2>
-          <p className="mt-3 max-w-2xl text-lg text-gris">Suma lo que te cuesta cada proveedor y las comisiones sobre tus anuncios. Te sorprenderá.</p>
+          <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Unos 7 minutos · 30 preguntas</p>
+          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Test completo: tu marketing, a fondo</h2>
+          <p className="mt-3 max-w-2xl text-lg text-gris">Web, Google y las IA, anuncios, redes, atención a clientes, informes y lo que pagas hoy. Al final: tu nota por áreas, lo que te cuesta en dinero y en horas, dónde se te escapan clientes y qué haríamos primero.</p>
           <div className="mt-10">
-            <CalculadoraGastos />
+            <TestCompleto />
           </div>
         </div>
       </section>
