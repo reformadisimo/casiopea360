@@ -24,6 +24,8 @@ import {
   TAMBIEN_INCLUIDO,
   PROMESAS,
   POR_QUE_BARATO,
+  COMO_ES_POSIBLE,
+  OPINIONES,
 } from "@/lib/contenido";
 
 export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
@@ -609,6 +611,77 @@ export function SeccionTambienIncluido() {
 }
 
 /* Las cuatro promesas: mejor, en días, por mucho menos y sin darte la lata. */
+/* «¿Cómo es posible?»: lo que dicen los clientes cuando lo ven funcionando. */
+export function SeccionComoEsPosible() {
+  return (
+    <section id="como-es-posible" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
+      <div aria-hidden="true" className="absolute inset-0 opacity-25"><VideoFondo nombre="equipo-celebra" alt="" /></div>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-noche/70 via-noche/90 to-noche" />
+      <div className={`${ENVOLTORIO} relative`}>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que nos dicen todos</p>
+        <h2 className="mt-6 font-titular text-5xl font-extrabold leading-[1.02] sm:text-7xl">
+          «Pero… <span className="text-estrella">¿cómo es posible?</span>»
+        </h2>
+        <p className="mt-6 max-w-3xl text-xl text-white/85">
+          Nuestros clientes no se lo creen hasta que lo ven. Y cuando lo ven, todos hacen la misma pregunta: ¿cómo es posible que por una cuota tenga una web mejor, mi CRM, todas las landings que quiera, mi asistente con IA y resultados, y además en días? <b className="text-white">Es posible. Lo hacemos cada día.</b>
+        </p>
+        <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {COMO_ES_POSIBLE.map((x, i) => (
+            <li key={x.tema} className="flex flex-col rounded-3xl bg-white p-6 text-tinta shadow-[0_24px_50px_-28px_rgba(0,0,0,0.8)]">
+              <p className="text-sm font-extrabold uppercase tracking-wide" style={{ color: ["#1d4ed8", "#6d28d9", "#047857", "#be185d", "#b45309", "#0f766e"][i % 6] }}>{x.tema}</p>
+              <p className="mt-3 flex items-start gap-3 text-gris">
+                <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-rose-100 text-rose-700">
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </span>
+                <span><b className="text-tinta">Antes:</b> <span className="line-through decoration-rose-400/70">{x.antes}</span></span>
+              </p>
+              <p className="mt-3 flex items-start gap-3 text-[1.05rem] font-bold">
+                <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-600 text-white">
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                </span>
+                <span><span className="text-emerald-700">Ahora:</span> {x.ahora}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+        {OPINIONES.length > 0 && (
+          <div className="mt-14">
+            <h3 className="text-2xl font-extrabold sm:text-3xl">Lo que dicen nuestros clientes.</h3>
+            <ul className="mt-6 grid gap-5 md:grid-cols-2">
+              {OPINIONES.map((o) => (
+                <li key={o.nombre + o.empresa}>
+                  <figure className="h-full rounded-3xl bg-white/[0.08] p-7 ring-1 ring-white/15">
+                    <span aria-hidden="true" className="font-titular text-6xl leading-none text-estrella">«</span>
+                    <blockquote className="-mt-4 text-lg text-white/90">{o.texto}</blockquote>
+                    <figcaption className="mt-5 flex items-center gap-3">
+                      {o.logo && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={o.logo} alt="" className="h-10 w-10 rounded-xl bg-white object-contain p-1" />
+                      )}
+                      <span>
+                        <b className="block">{o.nombre}</b>
+                        <span className="text-sm text-white/70">{[o.cargo, o.empresa].filter(Boolean).join(", ")}</span>
+                      </span>
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-white/60">Opiniones reales de nuestros clientes, publicadas con su permiso.</p>
+          </div>
+        )}
+        <div className="mt-14 grid items-center gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-10 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="font-titular text-3xl font-extrabold sm:text-4xl">Deja de preguntártelo. Déjanos enseñártelo.</p>
+            <p className="mt-3 text-lg">Te sorprenderán los resultados. Y si quieres saber cómo lo hacemos, <Link href="/#barato" className="font-bold underline underline-offset-4">te lo contamos sin trampa</Link>.</p>
+          </div>
+          <Link href="/estudio-gratuito" className="inline-flex items-center justify-center rounded-full bg-noche px-7 py-3.5 font-bold text-white hover:bg-noche-2">Quiero verlo con mi empresa</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function SeccionPromesas() {
   return (
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">

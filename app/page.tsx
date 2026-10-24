@@ -14,6 +14,7 @@ import {
   SeccionIncluidoCompacta,
   SeccionCostes,
   SeccionPromesas,
+  SeccionComoEsPosible,
   SeccionVeinteProveedores,
   SeccionTecnologia,
   SeccionLoFirmamos,
@@ -65,6 +66,7 @@ export default function Inicio() {
 
       <CintaHerramientas />
       <SeccionVeinteProveedores />
+      <SeccionComoEsPosible />
       <SeccionPromesas />
       <SeccionLoFirmamos />
       <SeccionVelocidad />

@@ -482,3 +482,19 @@ export const CREEMOS: string[] = [
   "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
   "Que nuestro trabajo es ayudarte a crecer o, cuando toca, a estabilizarte y mantener lo que has construido.",
 ];
+
+// «¿Cómo es posible?»: lo que se preguntan los clientes cuando lo ven funcionando.
+// Antes / ahora según lo que nos cuentan los propios clientes.
+export const COMO_ES_POSIBLE: { antes: string; ahora: string; tema: string }[] = [
+  { tema: "La web", antes: "Miles de euros y meses de espera por una web.", ahora: "Una web mejor, en días, dentro de la cuota." },
+  { tema: "Las landings", antes: "Hasta 900 € por cada landing nueva.", ahora: "Todas las que necesites, en horas, sin pagar aparte." },
+  { tema: "Los plazos", antes: "Meses para cualquier cosa.", ahora: "Horas o días. Y por escrito." },
+  { tema: "El CRM y los correos", antes: "Licencias por usuario y meses para montar los correos automáticos.", ahora: "Tu CRM a medida y tus correos funcionando, incluidos." },
+  { tema: "La IA", antes: "«Eso de un asistente con IA es para grandes empresas.»", ahora: "Tu asistente con IA atendiendo a cualquier hora, también por voz." },
+  { tema: "Los datos", antes: "Informes que no se entienden, cuando llegan.", ahora: "Cada contacto con su origen, y un parte claro cada día." },
+];
+
+// Opiniones REALES de clientes, con su permiso. No inventar ninguna.
+// Mientras esté vacío, la web no enseña el bloque de opiniones.
+export type Opinion = { texto: string; nombre: string; cargo?: string; empresa: string; logo?: string };
+export const OPINIONES: Opinion[] = [];
