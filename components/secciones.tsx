@@ -1266,14 +1266,24 @@ export function SeccionEstudio() {
       </div>
       <div className="mt-8 grid gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-wide">Y te dice cuánto ahorrarías</p>
+          <p className="text-sm font-bold uppercase tracking-wide">Tu inversión, optimizada al máximo</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
-          <p className="mt-3 text-lg">Es lo que nos encontramos en casi todas las empresas: menos factura y mejores resultados. El estudio te lo dice al euro, con lo que pagas hoy delante.</p>
+          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad para crecer más. Lo normal es que, solo con esa optimización, ya tengas mejores resultados con la misma inversión, y encima margen para subirla. El estudio te lo dice al euro.</p>
+          <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
-        {/* Casos de ahorro retirados el 24 oct 2026 hasta revisar las cifras con Ig (la cuota no estaba descontada). */}
-        <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
-          <p className="text-sm font-bold text-gris">Así lo calculamos</p>
-          <p className="mt-2 text-lg">Ponemos todo lo que pagas hoy en marketing (agencias, proveedores, licencias y mantenimiento) frente a nuestra cuota, con todo dentro. Y lo que inviertes en anuncios, mejor aprovechado.</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <p className="text-sm font-bold text-gris">Reformadísimo</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−23 %</p>
+            <p className="mt-1 font-bold">en toda su inversión en marketing</p>
+            <p className="mt-2 text-[0.95rem] text-gris">Proveedores, anuncios y herramientas, todo sumado.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−36 %</p>
+            <p className="mt-1 font-bold">en lo que paga cada mes en marketing</p>
+            <p className="mt-2 text-[0.95rem] text-gris">Lo que antes repartía entre varios proveedores.</p>
+          </div>
         </div>
       </div>
       <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">
