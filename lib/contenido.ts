@@ -289,6 +289,14 @@ export const PREGUNTAS = [
     r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
   },
   {
+    p: "¿Podéis hacer cualquier cosa que se me ocurra?",
+    r: "Prácticamente sí: una app para iPhone y Android, un CRM, una campaña de radio, un anuncio en prensa, un vídeo profesional. Lo poco que no hacemos en casa, como grabar vídeo o la locución de un anuncio, lo hacemos con productoras y agencias con las que ya trabajamos, y tú no tienes que buscar a nadie. Eso sí: te diremos con sinceridad qué te conviene y qué no, y te preparamos un plan de inversión mes a mes y para el año, para sacar el máximo a cada euro.",
+  },
+  {
+    p: "¿Qué es un CRM y para qué lo quiero?",
+    r: "Es tu agenda de clientes, pero inteligente. Cada persona que te contacta entra sola, con de dónde vino (Google, un anuncio, Instagram, una recomendación), qué te pidió, qué presupuesto le enviaste y si acabó firmando. Con eso sabemos qué te trae clientes de verdad y dónde poner el dinero, y tu equipo no pierde ningún contacto. Es opcional, pero muy recomendable.",
+  },
+  {
     p: "¿Os conectáis con mi CRM? ¿Y si no tengo?",
     r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre. Va incluido.",
   },

@@ -436,6 +436,60 @@ export function SeccionEspecialistas() {
   );
 }
 
+/* «Si se te ocurre, lo hacemos»: lo que va más allá de los cinco frentes, con nuestro consejo por delante. */
+const ICONO_SVG: Record<string, React.ReactNode> = {
+  crm: <path d="M4 5h16v14H4zM8 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M6.5 16c.5-2 2-3 3.5-3s3 1 3.5 3M15 9h3M15 12h3" />,
+  radio: <path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM6 11a6 6 0 0 0 12 0M12 17v4M9 21h6" />,
+  prensa: <path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 12h7M7 15h4" />,
+};
+
+const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: string }[] = [
+  { t: "Tu propia app", d: "Para iPhone y Android, publicada en las dos tiendas, como hicimos con Mi Estela.", nota: "Te diremos con sinceridad si la necesitas o si con la web basta.", logo: "App Store" },
+  { icono: "crm", t: "Un CRM", d: "Tu agenda de clientes, pero lista: cada contacto entra solo con de dónde vino, qué pidió, qué presupuesto le enviaste y si firmó. Así sabemos qué te trae clientes de verdad.", nota: "Te conectamos el que ya uses, que es lo que recomendamos, o te creamos uno a medida." },
+  { icono: "radio", t: "Campañas de radio", d: "Guion, voces profesionales, emisoras y seguimiento. Empuja todo lo demás.", nota: "Lo recomendamos en muchos casos." },
+  { icono: "prensa", t: "Prensa escrita", d: "Diseño del anuncio y trato con periódicos y revistas.", nota: "No solemos aconsejarla, pero si la quieres, te la hacemos." },
+  { t: "Vídeo profesional", d: "Guion y montaje nuestros; la grabación, con la productora con la que trabajamos.", nota: "La productora la pagas tú directamente.", logo: "YouTube" },
+  { t: "Tu plan de marketing", d: "Cuánto invertir, dónde y cuándo, mes a mes y para todo el año, para sacar el máximo a cada euro.", nota: "Te decimos también en qué no gastar.", logo: "Google Analytics" },
+];
+
+export function SeccionLoQueSea() {
+  return (
+    <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
+      <div aria-hidden="true" className="absolute inset-0 opacity-25">
+        <VideoFondo nombre="constelaciones-azules" alt="" />
+      </div>
+      <div className={`${ENVOLTORIO} relative`}>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Si se te ocurre, lo hacemos</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Prácticamente cualquier cosa. Y te decimos si te conviene.</h2>
+        <p className="mt-6 max-w-3xl text-xl text-white/80">
+          Una app, un CRM, una campaña de radio, un vídeo profesional. Lo hacemos nosotros, y lo poco que no hacemos en casa lo hacemos con las productoras y agencias con las que ya trabajamos. Tú no tienes que buscar a nadie.
+        </p>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {LO_QUE_SEA.map((x) => (
+            <div key={x.t} className="flex flex-col rounded-[1.8rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm transition-transform hover:-translate-y-1">
+              <div className="flex items-center gap-3">
+                {x.logo ? (
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white"><LogoMarca nombre={x.logo} tam={24} /></span>
+                ) : (
+                  <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-xl bg-estrella text-tinta">
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono ?? "crm"]}</svg>
+                  </span>
+                )}
+                <p className="text-2xl font-extrabold">{x.t}</p>
+              </div>
+              <p className="mt-4 flex-1 text-white/80">{x.d}</p>
+              <p className="mt-4 rounded-xl bg-white/10 px-3 py-2 text-sm font-bold text-estrella">{x.nota}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-10 max-w-3xl text-lg text-white/85">
+          <b className="text-white">Nuestro consejo va por delante:</b> te recomendamos lo que te interesa y te desaconsejamos lo que no, aunque podamos hacerlo. Preferimos lo digital porque se mide al euro.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* Fuera de internet: radio (la recomendamos) y prensa escrita (si el cliente la quiere). */
 export function SeccionFueraInternet() {
   return (
