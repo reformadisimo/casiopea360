@@ -23,10 +23,12 @@ export default function Blog() {
         titulo="Marketing digital, contado claro."
         entradilla="Lo que aprendemos cada día con nuestras empresas y nuestros clientes, sin jerga y con ejemplos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Blog" }]}
+        video="equipo-riendo"
+        videoAlt="Un equipo ríe en una reunión"
       />
       <section className={`${ENVOLTORIO} py-16 sm:py-20`}>
         <Link href={`/blog/${destacado.slug}`} className="group grid overflow-hidden rounded-[2rem] bg-noche text-white lg:grid-cols-2">
-          <div className="relative min-h-[240px] bg-cover bg-center" style={{ backgroundImage: "url(/video/fibra-luz.jpg)" }} aria-hidden="true" />
+          <div className="relative min-h-[240px] bg-cover bg-center" style={{ backgroundImage: `url(/video/${destacado.video}.jpg)` }} aria-hidden="true" />
           <div className="p-7 sm:p-10">
             <p className="text-sm font-bold text-estrella">
               {destacado.categoria} · {destacado.lectura}
@@ -38,13 +40,16 @@ export default function Blog() {
         </Link>
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {resto.map((a) => (
-            <Link key={a.slug} href={`/blog/${a.slug}`} className="group flex flex-col rounded-[2rem] border border-linea p-7 hover:border-noche sm:p-9">
+            <Link key={a.slug} href={`/blog/${a.slug}`} className="group flex flex-col overflow-hidden rounded-[2rem] border border-linea hover:border-noche">
+              <div aria-hidden="true" className="aspect-[16/8] bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]" style={{ backgroundImage: `url(/video/${a.video}.jpg)` }} />
+              <div className="flex flex-1 flex-col p-7 sm:p-9">
               <p className="text-sm font-bold text-noche-3">
                 {a.categoria} · {a.lectura}
               </p>
               <h2 className="mt-3 text-2xl font-extrabold group-hover:underline">{a.titulo}</h2>
               <p className="mt-3 flex-1 text-gris">{a.descripcion}</p>
               <p className="mt-6 text-sm text-gris">{fecha(a.fecha)}</p>
+              </div>
             </Link>
           ))}
         </div>

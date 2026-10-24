@@ -18,6 +18,8 @@ export default function EstudioGratuito() {
         titulo="Tu estudio gratuito, hecho a mano."
         entradilla="Te contamos cómo está hoy tu marketing, qué te está haciendo perder clientes y qué haríamos. Con datos reales y sin compromiso."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
+        video="mujer-cielo"
+        videoAlt="Una persona mira al cielo de noche"
       />
       <SeccionEstudio />
       <SeccionSolicitud />

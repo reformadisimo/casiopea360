@@ -18,6 +18,8 @@ export default function Preguntas() {
         titulo="Lo que nos suelen preguntar."
         entradilla="Si tu duda no está aquí, pregúntanos: te contestamos el mismo día."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Preguntas" }]}
+        video="sonrisa-luces"
+        videoAlt="Una mujer con gorro sonríe mirando su móvil"
       />
       <SeccionPreguntas titulo={false} />
       <LlamadaFinal />

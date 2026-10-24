@@ -8,6 +8,7 @@ export type Articulo = {
   fecha: string; // AAAA-MM-DD
   lectura: string;
   categoria: string;
+  video: string; // vídeo de cabecera y portada en el listado
   respuesta: string; // respuesta corta al principio, pensada para Google y las IA
   cuerpo: Bloque[];
 };
@@ -15,6 +16,7 @@ export type Articulo = {
 export const ARTICULOS: Articulo[] = [
   {
     slug: "cuantos-proveedores-necesita-una-web-que-trae-clientes",
+    video: "papeles",
     titulo: "Cuántos proveedores necesita una web que trae clientes (y por qué uno solo funciona mejor)",
     descripcion:
       "Una web que capta clientes necesita unos veinticinco oficios distintos. Te contamos cuáles son, qué pasa cuando cada uno va por su lado y cómo se trabaja con un solo equipo.",
@@ -70,6 +72,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "comision-sobre-inversion-en-anuncios",
+    video: "madrid-noche",
     titulo: "¿Te cobran un porcentaje de lo que inviertes en anuncios? Lo que deberías saber",
     descripcion:
       "Muchas agencias cobran entre un 5 % y un 15 % de lo que inviertes en Google o Meta. Te explicamos cómo funciona, cuánto supone al año y por qué un precio fijo es más justo.",
@@ -117,6 +120,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "como-aparecer-en-chatgpt-y-google",
+    video: "sonrisa-luces",
     titulo: "Cómo aparecer en ChatGPT y en Google cuando buscan lo que haces",
     descripcion:
       "Cada vez más clientes preguntan a ChatGPT o Gemini antes de buscar en Google. Te contamos qué se sabe hoy sobre cómo eligen a quién recomendar y qué puedes hacer, sin promesas mágicas.",

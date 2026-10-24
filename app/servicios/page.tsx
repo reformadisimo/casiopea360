@@ -18,6 +18,8 @@ export default function Servicios() {
         titulo="Todo lo digital, con un solo equipo."
         entradilla="Cinco frentes que normalmente llevan cinco empresas distintas. Con nosotros, uno solo, conectado y con un parte cada día."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Servicios" }]}
+        video="fibra-luz"
+        videoAlt="Fibras de luz que se cruzan y se conectan"
       />
       <SeccionFrentes completa />
       <BandaCompromisos />

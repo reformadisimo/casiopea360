@@ -20,6 +20,8 @@ export default function Test() {
         titulo="¿Cómo está tu marketing digital?"
         entradilla="Dos herramientas gratis, sin dejar tus datos: un test de un minuto y una calculadora de lo que pagas hoy."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
+        video="mujer-celebra"
+        videoAlt="Una directiva celebra un buen resultado"
       />
       <section id="rapido" className={`${ENVOLTORIO} scroll-mt-24 py-16 sm:py-20`}>
         <h2 className="text-3xl font-extrabold sm:text-5xl">Test rápido</h2>

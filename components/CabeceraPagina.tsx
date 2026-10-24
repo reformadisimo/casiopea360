@@ -1,44 +1,64 @@
 import Link from "next/link";
+import VideoFondo from "@/components/VideoFondo";
 
-// Franja de título para las páginas interiores, con las migas de pan.
+// Franja de título de las páginas interiores: texto a la izquierda y un vídeo con personas o luz a la derecha.
+// En el móvil, el vídeo queda de fondo, suave, detrás del texto.
 export default function CabeceraPagina({
   titulo,
   entradilla,
   migas,
+  video,
+  videoAlt = "",
 }: {
   titulo: string;
   entradilla?: string;
   migas: { texto: string; href?: string }[];
+  video?: string;
+  videoAlt?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-noche pb-14 pt-32 text-white sm:pb-20 sm:pt-40">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: "url(/video/constelaciones.jpg)" }}
-      />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche via-noche/80 to-noche/40" />
-      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <nav aria-label="Estás aquí" className="text-sm text-white/65">
-          <ol className="flex flex-wrap items-center gap-2">
-            {migas.map((m, i) => (
-              <li key={m.texto} className="flex items-center gap-2">
-                {i > 0 && <span aria-hidden="true">/</span>}
-                {m.href ? (
-                  <Link href={m.href} className="hover:text-white">
-                    {m.texto}
-                  </Link>
-                ) : (
-                  <span aria-current="page" className="text-white/90">
-                    {m.texto}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <h1 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">{titulo}</h1>
-        {entradilla && <p className="mt-5 max-w-2xl text-lg text-white/80 sm:text-xl">{entradilla}</p>}
+    <section className="relative overflow-hidden bg-noche pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50">
+        <VideoFondo nombre="constelaciones" alt="" />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche via-noche/85 to-noche/50" />
+      {video && (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30 lg:hidden">
+          <VideoFondo nombre={video} alt="" />
+        </div>
+      )}
+      <div className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 ${video ? "lg:grid-cols-[1.15fr_1fr]" : ""}`}>
+        <div>
+          <nav aria-label="Estás aquí" className="text-sm text-white/65">
+            <ol className="flex flex-wrap items-center gap-2">
+              {migas.map((m, i) => (
+                <li key={m.texto} className="flex items-center gap-2">
+                  {i > 0 && <span aria-hidden="true">/</span>}
+                  {m.href ? (
+                    <Link href={m.href} className="hover:text-white">
+                      {m.texto}
+                    </Link>
+                  ) : (
+                    <span aria-current="page" className="text-white/90">
+                      {m.texto}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <h1 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">{titulo}</h1>
+          {entradilla && <p className="mt-5 max-w-2xl text-lg text-white/80 sm:text-xl">{entradilla}</p>}
+        </div>
+        {video && (
+          <div className="relative hidden lg:block">
+            <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] ring-1 ring-white/15">
+              <VideoFondo nombre={video} alt={videoAlt} />
+            </div>
+            <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
+          </div>
+        )}
       </div>
     </section>
   );

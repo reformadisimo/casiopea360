@@ -18,6 +18,8 @@ export default function ComoTrabajamos() {
         titulo="Rápido, por escrito y sin marearte."
         entradilla="Te quitamos el menor tiempo posible: casi todo por correo, 48 horas como máximo para lo que pidas, y cada día sabes qué hemos hecho."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos" }]}
+        video="brujula"
+        videoAlt="Una brújula sobre un mapa"
       />
       <SeccionMetodo />
       <SeccionParte />

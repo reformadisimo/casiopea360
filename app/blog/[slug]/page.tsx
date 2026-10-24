@@ -53,6 +53,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
         titulo={a.titulo}
         entradilla={`${a.categoria} · ${a.lectura} de lectura · ${fecha}`}
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Blog", href: "/blog" }, { texto: a.categoria }]}
+        video={a.video}
       />
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="rounded-2xl border-l-4 border-estrella bg-niebla p-6 text-lg">
