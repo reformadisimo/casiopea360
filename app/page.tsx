@@ -36,7 +36,7 @@ export default function Inicio() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <VideoFondo nombre="constelaciones" alt="" prioridad />
         </div>
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/90 via-noche/55 to-noche/30" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
             <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo tu marketing digital, con un solo equipo</p>
