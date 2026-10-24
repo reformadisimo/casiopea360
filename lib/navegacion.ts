@@ -17,6 +17,11 @@ export const SERVICIOS_MENU: Enlace[] = [
   { texto: "Anuncios", href: "/servicios#anuncios", detalle: "Cada euro vigilado, sin comisiones" },
   { texto: "Redes y contenido", href: "/servicios#redes", detalle: "Que se vea lo bien que trabajas" },
   { texto: "Automatización e IA", href: "/servicios#automatizacion", detalle: "Contactos que no se pierden" },
+  { texto: "Tu CRM a medida", href: "/servicios#crm", detalle: "Sabes de dónde viene cada cliente" },
+  { texto: "Reservas, reseñas y tienda", href: "/servicios#incluido", detalle: "Y mucho más, dentro de tu cuota" },
+  { texto: "Apps y lo que se te ocurra", href: "/servicios#lo-que-sea", detalle: "Si te conviene, lo hacemos" },
+  { texto: "Radio y fuera de internet", href: "/servicios#fuera", detalle: "Campañas que empujan lo digital" },
+  { texto: "Cuánto te costaría por separado", href: "/servicios#costes", detalle: "La tabla, por tamaño de empresa" },
 ];
 
 export const MENU: (Enlace & { hijos?: Enlace[] })[] = [

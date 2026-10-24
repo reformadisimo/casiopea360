@@ -462,6 +462,12 @@ const ICONO_SVG: Record<string, React.ReactNode> = {
   tienda: <path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9c0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0M10 20v-5h4v5" />,
   llave: <path d="M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4M12 15v2" />,
   engranaje: <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" />,
+  telefono: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2zM15 3a6 6 0 0 1 6 6M15 7a2 2 0 0 1 2 2" />,
+  lupa: <path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5M8 11h6M11 8v6" />,
+  accesible: <path d="M12 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM5 8l7 1.5L19 8M12 9.5V14l-3 7M12 14l3 7" />,
+  euro: <path d="M17 6a7 7 0 1 0 0 12M4 10h9M4 14h9" />,
+  birrete: <path d="M2 9l10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6" />,
+  video: <path d="M3 6h12v12H3zM15 10l6-3v10l-6-3" />,
   pincel: <path d="M18 3l3 3-9 9-3-3zM9 12c-2 0-4 1.5-4 4 0 1.5-1 2.5-2 3 4 1 8 0 8-4" />,
 };
 
@@ -476,7 +482,7 @@ const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: s
 
 export function SeccionLoQueSea() {
   return (
-    <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
+    <section id="lo-que-sea" className="scroll-mt-24 relative overflow-hidden bg-noche py-20 text-white sm:py-28">
       <div aria-hidden="true" className="absolute inset-0 opacity-25">
         <VideoFondo nombre="constelaciones-azules" alt="" />
       </div>
@@ -515,7 +521,7 @@ export function SeccionLoQueSea() {
 /* Más servicios que entran en la cuota: la visión 360 completa. */
 export function SeccionTambienIncluido() {
   return (
-    <section className="bg-niebla py-20 sm:py-28">
+    <section id="incluido" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Y también entra en tu cuota</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
@@ -609,7 +615,7 @@ export function SeccionCRM() {
     ["Cliente", ["Suelo radiante · Seguimiento", "Caldera · Mapa de Google"]],
   ];
   return (
-    <section className="overflow-hidden bg-white py-20 sm:py-28">
+    <section id="crm" className="scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
       <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]`}>
         <div>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Valor añadido · incluido en tu cuota</p>
@@ -662,7 +668,7 @@ export function SeccionCRM() {
 /* Fuera de internet: radio (la recomendamos) y prensa escrita (si el cliente la quiere). */
 export function SeccionFueraInternet() {
   return (
-    <section className="bg-niebla py-20 sm:py-24">
+    <section id="fuera" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">360 de verdad</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Y si hace falta, también fuera de internet.</h2>
@@ -702,7 +708,7 @@ export function SeccionFueraInternet() {
 /* Lo que costaría por separado, según el tamaño de la empresa. */
 export function SeccionCostes() {
   return (
-    <section className="relative overflow-hidden bg-niebla py-20 sm:py-28">
+    <section id="costes" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Haz cuentas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>

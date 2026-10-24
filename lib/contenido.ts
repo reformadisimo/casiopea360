@@ -307,7 +307,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
-    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas y tu marca (logo, manual y papelería). Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
+    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, tu marca (logo, manual y papelería), medición de llamadas, vigilancia de tu competencia, vídeos con IA, web accesible y legal, ayuda con subvenciones y formación para tu equipo. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
@@ -390,6 +390,12 @@ export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: str
   { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
   { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
   { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería, nuevos o renovados." },
+  { icono: "telefono", t: "Medición de llamadas", d: "Sabes qué anuncio o qué página te ha traído cada llamada, no solo los formularios." },
+  { icono: "lupa", t: "Vigilancia de tu competencia", d: "Cada mes, qué hacen tus competidores en Google, en anuncios y en redes, y cómo adelantarlos." },
+  { icono: "video", logo: "YouTube", t: "Vídeos con IA y con móvil", d: "Vídeos cortos para redes y anuncios, montados por nosotros con tu material o con IA." },
+  { icono: "accesible", t: "Web accesible y legal", d: "Accesibilidad, cookies, privacidad y avisos legales al día, como pide la ley." },
+  { icono: "euro", t: "Ayudas y subvenciones", d: "Te avisamos de las ayudas para digitalizar tu empresa que encajan contigo y te echamos una mano con ellas." },
+  { icono: "birrete", t: "Formación para tu equipo", d: "Cómo usar el CRM, contestar reseñas o sacar partido a la IA, explicado en sencillo." },
 ];
 
 // Las tres promesas de Casiopea 360 (mensaje central, 24 oct 2026).

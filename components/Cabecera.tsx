@@ -84,9 +84,9 @@ export default function Cabecera() {
                     </svg>
                   </button>
                   {abierto === m.texto && (
-                    <div className="absolute left-1/2 top-full w-80 -translate-x-1/2 pt-2">
-                      <ul className="overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)]">
-                        <li>
+                    <div className={`absolute top-full pt-2 ${m.hijos.length > 5 ? "left-0 w-[42rem]" : "left-1/2 w-80 -translate-x-1/2"}`}>
+                      <ul className={`overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)] ${m.hijos.length > 5 ? "grid grid-cols-2" : ""}`}>
+                        <li className="col-span-2">
                           <Link href={m.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
                             <span className="block font-bold">Ver todo</span>
                             <span className="block text-sm font-normal text-gris">{m.texto}, de un vistazo</span>
