@@ -61,7 +61,7 @@ export default function Inicio() {
             <div>
               <h1 className="text-[2.6rem] font-extrabold sm:text-6xl">Todo tu marketing digital, con un solo equipo.</h1>
               <p className="mt-6 max-w-xl text-lg text-white/80 sm:text-xl">
-                Web, apps, Google, anuncios, redes y automatizaciones para tu empresa. Sin permanencia, todo a tu nombre, y cada día sabes qué hemos hecho por tu negocio.
+                Web, apps, Google, anuncios, redes y automatizaciones para tu empresa. Todo a tu nombre, y cada día sabes qué hemos hecho por tu negocio.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a href="#diagnostico" className={BOTON}>Pide tu diagnóstico gratis</a>

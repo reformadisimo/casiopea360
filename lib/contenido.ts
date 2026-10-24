@@ -152,6 +152,15 @@ export const TRABAJOS: Trabajo[] = [
     enlaceTexto: "Ver la web",
     publicado: false,
   },
+  {
+    // PENDIENTE: web por hacer. Texto provisional hasta que exista.
+    nombre: "Coches Únicos by Nacho",
+    sector: "Coches",
+    resumen: "En construcción.",
+    url: "",
+    enlaceTexto: "Ver la web",
+    publicado: false,
+  },
 ];
 
 export const PASOS = [
@@ -219,8 +228,8 @@ export const GARANTIAS = [
     texto: "Web, dominio, cuentas de Google, anuncios y redes son tuyos desde el primer día. Si un día te vas, te lo llevas todo.",
   },
   {
-    titulo: "Sin permanencia",
-    texto: "Sigues con nosotros porque te compensa, no porque no puedas irte.",
+    titulo: "Tu web, regalada",
+    texto: "No pagas la web: solo el mantenimiento mensual, con seis meses de compromiso. Después sigues porque te compensa, no porque no puedas irte.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",

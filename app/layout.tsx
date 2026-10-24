@@ -18,7 +18,7 @@ const titular = localFont({
 export const metadata: Metadata = {
   title: "Casiopea 360 · Todo tu marketing digital, con un solo equipo",
   description:
-    "Web, apps, Google, anuncios, redes y automatizaciones para tu empresa, con un solo proveedor. Sin permanencia, todo a tu nombre y un parte cada día.",
+    "Web, apps, Google, anuncios, redes y automatizaciones para tu empresa, con un solo proveedor. Todo a tu nombre y un parte cada día.",
   robots: { index: false, follow: false },
 };
 
