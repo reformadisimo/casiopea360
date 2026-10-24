@@ -122,7 +122,7 @@ export default function Cabecera() {
           <Link
             href="/estudio-gratuito"
             onClick={cerrarTodo}
-            className="whitespace-nowrap rounded-full bg-estrella px-3.5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2 sm:px-5"
+            className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm"
           >
             Estudio gratuito
           </Link>
