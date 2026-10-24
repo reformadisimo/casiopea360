@@ -65,6 +65,19 @@ export default function CostesPorTamano() {
           <p className="mt-2 text-gris">
             {eur(mes * 12)} al año, más {eur(unaVez)} de web y CRM. El primer año, unos <b className="text-tinta">{eur(Math.round((mes * 12 + unaVez) / 1000) * 1000)}</b>. Y cinco o seis proveedores que coordinar tú.
           </p>
+          <div className="mt-6 rounded-2xl bg-niebla p-5">
+            <p className="text-sm font-extrabold">Y lo que tardan: tu web nueva</p>
+            <div className="mt-3 space-y-3 text-sm">
+              <div>
+                <div className="flex justify-between font-bold"><span>Una agencia</span><span className="text-rose-700">3 a 5 meses</span></div>
+                <div className="mt-1 h-3 rounded-full bg-rose-400" />
+              </div>
+              <div>
+                <div className="flex justify-between font-bold"><span>Casiopea 360</span><span className="text-emerald-700">Unos días</span></div>
+                <div className="mt-1 h-3 w-[8%] min-w-6 rounded-full bg-emerald-500" />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="rounded-[2rem] bg-noche p-7 text-white">
           <p className="text-sm font-bold text-estrella">Con Casiopea 360</p>
@@ -81,6 +94,21 @@ export default function CostesPorTamano() {
             <b className="text-estrella">Seis meses de permanencia</b>, porque la web te la regalamos. Después te vas cuando quieras. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar tan poco?</a>
           </p>
         </div>
+      </div>
+      <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[1.3fr_1fr]">
+        <div>
+          <p className="text-sm font-extrabold uppercase tracking-wide opacity-70">Pruébalo seis meses</p>
+          <p className="mt-2 text-3xl font-extrabold sm:text-4xl">En tus seis primeros meses ya tienes lo que por separado valdría {eur(Math.round((unaVez + mes * 6) / 1000) * 1000)}.</p>
+          <p className="mt-3 text-lg">Tu web nueva, tu CRM, tus calculadoras y seis meses de todo lo demás. Y la web, en unos días, no en los tres, cuatro o cinco meses de una agencia. Nosotros solo vendemos una cuota.</p>
+        </div>
+        <ul className="space-y-2.5 text-[1.02rem] font-bold">
+          {["Web nueva en unos días", "CRM a medida", "Calculadoras y landings", "Google, anuncios y redes", "Y después, te vas cuando quieras"].map((x) => (
+            <li key={x} className="flex items-center gap-3 rounded-xl bg-white/60 px-4 py-2.5">
+              <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-noche text-xs text-estrella">✓</span>
+              {x}
+            </li>
+          ))}
+        </ul>
       </div>
       <p className="mt-6 text-xs text-gris">
         Precios orientativos en España en 2026, según guías de Cronoshare, Duotach y Clientify; en gran empresa, estimación nuestra con la parte alta de esos rangos. En tu caso puede ser algo más o algo menos. Va aparte solo lo que pagas a terceros: la inversión en anuncios, la grabación de vídeo profesional y el espacio en radio o prensa.

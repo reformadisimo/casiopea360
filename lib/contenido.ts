@@ -204,7 +204,8 @@ export const PLAZOS = [
   { que: "Responderte", cuando: "El mismo día laborable" },
   { que: "Una página, un artículo o una calculadora nueva", cuando: "Máximo 48 horas" },
   { que: "Una campaña nueva o un cambio en los anuncios", cuando: "Máximo 48 horas" },
-  { que: "Una web nueva, una app o una integración", cuando: "Fecha cerrada desde el primer día" },
+  { que: "Una web nueva", cuando: "Unos días, no meses" },
+  { que: "Una app o una integración grande", cuando: "Fecha cerrada desde el primer día" },
   { que: "Notarlo en los anuncios", cuando: "Días" },
   { que: "Notarlo en la ficha de Google", cuando: "Semanas" },
   { que: "Notarlo en Google y en las IA", cuando: "De 3 a 6 meses" },
@@ -263,7 +264,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
-    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Los proyectos grandes, como una web nueva, una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
+    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Una web nueva la tienes en unos días, no en los tres, cuatro o cinco meses habituales. Los proyectos más grandes, como una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
@@ -276,6 +277,14 @@ export const PREGUNTAS = [
   {
     p: "¿Hay permanencia?",
     r: "Seis meses, porque la web te la regalamos. Después no hay ninguna: te quedas porque te compensa y te puedes ir cuando quieras, llevándote todo, que ya está a tu nombre.",
+  },
+  {
+    p: "¿Y si lo pruebo y no me convence?",
+    r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si después no te convence, te vas y te lo llevas todo.",
+  },
+  {
+    p: "¿Cuánto tardáis en hacer una web?",
+    r: "Unos días. Donde una agencia tarda tres, cuatro o cinco meses y te cobra hasta 25.000 €, nosotros te la tenemos en unos días, dentro de tu cuota. Nuestra intención es que además sea mejor; no podemos garantizarlo por escrito, pero hasta hoy lo hemos conseguido siempre.",
   },
   {
     p: "¿Cómo podéis cobrar tan poco por tanto?",
@@ -307,7 +316,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
-    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, tu marca (logo, manual y papelería), medición de llamadas, vigilancia de tu competencia, vídeos con IA, web accesible y legal, ayuda con subvenciones y formación para tu equipo. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
+    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, tu marca (logo, manual y papelería), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
@@ -390,20 +399,23 @@ export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: str
   { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
   { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
   { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería, nuevos o renovados." },
-  { icono: "telefono", t: "Medición de llamadas", d: "Sabes qué anuncio o qué página te ha traído cada llamada, no solo los formularios." },
+  { icono: "telefono", t: "Medición de llamadas", d: "Cada llamada entra en tu CRM con el anuncio o la página que la trajo, no solo los formularios." },
   { icono: "lupa", t: "Vigilancia de tu competencia", d: "Cada mes, qué hacen tus competidores en Google, en anuncios y en redes, y cómo adelantarlos." },
   { icono: "video", logo: "YouTube", t: "Vídeos con IA y con móvil", d: "Vídeos cortos para redes y anuncios, montados por nosotros con tu material o con IA." },
   { icono: "accesible", t: "Web accesible y legal", d: "Accesibilidad, cookies, privacidad y avisos legales al día, como pide la ley." },
-  { icono: "euro", t: "Ayudas y subvenciones", d: "Te avisamos de las ayudas para digitalizar tu empresa que encajan contigo y te echamos una mano con ellas." },
-  { icono: "birrete", t: "Formación para tu equipo", d: "Cómo usar el CRM, contestar reseñas o sacar partido a la IA, explicado en sencillo." },
 ];
 
-// Las tres promesas de Casiopea 360 (mensaje central, 24 oct 2026).
+// Las cuatro promesas de Casiopea 360 (mensaje central, 24 oct 2026).
 export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "Mejor.",
     d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
     pie: "No podemos garantizarlo por escrito, pero lo intentamos con todo lo que sabemos. Hasta hoy no ha habido un solo caso en que no lo consiguiéramos.",
+  },
+  {
+    t: "En días, no en meses.",
+    d: "Donde otros tardan tres, cuatro o cinco meses en entregarte una web, tú la tienes en unos días. Y cada cambio, en 48 horas como máximo.",
+    pie: "Lo caro de una agencia no es solo la factura: es todo lo que tardan. Aquí no esperas.",
   },
   {
     t: "Por mucho menos.",
@@ -432,4 +444,5 @@ export const CREEMOS: string[] = [
   "Que un proveedor no debería darte la lata. Si nos tienes que perseguir, lo estamos haciendo mal.",
   "Que la mejor tecnología tiene que estar al alcance de cualquier empresa, y nosotros la estrenamos cada semana.",
   "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
+  "Que nuestro trabajo es ayudarte a crecer o, cuando toca, a estabilizarte y mantener lo que has construido.",
 ];

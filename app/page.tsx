@@ -42,10 +42,10 @@ export default function Inicio() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
-            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo. Mejor. Y por mucho menos.</p>
+            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo. Mejor. En días. Y por mucho menos.</p>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin lidiar con cinco agencias.</h1>
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
-              Web, Google, anuncios, redes, CRM e IA con un solo equipo y una sola cuota fija, mucho más barata que contratarlo por separado. Te lo gestionamos todo, sin darte la lata, y te enseñamos cada día lo que hemos hecho.
+              Web, Google, anuncios, redes, CRM e IA con un solo equipo y una sola cuota fija. Tu web, en unos días y no en meses. Mucho más barato que contratarlo por separado, te lo gestionamos todo y sin darte la lata.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>

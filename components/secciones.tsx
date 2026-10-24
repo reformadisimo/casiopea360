@@ -574,31 +574,34 @@ export function SeccionTambienIncluido() {
             </div>
           </li>
           {TAMBIEN_INCLUIDO.slice(mitad).map((x, i) => tarjeta(x, i + mitad))}
+          {(TAMBIEN_INCLUIDO.length - mitad) % 3 !== 0 && (
+            <li className={`flex flex-col justify-center rounded-[1.6rem] border-2 border-dashed border-noche/25 p-6 text-center ${(TAMBIEN_INCLUIDO.length - mitad) % 3 === 1 ? "lg:col-span-2" : ""} ${(TAMBIEN_INCLUIDO.length - mitad) % 2 === 0 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+              <p className="text-lg font-extrabold">¿Se te ocurre otra cosa?</p>
+              <p className="mt-1 text-gris">Pídelo. Si te conviene, lo hacemos.</p>
+            </li>
+          )}
         </ul>
-        <p className="mt-10 max-w-3xl text-lg">
-          <b>¿Se te ocurre algo que no está aquí?</b> Pídelo. Si te conviene, lo hacemos; si no, te lo decimos.
-        </p>
       </div>
     </section>
   );
 }
 
-/* Las tres promesas: mejor, por mucho menos y sin darte la lata. */
+/* Las cuatro promesas: mejor, en días, por mucho menos y sin darte la lata. */
 export function SeccionPromesas() {
   return (
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
       <div aria-hidden="true" className="absolute inset-0 opacity-30"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
-        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras tres promesas</p>
-        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Lo hacemos mejor y por mucho menos.</h2>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y por mucho menos.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">Ya sabemos que suena demasiado bien. Por eso no te pedimos que nos creas: pide el estudio gratuito y compáralo con lo que tienes hoy.</p>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROMESAS.map((x, i) => (
-            <div key={x.t} className={`flex flex-col rounded-[2rem] p-7 sm:p-8 ${i === 1 ? "bg-estrella text-tinta" : "bg-white/[0.07] ring-1 ring-white/15 backdrop-blur-sm"}`}>
-              <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-full text-lg font-extrabold ${i === 1 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
-              <p className="mt-5 text-4xl font-extrabold sm:text-5xl">{x.t}</p>
-              <p className={`mt-4 flex-1 text-lg ${i === 1 ? "text-tinta/85" : "text-white/85"}`}>{x.d}</p>
-              <p className={`mt-5 border-t pt-4 text-[0.95rem] ${i === 1 ? "border-tinta/15 text-tinta/75" : "border-white/15 text-white/70"}`}>{x.pie}</p>
+            <div key={x.t} className={`flex flex-col rounded-[2rem] p-7 sm:p-8 ${i === 2 ? "bg-estrella text-tinta" : "bg-white/[0.07] ring-1 ring-white/15 backdrop-blur-sm"}`}>
+              <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-full text-lg font-extrabold ${i === 2 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
+              <p className="mt-5 text-3xl font-extrabold xl:text-4xl">{x.t}</p>
+              <p className={`mt-4 flex-1 text-lg ${i === 2 ? "text-tinta/85" : "text-white/85"}`}>{x.d}</p>
+              <p className={`mt-5 border-t pt-4 text-[0.95rem] ${i === 2 ? "border-tinta/15 text-tinta/75" : "border-white/15 text-white/70"}`}>{x.pie}</p>
             </div>
           ))}
         </div>
