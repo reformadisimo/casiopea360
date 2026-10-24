@@ -1,7 +1,7 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos } from "@/components/secciones";
+import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -33,6 +33,7 @@ export default function ComoTrabajamos() {
           { nombre: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
         ]}
       />
+      <SeccionPuntosDolor />
       <SeccionParte />
       <SeccionLoFirmamos />
       <LlamadaFinal />

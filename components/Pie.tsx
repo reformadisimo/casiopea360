@@ -66,7 +66,7 @@ export default function Pie() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 pb-24 pt-5 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:pb-5 lg:pr-56">
           <p>Casiopea 360. Marketing digital 360 para empresas, desde Madrid.</p>
-          <Link href="/#velocidad" className="inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-3 py-1.5 font-bold text-white ring-1 ring-white/15 hover:bg-white/15">
+          <Link href="/servicios#velocidad" className="inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-3 py-1.5 font-bold text-white ring-1 ring-white/15 hover:bg-white/15">
             <span aria-hidden="true" className="flex gap-1">{[0, 1, 2].map((i) => <span key={i} className="grid h-6 w-6 place-items-center rounded-full border-2 border-emerald-400 text-[0.6rem] text-emerald-300">100</span>)}</span>
             Predicamos con el ejemplo: esta web, en PageSpeed
           </Link>

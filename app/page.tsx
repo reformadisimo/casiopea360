@@ -7,23 +7,15 @@ import {
   BandaVideo,
   CintaHerramientas,
   ENVOLTORIO,
-  SeccionEstudio,
   SeccionEmpezamos,
+  SeccionEstudioResumen,
   SeccionFrentes,
-  SeccionEspecialistas,
-  SeccionCRM,
-  SeccionIncluidoCompacta,
-  SeccionCostes,
   SeccionPromesas,
   SeccionComoEsPosible,
   SeccionVeinteProveedores,
-  SeccionTecnologia,
   SeccionLoFirmamos,
-  SeccionVelocidad,
-  SeccionPorQueBarato,
-  SeccionParte,
   SeccionPreguntas,
-  SeccionPuntosDolor,
+  SeccionSaberMas,
   SeccionSolicitud,
   SeccionTrabajos,
 } from "@/components/secciones";
@@ -70,21 +62,13 @@ export default function Inicio() {
       <SeccionComoEsPosible />
       <SeccionPromesas />
       <SeccionLoFirmamos />
-      <SeccionVelocidad />
-      <SeccionPuntosDolor />
-      <SeccionCostes />
-      <SeccionPorQueBarato />
-      <SeccionTecnologia />
-      <BandaVideo />
       <SeccionFrentes />
-      <SeccionEspecialistas />
-      <SeccionCRM />
-      <SeccionIncluidoCompacta />
+      <BandaVideo />
       <SeccionTrabajos />
-      <SeccionParte />
+      <SeccionSaberMas />
       <SeccionPreguntas todas={false} />
       <SeccionEmpezamos />
-      <SeccionEstudio />
+      <SeccionEstudioResumen />
       <SeccionSolicitud />
     </>
   );

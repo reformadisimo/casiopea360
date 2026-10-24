@@ -153,7 +153,7 @@ export function SeccionCaos() {
 /* Puntos de dolor con su solución. */
 export function SeccionPuntosDolor() {
   return (
-    <section className="bg-niebla py-20 sm:py-28">
+    <section id="dolores" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
         <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">¿Te suena alguno?</h2>
         <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan directores y dueños de empresa, y lo que hacemos con ello.</p>
@@ -675,7 +675,7 @@ export function SeccionComoEsPosible() {
         <div className="mt-14 grid items-center gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-10 lg:grid-cols-[1fr_auto]">
           <div>
             <p className="font-titular text-3xl font-extrabold sm:text-4xl">Deja de preguntártelo. Déjanos enseñártelo.</p>
-            <p className="mt-3 text-lg">Te sorprenderán los resultados. Y si quieres saber cómo lo hacemos, <Link href="/#barato" className="font-bold underline underline-offset-4">te lo contamos sin trampa</Link>.</p>
+            <p className="mt-3 text-lg">Te sorprenderán los resultados. Y si quieres saber cómo lo hacemos, <Link href="/servicios#barato" className="font-bold underline underline-offset-4">te lo contamos sin trampa</Link>.</p>
           </div>
           <Link href="/estudio-gratuito" className="inline-flex items-center justify-center rounded-full bg-noche px-7 py-3.5 font-bold text-white hover:bg-noche-2">Quiero verlo con mi empresa</Link>
         </div>
@@ -953,7 +953,7 @@ export function SeccionVeinteProveedores() {
             <p className="text-sm font-bold text-estrella">Te facilitamos la vida.</p>
             <p className="mt-3 text-4xl font-extrabold sm:text-5xl">1 equipo.<br />1 factura.<br />Todo dentro.</p>
             <p className="mt-5 text-lg text-white/85">Un solo equipo que lo hace todo. Y responde. Todo eso, con la misma cuota.</p>
-            <a href="#costes" className="mt-7 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Calcula lo que te ahorras</a>
+            <Link href="/servicios#costes" className="mt-7 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Calcula lo que te ahorras</Link>
           </div>
         </div>
       </div>
@@ -1182,25 +1182,56 @@ const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto
 
 export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boolean; todas?: boolean }) {
   const lista = todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p));
+  const colores = ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309", "#0f766e", "#e8457a"];
+  // La primera frase es la respuesta corta; lo demás, el detalle.
+  const partir = (r: string) => {
+    const m = r.match(/^(.+?[.!?])\s+([\s\S]*)$/);
+    return m ? [m[1], m[2]] : [r, ""];
+  };
   return (
-    <section id="preguntas" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
-      {titulo && <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Lo que nos suelen preguntar.</h2>}
-      <div className={`${titulo ? "mt-10" : ""} divide-y divide-linea border-y border-linea`}>
-        {lista.map((q) => (
-          <details key={q.p} className="group py-5">
-            <summary className="flex cursor-pointer items-center justify-between gap-6 text-lg font-bold">
-              {q.p}
-              <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-niebla text-xl transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p className="mt-3 max-w-3xl text-gris">{glosar(q.r)}</p>
-          </details>
-        ))}
+    <section id="preguntas" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        {titulo && (
+          <>
+            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Pregúntanos lo que quieras</p>
+            <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Lo que nos suelen preguntar.</h2>
+            <p className="mt-4 max-w-2xl text-lg text-gris">Toca una pregunta y te contestamos al momento.</p>
+          </>
+        )}
+        <div className={`${titulo ? "mt-10" : ""} gap-3 lg:columns-2`}>
+          {lista.map((q, i) => {
+            const [corta, resto] = partir(q.r);
+            const color = colores[i % colores.length];
+            return (
+              <details key={q.p} className="group mb-3 break-inside-avoid rounded-[1.6rem] bg-white shadow-sm ring-1 ring-linea transition-shadow open:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.45)]">
+                <summary className="flex cursor-pointer list-none items-center gap-4 p-5 [&::-webkit-details-marker]:hidden">
+                  <span aria-hidden="true" className={`grid h-10 w-10 shrink-0 place-items-center rounded-2xl text-lg font-extrabold text-white shadow-md ${i % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: color }}>?</span>
+                  <span className="flex-1 text-[1.05rem] font-extrabold leading-snug">{q.p}</span>
+                  <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-niebla text-xl transition-transform duration-300 group-open:rotate-45">+</span>
+                </summary>
+                <div className="px-5 pb-5">
+                  <div className="flex items-start gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/marca/icono.svg" alt="" width={32} height={32} className="mt-1 h-8 w-8 shrink-0 rounded-lg" />
+                    <div className="aparece rounded-2xl rounded-tl-md bg-noche px-4 py-3 text-white">
+                      <p className="font-bold">{glosar(corta)}</p>
+                      {resto && <p className="mt-2 text-[0.95rem] leading-relaxed text-white/85">{glosar(resto)}</p>}
+                    </div>
+                  </div>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          {!todas && (
+            <Link href="/preguntas" className="inline-flex justify-center rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">
+              Ver todas las preguntas
+            </Link>
+          )}
+          <p className="text-gris">¿No está la tuya? Pregúntale a nuestro asistente, abajo a la derecha.</p>
+        </div>
       </div>
-      {!todas && (
-        <a href="/preguntas" className="mt-8 inline-flex rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">
-          Ver todas las preguntas
-        </a>
-      )}
     </section>
   );
 }
@@ -1227,6 +1258,70 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
           <Link href={`${base}#solicitud`} className={BOTON}>Hacer el test de idoneidad</Link>
           <Link href={`${base}#estudio`} className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* Portada: el estudio, resumido (el detalle completo vive en /estudio-gratuito). */
+export function SeccionEstudioResumen() {
+  return (
+    <section id="estudio" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-24`}>
+      <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu estudio gratuito</p>
+      <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">No es un informe. Es tu plan completo.</h2>
+      <p className="mt-4 max-w-3xl text-lg text-gris">{ESTUDIO_TOTAL} apartados hechos a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías, al euro.</p>
+      <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {ESTUDIO_BLOQUES.map((b, k) => (
+          <li key={b.titulo} className="flex items-center gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea">
+            <span aria-hidden="true" className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-md ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: b.color }}>
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[b.icono]}</svg>
+            </span>
+            <span>
+              <span className="block text-lg font-extrabold">{b.titulo}</span>
+              <span className="text-sm text-gris">{b.items.length} apartados</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
+        <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
+      </div>
+    </section>
+  );
+}
+
+/* Portada: lo que ya no cabe aquí, a un toque. */
+export function SeccionSaberMas() {
+  const tarjetas = [
+    { t: "Cuánto te costaría por separado", d: "La calculadora, por tamaño de empresa.", href: "/servicios#costes", icono: "euro", color: "#047857" },
+    { t: "¿Cómo puede costar menos?", d: "Sin trampa: así de sencillo.", href: "/servicios#barato", icono: "estrella", color: "#b45309" },
+    { t: "Tu web, de las rápidas", d: "Nuestro compromiso de velocidad, con datos.", href: "/servicios#velocidad", icono: "telefono", color: "#1d4ed8" },
+    { t: "Tecnología de hoy", d: "Sin WordPress ni plugins: más segura.", href: "/servicios#tecnologia", icono: "escudo", color: "#6d28d9" },
+    { t: "Tu propio CRM", d: "Cada contacto con su origen, sin licencias.", href: "/servicios/crm-a-medida", icono: "chat", color: "#be185d" },
+    { t: "Todo lo que entra en la cuota", d: "Reservas, reseñas, tienda, apps y más.", href: "/servicios#incluido", icono: "regalo", color: "#0f766e" },
+    { t: "Cada día sabes qué hemos hecho", d: "Tu parte diario y tu panel.", href: "/como-trabajamos", icono: "calendario", color: "#e37400" },
+    { t: "¿Te suena alguno?", d: "Los problemas de siempre y cómo los arreglamos.", href: "/como-trabajamos#dolores", icono: "lupa", color: "#e8457a" },
+  ];
+  return (
+    <section className="bg-niebla py-20 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Para saber más.</h2>
+        <p className="mt-4 max-w-2xl text-lg text-gris">Todo lo demás, a un toque.</p>
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {tarjetas.map((x, k) => (
+            <li key={x.t}>
+              <Link href={x.href} className="group flex h-full flex-col rounded-3xl bg-white p-4 shadow-sm ring-1 ring-linea transition-transform hover:-translate-y-1 sm:p-5">
+                <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-2xl text-white shadow-md ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: x.color }}>
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
+                </span>
+                <span className="mt-3 text-[0.98rem] font-extrabold leading-snug sm:mt-4 sm:text-lg">{x.t}</span>
+                <span className="mt-1 hidden text-sm text-gris sm:block">{x.d}</span>
+                <span className="mt-auto pt-3 text-sm font-bold text-noche-3">Ver <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
