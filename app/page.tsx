@@ -16,6 +16,7 @@ import {
   SeccionLoFirmamos,
   SeccionPreguntas,
   SeccionSaberMas,
+  SeccionMundo,
   SeccionSolicitud,
   SeccionTrabajos,
 } from "@/components/secciones";
@@ -65,6 +66,7 @@ export default function Inicio() {
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />
+      <SeccionMundo />
       <SeccionSaberMas />
       <SeccionPreguntas todas={false} />
       <SeccionEmpezamos />

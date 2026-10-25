@@ -10,6 +10,7 @@ import { glosar } from "@/lib/glosario";
 import CostesDiferido from "@/components/CostesDiferido";
 import MovilParte from "@/components/MovilParte";
 import DiagnosticoDiferido from "@/components/DiagnosticoDiferido";
+import RelojMundoDiferido from "@/components/RelojMundoDiferido";
 import {
   DOLORES,
   ESTUDIO_BLOQUES,
@@ -1287,6 +1288,23 @@ export function SeccionEstudioResumen() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
         <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
+      </div>
+    </section>
+  );
+}
+
+/* La Tierra en directo: tu web no cierra nunca. */
+export function SeccionMundo() {
+  return (
+    <section id="mundo" className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
+      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div className={`${ENVOLTORIO} relative`}>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">En directo, ahora mismo</p>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra nunca.</h2>
+        <p className="mt-4 max-w-2xl text-lg text-white/80">Mientras lees esto, en algún sitio es de día y alguien está buscando lo que haces. Tu web y tu asistente con IA le atienden a cualquier hora, estés donde estés.</p>
+        <div className="mt-10">
+          <RelojMundoDiferido />
+        </div>
       </div>
     </section>
   );
