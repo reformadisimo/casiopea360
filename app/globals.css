@@ -277,3 +277,57 @@ html.cookies-decididas [data-aviso-cookies] { display: none; }
 
 /* Barra de progreso de lectura */
 .progreso-lectura { position: fixed; left: 0; right: 0; top: 0; z-index: 70; height: 3px; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #ffc53d, #ff9f1c); pointer-events: none; }
+
+/* Zonas claras con aire tecnológico: retícula de puntos, resplandores de marca y la W de Casiopea muy tenue */
+main {
+  background-color: #f8faff;
+  background-image: radial-gradient(rgba(36, 64, 255, 0.1) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+main > section.bg-white {
+  background-color: #ffffff;
+  background-image: radial-gradient(rgba(36, 64, 255, 0.09) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+main > section.bg-niebla {
+  background-color: #edf1fb;
+  background-image: radial-gradient(rgba(36, 64, 255, 0.12) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+main > section.bg-white,
+main > section.bg-niebla,
+main > section:not([class*="bg-"]):not([class*="max-w"]) {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+main > section.bg-white::before,
+main > section.bg-niebla::before,
+main > section:not([class*="bg-"]):not([class*="max-w"])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20300%20160%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22rgba%2836%2C64%2C255%2C0.22%29%22%20stroke-width%3D%221.2%22%3E%3Cpolyline%20points%3D%2210%2C60%2080%2C130%20150%2C70%20210%2C105%20290%2C20%22/%3E%3C/g%3E%3Cg%20fill%3D%22rgba%2836%2C64%2C255%2C0.35%29%22%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2260%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22130%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%2270%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%22210%22%20cy%3D%22105%22%20r%3D%223.5%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22290%22%20cy%3D%2220%22%20r%3D%225%22%20fill%3D%22rgba%28255%2C197%2C61%2C0.9%29%22/%3E%3Cg%20fill%3D%22rgba%2836%2C64%2C255%2C0.25%29%22%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2220%22%20r%3D%221.5%22/%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%2225%22%20r%3D%221.2%22/%3E%3Ccircle%20cx%3D%22250%22%20cy%3D%22140%22%20r%3D%221.5%22/%3E%3Ccircle%20cx%3D%22185%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/svg%3E") no-repeat right 3% top 28px / clamp(150px, 22vw, 280px) auto,
+    radial-gradient(560px 360px at 94% 6%, rgba(36, 64, 255, 0.16), transparent 70%),
+    radial-gradient(460px 320px at 3% 97%, rgba(255, 197, 61, 0.13), transparent 70%);
+}
+main > section.bg-niebla:nth-of-type(even)::before {
+  background:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20300%20160%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22rgba%2836%2C64%2C255%2C0.22%29%22%20stroke-width%3D%221.2%22%3E%3Cpolyline%20points%3D%2210%2C60%2080%2C130%20150%2C70%20210%2C105%20290%2C20%22/%3E%3C/g%3E%3Cg%20fill%3D%22rgba%2836%2C64%2C255%2C0.35%29%22%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2260%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22130%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%2270%22%20r%3D%223.5%22/%3E%3Ccircle%20cx%3D%22210%22%20cy%3D%22105%22%20r%3D%223.5%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22290%22%20cy%3D%2220%22%20r%3D%225%22%20fill%3D%22rgba%28255%2C197%2C61%2C0.9%29%22/%3E%3Cg%20fill%3D%22rgba%2836%2C64%2C255%2C0.25%29%22%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2220%22%20r%3D%221.5%22/%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%2225%22%20r%3D%221.2%22/%3E%3Ccircle%20cx%3D%22250%22%20cy%3D%22140%22%20r%3D%221.5%22/%3E%3Ccircle%20cx%3D%22185%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/svg%3E") no-repeat right 3% bottom 24px / clamp(150px, 22vw, 280px) auto,
+    radial-gradient(560px 360px at 6% 8%, rgba(124, 58, 237, 0.09), transparent 70%),
+    radial-gradient(460px 320px at 97% 95%, rgba(36, 64, 255, 0.11), transparent 70%);
+}
+
+/* Tarjetas blancas sobre zonas claras: filo azul fino y sombra de marca, con brillo al pasar */
+main > section:is(.bg-niebla, .bg-white) [class*="rounded-"].bg-white,
+main > section:not([class*="bg-"]) [class*="rounded-"].bg-white {
+  box-shadow: 0 0 0 1px rgba(36, 64, 255, 0.1), 0 14px 34px -20px rgba(36, 64, 255, 0.45);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+main > section:is(.bg-niebla, .bg-white) [class*="rounded-"].bg-white:hover,
+main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
+  box-shadow: 0 0 0 1px rgba(36, 64, 255, 0.35), 0 18px 40px -18px rgba(36, 64, 255, 0.55);
+}
