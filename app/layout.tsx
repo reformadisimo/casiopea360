@@ -4,6 +4,7 @@ import "./globals.css";
 import Versionante from "@/components/Versionante";
 import Medicion from "@/components/Medicion";
 import AsistenteDiferido from "@/components/AsistenteDiferido";
+import GlosarioTactil from "@/components/GlosarioTactil";
 import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
 import { Analytics } from "@vercel/analytics/next";
@@ -65,6 +66,7 @@ export default function RootLayout({
         <Versionante />
         <Medicion />
         <AsistenteDiferido />
+        <GlosarioTactil />
         {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
         <Analytics />
         <SpeedInsights />

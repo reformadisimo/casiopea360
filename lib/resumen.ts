@@ -4,6 +4,7 @@ import { SITIO } from "@/lib/navegacion";
 import { PREGUNTAS, TAMBIEN_INCLUIDO, POR_QUE_BARATO } from "@/lib/contenido";
 import { ARTICULOS } from "@/lib/blog";
 import { EMPRESA } from "@/lib/schema";
+import { TERMINOS } from "@/lib/terminos";
 
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
@@ -51,6 +52,9 @@ ${CASOS.map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripci
 
 ## Blog
 ${ARTICULOS.map((a) => `- [${a.titulo}](${u}/blog/${a.slug}): ${a.descripcion}`).join("\n")}
+
+## Glosario
+Glosario de marketing digital con definiciones sin jerga: [Glosario](${u}/glosario). Términos: ${TERMINOS.map((t) => `[${t.nombre}](${u}/glosario/${t.slug})`).join(", ")}.
 
 ## Preguntas frecuentes
 ${PREGUNTAS.map((q) => `- ${q.p} ${q.r}`).join("\n")}

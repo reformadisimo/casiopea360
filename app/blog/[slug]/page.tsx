@@ -8,6 +8,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal } from "@/components/secciones";
 import { ARTICULOS, articuloPorSlug, type Bloque } from "@/lib/blog";
 import { schemaArticulo, schemaMigas } from "@/lib/schema";
+import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
   return ARTICULOS.map((a) => ({ slug: a.slug }));
@@ -25,12 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function Pinta({ b }: { b: Bloque }) {
+function Pinta({ b, g }: { b: Bloque; g: ContextoGlosario }) {
   if ("h2" in b) return <h2>{b.h2}</h2>;
   if ("h3" in b) return <h3>{b.h3}</h3>;
-  if ("ul" in b) return <ul>{b.ul.map((x) => <li key={x}>{x}</li>)}</ul>;
-  if ("ol" in b) return <ol>{b.ol.map((x) => <li key={x}>{x}</li>)}</ol>;
-  return <p>{b.p}</p>;
+  if ("ul" in b) return <ul>{b.ul.map((x) => <li key={x}>{glosar(x, g)}</li>)}</ul>;
+  if ("ol" in b) return <ol>{b.ol.map((x) => <li key={x}>{glosar(x, g)}</li>)}</ol>;
+  return <p>{glosar(b.p, g)}</p>;
 }
 
 export default async function ArticuloBlog({ params }: { params: Promise<{ slug: string }> }) {
@@ -38,6 +39,8 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
   const a = articuloPorSlug(slug);
   if (!a) notFound();
   const fecha = new Date(a.fecha + "T12:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+  // Cada término se enlaza al glosario una sola vez por artículo
+  const g: ContextoGlosario = { usados: new Set<string>(), max: 3 };
   const otros = ARTICULOS.filter((x) => x.slug !== a.slug);
   // El vídeo de apoyo va justo antes del segundo subtítulo
   const titulos = a.cuerpo.map((b, i) => ("h2" in b ? i : -1)).filter((i) => i >= 0);
@@ -63,7 +66,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="rounded-2xl border-l-4 border-estrella bg-niebla p-6 text-lg">
           <p className="font-titular text-sm font-bold text-noche-3">En pocas palabras</p>
-          <p className="mt-2">{a.respuesta}</p>
+          <p className="mt-2">{glosar(a.respuesta, g)}</p>
         </div>
         {a.cuerpo.map((b, i) => (
           <Fragment key={i}>
@@ -74,11 +77,14 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
                 </div>
               </figure>
             )}
-            <Pinta b={b} />
+            <Pinta b={b} g={g} />
           </Fragment>
         ))}
         <p>
           <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test de idoneidad</Link>.
+        </p>
+        <p className="text-gris">
+          ¿Alguna palabra te ha sonado rara? Las subrayadas llevan a su explicación; el <Link href="/glosario">glosario completo</Link> tiene todas.
         </p>
       </article>
       <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6">

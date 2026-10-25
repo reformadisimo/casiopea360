@@ -25,7 +25,7 @@ export const ARTICULOS: Articulo[] = [
     lectura: "7 minutos",
     categoria: "Precios",
     respuesta:
-      "Contratar por separado lo básico (SEO, gestión de Google Ads y de Meta, redes, mantenimiento web y licencias de CRM) cuesta en España, de forma orientativa, unos 1.900 € al mes en una pyme, unos 3.200 € en una empresa de más de un millón de facturación y más de 7.000 € en una gran empresa, sin contar la web y el CRM a medida. Si sumas reseñas, landings, vídeos, asistente con IA o medición de llamadas, la factura se dispara y pasas a tener diez o más proveedores.",
+      "Contratar por separado lo básico (SEO, gestión de Google Ads y de Meta Ads, redes, mantenimiento web y licencias de CRM) cuesta en España, de forma orientativa, unos 1.900 € al mes en una pyme, unos 3.200 € en una empresa de más de un millón de facturación y más de 7.000 € en una gran empresa, sin contar la web y el CRM a medida. Si sumas reseñas, landings, vídeos, asistente con IA o medición de llamadas, la factura se dispara y pasas a tener diez o más proveedores.",
     cuerpo: [
       { h2: "Por qué casi nadie hace esta cuenta" },
       { p: "Cada proveedor llega por separado: un año contratas el SEO, al siguiente la agencia de anuncios, luego alguien para las redes y, cuando la web se queda vieja, una agencia web. Cada factura parece razonable por sí sola. El problema aparece cuando las sumas todas, y casi nadie lo hace." },
@@ -69,7 +69,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Nosotros trabajamos al revés: preparamos los textos con lo que sabemos de tu negocio, diseñamos y programamos a la vez, y te enseñamos la web casi terminada para que la corrijas sobre algo real. La tecnología de hoy, incluida la inteligencia artificial, nos quita el trabajo repetitivo y nos deja el que hay que pensar." },
       { p: "Según el volumen de trabajo que tengamos, puede estar en 48 horas, en tres días o en una semana. Lo normal es no pasar de una semana. No lo garantizamos por escrito, igual que quien te dice tres meses tampoco te lo garantiza y luego tarda cinco." },
       { h2: "¿Más rápido es peor?" },
-      { p: "No necesariamente. Lo que hace buena una web es que cargue rápido, que explique bien lo que haces y que ponga fácil pedirte presupuesto. Nada de eso depende de cuántos meses tarde. Nuestra intención es que la tuya sea mejor que la de quien te cobra 25.000 €, y que además la tengas en días y dentro de tu cuota." },
+      { p: "No necesariamente. Lo que hace buena una web es que cargue rápido (Google lo mide con sus Core Web Vitals), que explique bien lo que haces y que ponga fácil pedirte presupuesto. Nada de eso depende de cuántos meses tarde. Nuestra intención es que la tuya sea mejor que la de quien te cobra 25.000 €, y que además la tengas en días y dentro de tu cuota." },
     ],
   },
   {
@@ -137,12 +137,12 @@ export const ARTICULOS: Articulo[] = [
         ul: [
           "Diseño gráfico y experiencia de usuario: que se vea bien y que el cliente llegue a pedir presupuesto sin perderse.",
           "Programación y herramientas a medida: que cargue rápido, sea segura y tenga calculadoras o configuradores.",
-          "SEO técnico, de contenidos y local: que Google entienda la web y la enseñe a quien busca cerca.",
+          "SEO técnico, de contenidos y SEO local: que Google entienda la web y la enseñe a quien busca cerca.",
           "Visibilidad en las IA: que ChatGPT, Gemini y el resto te recomienden cuando preguntan por lo tuyo.",
           "Anuncios en Google y en redes, con páginas pensadas para que te contacten.",
           "Redes sociales, fotografía y vídeo.",
           "Gestión de reseñas y de la ficha de Google.",
-          "Analítica y medición: saber qué funciona y qué no.",
+          "Analítica web y medición: saber qué funciona y qué no.",
           "Automatización: correos y WhatsApp que se envían solos, asistentes con inteligencia artificial.",
           "Legal y cumplimiento: avisos, privacidad y cookies como pide la ley.",
           "Seguridad, mantenimiento, pruebas y dirección del proyecto.",
@@ -207,7 +207,7 @@ export const ARTICULOS: Articulo[] = [
         p: "Con una comisión, la agencia gana más cuanto más gastas. No quiere decir que todas actúen mal, pero el incentivo está ahí: subir la inversión siempre le conviene, aunque los resultados no suban igual.",
       },
       {
-        p: "Lo que de verdad importa para tu empresa es otra cosa: cuánto te cuesta cada cliente que llega. A veces la mejor decisión es invertir menos y mejor, quitar palabras que traen curiosos o arreglar la página a la que llegan las visitas.",
+        p: "Lo que de verdad importa para tu empresa es otra cosa: cuánto te cuesta cada cliente que llega. A veces la mejor decisión es invertir menos y mejor, añadir palabras negativas para no pagar por curiosos o arreglar la página a la que llegan las visitas.",
       },
       { h2: "La alternativa: precio fijo y la inversión, a tu nombre" },
       {

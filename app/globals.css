@@ -366,3 +366,67 @@ main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
 
 /* Animaciones en pausa hasta que el bloque entra en pantalla (ver AlEntrar) */
 .en-pausa .trazo, .en-pausa .estrella-punto, .en-pausa .estrella-rotulo { animation-play-state: paused; }
+
+/* Glosario: términos enlazados con su definición al pasar el ratón */
+.gl { position: relative; display: inline; }
+.gl-a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-estrella);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.gl-a:hover, .gl-a:focus-visible, .gl.gl-abierto .gl-a {
+  color: #1d4ed8;
+  text-decoration-style: solid;
+  text-decoration-color: #1d4ed8;
+}
+:is(.bg-noche, .bg-noche-2, .bg-noche-3) .gl-a:hover,
+:is(.bg-noche, .bg-noche-2, .bg-noche-3) .gl-a:focus-visible,
+:is(.bg-noche, .bg-noche-2, .bg-noche-3) .gl.gl-abierto .gl-a {
+  color: #93b4ff;
+  text-decoration-color: #93b4ff;
+}
+.gl-tip {
+  --gl-dx: 0px;
+  position: absolute;
+  z-index: 60;
+  bottom: 100%;
+  left: 50%;
+  width: 18.5rem;
+  max-width: calc(100vw - 1.5rem);
+  padding-bottom: 0.5rem;
+  transform: translateX(calc(-50% + var(--gl-dx)));
+  display: none; /* cerrada no ocupa sitio ni crea desbordes en el móvil */
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+}
+.gl.gl-abajo .gl-tip { bottom: auto; top: 100%; padding-bottom: 0; padding-top: 0.5rem; }
+.gl-tip-in {
+  display: block;
+  border-radius: 1rem;
+  background: var(--color-noche);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 18px 40px -16px rgba(14, 26, 61, 0.7);
+  outline: 1px solid rgba(255, 255, 255, 0.12);
+}
+.gl-tip-t { display: block; color: var(--color-estrella); font-weight: 800; }
+.gl-tip-d { display: block; margin-top: 0.2rem; color: rgba(255, 255, 255, 0.92); }
+.gl-tip-m { display: block; margin-top: 0.45rem; color: #93b4ff; font-size: 0.8rem; font-weight: 700; }
+@keyframes gl-entra { from { opacity: 0; } to { opacity: 1; } }
+.gl.gl-abierto .gl-tip { display: block; animation: gl-entra 0.15s ease-out; }
+@media (hover: hover) {
+  .gl:hover .gl-tip, .gl:focus-within .gl-tip { display: block; animation: gl-entra 0.15s ease-out; }
+}
+@media (prefers-reduced-motion: reduce) { .gl-tip { animation: none !important; } .gl-a { transition: none; } }
+/* En los textos largos, el enlace del glosario se distingue de un enlace normal: punteado en oro */
+.prosa a.gl-a { text-decoration: underline dotted; text-decoration-color: var(--color-estrella); text-decoration-thickness: 2px; text-underline-offset: 4px; color: inherit; }
+.prosa a.gl-a:hover, .prosa a.gl-a:focus-visible, .prosa .gl.gl-abierto a.gl-a { color: #1d4ed8; text-decoration-style: solid; text-decoration-color: #1d4ed8; }
+/* Nada (ni una burbuja de definición) debe ensanchar la página en el móvil */
+html, body { overflow-x: clip; }

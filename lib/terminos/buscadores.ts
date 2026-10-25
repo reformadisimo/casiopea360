@@ -364,6 +364,20 @@ export const BUSCADORES: TerminoGlosario[] = [
     servicio: "seo-google-ia",
   },
   {
+    slug: "directorio",
+    nombre: "directorio de empresas",
+    formas: ["directorio", "directorios", "directorios de empresas", "directorios del sector"],
+    familia: "buscadores",
+    corta: "Una web que lista negocios de un sector o de una zona, como Páginas Amarillas o un colegio profesional.",
+    def: [
+      "Aparecer en los directorios serios de tu sector da enlaces hacia tu web y, sobre todo, datos que Google y las inteligencias artificiales comparan con los tuyos para fiarse de ti.",
+      "Lo importante es que tu nombre, dirección y teléfono sean idénticos en todos. Si cada sitio dice una cosa distinta, restas confianza.",
+    ],
+    ejemplo: "Una empresa de reformas que figura en el directorio de su asociación de constructores con los mismos datos que en su web y en su ficha de Google.",
+    rel: ["ficha-de-google", "seo-local", "backlink", "geo"],
+    servicio: "seo-google-ia",
+  },
+  {
     slug: "resena",
     nombre: "reseña",
     formas: ["reseñas", "valoraciones", "opiniones de clientes"],
@@ -375,6 +389,5 @@ export const BUSCADORES: TerminoGlosario[] = [
     ],
     ejemplo: "Tras cada obra terminada, un mensaje con el enlace directo para dejar una reseña puede triplicar las que recibes al año.",
     rel: ["ficha-de-google", "seo-local", "e-e-a-t"],
-    auto: false,
   },
 ];

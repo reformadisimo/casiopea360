@@ -1,0 +1,98 @@
+import type { TerminoGlosario } from "./tipos";
+
+export const LEGAL: TerminoGlosario[] = [
+  {
+    slug: "rgpd",
+    nombre: "RGPD",
+    largo: "Reglamento General de Protección de Datos",
+    formas: ["protección de datos", "LOPDGDD"],
+    familia: "legal",
+    corta: "La ley europea que regula cómo puedes recoger y usar los datos personales de la gente.",
+    def: [
+      "Afecta a toda web que pida un nombre, un correo o un teléfono, o que use cookies de medición. Obliga a informar de para qué se usan los datos, a pedir permiso cuando hace falta y a dejar que la persona los consulte o los borre.",
+      "Su incumplimiento puede acarrear sanciones. Este glosario es orientativo y no sustituye el consejo de un abogado.",
+    ],
+    ejemplo: "Un formulario de contacto debe indicar quién guarda los datos, para qué y cómo ejercer los derechos.",
+    rel: ["politica-de-privacidad", "cookies", "consentimiento-de-cookies", "aepd"],
+  },
+  {
+    slug: "cookies",
+    nombre: "cookies",
+    formas: ["cookie"],
+    familia: "legal",
+    corta: "Pequeños archivos que una web guarda en tu navegador para recordarte o medir tu visita.",
+    def: [
+      "Unas son necesarias para que la web funcione. Otras sirven para medir visitas o para mostrar publicidad, y estas necesitan tu permiso antes de activarse.",
+      "Por eso las webs muestran un aviso de cookies donde puedes aceptar, rechazar o elegir.",
+    ],
+    ejemplo: "Una cookie recuerda que ya has rechazado la publicidad, para no preguntártelo en cada página.",
+    rel: ["consentimiento-de-cookies", "rgpd", "pixel"],
+  },
+  {
+    slug: "consentimiento-de-cookies",
+    nombre: "banner de cookies",
+    formas: ["aviso de cookies", "consentimiento de cookies", "banner de consentimiento"],
+    familia: "legal",
+    corta: "El aviso que te pregunta si aceptas las cookies. Debe permitir rechazar tan fácil como aceptar.",
+    def: [
+      "Mientras no aceptas, la web no debe activar la medición ni la publicidad. Rechazar tiene que ser tan fácil como aceptar.",
+      "Si tu web mide visitas o usa píxeles de publicidad, necesitas un aviso bien configurado.",
+    ],
+    ejemplo: "Un aviso con los botones «Aceptar» y «Rechazar» al mismo nivel, sin trucos de color para empujar.",
+    rel: ["cookies", "consent-mode", "tag-manager", "rgpd"],
+  },
+  {
+    slug: "consent-mode",
+    nombre: "Consent Mode v2",
+    formas: ["modo de consentimiento", "Consent Mode"],
+    familia: "legal",
+    corta: "Un sistema de Google que ajusta qué mide según lo que el visitante haya aceptado en el aviso de cookies.",
+    def: [
+      "Si alguien rechaza las cookies, Google no guarda sus datos, pero puede estimar de forma anónima el efecto de tus campañas con modelos estadísticos.",
+      "Desde 2024 es obligatorio para usar ciertas funciones de Google Ads en el Espacio Económico Europeo.",
+    ],
+    ejemplo: "Aunque el 40 % de tus visitas rechacen las cookies, Google puede estimar cuántas conversiones faltan por registrar.",
+    rel: ["consentimiento-de-cookies", "google-ads", "tag-manager"],
+  },
+  {
+    slug: "politica-de-privacidad",
+    nombre: "política de privacidad",
+    formas: ["aviso legal", "texto legal"],
+    familia: "legal",
+    corta: "La página donde explicas qué datos recoges, para qué los usas y cómo pueden ejercer sus derechos.",
+    def: [
+      "Es obligatoria en cualquier web que recoja datos. Debe estar siempre enlazada, normalmente en el pie, y también junto a cada formulario.",
+      "No se copia de otra web: debe describir lo que de verdad hace la tuya.",
+    ],
+    ejemplo: "Junto al botón de enviar del formulario, una casilla que remite a la política de privacidad.",
+    rel: ["rgpd", "cookies", "lssi"],
+    auto: false,
+  },
+  {
+    slug: "lssi",
+    nombre: "LSSI",
+    largo: "Ley de Servicios de la Sociedad de la Información",
+    formas: ["LSSI-CE"],
+    familia: "legal",
+    corta: "La ley española que obliga a las webs de empresas a mostrar sus datos y regula los correos comerciales.",
+    def: [
+      "Pide que la web indique quién es el titular, su dirección y sus datos de registro, y exige permiso previo para enviar correos comerciales.",
+      "Se suele cumplir con la página de aviso legal.",
+    ],
+    ejemplo: "El pie de la web con la razón social, el CIF y el correo de contacto.",
+    rel: ["rgpd", "politica-de-privacidad", "email-marketing"],
+  },
+  {
+    slug: "aepd",
+    nombre: "AEPD",
+    largo: "Agencia Española de Protección de Datos",
+    familia: "legal",
+    corta: "El organismo español que vigila el cumplimiento de la protección de datos y las cookies, y puede multar.",
+    def: [
+      "Atiende denuncias de ciudadanos y publica guías para empresas, incluida una guía sobre el uso de cookies.",
+      "Es la referencia que se sigue para configurar bien una web.",
+    ],
+    ejemplo: "Una persona denuncia que una web activa publicidad sin pedir permiso y la AEPD abre un expediente.",
+    rel: ["rgpd", "cookies"],
+  },
+];

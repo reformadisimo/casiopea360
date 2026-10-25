@@ -248,7 +248,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
               >
                 <p className={`font-titular text-sm font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>Frente {i + 1} de 5</p>
                 <h2 className="mt-2 text-3xl font-extrabold">{f.nombre}</h2>
-                <p className={`mt-3 text-lg ${oscura ? "text-white/80" : "text-gris"}`}>{f.frase}</p>
+                <p className={`mt-3 text-lg ${oscura ? "text-white/80" : "text-gris"}`}>{glosar(f.frase)}</p>
                 <ul className="mt-6 space-y-2.5">
                   {f.servicios.map((s) => (
                     <li key={s} className="flex gap-3">
@@ -588,7 +588,7 @@ export function SeccionLoQueSea() {
                 )}
                 <p className="text-2xl font-extrabold">{x.t}</p>
               </div>
-              <p className="mt-4 flex-1 text-white/80">{x.d}</p>
+              <p className="mt-4 flex-1 text-white/80">{glosar(x.d)}</p>
               <p className="mt-4 rounded-xl bg-white/10 px-3 py-2 text-sm font-bold text-estrella">{x.nota}</p>
             </div>
           ))}
@@ -1189,7 +1189,7 @@ export function SeccionMetodo() {
               <span aria-hidden="true" className="font-titular text-4xl font-extrabold text-noche/20">0{i + 1}</span>
             </div>
             <h3 className="mt-4 text-xl font-extrabold">{p.titulo}</h3>
-            <p className="mt-2 text-gris">{p.texto}</p>
+            <p className="mt-2 text-gris">{glosar(p.texto)}</p>
           </li>
         ))}
       </ol>

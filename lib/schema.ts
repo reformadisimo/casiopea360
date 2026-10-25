@@ -110,3 +110,37 @@ export function schemaArticulo(a: { titulo: string; descripcion: string; slug: s
     publisher: { "@id": url("/#empresa") },
   };
 }
+
+// Glosario: el conjunto de términos y cada término definido, para Google y las IA.
+export function schemaGlosario(terminos: { slug: string; nombre: string; corta: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": url("/glosario#conjunto"),
+    name: "Glosario de marketing digital",
+    description: "Qué significan SEO, SEM, Analytics, CRM y el resto de términos del marketing digital, explicados sin jerga.",
+    inLanguage: "es-ES",
+    url: url("/glosario"),
+    publisher: { "@id": url("/#empresa") },
+    hasDefinedTerm: terminos.map((t) => ({
+      "@type": "DefinedTerm",
+      name: t.nombre,
+      description: t.corta,
+      url: url(`/glosario/${t.slug}`),
+    })),
+  };
+}
+
+export function schemaTermino(t: { slug: string; nombre: string; largo?: string; corta: string; def: string[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": url(`/glosario/${t.slug}#termino`),
+    name: t.nombre,
+    alternateName: t.largo,
+    description: [t.corta, ...t.def].join(" "),
+    inLanguage: "es-ES",
+    url: url(`/glosario/${t.slug}`),
+    inDefinedTermSet: url("/glosario#conjunto"),
+  };
+}

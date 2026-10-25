@@ -82,9 +82,9 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
             {p.dolores.map((d, i) => (
               <li key={d.dolor} className={`relative overflow-hidden rounded-3xl p-7 ${i === 0 ? "bg-noche text-white" : "bg-niebla"}`}>
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: p.color }} />
-                <p className="text-xl font-extrabold leading-snug">{d.dolor}</p>
+                <p className="text-xl font-extrabold leading-snug">{glosar(d.dolor)}</p>
                 <p className={`mt-4 ${i === 0 ? "text-white/85" : "text-gris"}`}>
-                  <b className={i === 0 ? "text-estrella" : "text-tinta"}>Lo arreglamos así:</b> {d.arreglo}
+                  <b className={i === 0 ? "text-estrella" : "text-tinta"}>Lo arreglamos así:</b> {glosar(d.arreglo)}
                 </p>
               </li>
             ))}
@@ -130,7 +130,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
                   <span aria-hidden="true" className="font-titular text-4xl font-extrabold opacity-30" style={{ color: p.color }}>0{i + 1}</span>
                 </div>
                 <p className="mt-4 text-xl font-extrabold">{c.paso}</p>
-                <p className="mt-2 text-gris">{c.texto}</p>
+                <p className="mt-2 text-gris">{glosar(c.texto)}</p>
               </li>
             ))}
           </ol>
