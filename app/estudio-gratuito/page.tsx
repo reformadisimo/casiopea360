@@ -4,6 +4,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import { SeccionEstudio, SeccionSolicitud, SeccionEmpezamos } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
+import { ESTUDIO_TOTAL } from "@/lib/contenido";
 
 export const metadata = meta(
   "Estudio gratuito de tu marketing digital",
@@ -17,6 +18,8 @@ export default function EstudioGratuito() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
       <CabeceraPagina
         titulo="Tu estudio gratuito: tu plan completo, hecho a medida."
+        clave="a medida"
+        chip={{ grande: `${ESTUDIO_TOTAL} apartados`, chico: "Con tu web rediseñada" }}
         entradilla="Dónde estás hoy, tu competencia, la propuesta de rediseño de tu web, tus anuncios, tu plan y cómo trabajaríamos. Empieza por el test de idoneidad: son dos minutos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
         video="hombre-sonriendo"

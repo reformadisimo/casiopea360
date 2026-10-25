@@ -1,6 +1,8 @@
 import Link from "next/link";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import CifrasEquipo from "@/components/CifrasEquipo";
+import ChipVideo from "@/components/ChipVideo";
+import Subrayado from "@/components/Subrayado";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
@@ -39,6 +41,8 @@ export default function QuienesSomos() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Quiénes somos", ruta: "/quienes-somos" }])} />
       <CabeceraPagina
         titulo="Más de 22 años haciendo que el teléfono suene."
+        clave="suene"
+        chip={{ grande: "El mismo día", chico: "Respuesta a cada petición" }}
         entradilla="Somos profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="equipo-portatil"
@@ -56,7 +60,7 @@ export default function QuienesSomos() {
         <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-2`}>
           <div>
             <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Por qué existimos</p>
-            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Antes de daros este servicio, fuimos clientes.</h2>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Antes de daros este servicio, <Subrayado>fuimos clientes</Subrayado>.</h2>
             <p className="mt-6 text-lg text-gris">
               Tuvimos nuestros propios negocios y sufrimos lo mismo que tú: un proveedor para la web, otro para Google, otro para los anuncios, reuniones con todos y nadie que mirara el conjunto. Las webs tardaban meses y cada cambio era eterno.
             </p>
@@ -67,7 +71,7 @@ export default function QuienesSomos() {
           </div>
           <div className="relative">
             <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="hombre-celebra" alt="Un empresario celebra un buen resultado delante del ordenador" /></div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="hombre-celebra" alt="Un empresario celebra un buen resultado delante del ordenador" /><ChipVideo grande="+22 años" chico="De experiencia en marketing digital" /></div>
           </div>
         </div>
       </section>

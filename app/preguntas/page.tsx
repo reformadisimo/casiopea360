@@ -17,6 +17,7 @@ export default function Preguntas() {
       <DatosEstructurados datos={[schemaPreguntas(), schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Preguntas", ruta: "/preguntas" }])]} />
       <CabeceraPagina
         titulo="Lo que nos suelen preguntar."
+        clave="preguntar"
         entradilla="Si tu duda no está aquí, pregúntanos: te contestamos el mismo día."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Preguntas" }]}
         video="sonrisa-luces"

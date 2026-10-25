@@ -1,5 +1,7 @@
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
+import ChipVideo from "@/components/ChipVideo";
+import Subrayado from "@/components/Subrayado";
 
 // Franja de título de las páginas interiores: texto a la izquierda y un vídeo con personas o luz a la derecha.
 // En el móvil, el vídeo va debajo del texto, en su tarjeta y bien visible.
@@ -10,6 +12,8 @@ export default function CabeceraPagina({
   video,
   videoAlt = "",
   visual,
+  clave,
+  chip,
 }: {
   titulo: string;
   entradilla?: string;
@@ -17,7 +21,10 @@ export default function CabeceraPagina({
   video?: string;
   videoAlt?: string;
   visual?: React.ReactNode;
+  clave?: string; // palabra del título que va subrayada en oro
+  chip?: { grande: string; chico: string };
 }) {
+  const partes = clave && titulo.includes(clave) ? titulo.split(clave) : null;
   return (
     <section className="relative overflow-hidden bg-noche pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -44,7 +51,17 @@ export default function CabeceraPagina({
               ))}
             </ol>
           </nav>
-          <h1 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">{titulo}</h1>
+          <h1 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">
+            {partes ? (
+              <>
+                {partes[0]}
+                <Subrayado>{clave}</Subrayado>
+                {partes.slice(1).join(clave)}
+              </>
+            ) : (
+              titulo
+            )}
+          </h1>
           {entradilla && <p className="mt-5 max-w-2xl text-lg text-white/80 sm:text-xl">{entradilla}</p>}
         </div>
         {visual && <div className="relative mt-2 lg:mt-0">{visual}</div>}
@@ -53,6 +70,7 @@ export default function CabeceraPagina({
             <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
             <div className="relative aspect-[16/10] overflow-hidden rounded-[1.6rem] ring-1 ring-white/15 lg:aspect-[4/3] lg:rounded-[2rem]">
               <VideoFondo nombre={video} alt={videoAlt} />
+              {chip && <ChipVideo grande={chip.grande} chico={chip.chico} />}
             </div>
             <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
           </div>

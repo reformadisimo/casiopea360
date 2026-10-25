@@ -3,6 +3,9 @@ import { casoDe } from "@/lib/casos";
 import Image from "next/image";
 import Link from "next/link";
 import VideoFondo from "@/components/VideoFondo";
+import Cifra from "@/components/Cifra";
+import ChipVideo from "@/components/ChipVideo";
+import Subrayado from "@/components/Subrayado";
 import LogoMarca from "@/components/LogoMarca";
 import TrasCarga from "@/components/TrasCarga";
 import Comisiones from "@/components/Comisiones";
@@ -313,8 +316,8 @@ export function SeccionOrigen() {
               Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te cuenta cada día lo que pasa. Lo que antes eran semanas, ahora son minutos.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella">22+</p><p className="text-sm text-white/75">años de experiencia</p></div>
-              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella">60.000 €</p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella"><Cifra valor={60000} despues=" €" /></p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
             </div>
             <Link href="/quienes-somos" className="mt-6 inline-flex font-bold text-estrella hover:underline">Conoce quiénes somos →</Link>
           </div>
@@ -497,7 +500,31 @@ const ICONO_SVG: Record<string, React.ReactNode> = {
   video: <path d="M3 6h12v12H3zM15 10l6-3v10l-6-3" />,
   escudo: <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6zM9 12l2 2 4-4" />,
   pincel: <path d="M18 3l3 3-9 9-3-3zM9 12c-2 0-4 1.5-4 4 0 1.5-1 2.5-2 3 4 1 8 0 8-4" />,
+  edificio: <path d="M4 21V5l8-2v18M12 21V9l8 2v10M4 21h16M7 8h2M7 12h2M7 16h2M15 14h2M15 17h2" />,
+  herramienta: <path d="M14.5 6.5a4 4 0 0 0 5 5L9 22l-3-3zM14.5 6.5L18 3l3 3-3.5 3.5M9 22l-3-3" />,
+  chip: <path d="M7 7h10v10H7zM10 10h4v4h-4zM9 3v4M12 3v4M15 3v4M9 17v4M12 17v4M15 17v4M3 9h4M3 12h4M3 15h4M17 9h4M17 12h4M17 15h4" />,
+  cohete: <path d="M12 2c3 2 5 6 5 11l-5 4-5-4c0-5 2-9 5-11zM12 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM7 13l-3 3h4M17 13l3 3h-4M10 17l-1 4 3-2 3 2-1-4" />,
+  lista: <path d="M4 5h16v16H4zM8 3v4M16 3v4M8 12l2 2 4-4M8 17h8" />,
+  reloj: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2" />,
 };
+
+/* Loseta de color, ligeramente girada, con su icono y una estrella: la pieza que da vida a cualquier tarjeta. */
+export function Loseta({ icono, i = 0, tam = "md", className = "" }: { icono: string; i?: number; tam?: "md" | "lg"; className?: string }) {
+  const [fondo, sombra] = COLOR_SELLO[i % COLOR_SELLO.length];
+  const caja = tam === "lg" ? "h-[4.5rem] w-[4.5rem] rounded-[1.4rem]" : "h-14 w-14 rounded-2xl";
+  const ic = tam === "lg" ? "h-9 w-9" : "h-7 w-7";
+  return (
+    <span
+      aria-hidden="true"
+      className={`loseta relative grid shrink-0 place-items-center text-white shadow-[0_14px_28px_-12px_var(--sombra)] transition-transform duration-300 ${caja} ${i % 2 ? "rotate-6" : "-rotate-6"} ${className}`}
+      style={{ background: fondo, ["--sombra" as string]: sombra }}
+    >
+      <span className="absolute inset-[3px] rounded-[inherit] bg-gradient-to-b from-white/25 to-transparent" />
+      <svg viewBox="0 0 24 24" className={`relative drop-shadow ${ic}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[icono]}</svg>
+      <span className="brilla absolute -right-2 -top-2" style={{ animationDelay: `${i * 0.4}s` }}><Estrellita /></span>
+    </span>
+  );
+}
 
 const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: string }[] = [
   { t: "Tu propia app", d: "Para iPhone y Android, publicada en las dos tiendas, como hicimos con Mi Estela.", nota: "Te diremos con sinceridad si la necesitas o si con la web basta.", logo: "App Store" },
@@ -715,15 +742,25 @@ export function SeccionPorQueBarato() {
       <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Sin trampa</p>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar menos? Así de sencillo.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar <Subrayado>menos</Subrayado>? Así de sencillo.</h2>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
-              <div key={x.t} className="rounded-[1.6rem] bg-niebla p-6">
-                <p className="text-sm font-extrabold text-amber-800">0{i + 1}</p>
-                <p className="mt-1 text-xl font-extrabold">{x.t}</p>
+              <div key={x.t} className="group relative rounded-[1.6rem] bg-white p-6 ring-1 ring-linea">
+                {i > 0 && (
+                  <span aria-hidden="true" className="absolute -left-2 -top-2 grid h-9 w-9 place-items-center rounded-full bg-noche font-titular text-xl font-extrabold text-estrella shadow-md ring-2 ring-white">+</span>
+                )}
+                <Loseta icono={["edificio", "herramienta", "chip", "cohete"][i]} i={i} />
+                <p className="mt-4 text-xl font-extrabold">{x.t}</p>
                 <p className="mt-2 text-gris">{x.d}</p>
               </div>
             ))}
+          </div>
+          <div className="relative mt-6 flex items-center gap-4 rounded-[1.6rem] bg-noche p-6 text-white sm:gap-5 sm:p-7">
+            <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-estrella font-titular text-2xl font-extrabold text-tinta shadow-md">=</span>
+            <div>
+              <p className="font-titular text-2xl font-extrabold leading-tight sm:text-3xl">Menos de lo que te costaría por separado.</p>
+              <p className="mt-1 text-white/75">Con todo dentro, a precio fijo y sin comisiones.</p>
+            </div>
           </div>
           <p className="mt-8 max-w-2xl text-lg">
             <b>Y porque nos gusta.</b> Disfrutamos haciendo crecer empresas, no a base de facturas, sino a base de resultados. Y estamos siempre estrenando la última tecnología.
@@ -731,7 +768,7 @@ export function SeccionPorQueBarato() {
         </div>
         <div className="relative">
           <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="mujer-celebra" alt="Una mujer celebra un buen resultado delante de su portátil" /></div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]"><VideoFondo nombre="mujer-celebra" alt="Una mujer celebra un buen resultado delante de su portátil" /><ChipVideo grande="−36 %" chico="AMS Cerramientos, en lo que paga cada mes" icono={ICONO_SVG.euro} /></div>
         </div>
       </div>
     </section>
@@ -767,22 +804,14 @@ export function SeccionLoFirmamos() {
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Más de 22 años de experiencia en marketing digital</p>
-            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. Sin su factura.</h2>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. <Subrayado>Sin su factura.</Subrayado></h2>
           </div>
           <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
         </div>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SELLOS.map((x, i) => (
             <li key={x.t} className="group relative flex gap-5 rounded-[1.8rem] border border-linea p-6 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
-              <span
-                aria-hidden="true"
-                className={`relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-[1.4rem] text-white shadow-[0_14px_28px_-12px_var(--sombra)] transition-transform duration-300 group-hover:rotate-0 group-hover:scale-110 ${i % 2 ? "rotate-6" : "-rotate-6"}`}
-                style={{ background: COLOR_SELLO[i % COLOR_SELLO.length][0], ["--sombra" as string]: COLOR_SELLO[i % COLOR_SELLO.length][1] }}
-              >
-                <span className="absolute inset-[3px] rounded-[1.2rem] bg-gradient-to-b from-white/25 to-transparent" />
-                <svg viewBox="0 0 24 24" className="relative h-9 w-9 drop-shadow" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
-                <span className="brilla absolute -right-2 -top-2" style={{ animationDelay: `${i * 0.4}s` }}><Estrellita /></span>
-              </span>
+              <Loseta icono={x.icono} i={i} tam="lg" />
               <div>
                 <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Compromiso {i + 1}</p>
                 <p className="mt-0.5 text-xl font-extrabold">{x.t}</p>
@@ -1245,11 +1274,14 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
     <section id="como-empezamos" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
       <div className={ENVOLTORIO}>
         <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Cómo empezamos</p>
-        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son dos minutos.</h2>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>dos minutos</Subrayado>.</h2>
         <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
-            <li key={x.t} className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
-              <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-2xl text-xl font-extrabold text-white shadow-md" style={{ background: colores[i] }}>{i + 1}</span>
+            <li key={x.t} className="group relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
+              <div className="flex items-center justify-between">
+                <Loseta icono={["lista", "lupa", "pagina", "video"][i]} i={i} />
+                <span aria-hidden="true" className="font-titular text-4xl font-extrabold" style={{ color: colores[i], opacity: 0.35 }}>0{i + 1}</span>
+              </div>
               <h3 className="mt-4 text-xl font-extrabold">{x.t}</h3>
               <p className="mt-2 text-gris">{x.d}</p>
             </li>
@@ -1269,7 +1301,7 @@ export function SeccionEstudioResumen() {
   return (
     <section id="estudio" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-24`}>
       <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu estudio gratuito</p>
-      <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">No es un informe. Es tu plan completo.</h2>
+      <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">No es un informe. Es tu plan <Subrayado>completo</Subrayado>.</h2>
       <p className="mt-4 max-w-3xl text-lg text-gris">{ESTUDIO_TOTAL} apartados hechos a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías, al euro.</p>
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ESTUDIO_BLOQUES.map((b, k) => (
@@ -1300,7 +1332,7 @@ export function SeccionMundo() {
       <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">En directo, ahora mismo</p>
-        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra nunca.</h2>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra <Subrayado>nunca</Subrayado>.</h2>
         <p className="mt-4 max-w-2xl text-lg text-white/80">Mientras lees esto, en algún sitio es de día y alguien está buscando lo que haces. Tu web y tu asistente con IA le atienden a cualquier hora, estés donde estés.</p>
         <div className="mt-10">
           <RelojMundoDiferido />
@@ -1419,13 +1451,13 @@ export function SeccionEstudio() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
             <p className="text-sm font-bold text-gris">Reformadísimo</p>
-            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−23 %</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700"><Cifra valor={23} antes="−" despues=" %" /></p>
             <p className="mt-1 font-bold">en toda su inversión en marketing</p>
             <p className="mt-2 text-[0.95rem] text-gris">Proveedores, anuncios y herramientas, todo sumado.</p>
           </div>
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
             <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
-            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700">−36 %</p>
+            <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700"><Cifra valor={36} antes="−" despues=" %" /></p>
             <p className="mt-1 font-bold">en lo que paga cada mes en marketing</p>
             <p className="mt-2 text-[0.95rem] text-gris">Lo que antes repartía entre varios proveedores.</p>
           </div>

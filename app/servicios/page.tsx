@@ -18,6 +18,8 @@ export default function Servicios() {
       <DatosEstructurados datos={[...schemaServicios(), schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Servicios", ruta: "/servicios" }])]} />
       <CabeceraPagina
         titulo="Todo lo digital, con un solo equipo."
+        clave="un solo equipo"
+        chip={{ grande: "En días", chico: "Tu web, no en meses" }}
         entradilla="Cinco frentes que normalmente llevan cinco empresas distintas. Con nosotros, uno solo, conectado y con un parte cada día."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Servicios" }]}
         video="holograma-redes"

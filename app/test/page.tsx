@@ -16,6 +16,8 @@ export default function Test() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Haz el test", ruta: "/test" }])} />
       <CabeceraPagina
         titulo="¿Cómo está tu marketing digital?"
+        clave="marketing digital"
+        chip={{ grande: "4 minutos", chico: "Tocando, sin escribir" }}
         entradilla="Unos 4 minutos, tocando, sin escribir. Te damos tu nota y dónde se te escapan clientes. Y si encajas, te preparamos gratis tu estudio completo."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
         video="ojo-pantallas"

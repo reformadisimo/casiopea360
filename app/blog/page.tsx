@@ -22,6 +22,7 @@ export default function Blog() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Blog", ruta: "/blog" }])} />
       <CabeceraPagina
         titulo="Marketing digital, contado claro."
+        clave="claro"
         entradilla="Lo que aprendemos cada día con nuestras empresas y nuestros clientes, sin jerga y con ejemplos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Blog" }]}
         video="movil-corazones"

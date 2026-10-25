@@ -17,6 +17,8 @@ export default function Trabajos() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Trabajos", ruta: "/trabajos" }])} />
       <CabeceraPagina
         titulo="Trabajos reales, funcionando hoy."
+        clave="reales"
+        chip={{ grande: "−36 %", chico: "AMS Cerramientos, cada mes" }}
         entradilla="Webs con calculadoras y asistentes de IA, una app en las dos tiendas cobrando suscripciones. Entra y pruébalos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Trabajos" }]}
         video="equipo-celebra"
