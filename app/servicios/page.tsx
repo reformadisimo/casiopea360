@@ -32,7 +32,7 @@ export default function Servicios() {
         detalle="Lo que pasa en tus anuncios se arregla en tu web el mismo día. Lo que preguntan tus clientes se convierte en artículo. Un solo equipo mirando el conjunto."
         etiquetas={["Web", "Google y las IA", "Anuncios", "Redes", "Automatización"]}
         clips={[
-          { nombre: "holograma-mesa", alt: "Dos personas ríen alrededor de un holograma" },
+          { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },
           { nombre: "movil-personas", alt: "Personas en holograma conversando sobre un móvil" },
           { nombre: "neon-llamada", alt: "Una mujer habla por el móvil entre luces de neón" },
           { nombre: "ninos-conexion", alt: "Líneas de luz conectan a varias personas con sus ordenadores" },

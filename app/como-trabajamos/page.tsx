@@ -30,7 +30,7 @@ export default function ComoTrabajamos() {
         detalle="Nos escribes, te respondemos el mismo día, lo hacemos en 48 horas como máximo y te lo contamos en el parte del día."
         clips={[
           { nombre: "llamada-risa", alt: "Un cliente ríe al teléfono" },
-          { nombre: "hombre-celebra", alt: "Un empresario celebra un buen resultado frente al ordenador" },
+          { nombre: "graba-movil", alt: "Una mujer graba un vídeo con el móvil en una cafetería" },
           { nombre: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
         ]}
       />

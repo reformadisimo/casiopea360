@@ -209,8 +209,8 @@ export function BandaVideo() {
     <section aria-label="Mientras tú atiendes tu negocio" className="relative h-[70vh] min-h-[420px] overflow-hidden bg-noche">
       <div className="absolute inset-0 grid grid-cols-1 sm:grid-cols-3">
         <div className="relative h-full"><VideoFondo nombre="neon-sonrisa" alt="Una mujer sonríe mirando su tableta entre luces de neón" /></div>
-        <div className="relative hidden h-full sm:block"><VideoFondo nombre="holograma-mesa" alt="Dos personas ríen alrededor de un holograma" /></div>
-        <div className="relative hidden h-full sm:block"><VideoFondo nombre="equipo-celebra" alt="Un equipo celebra un buen resultado delante del ordenador" /></div>
+        <div className="relative hidden h-full sm:block"><VideoFondo nombre="movil-sonrisa" alt="Una mujer sonríe mirando su móvil en la ciudad" /></div>
+        <div className="relative hidden h-full sm:block"><VideoFondo nombre="graba-movil" alt="Una mujer graba un vídeo con el móvil en una cafetería" /></div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/35 to-transparent" />
       <div className={`${ENVOLTORIO} relative flex h-full items-end pb-14`}>

@@ -178,8 +178,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     titular: "Que se vea lo bien que trabajas. Sin que tengas que ser influencer.",
     entradilla:
       "Ideas, publicaciones y guiones para Instagram, Facebook, LinkedIn y TikTok. Te enseñamos a grabar con el móvil y nos ocupamos del montaje.",
-    video: "movil-corazones",
-    videoAlt: "Corazones salen de la pantalla de un móvil",
+    video: "graba-movil",
+    videoAlt: "Una mujer graba un vídeo con el móvil en una cafetería",
     color: "#be185d",
     dolores: [
       { dolor: "«No tengo tiempo para las redes.»", arreglo: "Te damos las ideas y el guion. Tú grabas un minuto con el móvil; el resto es cosa nuestra." },

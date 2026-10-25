@@ -20,8 +20,8 @@ export default function Test() {
         chip={{ grande: "4 minutos", chico: "Tocando, sin escribir" }}
         entradilla="Unos 4 minutos, tocando, sin escribir. Te damos tu nota y dónde se te escapan clientes. Y si encajas, te preparamos gratis tu estudio completo."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
-        video="ojo-pantallas"
-        videoAlt="Datos y pantallas reflejados en unas gafas"
+        video="movil-sonrisa"
+        videoAlt="Una mujer sonríe mirando su móvil en la ciudad"
       />
       <SeccionSolicitud />
       <LlamadaFinal />
