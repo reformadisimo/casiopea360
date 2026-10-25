@@ -8,6 +8,7 @@ import ChipVideo from "@/components/ChipVideo";
 import Subrayado from "@/components/Subrayado";
 import LogoMarca from "@/components/LogoMarca";
 import Constelacion from "@/components/Constelacion";
+import AntesDespues from "@/components/AntesDespues";
 import TrasCarga from "@/components/TrasCarga";
 import Comisiones from "@/components/Comisiones";
 import { glosar } from "@/lib/glosario";
@@ -322,6 +323,30 @@ export function SeccionOrigen() {
             </div>
             <Link href="/quienes-somos" className="mt-6 inline-flex font-bold text-estrella hover:underline">Conoce quiénes somos →</Link>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Antes y después: la misma web, con un tirador para descubrir la nueva. */
+export function SeccionAntesDespues({ compacta = false }: { compacta?: boolean }) {
+  return (
+    <section id="antes-despues" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <div className="grid items-end gap-6 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Antes y después</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Mueve el tirador. <Subrayado>Mira la diferencia</Subrayado>.</h2>
+          </div>
+          {!compacta && <p className="text-lg text-gris">Reformadísimo, nuestra propia empresa de reformas: la web que tenía y la que tiene ahora, con calculadoras de precio y una asistente que atiende por voz.</p>}
+        </div>
+        <div className="mt-10">
+          <AntesDespues nombre="Reformadísimo" antes="/antes-despues/reformadisimo-antes.webp" despues="/antes-despues/reformadisimo-despues.webp" />
+        </div>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-gris">Capturas reales de la portada de cada web, vistas en ordenador.</p>
+          <Link href="/trabajos/reformadisimo" className="inline-flex items-center gap-2 font-bold text-noche-3">Ver el caso completo <span aria-hidden="true">→</span></Link>
         </div>
       </div>
     </section>
@@ -760,7 +785,7 @@ export function SeccionPorQueBarato() {
             <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-estrella font-titular text-2xl font-extrabold text-tinta shadow-md">=</span>
             <div>
               <p className="font-titular text-2xl font-extrabold leading-tight sm:text-3xl">Menos de lo que te costaría por separado.</p>
-              <p className="mt-1 text-white/75">Con todo dentro, a precio fijo y sin comisiones.</p>
+              <p className="mt-1 text-white/75">Con todo dentro, a precio fijo y sin comisiones. <Link href="/servicios#costes" className="font-bold text-estrella hover:underline">Haz cuentas con lo tuyo →</Link></p>
             </div>
           </div>
           <p className="mt-8 max-w-2xl text-lg">
@@ -1368,7 +1393,7 @@ export function SeccionMundo() {
 export function SeccionSaberMas() {
   const tarjetas = [
     { t: "Cuánto te costaría por separado", d: "La calculadora, por tamaño de empresa.", href: "/servicios#costes", icono: "euro", color: "#047857" },
-    { t: "¿Cómo puede costar menos?", d: "Sin trampa: así de sencillo.", href: "/servicios#barato", icono: "estrella", color: "#b45309" },
+    { t: "Haz cuentas: ¿cuánto pagas hoy?", d: "Marca lo que tienes y mira lo que cuesta por separado.", href: "/servicios#costes", icono: "euro", color: "#b45309" },
     { t: "Tu web, de las rápidas", d: "Nuestro compromiso de velocidad, con datos.", href: "/servicios#velocidad", icono: "telefono", color: "#1d4ed8" },
     { t: "Tecnología de hoy", d: "Sin WordPress ni plugins: más segura.", href: "/servicios#tecnologia", icono: "escudo", color: "#6d28d9" },
     { t: "Tu propio CRM", d: "Cada contacto con su origen, sin licencias.", href: "/servicios/crm-a-medida", icono: "chat", color: "#be185d" },
