@@ -7,6 +7,7 @@ import AsistenteDiferido from "@/components/AsistenteDiferido";
 import GlosarioTactil from "@/components/GlosarioTactil";
 import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
+import Revelado from "@/components/Revelado";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Pie from "@/components/Pie";
@@ -69,6 +70,7 @@ export default function RootLayout({
         <Medicion />
         <AsistenteDiferido />
         <GlosarioTactil />
+        <Revelado />
         {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
         <Analytics />
         <SpeedInsights />

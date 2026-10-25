@@ -213,17 +213,11 @@ main > section:not(:first-of-type):not(:last-of-type):not(#solicitud) {
 @keyframes brinca { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(12deg); } }
 @media (prefers-reduced-motion: reduce) { .confeti, .salta, .entra, .burbuja, .brinca { animation: none; } .confeti { display: none; } }
 
-/* Al hacer scroll, tarjetas y bloques entran con un pequeño salto (sin JavaScript; solo donde el navegador lo admite). */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    main > section:not(:first-of-type) :is(.grid, .carrusel) > li, main .revela {
-      animation: revela linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
-    }
-  }
-}
-@keyframes revela { from { transform: translateY(36px) scale(0.96); } to { transform: none; } }
+/* La página se va abriendo al bajar (components/Revelado.tsx): fundido suave y pequeño ascenso. */
+.rv { opacity: 0; transform: translateY(22px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+.rv.rv-in { opacity: 1; transform: none; }
+/* Con «Reducir movimiento» (iPhone, Windows): solo fundido, sin desplazamiento. */
+@media (prefers-reduced-motion: reduce) { .rv { transform: none; transition: opacity 0.6s ease; } }
 
 html.cookies-decididas [data-aviso-cookies] { display: none; }
 
