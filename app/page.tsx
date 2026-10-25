@@ -29,7 +29,7 @@ export default function Inicio() {
       {/* Héroe: la constelación */}
       <section className="relative overflow-hidden bg-noche pb-20 pt-32 text-white sm:pb-28 sm:pt-40">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(80,120,255,0.35),transparent_45%),radial-gradient(circle_at_80%_60%,rgba(60,90,255,0.3),transparent_40%),radial-gradient(1.5px_1.5px_at_10%_20%,#fff,transparent),radial-gradient(1.5px_1.5px_at_30%_70%,#cfe0ff,transparent),radial-gradient(1px_1px_at_60%_15%,#fff,transparent),radial-gradient(1.5px_1.5px_at_85%_40%,#fff,transparent),radial-gradient(1px_1px_at_70%_85%,#cfe0ff,transparent),radial-gradient(1.5px_1.5px_at_45%_45%,#fff,transparent)]">
-          <VideoFondo nombre="constelaciones" alt="" prioridad />
+          <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>

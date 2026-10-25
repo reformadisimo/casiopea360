@@ -36,7 +36,7 @@ import {
 
 export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 export const BOTON =
-  "inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
+  "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 export const BOTON_CLARO =
   "inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-3.5 font-bold text-white hover:border-white";
 
@@ -241,7 +241,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
               <article
                 key={f.id}
                 id={f.id}
-                className={`scroll-mt-28 rounded-[2rem] p-7 sm:p-9 ${ancho} ${oscura ? "bg-noche text-white" : "border border-linea bg-white"}`}
+                className={`inclina scroll-mt-28 rounded-[2rem] p-7 sm:p-9 ${ancho} ${oscura ? "bg-noche text-white" : "border border-linea bg-white"}`}
               >
                 <p className={`font-titular text-sm font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>Frente {i + 1} de 5</p>
                 <h2 className="mt-2 text-3xl font-extrabold">{f.nombre}</h2>
@@ -538,7 +538,7 @@ const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: s
 export function SeccionLoQueSea() {
   return (
     <section id="lo-que-sea" className="scroll-mt-24 relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60">
+      <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60">
         <VideoFondo nombre="constelaciones-azules" alt="" />
       </div>
       <div className={`${ENVOLTORIO} relative`}>
@@ -715,7 +715,7 @@ export function SeccionComoEsPosible() {
 export function SeccionPromesas() {
   return (
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y a precio fijo.</h2>
@@ -745,7 +745,7 @@ export function SeccionPorQueBarato() {
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar <Subrayado>menos</Subrayado>? Así de sencillo.</h2>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
-              <div key={x.t} className="group relative rounded-[1.6rem] bg-white p-6 ring-1 ring-linea">
+              <div key={x.t} className="group inclina relative rounded-[1.6rem] bg-white p-6 ring-1 ring-linea">
                 {i > 0 && (
                   <span aria-hidden="true" className="absolute -left-2 -top-2 grid h-9 w-9 place-items-center rounded-full bg-noche font-titular text-xl font-extrabold text-estrella shadow-md ring-2 ring-white">+</span>
                 )}
@@ -810,7 +810,7 @@ export function SeccionLoFirmamos() {
         </div>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SELLOS.map((x, i) => (
-            <li key={x.t} className="group relative flex gap-5 rounded-[1.8rem] border border-linea p-6 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
+            <li key={x.t} className="group inclina relative flex gap-5 rounded-[1.8rem] border border-linea p-6 hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.5)] sm:p-7">
               <Loseta icono={x.icono} i={i} tam="lg" />
               <div>
                 <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Compromiso {i + 1}</p>
@@ -837,7 +837,7 @@ export function SeccionLoFirmamos() {
 export function SeccionConfidenciales() {
   return (
     <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
-      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
           <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Bajo llave</p>
@@ -1277,7 +1277,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>dos minutos</Subrayado>.</h2>
         <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
-            <li key={x.t} className="group relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
+            <li key={x.t} className="group inclina relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
               <div className="flex items-center justify-between">
                 <Loseta icono={["lista", "lupa", "pagina", "video"][i]} i={i} />
                 <span aria-hidden="true" className="font-titular text-4xl font-extrabold" style={{ color: colores[i], opacity: 0.35 }}>0{i + 1}</span>
@@ -1305,7 +1305,7 @@ export function SeccionEstudioResumen() {
       <p className="mt-4 max-w-3xl text-lg text-gris">{ESTUDIO_TOTAL} apartados hechos a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías, al euro.</p>
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ESTUDIO_BLOQUES.map((b, k) => (
-          <li key={b.titulo} className="flex items-center gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea">
+          <li key={b.titulo} className="inclina flex items-center gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea">
             <span aria-hidden="true" className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-md ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: b.color }}>
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[b.icono]}</svg>
             </span>
@@ -1329,7 +1329,7 @@ export function SeccionEstudioResumen() {
 export function SeccionMundo() {
   return (
     <section id="mundo" className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
-      <div aria-hidden="true" className="estrellas absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
         <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">En directo, ahora mismo</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra <Subrayado>nunca</Subrayado>.</h2>
@@ -1362,7 +1362,7 @@ export function SeccionSaberMas() {
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {tarjetas.map((x, k) => (
             <li key={x.t}>
-              <Link href={x.href} className="group flex h-full flex-col rounded-3xl bg-white p-4 shadow-sm ring-1 ring-linea transition-transform hover:-translate-y-1 sm:p-5">
+              <Link href={x.href} className="group inclina flex h-full flex-col rounded-3xl bg-white p-4 shadow-sm ring-1 ring-linea sm:p-5">
                 <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-2xl text-white shadow-md ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: x.color }}>
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono]}</svg>
                 </span>
@@ -1527,7 +1527,7 @@ export function LlamadaFinal() {
   return (
     <section className={`${ENVOLTORIO} py-20`}>
       <div className="relative overflow-hidden rounded-[2rem] bg-noche p-8 text-white sm:p-14">
-        <div aria-hidden="true" className="estrellas absolute inset-0 opacity-80"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+        <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-80"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
           <div>
             <h2 className="text-3xl font-extrabold sm:text-5xl">¿Empezamos por un estudio gratuito?</h2>

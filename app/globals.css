@@ -349,3 +349,14 @@ main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
 
 /* Losetas de color con icono: se enderezan y crecen al pasar por la tarjeta */
 .group:hover .loseta { transform: rotate(0) scale(1.08); }
+
+/* Profundidad: las constelaciones se mueven un poco con el ratón (solo ordenador) */
+.profundo { transform: translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -10px)) scale(1.05); transition: transform 0.25s ease-out; will-change: transform; }
+
+/* Tarjetas que se inclinan hacia el ratón */
+.inclina { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; transform-style: preserve-3d; }
+
+/* Botón principal: un brillo recorre el botón al pasar el ratón */
+.boton-brillo { position: relative; overflow: hidden; isolation: isolate; }
+.boton-brillo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.6) 50%, transparent 65%); transform: translateX(-130%); }
+.boton-brillo:hover::after { transform: translateX(130%); transition: transform 0.65s ease; }

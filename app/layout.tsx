@@ -5,6 +5,7 @@ import Versionante from "@/components/Versionante";
 import Medicion from "@/components/Medicion";
 import AsistenteDiferido from "@/components/AsistenteDiferido";
 import Cabecera from "@/components/Cabecera";
+import Profundidad from "@/components/Profundidad";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SITIO } from "@/lib/navegacion";
@@ -56,6 +57,7 @@ export default function RootLayout({
         </a>
         <DatosEstructurados datos={[schemaOrganizacion(), schemaWeb()]} />
         <Cabecera />
+        <Profundidad />
         <main id="contenido">{children}</main>
         <Pie />
         <Versionante />
