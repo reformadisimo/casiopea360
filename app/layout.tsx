@@ -6,6 +6,8 @@ import Medicion from "@/components/Medicion";
 import AsistenteDiferido from "@/components/AsistenteDiferido";
 import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SITIO } from "@/lib/navegacion";
@@ -63,6 +65,9 @@ export default function RootLayout({
         <Versionante />
         <Medicion />
         <AsistenteDiferido />
+        {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

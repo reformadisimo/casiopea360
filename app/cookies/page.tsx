@@ -18,6 +18,7 @@ export default function Cookies() {
           <tr><td>Mapas de calor (Microsoft Clarity)</td><td>Ver de forma anónima dónde se pulsa y hasta dónde se lee, para mejorar la web</td><td>Sí</td></tr>
         </tbody>
       </table>
+      <p>Además, medimos de forma anónima cuántas visitas hay y a qué velocidad carga la web, con el servicio de nuestro alojamiento (Vercel). No usa cookies ni guarda datos que identifiquen a nadie.</p>
       <p>Las cookies de medición y los mapas de calor solo se activan si las aceptas en el aviso de cookies, que tiene el botón de rechazar al mismo nivel que el de aceptar, como pide la Agencia Española de Protección de Datos.</p>
       <h2>Cómo cambiar de opinión</h2>
       <p>Puedes cambiar tu elección en cualquier momento desde el enlace «Configurar cookies» del pie de la web, o borrando las cookies desde la configuración de tu navegador.</p>
