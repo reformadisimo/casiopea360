@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta, ICONO_SVG } from "@/components/secciones";
+
+const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm" };
 import { glosar } from "@/lib/glosario";
 import { ARTICULOS } from "@/lib/blog";
 import { PAGINAS_SERVICIO, incluyeDe, paginaServicio } from "@/lib/servicios";
@@ -122,11 +124,12 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Cómo lo hacemos.</h2>
           <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {p.como.map((c, i) => (
-              <li key={c.paso} className="rounded-3xl p-6 ring-1 ring-linea">
-                <span className="font-titular text-5xl font-extrabold" style={{ color: p.color }}>
-                  {i + 1}
-                </span>
-                <p className="mt-3 text-xl font-extrabold">{c.paso}</p>
+              <li key={c.paso} className="group inclina rounded-3xl bg-white p-6 ring-1 ring-linea">
+                <div className="flex items-center justify-between">
+                  <Loseta icono={["lupa", "pincel", "cohete", "lista"][i % 4]} i={i} />
+                  <span aria-hidden="true" className="font-titular text-4xl font-extrabold opacity-30" style={{ color: p.color }}>0{i + 1}</span>
+                </div>
+                <p className="mt-4 text-xl font-extrabold">{c.paso}</p>
                 <p className="mt-2 text-gris">{c.texto}</p>
               </li>
             ))}
@@ -206,11 +209,14 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Y todo lo demás, en la misma cuota.</h2>
           <p className="mt-4 max-w-2xl text-lg text-gris">Un solo equipo para todo, conectado. Lo que pasa en un frente se aprovecha en los demás el mismo día.</p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {otros.map((o) => (
+            {otros.map((o, k) => (
               <li key={o.slug}>
-                <Link href={`/servicios/${o.slug}`} className="group flex h-full flex-col rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea transition-transform hover:-translate-y-1">
-                  <span aria-hidden="true" className="h-2 w-10 rounded-full" style={{ background: o.color }} />
+                <Link href={`/servicios/${o.slug}`} className="group inclina flex h-full flex-col rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea">
+                  <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-2xl text-white shadow-md transition-transform group-hover:rotate-0 group-hover:scale-110 ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: o.color }}>
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[ICONO_SERVICIO[o.slug] ?? "estrella"]}</svg>
+                  </span>
                   <span className="mt-4 text-lg font-extrabold">{o.nombre}</span>
+                  <span className="mt-1 text-sm text-gris">{o.titular}</span>
                   <span className="mt-auto pt-3 text-sm font-bold text-noche-3">Ver más →</span>
                 </Link>
               </li>

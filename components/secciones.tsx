@@ -40,7 +40,7 @@ export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 export const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 export const BOTON_CLARO =
-  "inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-3.5 font-bold text-white hover:border-white";
+  "inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-7 py-3.5 font-bold text-white backdrop-blur hover:border-white hover:bg-white/20";
 
 const Punto = ({ className = "" }: { className?: string }) => (
   <span aria-hidden="true" className={`inline-block h-3 w-3 shrink-0 rounded-full bg-estrella shadow-[0_0_0_5px_rgba(255,197,61,0.25)] ${className}`} />
@@ -289,7 +289,7 @@ export function SeccionOficios() {
       <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto, y lo vemos todo a la vez.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
         {OFICIOS.map((o) => (
-          <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-4 py-2 text-[0.95rem] font-bold">
+          <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold sm:px-4 sm:py-2 sm:text-[0.95rem]">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
             {o}
           </li>
@@ -424,8 +424,9 @@ export function SeccionParte() {
             Sin entrar en ninguna herramienta ni entender de números. Te llega un mensaje corto por WhatsApp, por correo o por Slack, como prefieras.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
-            {INFORMES.map((i) => (
+            {INFORMES.map((i, k) => (
               <div key={i.cuando} className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
+                <Loseta icono={["calendario", "lista", "estrella"][k % 3]} i={k} className="mb-4" />
                 <p className="font-titular text-xl font-extrabold text-estrella">{i.cuando}</p>
                 <p className="text-sm text-white/60">{i.lectura}</p>
                 <ul className="mt-3 space-y-1.5 text-[0.95rem] text-white/85">
@@ -765,8 +766,8 @@ export function SeccionPromesas() {
 export function SeccionPorQueBarato() {
   return (
     <section id="barato" className="scroll-mt-24 bg-white py-20 sm:py-28">
-      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
-        <div>
+      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]`}>
+        <div className="min-w-0">
           <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Sin trampa</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar <Subrayado>menos</Subrayado>? Así de sencillo.</h2>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
@@ -1181,9 +1182,12 @@ export function SeccionMetodo() {
       <p className="mt-5 max-w-2xl text-lg text-gris">Casi todo por internet y por escrito. Sin reuniones que no hagan falta y dándote el menor trabajo posible.</p>
       <ol className="carrusel mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {PASOS.map((p, i) => (
-          <li key={p.titulo} className="border-t-2 border-noche pt-5">
-            <p className="font-titular text-6xl font-extrabold text-estrella">{i + 1}</p>
-            <h3 className="mt-2 text-xl font-extrabold">{p.titulo}</h3>
+          <li key={p.titulo} className="group inclina rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
+            <div className="flex items-center justify-between">
+              <Loseta icono={["lupa", "pagina", "firma", "cohete", "calendario", "reloj"][i % 6]} i={i} />
+              <span aria-hidden="true" className="font-titular text-4xl font-extrabold text-noche/20">0{i + 1}</span>
+            </div>
+            <h3 className="mt-4 text-xl font-extrabold">{p.titulo}</h3>
             <p className="mt-2 text-gris">{p.texto}</p>
           </li>
         ))}

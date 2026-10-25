@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, ICONO_SVG } from "@/components/secciones";
 import { CASOS, casoPorSlug } from "@/lib/casos";
 import { TRABAJOS } from "@/lib/contenido";
 import { PAGINAS_SERVICIO } from "@/lib/servicios";
@@ -127,10 +127,12 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
         <div className={ENVOLTORIO}>
           <h2 className="text-3xl font-extrabold sm:text-4xl">Más trabajos.</h2>
           <ul className="mt-6 grid gap-4 md:grid-cols-3">
-            {otros.map((o) => (
+            {otros.map((o, k) => (
               <li key={o.slug}>
-                <Link href={`/trabajos/${o.slug}`} className="group flex h-full flex-col rounded-3xl p-6 ring-1 ring-linea transition-transform hover:-translate-y-1">
-                  <span aria-hidden="true" className="h-2 w-10 rounded-full" style={{ background: o.color }} />
+                <Link href={`/trabajos/${o.slug}`} className="group inclina flex h-full flex-col rounded-3xl bg-white p-6 ring-1 ring-linea">
+                  <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-2xl text-white shadow-md transition-transform group-hover:rotate-0 group-hover:scale-110 ${k % 2 ? "rotate-6" : "-rotate-6"}`} style={{ background: o.color }}>
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG.estrella}</svg>
+                  </span>
                   <span className="mt-4 text-xl font-extrabold">{o.nombre}</span>
                   <span className="mt-2 text-gris">{o.titular}</span>
                   <span className="mt-auto pt-4 text-sm font-bold text-noche-3">Ver el caso →</span>

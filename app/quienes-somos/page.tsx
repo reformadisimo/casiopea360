@@ -102,10 +102,10 @@ export default function QuienesSomos() {
         <div className={`${ENVOLTORIO} relative`}>
           <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que creemos</p>
           <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Hacértelo mejor que quien te cobra el triple. Esa es la idea.</h2>
-          <ul className="carrusel mt-12 grid gap-4 lg:grid-cols-5">
+          <ul className="carrusel mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {CREEMOS.map((c, i) => (
               <li key={c} className="rounded-[1.6rem] bg-white/[0.07] p-6 ring-1 ring-white/15 backdrop-blur-sm">
-                <span aria-hidden="true" className="text-3xl font-extrabold text-estrella">{i + 1}</span>
+                <Loseta icono={["euro", "calendario", "telefono", "chip", "sonrisa", "cohete"][i]} i={i} />
                 <p className="mt-3 text-[1.05rem] text-white/90">{c}</p>
               </li>
             ))}

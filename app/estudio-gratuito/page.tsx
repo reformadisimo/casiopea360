@@ -33,7 +33,7 @@ export default function EstudioGratuito() {
         clips={[
           { nombre: "telescopios", alt: "Telescopios bajo un cielo estrellado" },
           { nombre: "arquitecto-mesa", alt: "Un profesional trabaja en su mesa con luz natural" },
-          { nombre: "constelaciones-azules", alt: "Constelaciones unidas por líneas de luz" },
+          { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },
         ]}
       />
       <SeccionSolicitud />

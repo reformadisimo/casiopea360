@@ -54,7 +54,6 @@ export default function Blog() {
               </p>
               <h2 className="mt-3 text-2xl font-extrabold group-hover:underline">{a.titulo}</h2>
               <p className="mt-3 flex-1 text-gris">{a.descripcion}</p>
-              <p className="mt-6 text-sm text-gris">{fecha(a.fecha)}</p>
               </div>
             </Link>
           ))}

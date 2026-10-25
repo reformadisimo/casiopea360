@@ -616,7 +616,7 @@ export default function PanelEjemplo() {
                   <Rosco datos={ORIGEN} centro="312" sub="contactos" />
                 </Caja>
                 <Caja titulo="Herramientas conectadas" fuente="21 de 21 funcionando" ayuda="Todas las herramientas que miden tu negocio, conectadas en un solo sitio. El punto verde dice que están recibiendo datos ahora mismo.">
-                  <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  <ul className="grid grid-cols-2 gap-2">
                     {CONECTADO.map(([n, d]) => (
                       <li key={n} className="flex items-center gap-2 rounded-xl border border-linea p-2">
                         <Logo nombre={n} tam={22} />

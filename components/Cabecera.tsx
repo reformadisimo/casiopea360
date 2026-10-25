@@ -173,8 +173,10 @@ export default function Cabecera() {
                   <ul className="mb-2 ml-3 border-l border-white/15 pl-3">
                     {m.hijos.map((h, k) => (
                       <li key={h.href}>
-                        <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-white/80 hover:bg-white/10">
-                          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
+                        <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="flex items-center gap-3 rounded-xl px-3 py-2 text-white/85 hover:bg-white/10">
+                          <span aria-hidden="true" className="grid h-7 w-7 shrink-0 place-items-center rounded-lg text-white" style={{ background: COLORES_MENU[k % COLORES_MENU.length] }}>
+                            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[h.icono ?? "estrella"]}</svg>
+                          </span>
                           {h.texto}
                         </Link>
                       </li>

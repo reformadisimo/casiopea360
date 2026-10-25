@@ -4,9 +4,9 @@ export default function Versionante() {
   return (
     <div
       aria-hidden="true"
-      className="fixed bottom-3 left-3 z-50 rounded-full bg-[#f5efe3] px-2.5 py-1 text-[11px] font-medium text-[#3a3a3a] shadow-sm"
+      className="pointer-events-none fixed bottom-1.5 left-1.5 z-50 rounded-full bg-[#f5efe3]/80 px-2 py-0.5 text-[10px] font-medium text-[#3a3a3a]/80"
     >
-      cas·v105
+      cas·v106
     </div>
   );
 }

@@ -216,7 +216,7 @@ main > section:not(:first-of-type):not(:last-of-type):not(#solicitud) {
 /* Al hacer scroll, tarjetas y bloques entran con un pequeño salto (sin JavaScript; solo donde el navegador lo admite). */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    main > section:not(:first-of-type) li, main .revela {
+    main > section:not(:first-of-type) :is(.grid, .carrusel) > li, main .revela {
       animation: revela linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
