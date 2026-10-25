@@ -94,7 +94,64 @@ export default function Asistente() {
   const [escuchando, setEscuchando] = useState(false);
   const [avisoVoz, setAvisoVoz] = useState("");
   const reconocedor = useRef<Reconocedor | null>(null);
-  const enviarRef = useRef<(q: string) => void>(() => {});
+  const enviarRef = useRef<(q: string, porVoz?: boolean) => void>(() => {});
+
+  // Cas contesta en voz alta solo si le has hablado tú, y se apaga con un toque (el altavoz de la cabecera).
+  // La elección se recuerda en este navegador.
+  const [hayAltavoz, setHayAltavoz] = useState(false);
+  const [vozActiva, setVozActiva] = useState(true);
+  const [hablando, setHablando] = useState(false);
+  useEffect(() => {
+    setHayAltavoz("speechSynthesis" in window);
+    try {
+      if (localStorage.getItem("casiopea-voz-cas") === "0") setVozActiva(false);
+    } catch {}
+    return () => {
+      try {
+        window.speechSynthesis?.cancel();
+      } catch {}
+    };
+  }, []);
+
+  function callar() {
+    try {
+      window.speechSynthesis?.cancel();
+    } catch {}
+    setHablando(false);
+  }
+
+  function decir(texto: string) {
+    if (!("speechSynthesis" in window)) return;
+    const limpio = texto
+      .replace(/\*\*/g, "")
+      .replace(/(^|\s)\/([a-z0-9][a-z0-9-]*)/gi, (_, a: string, b: string) => `${a}${b.replace(/-/g, " ")}`)
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!limpio) return;
+    callar();
+    const u = new SpeechSynthesisUtterance(limpio);
+    u.lang = "es-ES";
+    u.rate = 1.03;
+    const voces = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("es"));
+    const mejor =
+      voces.find((v) => /m[oó]nica|paulina|helena|laura|elena|marisol|google espa/i.test(v.name) && v.lang.toLowerCase().startsWith("es-es")) ||
+      voces.find((v) => v.lang.toLowerCase().startsWith("es-es")) ||
+      voces[0];
+    if (mejor) u.voice = mejor;
+    u.onstart = () => setHablando(true);
+    u.onend = () => setHablando(false);
+    u.onerror = () => setHablando(false);
+    window.speechSynthesis.speak(u);
+  }
+
+  function alternarVoz() {
+    const nueva = !vozActiva;
+    setVozActiva(nueva);
+    try {
+      localStorage.setItem("casiopea-voz-cas", nueva ? "1" : "0");
+    } catch {}
+    if (!nueva) callar();
+  }
   useEffect(() => {
     setHayVoz(Boolean(vozDelNavegador()));
     return () => {
@@ -114,6 +171,11 @@ export default function Asistente() {
     const Reco = vozDelNavegador();
     if (!Reco) return;
     setAvisoVoz("");
+    callar();
+    // En el iPhone el sonido solo se permite si se pide desde un toque: lo "desbloqueamos" aquí.
+    try {
+      if (vozActiva && "speechSynthesis" in window) window.speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+    } catch {}
     const r = new Reco();
     r.lang = "es-ES";
     r.interimResults = true;
@@ -136,7 +198,7 @@ export default function Asistente() {
     r.onend = () => {
       setEscuchando(false);
       const dicho = final.trim();
-      if (dicho) enviarRef.current(dicho);
+      if (dicho) enviarRef.current(dicho, true);
     };
     reconocedor.current = r;
     try {
@@ -153,14 +215,22 @@ export default function Asistente() {
 
   useEffect(() => {
     if (abierto) entrada.current?.focus();
-    const cerrar = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
+    const cerrar = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        try {
+          window.speechSynthesis?.cancel();
+        } catch {}
+        setAbierto(false);
+      }
+    };
     window.addEventListener("keydown", cerrar);
     return () => window.removeEventListener("keydown", cerrar);
   }, [abierto]);
 
-  async function enviar(pregunta: string) {
+  async function enviar(pregunta: string, porVoz = false) {
     const q = pregunta.trim();
     if (!q || ocupado) return;
+    callar();
     const nuevos: Mensaje[] = [...mensajes, { role: "user", content: q }];
     setMensajes([...nuevos, { role: "assistant", content: "" }]);
     setTexto("");
@@ -180,6 +250,7 @@ export default function Asistente() {
         acumulado += dec.decode(value, { stream: true });
         setMensajes([...nuevos, { role: "assistant", content: acumulado }]);
       }
+      if (porVoz && vozActiva) decir(acumulado);
     } catch (e) {
       setMensajes([...nuevos, { role: "assistant", content: e instanceof Error ? e.message : "No he podido responder." }]);
     } finally {
@@ -252,7 +323,23 @@ export default function Asistente() {
               <p className="font-extrabold">Cas, tu asistente</p>
               <p className="text-xs text-white/75">Con inteligencia artificial · responde al momento</p>
             </div>
-            <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar el asistente" className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10">
+            {hayAltavoz && (
+              <button
+                type="button"
+                onClick={alternarVoz}
+                aria-pressed={vozActiva}
+                aria-label={vozActiva ? "Silenciar la voz de Cas" : "Activar la voz de Cas"}
+                title={vozActiva ? "Silenciar la voz de Cas" : "Activar la voz de Cas"}
+                className={`relative grid h-9 w-9 place-items-center rounded-full hover:bg-white/10 ${hablando ? "bg-white/15" : ""}`}
+              >
+                {hablando && <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-white/20" />}
+                <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                  {vozActiva ? <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" /> : <path d="M17 9l5 6M22 9l-5 6" />}
+                </svg>
+              </button>
+            )}
+            <button type="button" onClick={() => { callar(); setAbierto(false); }} aria-label="Cerrar el asistente" className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10">
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
           </div>
