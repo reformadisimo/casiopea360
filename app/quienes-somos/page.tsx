@@ -71,7 +71,7 @@ export default function QuienesSomos() {
           </div>
           <div className="relative">
             <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="hombre-celebra" alt="Un empresario celebra un buen resultado delante del ordenador" /><ChipVideo grande="+22 años" chico="De experiencia en marketing digital" /></div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="gafas-rojas" alt="Un compañero de unos cincuenta años trabaja con otros en una sala de ordenadores" /><ChipVideo grande="+22 años" chico="De experiencia en marketing digital" /></div>
           </div>
         </div>
       </section>
