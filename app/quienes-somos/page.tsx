@@ -7,7 +7,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre } from "@/components/secciones";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -59,7 +59,7 @@ export default function QuienesSomos() {
       <section className="py-20 sm:py-28">
         <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-2`}>
           <div>
-            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Por qué existimos</p>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Por qué existimos</p>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Antes de daros este servicio, <Subrayado>fuimos clientes</Subrayado>.</h2>
             <p className="mt-6 text-lg text-gris">
               Tuvimos nuestros propios negocios y sufrimos lo mismo que tú: un proveedor para la web, otro para Google, otro para los anuncios, reuniones con todos y nadie que mirara el conjunto. Las webs tardaban meses y cada cambio era eterno.
@@ -75,6 +75,8 @@ export default function QuienesSomos() {
           </div>
         </div>
       </section>
+
+      <SeccionNombre />
 
       <section className="bg-niebla py-20 sm:py-28">
         <div className={ENVOLTORIO}>

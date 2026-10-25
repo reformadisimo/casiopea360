@@ -7,6 +7,7 @@ import Cifra from "@/components/Cifra";
 import ChipVideo from "@/components/ChipVideo";
 import Subrayado from "@/components/Subrayado";
 import LogoMarca from "@/components/LogoMarca";
+import Constelacion from "@/components/Constelacion";
 import TrasCarga from "@/components/TrasCarga";
 import Comisiones from "@/components/Comisiones";
 import { glosar } from "@/lib/glosario";
@@ -434,7 +435,7 @@ export function SeccionEspecialistas() {
   return (
     <section className="relative overflow-hidden bg-white py-20 sm:py-28">
       <div className={ENVOLTORIO}>
-        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">La pregunta que todos nos hacen</p>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">La pregunta que todos nos hacen</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">
           «Si hacéis de todo, lo haréis todo regular.» <span className="text-noche-3">Es justo al revés.</span>
         </h2>
@@ -741,7 +742,7 @@ export function SeccionPorQueBarato() {
     <section id="barato" className="scroll-mt-24 bg-white py-20 sm:py-28">
       <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
-          <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Sin trampa</p>
+          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Sin trampa</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar <Subrayado>menos</Subrayado>? Así de sencillo.</h2>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
@@ -803,7 +804,7 @@ export function SeccionLoFirmamos() {
       <div className={ENVOLTORIO}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Más de 22 años de experiencia en marketing digital</p>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Más de 22 años de experiencia en marketing digital</p>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. <Subrayado>Sin su factura.</Subrayado></h2>
           </div>
           <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
@@ -1006,7 +1007,7 @@ export function SeccionTecnologia() {
       <div className={ENVOLTORIO}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Tecnología limpia, sin lastre</p>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tecnología limpia, sin lastre</p>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo último en tecnología. Sin la carga de lo antiguo.</h2>
           </div>
           <p className="text-lg text-gris">
@@ -1098,7 +1099,7 @@ export function SeccionFueraInternet() {
   return (
     <section id="fuera" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
       <div className={ENVOLTORIO}>
-        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">360 de verdad</p>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">360 de verdad</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Y si hace falta, también fuera de internet.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
           Preferimos lo digital porque se mide al euro. Pero si a tu negocio le conviene la radio, o quieres un anuncio en el periódico, también te lo llevamos. Sin buscar a nadie más.
@@ -1138,7 +1139,7 @@ export function SeccionCostes() {
   return (
     <section id="costes" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
-        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Haz cuentas</p>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Haz cuentas</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
         <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa y marca lo que necesitas. Verás lo que pagarías contratándolo por separado, a cuántos proveedores y cuántas facturas. Spoiler: la suma asusta.</p>
         <CostesDiferido />
@@ -1223,7 +1224,7 @@ export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boo
       <div className={ENVOLTORIO}>
         {titulo && (
           <>
-            <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Pregúntanos lo que quieras</p>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Pregúntanos lo que quieras</p>
             <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Lo que nos suelen preguntar.</h2>
             <p className="mt-4 max-w-2xl text-lg text-gris">Toca una pregunta y te contestamos al momento.</p>
           </>
@@ -1273,7 +1274,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
   return (
     <section id="como-empezamos" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
       <div className={ENVOLTORIO}>
-        <p className="inline-block rounded-full bg-noche px-4 py-1.5 text-sm font-bold text-estrella">Cómo empezamos</p>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Cómo empezamos</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>dos minutos</Subrayado>.</h2>
         <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
@@ -1320,6 +1321,27 @@ export function SeccionEstudioResumen() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
         <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
+      </div>
+    </section>
+  );
+}
+
+/* Por qué nos llamamos Casiopea: la reina del cielo del norte, que desde España se ve todas las noches. */
+export function SeccionNombre() {
+  return (
+    <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
+      <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
+      <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]`}>
+        <div className="mx-auto w-full max-w-lg">
+          <Constelacion />
+          <p className="mt-3 text-center text-sm text-white/60">La W de Casiopea, como se ve desde España cualquier noche del año.</p>
+        </div>
+        <div>
+          <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Por qué nos llamamos así</p>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Casiopea es la <Subrayado>reina</Subrayado> del cielo del norte.</h2>
+          <p className="mt-6 text-lg text-white/80">Sus cinco estrellas dibujan una W que, desde España, se ve todas las noches del año. Nunca se pone. Nunca se esconde. Siempre está ahí.</p>
+          <p className="mt-4 text-lg text-white/80">Así queremos ser para tu negocio: cinco frentes, un solo equipo y siempre ahí. Por eso nuestra W sube y termina en una estrella.</p>
+        </div>
       </div>
     </section>
   );

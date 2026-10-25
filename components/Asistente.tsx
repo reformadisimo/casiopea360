@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 type Mensaje = { role: "user" | "assistant"; content: string };
 
 const SUGERENCIAS = ["¿Qué entra en la cuota?", "¿Cómo podéis cobrar menos?", "¿Hay permanencia?", "¿Hacéis tiendas online?"];
-const SALUDO = "Hola. Soy el asistente de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar.";
+const SALUDO = "Hola, soy Cas, la asistente de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar.";
 
 // Convierte las rutas internas (/test, /estudio-gratuito...) en enlaces.
 function ConEnlaces({ texto }: { texto: string }) {
@@ -149,7 +149,7 @@ export default function Asistente() {
         }}
         aria-expanded={abierto}
         aria-controls="asistente"
-        aria-label="Asistente de Casiopea 360" className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+        aria-label="Cas, la asistente de Casiopea 360" className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
       >
         <span aria-hidden="true" className="relative block h-9 w-9">
           <img src="/marca/icono.svg" alt="" className="h-9 w-9 rounded-[0.6rem]" />
@@ -162,13 +162,13 @@ export default function Asistente() {
         <div
           id="asistente"
           role="dialog"
-          aria-label="Asistente de Casiopea 360"
+          aria-label="Cas, la asistente de Casiopea 360"
           className="fixed inset-x-2 bottom-20 z-[60] flex max-h-[min(640px,calc(100dvh-7rem))] flex-col overflow-hidden rounded-[1.6rem] bg-white shadow-[0_30px_80px_-20px_rgba(14,26,61,0.55)] ring-1 ring-black/10 sm:inset-x-auto sm:bottom-24 sm:right-6 sm:w-[400px]"
         >
           <div className="flex items-center gap-3 bg-[linear-gradient(90deg,#1228be,#0e1a3d)] px-5 py-4 text-white">
             <img src="/marca/icono.svg" alt="" className="h-9 w-9 rounded-[0.6rem]" />
             <div className="min-w-0 flex-1">
-              <p className="font-extrabold">Asistente de Casiopea 360</p>
+              <p className="font-extrabold">Cas, tu asistente</p>
               <p className="text-xs text-white/75">Con inteligencia artificial · responde al momento</p>
             </div>
             <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar el asistente" className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10">
