@@ -41,8 +41,8 @@ export default function QuienesSomos() {
         titulo="Más de 22 años haciendo que el teléfono suene."
         entradilla="Somos profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
-        video="despacho"
-        videoAlt="Una reunión de trabajo distendida en un despacho"
+        video="reunion-sonrisa"
+        videoAlt="Una profesional sonríe en una reunión de trabajo"
       />
 
       <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
@@ -67,7 +67,7 @@ export default function QuienesSomos() {
           </div>
           <div className="relative">
             <div className="absolute -inset-3 rounded-[2.4rem] bg-estrella/25 blur-2xl" aria-hidden="true" />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="equipo-celebra" alt="Un equipo celebra un buen resultado delante del ordenador" /></div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"><VideoFondo nombre="hombre-celebra" alt="Un empresario celebra un buen resultado delante del ordenador" /></div>
           </div>
         </div>
       </section>
