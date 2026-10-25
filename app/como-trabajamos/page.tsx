@@ -1,7 +1,8 @@
 import FranjaVideos from "@/components/FranjaVideos";
+import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionMundo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
+import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -19,10 +20,8 @@ export default function ComoTrabajamos() {
         titulo="Pídelo. Lo hacemos. Y sabes cuándo estará listo."
         entradilla="Te quitamos el menor tiempo posible: casi todo por correo, respuesta el mismo día, 48 horas como máximo para lo del día a día y fecha cerrada para los proyectos grandes. Y en tu panel ves cada petición y cuándo estará lista."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos" }]}
-        video="mano-pantalla"
-        videoAlt="Una mano toca una pantalla luminosa"
+        visual={<GloboDiferido />}
       />
-      <SeccionMundo />
       <SeccionEmpezamos base="/estudio-gratuito" />
       <SeccionMetodo />
       <FranjaVideos

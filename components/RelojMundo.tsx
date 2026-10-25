@@ -28,7 +28,7 @@ function sol(fecha: Date) {
 const esDeDia = (lat: number, lon: number, s: { lat: number; lon: number }) =>
   Math.sin(lat * RAD) * Math.sin(s.lat * RAD) + Math.cos(lat * RAD) * Math.cos(s.lat * RAD) * Math.cos((lon - s.lon) * RAD) > 0;
 
-export default function RelojMundo() {
+export default function RelojMundo({ soloGlobo = false }: { soloGlobo?: boolean }) {
   const lienzo = useRef<HTMLCanvasElement>(null);
   const [ahora, setAhora] = useState<Date | null>(null);
 
@@ -174,6 +174,7 @@ export default function RelojMundo() {
   }, []);
 
   const s = ahora ? sol(ahora) : null;
+  if (soloGlobo) return <canvas ref={lienzo} className="aspect-square w-full" role="img" aria-label="La Tierra girando, con el día y la noche de este momento" />;
   return (
     <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
       <div className="relative mx-auto w-full max-w-[520px]">
