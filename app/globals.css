@@ -430,3 +430,24 @@ main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
 .prosa a.gl-a:hover, .prosa a.gl-a:focus-visible, .prosa .gl.gl-abierto a.gl-a { color: #1d4ed8; text-decoration-style: solid; text-decoration-color: #1d4ed8; }
 /* Nada (ni una burbuja de definición) debe ensanchar la página en el móvil */
 html, body { overflow-x: clip; }
+
+/* Ajustes de lectura (botón «Aa»): tamaño, letra, espacio, contraste y movimiento */
+html[data-texto="1"] { font-size: 115%; }
+html[data-texto="2"] { font-size: 130%; }
+html[data-texto="3"] { font-size: 150%; }
+html[data-fuente] body, html[data-fuente] body * { font-family: Verdana, Tahoma, "Segoe UI", "Trebuchet MS", sans-serif !important; letter-spacing: 0.015em; }
+html[data-espacio] body { line-height: 1.95; word-spacing: 0.1em; }
+html[data-espacio] body :is(p, li, span, a, blockquote, summary, dd, dt) { line-height: 1.95 !important; }
+html[data-contraste] body { --color-gris: #1b2340; --color-linea: #6b7390; }
+html[data-contraste] .text-gris, html[data-contraste] [class*="text-tinta/"] { color: #0e1530 !important; }
+html[data-contraste] :is(.bg-noche, .bg-noche-2, .bg-noche-3) .text-gris { color: #fff !important; }
+html[data-contraste] [class*="text-white/"] { color: #fff !important; }
+html[data-contraste] .prosa a, html[data-contraste] main p a, html[data-contraste] main li a { text-decoration: underline; text-decoration-thickness: 2px; }
+html[data-contraste] .border-linea, html[data-contraste] .ring-linea { border-color: #6b7390 !important; --tw-ring-color: #6b7390 !important; }
+html[data-sin-movimiento] *, html[data-sin-movimiento] *::before, html[data-sin-movimiento] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+/* El panel de ajustes siempre se ve igual, sea cual sea el ajuste elegido */
+html[data-fuente] .ajustes-lectura, html[data-fuente] .ajustes-lectura * { letter-spacing: 0; }
+/* La barra superior no crece con el texto grande (si no, el menú se saldría de la pantalla en el móvil) */
+html[data-texto="1"] header { zoom: 0.87; }
+html[data-texto="2"] header { zoom: 0.77; }
+html[data-texto="3"] header { zoom: 0.667; }

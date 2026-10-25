@@ -16,6 +16,7 @@ function reintentar() {
   });
 }
 function arrancar(v: HTMLVideoElement) {
+  if (document.documentElement.hasAttribute("data-sin-movimiento")) return;
   v.muted = true;
   v.defaultMuted = true;
   v.setAttribute("muted", "");

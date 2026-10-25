@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
+import AjustesLectura from "@/components/AjustesLectura";
 import { ICONO_SVG } from "@/components/secciones";
 import { MENU } from "@/lib/navegacion";
 
@@ -67,7 +68,7 @@ export default function Cabecera() {
             solida || movil ? "" : "[mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
           }`}
         />
-        <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="relative mr-3 shrink-0">
+        <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="relative mr-1 shrink-0 sm:mr-3">
           <Logo claro fundido />
         </Link>
 
@@ -135,20 +136,21 @@ export default function Cabecera() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <AjustesLectura />
           <Link prefetch={false}
             href="/estudio-gratuito"
             onClick={cerrarTodo}
             className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm"
           >
-            Estudio<span className="max-[379px]:hidden"> gratuito</span>
+            Estudio<span className="max-[460px]:hidden"> gratuito</span>
           </Link>
           <button
             type="button"
             aria-label={movil ? "Cerrar el menú" : "Abrir el menú"}
             aria-expanded={movil}
             onClick={() => setMovil(!movil)}
-            className="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/10 xl:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/10 sm:h-10 sm:w-10 xl:hidden"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
               {movil ? (
