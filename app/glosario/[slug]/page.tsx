@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Picto from "@/components/Picto";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { BOTON, LlamadaFinal } from "@/components/secciones";
+import { glifoDe } from "@/lib/terminos/pictos";
 import { glosar } from "@/lib/glosario";
 import { articulosQueMencionan } from "@/lib/glosario-uso";
 import { PAGINAS_SERVICIO } from "@/lib/servicios";
@@ -53,6 +55,7 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
       <CabeceraPagina
         titulo={`${nombreCorto}: qué es y para qué sirve`}
         entradilla={t.largo ?? fam?.frase}
+        visual={<Picto d={glifoDe(t.slug)} color={fam?.color ?? "#475569"} tam={140} fondo="#ffffff" className="mx-auto lg:ml-auto lg:mr-0" />}
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Glosario", href: "/glosario" }, { texto: t.nombre }]}
       />
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">

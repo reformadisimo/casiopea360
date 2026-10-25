@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Picto from "@/components/Picto";
 
-type Dato = { slug: string; nombre: string; largo: string | null; corta: string; def: string[]; ejemplo: string; rel: { slug: string; nombre: string }[] };
+type Dato = { slug: string; g: string; color: string; nombre: string; largo: string | null; corta: string; def: string[]; ejemplo: string; rel: { slug: string; nombre: string }[] };
 
 // Las palabras del glosario repartidas por la web:
 // 1. La burbuja de definición no se sale de la pantalla (la desplaza o la pone debajo).
@@ -214,8 +215,13 @@ export default function GlosarioTactil() {
         )}
         {dato && (
           <div aria-live="polite">
-            <h2 className="mt-2 font-titular text-3xl font-extrabold leading-tight">{dato.nombre}</h2>
-            {dato.largo && <p className="text-gris">{dato.largo}</p>}
+            <div className="mt-3 flex items-center gap-4">
+              <Picto d={dato.g} color={dato.color} tam={64} />
+              <div>
+                <h2 className="font-titular text-3xl font-extrabold leading-tight">{dato.nombre}</h2>
+                {dato.largo && <p className="text-gris">{dato.largo}</p>}
+              </div>
+            </div>
             <p className="mt-4 rounded-2xl border-l-4 border-estrella bg-niebla p-4 text-lg font-semibold">{dato.corta}</p>
             {dato.def.map((p) => (
               <p key={p} className="mt-4 leading-relaxed">{p}</p>

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import Picto from "@/components/Picto";
 
-type Item = { slug: string; nombre: string; largo?: string; corta: string; familia: string; inicial: string; buscable: string };
+type Item = { slug: string; nombre: string; largo?: string; corta: string; familia: string; inicial: string; buscable: string; g: string };
 type Familia = { id: string; nombre: string; color: string };
 
 const quitaTildes = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -89,8 +90,11 @@ export default function GlosarioBuscador({ items, familias }: { items: Item[]; f
                   href={`/glosario/${i.slug}`}
                   className="group flex h-full flex-col rounded-3xl border border-linea bg-white p-5 transition-all hover:-translate-y-1 hover:border-noche hover:shadow-[0_20px_40px_-26px_rgba(14,26,61,0.5)]"
                 >
-                  <span className="text-xs font-extrabold uppercase tracking-wide" style={{ color: color(i.familia) }}>{nombreFam(i.familia)}</span>
-                  <span className="mt-1 text-xl font-extrabold leading-snug group-hover:text-[#1d4ed8]">{i.nombre}</span>
+                  <span className="flex items-center gap-3">
+                    <Picto d={i.g} color={color(i.familia)} tam={44} />
+                    <span className="text-xs font-extrabold uppercase tracking-wide" style={{ color: color(i.familia) }}>{nombreFam(i.familia)}</span>
+                  </span>
+                  <span className="mt-3 text-xl font-extrabold leading-snug group-hover:text-[#1d4ed8]">{i.nombre}</span>
                   {i.largo && <span className="text-sm text-gris">{i.largo}</span>}
                   <span className="mt-2 flex-1 text-[0.97rem] text-gris">{i.corta}</span>
                   <span className="mt-3 text-sm font-bold text-noche-3 group-hover:underline">Leer la explicación</span>

@@ -1,4 +1,5 @@
-import { TERMINOS, relacionados, terminoPorSlug } from "@/lib/terminos";
+import { FAMILIAS, TERMINOS, relacionados, terminoPorSlug } from "@/lib/terminos";
+import { glifoDe } from "@/lib/terminos/pictos";
 
 // Definición completa de un término, para mostrarla en una ventana sin salir de la página.
 export const dynamic = "force-static";
@@ -14,6 +15,8 @@ export async function GET(_: Request, { params }: { params: Promise<{ slug: stri
   if (!t) return new Response("No existe", { status: 404 });
   return Response.json({
     slug: t.slug,
+    g: glifoDe(t.slug),
+    color: FAMILIAS.find((f) => f.id === t.familia)?.color ?? "#475569",
     nombre: t.nombre,
     largo: t.largo ?? null,
     corta: t.corta,

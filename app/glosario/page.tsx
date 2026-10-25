@@ -2,6 +2,7 @@ import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import GlosarioBuscador from "@/components/GlosarioBuscador";
 import { ENVOLTORIO, LlamadaFinal } from "@/components/secciones";
+import { glifoDe } from "@/lib/terminos/pictos";
 import { meta } from "@/lib/meta";
 import { schemaGlosario, schemaMigas } from "@/lib/schema";
 import { FAMILIAS, TERMINOS, inicial, ordenAlfabetico } from "@/lib/terminos";
@@ -23,6 +24,7 @@ export default function Glosario() {
     corta: t.corta,
     familia: t.familia,
     inicial: inicial(t),
+    g: glifoDe(t.slug),
     buscable: quita([t.nombre, t.largo ?? "", ...(t.formas ?? []), t.corta].join(" ")),
   }));
   return (
