@@ -38,6 +38,7 @@ export default function Privacidad() {
       </p>
       <h2>Asistente con inteligencia artificial</h2>
       <p>Cuando esta web tenga asistente, te avisará siempre de que estás hablando con una inteligencia artificial. Lo que le escribas se usará solo para contestarte y para mejorar el servicio.</p>
+      <p>Si usas el micrófono del asistente para hablar en vez de escribir, es tu navegador (Google Chrome, Apple Safari u otro) quien convierte tu voz en texto con su propio servicio. Casiopea 360 solo recibe el texto, nunca el audio.</p>
     </PaginaLegal>
   );
 }

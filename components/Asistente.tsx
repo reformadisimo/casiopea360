@@ -6,6 +6,26 @@ import { useEffect, useRef, useState } from "react";
 // y recoge el contacto de quien quiere que le llamemos.
 type Mensaje = { role: "user" | "assistant"; content: string };
 
+// Lo mínimo que usamos del reconocimiento de voz del navegador (no viene en los tipos estándar).
+type ResultadoVoz = { isFinal: boolean; 0: { transcript: string } };
+type EventoVoz = { resultIndex: number; results: ArrayLike<ResultadoVoz> };
+type Reconocedor = {
+  lang: string;
+  interimResults: boolean;
+  continuous: boolean;
+  onresult: ((e: EventoVoz) => void) | null;
+  onerror: ((e: { error: string }) => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+};
+type ConstructorVoz = new () => Reconocedor;
+const vozDelNavegador = (): ConstructorVoz | undefined => {
+  const w = window as unknown as { SpeechRecognition?: ConstructorVoz; webkitSpeechRecognition?: ConstructorVoz };
+  return w.SpeechRecognition || w.webkitSpeechRecognition;
+};
+
 const SUGERENCIAS = ["¿Qué entra en la cuota?", "¿Cómo podéis cobrar menos?", "¿Hay permanencia?", "¿Hacéis tiendas online?"];
 const SALUDO = "Hola, soy Cas, la asistente de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar.";
 
@@ -68,6 +88,65 @@ export default function Asistente() {
   const lista = useRef<HTMLDivElement>(null);
   const entrada = useRef<HTMLTextAreaElement>(null);
 
+  // Dictado por voz: el navegador convierte lo que dices en texto y, al terminar, se envía la pregunta.
+  // Solo se ofrece si el navegador lo soporta (Chrome, Edge, Safari, iPhone); si no, el botón no aparece.
+  const [hayVoz, setHayVoz] = useState(false);
+  const [escuchando, setEscuchando] = useState(false);
+  const [avisoVoz, setAvisoVoz] = useState("");
+  const reconocedor = useRef<Reconocedor | null>(null);
+  const enviarRef = useRef<(q: string) => void>(() => {});
+  useEffect(() => {
+    setHayVoz(Boolean(vozDelNavegador()));
+    return () => {
+      try {
+        reconocedor.current?.abort();
+      } catch {}
+    };
+  }, []);
+
+  function hablar() {
+    if (escuchando) {
+      try {
+        reconocedor.current?.stop();
+      } catch {}
+      return;
+    }
+    const Reco = vozDelNavegador();
+    if (!Reco) return;
+    setAvisoVoz("");
+    const r = new Reco();
+    r.lang = "es-ES";
+    r.interimResults = true;
+    r.continuous = false;
+    let final = "";
+    r.onresult = (e) => {
+      let parcial = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) final += t;
+        else parcial += t;
+      }
+      setTexto((final + parcial).trimStart());
+    };
+    r.onerror = (e) => {
+      if (e.error === "not-allowed" || e.error === "service-not-allowed") setAvisoVoz("Para hablar, permite el micrófono en tu navegador. Mientras tanto, puedes escribir.");
+      else if (e.error === "no-speech") setAvisoVoz("No te he oído. Toca el micrófono y vuelve a probar.");
+      else if (e.error !== "aborted") setAvisoVoz("No he podido escucharte. Puedes escribir tu pregunta.");
+    };
+    r.onend = () => {
+      setEscuchando(false);
+      const dicho = final.trim();
+      if (dicho) enviarRef.current(dicho);
+    };
+    reconocedor.current = r;
+    try {
+      r.start();
+      setEscuchando(true);
+    } catch {
+      setEscuchando(false);
+    }
+  }
+
   useEffect(() => {
     lista.current?.scrollTo({ top: lista.current.scrollHeight });
   }, [mensajes, formulario, estadoContacto]);
@@ -120,6 +199,8 @@ export default function Asistente() {
     setEstadoContacto(r?.ok ? "ok" : "error");
     if (r?.ok) setFormulario(false);
   }
+
+  enviarRef.current = enviar;
 
   return (
     <>
@@ -241,13 +322,27 @@ export default function Asistente() {
                     enviar(texto);
                   }
                 }}
-                placeholder="Escribe tu pregunta"
+                placeholder={escuchando ? "Te escucho..." : hayVoz ? "Escribe o toca el micrófono" : "Escribe tu pregunta"}
                 className="max-h-28 flex-1 resize-none rounded-2xl border border-linea px-4 py-2.5 text-[0.95rem] focus:border-noche focus:outline-none"
               />
+              {hayVoz && (
+                <button
+                  type="button"
+                  onClick={hablar}
+                  disabled={ocupado}
+                  aria-pressed={escuchando}
+                  aria-label={escuchando ? "Dejar de escuchar" : "Hablar en vez de escribir"}
+                  className={`relative grid h-11 w-11 shrink-0 place-items-center rounded-full disabled:opacity-40 ${escuchando ? "bg-rose-600 text-white" : "bg-niebla text-noche ring-1 ring-linea"}`}
+                >
+                  {escuchando && <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-rose-500/40" />}
+                  <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
+                </button>
+              )}
               <button type="submit" disabled={ocupado || !texto.trim()} aria-label="Enviar" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-noche text-white disabled:opacity-40">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </button>
             </div>
+            <p role="status" aria-live="polite" className={avisoVoz ? "mt-2 text-sm text-rose-700" : "sr-only"}>{escuchando ? "Escuchando" : avisoVoz}</p>
             {!formulario && estadoContacto !== "ok" && (
               <button type="button" onClick={() => setFormulario(true)} className="mt-2 text-sm font-bold text-noche underline underline-offset-2">
                 Que me contacten
