@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta, ICONO_SVG } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta, ICONO_SVG, SeccionPreguntas } from "@/components/secciones";
 
 const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm" };
 import { glosar } from "@/lib/glosario";
@@ -186,22 +186,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
       </section>
 
       {/* Preguntas */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className={`${ENVOLTORIO} max-w-3xl`}>
-          <h2 className="text-4xl font-extrabold sm:text-5xl">Lo que nos suelen preguntar.</h2>
-          <div className="mt-8 divide-y divide-linea border-y border-linea">
-            {p.preguntas.map((q) => (
-              <details key={q.p} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold">
-                  {q.p}
-                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-niebla transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 text-gris">{glosar(q.r)}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SeccionPreguntas propias={p.preguntas} fondo="bg-white" />
 
       {/* Todo lo demás, en la misma cuota */}
       <section className="bg-niebla py-16 sm:py-24">

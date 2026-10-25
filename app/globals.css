@@ -363,3 +363,6 @@ main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
 
 /* Etiqueta de sección: violeta que se funde en el azul de marca, con el texto en oro claro */
 .etiqueta { background: linear-gradient(90deg, #5b21b6, #1228be); color: #ffd978; box-shadow: 0 8px 20px -12px rgba(91, 33, 182, 0.7); }
+
+/* Animaciones en pausa hasta que el bloque entra en pantalla (ver AlEntrar) */
+.en-pausa .trazo, .en-pausa .estrella-punto, .en-pausa .estrella-rotulo { animation-play-state: paused; }

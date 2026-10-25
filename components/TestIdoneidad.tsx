@@ -430,8 +430,8 @@ export default function TestIdoneidad() {
                   ))}
                 </div>
               </fieldset>
-              <div className="mt-5 min-h-[3.2rem]">{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
-              <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-linea pt-5">
+              <div className={reaccion ? "mt-5" : "mt-2"}>{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
+              <div className="mt-3 flex flex-wrap items-center gap-3">
                 {(ti > 0 || qi > 0) && (
                   <button type="button" onClick={atras} className="rounded-full px-4 py-2.5 font-bold text-gris hover:bg-niebla hover:text-tinta">
                     Atrás

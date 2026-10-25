@@ -141,17 +141,11 @@ export default function QuienesSomos() {
               </div>
             ))}
           </div>
-          <div className="mt-10 flex flex-col gap-6 rounded-[2rem] bg-noche p-7 text-white sm:flex-row sm:items-center sm:p-9">
-            <div aria-hidden="true" className="flex shrink-0 -space-x-3">
-              {[0, 1, 2, 3, 4].map((k) => (
-                <span key={k} className="grid h-14 w-14 place-items-center rounded-full bg-white/10 ring-4 ring-noche" style={{ background: ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309"][k] }}>
-                  <svg viewBox="0 0 24 24" className="h-7 w-7 text-white/80" fill="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7z" /></svg>
-                </span>
-              ))}
-            </div>
-            <p className="text-lg">
-              <b className="text-estrella">Muy pronto, aquí pondremos cara y nombre a cada especialista.</b> Mientras tanto, en el estudio gratuito hablas directamente con quien llevaría tu cuenta.
+          <div className="mt-10 flex flex-col gap-5 rounded-[2rem] bg-noche p-7 text-white sm:flex-row sm:items-center sm:justify-between sm:p-9">
+            <p className="max-w-2xl text-lg">
+              <b className="text-estrella">Con quien hablas es con quien trabaja.</b> En el estudio gratuito te atiende directamente la persona que llevaría tu cuenta, sin comerciales por medio.
             </p>
+            <Link href="/estudio-gratuito" className={`${BOTON} shrink-0 text-center`}>Pedir mi estudio gratuito</Link>
           </div>
         </div>
       </section>

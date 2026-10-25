@@ -7,6 +7,7 @@ import Cifra from "@/components/Cifra";
 import ChipVideo from "@/components/ChipVideo";
 import Subrayado from "@/components/Subrayado";
 import LogoMarca from "@/components/LogoMarca";
+import AlEntrar from "@/components/AlEntrar";
 import Constelacion from "@/components/Constelacion";
 import AntesDespues from "@/components/AntesDespues";
 import TrasCarga from "@/components/TrasCarga";
@@ -1240,8 +1241,8 @@ export function SeccionGarantias() {
 /* Preguntas frecuentes. */
 const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar menos por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?", "¿Y si me entra más trabajo del que puedo atender?"];
 
-export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boolean; todas?: boolean }) {
-  const lista = todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p));
+export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo = "bg-niebla" }: { titulo?: boolean; todas?: boolean; propias?: { p: string; r: string }[]; fondo?: string }) {
+  const lista = propias ?? (todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p)));
   const colores = ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309", "#0f766e", "#e8457a"];
   // La primera frase es la respuesta corta; lo demás, el detalle.
   const partir = (r: string) => {
@@ -1249,7 +1250,7 @@ export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boo
     return m ? [m[1], m[2]] : [r, ""];
   };
   return (
-    <section id="preguntas" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
+    <section id="preguntas" className={`scroll-mt-24 ${fondo} py-20 sm:py-28`}>
       <div className={ENVOLTORIO}>
         {titulo && (
           <>
@@ -1284,7 +1285,7 @@ export function SeccionPreguntas({ titulo = true, todas = true }: { titulo?: boo
           })}
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          {!todas && (
+          {!todas && !propias && (
             <Link href="/preguntas" className="inline-flex justify-center rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">
               Ver todas las preguntas
             </Link>
@@ -1361,10 +1362,10 @@ export function SeccionNombre() {
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
       <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]`}>
-        <div className="mx-auto w-full max-w-lg">
+        <AlEntrar className="mx-auto w-full max-w-lg">
           <Constelacion />
           <p className="mt-3 text-center text-sm text-white/60">La W de Casiopea, como se ve desde España cualquier noche del año.</p>
-        </div>
+        </AlEntrar>
         <div>
           <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Por qué nos llamamos así</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Casiopea es la <Subrayado>reina</Subrayado> del cielo del norte.</h2>
