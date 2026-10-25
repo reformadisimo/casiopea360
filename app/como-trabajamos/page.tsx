@@ -1,7 +1,7 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
+import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionMundo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -35,6 +35,7 @@ export default function ComoTrabajamos() {
       />
       <SeccionPuntosDolor />
       <SeccionParte />
+      <SeccionMundo />
       <SeccionLoFirmamos />
       <LlamadaFinal />
     </>
