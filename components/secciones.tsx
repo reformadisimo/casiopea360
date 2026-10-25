@@ -502,7 +502,7 @@ export function SeccionEspecialistas() {
 }
 
 /* «Si se te ocurre, lo hacemos»: lo que va más allá de los cinco frentes, con nuestro consejo por delante. */
-const ICONO_SVG: Record<string, React.ReactNode> = {
+export const ICONO_SVG: Record<string, React.ReactNode> = {
   crm: <path d="M4 5h16v14H4zM8 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0M6.5 16c.5-2 2-3 3.5-3s3 1 3.5 3M15 9h3M15 12h3" />,
   radio: <path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM6 11a6 6 0 0 0 12 0M12 17v4M9 21h6" />,
   prensa: <path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 12h7M7 15h4" />,
@@ -1046,10 +1046,10 @@ export function SeccionTecnologia() {
             <span className="text-estrella">Una web de Casiopea 360</span>
           </div>
           {COMPARA_TECNO.map(([q, a, b]) => (
-            <div key={q} className="grid items-start gap-2 border-t border-linea px-5 py-4 text-[0.95rem] first:border-t-0 sm:grid-cols-[0.8fr_1fr_1fr] sm:gap-3 sm:px-7">
+            <div key={q} className="grid items-start gap-2 border-t border-linea px-5 py-4 text-[0.95rem] transition-colors first:border-t-0 hover:bg-niebla/60 sm:grid-cols-[0.8fr_1fr_1fr] sm:gap-3 sm:px-7">
               <b>{q}</b>
-              <span className="flex gap-2 text-gris"><span aria-hidden="true" className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-400" /><span><b className="font-bold text-rose-700 sm:hidden">WordPress: </b>{a}</span></span>
-              <span className="flex gap-2"><span aria-hidden="true" className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" /><span><b className="font-bold text-emerald-700 sm:hidden">Casiopea: </b>{b}</span></span>
+              <span className="flex gap-2.5 text-gris"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-rose-100 text-rose-700"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></span><span><b className="font-bold text-rose-700 sm:hidden">WordPress: </b>{a}</span></span>
+              <span className="flex gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span><b className="font-bold text-emerald-700 sm:hidden">Casiopea: </b>{q === "Velocidad" ? <><span className="mr-1.5 inline-flex gap-1 align-middle">{[0, 1, 2].map((k) => <span key={k} className="grid h-7 w-7 place-items-center rounded-full bg-emerald-600 text-[0.65rem] font-extrabold text-white ring-2 ring-emerald-200">100</span>)}</span>en PageSpeed, como esta web</> : b}</span></span>
             </div>
           ))}
         </div>

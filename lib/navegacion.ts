@@ -9,19 +9,19 @@ export const SITIO = {
   indexable: false,
 };
 
-export type Enlace = { texto: string; href: string; detalle?: string };
+export type Enlace = { texto: string; href: string; detalle?: string; icono?: string };
 
 export const SERVICIOS_MENU: Enlace[] = [
-  { texto: "Web y apps", href: "/servicios/diseno-web", detalle: "Tu escaparate y tu app, rápidos y tuyos" },
-  { texto: "Google y las IA", href: "/servicios/seo-google-ia", detalle: "Que te encuentre quien te busca" },
-  { texto: "Anuncios", href: "/servicios/publicidad-google-ads-redes", detalle: "Cada euro vigilado, sin comisiones" },
-  { texto: "Redes y contenido", href: "/servicios/redes-sociales", detalle: "Que se vea lo bien que trabajas" },
-  { texto: "Automatización e IA", href: "/servicios/automatizacion-ia", detalle: "Contactos que no se pierden" },
-  { texto: "Tu CRM a medida", href: "/servicios/crm-a-medida", detalle: "Sabes de dónde viene cada cliente" },
-  { texto: "Reservas, reseñas y tienda", href: "/servicios#incluido", detalle: "Y mucho más, dentro de tu cuota" },
-  { texto: "Apps y lo que se te ocurra", href: "/servicios#lo-que-sea", detalle: "Si te conviene, lo hacemos" },
-  { texto: "Radio y fuera de internet", href: "/servicios#fuera", detalle: "Campañas que empujan lo digital" },
-  { texto: "Cuánto te costaría por separado", href: "/servicios#costes", detalle: "La tabla, por tamaño de empresa" },
+  { icono: "pagina", texto: "Web y apps", href: "/servicios/diseno-web", detalle: "Tu escaparate y tu app, rápidos y tuyos" },
+  { icono: "lupa", texto: "Google y las IA", href: "/servicios/seo-google-ia", detalle: "Que te encuentre quien te busca" },
+  { icono: "euro", texto: "Anuncios", href: "/servicios/publicidad-google-ads-redes", detalle: "Cada euro vigilado, sin comisiones" },
+  { icono: "video", texto: "Redes y contenido", href: "/servicios/redes-sociales", detalle: "Que se vea lo bien que trabajas" },
+  { icono: "chip", texto: "Automatización e IA", href: "/servicios/automatizacion-ia", detalle: "Contactos que no se pierden" },
+  { icono: "crm", texto: "Tu CRM a medida", href: "/servicios/crm-a-medida", detalle: "Sabes de dónde viene cada cliente" },
+  { icono: "tienda", texto: "Reservas, reseñas y tienda", href: "/servicios#incluido", detalle: "Y mucho más, dentro de tu cuota" },
+  { icono: "cohete", texto: "Apps y lo que se te ocurra", href: "/servicios#lo-que-sea", detalle: "Si te conviene, lo hacemos" },
+  { icono: "radio", texto: "Radio y fuera de internet", href: "/servicios#fuera", detalle: "Campañas que empujan lo digital" },
+  { icono: "lista", texto: "Cuánto te costaría por separado", href: "/servicios#costes", detalle: "La tabla, por tamaño de empresa" },
 ];
 
 export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
@@ -30,7 +30,7 @@ export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
     texto: "Cómo trabajamos",
     href: "/como-trabajamos",
     hijos: [
-      { texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
+      { icono: "calendario", texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
     ],
   },
   { texto: "Trabajos", href: "/trabajos" },

@@ -7,7 +7,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre, Loseta } from "@/components/secciones";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -134,16 +134,25 @@ export default function QuienesSomos() {
           <h2 className="text-4xl font-extrabold sm:text-5xl">Cómo somos</h2>
           <div className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {COMO.map(([t, d], i) => (
-              <div key={t} className="rounded-[1.8rem] border border-linea p-6">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-estrella font-extrabold text-tinta">{i + 1}</span>
+              <div key={t} className="group inclina rounded-[1.8rem] border border-linea bg-white p-6">
+                <Loseta icono={["chat", "reloj", "sonrisa", "calendario", "llave"][i]} i={i} />
                 <p className="mt-4 text-2xl font-extrabold">{t}</p>
                 <p className="mt-2 text-gris">{d}</p>
               </div>
             ))}
           </div>
-          <p className="mt-10 max-w-3xl text-lg text-gris">
-            Muy pronto pondremos aquí cara y nombre a cada especialista. Mientras tanto, en el estudio gratuito hablas directamente con quien llevaría tu cuenta.
-          </p>
+          <div className="mt-10 flex flex-col gap-6 rounded-[2rem] bg-noche p-7 text-white sm:flex-row sm:items-center sm:p-9">
+            <div aria-hidden="true" className="flex shrink-0 -space-x-3">
+              {[0, 1, 2, 3, 4].map((k) => (
+                <span key={k} className="grid h-14 w-14 place-items-center rounded-full bg-white/10 ring-4 ring-noche" style={{ background: ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309"][k] }}>
+                  <svg viewBox="0 0 24 24" className="h-7 w-7 text-white/80" fill="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7z" /></svg>
+                </span>
+              ))}
+            </div>
+            <p className="text-lg">
+              <b className="text-estrella">Muy pronto, aquí pondremos cara y nombre a cada especialista.</b> Mientras tanto, en el estudio gratuito hablas directamente con quien llevaría tu cuenta.
+            </p>
+          </div>
         </div>
       </section>
       <LlamadaFinal />

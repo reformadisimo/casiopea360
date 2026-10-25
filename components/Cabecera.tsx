@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
+import { ICONO_SVG } from "@/components/secciones";
 import { MENU } from "@/lib/navegacion";
 
 // Cabecera fija: transparente sobre la portada oscura, azul noche al bajar.
 // Submenús que se abren al pasar el ratón, al pulsar o con el teclado. Menú propio en el móvil.
+const COLORES_MENU = ["#1d4ed8", "#0f766e", "#b45309", "#be185d", "#6d28d9", "#0369a1", "#047857", "#c2410c", "#7c3aed", "#1e40af"];
+
 export default function Cabecera() {
   const [solida, setSolida] = useState(false);
   const [abierto, setAbierto] = useState<string | null>(null);
@@ -93,20 +96,27 @@ export default function Cabecera() {
                   {abierto === m.texto && (
                     <div className={`absolute top-full pt-2 ${m.hijos.length > 5 ? "left-0 w-[42rem]" : "left-1/2 w-80 -translate-x-1/2"}`}>
                       <ul className={`overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)] ${m.hijos.length > 5 ? "grid grid-cols-2" : ""}`}>
-                        <li className="col-span-2">
-                          <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
-                            <span className="block font-bold">Ver todo</span>
-                            <span className="block text-sm font-normal text-gris">{m.texto}, de un vistazo</span>
+                        <li className="col-span-2 mb-1">
+                          <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="group flex items-center gap-3 rounded-xl bg-[linear-gradient(90deg,#1228be,#0e1a3d)] px-4 py-3 text-white">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/marca/icono-plano.svg" alt="" className="h-8 w-8 rounded-lg" />
+                            <span>
+                              <span className="block font-bold">Ver todo</span>
+                              <span className="block text-sm font-normal text-white/70">{m.texto}, de un vistazo</span>
+                            </span>
+                            <span aria-hidden="true" className="ml-auto text-estrella transition-transform group-hover:translate-x-1">→</span>
                           </Link>
                         </li>
-                        {m.hijos.map((h) => (
+                        {m.hijos.map((h, k) => (
                           <li key={h.href}>
-                            <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="block rounded-xl px-4 py-3 hover:bg-niebla">
-                              <span className="flex items-center gap-2.5 font-bold">
-                                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-estrella" />
-                                {h.texto}
+                            <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="group flex items-start gap-3 rounded-xl px-3 py-2.5 hover:bg-niebla">
+                              <span aria-hidden="true" className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl text-white shadow-md transition-transform group-hover:-rotate-6 group-hover:scale-110" style={{ background: COLORES_MENU[k % COLORES_MENU.length] }}>
+                                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[h.icono ?? "estrella"]}</svg>
                               </span>
-                              {h.detalle && <span className="block pl-[1.125rem] text-sm font-normal text-gris">{h.detalle}</span>}
+                              <span>
+                                <span className="block font-bold">{h.texto}</span>
+                                {h.detalle && <span className="block text-sm font-normal text-gris">{h.detalle}</span>}
+                              </span>
                             </Link>
                           </li>
                         ))}
@@ -161,7 +171,7 @@ export default function Cabecera() {
                 </Link>
                 {m.hijos && (
                   <ul className="mb-2 ml-3 border-l border-white/15 pl-3">
-                    {m.hijos.map((h) => (
+                    {m.hijos.map((h, k) => (
                       <li key={h.href}>
                         <Link prefetch={false} href={h.href} onClick={cerrarTodo} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-white/80 hover:bg-white/10">
                           <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
