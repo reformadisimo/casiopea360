@@ -102,7 +102,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
               Sin extras escondidos ni presupuestos por cada cosa. Y con el mismo equipo que lleva el resto de tu marketing.
             </p>
             <div className="relative mt-8 hidden aspect-[4/3] overflow-hidden rounded-[2rem] lg:block">
-              <VideoFondo nombre={p.video} alt={p.videoAlt} />
+              <VideoFondo nombre={p.video2} alt={p.videoAlt2} />
             </div>
           </div>
           <ul className="grid gap-3">

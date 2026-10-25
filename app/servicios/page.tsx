@@ -33,7 +33,7 @@ export default function Servicios() {
         etiquetas={["Web", "Google y las IA", "Anuncios", "Redes", "Automatización"]}
         clips={[
           { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },
-          { nombre: "movil-personas", alt: "Personas en holograma conversando sobre un móvil" },
+          { nombre: "holograma-mesa", alt: "Dos personas ríen alrededor de un holograma" },
           { nombre: "neon-llamada", alt: "Una mujer habla por el móvil entre luces de neón" },
           { nombre: "ninos-conexion", alt: "Líneas de luz conectan a varias personas con sus ordenadores" },
         ]}

@@ -12,6 +12,9 @@ export type PaginaServicio = {
   entradilla: string;
   video: string;
   videoAlt: string;
+  // Segundo vídeo, distinto del de la cabecera, para el bloque "Qué incluye".
+  video2: string;
+  videoAlt2: string;
   color: string; // color de acento
   dolores: { dolor: string; arreglo: string }[];
   incluye?: string[]; // si no hay frente
@@ -36,6 +39,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Donde otros tardan meses, tú la tienes en unos días: normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
     video: "mano-pantalla",
     videoAlt: "Una mano toca una pantalla luminosa",
+    video2: "arquitecto-mesa",
+    videoAlt2: "Un profesional dibuja a mano sobre una mesa de diseño",
     color: "#1f6feb",
     dolores: [
       { dolor: "«Mi web es vieja y tarda en cargar.»", arreglo: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos." },
@@ -88,6 +93,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Tu ficha de Google al día, todas las reseñas contestadas, artículos que atraen clientes y una web que Google y las IA entienden. Todo con el mismo equipo que lleva tus anuncios.",
     video: "ojo-pantallas",
     videoAlt: "Un ojo rodeado de pantallas con resultados",
+    video2: "brujula",
+    videoAlt2: "Una brújula antigua sobre un mapa",
     color: "#188038",
     dolores: [
       { dolor: "«Me busco en Google y no salgo.»", arreglo: "Ponemos al día tu ficha de Google y tu web para que te encuentre quien está cerca." },
@@ -134,6 +141,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Anuncios en Google, Instagram, Facebook, TikTok y Bing que llevan a páginas hechas para que te contacten. Pagas tú a Google y a Meta, con el tope que tú decidas. Nosotros, ni un porcentaje.",
     video: "holograma-mesa",
     videoAlt: "Dos personas ríen alrededor de un holograma",
+    video2: "holograma-redes",
+    videoAlt2: "Una mano sostiene un móvil del que salen notificaciones",
     color: "#7c3aed",
     dolores: [
       { dolor: "«Pago anuncios y no sé si sirven.»", arreglo: "Vigilamos cada euro y te decimos cuánto te cuesta cada cliente." },
@@ -180,6 +189,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Ideas, publicaciones y guiones para Instagram, Facebook, LinkedIn y TikTok. Te enseñamos a grabar con el móvil y nos ocupamos del montaje.",
     video: "graba-movil",
     videoAlt: "Una mujer graba un vídeo con el móvil en una cafetería",
+    video2: "movil-personas",
+    videoAlt2: "Dos figuras en 3D conversan sobre un móvil",
     color: "#be185d",
     dolores: [
       { dolor: "«No tengo tiempo para las redes.»", arreglo: "Te damos las ideas y el guion. Tú grabas un minuto con el móvil; el resto es cosa nuestra." },
@@ -225,6 +236,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Un asistente con inteligencia artificial que atiende en tu web a cualquier hora, también por voz. Correos y WhatsApp que se envían solos. Y un panel con cada conversación.",
     video: "neon-llamada",
     videoAlt: "Una mujer habla por el móvil entre luces de neón",
+    video2: "fibra-luz",
+    videoAlt2: "Haces de luz que fluyen y se entrelazan",
     color: "#0f766e",
     dolores: [
       { dolor: "«Me escriben de noche y cuando contesto ya es tarde.»", arreglo: "Un asistente atiende a cualquier hora y te avisa con todo apuntado." },
@@ -270,6 +283,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. ¿Ya tienes uno? Lo conectamos al tuyo.",
     video: "puntos-luz",
     videoAlt: "Puntos de luz conectados entre sí",
+    video2: "despacho",
+    videoAlt2: "Un equipo conversa con buen humor en un despacho",
     color: "#b45309",
     dolores: [
       { dolor: "«No sé de dónde vienen mis clientes.»", arreglo: "Cada contacto entra con la página y el anuncio de donde vino." },
