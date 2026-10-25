@@ -22,6 +22,7 @@ export default function ComoTrabajamos() {
         video="mano-pantalla"
         videoAlt="Una mano toca una pantalla luminosa"
       />
+      <SeccionMundo />
       <SeccionEmpezamos base="/estudio-gratuito" />
       <SeccionMetodo />
       <FranjaVideos
@@ -35,7 +36,6 @@ export default function ComoTrabajamos() {
       />
       <SeccionPuntosDolor />
       <SeccionParte />
-      <SeccionMundo />
       <SeccionLoFirmamos />
       <LlamadaFinal />
     </>

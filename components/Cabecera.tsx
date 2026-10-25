@@ -52,13 +52,20 @@ export default function Cabecera() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        solida || movil ? "bg-[linear-gradient(90deg,rgba(18,40,190,0.97)_0%,rgba(14,26,61,0.97)_32%,rgba(14,26,61,0.97)_100%)] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-40 overflow-x-clip transition-colors duration-300 ${
+        solida || movil ? "bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="mr-3 shrink-0">
-          <Logo claro />
+      <div className="relative mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        {/* El azul exacto de la loseta del logo nace detrás de él y se funde hacia la noche: la loseta desaparece y resalta la W. */}
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-y-0 -left-[100vw] -z-10 w-[calc(100vw+300px)] bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-240px),rgba(36,64,255,0)_100%)] sm:w-[calc(100vw+520px)] sm:bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-450px),rgba(36,64,255,0)_100%)] ${
+            solida || movil ? "" : "[mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
+          }`}
+        />
+        <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="relative mr-3 shrink-0">
+          <Logo claro fundido />
         </Link>
 
         <nav ref={navRef} aria-label="Principal" className="hidden xl:block">
