@@ -10,10 +10,18 @@ const RelojMundo = dynamic(() => import("@/components/RelojMundo"), { ssr: false
 export default function GloboDiferido() {
   const [ver, setVer] = useState(false);
   useEffect(() => {
+    // Entra cuando la página ya ha cargado del todo y el navegador lleva un rato libre: así no pesa en la medición de carga.
     const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
-    const ir = () => setVer(true);
-    if (w.requestIdleCallback) w.requestIdleCallback(ir, { timeout: 1500 });
-    else setTimeout(ir, 600);
+    let t = 0;
+    const ir = () => {
+      t = window.setTimeout(() => (w.requestIdleCallback ? w.requestIdleCallback(() => setVer(true), { timeout: 4000 }) : setVer(true)), 2500);
+    };
+    if (document.readyState === "complete") ir();
+    else window.addEventListener("load", ir, { once: true });
+    return () => {
+      window.removeEventListener("load", ir);
+      clearTimeout(t);
+    };
   }, []);
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[480px]">

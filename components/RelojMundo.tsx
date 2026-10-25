@@ -102,7 +102,8 @@ export default function RelojMundo({ soloGlobo = false }: { soloGlobo?: boolean 
 
       // continentes en puntos: dorados de día, azulados de noche
       const r = Math.max(1, w / 380);
-      for (let i = 0; i < TIERRA.length; i += 2) {
+      const salto = w < 420 ? 4 : 2; // en pantallas pequeñas, la mitad de puntos: no se nota y cuesta la mitad
+      for (let i = 0; i < TIERRA.length; i += salto) {
         const lon = TIERRA[i];
         const lat = TIERRA[i + 1];
         const p = proyectar(lon, lat);
@@ -159,8 +160,12 @@ export default function RelojMundo({ soloGlobo = false }: { soloGlobo?: boolean 
       ctx.stroke();
     };
 
+    let ultimo = 0;
     const bucle = (ms: number) => {
-      if (visible) pintar(ms);
+      if (visible && ms - ultimo > 33) {
+        ultimo = ms;
+        pintar(ms);
+      }
       if (!quieto) marco = requestAnimationFrame(bucle);
     };
     marco = requestAnimationFrame(bucle);
