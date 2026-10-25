@@ -41,8 +41,8 @@ export default function QuienesSomos() {
         titulo="Más de 22 años haciendo que el teléfono suene."
         entradilla="Somos profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
-        video="reunion-sonrisa"
-        videoAlt="Una profesional sonríe en una reunión de trabajo"
+        video="equipo-cuatro"
+        videoAlt="Un equipo de cuatro profesionales revisa una propuesta alrededor de una mesa"
       />
 
       <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-20">
