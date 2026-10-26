@@ -16,6 +16,7 @@ import {
   SeccionVeinteProveedores,
   SeccionLoFirmamos,
   BandaMiedoAlCambio,
+  BandaControl,
   SeccionPreguntas,
   SeccionSaberMas,
   SeccionMundo,
@@ -67,6 +68,7 @@ export default function Inicio() {
       <SeccionPromesas />
       <SeccionLoFirmamos />
       <BandaMiedoAlCambio />
+      <BandaControl />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />

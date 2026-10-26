@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/test", 0.8],
     ["/como-trabajamos", 0.8],
     ["/miedo-al-cambio", 0.7],
+    ["/tu-control", 0.7],
     ["/un-dia-de-trabajo", 0.7],
     ["/quienes-somos", 0.7],
     ["/trabajos", 0.8],

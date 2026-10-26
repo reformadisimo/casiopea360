@@ -2,6 +2,7 @@ import { servicioDeFrente } from "@/lib/servicios";
 import { casoDe } from "@/lib/casos";
 import Image from "next/image";
 import Link from "next/link";
+import { COMPROMISOS } from "@/lib/control";
 import VideoFondo from "@/components/VideoFondo";
 import Cifra from "@/components/Cifra";
 import ChipVideo from "@/components/ChipVideo";
@@ -993,6 +994,36 @@ export function BandaMiedoAlCambio() {
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Ver un día de trabajo</span>
         </a>
+      </div>
+    </section>
+  );
+}
+
+/* Portada: tus cuentas son tuyas (siete compromisos de control). */
+export function BandaControl() {
+  return (
+    <section className="bg-white py-14 sm:py-20">
+      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
+        <div>
+          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu control</p>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
+          <p className="mt-5 text-lg text-gris">
+            Queremos que seas tú quien tenga el control, no nosotros. Tu web, tu dominio y tus cuentas de Google están a tu nombre, y nosotros entramos como invitados. Si un día quieres irte, te lo llevas todo y sin enfados.
+          </p>
+          <p className="mt-4 text-lg text-gris">Te quedas porque te servimos, no porque no puedas irte.</p>
+          <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver tus siete compromisos</a>
+        </div>
+        <ol className="grid gap-3">
+          {COMPROMISOS.map((c, i) => (
+            <li key={c.titulo} className="flex items-start gap-4 rounded-[1.4rem] bg-niebla p-4 sm:p-5">
+              <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-estrella font-extrabold text-tinta">{i + 1}</span>
+              <span>
+                <b className="block text-lg leading-snug">{c.titulo}</b>
+                <span className="mt-1 block text-gris">{c.corto}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
