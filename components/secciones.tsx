@@ -1161,7 +1161,7 @@ export function SeccionCRM() {
               <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-noche text-xs text-estrella">✓</span>{t}</li>
             ))}
           </ul>
-          <Link href="/panel#crm" className={`${BOTON} mt-8 inline-flex`}>Ver un CRM de ejemplo</Link>
+          <Link href="/crm-ejemplo" className={`${BOTON} mt-8 inline-flex`}>Ver un CRM de ejemplo</Link>
         </div>
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2.6rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
