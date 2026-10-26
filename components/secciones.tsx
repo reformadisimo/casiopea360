@@ -865,11 +865,11 @@ export function SeccionPorQueBarato() {
 /* Lo que firmamos: seriedad de gran agencia, por escrito. */
 const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "firma", t: "Plazos por escrito", d: "Respuesta el mismo día, 48 horas para el día a día y fecha cerrada para lo grande. Por escrito desde el primer día." },
-  { icono: "llave", t: "Todo a tu nombre", d: "Web, dominio, cuentas de Google y de anuncios. Desde el primer día, y te lo llevas si te vas." },
+  { icono: "llave", t: "Tus cuentas, a tu nombre", d: "Dominio y cuentas de Google y de anuncios, desde el primer día. La web, tuya a los doce meses." },
   { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
   { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
   { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
-  { icono: "calendario", t: "Salida fácil", d: "Seis meses de permanencia, y la web es tuya. Si a los tres meses no has visto que mejoramos, te puedes ir. Nos quitas los accesos y listo." },
+  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres meses no has visto que mejoramos, te vas sin pagar nada." },
 ];
 
 const COLOR_SELLO: [string, string][] = [
@@ -955,9 +955,9 @@ export function SeccionMiedoAlCambio() {
 
           <div className="flex flex-col gap-4">
             {[
-              ["Tres meses para demostrarlo", "Si en ese tiempo no has visto que mejoramos, te puedes ir."],
-              ["Seis meses y se acabó", "Es la única permanencia. Después, te quedas solo si te compensa."],
-              ["Todo lo construido es tuyo", "La web y tus cuentas están a tu nombre. Si te vas, nos quitas los accesos de administrador y listo."],
+              ["Tres meses para demostrarlo", "Si en ese tiempo no has visto que mejoramos, te vas sin pagar nada y te quedas con la web."],
+              ["Doce meses y se acabó", "Es la única permanencia. Después, te quedas solo si te compensa."],
+              ["Lo tuyo, siempre tuyo", "Tus cuentas y tus contactos, siempre. La web, al cumplir los doce meses, o antes si pagas la parte que falte."],
             ].map(([t, d], i) => (
               <div key={t} className="flex gap-4 rounded-[1.6rem] border border-linea bg-white p-5">
                 <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
@@ -983,7 +983,7 @@ export function BandaMiedoAlCambio() {
         <a href="/miedo-al-cambio" className="group flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <span>
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
-            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses si no mejoramos.</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses sin pagar nada si no mejoramos.</span>
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
         </a>
@@ -1008,7 +1008,7 @@ export function BandaControl() {
           <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu control</p>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
           <p className="mt-5 text-lg text-gris">
-            Queremos que seas tú quien tenga el control, no nosotros. Tu web, tu dominio y tus cuentas de Google están a tu nombre, y nosotros entramos como invitados. Si un día quieres irte, te lo llevas todo y sin enfados.
+            Queremos que seas tú quien tenga el control, no nosotros. Tu dominio y tus cuentas de Google están a tu nombre, y nosotros entramos como invitados. Si un día quieres irte, te llevas tus cuentas y tus contactos, y la web la tienes tuya al cumplir los doce meses. Sin enfados.
           </p>
           <p className="mt-4 text-lg text-gris">Te quedas porque te servimos, no porque no puedas irte.</p>
           <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver tus siete compromisos</a>
@@ -1392,7 +1392,7 @@ export function SeccionGarantias() {
   return (
     <section className="bg-niebla py-20 sm:py-28">
       <div className={ENVOLTORIO}>
-        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web es tuya. Y te quedas porque quieres.</h2>
+        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Tus cuentas son tuyas. Y te quedas porque quieres.</h2>
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {GARANTIAS.map((g, i) => (
             <div key={g.titulo} className={`rounded-[2rem] p-7 sm:p-9 ${i === 3 ? "bg-estrella" : "bg-white"}`}>

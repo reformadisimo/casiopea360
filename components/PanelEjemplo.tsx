@@ -608,7 +608,7 @@ export default function PanelEjemplo() {
                 <Cifra titulo="Ventas que vienen de internet" valor={318400} formato={eur} cambio={comparar === "mes" ? 14 : 132} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
               </div>
 
-              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comparar === "mes" ? "Frente al mes pasado" : "Frente al día que empezamos"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte y quedarte con todo.">
+              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comparar === "mes" ? "Frente al mes pasado" : "Frente al día que empezamos"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte sin pagar nada.">
                 <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {PARAMETROS.map((x) => {
                     const ahora = x.serie[5];
@@ -631,7 +631,7 @@ export default function PanelEjemplo() {
                 </ul>
               </Caja>
 
-              <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte, y la web y las cuentas son tuyas.">
+              <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte sin pagar nada y te quedas con la web.">
                 <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
                   {[16, 21, 29, 33, 38, 41].map((v, i) => (
                     <div key={i} className="flex h-full flex-col items-center justify-end">

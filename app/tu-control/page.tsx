@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Tu control: tus cuentas son tuyas",
-  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y todo lo construido es tuyo.",
+  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos.",
   "/tu-control",
 );
 
@@ -27,7 +27,7 @@ export default function TuControl() {
       <CabeceraPagina
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
-        entradilla="Tu web, tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte."
+        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
       />
 
@@ -99,7 +99,7 @@ export default function TuControl() {
       <section className="bg-white py-16 sm:py-20">
         <div className={`${ENVOLTORIO} flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between`}>
           <p className="max-w-2xl text-lg text-gris">
-            ¿Y si algún día quieres irte? Tienes dos formas de salir con calma: a los tres meses, si no has visto que mejoramos, o cuando acaben los seis. Y te llevas todo.
+            ¿Y si algún día quieres irte? Puedes salir con calma: a los tres meses y sin pagar nada, si no has visto que mejoramos; o más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
           </p>
           <Link prefetch={false} href="/miedo-al-cambio" className={BOTON}>Ver cómo es la salida</Link>
         </div>

@@ -20,9 +20,9 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
   },
   {
     icono: "pagina",
-    titulo: "La web es tuya",
-    corto: "Queda en una cuenta a tu nombre, o te entregamos una copia completa: textos, fotos, formularios y código.",
-    largo: "Tu web queda en una cuenta a tu nombre, o te entregamos una copia completa con los textos, las fotos, los formularios y el código, funcionando en tu propia cuenta. Si te vas, te ayudamos con el traspaso para que no se caiga nada por el camino.",
+    titulo: "La web acaba siendo tuya",
+    corto: "Al cumplir los doce meses queda a tu nombre, con copia completa: textos, fotos, formularios y código. Antes, pagas solo lo que falte.",
+    largo: "La web te la regalamos a cambio de doce meses. Al cumplirlos, queda en una cuenta a tu nombre y te entregamos una copia completa con los textos, las fotos, los formularios y el código, funcionando en tu propia cuenta. Si quieres irte antes, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. En los dos casos te ayudamos con el traspaso para que no se caiga nada por el camino.",
   },
   {
     icono: "crm",
@@ -33,8 +33,8 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
   {
     icono: "calendario",
     titulo: "Nada te ata",
-    corto: "Seis meses de permanencia, y a los tres puedes irte si no mejoramos. Todo lo construido es tuyo.",
-    largo: "Lo decimos claro: hay seis meses de permanencia, porque la web te la regalamos. Si a los tres meses no has visto que mejoramos, te puedes ir. Y aunque te vayas, todo lo construido es tuyo. Después de los seis meses no hay ninguna: sigues porque te compensa, no porque no puedas irte.",
+    corto: "Doce meses de permanencia, porque la web te la regalamos. A los tres puedes irte sin pagar nada si no mejoramos.",
+    largo: "Lo decimos claro: hay doce meses de permanencia, porque la web te la regalamos. Si a los tres meses no has visto que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si te vas más tarde, pagas solo la parte de la web que falte por cubrir. Pasados los doce meses no hay ninguna: sigues porque te compensa, no porque no puedas irte.",
   },
   {
     icono: "lista",
@@ -47,7 +47,7 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
 // Ejemplo hipotético de ficha de cuentas.
 export const FICHA: [string, string, string][] = [
   ["Dominio (la dirección de tu web)", "A tu nombre, con tu correo como propietario", "Tú, propietario. Casiopea, como invitada."],
-  ["Web", "En una cuenta a tu nombre, o con una copia completa en tu poder", "Tú, propietario. Casiopea, como invitada."],
+  ["Web", "Alojada por Casiopea durante los doce primeros meses; a tu nombre al cumplirlos o al pagar lo que falte", "Casiopea, titular del alojamiento hasta entonces. Tú, propietario después."],
   ["Google Ads", "Cuenta tuya, pagada con tu tarjeta", "Tú, administrador. Casiopea, como usuaria invitada."],
   ["Google Analytics", "Cuenta tuya", "Tú, propietario. Casiopea, como invitada."],
   ["Search Console y Tag Manager", "Cuentas tuyas", "Tú, propietario. Casiopea, como invitada."],

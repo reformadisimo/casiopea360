@@ -32,7 +32,7 @@ const COMO: [string, string][] = [
   ["Rápidos", "Respuesta el mismo día y lo del día a día en 48 horas. Lo grande, con fecha."],
   ["Sinceros", "Te decimos lo que no te conviene, aunque podamos cobrártelo."],
   ["Sin perseguirnos", "Sin reuniones innecesarias y casi todo por escrito. Tu tiempo es para tu negocio."],
-  ["Tuyo", "La web, el dominio y las cuentas, a tu nombre desde el primer día."],
+  ["Tuyo", "El dominio y las cuentas, a tu nombre desde el primer día. La web, a los doce meses."],
 ];
 
 export default function QuienesSomos() {

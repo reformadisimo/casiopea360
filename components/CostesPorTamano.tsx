@@ -168,7 +168,7 @@ export default function CostesPorTamano() {
             <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y el CRM, ya hechos. ¿Otra web, otra landing, otra calculadora? Incluidas.</p>
             <a href="/estudio-gratuito" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Quiero mi estudio gratuito</a>
             <p className="mt-4 text-sm text-white/70">
-              <b className="text-estrella">Seis meses de permanencia</b> y la web es tuya. Si a los tres meses no ves que mejoramos, te puedes ir. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar menos?</a>
+              <b className="text-estrella">Doce meses de permanencia</b> y la web es tuya al cumplirlos. Si a los tres meses no ves que mejoramos, te vas sin pagar nada. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar menos?</a>
             </p>
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function CostesPorTamano() {
 
       <div className="mt-6 grid items-center gap-6 rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:grid-cols-[1.3fr_1fr]">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-wide opacity-70">Pruébalo seis meses</p>
+          <p className="text-sm font-extrabold uppercase tracking-wide opacity-70">Tus seis primeros meses</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">
             En tus seis primeros meses ya tienes lo que por separado valdría {eur(Math.round((r.unaVez + r.mes * 6) / 1000) * 1000)}.
           </p>

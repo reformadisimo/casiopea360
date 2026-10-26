@@ -33,7 +33,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Web y apps",
     tituloSeo: "Diseño de páginas web a medida, rápidas y tuyas",
     descripcionSeo:
-      "Web a medida en unos días, con calculadoras y asistente con IA, 100 en PageSpeed como objetivo y a tu nombre desde el primer día. Incluida en tu cuota de marketing.",
+      "Web a medida en unos días, con calculadoras y asistente con IA, 100 en PageSpeed como objetivo, y tuya al cumplir los doce meses. Incluida en tu cuota de marketing.",
     titular: "Tu web, en días. Rápida, bonita y a tu nombre.",
     entradilla:
       "Donde otros tardan meses, tú la tienes en unos días: normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
@@ -45,7 +45,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     dolores: [
       { dolor: "«Mi web es vieja y tarda en cargar.»", arreglo: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos." },
       { dolor: "«Cada cambio es un presupuesto y una espera.»", arreglo: "Los cambios del día a día, en 48 horas como máximo, dentro de la cuota." },
-      { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio, web y accesos a tu nombre desde el primer día. Si te vas, te lo llevas." },
+      { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio y cuentas a tu nombre desde el primer día, y la web tuya al cumplir los doce meses. Si te vas, te llevas tus cuentas y tus contactos." },
     ],
     como: [
       { paso: "Miramos lo que tienes", texto: "Qué te trae clientes hoy y qué no, para no perder nada de lo que ya habías ganado en Google." },
@@ -72,7 +72,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿La web es mía?",
-        r: "Sí. El dominio, la web y todos los accesos están a tu nombre desde el primer día. Si un día te vas, te lo llevas todo.",
+        r: "El dominio y las cuentas, sí, a tu nombre desde el primer día. La web te la regalamos y es tuya al cumplir los doce meses, o antes si pagas la parte que falte. Si un día te vas, te llevas siempre tus cuentas y tus contactos.",
       },
       {
         p: "¿Usáis WordPress?",

@@ -7,7 +7,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Miedo al cambio: prueba la web nueva sin riesgo",
-  "Test A/B entre tu web actual y la nueva, con el reparto de visitas que elijas, salida a los tres meses si no mejoramos y todo lo construido es tuyo.",
+  "Test A/B entre tu web actual y la nueva, con el reparto de visitas que elijas, salida a los tres meses sin pagar nada si no mejoramos, y tus cuentas siempre tuyas.",
   "/miedo-al-cambio",
 );
 
@@ -22,7 +22,7 @@ const PASOS: [string, string][] = [
 const PREGUNTAS: { p: string; r: string }[] = [
   { p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual sigue recibiendo la parte de visitas que tú decidas. Si te da más seguridad, empezamos con un reparto pequeño y lo vamos subiendo." },
   { p: "¿Cuánto dura?", r: "Depende de las visitas que tengas: con mucho tráfico, unos días; con poco, unas semanas. Te lo decimos antes de empezar." },
-  { p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no has visto que mejoramos, puedes irte y quedarte con todo lo construido." },
+  { p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no has visto que mejoramos, puedes irte sin pagar nada y quedarte con la web." },
   { p: "¿Me prometéis que va a ganar?", r: "No se puede prometer. Hasta hoy ha funcionado mejor en todos los clientes con los que hemos trabajado, pero lo comprobamos contigo, con tus datos." },
 ];
 
@@ -35,7 +35,7 @@ export default function MiedoAlCambio() {
       <CabeceraPagina
         titulo="¿Te da miedo cambiar? Pruébalo sin riesgo."
         clave="sin riesgo"
-        entradilla="Es normal. Por eso no te pedimos que cierres los ojos: ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus propios números. Y si en tres meses no has visto que mejoramos, te puedes ir."
+        entradilla="Es normal. Por eso no te pedimos que cierres los ojos: ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus propios números. Y si en tres meses no has visto que mejoramos, te vas sin pagar nada."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Miedo al cambio" }]}
       />
 
@@ -66,7 +66,7 @@ export default function MiedoAlCambio() {
             <ul className="mt-5 space-y-2 text-white/90">
               <li className="flex gap-3"><span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" />Comparas con el mes pasado o con el día que empezamos.</li>
               <li className="flex gap-3"><span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" />Con la prueba A/B, ves lado a lado la web actual y la nueva.</li>
-              <li className="flex gap-3"><span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" />Si a los tres meses no ves la línea subir, te puedes ir.</li>
+              <li className="flex gap-3"><span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" />Si a los tres meses no ves la línea subir, te vas sin pagar nada.</li>
             </ul>
             <Link href="/panel" className={`${BOTON} mt-7 inline-flex`}>Ver el panel de ejemplo</Link>
           </div>

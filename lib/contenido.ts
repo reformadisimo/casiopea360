@@ -236,12 +236,12 @@ export const INFORMES = [
 
 export const GARANTIAS = [
   {
-    titulo: "Todo a tu nombre",
-    texto: "Web, dominio, cuentas de Google, anuncios y redes son tuyos desde el primer día. Si un día te vas, te lo llevas todo.",
+    titulo: "Tus cuentas, a tu nombre",
+    texto: "Dominio y cuentas de Google, de anuncios y de redes, a tu nombre desde el primer día. La web, tuya al cumplir los doce meses, o antes si pagas lo que falta. Si te vas, te llevas siempre tus cuentas y tus contactos.",
   },
   {
     titulo: "Tu web, regalada",
-    texto: "No pagas la web: solo la cuota mensual, con seis meses de permanencia. Si a los tres meses no has visto que mejoramos, te puedes ir, y te quedas con todo lo construido. Después no hay ninguna: sigues porque te compensa.",
+    texto: "No pagas la web: solo la cuota mensual, con doce meses de permanencia. Si a los tres meses no has visto que mejoramos, te vas sin pagar nada y te quedas con la web. Si te vas más tarde, pagas solo la parte de la web que falte por cubrir. Pasados los doce meses no hay ninguna: sigues porque te compensa.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -276,7 +276,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Hay permanencia?",
-    r: "Seis meses, porque la web te la regalamos, y la web es tuya desde el primer día. Pero la salida es siempre fácil: si a los tres meses no hemos conseguido enseñarte que mejoramos, te puedes ir. Nos quitas los accesos de administrador y te quedas con todo lo construido. Después de los seis meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
+    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos conseguido enseñarte que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
   },
   {
     p: "¿Garantizáis resultados?",
@@ -308,7 +308,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Y si lo pruebo y no me convence?",
-    r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si a los tres meses no ves que mejoramos, te puedes ir y te lo llevas todo. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
+    r: "Para eso están los primeros meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas cuotas. Si a los tres meses no ves que mejoramos, te puedes ir sin pagar nada y te quedas con la web. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
   },
   {
     p: "¿Cuánto tardáis en hacer una web?",
@@ -401,7 +401,7 @@ export const DOLORES = [
   },
   {
     dolor: "Mi agencia tiene mi web y mis cuentas. Si me voy, lo pierdo todo.",
-    solucion: "Todo a tu nombre desde el primer día: web, dominio y cuentas. Si un día te vas, te lo llevas.",
+    solucion: "Dominio y cuentas a tu nombre desde el primer día, y la web tuya al cumplir los doce meses o antes, si pagas lo que falta. Si te vas, te llevas tus cuentas y tus contactos.",
   },
   {
     dolor: "Una web nueva tarda meses y cada cambio es otro presupuesto.",
@@ -533,7 +533,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "A precio fijo.",
     d: "Una sola cuota, la misma para cualquier tamaño de empresa y con todo dentro. Menos de lo que te costaría contratar cada cosa por separado, y sin sorpresas en la factura.",
-    pie: "Seis meses de permanencia, y si a los tres no ves que mejoramos, te puedes ir. La web es tuya.",
+    pie: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres no ves que mejoramos, te vas sin pagar nada.",
   },
   {
     t: "Sin perseguirnos.",
