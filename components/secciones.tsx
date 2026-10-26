@@ -670,6 +670,40 @@ export function SeccionTambienIncluido() {
 
 /* Las cuatro promesas: mejor, en días, a precio fijo y sin perseguirnos. */
 /* «¿Cómo es posible?»: lo que dicen los clientes cuando lo ven funcionando. */
+/* Nuestra ventaja: el trabajo de un equipo grande, sin la estructura de uno. */
+export function SeccionVentaja() {
+  const T: [string, string, string][] = [
+    ["Sin capas", "Quien te lo cuenta es quien lo hace. Nada se pierde entre comerciales, jefes de cuenta y subcontratas.", "chat"],
+    ["Sin lastre", "Cambiamos en días. Las estructuras grandes tardan meses en adaptarse porque primero tienen que desmontar lo que ya tienen.", "cohete"],
+    ["Todos los oficios, conectados", "Web, Google, anuncios, redes, CRM e IA trabajando juntos. En otros sitios, cada una de esas cosas es un departamento distinto.", "engranaje"],
+    ["Pagas el trabajo, no la estructura", "Menos que con una agencia grande, porque no mantenemos jerarquías ni oficinas enormes. Pero no es low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
+  ];
+  return (
+    <section id="ventaja" className="scroll-mt-24 bg-white py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Nuestra ventaja</p>
+        <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">El trabajo de un equipo enorme. <Subrayado>Sin la estructura</Subrayado> de uno.</h2>
+        <p className="mt-6 max-w-3xl text-lg text-gris">
+          Una gran empresa de marketing necesita cien personas, reuniones entre departamentos y mucho tiempo para adaptarse a cada cambio. Aquí quien dirige la agencia está dentro del trabajo, la inteligencia artificial y la automatización se encargan de lo pesado, y cada oficio está conectado con los demás. El resultado es el de un equipo muy grande, hecho con más cuidado y a un precio razonable.
+        </p>
+        <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2">
+          {T.map(([t, d, ic], i) => (
+            <li key={t} className="rounded-[1.8rem] bg-niebla p-6 sm:p-7">
+              <Loseta icono={ic} i={i} />
+              <p className="mt-4 text-2xl font-extrabold">{t}</p>
+              <p className="mt-2 text-gris">{d}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link prefetch={false} href="/un-dia-de-trabajo" className={BOTON}>Ver un día de trabajo real</Link>
+          <Link prefetch={false} href="/estudio-gratuito" className="inline-flex min-h-12 items-center justify-center rounded-full px-6 font-bold text-tinta underline decoration-estrella decoration-4 underline-offset-4">Pide tu estudio gratuito</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function SeccionComoEsPosible() {
   return (
     <section id="como-es-posible" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
@@ -681,7 +715,7 @@ export function SeccionComoEsPosible() {
           «Pero… <span className="text-estrella">¿cómo es posible?</span>»
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-white/85">
-          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings sin límite y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b>
+          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings sin límite y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b> Con el trabajo de un equipo enorme y sin su estructura. <Link prefetch={false} href="/quienes-somos#ventaja" className="font-bold text-estrella underline underline-offset-4">Cómo lo hacemos</Link>.
         </p>
         <ul className="carrusel mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {COMO_ES_POSIBLE.map((x, i) => (

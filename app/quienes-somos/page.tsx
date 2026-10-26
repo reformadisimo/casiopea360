@@ -7,7 +7,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre, Loseta } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre, SeccionVentaja, Loseta } from "@/components/secciones";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -75,6 +75,8 @@ export default function QuienesSomos() {
           </div>
         </div>
       </section>
+
+      <SeccionVentaja />
 
       <SeccionNombre />
 
