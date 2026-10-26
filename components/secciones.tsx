@@ -893,7 +893,7 @@ export function SeccionLoFirmamos() {
             <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Más de 22 años de experiencia en marketing digital</p>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. <Subrayado>Sin su factura.</Subrayado></h2>
           </div>
-          <p className="text-lg text-gris">Hemos llevado cuentas de Google Ads de hasta 60.000 € al mes en una sola empresa. Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
+          <p className="text-lg text-gris">Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
         </div>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SELLOS.map((x, i) => (

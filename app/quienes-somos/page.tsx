@@ -14,12 +14,12 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Quiénes somos",
-  "Profesionales con más de 22 años de experiencia en marketing digital y cuentas de Google Ads de hasta 60.000 € al mes. Lo hacemos todo, mejor y en días.",
+  "Profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, mejor y en días.",
   "/quienes-somos",
 );
 
 const HECHO: { t: string; d: string; logos: string[] }[] = [
-  { t: "Anuncios en Google y en redes", d: "Desde presupuestos pequeños hasta cuentas de 60.000 € al mes en una sola empresa. Sabemos qué hacer con cada euro, sea mucho o poco.", logos: ["Google Ads", "Meta", "TikTok", "Bing"] },
+  { t: "Anuncios en Google y en redes", d: "Desde presupuestos pequeños hasta cuentas grandes. Sabemos qué hacer con cada euro, sea mucho o poco.", logos: ["Google Ads", "Meta", "TikTok", "Bing"] },
   { t: "Webs que venden", d: "Rápidas, con calculadoras de precio y asistentes con inteligencia artificial que atienden de día y de noche.", logos: ["Google Chrome", "Vercel", "PageSpeed"] },
   { t: "Apps en las tiendas", d: "De la idea a la App Store y Google Play, con suscripciones de pago funcionando.", logos: ["App Store", "Google Play"] },
   { t: "Google y las IA", d: "Posicionamiento local y nacional, fichas de Google y Bing, y que ChatGPT y compañía te recomienden.", logos: ["Google", "Ficha de Google", "ChatGPT", "Gemini"] },

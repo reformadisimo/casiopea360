@@ -19,7 +19,7 @@ export const ARTICULOS: Articulo[] = [
     slug: "si-tu-web-no-esta-a-tu-nombre-no-es-tuya",
     video: "lapiz-medicion",
     apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos las cuentas de un negocio en un portátil" },
-    titulo: "Si tu web no está a tu nombre, no es tuya",
+    titulo: "¿Está tu web realmente bajo tu control?",
     descripcion: "Muchos negocios no saben a nombre de quién están su web, su dominio o su cuenta de Google Ads. Por qué importa, qué riesgos tiene y cinco preguntas para comprobarlo hoy mismo.",
     fecha: "2026-10-26",
     lectura: "6 minutos",
@@ -272,7 +272,7 @@ export const ARTICULOS: Articulo[] = [
     lectura: "6 minutos",
     categoria: "Estrategia",
     respuesta:
-      "Una web que trae clientes necesita alrededor de veinticinco oficios: diseño, programación, SEO técnico y local, anuncios, redes, analítica, automatización, legal y más. Lo habitual es repartirlos entre cinco o seis proveedores, que no se coordinan entre sí. Un solo equipo que lo vea todo a la vez arregla antes los problemas y te quita el trabajo de coordinar.",
+      "Según nuestro cálculo, una web que trae clientes necesita unos veinticinco oficios: diseño, programación, SEO técnico y local, anuncios, redes, analítica, automatización, legal y más. Es frecuente repartirlos entre varios proveedores, que no siempre se coordinan entre sí. Un solo equipo que lo vea todo a la vez arregla antes los problemas y te quita el trabajo de coordinar.",
     cuerpo: [
       { h2: "Los veinticinco oficios que hay detrás de una web que funciona" },
       {
@@ -329,7 +329,7 @@ export const ARTICULOS: Articulo[] = [
     lectura: "5 minutos",
     categoria: "Anuncios",
     respuesta:
-      "Muchas agencias cobran una comisión de entre el 5 % y el 15 % sobre lo que el cliente invierte en anuncios. El problema es que así la agencia gana más cuanto más gastas, aunque los resultados no mejoren. Un precio fijo, con la inversión pagada directamente por el cliente a Google o Meta, alinea los intereses: lo importante es cuánto cuesta cada cliente, no cuánto se gasta.",
+      "Algunas agencias cobran una comisión, que varía mucho de un contrato a otro, sobre lo que el cliente invierte en anuncios. El problema es que así la agencia gana más cuanto más gastas, aunque los resultados no mejoren. Un precio fijo, con la inversión pagada directamente por el cliente a Google o Meta, alinea los intereses: lo importante es cuánto cuesta cada cliente, no cuánto se gasta.",
     cuerpo: [
       { h2: "Cómo funciona la comisión sobre la inversión" },
       {
@@ -337,7 +337,7 @@ export const ARTICULOS: Articulo[] = [
       },
       { h2: "Cuánto supone al año" },
       {
-        p: "Parece poco, pero se acumula. Algunos ejemplos con una comisión del 10 %:",
+        p: "Parece poco, pero se acumula. Algunos ejemplos con una comisión del 10 %, solo como ilustración:",
       },
       {
         ul: [
@@ -395,7 +395,7 @@ export const ARTICULOS: Articulo[] = [
           "Los mismos datos en todas partes: nombre, dirección, teléfono y servicios idénticos en la web, la ficha de Google y los directorios.",
           "Reseñas reales y contestadas, pedidas a tus clientes contentos de forma constante.",
           "Presencia en los directorios y rankings de tu sector, y también en Bing y en Apple, que alimentan a varias IA.",
-          "Datos estructurados en la web (schema.org) y un archivo llms.txt que resuma quién eres para los asistentes.",
+          "Datos estructurados en la web (schema.org) y, si quieres, un archivo llms.txt que resuma quién eres; ningún buscador ni asistente garantiza que lo lea.",
           "Artículos que respondan dudas reales de tus clientes, con fuentes y fecha.",
         ],
       },

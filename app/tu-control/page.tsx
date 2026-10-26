@@ -91,7 +91,7 @@ export default function TuControl() {
           </ol>
           <p className="mt-10 text-lg text-white/85">
             Lo contamos con calma en un artículo.{" "}
-            <Link prefetch={false} href="/blog/si-tu-web-no-esta-a-tu-nombre-no-es-tuya" className="font-bold text-estrella underline underline-offset-4">Si tu web no está a tu nombre, no es tuya</Link>.
+            <Link prefetch={false} href="/blog/si-tu-web-no-esta-a-tu-nombre-no-es-tuya" className="font-bold text-estrella underline underline-offset-4">¿Está tu web realmente bajo tu control?</Link>.
           </p>
         </div>
       </section>
