@@ -424,7 +424,7 @@ function Medidor({ valor, etiqueta }: { valor: number; etiqueta: string }) {
   );
 }
 
-function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion }: { titulo: string; valor: number; formato?: (n: number) => string; cambio?: number; invertir?: boolean; explicacion: string }) {
+function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion, contra = "que el mes pasado" }: { titulo: string; valor: number; formato?: (n: number) => string; cambio?: number; invertir?: boolean; explicacion: string; contra?: string }) {
   const bueno = cambio === undefined ? true : invertir ? cambio < 0 : cambio > 0;
   return (
     <div className="rounded-3xl border border-linea bg-white p-5">
@@ -432,7 +432,7 @@ function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion }
       <p className="mt-1 text-3xl font-extrabold sm:text-4xl"><Contador valor={valor} formato={formato} /></p>
       {cambio !== undefined && (
         <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
-          {cambio > 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">que el mes pasado</span>
+          {cambio > 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{contra}</span>
         </p>
       )}
       <p className="mt-2 text-sm text-gris">{explicacion}</p>
@@ -452,6 +452,7 @@ const ICONO_EVENTO: Record<string, string> = {
 
 export default function PanelEjemplo() {
   const [pestana, setPestana] = useState<Pestana>("resumen");
+  const [comparar, setComparar] = useState<"mes" | "inicio">("mes");
   const [directo, setDirecto] = useState<{ id: number; tipo: string; titulo: string; detalle: string; hora: string }[]>([]);
   const [hoy, setHoy] = useState({ visitas: 318, contactos: 9, llamadas: 4 });
   const [ahora, setAhora] = useState(14);
@@ -579,12 +580,33 @@ export default function PanelEjemplo() {
                 </ul>
               </section>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Cifra titulo="Clientes nuevos este mes" valor={41} cambio={11} explicacion="Presupuestos firmados que vienen de internet." />
-                <Cifra titulo="Contactos este mes" valor={312} cambio={16} explicacion="Personas que te han escrito, llamado o pedido presupuesto." />
-                <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={-8} invertir explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
-                <Cifra titulo="Ventas que vienen de internet" valor={318400} formato={eur} cambio={14} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
+              <div className="flex flex-wrap items-center gap-3" role="group" aria-label="Comparar con">
+                <span className="text-sm font-bold text-gris">Comparar con:</span>
+                {([["mes", "El mes pasado"], ["inicio", "El día que empezamos"]] as const).map(([id, t]) => (
+                  <button key={id} type="button" aria-pressed={comparar === id} onClick={() => setComparar(id)} className={`rounded-full px-4 py-2 text-sm font-bold ${comparar === id ? "bg-noche text-white" : "bg-white text-tinta hover:bg-white/70"}`}>{t}</button>
+                ))}
               </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Cifra titulo="Clientes nuevos este mes" valor={41} cambio={comparar === "mes" ? 11 : 156} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Presupuestos firmados que vienen de internet." />
+                <Cifra titulo="Contactos este mes" valor={312} cambio={comparar === "mes" ? 16 : 118} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Personas que te han escrito, llamado o pedido presupuesto." />
+                <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={comparar === "mes" ? -8 : -41} invertir contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
+                <Cifra titulo="Ventas que vienen de internet" valor={318400} formato={eur} cambio={comparar === "mes" ? 14 : 132} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
+              </div>
+
+              <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte, y la web y las cuentas son tuyas.">
+                <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
+                  {[16, 21, 29, 33, 38, 41].map((v, i) => (
+                    <div key={i} className="flex h-full flex-col items-center justify-end">
+                      <span className="mb-1 text-xs font-bold">{v}</span>
+                      <div className="pn-barra w-full rounded-t-lg" style={{ height: `${(v / 41) * 100}%`, background: i < 3 ? "#ffc53d" : "#1d4ed8" }} />
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-gris sm:gap-4">
+                  {["Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6"].map((m) => <span key={m}>{m}</span>)}
+                </div>
+                <p className="mt-3 text-sm text-gris">Clientes nuevos al mes. En amarillo, los tres meses para demostrarlo: de 16 a 29 clientes. En azul, lo que viene después.</p>
+              </Caja>
 
               <div className="grid items-start gap-5 lg:grid-cols-[1.4fr_1fr]">
                 <Caja titulo="Contactos y visitas, día a día" fuente="Analytics y la web" ayuda="Las barras amarillas son las personas que te han contactado cada día. La línea azul, las visitas a tu web. Si la línea sube y las barras no, la web no está convenciendo: ahí entramos nosotros.">

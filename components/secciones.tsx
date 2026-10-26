@@ -810,7 +810,7 @@ const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
   { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
   { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
-  { icono: "calendario", t: "Seis meses y libre", d: "Seis meses de permanencia porque la web va regalada. Después, te quedas porque quieres." },
+  { icono: "calendario", t: "Salida fácil", d: "Seis meses de permanencia, y la web es tuya. Si a los tres meses no has visto que mejoramos, te puedes ir. Nos quitas los accesos y listo." },
 ];
 
 const COLOR_SELLO: [string, string][] = [
@@ -855,6 +855,61 @@ export function SeccionLoFirmamos() {
           <p className="text-xl font-extrabold sm:text-2xl">
             Nos comprometemos por escrito: plazos, transparencia cada día y objetivos medibles. <span className="text-estrella">Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.</span>
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Miedo al cambio: prueba A/B y salida fácil. */
+export function SeccionMiedoAlCambio() {
+  const reparto = [70, 60, 50];
+  return (
+    <section id="miedo-al-cambio" className="relative overflow-hidden bg-niebla py-20 sm:py-28">
+      <div className={ENVOLTORIO}>
+        <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">¿Te da miedo cambiar?</p>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Pruébalo con tu web actual al lado. <Subrayado>Sin riesgo.</Subrayado></h2>
+          </div>
+          <p className="text-lg text-gris">Es normal. Por eso no te pedimos que cierres los ojos: te proponemos que lo compruebes con tus propios números.</p>
+        </div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+          <div className="rounded-[2rem] bg-noche p-7 text-white sm:p-9">
+            <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Test A/B</p>
+            <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Tu web actual y la nuestra, a la vez.</p>
+            <p className="mt-3 text-white/85">Repartimos las visitas entre las dos webs. El reparto lo eliges tú: que la mitad vea la nueva, o seis de cada diez, o siete. En unos días o semanas comparas cuál consigue más contactos.</p>
+            <ul className="mt-6 space-y-4" aria-label="Ejemplos de reparto de visitas">
+              {reparto.map((n) => (
+                <li key={n}>
+                  <div className="flex justify-between text-sm font-bold"><span>{100 - n} % ve tu web actual</span><span className="text-estrella">{n} % ve la nueva</span></div>
+                  <div className="mt-1.5 flex h-4 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`${100 - n} por ciento a la web actual y ${n} por ciento a la nueva`}>
+                    <div className="bg-white/35" style={{ width: `${100 - n}%` }} />
+                    <div className="bg-estrella" style={{ width: `${n}%` }} />
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm text-white/70">Hasta hoy, la nuestra ha funcionado mejor en todos los clientes con los que hemos trabajado. No lo damos por hecho: te lo enseñamos con tus datos.</p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {[
+              ["Tres meses para demostrarlo", "Si en ese tiempo no has visto que mejoramos, te puedes ir."],
+              ["Seis meses y se acabó", "Es la única permanencia. Después, te quedas solo si te compensa."],
+              ["Todo lo construido es tuyo", "La web y tus cuentas están a tu nombre. Si te vas, nos quitas los accesos de administrador y listo."],
+            ].map(([t, d], i) => (
+              <div key={t} className="flex gap-4 rounded-[1.6rem] border border-linea bg-white p-5">
+                <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
+                <div>
+                  <p className="text-lg font-extrabold">{t}</p>
+                  <p className="mt-1 text-gris">{d}</p>
+                </div>
+              </div>
+            ))}
+            <p className="px-2 text-lg font-bold text-noche-3">No queremos clientes que no quieran estar con nosotros. Por eso la salida es siempre fácil.</p>
+          </div>
         </div>
       </div>
     </section>

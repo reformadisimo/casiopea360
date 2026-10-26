@@ -241,7 +241,7 @@ export const GARANTIAS = [
   },
   {
     titulo: "Tu web, regalada",
-    texto: "No pagas la web: solo la cuota mensual, con seis meses de permanencia. Después no hay ninguna: sigues porque te compensa y te vas cuando quieras.",
+    texto: "No pagas la web: solo la cuota mensual, con seis meses de permanencia. Si a los tres meses no has visto que mejoramos, te puedes ir, y te quedas con todo lo construido. Después no hay ninguna: sigues porque te compensa.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -276,7 +276,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Hay permanencia?",
-    r: "Seis meses, porque la web te la regalamos. Después no hay ninguna: te quedas porque te compensa y te puedes ir cuando quieras, llevándote todo, que ya está a tu nombre.",
+    r: "Seis meses, porque la web te la regalamos, y la web es tuya desde el primer día. Pero la salida es siempre fácil: si a los tres meses no hemos conseguido enseñarte que mejoramos, te puedes ir. Nos quitas los accesos de administrador y te quedas con todo lo construido. Después de los seis meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
   },
   {
     p: "¿Garantizáis resultados?",
@@ -308,7 +308,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Y si lo pruebo y no me convence?",
-    r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si después no te convence, te vas y te lo llevas todo.",
+    r: "Para eso están los seis meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas seis cuotas. Si a los tres meses no ves que mejoramos, te puedes ir y te lo llevas todo. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
   },
   {
     p: "¿Cuánto tardáis en hacer una web?",
@@ -533,7 +533,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "A precio fijo.",
     d: "Una sola cuota, la misma para cualquier tamaño de empresa y con todo dentro. Menos de lo que te costaría contratar cada cosa por separado, y sin sorpresas en la factura.",
-    pie: "Seis meses de permanencia, porque la web te la regalamos. Después te quedas porque quieres y te vas cuando quieras.",
+    pie: "Seis meses de permanencia, y si a los tres no ves que mejoramos, te puedes ir. La web es tuya.",
   },
   {
     t: "Sin perseguirnos.",

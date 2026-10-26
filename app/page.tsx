@@ -15,6 +15,7 @@ import {
   SeccionComoEsPosible,
   SeccionVeinteProveedores,
   SeccionLoFirmamos,
+  SeccionMiedoAlCambio,
   SeccionPreguntas,
   SeccionSaberMas,
   SeccionMundo,
@@ -65,6 +66,7 @@ export default function Inicio() {
       <SeccionComoEsPosible />
       <SeccionPromesas />
       <SeccionLoFirmamos />
+      <SeccionMiedoAlCambio />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />
