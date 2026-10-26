@@ -78,6 +78,28 @@ export default function QuienesSomos() {
 
       <SeccionNombre />
 
+      <section className="bg-white py-20 sm:py-28">
+        <div className={ENVOLTORIO}>
+          <div className="grid items-center gap-8 rounded-[2.2rem] bg-noche p-8 text-white sm:p-12 lg:grid-cols-[1.2fr_1fr]">
+            <div>
+              <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Una mirada desde fuera</p>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Damos luz a tu marketing.</h2>
+              <p className="mt-5 text-lg text-white/85">
+                Cuando llevas el marketing de tu empresa todos los días, dejas de verlo. Te acostumbras a los mismos números, cada proveedor te enseña su trozo y nadie mira el conjunto. Y hasta el mejor equipo acaba sin saber por dónde tirar.
+              </p>
+              <p className="mt-4 text-lg text-white/85">
+                Nos ha pasado a nosotros. Por eso sabemos que el salto de gigante no se ve desde dentro, hasta que alguien con visión 360 te lo muestra.
+              </p>
+            </div>
+            <div className="rounded-[1.8rem] bg-white/10 p-6 ring-1 ring-white/15">
+              <p className="text-xl font-extrabold">¿Cómo es posible que un director de marketing necesite un empujón externo?</p>
+              <p className="mt-3 text-white/80">Lo contamos con calma en un artículo.</p>
+              <Link href="/blog/por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona" className={`${BOTON} mt-5 inline-flex`}>Leer el artículo</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-niebla py-20 sm:py-28">
         <div className={ENVOLTORIO}>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Lo hemos hecho todo. Y lo seguimos haciendo cada día.</h2>

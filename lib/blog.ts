@@ -16,6 +16,48 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
+    slug: "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona",
+    video: "lapiz-medicion",
+    apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos los resultados en un portátil" },
+    titulo: "Por qué un director de marketing deja de ver lo que no funciona (y cómo recuperar la luz)",
+    descripcion: "Cuando llevas el marketing de tu empresa todos los días, dejas de ver el conjunto. Por qué pasa incluso a los mejores equipos y qué cambia con una mirada 360 desde fuera.",
+    fecha: "2026-10-26",
+    lectura: "5 minutos",
+    categoria: "Estrategia",
+    respuesta:
+      "A un director de marketing le pasa lo que a cualquiera que vive dentro de su trabajo: se acostumbra. Ve cada día los mismos números, cada proveedor le enseña su trozo y nadie mira el conjunto, así que deja de ver lo que no funciona y también lo que sí ha mejorado. Una mirada 360 desde fuera conecta web, anuncios, medición y CRM, y vuelve a poner luz donde la rutina la había apagado.",
+    cuerpo: [
+      { h2: "No es falta de talento, es falta de distancia" },
+      { p: "Es una de las cosas más repetidas en cualquier empresa: cuanto más metido estás en el día a día, menos ves. No te pasa por no saber. Te pasa porque llevas meses mirando lo mismo desde el mismo sitio, apagando urgencias y respondiendo a cada proveedor. Y llega un momento en que sientes que nada funciona, empiezas a hacer cosas, cambias esto, pruebas aquello, y sigues sin saber por dónde tirar." },
+      { h2: "Por qué deja de verse" },
+      { ul: [
+        "La costumbre: los mismos informes, los mismos números, la misma web. Lo que se ve a diario se vuelve invisible.",
+        "Cada proveedor enseña su parte: la agencia de anuncios, sus clics; el SEO, sus posiciones; la web, su velocidad. Nadie enseña cómo encaja todo.",
+        "Las urgencias se comen el tiempo de pensar: hay que contestar, aprobar, corregir, y casi nunca hay un hueco para dar un paso atrás.",
+        "Tampoco se ve el progreso: cuando todo cambia poco a poco, no notas el salto que has dado hasta que alguien te lo pone delante.",
+      ] },
+      { h2: "Señales de que te falta luz" },
+      { ul: [
+        "Tienes datos de sobra, pero no sabes de dónde viene cada cliente.",
+        "Cada vez que algo falla, la respuesta es «eso es cosa del otro proveedor».",
+        "Inviertes en anuncios, pero no sabes qué parte te trae clientes de verdad.",
+        "Llevas meses probando cosas sin una dirección clara.",
+        "Sientes que todo es mejorable, pero no sabes qué mejorar primero.",
+      ] },
+      { h2: "Qué cambia con una visión 360" },
+      { p: "Una mirada 360 no es hacer más cosas: es ver todas a la vez. Se ponen en la misma mesa la web, los anuncios, el SEO, las redes, la medición y el CRM, y se responde a lo que de verdad importa: de dónde viene cada cliente, dónde se pierden los contactos y qué merece más inversión y qué menos. Muchas veces el cambio no es añadir nada, sino ordenar lo que ya hay y quitar lo que no suma." },
+      { h2: "Alguien que lo mire desde fuera" },
+      { p: "Nos ha pasado en nuestras propias empresas: trabajando día a día, no ves el salto que has dado ni lo que te frena, hasta que alguien con otra mirada te lo muestra. Entonces se hace la luz. Por eso, cuando entramos en una empresa, lo primero que hacemos es mirar el conjunto, y sin vender nada: en el estudio gratuito te enseñamos dónde está cada cosa y qué haríamos." },
+      { h2: "Cómo empezar, con nosotros o sin nosotros" },
+      { ol: [
+        "Apunta de dónde viene hoy cada cliente, aunque sea a mano.",
+        "Pon en una sola hoja lo que pagas a cada proveedor y qué resultado te da cada uno.",
+        "Elige un único objetivo medible, como el número de peticiones al mes, y revísalo cada semana.",
+        "Pide a alguien de fuera que mire el conjunto y te diga qué ve. Si quieres que seamos nosotros, empieza por el test de idoneidad.",
+      ] },
+    ],
+  },
+  {
     slug: "cuanto-cuesta-el-marketing-digital-por-separado",
     video: "lapiz-medicion",
     apoyo: { video: "papeles", alt: "Facturas y papeles acumulados en una mesa" },
