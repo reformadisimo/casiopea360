@@ -450,6 +450,21 @@ const ICONO_EVENTO: Record<string, string> = {
   contacto: "bg-estrella",
 };
 
+
+// Los parámetros que más importan, con su evolución de seis meses (datos inventados).
+// mejor: "sube" si subir es bueno; "baja" si bajar es bueno.
+const seg = (n: number) => (n >= 60 ? `${Math.floor(n / 60)}:${String(Math.round(n % 60)).padStart(2, "0")} min` : `${Math.round(n)} s`);
+const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: number) => string; ayuda: string }[] = [
+  { t: "Contactos al mes", serie: [143, 171, 205, 238, 269, 312], mejor: "sube", f: (n) => num(n), ayuda: "Personas que te han escrito, llamado o pedido presupuesto. Es el número que más importa." },
+  { t: "Tiempo que se quedan en tu web", serie: [52, 64, 81, 97, 108, 124], mejor: "sube", f: seg, ayuda: "Cuanto más se quedan, más les interesa lo que ven." },
+  { t: "Tasa de rebote", serie: [68, 61, 55, 50, 47, 42], mejor: "baja", f: (n) => `${n} %`, ayuda: "Personas que entran y se van sin hacer nada. Cuanto más baja, mejor." },
+  { t: "Visitas que acaban contactando", serie: [1.9, 2.4, 2.9, 3.3, 3.6, 4.1], mejor: "sube", f: (n) => `${n.toString().replace(".", ",")} %`, ayuda: "De cada 100 visitas, cuántas te contactan." },
+  { t: "Páginas que ven por visita", serie: [1.8, 2.3, 2.8, 3.0, 3.0, 3.4], mejor: "sube", f: (n) => n.toString().replace(".", ","), ayuda: "Si miran más páginas, es que encuentran lo que buscan." },
+  { t: "Velocidad de carga de tu web", serie: [4.8, 1.9, 1.2, 0.9, 0.8, 0.7], mejor: "baja", f: (n) => `${n.toString().replace(".", ",")} s`, ayuda: "Lo que tarda en abrirse. Cada segundo de más, se pierden visitas." },
+  { t: "Coste por contacto", serie: [24, 20, 17, 15, 13, 12], mejor: "baja", f: (n) => `${n} €`, ayuda: "Lo invertido en anuncios dividido entre contactos. Cuanto más bajo, mejor." },
+  { t: "Posición media en Google", serie: [14.2, 11.5, 8.9, 6.8, 6.1, 5.4], mejor: "baja", f: (n) => n.toString().replace(".", ","), ayuda: "Tu puesto medio cuando te buscan. Estar entre los 5 primeros es lo que trae llamadas." },
+];
+
 export default function PanelEjemplo() {
   const [pestana, setPestana] = useState<Pestana>("resumen");
   const [comparar, setComparar] = useState<"mes" | "inicio">("mes");
@@ -592,6 +607,29 @@ export default function PanelEjemplo() {
                 <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={comparar === "mes" ? -8 : -41} invertir contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
                 <Cifra titulo="Ventas que vienen de internet" valor={318400} formato={eur} cambio={comparar === "mes" ? 14 : 132} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
               </div>
+
+              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comparar === "mes" ? "Frente al mes pasado" : "Frente al día que empezamos"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte y quedarte con todo.">
+                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {PARAMETROS.map((x) => {
+                    const ahora = x.serie[5];
+                    const ref = comparar === "mes" ? x.serie[4] : x.serie[0];
+                    const cambio = Math.round(((ahora - ref) / ref) * 100);
+                    const bueno = x.mejor === "sube" ? cambio >= 0 : cambio <= 0;
+                    return (
+                      <li key={x.t} className="rounded-2xl border border-linea p-4">
+                        <p className="text-sm font-bold text-gris">{x.t}</p>
+                        <p className="mt-1 text-3xl font-extrabold">{x.f(ahora)}</p>
+                        <p className={`text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
+                          {cambio >= 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{comparar === "mes" ? "que el mes pasado" : "que al empezar"}</span>
+                        </p>
+                        <div className="mt-2"><Linea serie={x.serie} color={bueno ? "#047857" : "#e11d48"} alto={44} /></div>
+                        <p className="mt-1 text-xs text-gris">Antes: <b>{x.f(ref)}</b></p>
+                        <p className="mt-2 text-xs text-gris">{x.ayuda}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Caja>
 
               <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte, y la web y las cuentas son tuyas.">
                 <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
