@@ -921,7 +921,7 @@ export function BandaMiedoAlCambio() {
   return (
     <section className="bg-niebla py-6">
       <div className={ENVOLTORIO}>
-        <a href="/como-trabajamos#miedo-al-cambio" className="group flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <a href="/miedo-al-cambio" className="group flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <span>
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
             <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses si no mejoramos.</span>
