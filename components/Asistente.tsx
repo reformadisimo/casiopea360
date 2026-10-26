@@ -27,7 +27,7 @@ const vozDelNavegador = (): ConstructorVoz | undefined => {
 };
 
 const SUGERENCIAS = ["¿Qué entra en la cuota?", "¿Cómo podéis cobrar menos?", "¿Hay permanencia?", "¿Hacéis tiendas online?"];
-const SALUDO = "Hola, soy Cas, la asistente de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar.";
+const SALUDO = "Hola, soy Cas, la asistente con inteligencia artificial de Casiopea 360. Pregúntame lo que quieras sobre lo que hacemos, cuánto te costaría por separado o cómo empezar. Las condiciones definitivas son siempre las de tu propuesta y tu contrato.";
 
 // Convierte las rutas internas (/test, /estudio-gratuito...) en enlaces.
 function ConEnlaces({ texto }: { texto: string }) {

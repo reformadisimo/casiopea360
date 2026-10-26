@@ -165,7 +165,7 @@ export default function CostesPorTamano() {
               ))}
             </div>
             <p className="mt-5 text-2xl font-extrabold">Una sola cuota fija. La misma para cualquier tamaño.</p>
-            <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y, si lo quieres, el CRM, ya hechos. ¿Otra web, otra landing, otra calculadora? Incluidas.</p>
+            <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y, si lo quieres, el CRM, ya hechos. ¿Otra landing, otra calculadora? Dentro del alcance que acordemos.</p>
             <a href="/estudio-gratuito" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Quiero mi estudio gratuito</a>
             <p className="mt-4 text-sm text-white/70">
               <b className="text-estrella">Doce meses de permanencia</b> y la web es tuya al cumplirlos. Si a los tres meses no ves que mejoramos, te vas sin pagar nada. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar menos?</a>
@@ -186,7 +186,7 @@ export default function CostesPorTamano() {
           <p className="text-sm font-extrabold">Lo que tardan en hacerte la web</p>
           <div className="mt-3 space-y-3 text-sm">
             <div>
-              <div className="flex justify-between font-bold"><span>Una agencia</span><span className="text-rose-700">3 a 5 meses</span></div>
+              <div className="flex justify-between font-bold"><span>Una agencia, según nuestra experiencia</span><span className="text-rose-700">3 a 5 meses</span></div>
               <div className="mt-1 h-3 rounded-full bg-rose-500" />
             </div>
             <div>

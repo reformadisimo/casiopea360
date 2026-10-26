@@ -182,8 +182,8 @@ export const PASOS = [
     texto: "Te lo contamos todo con calma y en tu idioma: lo que hay hoy y lo que puede haber.",
   },
   {
-    titulo: "Tu web nueva, ya hecha",
-    texto: "Antes de firmar nada, la ves funcionando con tu nombre.",
+    titulo: "Tu web nueva, antes de firmar",
+    texto: "Antes de firmar nada, ves una demostración de tu futura web con tu nombre.",
   },
   {
     titulo: "Quince minutos de accesos",
@@ -276,7 +276,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Hay permanencia?",
-    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos conseguido enseñarte que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
+    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos conseguido enseñarte que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Ese importe se reduce poco a poco hasta cero a los doce meses, y lo conoces antes de firmar, en tu propuesta. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
   },
   {
     p: "¿Garantizáis resultados?",
@@ -340,7 +340,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
-    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings sin límite, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, el diseño de tu marca (logo, manual y papelería; la impresión va aparte), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
+    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings a medida, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, el diseño de tu marca (logo, manual y papelería; la impresión va aparte), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
@@ -502,7 +502,7 @@ export const EMPEZAMOS: { t: string; d: string }[] = [
 export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: string }[] = [
   { icono: "calendario", logo: "WhatsApp", t: "Reservas y citas online", d: "Tus clientes reservan solos desde la web y reciben el recordatorio por WhatsApp. Menos citas a las que no viene nadie." },
   { icono: "estrella", logo: "Ficha de Google", t: "Reseñas", d: "Pedimos reseña después de cada venta y contestamos todas, en Google, Bing y Apple Maps." },
-  { icono: "pagina", t: "Landings sin límite", d: "Una página a medida para cada campaña, cada servicio o cada ciudad. ¿Otra? Incluida." },
+  { icono: "pagina", t: "Landings a medida", d: "Una página a medida para cada campaña, cada servicio o cada ciudad. Las que necesites, dentro del alcance que acordemos." },
   { icono: "chat", logo: "Claude", t: "Asistente con IA", d: "En tu web y en WhatsApp, a cualquier hora. Responde, recoge los datos y los mete en tu CRM." },
   { icono: "firma", t: "Presupuestos con firma", d: "Calculadoras y presupuestos online que tu cliente acepta y firma desde el móvil, sin papeles." },
   { icono: "sonrisa", t: "Encuestas de satisfacción", d: "Saltan solas después de cada trabajo: detectan al cliente descontento a tiempo y al contento le piden la reseña." },

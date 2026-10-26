@@ -30,7 +30,7 @@ const BORRADORES: [string, string][] = [
 const MEDICION: [string, string][] = [
   ["La conversión que importa", "Que cada petición de visita llegue a Google Ads como una conversión. Sin eso, la puja automática trabaja a ciegas."],
   ["Conversiones mejoradas", "El correo del formulario, cifrado, ayuda a Google a reconocer a más personas. Y deja preparado el día en que devolvamos las obras firmadas."],
-  ["Conexión directa con Meta", "Cada contacto viaja a Meta desde la propia web, aunque el navegador bloquee las cookies, para que aprenda a quién mostrar el anuncio."],
+  ["Conexión directa con Meta", "Cada contacto se comunica a Meta desde nuestro servidor, solo cuando hay base legal y respetando las preferencias de privacidad de cada persona, para que aprenda a quién mostrar el anuncio."],
   ["Avisos del píxel", "Los revisamos uno a uno: los que se arreglan solos, los que no importan y los que sí hay que corregir."],
 ];
 

@@ -34,7 +34,7 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
     icono: "calendario",
     titulo: "Nada te ata",
     corto: "Doce meses de permanencia, porque la web te la regalamos. A los tres puedes irte sin pagar nada si no mejoramos.",
-    largo: "Lo decimos claro: hay doce meses de permanencia, porque la web te la regalamos. Si a los tres meses no has visto que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si te vas más tarde, pagas solo la parte de la web que falte por cubrir. Pasados los doce meses no hay ninguna: sigues porque te compensa, no porque no puedas irte.",
+    largo: "Lo decimos claro: hay doce meses de permanencia, porque la web te la regalamos. Si a los tres meses no has visto que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si te vas más tarde, pagas solo la parte de la web que falte por cubrir. El importe y el calendario los ves antes de firmar, en tu propuesta. Pasados los doce meses no hay ninguna: sigues porque te compensa, no porque no puedas irte.",
   },
   {
     icono: "lista",

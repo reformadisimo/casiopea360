@@ -740,7 +740,7 @@ export function SeccionComoEsPosible() {
           «Pero… <span className="text-estrella">¿cómo es posible?</span>»
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-white/85">
-          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings sin límite y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b> Con el trabajo de un equipo enorme y sin su estructura. <Link prefetch={false} href="/quienes-somos#ventaja" className="font-bold text-estrella underline underline-offset-4">Cómo lo hacemos</Link>.
+          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings a medida y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b> Con el trabajo de un equipo enorme y sin su estructura. <Link prefetch={false} href="/quienes-somos#ventaja" className="font-bold text-estrella underline underline-offset-4">Cómo lo hacemos</Link>.
         </p>
         <ul className="carrusel mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {COMO_ES_POSIBLE.map((x, i) => (

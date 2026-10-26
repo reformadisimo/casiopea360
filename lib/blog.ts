@@ -200,12 +200,12 @@ export const ARTICULOS: Articulo[] = [
     video: "mano-pantalla",
     apoyo: { video: "equipo-celebra", alt: "Un equipo celebra delante del ordenador" },
     titulo: "Cuánto se tarda en hacer una web: por qué unos días y no cinco meses",
-    descripcion: "Lo habitual son tres, cuatro o cinco meses. Te contamos dónde se va ese tiempo y cómo se puede tener una web mejor en unos días.",
+    descripcion: "En nuestra experiencia, muchas agencias tardan tres, cuatro o cinco meses. Te contamos dónde se va ese tiempo y cómo se puede tener una web mejor en unos días.",
     fecha: "2026-10-24",
     lectura: "5 minutos",
     categoria: "Web",
     respuesta:
-      "Una agencia suele tardar de tres a cinco meses en entregar una web corporativa, sobre todo por las esperas entre fases: reuniones, propuestas, aprobaciones y colas de trabajo. Con un equipo que diseña, escribe y programa a la vez, y con la tecnología actual, una web a medida puede estar lista en unos días; normalmente menos de una semana.",
+      "Según nuestra experiencia, muchas agencias tardan de tres a cinco meses en entregar una web corporativa, sobre todo por las esperas entre fases: reuniones, propuestas, aprobaciones y colas de trabajo. Con un equipo que diseña, escribe y programa a la vez, y con la tecnología actual, una web a medida puede estar lista en unos días; normalmente menos de una semana.",
     cuerpo: [
       { h2: "Dónde se van los meses" },
       { p: "Cuando una web tarda cinco meses, casi nunca es porque alguien esté trabajando en ella cinco meses. El tiempo se va en esperas: la reunión de arranque, la propuesta de diseño, la espera a que el cliente apruebe, la cola del programador, los textos que nadie escribe, las fotos que no llegan, la revisión de la revisión." },
@@ -227,7 +227,7 @@ export const ARTICULOS: Articulo[] = [
     lectura: "5 minutos",
     categoria: "CRM",
     respuesta:
-      "Un CRM es el programa donde se guarda cada contacto con su historia: de dónde vino, qué pidió, qué presupuesto se le envió y si acabó comprando. Sirve para no perder ningún cliente, para hacer seguimiento en el momento justo y para saber qué canal de marketing trae clientes que de verdad facturan.",
+      "Un CRM es el programa donde se guarda cada contacto con su historia: de dónde vino, qué pidió, qué presupuesto se le envió y si acabó comprando. Ayuda a no dejar contactos sin seguimiento, a escribir en el momento justo y a saber qué canal de marketing trae clientes que de verdad facturan.",
     cuerpo: [
       { h2: "El problema que resuelve" },
       { p: "En muchas empresas los contactos están repartidos entre el correo, el WhatsApp de cada comercial, una hoja de cálculo y la memoria de alguien. Así es fácil que un presupuesto se quede sin respuesta o que nadie vuelva a llamar a quien dudaba. Y es imposible saber qué anuncio o qué página te trajo los mejores clientes." },
@@ -324,7 +324,7 @@ export const ARTICULOS: Articulo[] = [
     apoyo: { video: "llamada-sonrisa", alt: "Un empresario sonríe al ver sus resultados en el móvil" },
     titulo: "¿Te cobran un porcentaje de lo que inviertes en anuncios? Lo que deberías saber",
     descripcion:
-      "Muchas agencias cobran entre un 5 % y un 15 % de lo que inviertes en Google o Meta. Te explicamos cómo funciona, cuánto supone al año y por qué un precio fijo es más justo.",
+      "Muchas agencias cobran entre un 5 % y un 15 % de lo que inviertes en Google o Meta. Te explicamos cómo funciona, cuánto supone al año y qué cambia con un precio fijo.",
     fecha: "2026-10-24",
     lectura: "5 minutos",
     categoria: "Anuncios",
