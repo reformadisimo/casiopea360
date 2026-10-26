@@ -16,6 +16,42 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
+    slug: "lo-que-de-verdad-cuesta-el-marketing-digital-reuniones-horas-y-tiempo",
+    video: "lapiz-medicion",
+    apoyo: { video: "equipo-portatil", alt: "Dos profesionales organizan el trabajo juntos en un portátil" },
+    titulo: "Lo que de verdad cuesta el marketing digital: reuniones, horas y tiempo que no dedicas a tu negocio",
+    descripcion: "La factura es solo una parte. El coste oculto de coordinar proveedores y por qué hacerlo todo con un solo equipo ahorra tiempo, esfuerzo y dinero.",
+    fecha: "2026-10-26",
+    lectura: "5 minutos",
+    categoria: "Estrategia",
+    respuesta:
+      "El marketing digital cuesta más de lo que dice la factura: cuesta las reuniones con cada proveedor, las horas de coordinarlos, los meses hasta que todo funciona a la vez y el tiempo que tú no dedicas a tu negocio. Un solo equipo que lo hace todo y lo tiene conectado reduce ese coste oculto: menos reuniones, menos esfuerzo de tu parte y plazos de días en lugar de meses.",
+    cuerpo: [
+      { h2: "La factura es la parte pequeña" },
+      { p: "Cuando alguien calcula cuánto le cuesta su marketing digital, suma lo que paga a la agencia, a quien lleva los anuncios y a quien mantiene la web. Casi nunca suma lo demás, que muchas veces pesa más: las reuniones, las horas de explicar lo mismo a cada proveedor y la atención que se le quita a la empresa." },
+      { h2: "El coste que no sale en ninguna factura" },
+      { ul: [
+        "Reuniones: una por proveedor, y a veces otra para que se pongan de acuerdo entre ellos.",
+        "Coordinación: acabas siendo tú quien pasa los mensajes de uno a otro y quien comprueba que cada pieza encaja con las demás.",
+        "Plazo: hasta que web, anuncios, medición y CRM funcionan a la vez pasan meses, y durante ese tiempo se pierden contactos.",
+        "Tu tiempo: cada hora que dedicas a coordinar es una hora que no dedicas a vender, a tu equipo o a tus clientes.",
+        "Lo que se pierde en el camino: cuando nadie es responsable del conjunto, nadie ve lo que se cae entre dos proveedores.",
+      ] },
+      { h2: "Qué cambia con un solo equipo" },
+      { p: "Cuando web, Google, anuncios, redes, CRM e inteligencia artificial las lleva el mismo equipo, desaparecen casi todas esas reuniones y el trabajo de unir las piezas. Quien te cuenta lo que se va a hacer es quien lo hace, y la automatización se encarga de lo repetitivo. Para ti queda una conversación y un panel donde ves cada día qué se ha hecho." },
+      { h2: "Lo comprobamos en nuestras propias empresas" },
+      { p: "Llevamos años viviéndolo desde los dos lados: pagando a varios proveedores y trabajando con un solo equipo. La diferencia más grande no está en la cuota: está en las semanas de agenda que dejas de gastar y en que cada cosa funciona porque está conectada con las demás." },
+      { h2: "Haz la cuenta tú" },
+      { ol: [
+        "Apunta cuántas reuniones de marketing tuviste el último mes y cuánto duraron.",
+        "Suma las horas que dedicaste a pasar información de un proveedor a otro.",
+        "Calcula cuánto vale una hora de tu tiempo o de quien lo hace en tu empresa.",
+        "Compara el total con la cuota de un solo equipo que lo hace todo y te enseña los resultados cada día.",
+      ] },
+      { p: "Si quieres que la hagamos contigo, empieza por el estudio gratuito: te contamos cómo está hoy tu marketing y qué haríamos." },
+    ],
+  },
+  {
     slug: "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona",
     video: "lapiz-medicion",
     apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos los resultados en un portátil" },

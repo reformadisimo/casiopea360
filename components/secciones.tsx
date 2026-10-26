@@ -670,6 +670,13 @@ export function SeccionTambienIncluido() {
 
 /* Las cuatro promesas: mejor, en días, a precio fijo y sin perseguirnos. */
 /* «¿Cómo es posible?»: lo que dicen los clientes cuando lo ven funcionando. */
+const COSTE_OCULTO: [string, string, string][] = [
+  ["Reuniones", "Una por proveedor, y otra para que se pongan de acuerdo.", "Una sola conversación, con quien lo hace."],
+  ["Coordinación", "Eres tú quien pasa el mensaje de uno a otro.", "Todo está conectado. No pasas nada de uno a otro."],
+  ["Tu tiempo", "Semanas de tu agenda, lejos de tu negocio.", "Lo mínimo: casi todo se hace por correo."],
+  ["Plazo", "Meses hasta que todo funciona a la vez.", "Días para tenerlo en marcha."],
+  ["Dinero", "Un presupuesto por cada proveedor, más lo que se pierde en el camino.", "Una cuota fija, sin comisiones."],
+];
 /* Nuestra ventaja: el trabajo de un equipo grande, sin la estructura de uno. */
 export function SeccionVentaja() {
   const T: [string, string, string][] = [
@@ -695,6 +702,23 @@ export function SeccionVentaja() {
             </li>
           ))}
         </ul>
+        <div className="mt-10 overflow-hidden rounded-[2rem] bg-noche text-white">
+          <div className="grid gap-px bg-white/10 sm:grid-cols-[0.8fr_1fr_1fr]">
+            <span className="hidden bg-noche p-5 sm:block" />
+            <span className="hidden bg-noche p-5 text-sm font-extrabold uppercase tracking-wide text-rose-300 sm:block">Hacerlo por tu cuenta</span>
+            <span className="hidden bg-noche p-5 text-sm font-extrabold uppercase tracking-wide text-estrella sm:block">Con Casiopea 360</span>
+            {COSTE_OCULTO.map(([q, a, b]) => (
+              <div key={q} className="contents">
+                <b className="bg-noche px-5 pt-5 sm:py-5">{q}</b>
+                <span className="bg-noche px-5 pb-1 text-white/70 sm:py-5"><b className="block text-xs font-extrabold uppercase tracking-wide text-rose-300 sm:hidden">Por tu cuenta</b>{a}</span>
+                <span className="bg-noche px-5 pb-5 pt-2 font-bold text-white sm:py-5"><b className="block text-xs font-extrabold uppercase tracking-wide text-estrella sm:hidden">Con Casiopea 360</b>{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          Lo que de verdad cuesta el marketing digital no es solo la factura: son las reuniones, las horas de coordinar a cada proveedor y el tiempo que no dedicas a tu negocio. Eso es lo que te quitamos. Lo vivimos cada día en nuestras propias empresas, y por eso lo decimos con tranquilidad.
+        </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link prefetch={false} href="/un-dia-de-trabajo" className={BOTON}>Ver un día de trabajo real</Link>
           <Link prefetch={false} href="/estudio-gratuito" className="inline-flex min-h-12 items-center justify-center rounded-full px-6 font-bold text-tinta underline decoration-estrella decoration-4 underline-offset-4">Pide tu estudio gratuito</Link>
