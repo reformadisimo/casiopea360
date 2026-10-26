@@ -1242,7 +1242,7 @@ export function SeccionCRM() {
     <section id="crm" className="scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
       <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]`}>
         <div>
-          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Valor añadido · incluido en tu cuota</p>
+          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Valor añadido · si lo quieres</p>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Tu propio CRM, hecho a medida.</h2>
           <p className="mt-5 text-lg text-gris">Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. Sin licencias que pagar por usuario.</p>
           <ul className="mt-7 space-y-3 text-[1.05rem]">

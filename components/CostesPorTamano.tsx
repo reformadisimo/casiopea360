@@ -165,7 +165,7 @@ export default function CostesPorTamano() {
               ))}
             </div>
             <p className="mt-5 text-2xl font-extrabold">Una sola cuota fija. La misma para cualquier tamaño.</p>
-            <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y el CRM, ya hechos. ¿Otra web, otra landing, otra calculadora? Incluidas.</p>
+            <p className="mt-2 text-white/85">Con todo lo que marques, y lo que no, dentro. La web y, si lo quieres, el CRM, ya hechos. ¿Otra web, otra landing, otra calculadora? Incluidas.</p>
             <a href="/estudio-gratuito" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Quiero mi estudio gratuito</a>
             <p className="mt-4 text-sm text-white/70">
               <b className="text-estrella">Doce meses de permanencia</b> y la web es tuya al cumplirlos. Si a los tres meses no ves que mejoramos, te vas sin pagar nada. <a href="#barato" className="font-bold text-white underline underline-offset-4">¿Cómo puede costar menos?</a>

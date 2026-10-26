@@ -749,7 +749,7 @@ export default function PanelEjemplo() {
           {pestana === "crm" && (
             <>
               <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-                <p className="text-sm font-bold text-estrella">Tu CRM, hecho a medida e incluido</p>
+                <p className="text-sm font-bold text-estrella">Tu CRM, hecho a medida, si lo quieres</p>
                 <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Cada contacto entra solo, con de dónde vino. Tú solo lo mueves hasta cliente.</p>
                 <p className="mt-2 text-white/75">Formulario, chat, WhatsApp, llamadas desde Google y calculadoras crean la ficha sin que nadie escriba nada. Y los seguimientos te avisan de a quién llamar hoy. Nada de boletines masivos: un mensaje a la persona justa en el momento justo.</p>
               </section>

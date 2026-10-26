@@ -348,7 +348,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Os conectáis con mi CRM? ¿Y si no tengo?",
-    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre, sin licencias por usuario. Va incluido en tu cuota. Con él hacemos los seguimientos: nada de boletines masivos, sino el mensaje justo a quien lo necesita.",
+    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre, sin licencias por usuario. Es opcional: lo montamos si lo quieres. Con él hacemos los seguimientos: nada de boletines masivos, sino el mensaje justo a quien lo necesita.",
   },
   {
     p: "¿Hacéis también radio o prensa?",
@@ -566,7 +566,7 @@ export const COMO_ES_POSIBLE: { antes: string; ahora: string; tema: string }[] =
   { tema: "La web", antes: "Miles de euros y meses de espera por una web.", ahora: "Una web mejor, en días, dentro de la cuota." },
   { tema: "Las landings", antes: "Hasta 900 € por cada landing nueva.", ahora: "Todas las que necesites, en horas, sin pagar aparte." },
   { tema: "Los plazos", antes: "Meses para cualquier cosa.", ahora: "Horas o días. Y por escrito." },
-  { tema: "El CRM y los correos", antes: "Licencias por usuario y meses para montar los correos automáticos.", ahora: "Tu CRM a medida y tus correos funcionando, incluidos." },
+  { tema: "El CRM y los correos", antes: "Licencias por usuario y meses para montar los correos automáticos.", ahora: "Tu CRM a medida y tus correos funcionando, si los quieres." },
   { tema: "La IA", antes: "«Eso de un asistente con IA es para grandes empresas.»", ahora: "Tu asistente con IA atendiendo a cualquier hora, también por voz." },
   { tema: "Los datos", antes: "Informes que no se entienden, cuando llegan.", ahora: "Cada contacto con su origen, y un parte claro cada día." },
 ];

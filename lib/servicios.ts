@@ -277,7 +277,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Tu CRM a medida",
     tituloSeo: "CRM a medida para empresas, sin licencias por usuario",
     descripcionSeo:
-      "Tu propio CRM hecho a medida: cada contacto entra solo con su origen, fases con un toque y seguimiento automático. Sin licencias por usuario, incluido en tu cuota.",
+      "Tu propio CRM hecho a medida: cada contacto entra solo con su origen, fases con un toque y seguimiento automático. Sin licencias por usuario. Con tu CRM a medida, si lo quieres.",
     titular: "Tu propio CRM, hecho a medida. Sin licencias por usuario.",
     entradilla:
       "Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. ¿Ya tienes uno? Lo conectamos al tuyo.",
