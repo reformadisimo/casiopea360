@@ -916,6 +916,23 @@ export function SeccionMiedoAlCambio() {
   );
 }
 
+/* Aviso corto en la portada: lleva a la sección completa de «Cómo trabajamos». */
+export function BandaMiedoAlCambio() {
+  return (
+    <section className="bg-niebla py-6">
+      <div className={ENVOLTORIO}>
+        <a href="/como-trabajamos#miedo-al-cambio" className="group flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <span>
+            <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses si no mejoramos.</span>
+          </span>
+          <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 /* Lo que no podemos enseñar: trabajos confidenciales. */
 export function SeccionConfidenciales() {
   return (
