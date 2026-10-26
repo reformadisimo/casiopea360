@@ -962,6 +962,13 @@ export function BandaMiedoAlCambio() {
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
         </a>
+        <a href="/un-dia-de-trabajo" className="group mt-4 flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <span>
+            <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">Sin cajas negras</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Mira lo que hacemos por dentro en un día de trabajo real. Casi nadie te lo cuenta.</span>
+          </span>
+          <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Ver un día de trabajo</span>
+        </a>
       </div>
     </section>
   );
