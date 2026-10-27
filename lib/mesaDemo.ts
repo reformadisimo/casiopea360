@@ -90,5 +90,7 @@ export function detalleDemo(desde: string, hasta: string) {
       fr("/contacto", n * 5, 0.8, n * 0.5), fr("/blog/cuanto-cuesta-instalar-aire-acondicionado-en-madrid-en-2026", n * 5, 0.58, n * 0.1), fr("/aerotermia", n * 4, 0.62, n * 0.06),
     ],
   };
-  return { rebote, paginas, clicsPagina, lupa, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
+  const cl = (clave: string, ses: number, rabia: number, muertos: number, vuelven: number, scroll: number) => ({ clave, sesiones: Math.round(ses), rabia_pct: rabia, muertos_pct: muertos, vuelven_pct: vuelven, vaiven_pct: null, scroll, activo: null });
+  const clarity = { dias: Math.min(n, 28), desde: desde, paginas: [cl("/", n * 9, 1.2, 4.8, 21, 58), cl("/aire-acondicionado-madrid", n * 5, 0.8, 3.1, 17, 64), cl("/aerotermia", n * 3, 3.6, 12.4, 26, 49), cl("/cuanto-cuesta-instalar-aire", n * 3, 0.9, 2.2, 19, 71), cl("/calculadora-ahorro", n * 2, 2.1, 5.5, 14, 77), cl("/contacto", n * 2, 0.4, 1.8, 9, 82)], dispositivos: [] };
+  return { rebote, paginas, clicsPagina, lupa, clarity, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
 }

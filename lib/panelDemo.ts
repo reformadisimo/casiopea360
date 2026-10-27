@@ -9,7 +9,7 @@ export const temasDemo: Modulo[] = [
   { id: "web", titulo: "La web", ver: "Ver con la lupa", que: "Qué hace la gente en tu web y si todo funciona", luz: "ambar",
     conclusion: "3 cosas de la web para mirar. La primera: en la portada la mitad de la gente no pasa del 25 % de la página.",
     filas: [
-      { t: "Visitas con la lupa (28 días)", v: "480 visitas · 1,8 páginas por visita" },
+      { t: "Visitas con la lupa (28 días)", v: "672 visitas · 1,8 páginas por visita" },
       { t: "Para mirar 1", v: "En la portada la mitad de la gente no pasa del 25 % de la página.", luz: "ambar" },
       { t: "Para mirar 2", v: "En /aerotermia, 14 toques en fotos que no hacen nada.", luz: "ambar" },
       { t: "Lo que funciona", v: "Donde más se pulsa WhatsApp es /contacto.", luz: "verde" },

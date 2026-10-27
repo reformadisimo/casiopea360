@@ -472,5 +472,6 @@ html[data-texto="3"] header { zoom: 0.667; }
 @font-face{font-family:'Roboto Mesa';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/panel/roboto-latin-700-normal.woff2) format('woff2')}
 @font-face{font-family:'Lora Mesa';font-style:italic;font-weight:500;font-display:swap;src:url(/fonts/panel/lora-latin-500-italic.woff2) format('woff2')}
 .mesa{--font-sans:'Roboto Mesa',system-ui,sans-serif;--font-serif:'Lora Mesa',Georgia,serif;background:#fbfaf7;color:#1a3d47;font-family:var(--font-sans);line-height:1.65;min-height:100vh}
-.mesa h1,.mesa h2,.mesa h3,.mesa h4{font-family:var(--font-serif);letter-spacing:0;text-wrap:initial}
+.mesa h1,.mesa h2,.mesa h3,.mesa h4{font-family:var(--font-serif);letter-spacing:0;text-wrap:initial;line-height:1.65}
+.mesa h1.leading-tight,.mesa h2.leading-tight{line-height:1.25}
 .mesa :focus-visible{outline:2px solid #2c7c98;outline-offset:3px;border-radius:3px}

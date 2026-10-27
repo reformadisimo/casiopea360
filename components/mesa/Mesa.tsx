@@ -1246,7 +1246,7 @@ function BloqueRebote({ T, C, rebote, cargando, conectado }: { T: Totales; C: To
       </Caja>
       <Caja titulo="Páginas que pueden estar perdiendo clientes" fuente="Analytics · páginas de servicio con más rebote que la media y casi sin contactos">
         {pierden.length ? (
-          <ul className="space-y-2">{pierden.map((p) => <li key={p.pagina} className="rounded-[14px] bg-[#f8e8ea] px-3 py-2 text-[14px] text-ink"><b>{p.pagina}</b>: {num(p.sesiones)} visitas, rebote {pct(p.rebote)} (la media de las páginas de servicio es {pct(mediaServ)}), {num(p.contactos)} acciones clave. Merece revisar qué ve la gente al llegar.</li>)}</ul>
+          <ul className="space-y-2">{pierden.map((p) => <li key={p.pagina} className="rounded-[14px] bg-[#f8e8ea] px-3 py-2 text-[14px] text-ink"><b>{p.pagina}</b>: {num(p.sesiones)} visitas, rebote {pct(p.rebote)} (la media de las páginas de servicio es {pct(mediaServ)}), {num(p.contactos)} {p.contactos === 1 ? "acción clave" : "acciones clave"}. Merece revisar qué ve la gente al llegar.</li>)}</ul>
         ) : <p className="text-[14px] text-[#3f6b39]">{rebote ? "Ninguna página de servicio destaca para mal en este periodo." : cargando ? "Cargando…" : "Sin datos."}</p>}
         <div className="mt-4">
           <Tabla
@@ -1325,9 +1325,9 @@ function BloqueClarity({ c, cargando }: { c: Detalle["clarity"]; cargando: boole
   const peor = (k: "rabia_pct" | "muertos_pct" | "vuelven_pct") => [...pags].filter((x) => (x[k] ?? 0) > 0).sort((a, b) => (b[k] ?? 0) - (a[k] ?? 0))[0];
   const r = peor("rabia_pct"), m = peor("muertos_pct"), v = peor("vuelven_pct");
   return (
-    <Caja titulo="Dónde se atasca la gente (Clarity)" fuente={cargando ? "Cargando…" : c?.dias ? `Microsoft Clarity · ${c.dias} ${c.dias === 1 ? "día guardado" : "días guardados"} en este periodo · solo quien acepta cookies` : "Microsoft Clarity"}>
+    <Caja titulo="Dónde se atasca la gente (Lupa 360)" fuente={cargando ? "Cargando…" : c?.dias ? `La lupa de Casiopea · ${c.dias} ${c.dias === 1 ? "día guardado" : "días guardados"} en este periodo · solo quien acepta cookies` : "La lupa de Casiopea"}>
       {!c || !c.dias ? (
-        <p className="text-[14px] text-ink/55">{cargando ? "Cargando…" : "No hay datos de Clarity guardados para estas fechas. Se guardan cada mañana desde el 11 de octubre de 2026 (Microsoft solo deja pedir los últimos días)."}</p>
+        <p className="text-[14px] text-ink/55">{cargando ? "Cargando…" : "No hay datos de la lupa guardados para estas fechas. Se guardan cada día, solo de quien acepta cookies."}</p>
       ) : (
         <>
           <ul className="mb-4 space-y-1.5 text-[14.5px] text-ink/85">
@@ -1348,7 +1348,7 @@ function BloqueClarity({ c, cargando }: { c: Detalle["clarity"]; cargando: boole
               { k: "scroll", t: "Bajan (media)", v: (x) => x.scroll ?? -1, num: true, f: (x) => (x.scroll === null ? "-" : `${x.scroll} %`) },
             ]}
           />
-          <p className="mt-2 text-[12.5px] text-ink/50">Para ver el porqué, abre las grabaciones de esa página en clarity.microsoft.com (se ve el ratón y los dedos de la gente, sin datos personales).</p>
+          <p className="mt-2 text-[12.5px] text-ink/50">Para ver el porqué, abre la lupa de esa página (se ve dónde toca y hasta dónde baja la gente, sin datos personales).</p>
         </>
       )}
     </Caja>
