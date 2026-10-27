@@ -7,10 +7,14 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
+import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
+import { Herramientas360, Mandos } from "@/components/PanelMandos";
 
-type Pestana = "resumen" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
+type Pestana = "resumen" | "mandos" | "herramientas" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
 const PESTANAS: [Pestana, string][] = [
   ["resumen", "Resumen"],
+  ["mandos", "Mis mandos"],
+  ["herramientas", "Herramientas 360"],
   ["peticiones", "Tus peticiones"],
   ["crm", "Tu CRM"],
   ["clientes", "Clientes"],
@@ -294,10 +298,11 @@ function Contador({ valor, formato = num }: { valor: number; formato?: (n: numbe
 }
 
 // Caja con su explicación «para dummies» detrás del botón de interrogación.
-function Caja({ titulo, fuente, ayuda, children, className = "" }: { titulo: string; fuente?: string; ayuda?: string; children: React.ReactNode; className?: string }) {
+function Caja({ titulo, fuente, ayuda, children, className = "", quien = "nosotros" }: { titulo: string; fuente?: string; ayuda?: string; children: React.ReactNode; className?: string; quien?: Quien }) {
   const [abierta, setAbierta] = useState(false);
   return (
     <section className={`min-w-0 rounded-3xl border border-linea bg-white p-5 sm:p-7 ${className}`}>
+      <EtiquetaQuien quien={quien} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <h2 className="text-lg font-extrabold sm:text-xl">{titulo}</h2>
         <div className="flex items-center gap-2">
@@ -315,6 +320,7 @@ function Caja({ titulo, fuente, ayuda, children, className = "" }: { titulo: str
           )}
         </div>
       </div>
+      <Glosa textos={[titulo, fuente]} className="mt-2" />
       {abierta && ayuda && <p className="mt-3 rounded-2xl bg-estrella/15 p-4 text-[0.95rem]">{ayuda}</p>}
       <div className="mt-5">{children}</div>
     </section>
@@ -429,6 +435,7 @@ function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion, 
   return (
     <div className="rounded-3xl border border-linea bg-white p-5">
       <p className="text-sm font-bold text-gris">{titulo}</p>
+      <Glosa textos={[titulo]} className="mt-0.5" />
       <p className="mt-1 text-3xl font-extrabold sm:text-4xl"><Contador valor={valor} formato={formato} /></p>
       {cambio !== undefined && (
         <p className={`mt-1 text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
@@ -693,6 +700,10 @@ export default function PanelEjemplo() {
             </>
           )}
 
+          {pestana === "mandos" && <Mandos ir={(id) => setPestana(id as Pestana)} />}
+
+          {pestana === "herramientas" && <Herramientas360 />}
+
           {pestana === "peticiones" && (
             <>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -759,7 +770,7 @@ export default function PanelEjemplo() {
                 <Cifra titulo="Ganado este mes" valor={fichas.filter((f) => f.fase === "Cliente").reduce((a, f) => a + f.valor, 0) + 298300} formato={eur} cambio={14} explicacion="Presupuestos firmados que vinieron por internet." />
                 <Cifra titulo="Cierre de presupuestos" valor={41} formato={(n) => `${n} %`} cambio={6} explicacion="De cada 100 presupuestos enviados, cuántos se firman." />
               </div>
-              <Caja titulo="Tus contactos, fase a fase" fuente="Se actualiza solo" ayuda="Cada columna es una fase. Pulsa en un contacto para ver su ficha, de dónde vino, todo lo que ha pasado y cuándo toca el siguiente seguimiento. Puedes moverlo de fase con un toque.">
+              <Caja quien="tuyo" titulo="Tus contactos, fase a fase" fuente="Se actualiza solo" ayuda="Cada columna es una fase. Pulsa en un contacto para ver su ficha, de dónde vino, todo lo que ha pasado y cuándo toca el siguiente seguimiento. Puedes moverlo de fase con un toque.">
                 <div className="-mx-1 overflow-x-auto pb-2">
                   <div className="flex min-w-max gap-3 px-1">
                     {FASES.map((fase) => {
@@ -812,7 +823,7 @@ export default function PanelEjemplo() {
                 })()}
               </Caja>
               <div className="grid gap-5 lg:grid-cols-2">
-                <Caja titulo="Seguimientos de hoy" fuente="Te avisa el CRM" ayuda="El CRM te dice a quién escribir o llamar hoy y por qué, para que nadie que dudaba se quede sin respuesta. Algunos salen solos (un WhatsApp o un correo); otros te tocan a ti, como una llamada.">
+                <Caja quien="tuyo" titulo="Seguimientos de hoy" fuente="Te avisa el CRM" ayuda="El CRM te dice a quién escribir o llamar hoy y por qué, para que nadie que dudaba se quede sin respuesta. Algunos salen solos (un WhatsApp o un correo); otros te tocan a ti, como una llamada.">
                   <ul className="space-y-2">
                     {fichas.filter((f) => /Hoy|Mañana/.test(f.seguimiento)).map((f) => (
                       <li key={f.id} className={`flex items-center gap-3 rounded-2xl border border-linea p-3 ${hechos.includes(f.id) ? "opacity-50" : ""}`}>
@@ -823,7 +834,7 @@ export default function PanelEjemplo() {
                     ))}
                   </ul>
                 </Caja>
-                <Caja titulo="Qué canal trae clientes de verdad" fuente="Del CRM, no de los clics" ayuda="Aquí no contamos visitas ni clics: contamos clientes que han firmado y lo que han facturado, según de dónde vinieron. Es el dato que decide dónde poner el dinero.">
+                <Caja quien="tuyo" titulo="Qué canal trae clientes de verdad" fuente="Del CRM, no de los clics" ayuda="Aquí no contamos visitas ni clics: contamos clientes que han firmado y lo que han facturado, según de dónde vinieron. Es el dato que decide dónde poner el dinero.">
                   <ul className="space-y-3">
                     {([["Anuncios de Google", 128000], ["Google sin pagar", 84000], ["Ficha de Google", 41000], ["Instagram y Facebook", 36000], ["Seguimientos", 22000], ["ChatGPT y otras IA", 7300]] as [string, number][]).map(([c, v]) => (
                       <li key={c}>
@@ -868,7 +879,7 @@ export default function PanelEjemplo() {
                 </ol>
               </Caja>
 
-              <Caja titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Todo entra solo en tu CRM (el que ya tengas o uno que te creamos), y tu equipo comercial lo ve igual, en el móvil.">
+              <Caja quien="tuyo" titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Todo entra solo en tu CRM (el que ya tengas o uno que te creamos), y tu equipo comercial lo ve igual, en el móvil.">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[640px] text-left text-sm">
                     <thead className="text-gris">
