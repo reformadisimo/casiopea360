@@ -57,6 +57,13 @@ const TRAZOS: Record<string, string> = {
   ajustes: "M4 8h10M18 8h2M4 16h2M10 16h10M16 6v4M8 14v4",
   estrella: "M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z",
   megafono: "M4 10v4h3l7 4V6L7 10zM17 9c1.5 1 1.5 5 0 6",
+  campana: "M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21h4",
+  sobre: "M4 6h16v12H4zM4 7l8 6 8-6",
+  mando: "M12 3v4M12 17v4M3 12h4M17 12h4M12 8a4 4 0 100 8 4 4 0 000-8z",
+  rayo: "M13 3L5 14h6l-1 7 8-11h-6z",
+  grid: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z",
+  casa: "M4 11l8-7 8 7v9h-5v-6H9v6H4z",
+  telefono: "M6 3h4l2 5-2.5 1.5a11 11 0 005 5L16 12l5 2v4a2 2 0 01-2 2A16 16 0 014 5a2 2 0 012-2z",
   red: "M6 7a2 2 0 100-4 2 2 0 000 4zM18 21a2 2 0 100-4 2 2 0 000 4zM18 7a2 2 0 100-4 2 2 0 000 4zM6 7v4a4 4 0 004 4h6M18 7v10",
 };
 

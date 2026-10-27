@@ -3,11 +3,25 @@
 // Estilo y piezas compartidas de la mesa de control: tipografía, colores y la vista "Todas las cifras".
 // Copiado del orden y el aspecto de la mesa de Reformadísimo (Ig, 27-oct). TODOS LOS DATOS SON INVENTADOS.
 import { useState } from "react";
-import { GuiaInicio, LUZ, type Luz, type Modulo, type Vista } from "@/components/PanelModulos";
+import LogoMarca from "@/components/LogoMarca";
+import { GuiaInicio, Icono, LUZ, type Luz, type Modulo, type Vista } from "@/components/PanelModulos";
 import { ATAJOS_PREGUNTA, ResumenesCorreo, responderPanel } from "@/components/PanelMandos";
 
 export const AMARILLO = "#ffde00";
 export const BORDE = "#e9e2d4";
+
+// Loseta de color con un dibujo dentro: da cara a cada tarjeta. Decorativa (el nombre va escrito al lado).
+export function Loseta({ n, color, tam = 44 }: { n: string; color: string; tam?: number }) {
+  return (
+    <span aria-hidden="true" className="inline-grid shrink-0 place-items-center text-white" style={{ width: tam, height: tam, borderRadius: tam * 0.34, background: color, boxShadow: `0 4px 0 ${color}55` }}>
+      <Icono n={n} className="h-[56%] w-[56%]" />
+    </span>
+  );
+}
+export const ICONO_HERR: Record<string, [string, string]> = {
+  lupa: ["lupa", "#2a6f86"], control360: ["camino", "#7a4fd0"], espejo: ["espejo", "#d9822b"], vigia: ["catalejo", "#1d6b3a"],
+  indice: ["moneda", "#c79a00"], avisos: ["campana", "#25a244"], resumenes: ["sobre", "#d93f3f"], pregunta: ["chat", "#2f6fd0"], todo: ["grid", "#1a3d47"],
+};
 
 // Colores y fuentes de la mesa, solo dentro de .mesa. Las páginas de cada sección heredan este aspecto.
 export const TEMA_CSS = `
@@ -91,11 +105,11 @@ function serieDe(sem: number, base: number, amp: number): number[] {
 }
 
 type Delta = { texto: string; mejora: boolean | null };
-function TarjetaCifra({ titulo, desc, valor, delta, antes, nota, serie, resaltada }: { titulo: string; desc: string; valor: string; delta?: Delta; antes?: string; nota?: string; serie: number[]; resaltada?: boolean }) {
+function TarjetaCifra({ icono, color = "#2a6f86", titulo, desc, valor, delta, antes, nota, serie, resaltada }: { icono?: string; color?: string; titulo: string; desc: string; valor: string; delta?: Delta; antes?: string; nota?: string; serie: number[]; resaltada?: boolean }) {
   return (
     <div className="flex min-h-[250px] flex-col rounded-[22px] border bg-white p-5" style={{ borderColor: resaltada ? "#2a6f86" : BORDE, boxShadow: resaltada ? "0 0 0 1px #2a6f86, 0 8px 24px rgba(26,61,71,.08)" : "none" }}>
-      <p className="sans-ey">{titulo}</p>
-      <p className="mt-2 text-[15px] leading-snug text-gris">{desc}</p>
+      <div className="flex items-center gap-3">{icono && <Loseta n={icono} color={color} tam={40} />}<p className="sans-ey">{titulo}</p></div>
+      <p className="mt-3 text-[15px] leading-snug text-gris">{desc}</p>
       <p className="num mt-2 text-[40px] leading-none">{valor}</p>
       {(delta || antes) && (
         <p className="mt-3 flex flex-wrap items-center gap-2 text-sm">
@@ -118,6 +132,7 @@ const CANALES_TABLA: [string, number, number, number, number, number | null, num
   ["Directo y boca a boca", 696, 44.2, 30, 22, null, null],
 ];
 
+const LOGO_CANAL: Record<string, string> = { "Google, sin pagar": "Google", "Google Ads": "Google Ads", "Meta (Facebook e Instagram)": "Meta", "Microsoft Ads": "Microsoft Ads", "Directo y boca a boca": "Chrome" };
 const nf = (n: number) => n.toLocaleString("es-ES");
 const eur = (n: number) => `${nf(n)} €`;
 
@@ -262,13 +277,13 @@ export function PanelCompleto(p: PropsCompleto) {
       </p>
 
       <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" aria-label="Estado de cada parte">
-        {[["web", "La web", "lupa"], ["dicen", "Reputación e IA", "espejo"], ["mercado", "Competencia", "vigia"], ["anuncios", "Anuncios", "campanas"], ["tuyo", "Ventas", "crm"]].map(([g, nombre, dest]) => {
+        {[["web", "La web", "lupa", "globo", "#2a6f86"], ["dicen", "Reputación e IA", "espejo", "espejo", "#d9822b"], ["mercado", "Competencia", "vigia", "catalejo", "#1d6b3a"], ["anuncios", "Anuncios", "campanas", "megafono", "#d93f3f"], ["tuyo", "Ventas", "crm", "persona", "#2f6fd0"]].map(([g, nombre, dest, ico, col]) => {
           const ms = p.modulos.filter((m) => m.grupo === g);
           const luz: Luz = ms.some((m) => m.luz === "problema") ? "problema" : ms.some((m) => m.luz === "atencion") ? "atencion" : ms.every((m) => m.luz === "preparado") ? "preparado" : "ok";
           return (
             <li key={g}>
               <button type="button" onClick={() => p.ir(dest)} className="w-full rounded-[18px] border bg-white p-4 text-left hover:bg-[#f9f6ee]" style={{ borderColor: BORDE }}>
-                <span className="flex items-center gap-2 font-bold"><span aria-hidden className="inline-block h-3.5 w-3.5 rounded-full" style={{ background: LUZ[luz].color, boxShadow: `0 0 0 4px ${LUZ[luz].color}22` }} />{nombre}</span>
+                <span className="flex items-center gap-2.5 font-bold"><Loseta n={ico} color={col} tam={36} />{nombre}<span aria-hidden className="ml-auto inline-block h-3 w-3 rounded-full" style={{ background: LUZ[luz].color, boxShadow: `0 0 0 4px ${LUZ[luz].color}22` }} /></span>
                 <span className="mt-1 block text-sm text-gris">{LUZ[luz].texto} · ver</span>
               </button>
             </li>
@@ -298,15 +313,15 @@ export function PanelCompleto(p: PropsCompleto) {
           {HERRAMIENTAS_LISTA.map(([t, d, id]) => (
             <li key={id}>
               <button type="button" onClick={() => p.ir(id)} className="h-full w-full rounded-[18px] border bg-white p-4 text-left hover:bg-[#f9f6ee]" style={{ borderColor: BORDE }}>
-                <span className="flex items-center justify-between font-bold">{t}<span aria-hidden>→</span></span>
-                <span className="mt-1 block text-sm text-gris">{d}</span>
+                <span className="flex items-center gap-3 font-bold"><Loseta n={ICONO_HERR[id][0]} color={ICONO_HERR[id][1]} /><span className="flex-1">{t}</span><span aria-hidden>→</span></span>
+                <span className="mt-2 block text-sm text-gris">{d}</span>
               </button>
             </li>
           ))}
           <li>
             <button type="button" onClick={() => p.navegar({ g: "web" })} className="h-full w-full rounded-[18px] border bg-white p-4 text-left hover:bg-[#f9f6ee]" style={{ borderColor: BORDE }}>
-              <span className="flex items-center justify-between font-bold">Todas las secciones<span aria-hidden>→</span></span>
-              <span className="mt-1 block text-sm text-gris">El índice completo del panel, con todo explicado</span>
+              <span className="flex items-center gap-3 font-bold"><Loseta n="grid" color="#1a3d47" /><span className="flex-1">Todas las secciones</span><span aria-hidden>→</span></span>
+              <span className="mt-2 block text-sm text-gris">El índice completo del panel, con todo explicado</span>
             </button>
           </li>
         </ul>
@@ -342,15 +357,15 @@ export function PanelCompleto(p: PropsCompleto) {
 
       <section aria-label="Cifras" className="mt-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <TarjetaCifra titulo="Visitas a la web" desc="Veces que alguien entra en la web (Analytics)." valor={nf(visitas)} delta={dlt(12, true)} antes={antes(visitas, 12)} nota={`${nf(Math.round(visitas * 0.67))} personas distintas`} serie={serieDe(1, 50, 30)} />
-          <TarjetaCifra titulo="Rebote" desc="De cada 100 visitas, cuántas se van sin hacer nada. Cuanto más bajo, mejor." valor="38,2 %" delta={dlt(-6, false)} antes={sinComparar ? undefined : "antes 40,6 %"} nota="Detalle por canal, móvil y página en «La web»" serie={serieDe(2, 40, 14)} />
-          <TarjetaCifra titulo="Contactos únicos" desc="Personas distintas que se ponen en contacto contigo (una persona cuenta una vez al día)." valor={nf(contactos)} delta={dlt(16, true)} antes={antes(contactos, 16)} nota={`${(contactos / rango.dias).toLocaleString("es-ES", { maximumFractionDigits: 1 })} al día`} serie={serieDe(3, 30, 22)} resaltada />
-          <TarjetaCifra titulo="Visitas que acaban en contacto" desc="De cada 100 visitas a la web, cuántas acaban dejando sus datos." valor={`${porCien.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`} delta={dlt(4, true)} antes={sinComparar ? undefined : "antes 3,6 %"} serie={serieDe(4, 20, 12)} />
-          <TarjetaCifra titulo="Presupuestos pedidos" desc="Contactos que piden presupuesto de verdad, no solo una duda." valor={nf(presu)} delta={dlt(9, true)} antes={antes(presu, 9)} nota="54 de cada 100 contactos" serie={serieDe(5, 25, 16)} />
-          <TarjetaCifra titulo="Inversión en anuncios" desc="Lo que has invertido en Google, Meta y Microsoft. Sin comisión nuestra." valor={eur(inversion)} delta={dlt(5, false)} antes={antes(inversion, 5, " €")} nota="La pagas tú, con tu tarjeta" serie={serieDe(6, 45, 14)} />
-          <TarjetaCifra titulo="Coste por contacto" desc="Lo que cuesta cada contacto que traen los anuncios. Cuanto más bajo, mejor." valor="10 €" delta={dlt(-8, false)} antes={sinComparar ? undefined : "antes 11 €"} nota={`${nf(contactos)} contactos · ${eur(inversion)} invertidos`} serie={serieDe(7, 35, 18)} />
+          <TarjetaCifra icono="globo" color="#2a6f86" titulo="Visitas a la web" desc="Veces que alguien entra en la web (Analytics)." valor={nf(visitas)} delta={dlt(12, true)} antes={antes(visitas, 12)} nota={`${nf(Math.round(visitas * 0.67))} personas distintas`} serie={serieDe(1, 50, 30)} />
+          <TarjetaCifra icono="camino" color="#d9822b" titulo="Rebote" desc="De cada 100 visitas, cuántas se van sin hacer nada. Cuanto más bajo, mejor." valor="38,2 %" delta={dlt(-6, false)} antes={sinComparar ? undefined : "antes 40,6 %"} nota="Detalle por canal, móvil y página en «La web»" serie={serieDe(2, 40, 14)} />
+          <TarjetaCifra icono="persona" color="#1d6b3a" titulo="Contactos únicos" desc="Personas distintas que se ponen en contacto contigo (una persona cuenta una vez al día)." valor={nf(contactos)} delta={dlt(16, true)} antes={antes(contactos, 16)} nota={`${(contactos / rango.dias).toLocaleString("es-ES", { maximumFractionDigits: 1 })} al día`} serie={serieDe(3, 30, 22)} resaltada />
+          <TarjetaCifra icono="embudo" color="#7a4fd0" titulo="Visitas que acaban en contacto" desc="De cada 100 visitas a la web, cuántas acaban dejando sus datos." valor={`${porCien.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`} delta={dlt(4, true)} antes={sinComparar ? undefined : "antes 3,6 %"} serie={serieDe(4, 20, 12)} />
+          <TarjetaCifra icono="documento" color="#2f6fd0" titulo="Presupuestos pedidos" desc="Contactos que piden presupuesto de verdad, no solo una duda." valor={nf(presu)} delta={dlt(9, true)} antes={antes(presu, 9)} nota="54 de cada 100 contactos" serie={serieDe(5, 25, 16)} />
+          <TarjetaCifra icono="megafono" color="#d93f3f" titulo="Inversión en anuncios" desc="Lo que has invertido en Google, Meta y Microsoft. Sin comisión nuestra." valor={eur(inversion)} delta={dlt(5, false)} antes={antes(inversion, 5, " €")} nota="La pagas tú, con tu tarjeta" serie={serieDe(6, 45, 14)} />
+          <TarjetaCifra icono="moneda" color="#c79a00" titulo="Coste por contacto" desc="Lo que cuesta cada contacto que traen los anuncios. Cuanto más bajo, mejor." valor="10 €" delta={dlt(-8, false)} antes={sinComparar ? undefined : "antes 11 €"} nota={`${nf(contactos)} contactos · ${eur(inversion)} invertidos`} serie={serieDe(7, 35, 18)} />
           <div className="flex min-h-[250px] flex-col rounded-[22px] border border-dashed p-5" style={{ borderColor: "#9fc0cc", background: "#f6fafb" }}>
-            <p className="sans-ey">Clientes e índice de valor</p>
+            <div className="flex items-center gap-3"><Loseta n="moneda" color="#c79a00" tam={40} /><p className="sans-ey">Clientes e índice de valor</p></div>
             <p className="mt-2 text-[15px] leading-snug text-gris">Cuántos contactos se hacen clientes y cuáles valen más que tu media.</p>
             <p className="num mt-2 text-[34px] leading-none italic" style={{ color: "#2a6f86" }}>Preparado</p>
             <p className="mt-3 text-[15px] text-gris">Se activa cuando marcas quién ha firmado y pones tu ticket medio. Nosotros no lo vemos ni te lo pedimos.</p>
@@ -376,7 +391,7 @@ export function PanelCompleto(p: PropsCompleto) {
             <tbody>
               {filas.map((r) => (
                 <tr key={r[0]} className="border-t" style={{ borderColor: BORDE }}>
-                  <th scope="row" className="py-2.5 pr-3 font-bold">{r[0]}</th>
+                  <th scope="row" className="py-2.5 pr-3 font-bold"><span className="flex items-center gap-2.5"><LogoMarca nombre={LOGO_CANAL[r[0]] ?? r[0]} tam={26} />{r[0]}</span></th>
                   <td className="py-2.5 pr-3">{nf(Math.round(r[1] * f))}</td>
                   <td className="py-2.5 pr-3">{r[2].toLocaleString("es-ES", { minimumFractionDigits: 1 })} %</td>
                   <td className="py-2.5 pr-3">{Math.round(r[3] * f)}{sinComparar ? "" : <span className="text-gris"> (antes {Math.round(r[4] * f)})</span>}</td>

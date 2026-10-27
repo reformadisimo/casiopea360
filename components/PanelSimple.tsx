@@ -6,7 +6,9 @@
 import { useRef, useState } from "react";
 import { GuiaInicio, LUZ, type Luz, type Modulo, type Vista } from "@/components/PanelModulos";
 import { ATAJOS_PREGUNTA, responderPanel } from "@/components/PanelMandos";
-import { AMARILLO, BORDE, rangoDe } from "@/components/PanelMesa";
+import LogoMarca from "@/components/LogoMarca";
+import { Icono } from "@/components/PanelModulos";
+import { AMARILLO, BORDE, ICONO_HERR, Loseta, rangoDe } from "@/components/PanelMesa";
 
 type Props = {
   modulos: Modulo[];
@@ -28,12 +30,12 @@ type Props = {
 
 const GRAVEDAD: Record<Luz, number> = { problema: 4, atencion: 3, sinconectar: 2, ok: 1, preparado: 0 };
 
-const AREAS: { g: string; nombre: string; destino: string; boton: string }[] = [
-  { g: "web", nombre: "La web", destino: "lupa", boton: "Ver con la lupa" },
-  { g: "dicen", nombre: "Reputación e IA", destino: "espejo", boton: "Ver las consultas" },
-  { g: "mercado", nombre: "Competencia", destino: "vigia", boton: "Ver cambios" },
-  { g: "anuncios", nombre: "Anuncios", destino: "campanas", boton: "Ver las campañas" },
-  { g: "tuyo", nombre: "Ventas", destino: "crm", boton: "Ver recorrido comercial" },
+const AREAS: { g: string; nombre: string; destino: string; boton: string; n: string; c: string }[] = [
+  { g: "web", nombre: "La web", destino: "lupa", boton: "Ver con la lupa", n: "globo", c: "#2a6f86" },
+  { g: "dicen", nombre: "Reputación e IA", destino: "espejo", boton: "Ver las consultas", n: "espejo", c: "#d9822b" },
+  { g: "mercado", nombre: "Competencia", destino: "vigia", boton: "Ver cambios", n: "catalejo", c: "#1d6b3a" },
+  { g: "anuncios", nombre: "Anuncios", destino: "campanas", boton: "Ver las campañas", n: "megafono", c: "#d93f3f" },
+  { g: "tuyo", nombre: "Ventas", destino: "crm", boton: "Ver recorrido comercial", n: "persona", c: "#2f6fd0" },
 ];
 
 function Bateria({ luz }: { luz: Luz }) {
@@ -55,12 +57,12 @@ function Punto({ luz, grande = false }: { luz: Luz; grande?: boolean }) {
   return <span aria-hidden className="mt-1.5 inline-block shrink-0 rounded-full" style={{ width: t, height: t, background: LUZ[luz].color, boxShadow: `0 0 0 4px ${LUZ[luz].color}26` }} />;
 }
 
-function Cifra({ titulo, texto, luz, ayuda, estado }: { titulo: string; texto: string; luz: Luz; ayuda: string; estado?: string }) {
+function Cifra({ n, c, titulo, texto, luz, ayuda, estado }: { n: string; c: string; titulo: string; texto: string; luz: Luz; ayuda: string; estado?: string }) {
   const [abierta, setAbierta] = useState(false);
   return (
     <div className="rounded-[20px] border bg-white p-4 sm:p-5" style={{ borderColor: BORDE }}>
       <div className="flex items-start gap-3">
-        <Punto luz={luz} />
+        <Loseta n={n} color={c} tam={52} />
         <div className="min-w-0 flex-1">
           <p className="sans text-[19px] leading-snug">{titulo}</p>
           <p className="mt-1 text-[15px] text-gris">{texto}</p>
@@ -194,6 +196,7 @@ export default function PanelSimple(p: Props) {
             const luz: Luz = ms.some((m) => m.luz === "problema") ? "problema" : ms.some((m) => m.luz === "atencion") ? "atencion" : ms.every((m) => m.luz === "preparado") ? "preparado" : "ok";
             return (
               <li key={a.g} className="flex flex-wrap items-center gap-x-4 gap-y-3 rounded-[20px] border bg-white p-4 sm:px-5" style={{ borderColor: BORDE }}>
+                <Loseta n={a.n} color={a.c} tam={56} />
                 <Bateria luz={luz} />
                 <div className="min-w-0 flex-1 basis-56">
                   <p className="leading-tight"><span className="sans text-[18px]">{a.nombre}</span> <span className="ml-1 text-[14px] font-semibold" style={{ color: LUZ[luz].color }}>{LUZ[luz].texto}</span></p>
@@ -206,13 +209,22 @@ export default function PanelSimple(p: Props) {
         </ul>
       </section>
 
+      <section aria-label="De dónde salen los datos" className="mt-8">
+        <p className="sans-ey">Conectado con</p>
+        <ul className="mt-2 flex flex-wrap gap-2">
+          {["Google Analytics", "Google Ads", "Meta", "Ficha de Google", "Search Console", "WhatsApp", "Instagram", "TikTok", "ChatGPT", "Gemini", "Claude"].map((n) => (
+            <li key={n} className="flex items-center gap-2 rounded-full border bg-white py-1.5 pl-2 pr-3.5 text-[14px] font-semibold" style={{ borderColor: BORDE }}><LogoMarca nombre={n} tam={24} />{n}</li>
+          ))}
+        </ul>
+      </section>
+
       <section aria-label="Las cuatro cifras que importan" className="mt-8">
         <h2 className="text-[28px]">Las cuatro cifras que importan</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
-          <Cifra titulo={`${p.contactos} personas se han puesto en contacto`} texto={sube} luz="ok" ayuda="Son las personas que te han escrito, llamado o pedido presupuesto desde tu web, tus anuncios o Google. Lo medimos solos." />
-          <Cifra titulo="54 piden presupuesto de cada 100" texto="Es mejor que en el periodo anterior." luz="ok" ayuda="De todos los que te contactan, estos son los que de verdad quieren un presupuesto y no solo una duda." />
-          <Cifra titulo="10 € por contacto anunciado" texto={antes} luz="ok" ayuda="Lo que has invertido en anuncios dividido entre los contactos que han llegado. Cuanto más bajo, mejor." />
-          <Cifra titulo="Sales en 16 de 18 respuestas de las IA" texto="En 2 preguntas todavía no." luz="atencion" ayuda="Preguntamos cada semana a ChatGPT, Gemini y Claude lo que preguntaría un cliente, y contamos en cuántas respuestas apareces." />
+          <Cifra n="persona" c="#1d6b3a" titulo={`${p.contactos} personas se han puesto en contacto`} texto={sube} luz="ok" ayuda="Son las personas que te han escrito, llamado o pedido presupuesto desde tu web, tus anuncios o Google. Lo medimos solos." />
+          <Cifra n="documento" c="#2f6fd0" titulo="54 piden presupuesto de cada 100" texto="Es mejor que en el periodo anterior." luz="ok" ayuda="De todos los que te contactan, estos son los que de verdad quieren un presupuesto y no solo una duda." />
+          <Cifra n="moneda" c="#c79a00" titulo="10 € por contacto anunciado" texto={antes} luz="ok" ayuda="Lo que has invertido en anuncios dividido entre los contactos que han llegado. Cuanto más bajo, mejor." />
+          <Cifra n="espejo" c="#d9822b" titulo="Sales en 16 de 18 respuestas de las IA" texto="En 2 preguntas todavía no." luz="atencion" ayuda="Preguntamos cada semana a ChatGPT, Gemini y Claude lo que preguntaría un cliente, y contamos en cuántas respuestas apareces." />
         </div>
       </section>
 
@@ -240,14 +252,15 @@ export default function PanelSimple(p: Props) {
 
       <section id="pn-mas" aria-label="Más herramientas" className="mt-8 rounded-[20px] border bg-white p-5 sm:p-6" style={{ borderColor: BORDE }}>
         <h2 className="text-[28px]">Más herramientas</h2>
-        <p className="mt-1 text-[15px] text-gris">La lupa, el Control 360, el Espejo de la IA, el Vigía, el índice de valor, los avisos, los resúmenes por correo y todas las secciones del panel.</p>
+        <ul className="mt-3 flex flex-wrap gap-2" aria-hidden="true">{Object.entries(ICONO_HERR).map(([k, [n, c]]) => <li key={k}><Loseta n={n} color={c} tam={52} /></li>)}</ul>
+        <p className="mt-3 text-[15px] text-gris">La lupa, el Control 360, el Espejo de la IA, el Vigía, el índice de valor, los avisos, los resúmenes por correo y todas las secciones del panel.</p>
         <button type="button" onClick={() => { p.navegar({ todo: true }); setTimeout(() => document.getElementById("pn-herramientas")?.scrollIntoView({ block: "start" }), 120); }} className="mt-4 min-h-11 rounded-full px-6 text-[15px] font-bold text-white" style={{ background: "#1a3d47" }}>Abrir</button>
       </section>
 
       <nav aria-label="Panel" className="fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 backdrop-blur md:hidden print:hidden" style={{ borderColor: BORDE }}>
         <ul className="mx-auto grid max-w-xl grid-cols-4">
-          {([["Hoy", () => window.scrollTo({ top: 0 })], ["Estado", () => bajar("pn-estado")], ["Preguntar", () => bajar("pn-pregunta")], ["Más", () => bajar("pn-mas")]] as [string, () => void][]).map(([t, f]) => (
-            <li key={t}><button type="button" onClick={f} className="min-h-14 w-full text-[15px] font-bold hover:bg-[#f3efe6]">{t}</button></li>
+          {([["Hoy", "casa", () => window.scrollTo({ top: 0 })], ["Estado", "mando", () => bajar("pn-estado")], ["Preguntar", "chat", () => bajar("pn-pregunta")], ["Más", "grid", () => bajar("pn-mas")]] as [string, string, () => void][]).map(([t, ic, f]) => (
+            <li key={t}><button type="button" onClick={f} className="flex min-h-14 w-full flex-col items-center justify-center gap-0.5 text-[13px] font-bold hover:bg-[#f3efe6]"><Icono n={ic} className="h-5 w-5" />{t}</button></li>
           ))}
         </ul>
       </nav>
