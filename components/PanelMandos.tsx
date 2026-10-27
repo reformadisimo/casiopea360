@@ -24,62 +24,6 @@ function Bloque({ titulo, fuente, quien, children, className = "" }: { titulo: s
 // Mis mandos
 // ---------------------------------------------------------------------------------------------
 
-type EstadoCasilla = "ok" | "pronto" | "preparado";
-type Casilla = { titulo: string; texto: string; destino: string; sub?: string; estado: EstadoCasilla; dato?: string };
-const GRUPOS: { titulo: string; frase?: string; quien: Quien; casillas: Casilla[] }[] = [
-  {
-    titulo: "Lo hacemos nosotros: tu web",
-    quien: "nosotros",
-    casillas: [
-      { titulo: "Lupa 360", texto: "Ves lo que hace la gente en tu web.", destino: "herramientas", sub: "lupa", estado: "ok" },
-      { titulo: "Velocidad y seguridad", texto: "Tu web rápida, segura y con copia de cada cambio.", destino: "web", estado: "ok" },
-      { titulo: "Sistemas", texto: "Comprobamos cada día que web, formularios y anuncios funcionan.", destino: "herramientas", sub: "sistemas", estado: "pronto" },
-      { titulo: "Control 360", texto: "Probamos tu recorrido completo como un cliente.", destino: "herramientas", sub: "recorrido", estado: "pronto" },
-    ],
-  },
-  {
-    titulo: "Lo hacemos nosotros: lo que llega",
-    quien: "nosotros",
-    casillas: [
-      { titulo: "Contactos que llegan", texto: "Cuánta gente te escribe, por qué canal y desde qué anuncio o página. Sale solo.", destino: "resumen", estado: "ok" },
-      { titulo: "Coste por contacto", texto: "Lo invertido en anuncios entre los contactos que llegan, por canal. Sale solo.", destino: "gastos", estado: "ok" },
-      { titulo: "Anuncios", texto: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", destino: "anuncios", estado: "ok" },
-      { titulo: "Google, Bing y mapa", texto: "Tus puestos, tu ficha de Google y Bing.", destino: "google", estado: "ok" },
-      { titulo: "Espejo de la IA", texto: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", destino: "herramientas", sub: "espejo", estado: "pronto" },
-      { titulo: "Vigía", texto: "Ves los cambios importantes de tu competencia.", destino: "herramientas", sub: "vigia", estado: "pronto" },
-      { titulo: "Redes y reseñas", texto: "Instagram, LinkedIn, Facebook, TikTok y tus reseñas.", destino: "redes", estado: "ok" },
-    ],
-  },
-  {
-    titulo: "Lo hacemos nosotros: contigo",
-    quien: "nosotros",
-    casillas: [
-      { titulo: "Tus peticiones", texto: "Pides, te damos fecha y apruebas. Informes y facturas, aquí.", destino: "peticiones", estado: "ok" },
-      { titulo: "Gastos", texto: "Lo que has gastado este mes y lo que va aparte.", destino: "gastos", estado: "ok" },
-      { titulo: "Cómo lo medimos", texto: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", destino: "medicion", estado: "ok" },
-      { titulo: "Todo lo que hacemos", texto: "Un registro con fecha y con el porqué de cada cosa.", destino: "trabajo", estado: "ok" },
-    ],
-  },
-  {
-    titulo: "Lo tuyo",
-    frase: "Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.",
-    quien: "tuyo",
-    casillas: [
-      { titulo: "Ventas (CRM)", texto: "Tus contactos, fase a fase. El CRM es tuyo.", destino: "crm", estado: "preparado", dato: "Se activa cuando mueves un contacto de fase." },
-      { titulo: "Contactos que se hacen clientes", texto: "Cuántos de los que te escriben acaban firmando.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
-      { titulo: "Coste por cliente", texto: "Lo que te cuesta cada cliente que llega por internet.", destino: "gastos", estado: "preparado", dato: "Se activa cuando marcas tus firmas y lo que has facturado." },
-      { titulo: "De dónde viene cada cliente", texto: "El recorrido desde el primer anuncio hasta la firma.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
-      { titulo: "Índice de valor", texto: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", destino: "indice", estado: "preparado", dato: "Se activa cuando pones tu ticket medio." },
-    ],
-  },
-];
-
-const ESTADO_CASILLA: Record<EstadoCasilla, { texto: string; punto: string }> = {
-  ok: { texto: "Funcionando", punto: "bg-emerald-500" },
-  pronto: { texto: "Próximamente", punto: "bg-amber-500" },
-  preparado: { texto: "Preparado", punto: "bg-sky-500" },
-};
-
 type Mando = {
   id: string;
   titulo: string;
@@ -138,7 +82,7 @@ function Interruptor({ on, set, etiqueta }: { on: boolean; set: (v: boolean) => 
   );
 }
 
-export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) {
+export function Mandos() {
   const [encendido, setEncendido] = useState<Record<string, boolean>>({});
   const [comparte, setComparte] = useState<Record<string, boolean>>({});
   const activos = MANDOS.filter((m) => encendido[m.id]);
@@ -146,38 +90,6 @@ export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) 
 
   return (
     <>
-      <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-        <p className="text-sm font-bold text-estrella">Control de mandos</p>
-        <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Todo lo que pasa en tu sitio, en una pantalla.</p>
-        <p className="mt-3 max-w-3xl text-white/80">
-          Cada casilla es una cosa que hacemos por ti. Pulsa en cualquiera y vas a ella. El punto de color dice cómo está: verde, funcionando; naranja, próximamente; azul, preparado: es tuyo y lo rellenas tú si quieres.
-        </p>
-      </section>
-
-      {GRUPOS.map((g) => (
-        <Bloque key={g.titulo} titulo={g.titulo} fuente={`${g.casillas.length} casillas`} quien={g.quien}>
-          {g.frase && <p className="-mt-2 mb-4 font-bold text-tinta">{g.frase}</p>}
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {g.casillas.map((c) => {
-              const e = ESTADO_CASILLA[c.estado];
-              return (
-                <li key={c.titulo}>
-                  <button type="button" onClick={() => ir(c.destino, c.sub)} className="flex h-full w-full flex-col items-start gap-1 rounded-2xl border border-linea p-4 text-left transition-colors hover:bg-niebla">
-                    <span className="flex w-full items-center justify-between gap-2">
-                      <span className="font-extrabold">{c.titulo}</span>
-                      <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-bold text-gris"><span className={`h-2.5 w-2.5 rounded-full ${e.punto}`} aria-hidden="true" />{e.texto}</span>
-                    </span>
-                    <span className="text-sm text-gris">{c.texto}</span>
-                    {c.dato && <span className="text-xs font-bold text-sky-800">{c.dato}</span>}
-                    <span className="mt-1 text-xs font-bold text-noche-3 underline underline-offset-4">Ir</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </Bloque>
-      ))}
-
       <section className="rounded-3xl border border-linea bg-white p-5 sm:p-7">
         <p className="text-lg font-extrabold">Tú decides qué más quieres ver.</p>
         <p className="mt-1 text-gris">
@@ -334,11 +246,13 @@ const RECORRIDO_PASOS: [string, string][] = [
 
 const COLOR_ESTADO: Record<Estado, string> = { Disponible: "bg-emerald-100 text-emerald-800", "Próximamente": "bg-amber-100 text-amber-800" };
 
-export function Herramientas360({ inicial = "lupa" }: { inicial?: string }) {
-  const [abierta, setAbierta] = useState<string>(inicial);
+export function Herramientas360({ inicial = "lupa", solo }: { inicial?: string; solo?: string }) {
+  const [sel, setAbierta] = useState<string>(inicial);
+  const abierta = solo ?? sel;
   const h = HERRAMIENTAS.find((x) => x.id === abierta) ?? HERRAMIENTAS[0];
   return (
     <>
+      {!solo && (<>
       <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
         <p className="text-sm font-bold text-estrella">Herramientas 360</p>
         <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Cinco vigilantes que trabajan por ti, también cuando no miras.</p>
@@ -366,6 +280,7 @@ export function Herramientas360({ inicial = "lupa" }: { inicial?: string }) {
       <p className="rounded-2xl bg-white p-4 text-sm text-gris">
         <b className="text-tinta">{h.nombre}:</b> {h.nota}
       </p>
+      </>)}
 
       {abierta === "lupa" && (
         <Bloque titulo="Lupa 360 · lo que hace la gente en tu web" fuente="Clarity y la Lupa" quien="nosotros">

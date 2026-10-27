@@ -9,24 +9,8 @@ import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
 import { Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
+import { FilaLuces, GRUPOS_MODULOS, ModuloPlegable, Reloj, type Modulo } from "@/components/PanelModulos";
 
-type Pestana = "resumen" | "indice" | "mandos" | "herramientas" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
-const PESTANAS: [Pestana, string][] = [
-  ["mandos", "Control de mandos"],
-  ["resumen", "Resumen"],
-  ["herramientas", "Herramientas 360"],
-  ["peticiones", "Tus peticiones"],
-  ["crm", "Ventas (CRM)"],
-  ["indice", "Índice de valor"],
-  ["clientes", "Clientes"],
-  ["anuncios", "Anuncios"],
-  ["google", "Google, Bing e IA"],
-  ["redes", "Redes"],
-  ["web", "La web"],
-  ["gastos", "Gastos"],
-  ["medicion", "Cómo lo medimos"],
-  ["trabajo", "Nuestro trabajo"],
-];
 
 const LOGO: Record<string, string> = {
   "Google Analytics": "google-analytics-icono.png",
@@ -515,8 +499,7 @@ const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: n
 ];
 
 export default function PanelEjemplo() {
-  const [pestana, setPestana] = useState<Pestana>("mandos")
-  const [herramienta, setHerramienta] = useState("lupa");
+  const [abiertos, setAbiertos] = useState<string[] | null>(null);
   const [periodo, setPeriodo] = useState("mes");
   const [comp, setComp] = useState<"anterior" | "ano" | "nada">("anterior");
   const comparar: "mes" | "inicio" = comp === "ano" ? "inicio" : "mes";
@@ -576,109 +559,21 @@ export default function PanelEjemplo() {
     };
   }, []);
 
-  // Se puede abrir una pestaña concreta con el enlace, p. ej. /panel#crm
+  // Se puede abrir un módulo concreto con el enlace, p. ej. /panel#crm
   useEffect(() => {
-    const h = window.location.hash.replace("#", "");
-    if (PESTANAS.some(([id]) => id === h)) setPestana(h as Pestana);
+    const viejo: Record<string, string> = { anuncios: "campanas", herramientas: "lupa", resumen: "contactos", mandos: "" };
+    const h0 = window.location.hash.replace("#", "");
+    const h = h0 in viejo ? viejo[h0] : h0;
+    if (!h) return;
+    setAbiertos([h]);
+    setTimeout(() => document.getElementById(`mod-${h}`)?.scrollIntoView({ block: "start" }), 120);
   }, []);
-
-  useEffect(() => {
-    setEnviado(false);
-    setPedido("");
-  }, [pestana]);
 
   const gastoMes = GASTO_MES[GASTO_MES.length - 1];
   const variable = gastoMes.google + gastoMes.meta + gastoMes.video + gastoMes.prensa;
 
-  return (
-    <div className="bg-niebla pb-20">
-      <style>{`
-        .pn-barra{transform-origin:bottom;transform-box:fill-box;animation:pnCrece .6s ease-out both}
-        .pn-trazo{stroke-dasharray:1600;stroke-dashoffset:1600;animation:pnDibuja 1.4s ease-out .2s forwards}
-        .pn-entra{animation:pnEntra .5s ease-out both}
-        @keyframes pnCrece{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-        @keyframes pnDibuja{to{stroke-dashoffset:0}}
-        @keyframes pnEntra{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-        @media (prefers-reduced-motion: reduce){.pn-barra,.pn-trazo,.pn-entra{animation:none;stroke-dashoffset:0}}
-      `}</style>
-
-      <div className="bg-noche pb-10 pt-24 text-white sm:pt-28">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="rounded-2xl bg-estrella px-5 py-3 text-sm font-bold text-tinta">
-          Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.
-        </div>
-
-        <header className="mt-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
-            <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
-          </div>
-          <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            </span>
-            {ahora} personas en tu web ahora · actualizado hace {segundos} s
-          </div>
-        </header>
-      </div>
-      </div>
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-
-        <nav aria-label="Secciones del panel" className="sticky top-[76px] z-20 sm:top-[80px] -mx-4 mt-0 overflow-x-auto bg-niebla/95 px-4 py-3 backdrop-blur sm:mx-0 sm:px-0">
-          <ul className="flex gap-2">
-            {PESTANAS.map(([id, texto]) => (
-              <li key={id}>
-                <button
-                  type="button"
-                  onClick={() => setPestana(id)}
-                  aria-pressed={pestana === id}
-                  className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-colors ${pestana === id ? "bg-noche text-white" : "bg-white text-tinta hover:bg-white/70"}`}
-                >
-                  {texto}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="mt-4 space-y-5">
-          {pestana === "resumen" && (
-            <>
-              <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-                <p className="text-sm font-bold text-estrella">Lo importante de hoy, en tres frases</p>
-                <ul className="mt-4 space-y-3 text-lg">
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>Este mes te han llegado <b>312 contactos</b>, 43 más que en septiembre, y cada uno te ha costado <b>10 €</b> en anuncios.</span></li>
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>La campaña de <b>aerotermia</b> es la que más contactos trae. Le hemos subido el presupuesto un 10 %.</span></li>
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" /><span>Hay <b>3 contactos sin respuesta</b> desde hace más de 3 días. Ya les ha salido el correo de recordatorio.</span></li>
-                </ul>
-              </section>
-
-              <section className="rounded-3xl border border-linea bg-white p-4 sm:p-5" aria-label="Periodo y comparación">
-                <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Periodo">
-                  <span className="mr-1 text-sm font-bold text-gris">Periodo:</span>
-                  {PERIODOS.map(([id, t]) => (
-                    <button key={id} type="button" aria-pressed={periodo === id} onClick={() => setPeriodo(id)} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${periodo === id ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>{t}</button>
-                  ))}
-                  <button type="button" aria-pressed={periodo === "rango"} onClick={() => setPeriodo("rango")} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${periodo === "rango" ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>Desde / hasta</button>
-                </div>
-                {periodo === "rango" && (
-                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
-                    <label className="flex items-center gap-2 font-bold text-gris">Desde <input type="date" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
-                    <label className="flex items-center gap-2 font-bold text-gris">Hasta <input type="date" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
-                    <span className="text-gris">{diasRango} {diasRango === 1 ? "día" : "días"}</span>
-                  </div>
-                )}
-                <div className="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Comparar con">
-                  <span className="mr-1 text-sm font-bold text-gris">Comparar con:</span>
-                  {([["anterior", "Periodo anterior"], ["ano", "Mismo periodo del año pasado"], ["nada", "Nada"]] as const).map(([id, t]) => (
-                    <button key={id} type="button" aria-pressed={comp === id} onClick={() => setComp(id)} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${comp === id ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>{t}</button>
-                  ))}
-                </div>
-                <p className="mt-3 text-sm text-gris"><b className="text-tinta">Cómo se lee:</b> el número grande es lo que ha pasado en el periodo. La flecha dice cuánto más o menos que el periodo con el que comparas. <b className="text-emerald-700">Verde es que va mejor</b>, rojo es que va peor (en el coste por cliente, bajar es mejorar).</p>
-              </section>
-
+  const piezas = {
+    contactos: (<>
               <div className="grid gap-4 md:grid-cols-3">
                 {[
                   ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 54 % pide presupuesto de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
@@ -689,65 +584,23 @@ export default function PanelEjemplo() {
                     <p className="text-sm font-bold text-gris">{q}</p>
                     <p className="mt-1 text-2xl font-extrabold">{v}</p>
                     <p className="mt-2 text-sm text-gris">{t}</p>
-                    <button type="button" onClick={() => setPestana(dest as Pestana)} className="mt-2 text-sm font-bold text-noche-3 underline underline-offset-4">{b}</button>
+                    <button type="button" onClick={() => ir(dest === "anuncios" ? "campanas" : dest)} className="mt-2 text-sm font-bold text-noche-3 underline underline-offset-4">{b}</button>
                   </div>
                 ))}
               </div>
-
               <div className="grid gap-3 md:grid-cols-2">
                 <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: 3 presupuestos sin respuesta</p><p className="mt-1 text-sm text-gris">Llevan más de 3 días esperando. Qué hacer: llámalos hoy; el correo de recordatorio ya ha salido.</p></div>
                 <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: la ficha de Google tiene 2 reseñas sin contestar</p><p className="mt-1 text-sm text-gris">Qué hacer: respóndelas esta semana. Te lo dejamos redactado en Tus peticiones.</p></div>
               </div>
-
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido presupuesto. Sale solo." />
                 <Cifra titulo="Coste por contacto" valor={10} formato={eur} cambio={cmb(comparar === "mes" ? -8 : -41)} invertir contra={contraTxt} explicacion="Lo invertido en anuncios dividido entre los contactos que llegan. Cuanto más bajo, mejor." />
                 <Cifra titulo="Visitas a la web" valor={esc(8640)} cambio={cmb(comparar === "mes" ? 9 : 87)} contra={contraTxt} explicacion="Personas distintas que han entrado en tu web." />
                 <Cifra titulo="Contactos por cada 100 visitas" valor={36} formato={(n) => (n / 10).toFixed(1).replace(".", ",")} cambio={cmb(comparar === "mes" ? 6 : 22)} contra={contraTxt} explicacion="De cada 100 personas que entran, cuántas te dejan sus datos." />
               </div>
-
               <Caja titulo="Cada canal, de un vistazo" fuente="Ordena pulsando una columna" ayuda="Cada fila es un sitio por donde llegan clientes. Pulsa el título de una columna para ordenar de mayor a menor.">
                 <TablaCanales esc={esc} />
               </Caja>
-
-              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comp === "nada" ? "Sin comparar" : comp === "ano" ? "Frente al año pasado" : "Frente al periodo anterior"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte sin pagar nada.">
-                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  {PARAMETROS.map((x) => {
-                    const ahora = x.serie[5];
-                    const ref = comparar === "mes" ? x.serie[4] : x.serie[0];
-                    const cambio = Math.round(((ahora - ref) / ref) * 100);
-                    const bueno = x.mejor === "sube" ? cambio >= 0 : cambio <= 0;
-                    return (
-                      <li key={x.t} className="rounded-2xl border border-linea p-4">
-                        <p className="text-sm font-bold text-gris">{x.t}</p>
-                        <p className="mt-1 text-3xl font-extrabold">{x.f(ahora)}</p>
-                        <p className={`text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
-                          {cambio >= 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{contraTxt}</span>
-                        </p>
-                        <div className="mt-2"><Linea serie={x.serie} color={bueno ? "#047857" : "#e11d48"} alto={44} /></div>
-                        <p className="mt-1 text-xs text-gris">Antes: <b>{x.f(ref)}</b></p>
-                        <p className="mt-2 text-xs text-gris">{x.ayuda}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </Caja>
-
-              <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte sin pagar nada y te quedas con la web.">
-                <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
-                  {[120, 158, 214, 246, 281, 312].map((v, i) => (
-                    <div key={i} className="flex h-full flex-col items-center justify-end">
-                      <span className="mb-1 text-xs font-bold">{v}</span>
-                      <div className="pn-barra w-full rounded-t-lg" style={{ height: `${(v / 312) * 100}%`, background: i < 3 ? "#ffc53d" : "#1d4ed8" }} />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-gris sm:gap-4">
-                  {["Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6"].map((m) => <span key={m}>{m}</span>)}
-                </div>
-                <p className="mt-3 text-sm text-gris">Contactos al mes. En amarillo, los tres meses para demostrarlo: de 120 a 214 contactos. En azul, lo que viene después.</p>
-              </Caja>
-
               <div className="grid items-start gap-5 lg:grid-cols-[1.4fr_1fr]">
                 <Caja titulo="Contactos y visitas, día a día" fuente="Analytics y la web" ayuda="Las barras amarillas son las personas que te han contactado cada día. La línea azul, las visitas a tu web. Si la línea sube y las barras no, la web no está convenciendo: ahí entramos nosotros.">
                   <Grafico barras={CONTACTOS_30} linea={VISITAS_30} />
@@ -772,7 +625,6 @@ export default function PanelEjemplo() {
                   </ul>
                 </Caja>
               </div>
-
               <div className="grid gap-5 lg:grid-cols-2">
                 <Caja titulo="De dónde vienen tus contactos" fuente="Tag Manager y Analytics" ayuda="Cada persona que te contacta llega con una «etiqueta» que dice de dónde viene: Google, un anuncio concreto, Instagram, el mapa de Google, ChatGPT o un correo. Así sabemos qué funciona y dónde poner el dinero.">
                   <Rosco datos={ORIGEN} centro="312" sub="contactos" />
@@ -792,20 +644,79 @@ export default function PanelEjemplo() {
                   </ul>
                 </Caja>
               </div>
-
-              <p className="rounded-2xl bg-niebla p-4 text-sm text-gris">
-                <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
-              </p>
-            </>
-          )}
-
-          {pestana === "mandos" && <Mandos ir={(id, sub) => { if (sub) setHerramienta(sub); setPestana(id as Pestana); window.scrollTo({ top: 0, behavior: "smooth" }); }} />}
-
-          {pestana === "indice" && <IndiceValor />}
-          {pestana === "herramientas" && <Herramientas360 key={herramienta} inicial={herramienta} />}
-
-          {pestana === "peticiones" && (
-            <>
+    </>),
+    costeContacto: (<>
+                <Caja titulo="Lo que te cuesta cada contacto, mes a mes" fuente="Últimos 6 meses" ayuda="Dividimos lo invertido en anuncios entre los contactos que han llegado. Si la barra baja, cada contacto te sale más barato. En junio se grabó un vídeo y en julio se compró una nota de prensa: se ve en el gasto, no en la cuota.">
+                  <div className="flex h-44 items-end gap-3">
+                    {GASTO_MES.map((g, i) => {
+                      const coste = (g.google + g.meta) / g.contactos;
+                      return (
+                        <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                          <span className="text-xs font-bold">{eur(coste)}</span>
+                          <div className="pn-barra w-full rounded-t-lg bg-noche-3" style={{ height: `${(coste / 16) * 100}%`, animationDelay: `${i * 60}ms` }} />
+                          <span className="text-xs text-gris">{MESES[i]}</span>
+                          <span className="h-4 text-[0.6rem] text-gris">{g.video ? "vídeo" : g.prensa ? "prensa" : ""}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </Caja>
+    </>),
+    costeCliente: (<>
+                <Caja quien="tuyo" titulo="Lo que te cuesta cada cliente" fuente="Preparado para ti" ayuda="Para calcularlo hace falta un dato que solo tienes tú: quién ha firmado. Si lo marcas en tu CRM, dividimos lo invertido entre tus clientes. Si no, no pasa nada y no te lo pedimos.">
+                  <p className="text-sm text-gris"><b className="text-tinta">Se activa cuando marcas quién ha firmado.</b> Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.</p>
+                  <div className="mt-4 flex h-32 items-end gap-3 opacity-80">
+                    {GASTO_MES.map((g, i) => {
+                      const coste = (g.google + g.meta) / g.clientes;
+                      return (
+                        <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                          <span className="text-xs font-bold">{eur(coste)}</span>
+                          <div className="w-full rounded-t-lg bg-sky-300" style={{ height: `${(coste / 110) * 100}%` }} />
+                          <span className="text-xs text-gris">{MESES[i]}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-2 text-xs text-gris">Datos de demostración, como si hubieras marcado tus firmas.</p>
+                </Caja>
+    </>),
+    gastos: (<>
+              <Caja titulo="Qué va incluido y qué va aparte" fuente="Así de claro" ayuda="Pagas una cuota fija al mes que lo incluye todo. Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, el vídeo profesional, el espacio en radio o prensa y, si quieres, una nota de prensa o un artículo en un medio.">
+                <div className="grid gap-4 lg:grid-cols-2">
+                  <div className="rounded-2xl bg-emerald-50 p-5">
+                    <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
+                    <ul className="mt-3 space-y-2 text-sm">
+                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
+                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas", "Reservas online, reseñas, landings sin límite, encuestas y programa de recomendación", "Presupuestos con firma, tienda online, Google Shopping, web en varios idiomas y área privada para tus clientes", "Medición de llamadas, vigilancia de la competencia, y vídeos con IA"].map((t) => (
+                        <li key={t} className="flex gap-2"><span className="text-emerald-700">✓</span>{t}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-2xl bg-niebla p-5">
+                    <p className="font-extrabold">Aparte, solo si tú quieres y siempre con tu visto bueno</p>
+                    <ul className="mt-3 space-y-3 text-sm">
+                      <li><b>Lo que inviertes en anuncios.</b> Lo pagas tú directamente a Google o a Meta, con tu tarjeta. Nosotros no cobramos ningún porcentaje.</li>
+                      <li><b>La grabación de vídeo profesional.</b> La hace una productora audiovisual asociada y le pagas a ella directamente. El guion y el montaje van incluidos.</li>
+                      <li><b>Notas de prensa y artículos en medios.</b> Los enlaces de calidad desde periódicos y revistas los cobra el medio. Te proponemos el medio con su precio y no se compra nada sin tu sí.</li>
+                      <li><b>El espacio en radio o prensa.</b> Si hacemos una campaña de radio o un anuncio en un periódico, la emisora o el periódico te cobran a ti directamente. La idea, el guion, las voces y la gestión van incluidos.</li>
+                    </ul>
+                  </div>
+                </div>
+              </Caja>
+                <Caja titulo="Lo que has gastado este mes" fuente="Octubre" ayuda="El desglose de lo que te ha costado el marketing este mes. La cuota es fija; lo demás depende de lo que decidas invertir.">
+                  <ul className="divide-y divide-linea text-sm">
+                    <li className="flex justify-between py-2"><span>Cuota mensual (todo incluido)</span><b>La que acordemos</b></li>
+                    <li className="flex justify-between py-2"><span>SEO, web, servidor y dominio</span><b className="text-emerald-700">0 € (incluido)</b></li>
+                    <li className="flex justify-between py-2"><span>Inversión en Google Ads</span><b>{eur(gastoMes.google)}</b></li>
+                    <li className="flex justify-between py-2"><span>Inversión en Instagram y Facebook</span><b>{eur(gastoMes.meta)}</b></li>
+                    <li className="flex justify-between py-2"><span>Vídeo profesional (opcional)</span><b>{eur(gastoMes.video)}</b></li>
+                    <li className="flex justify-between py-2"><span>Notas de prensa (opcional)</span><b>{eur(gastoMes.prensa)}</b></li>
+                    <li className="flex justify-between py-2 text-base"><span className="font-bold">Total variable</span><b>{eur(variable)}</b></li>
+                  </ul>
+                  <p className="mt-3 text-sm text-gris">Comisión sobre lo invertido: <b className="text-tinta">0 €</b>. Siempre.</p>
+                </Caja>
+    </>),
+    peticiones: (<>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Cifra titulo="En curso" valor={peticiones.filter((p) => p.estado === "En curso" || p.estado === "Recibida").length} explicacion="Lo que estamos haciendo ahora mismo." />
                 <Cifra titulo="Esperan tu visto bueno" valor={peticiones.filter((p) => p.estado === "Esperando tu aprobación").length} explicacion="Nada se publica sin que tú lo apruebes." />
@@ -844,6 +755,8 @@ export default function PanelEjemplo() {
                   ))}
                 </ul>
               </Caja>
+    </>),
+    informes: (<>
               <Caja titulo="Informes y facturas" fuente="Para descargar" ayuda="Tus informes mensuales y tus facturas, siempre a mano. Sin pedirlos por correo.">
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {DOCUMENTOS.map(([n, t]) => (
@@ -854,11 +767,197 @@ export default function PanelEjemplo() {
                   ))}
                 </ul>
               </Caja>
-            </>
-          )}
-
-          {pestana === "crm" && (
-            <>
+    </>),
+    historico: (<>
+              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comp === "nada" ? "Sin comparar" : comp === "ano" ? "Frente al año pasado" : "Frente al periodo anterior"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte sin pagar nada.">
+                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {PARAMETROS.map((x) => {
+                    const ahora = x.serie[5];
+                    const ref = comparar === "mes" ? x.serie[4] : x.serie[0];
+                    const cambio = Math.round(((ahora - ref) / ref) * 100);
+                    const bueno = x.mejor === "sube" ? cambio >= 0 : cambio <= 0;
+                    return (
+                      <li key={x.t} className="rounded-2xl border border-linea p-4">
+                        <p className="text-sm font-bold text-gris">{x.t}</p>
+                        <p className="mt-1 text-3xl font-extrabold">{x.f(ahora)}</p>
+                        <p className={`text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
+                          {cambio >= 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{contraTxt}</span>
+                        </p>
+                        <div className="mt-2"><Linea serie={x.serie} color={bueno ? "#047857" : "#e11d48"} alto={44} /></div>
+                        <p className="mt-1 text-xs text-gris">Antes: <b>{x.f(ref)}</b></p>
+                        <p className="mt-2 text-xs text-gris">{x.ayuda}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Caja>
+              <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte sin pagar nada y te quedas con la web.">
+                <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
+                  {[120, 158, 214, 246, 281, 312].map((v, i) => (
+                    <div key={i} className="flex h-full flex-col items-center justify-end">
+                      <span className="mb-1 text-xs font-bold">{v}</span>
+                      <div className="pn-barra w-full rounded-t-lg" style={{ height: `${(v / 312) * 100}%`, background: i < 3 ? "#ffc53d" : "#1d4ed8" }} />
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-gris sm:gap-4">
+                  {["Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6"].map((m) => <span key={m}>{m}</span>)}
+                </div>
+                <p className="mt-3 text-sm text-gris">Contactos al mes. En amarillo, los tres meses para demostrarlo: de 120 a 214 contactos. En azul, lo que viene después.</p>
+              </Caja>
+    </>),
+    campanas: (<>
+              <Caja titulo="Google Ads, campaña a campaña" fuente="Google Ads" ayuda="Lo que has invertido en cada campaña de Google, cuántas personas han pulsado, y cuántas te han contactado. La última columna es la que importa: lo que te cuesta cada contacto. Cuántos firman es cosa tuya y está en Lo tuyo.">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[620px] text-left text-sm">
+                    <thead className="text-gris"><tr><th className="pb-2">Campaña</th><th className="pb-2">Invertido</th><th className="pb-2">Clics</th><th className="pb-2">Contactos</th><th className="pb-2">Coste por contacto</th></tr></thead>
+                    <tbody>
+                      {CAMPANAS.map((c) => (
+                        <tr key={c.nombre} className="border-t border-linea">
+                          <td className="py-3 font-bold">{c.nombre}</td>
+                          <td className="py-3">{eur(c.inversion)}</td>
+                          <td className="py-3">{num(c.clics)}</td>
+                          <td className="py-3">{c.contactos}</td>
+                          <td className="py-3 font-extrabold">{eur(c.inversion / c.contactos)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Caja>
+              <div className="grid gap-5 lg:grid-cols-2">
+                <Caja titulo="Instagram y Facebook" fuente="Meta" ayuda="Los anuncios en Instagram y Facebook. El alcance son las personas distintas que los han visto. Lo medimos con el píxel de Meta y su API de conversiones, que funciona aunque el navegador bloquee cookies.">
+                  <div className="grid grid-cols-2 gap-3">
+                    {[["Invertido", eur(META_ADS.inversion)], ["Personas alcanzadas", num(META_ADS.alcance)], ["Clics", num(META_ADS.clics)], ["Contactos", String(META_ADS.contactos)], ["Coste por contacto", eur(META_ADS.inversion / META_ADS.contactos)]].map(([t, v]) => (
+                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
+                    ))}
+                  </div>
+                </Caja>
+                <Caja titulo="Lo que hemos ajustado este mes" fuente="Nuestro equipo" ayuda="Los anuncios no se montan y se olvidan: se revisan cada día. Esto es lo que hemos cambiado y por qué.">
+                  <ul className="space-y-3 text-sm">
+                    <li className="rounded-2xl bg-niebla p-3"><b>Quitadas 23 búsquedas</b> que traían curiosos («barato», «gratis», «segunda mano»). Ahorro: 210 € al mes.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de aerotermia: es la que mejor coste por contacto tiene.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Nuevo anuncio en vídeo</b> en Instagram con una instalación real. Ha bajado el coste por contacto un 18 %.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Horario ajustado:</b> los anuncios ya no salen de 1 a 7 de la madrugada, cuando nadie pedía presupuesto.</li>
+                  </ul>
+                </Caja>
+              </div>
+    </>),
+    google: (<>
+              <Caja titulo="Dónde sales en Google" fuente="Search Console y Semrush" ayuda="Las búsquedas que más clientes te pueden traer, cuánta gente las hace al mes y en qué puesto sales. Salir entre los 3 primeros es lo que de verdad da llamadas.">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[560px] text-left text-sm">
+                    <thead className="text-gris"><tr><th className="pb-2">Búsqueda</th><th className="pb-2">Búsquedas al mes</th><th className="pb-2">Puesto hoy</th><th className="pb-2">Hace 3 meses</th></tr></thead>
+                    <tbody>
+                      {BUSQUEDAS.map(([b, v, hoyP, antes]) => (
+                        <tr key={b} className="border-t border-linea">
+                          <td className="py-3 font-bold">{b}</td>
+                          <td className="py-3">{num(v)}</td>
+                          <td className="py-3"><span className={`rounded-full px-3 py-1 text-xs font-extrabold ${hoyP <= 3 ? "bg-emerald-100 text-emerald-800" : "bg-niebla"}`}>{hoyP}.º</span></td>
+                          <td className="py-3 text-gris">{antes}.º <span className="font-bold text-emerald-700">▲ {antes - hoyP}</span></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Caja>
+              <div className="grid gap-5 lg:grid-cols-2">
+                <Caja titulo="Qué se busca en tu sector" fuente="Google Trends" ayuda="Google Trends nos dice cuándo la gente empieza a buscar lo que vendes. Así preparamos las campañas antes que tu competencia, no cuando ya es tarde.">
+                  <p className="text-sm text-gris">Interés por «aire acondicionado» en Madrid, último año</p>
+                  <div className="mt-3 flex h-40 items-end gap-1.5">
+                    {TENDENCIA.map((v, i) => (
+                      <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                        <div className="pn-barra w-full rounded-t-md" style={{ height: `${v}%`, background: v > 70 ? "#ffc53d" : "#24387a", animationDelay: `${i * 40}ms` }} title={`${MESES_12[i]}: ${v}`} />
+                        <span className="text-[0.65rem] text-gris">{MESES_12[i]}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-3 rounded-2xl bg-estrella/20 p-3 text-sm">Las búsquedas se disparan en abril. La campaña de primavera empieza el 15 de marzo.</p>
+                </Caja>
+                <Caja titulo="Tu ficha de Google (el mapa)" fuente="Ficha de Google" ayuda="La ficha que sale en Google Maps cuando te buscan cerca. Mucha gente llama directamente desde ahí sin entrar en tu web.">
+                  <div className="grid grid-cols-2 gap-3">
+                    {[["Veces que se ha visto", "14.820"], ["Llamadas desde la ficha", "96"], ["Cómo llegar", "212"], ["Visitas a la web", "740"]].map(([t, v]) => (
+                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex items-center gap-4 rounded-2xl border border-linea p-4">
+                    <p className="text-4xl font-extrabold">4,8</p>
+                    <div><p className="text-estrella">★★★★★</p><p className="text-sm text-gris">312 reseñas · 18 nuevas este mes · todas contestadas</p></div>
+                  </div>
+                </Caja>
+              </div>
+              <Caja titulo="Bing: el buscador que tu competencia olvida" fuente="Bing Webmaster, Microsoft Ads y ficha de Bing" ayuda="En España casi todo el mundo busca en Google, pero Bing se lleva cerca del 3,5 % de las búsquedas, y en los ordenadores más del 12 %, porque viene de serie en Windows y en Edge. Además, Bing alimenta a Copilot y a otros asistentes de IA. Como casi nadie lo trabaja, es más fácil salir arriba y los anuncios suelen tener menos competencia. Va incluido en tu cuota.">
+                <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
+                  <div className="rounded-2xl bg-gradient-to-br from-[#00b294] to-[#0078d4] p-5 text-white">
+                    <p className="text-sm font-bold text-white/80">Cuota de búsquedas en España</p>
+                    <div className="mt-3 flex items-end gap-6">
+                      <div><p className="text-4xl font-extrabold">3,5 %</p><p className="text-xs text-white/80">en total</p></div>
+                      <div><p className="text-4xl font-extrabold">12 %</p><p className="text-xs text-white/80">en ordenadores</p></div>
+                    </div>
+                    <p className="mt-3 text-xs text-white/75">Fuente: StatCounter, septiembre de 2026. Viene de serie en Windows y en Edge.</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[["Visitas desde Bing", "312"], ["Contactos desde Bing", "11"], ["Puesto medio en Bing", "2,4.º"], ["Ficha de Bing: vistas", "1.940"], ["Anuncios de Bing: invertido", "120 €"], ["Coste por contacto en Bing", "21 €"]].map(([t, v]) => (
+                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-4 rounded-2xl bg-estrella/20 p-3 text-sm">Pocos contactos, pero baratos: en Bing compiten menos empresas y el clic suele salir más barato. Por eso estamos en todas partes: Google, Bing, Apple Maps y las IA.</p>
+              </Caja>
+              <Caja titulo="Si preguntan a las IA, ¿te recomiendan?" fuente="ChatGPT, Gemini y Claude" ayuda="Cada semana preguntamos a ChatGPT, Gemini y Claude lo mismo que preguntaría un cliente: «¿qué empresa de climatización me recomiendas en Madrid?». Contamos en cuántas de 10 preguntas sales.">
+                <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
+                  <div>
+                    <Linea serie={IA_SEMANAS} color="#8b5cf6" alto={80} />
+                    <p className="mt-2 text-sm text-gris">Hace 8 semanas salías en 3 de cada 10 respuestas. Hoy, en 9.</p>
+                  </div>
+                  <ul className="flex gap-3">
+                    {["ChatGPT", "Gemini", "Claude"].map((n) => (
+                      <li key={n} className="flex flex-col items-center gap-1 rounded-2xl bg-niebla p-3"><Logo nombre={n} tam={30} /><span className="text-xs font-bold">{n}</span><span className="text-xs text-emerald-700">Te recomienda</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </Caja>
+    </>),
+    redes: (<>
+              {REDES.map((r) => (
+                <Caja key={r.red} titulo={r.red} fuente="Últimos 12 meses" ayuda="Cuántas personas te siguen y cómo ha ido creciendo. Lo importante no son los seguidores, sino cuántos acaban pidiendo presupuesto: eso lo ves en la pestaña de Clientes.">
+                  <div className="flex items-center gap-3">
+                    <Logo nombre={r.red} tam={34} />
+                    <p className="text-3xl font-extrabold"><Contador valor={r.serie[r.serie.length - 1]} /></p>
+                    <span className="text-sm font-bold text-emerald-700">+{num(r.serie[r.serie.length - 1] - r.serie[r.serie.length - 4])} en 3 meses</span>
+                  </div>
+                  <div className="mt-3"><Linea serie={r.serie} color={r.color} /></div>
+                  <p className="mt-3 text-sm text-gris">{r.extra}</p>
+                </Caja>
+              ))}
+    </>),
+    web: (<>
+              <Caja titulo="Velocidad y calidad de tu web" fuente="PageSpeed de Google" ayuda="Google puntúa tu web de 0 a 100. Por encima de 90 es verde: carga rápido y Google la premia. Una web lenta pierde a casi la mitad de las visitas.">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  <Medidor valor={98} etiqueta="Velocidad en el móvil" />
+                  <Medidor valor={100} etiqueta="Accesibilidad" />
+                  <Medidor valor={100} etiqueta="Buenas prácticas" />
+                  <Medidor valor={100} etiqueta="SEO" />
+                </div>
+              </Caja>
+              <div className="grid gap-5 lg:grid-cols-2">
+                <Caja titulo="Lo que vemos en Clarity" fuente="Mapas de calor" ayuda="Clarity graba de forma anónima cómo se mueve la gente por tu web: dónde pulsa, hasta dónde baja y dónde se atasca. Es como mirar por encima del hombro a tus visitantes.">
+                  <ul className="space-y-3 text-sm">
+                    <li className="rounded-2xl bg-niebla p-3"><b>El 52 % no llegaba</b> al botón de presupuesto en la página de aerotermia. Lo hemos subido: ya lo ve el 91 %.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Muchos pulsaban la foto</b> del equipo esperando ver más. Hemos añadido una galería de instalaciones.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Clics de rabia</b> en el campo del teléfono: el formulario no aceptaba espacios. Arreglado el mismo día.</li>
+                  </ul>
+                </Caja>
+                <Caja titulo="Seguridad y salud de la web" fuente="Vercel" ayuda="Tu web siempre encendida, segura y con copia de cada cambio. Si algo falla, volvemos a la versión anterior en un minuto.">
+                  <ul className="grid grid-cols-2 gap-3 text-sm">
+                    {[["Disponible", "99,99 %"], ["Copias guardadas", "312 versiones"], ["Certificado de seguridad", "Activo"], ["Ataques bloqueados este mes", "1.208"], ["Dominio y servidor", "A tu nombre"], ["Último cambio", "Hoy, 10:42"]].map(([t, v]) => (
+                      <li key={t} className="rounded-2xl bg-niebla p-3"><p className="text-xs text-gris">{t}</p><p className="font-extrabold">{v}</p></li>
+                    ))}
+                  </ul>
+                </Caja>
+              </div>
+    </>),
+    crm: (<>
               <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
                 <p className="text-sm font-bold text-estrella">Tu CRM, hecho a medida, si lo quieres</p>
                 <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Cada contacto entra solo, con de dónde vino. Tú solo lo mueves hasta cliente.</p>
@@ -945,11 +1044,8 @@ export default function PanelEjemplo() {
                   </ul>
                 </Caja>
               </div>
-            </>
-          )}
-
-          {pestana === "clientes" && (
-            <>
+    </>),
+    clientes: (<>
               <Caja titulo="El camino hasta cliente" fuente="Este mes" ayuda="De cada 100 personas que entran en tu web, cuántas llegan a cada paso. Nuestro trabajo es que en cada escalón se caiga menos gente.">
                 <ol className="space-y-3">
                   {EMBUDO.map(([paso, n, d], i) => (
@@ -1027,246 +1123,8 @@ export default function PanelEjemplo() {
                   <p className="mt-4 text-sm text-gris">El asistente de la web ha atendido <b className="text-tinta">186 conversaciones</b>, 41 de ellas fuera de horario.</p>
                 </Caja>
               </div>
-            </>
-          )}
-
-          {pestana === "anuncios" && (
-            <>
-              <Caja titulo="Google Ads, campaña a campaña" fuente="Google Ads" ayuda="Lo que has invertido en cada campaña de Google, cuántas personas han pulsado, y cuántas te han contactado. La última columna es la que importa: lo que te cuesta cada contacto. Cuántos firman es cosa tuya y está en Lo tuyo.">
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[620px] text-left text-sm">
-                    <thead className="text-gris"><tr><th className="pb-2">Campaña</th><th className="pb-2">Invertido</th><th className="pb-2">Clics</th><th className="pb-2">Contactos</th><th className="pb-2">Coste por contacto</th></tr></thead>
-                    <tbody>
-                      {CAMPANAS.map((c) => (
-                        <tr key={c.nombre} className="border-t border-linea">
-                          <td className="py-3 font-bold">{c.nombre}</td>
-                          <td className="py-3">{eur(c.inversion)}</td>
-                          <td className="py-3">{num(c.clics)}</td>
-                          <td className="py-3">{c.contactos}</td>
-                          <td className="py-3 font-extrabold">{eur(c.inversion / c.contactos)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Caja>
-              <div className="grid gap-5 lg:grid-cols-2">
-                <Caja titulo="Instagram y Facebook" fuente="Meta" ayuda="Los anuncios en Instagram y Facebook. El alcance son las personas distintas que los han visto. Lo medimos con el píxel de Meta y su API de conversiones, que funciona aunque el navegador bloquee cookies.">
-                  <div className="grid grid-cols-2 gap-3">
-                    {[["Invertido", eur(META_ADS.inversion)], ["Personas alcanzadas", num(META_ADS.alcance)], ["Clics", num(META_ADS.clics)], ["Contactos", String(META_ADS.contactos)], ["Coste por contacto", eur(META_ADS.inversion / META_ADS.contactos)]].map(([t, v]) => (
-                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
-                    ))}
-                  </div>
-                </Caja>
-                <Caja titulo="Lo que hemos ajustado este mes" fuente="Nuestro equipo" ayuda="Los anuncios no se montan y se olvidan: se revisan cada día. Esto es lo que hemos cambiado y por qué.">
-                  <ul className="space-y-3 text-sm">
-                    <li className="rounded-2xl bg-niebla p-3"><b>Quitadas 23 búsquedas</b> que traían curiosos («barato», «gratis», «segunda mano»). Ahorro: 210 € al mes.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de aerotermia: es la que mejor coste por contacto tiene.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Nuevo anuncio en vídeo</b> en Instagram con una instalación real. Ha bajado el coste por contacto un 18 %.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Horario ajustado:</b> los anuncios ya no salen de 1 a 7 de la madrugada, cuando nadie pedía presupuesto.</li>
-                  </ul>
-                </Caja>
-              </div>
-            </>
-          )}
-
-          {pestana === "google" && (
-            <>
-              <Caja titulo="Dónde sales en Google" fuente="Search Console y Semrush" ayuda="Las búsquedas que más clientes te pueden traer, cuánta gente las hace al mes y en qué puesto sales. Salir entre los 3 primeros es lo que de verdad da llamadas.">
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[560px] text-left text-sm">
-                    <thead className="text-gris"><tr><th className="pb-2">Búsqueda</th><th className="pb-2">Búsquedas al mes</th><th className="pb-2">Puesto hoy</th><th className="pb-2">Hace 3 meses</th></tr></thead>
-                    <tbody>
-                      {BUSQUEDAS.map(([b, v, hoyP, antes]) => (
-                        <tr key={b} className="border-t border-linea">
-                          <td className="py-3 font-bold">{b}</td>
-                          <td className="py-3">{num(v)}</td>
-                          <td className="py-3"><span className={`rounded-full px-3 py-1 text-xs font-extrabold ${hoyP <= 3 ? "bg-emerald-100 text-emerald-800" : "bg-niebla"}`}>{hoyP}.º</span></td>
-                          <td className="py-3 text-gris">{antes}.º <span className="font-bold text-emerald-700">▲ {antes - hoyP}</span></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Caja>
-              <div className="grid gap-5 lg:grid-cols-2">
-                <Caja titulo="Qué se busca en tu sector" fuente="Google Trends" ayuda="Google Trends nos dice cuándo la gente empieza a buscar lo que vendes. Así preparamos las campañas antes que tu competencia, no cuando ya es tarde.">
-                  <p className="text-sm text-gris">Interés por «aire acondicionado» en Madrid, último año</p>
-                  <div className="mt-3 flex h-40 items-end gap-1.5">
-                    {TENDENCIA.map((v, i) => (
-                      <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-                        <div className="pn-barra w-full rounded-t-md" style={{ height: `${v}%`, background: v > 70 ? "#ffc53d" : "#24387a", animationDelay: `${i * 40}ms` }} title={`${MESES_12[i]}: ${v}`} />
-                        <span className="text-[0.65rem] text-gris">{MESES_12[i]}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-3 rounded-2xl bg-estrella/20 p-3 text-sm">Las búsquedas se disparan en abril. La campaña de primavera empieza el 15 de marzo.</p>
-                </Caja>
-                <Caja titulo="Tu ficha de Google (el mapa)" fuente="Ficha de Google" ayuda="La ficha que sale en Google Maps cuando te buscan cerca. Mucha gente llama directamente desde ahí sin entrar en tu web.">
-                  <div className="grid grid-cols-2 gap-3">
-                    {[["Veces que se ha visto", "14.820"], ["Llamadas desde la ficha", "96"], ["Cómo llegar", "212"], ["Visitas a la web", "740"]].map(([t, v]) => (
-                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex items-center gap-4 rounded-2xl border border-linea p-4">
-                    <p className="text-4xl font-extrabold">4,8</p>
-                    <div><p className="text-estrella">★★★★★</p><p className="text-sm text-gris">312 reseñas · 18 nuevas este mes · todas contestadas</p></div>
-                  </div>
-                </Caja>
-              </div>
-              <Caja titulo="Bing: el buscador que tu competencia olvida" fuente="Bing Webmaster, Microsoft Ads y ficha de Bing" ayuda="En España casi todo el mundo busca en Google, pero Bing se lleva cerca del 3,5 % de las búsquedas, y en los ordenadores más del 12 %, porque viene de serie en Windows y en Edge. Además, Bing alimenta a Copilot y a otros asistentes de IA. Como casi nadie lo trabaja, es más fácil salir arriba y los anuncios suelen tener menos competencia. Va incluido en tu cuota.">
-                <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
-                  <div className="rounded-2xl bg-gradient-to-br from-[#00b294] to-[#0078d4] p-5 text-white">
-                    <p className="text-sm font-bold text-white/80">Cuota de búsquedas en España</p>
-                    <div className="mt-3 flex items-end gap-6">
-                      <div><p className="text-4xl font-extrabold">3,5 %</p><p className="text-xs text-white/80">en total</p></div>
-                      <div><p className="text-4xl font-extrabold">12 %</p><p className="text-xs text-white/80">en ordenadores</p></div>
-                    </div>
-                    <p className="mt-3 text-xs text-white/75">Fuente: StatCounter, septiembre de 2026. Viene de serie en Windows y en Edge.</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[["Visitas desde Bing", "312"], ["Contactos desde Bing", "11"], ["Puesto medio en Bing", "2,4.º"], ["Ficha de Bing: vistas", "1.940"], ["Anuncios de Bing: invertido", "120 €"], ["Coste por contacto en Bing", "21 €"]].map(([t, v]) => (
-                      <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-4 rounded-2xl bg-estrella/20 p-3 text-sm">Pocos contactos, pero baratos: en Bing compiten menos empresas y el clic suele salir más barato. Por eso estamos en todas partes: Google, Bing, Apple Maps y las IA.</p>
-              </Caja>
-              <Caja titulo="Si preguntan a las IA, ¿te recomiendan?" fuente="ChatGPT, Gemini y Claude" ayuda="Cada semana preguntamos a ChatGPT, Gemini y Claude lo mismo que preguntaría un cliente: «¿qué empresa de climatización me recomiendas en Madrid?». Contamos en cuántas de 10 preguntas sales.">
-                <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
-                  <div>
-                    <Linea serie={IA_SEMANAS} color="#8b5cf6" alto={80} />
-                    <p className="mt-2 text-sm text-gris">Hace 8 semanas salías en 3 de cada 10 respuestas. Hoy, en 9.</p>
-                  </div>
-                  <ul className="flex gap-3">
-                    {["ChatGPT", "Gemini", "Claude"].map((n) => (
-                      <li key={n} className="flex flex-col items-center gap-1 rounded-2xl bg-niebla p-3"><Logo nombre={n} tam={30} /><span className="text-xs font-bold">{n}</span><span className="text-xs text-emerald-700">Te recomienda</span></li>
-                    ))}
-                  </ul>
-                </div>
-              </Caja>
-            </>
-          )}
-
-          {pestana === "redes" && (
-            <div className="grid gap-5 sm:grid-cols-2">
-              {REDES.map((r) => (
-                <Caja key={r.red} titulo={r.red} fuente="Últimos 12 meses" ayuda="Cuántas personas te siguen y cómo ha ido creciendo. Lo importante no son los seguidores, sino cuántos acaban pidiendo presupuesto: eso lo ves en la pestaña de Clientes.">
-                  <div className="flex items-center gap-3">
-                    <Logo nombre={r.red} tam={34} />
-                    <p className="text-3xl font-extrabold"><Contador valor={r.serie[r.serie.length - 1]} /></p>
-                    <span className="text-sm font-bold text-emerald-700">+{num(r.serie[r.serie.length - 1] - r.serie[r.serie.length - 4])} en 3 meses</span>
-                  </div>
-                  <div className="mt-3"><Linea serie={r.serie} color={r.color} /></div>
-                  <p className="mt-3 text-sm text-gris">{r.extra}</p>
-                </Caja>
-              ))}
-            </div>
-          )}
-
-          {pestana === "web" && (
-            <>
-              <Caja titulo="Velocidad y calidad de tu web" fuente="PageSpeed de Google" ayuda="Google puntúa tu web de 0 a 100. Por encima de 90 es verde: carga rápido y Google la premia. Una web lenta pierde a casi la mitad de las visitas.">
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                  <Medidor valor={98} etiqueta="Velocidad en el móvil" />
-                  <Medidor valor={100} etiqueta="Accesibilidad" />
-                  <Medidor valor={100} etiqueta="Buenas prácticas" />
-                  <Medidor valor={100} etiqueta="SEO" />
-                </div>
-              </Caja>
-              <div className="grid gap-5 lg:grid-cols-2">
-                <Caja titulo="Lo que vemos en Clarity" fuente="Mapas de calor" ayuda="Clarity graba de forma anónima cómo se mueve la gente por tu web: dónde pulsa, hasta dónde baja y dónde se atasca. Es como mirar por encima del hombro a tus visitantes.">
-                  <ul className="space-y-3 text-sm">
-                    <li className="rounded-2xl bg-niebla p-3"><b>El 52 % no llegaba</b> al botón de presupuesto en la página de aerotermia. Lo hemos subido: ya lo ve el 91 %.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Muchos pulsaban la foto</b> del equipo esperando ver más. Hemos añadido una galería de instalaciones.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Clics de rabia</b> en el campo del teléfono: el formulario no aceptaba espacios. Arreglado el mismo día.</li>
-                  </ul>
-                </Caja>
-                <Caja titulo="Seguridad y salud de la web" fuente="Vercel" ayuda="Tu web siempre encendida, segura y con copia de cada cambio. Si algo falla, volvemos a la versión anterior en un minuto.">
-                  <ul className="grid grid-cols-2 gap-3 text-sm">
-                    {[["Disponible", "99,99 %"], ["Copias guardadas", "312 versiones"], ["Certificado de seguridad", "Activo"], ["Ataques bloqueados este mes", "1.208"], ["Dominio y servidor", "A tu nombre"], ["Último cambio", "Hoy, 10:42"]].map(([t, v]) => (
-                      <li key={t} className="rounded-2xl bg-niebla p-3"><p className="text-xs text-gris">{t}</p><p className="font-extrabold">{v}</p></li>
-                    ))}
-                  </ul>
-                </Caja>
-              </div>
-            </>
-          )}
-
-          {pestana === "gastos" && (
-            <>
-              <Caja titulo="Qué va incluido y qué va aparte" fuente="Así de claro" ayuda="Pagas una cuota fija al mes que lo incluye todo. Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, el vídeo profesional, el espacio en radio o prensa y, si quieres, una nota de prensa o un artículo en un medio.">
-                <div className="grid gap-4 lg:grid-cols-2">
-                  <div className="rounded-2xl bg-emerald-50 p-5">
-                    <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
-                    <ul className="mt-3 space-y-2 text-sm">
-                      {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
-                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas", "Reservas online, reseñas, landings sin límite, encuestas y programa de recomendación", "Presupuestos con firma, tienda online, Google Shopping, web en varios idiomas y área privada para tus clientes", "Medición de llamadas, vigilancia de la competencia, y vídeos con IA"].map((t) => (
-                        <li key={t} className="flex gap-2"><span className="text-emerald-700">✓</span>{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="rounded-2xl bg-niebla p-5">
-                    <p className="font-extrabold">Aparte, solo si tú quieres y siempre con tu visto bueno</p>
-                    <ul className="mt-3 space-y-3 text-sm">
-                      <li><b>Lo que inviertes en anuncios.</b> Lo pagas tú directamente a Google o a Meta, con tu tarjeta. Nosotros no cobramos ningún porcentaje.</li>
-                      <li><b>La grabación de vídeo profesional.</b> La hace una productora audiovisual asociada y le pagas a ella directamente. El guion y el montaje van incluidos.</li>
-                      <li><b>Notas de prensa y artículos en medios.</b> Los enlaces de calidad desde periódicos y revistas los cobra el medio. Te proponemos el medio con su precio y no se compra nada sin tu sí.</li>
-                      <li><b>El espacio en radio o prensa.</b> Si hacemos una campaña de radio o un anuncio en un periódico, la emisora o el periódico te cobran a ti directamente. La idea, el guion, las voces y la gestión van incluidos.</li>
-                    </ul>
-                  </div>
-                </div>
-              </Caja>
-              <div className="grid gap-5 lg:grid-cols-2">
-                <Caja titulo="Lo que has gastado este mes" fuente="Octubre" ayuda="El desglose de lo que te ha costado el marketing este mes. La cuota es fija; lo demás depende de lo que decidas invertir.">
-                  <ul className="divide-y divide-linea text-sm">
-                    <li className="flex justify-between py-2"><span>Cuota mensual (todo incluido)</span><b>La que acordemos</b></li>
-                    <li className="flex justify-between py-2"><span>SEO, web, servidor y dominio</span><b className="text-emerald-700">0 € (incluido)</b></li>
-                    <li className="flex justify-between py-2"><span>Inversión en Google Ads</span><b>{eur(gastoMes.google)}</b></li>
-                    <li className="flex justify-between py-2"><span>Inversión en Instagram y Facebook</span><b>{eur(gastoMes.meta)}</b></li>
-                    <li className="flex justify-between py-2"><span>Vídeo profesional (opcional)</span><b>{eur(gastoMes.video)}</b></li>
-                    <li className="flex justify-between py-2"><span>Notas de prensa (opcional)</span><b>{eur(gastoMes.prensa)}</b></li>
-                    <li className="flex justify-between py-2 text-base"><span className="font-bold">Total variable</span><b>{eur(variable)}</b></li>
-                  </ul>
-                  <p className="mt-3 text-sm text-gris">Comisión sobre lo invertido: <b className="text-tinta">0 €</b>. Siempre.</p>
-                </Caja>
-                <Caja titulo="Lo que te cuesta cada contacto, mes a mes" fuente="Últimos 6 meses" ayuda="Dividimos lo invertido en anuncios entre los contactos que han llegado. Si la barra baja, cada contacto te sale más barato. En junio se grabó un vídeo y en julio se compró una nota de prensa: se ve en el gasto, no en la cuota.">
-                  <div className="flex h-44 items-end gap-3">
-                    {GASTO_MES.map((g, i) => {
-                      const coste = (g.google + g.meta) / g.contactos;
-                      return (
-                        <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-                          <span className="text-xs font-bold">{eur(coste)}</span>
-                          <div className="pn-barra w-full rounded-t-lg bg-noche-3" style={{ height: `${(coste / 16) * 100}%`, animationDelay: `${i * 60}ms` }} />
-                          <span className="text-xs text-gris">{MESES[i]}</span>
-                          <span className="h-4 text-[0.6rem] text-gris">{g.video ? "vídeo" : g.prensa ? "prensa" : ""}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </Caja>
-                <Caja quien="tuyo" titulo="Lo que te cuesta cada cliente" fuente="Preparado para ti" ayuda="Para calcularlo hace falta un dato que solo tienes tú: quién ha firmado. Si lo marcas en tu CRM, dividimos lo invertido entre tus clientes. Si no, no pasa nada y no te lo pedimos.">
-                  <p className="text-sm text-gris"><b className="text-tinta">Se activa cuando marcas quién ha firmado.</b> Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.</p>
-                  <div className="mt-4 flex h-32 items-end gap-3 opacity-80">
-                    {GASTO_MES.map((g, i) => {
-                      const coste = (g.google + g.meta) / g.clientes;
-                      return (
-                        <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-                          <span className="text-xs font-bold">{eur(coste)}</span>
-                          <div className="w-full rounded-t-lg bg-sky-300" style={{ height: `${(coste / 110) * 100}%` }} />
-                          <span className="text-xs text-gris">{MESES[i]}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <p className="mt-2 text-xs text-gris">Datos de demostración, como si hubieras marcado tus firmas.</p>
-                </Caja>
-              </div>
-            </>
-          )}
-
-          {pestana === "medicion" && (
-            <>
+    </>),
+    medicion: (<>
               <Caja titulo="Cómo medimos todo, explicado fácil" fuente="Tag Manager en el centro" ayuda="Tag Manager es como la centralita de tu web: desde ahí se colocan todas las «etiquetas» que cuentan visitas, clics, llamadas y contactos, y se mandan a Google, a Meta, a LinkedIn o a TikTok. Una sola instalación, sin tocar tu web cada vez.">
                 <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
                   <ul className="space-y-2">
@@ -1313,11 +1171,8 @@ export default function PanelEjemplo() {
                   <p className="mt-3 text-sm text-gris">El 78 % de los visitantes acepta la medición.</p>
                 </Caja>
               </div>
-            </>
-          )}
-
-          {pestana === "trabajo" && (
-            <>
+    </>),
+    trabajo: (<>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Cifra titulo="Entregadas a tiempo" valor={98} formato={(n) => `${n} %`} cambio={2} explicacion="Tareas de este mes hechas dentro del plazo prometido. 63 de 64." />
                 <Cifra titulo="Tareas hechas este mes" valor={64} cambio={9} explicacion="Cambios, campañas, artículos, diseños y correos." />
@@ -1335,8 +1190,144 @@ export default function PanelEjemplo() {
                   ))}
                 </ol>
               </Caja>
-            </>
+    </>),
+  };
+
+  const MODULOS: Modulo[] = [
+    { id: "lupa", grupo: "web", nombre: "Lupa 360", corto: "Lupa", linea: "Ves lo que hace la gente en tu web.", conclusion: "El 23 % de los toques no llevan a ningún sitio. Un cambio de media hora lo arregla.", luz: "atencion", icono: "lupa", contenido: <Herramientas360 solo="lupa" /> },
+    { id: "sistemas", grupo: "web", nombre: "Sistemas", corto: "Sistemas", linea: "Comprobamos cada día que tu web, tus formularios y tus anuncios funcionan.", conclusion: "Hoy, 7 de 8 comprobaciones correctas. La octava se revisó ayer.", luz: "ok", icono: "escudo", contenido: <Herramientas360 solo="sistemas" /> },
+    { id: "control360", grupo: "web", nombre: "Control 360", corto: "Control 360", linea: "Probamos tu recorrido completo como lo haría un cliente.", conclusion: "Última prueba completa, el lunes: todo correcto.", luz: "ok", icono: "camino", contenido: <Herramientas360 solo="recorrido" /> },
+    { id: "web", grupo: "web", nombre: "La web", corto: "La web", linea: "Velocidad, seguridad y lo que ve Clarity.", conclusion: "Tu web va rápida, segura y con copia de cada cambio.", luz: "ok", icono: "globo", contenido: piezas.web },
+    { id: "espejo", grupo: "dicen", nombre: "Espejo de la IA", corto: "Espejo IA", linea: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", conclusion: "Sales en 16 de 18 respuestas. En 2 preguntas todavía no.", luz: "atencion", icono: "espejo", contenido: <Herramientas360 solo="espejo" /> },
+    { id: "redes", grupo: "dicen", nombre: "Redes y reseñas", corto: "Redes", linea: "Instagram, LinkedIn, Facebook, TikTok y tus reseñas.", conclusion: "Todas las redes suben. Lo importante: cuántos te piden presupuesto.", luz: "ok", icono: "red", contenido: piezas.redes },
+    { id: "vigia", grupo: "mercado", nombre: "Vigía", corto: "Vigía", linea: "Ves los cambios importantes de tu competencia.", conclusion: "Una empresa de tu zona ha bajado la revisión anual a 79 €.", luz: "ok", icono: "catalejo", contenido: <Herramientas360 solo="vigia" /> },
+    { id: "contactos", grupo: "anuncios", nombre: "Contactos que llegan", corto: "Contactos", linea: "Cuánta gente te escribe, por qué canal y desde qué anuncio o página. Sale solo.", conclusion: `${esc(312)} contactos en este periodo, ${comp === "nada" ? "sin comparar" : "un 16 % más que antes"}.`, luz: "ok", icono: "persona", contenido: piezas.contactos },
+    { id: "costecontacto", grupo: "anuncios", nombre: "Coste por contacto", corto: "Coste", linea: "Lo invertido en anuncios entre los contactos que llegan, por canal.", conclusion: "Cada contacto te cuesta 10 €, 8 % menos que antes.", luz: "ok", icono: "moneda", contenido: piezas.costeContacto },
+    { id: "campanas", grupo: "anuncios", nombre: "Campañas", corto: "Campañas", linea: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", conclusion: "Aerotermia es la que más contactos trae. Le hemos subido el presupuesto un 10 %.", luz: "ok", icono: "megafono", contenido: piezas.campanas },
+    { id: "google", grupo: "anuncios", nombre: "Google, Bing y mapa", corto: "Google", linea: "Tus puestos, tu ficha de Google y Bing.", conclusion: "Sales en el mapa y en 4 búsquedas clave entre los tres primeros.", luz: "ok", icono: "mapa", contenido: piezas.google },
+    { id: "crm", grupo: "tuyo", nombre: "Ventas (CRM)", corto: "Ventas", linea: "Tus contactos, fase a fase. El CRM es tuyo.", conclusion: "Preparado: se actualiza cuando mueves un contacto de fase.", luz: "preparado", icono: "embudo", contenido: piezas.crm },
+    { id: "clientes", grupo: "tuyo", nombre: "Contactos que se hacen clientes", corto: "Clientes", linea: "Cuántos acaban firmando y de dónde viene cada uno.", conclusion: "Preparado: se activa cuando marcas quién ha firmado.", luz: "preparado", icono: "camino", contenido: piezas.clientes },
+    { id: "costecliente", grupo: "tuyo", nombre: "Coste por cliente", corto: "Por cliente", linea: "Lo que te cuesta cada cliente que llega por internet.", conclusion: "Preparado: se activa cuando marcas tus firmas.", luz: "preparado", icono: "moneda", contenido: piezas.costeCliente },
+    { id: "indice", grupo: "tuyo", nombre: "Índice de valor", corto: "Índice", linea: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", conclusion: "Preparado: se activa cuando pones tu ticket medio. Nunca euros.", luz: "preparado", icono: "estrella", contenido: <IndiceValor /> },
+    { id: "opcionales", grupo: "tuyo", nombre: "Lo que decides tú", corto: "Opcionales", linea: "Tiempo de respuesta, llamadas y cierre. Apagado de serie.", conclusion: "Ahora mismo no compartes nada con nosotros.", luz: "preparado", icono: "ajustes", contenido: <Mandos /> },
+    { id: "peticiones", grupo: "contigo", nombre: "Tus peticiones", corto: "Peticiones", linea: "Pides, te damos fecha y apruebas.", conclusion: "Todo lo que has pedido está hecho o en curso. Tiempo medio, 19 horas.", luz: "ok", icono: "chat", contenido: piezas.peticiones },
+    { id: "gastos", grupo: "contigo", nombre: "Gastos", corto: "Gastos", linea: "Lo que has gastado este mes y lo que va aparte.", conclusion: "Comisión sobre lo invertido: 0 €. Siempre.", luz: "ok", icono: "caja", contenido: piezas.gastos },
+    { id: "medicion", grupo: "contigo", nombre: "Cómo lo medimos", corto: "Medición", linea: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", conclusion: "21 de 21 herramientas funcionando.", luz: "ok", icono: "ajustes", contenido: piezas.medicion },
+    { id: "trabajo", grupo: "contigo", nombre: "Todo lo que hacemos", corto: "Trabajo", linea: "Un registro con fecha y con el porqué de cada cosa.", conclusion: "64 tareas este mes, el 98 % entregadas a tiempo.", luz: "ok", icono: "documento", contenido: piezas.trabajo },
+    { id: "informes", grupo: "informes", nombre: "Informes y facturas", corto: "Informes", linea: "Los informes que mandamos, por mes, y tus facturas.", conclusion: "El de septiembre está listo para descargar.", luz: "ok", icono: "documento", contenido: piezas.informes },
+    { id: "historico", grupo: "historico", nombre: "Cómo has mejorado", corto: "Histórico", linea: "La evolución mes a mes desde el primer día.", conclusion: "En seis meses, de 120 a 312 contactos al mes.", luz: "ok", icono: "historia", contenido: piezas.historico },
+  ];
+  const abiertosEf = abiertos ?? MODULOS.filter((m) => m.luz === "problema").map((m) => m.id);
+  const alternar = (id: string) => setAbiertos((a) => { const base = a ?? abiertosEf; return base.includes(id) ? base.filter((x) => x !== id) : [...base, id]; });
+  const ir = (id: string) => {
+    setAbiertos((a) => { const base = a ?? abiertosEf; return base.includes(id) ? base : [...base, id]; });
+    setTimeout(() => document.getElementById(`mod-${id}`)?.scrollIntoView({ block: "start" }), 60);
+  };
+  const atencion = MODULOS.filter((m) => m.luz === "atencion");
+  const urgentes = MODULOS.filter((m) => m.luz === "problema");
+
+  return (
+    <div className="bg-niebla pb-20">
+      <style>{`
+        .pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:pnFade .35s ease-out both}
+        @keyframes pnFade{from{opacity:0}to{opacity:1}}
+        @media (prefers-reduced-motion: reduce){.pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:none}}
+      `}</style>
+
+      <div className="bg-noche pb-10 pt-24 text-white sm:pt-28">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="rounded-2xl bg-estrella px-5 py-3 text-sm font-bold text-tinta">
+          Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.
+        </div>
+
+        <header className="mt-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
+            <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
+          </div>
+          <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
+            <span className="relative flex h-2.5 w-2.5">
+                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+            </span>
+            {ahora} personas en tu web ahora · actualizado hace {segundos} s
+          </div>
+        </header>
+
+        <section className="mt-6 rounded-3xl bg-white/5 p-5 text-white sm:p-7" aria-label="Resumen de hoy">
+          <p className="text-sm font-bold text-estrella">Resumen de hoy</p>
+          <p className="mt-2 text-lg font-bold sm:text-xl">
+            {urgentes.length ? `Hay algo urgente: ${urgentes.map((m) => m.nombre).join(" y ")}.` : `Hoy no hay nada urgente. Han llegado ${esc(312)} contactos en este periodo, a 10 € cada uno.`}
+          </p>
+          {atencion.length > 0 && <p className="mt-1 text-white/80">Piden un vistazo: {atencion.map((m) => m.nombre).join(" y ")}. Pulsa su luz y lo ves.</p>}
+        </section>
+
+        <div className="mt-5" role="group" aria-label="Periodo">
+          <div className="flex flex-wrap items-center gap-2">
+            {PERIODOS.filter(([id]) => ["hoy", "ayer", "7", "28", "mes", "pasado"].includes(id)).map(([id, t]) => (
+              <button key={id} type="button" aria-pressed={periodo === id} onClick={() => setPeriodo(id)} className={`rounded-full px-4 py-2 text-sm font-bold ${periodo === id ? "bg-estrella text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>{t}</button>
+            ))}
+            <button type="button" aria-pressed={periodo === "rango"} onClick={() => setPeriodo("rango")} className={`rounded-full px-4 py-2 text-sm font-bold ${periodo === "rango" ? "bg-estrella text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>Desde / hasta</button>
+          </div>
+          {periodo === "rango" && (
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+              <label className="flex items-center gap-2 font-bold">Desde <input type="date" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
+              <label className="flex items-center gap-2 font-bold">Hasta <input type="date" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
+              <span className="text-white/70">{diasRango} {diasRango === 1 ? "día" : "días"}</span>
+            </div>
           )}
+          <details className="mt-3 text-sm text-white/80">
+            <summary className="cursor-pointer font-bold text-white">Comparar con otros periodos y cómo se lee ▾</summary>
+            <div className="mt-2 flex flex-wrap items-center gap-2" role="group" aria-label="Comparar con">
+              {([["anterior", "Periodo anterior"], ["ano", "Mismo periodo del año pasado"], ["nada", "Nada"]] as const).map(([id, t]) => (
+                <button key={id} type="button" aria-pressed={comp === id} onClick={() => setComp(id)} className={`rounded-full px-3.5 py-1.5 font-bold ${comp === id ? "bg-white text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>{t}</button>
+              ))}
+            </div>
+            <p className="mt-2">El número grande es lo que ha pasado en el periodo. La flecha dice cuánto más o menos que el periodo con el que comparas. Verde es que va mejor, rojo es que va peor (en el coste por contacto, bajar es mejorar).</p>
+          </details>
+        </div>
+
+        <div className="mt-4"><FilaLuces modulos={MODULOS} ir={ir} /></div>
+
+        <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <Reloj titulo="Contactos" valor={String(esc(312))} sub={comp === "nada" ? "sin comparar" : "16 % más que antes"} pct={78} />
+          <Reloj titulo="Coste por contacto" valor="10 €" sub="bajar es mejorar" pct={33} invertir />
+          <Reloj titulo="Presencia en IA" valor="16 de 18" sub="respuestas donde sales" pct={89} />
+          <Reloj titulo="Salud de la web" valor="7 de 8" sub="comprobaciones de hoy" pct={88} />
+        </div>
+      </div>
+      </div>
+
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm font-bold text-gris">Todo cerrado al entrar. Abre solo lo que te interese.</p>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => setAbiertos(MODULOS.map((m) => m.id))} className="rounded-full bg-white px-4 py-2 text-sm font-bold hover:bg-white/70">Abrir todo</button>
+            <button type="button" onClick={() => setAbiertos([])} className="rounded-full bg-white px-4 py-2 text-sm font-bold hover:bg-white/70">Cerrar todo</button>
+          </div>
+        </div>
+
+        <div className="mt-4 space-y-8">
+          {GRUPOS_MODULOS.map((g) => {
+            const ms = MODULOS.filter((m) => m.grupo === g.id);
+            return (
+              <section key={g.id} aria-label={g.titulo}>
+                <div className="mb-3 flex flex-wrap items-baseline gap-x-3">
+                  <h2 className="text-sm font-extrabold uppercase tracking-wide" style={{ color: g.color }}>{g.titulo}</h2>
+                  {g.frase && <p className="text-sm font-bold text-tinta">{g.frase}</p>}
+                </div>
+                <div className="space-y-3">
+                  {ms.map((m) => <ModuloPlegable key={m.id} m={m} abierto={abiertosEf.includes(m.id)} alternar={() => alternar(m.id)} color={g.color} />)}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 space-y-5">
+              <p className="rounded-2xl bg-niebla p-4 text-sm text-gris">
+                <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
+              </p>
 
           <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
             <p className="text-xl font-extrabold">¿Echas algún dato de menos? ¿Quieres otro informe?</p>
