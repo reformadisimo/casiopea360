@@ -24,6 +24,11 @@ export default function Medicion() {
 
   useEffect(() => {
     if (!hayMedicion) return;
+    // Dentro de un marco (la Lupa de ejemplo) no se mide nada ni se pregunta por las cookies.
+    if (window.self !== window.top) {
+      setVisible(false);
+      return;
+    }
     let guardada: Eleccion = null;
     try {
       guardada = localStorage.getItem(CLAVE) as Eleccion;

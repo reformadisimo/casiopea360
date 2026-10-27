@@ -8,8 +8,7 @@ import GlosarioTactil from "@/components/GlosarioTactil";
 import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
 import Revelado from "@/components/Revelado";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import MedicionVercel from "@/components/MedicionVercel";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SITIO } from "@/lib/navegacion";
@@ -50,7 +49,7 @@ export default function RootLayout({
     <html lang="es" className={titular.variable} style={{ backgroundColor: "#0e1a3d" }} suppressHydrationWarning>
       <head>
         {/* Si ya se eligió sobre las cookies, se oculta el aviso antes de pintar nada. */}
-        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('casiopea-cookies'))document.documentElement.classList.add('cookies-decididas')}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('casiopea-cookies')||window.self!==window.top)document.documentElement.classList.add('cookies-decididas')}catch(e){}" }} />
         {/* Ajustes de lectura guardados: se aplican antes de pintar, sin parpadeo. */}
         <script dangerouslySetInnerHTML={{ __html: "try{var s=JSON.parse(localStorage.getItem('casiopea-lectura')||'null');if(s){var h=document.documentElement;if(s.t)h.setAttribute('data-texto',String(s.t));if(s.f)h.setAttribute('data-fuente','1');if(s.e)h.setAttribute('data-espacio','1');if(s.c)h.setAttribute('data-contraste','1');if(s.p)h.setAttribute('data-sin-movimiento','1')}}catch(e){}" }} />
       </head>
@@ -72,8 +71,7 @@ export default function RootLayout({
         <GlosarioTactil />
         <Revelado />
         {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
-        <Analytics />
-        <SpeedInsights />
+        <MedicionVercel />
       </body>
     </html>
   );

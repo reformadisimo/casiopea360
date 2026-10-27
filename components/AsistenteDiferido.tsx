@@ -11,6 +11,8 @@ const Carruseles = dynamic(() => import("@/components/Carruseles"), { ssr: false
 export default function AsistenteDiferido() {
   const [listo, setListo] = useState(false);
   useEffect(() => {
+    // Dentro de un marco (la Lupa de ejemplo) no aparece el asistente ni los avisos flotantes.
+    if (window.self !== window.top) return;
     // Aparece cuando la persona empieza a moverse por la página, o a los pocos segundos.
     const eventos = ["pointermove", "touchstart", "scroll", "keydown"] as const;
     const ya = () => {
