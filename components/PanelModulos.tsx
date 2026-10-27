@@ -7,11 +7,11 @@ import { useEffect, useState, type ReactNode } from "react";
 export type Luz = "ok" | "atencion" | "problema" | "sinconectar" | "preparado";
 
 export const LUZ: Record<Luz, { texto: string; color: string }> = {
-  ok: { texto: "Funcionando", color: "#059669" },
-  atencion: { texto: "Atención", color: "#d97706" },
-  problema: { texto: "Problema", color: "#dc2626" },
-  sinconectar: { texto: "Sin conectar", color: "#94a3b8" },
-  preparado: { texto: "Preparado", color: "#0284c7" },
+  ok: { texto: "Todo bien", color: "#059669" },
+  atencion: { texto: "Mira esto", color: "#d97706" },
+  problema: { texto: "Importante", color: "#dc2626" },
+  sinconectar: { texto: "Sin datos aún", color: "#94a3b8" },
+  preparado: { texto: "Datos de tu negocio", color: "#0284c7" },
 };
 
 export type Modulo = {
@@ -128,8 +128,8 @@ export function Reloj({ titulo, valor, sub, pct, invertir = false }: { titulo: s
 // ---------------------------------------------------------------------------------------------
 // Navegación: inicio, sección y página. Índice a la izquierda, migas y vuelta atrás siempre a mano.
 // ---------------------------------------------------------------------------------------------
-export type Vista = { g?: string; m?: string };
-export const hashDe = (v: Vista) => (v.m ? `#m-${v.m}` : v.g ? `#g-${v.g}` : "#inicio");
+export type Vista = { g?: string; m?: string; todo?: boolean };
+export const hashDe = (v: Vista) => (v.m ? `#m-${v.m}` : v.g ? `#g-${v.g}` : v.todo ? "#todo" : "#inicio");
 
 export function luzDeGrupo(ms: Modulo[]): Luz {
   if (ms.some((m) => m.luz === "problema")) return "problema";
@@ -281,6 +281,7 @@ const EXPLICA: Record<string, [string, string, string]> = {
   costecliente: ["Lo que te cuesta cada cliente que llega por internet.", "Dejamos el cálculo preparado.", "Marcar tus firmas. Opcional."],
   indice: ["Qué clientes valen más que tu media, sin decirnos cuánto facturas.", "Con el índice movemos el dinero hacia las campañas que traen los mejores.", "Poner tu ticket medio una vez. Opcional, y se queda en tu navegador."],
   opcionales: ["Datos de tu gestión interna: tiempo de respuesta, llamadas y cierre.", "Con ellos te damos más conclusiones.", "Encenderlos, si quieres. Están apagados de serie."],
+  pregunta: ["Un cuadro donde preguntas con tus palabras y el panel te contesta con tus datos.", "Lo preparamos para que solo use lo que ves en tu panel y diga cuando no lo sabe.", "Preguntar, si quieres. Cada pregunta tiene un coste pequeño que va aparte de la cuota."],
   avisos: ["Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp y, si lo prefieres, por SMS.", "Lo montamos y funciona solo. Incluido en tu cuota: solo pagas los mensajes, directamente al proveedor.", "Nada hasta que lo actives. Te lo recomendamos si en tu negocio hay citas."],
   peticiones: ["Todo lo que nos pides, con fecha de entrega y estado.", "Respondemos el mismo día y entregamos en 48 horas como máximo.", "Pedir lo que necesites y aprobar."],
   gastos: ["Lo que pagas: la cuota fija, los anuncios y los extras.", "Sin comisión sobre lo que inviertes en anuncios.", "Nada."],
@@ -312,14 +313,23 @@ export function ExplicaModulo({ id }: { id: string }) {
 // ---------------------------------------------------------------------------------------------
 const CLAVE_GUIA = "casiopea-panel-guia-cerrada";
 
-export function GuiaInicio() {
+export function GuiaInicio({ forzar = false }: { forzar?: boolean }) {
   const [cerrada, setCerrada] = useState(false);
   useEffect(() => {
+    if (forzar) return;
     try {
       if (window.localStorage.getItem(CLAVE_GUIA) === "1") setCerrada(true);
     } catch {
       /* sin almacenamiento: se muestra siempre */
     }
+  }, [forzar]);
+  useEffect(() => {
+    const abrir = () => {
+      setCerrada(false);
+      try { window.localStorage.removeItem(CLAVE_GUIA); } catch { /* nada */ }
+    };
+    window.addEventListener("casiopea-guia", abrir);
+    return () => window.removeEventListener("casiopea-guia", abrir);
   }, []);
   const cerrar = () => {
     setCerrada(true);
@@ -338,7 +348,7 @@ export function GuiaInicio() {
             <button type="button" onClick={cerrar} className="shrink-0 rounded-full border border-linea px-3 py-1 text-xs font-bold hover:bg-niebla">Entendido, ocultar</button>
           </div>
           <ol className="mt-3 grid gap-3 text-sm sm:grid-cols-3">
-            <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">1. Mira las luces</b><span className="text-gris">Verde, todo bien. Naranja, mira esto cuando puedas. Rojo, lo estamos arreglando.</span></li>
+            <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">1. Mira las luces</b><span className="text-gris">Verde, todo bien. Naranja, mira esto cuando puedas. Rojo, importante: lo estamos arreglando.</span></li>
             <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">2. Abre solo lo que te interese</b><span className="text-gris">Cada franja de abajo se abre con un toque y empieza explicándote qué es.</span></li>
             <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">3. Lo azul es tuyo</b><span className="text-gris">Son datos de tu empresa. Los usas si quieres. Nosotros no los vemos ni te los pedimos.</span></li>
           </ol>
@@ -346,7 +356,7 @@ export function GuiaInicio() {
       )}
       <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gris" aria-label="Qué significa cada color">
         {(Object.keys(LUZ) as Luz[]).map((k) => (
-          <li key={k} className="flex items-center gap-1.5"><PuntoLuz luz={k} tam={9} /><b className="text-tinta">{LUZ[k].texto}</b>{k === "ok" ? ": va bien" : k === "atencion" ? ": mira esto" : k === "problema" ? ": lo estamos arreglando" : k === "sinconectar" ? ": falta conectar algo" : ": es tuyo, si quieres"}</li>
+          <li key={k} className="flex items-center gap-1.5"><PuntoLuz luz={k} tam={9} /><b className="text-tinta">{LUZ[k].texto}</b>{k === "ok" ? "" : k === "atencion" ? "" : k === "problema" ? ": lo estamos arreglando" : k === "sinconectar" ? ": falta conectar algo" : ": es tuyo, si quieres"}</li>
         ))}
       </ul>
     </div>

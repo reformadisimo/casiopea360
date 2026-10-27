@@ -757,3 +757,51 @@ export function ResumenesCorreo() {
     </Bloque>
   );
 }
+
+// ---------------------------------------------------------------------------------------------
+// Pregúntale al panel: demostración con respuestas preparadas. No llama a ninguna IA.
+// ---------------------------------------------------------------------------------------------
+const PREGUNTAS_PANEL: [string, string][] = [
+  ["¿Cómo voy este mes?", "Han llegado 312 contactos, un 16 % más que antes, y cada uno te cuesta 10 €, un 8 % menos. Ahora mismo no hay nada urgente."],
+  ["¿Qué canal me trae más contactos?", "Aerotermia en Google: trae el 38 % de los contactos con el coste por contacto más bajo. Por eso le hemos subido el presupuesto un 10 %."],
+  ["¿Qué me toca hacer hoy?", "Llamar a los 3 contactos que llevan más de 3 días sin respuesta. Las 2 reseñas nuevas de Google pueden esperar a esta semana."],
+  ["¿Por qué el Espejo de la IA está en naranja?", "Sales en 16 de 18 respuestas de ChatGPT, Gemini y Claude. En 2 preguntas todavía no, y estamos reforzando tu información para esas."],
+  ["¿Cuánto me cuesta cada cliente?", "Todavía no lo sé: hace falta que marques quién ha firmado, y es opcional. Si quieres, está en Lo tuyo."],
+];
+
+export function PreguntaPanel() {
+  const [i, setI] = useState<number | null>(null);
+  return (
+    <Bloque titulo="Pregúntale al panel" quien="opcional">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-extrabold text-sky-800 ring-1 ring-sky-200">Opcional</span>
+        <span className="rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Va aparte de la cuota</span>
+      </div>
+      <p className="mt-3 text-[15px] leading-relaxed">
+        Escribe o toca una pregunta con tus palabras y el panel te contesta con tus datos, en frases cortas. Solo usa lo que ves en tu panel: no se inventa nada, y si no lo sabe, te lo dice.
+      </p>
+      <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Preguntas de ejemplo">
+        {PREGUNTAS_PANEL.map(([q], k) => (
+          <button key={q} type="button" onClick={() => setI(k)} aria-pressed={i === k} className={`min-h-11 rounded-full px-4 text-sm font-bold ${i === k ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-slate-200"}`}>{q}</button>
+        ))}
+      </div>
+      <div role="status" className="mt-4 min-h-24 rounded-2xl bg-niebla p-4 text-[15px]">
+        {i === null ? <span className="text-gris">Toca una pregunta para ver cómo contesta.</span> : (<><p className="text-xs font-extrabold uppercase tracking-wide text-gris">Respuesta de ejemplo</p><p className="mt-1">{PREGUNTAS_PANEL[i][1]}</p></>)}
+      </div>
+      <p className="mt-4 text-xs text-gris">En esta demostración las respuestas están preparadas y no se llama a ninguna inteligencia artificial. En tu panel, cada pregunta tiene un coste pequeño por uso que no entra en la cuota; te decimos cuánto antes de activarlo y lo apagas cuando quieras.</p>
+    </Bloque>
+  );
+}
+
+// Respuestas preparadas para "Pregunta lo que quieras" en la demostración. No llama a ninguna IA.
+export const ATAJOS_PREGUNTA = ["¿Qué canal me trae más contactos?", "¿Qué me toca hacer hoy?", "¿Cómo voy este mes?"];
+export function responderPanel(q: string): string {
+  const t = q.toLowerCase();
+  const hay = (...p: string[]) => p.some((x) => t.includes(x));
+  if (hay("canal", "instagram", "google ads", "más contactos", "mas contactos")) return PREGUNTAS_PANEL[1][1];
+  if (hay("hoy", "primero", "toca", "hacer", "semana")) return PREGUNTAS_PANEL[2][1];
+  if (hay("espejo", "chatgpt", "gemini", " ia", "naranja")) return PREGUNTAS_PANEL[3][1];
+  if (hay("cliente", "firm")) return PREGUNTAS_PANEL[4][1];
+  if (hay("mes", "voy", "cómo", "como", "resumen", "contactos")) return PREGUNTAS_PANEL[0][1];
+  return "Con los datos de tu panel no puedo contestar a eso todavía, y prefiero no inventarlo. Escríbenos y lo miramos.";
+}

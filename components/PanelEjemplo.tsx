@@ -8,7 +8,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
-import { AvisosPanel, Herramientas360, IndiceValor, Mandos, ResumenesCorreo } from "@/components/PanelMandos";
+import PanelSimple from "@/components/PanelSimple";
+import { AvisosPanel, Herramientas360, IndiceValor, Mandos, PreguntaPanel, ResumenesCorreo } from "@/components/PanelMandos";
 import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, IndiceLateral, Migas, PaginaModulo, Reloj, TarjetaGrupo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
 
 
@@ -499,6 +500,9 @@ export default function PanelEjemplo() {
   const MODULOS_REF = useRef<Modulo[]>([]);
   const [vista, setVista] = useState<Vista>({});
   const [menu, setMenu] = useState(false);
+  const [masTareas, setMasTareas] = useState(false);
+  const [revisado, setRevisado] = useState(false);
+  const [leyendo, setLeyendo] = useState(false);
   const [periodo, setPeriodo] = useState("mes");
   const [comp, setComp] = useState<"anterior" | "ano" | "nada">("anterior");
   const comparar: "mes" | "inicio" = comp === "ano" ? "inicio" : "mes";
@@ -561,11 +565,20 @@ export default function PanelEjemplo() {
 
   // Se puede abrir una sección o una página concreta con el enlace (/panel#m-crm, /panel#g-anuncios) y el botón Atrás funciona
   useEffect(() => {
+    try {
+      const t = Number(window.localStorage.getItem("casiopea-panel-revisado"));
+      if (t && Date.now() - t < 7 * 86400000) setRevisado(true);
+    } catch { /* nada */ }
+    return () => { try { window.speechSynthesis?.cancel(); } catch { /* nada */ } };
+  }, []);
+
+  useEffect(() => {
     const leer = () => {
       const h = window.location.hash.replace("#", "");
       const mods = MODULOS_REF.current;
       const viejo: Record<string, string> = { anuncios: "campanas", herramientas: "lupa", resumen: "contactos" };
       if (h.startsWith("m-")) { const m = mods.find((x) => x.id === h.slice(2)); setVista(m ? { g: m.grupo, m: m.id } : {}); return; }
+      if (h === "todo") { setVista({ todo: true }); return; }
       if (h.startsWith("g-")) { setVista({ g: h.slice(2) }); return; }
       const id = h in viejo ? viejo[h] : h;
       const m = mods.find((x) => x.id === id);
@@ -688,6 +701,13 @@ export default function PanelEjemplo() {
                 </Caja>
     </>),
     gastos: (<>
+              <Caja titulo="Lo que se paga por uso, si lo activas" fuente="Va aparte de la cuota" ayuda="Estas cosas cuestan algo cada vez que se usan. Te decimos cuánto antes de activarlas y las apagas cuando quieras.">
+                <ul className="grid gap-3 text-sm sm:grid-cols-2">
+                  {[["Preguntas al panel", "Cada pregunta usa inteligencia artificial y tiene un coste pequeño."], ["Resúmenes por correo", "Un coste muy pequeño por correo enviado."], ["Avisos por WhatsApp o SMS", "Pagas cada mensaje directamente a WhatsApp o a tu proveedor, sin comisión nuestra."], ["Leer en voz alta", "Gratis: lo hace tu propio móvil u ordenador."]].map(([t, d]) => (
+                    <li key={t} className="rounded-2xl bg-niebla p-4"><b className="block">{t}</b><span className="text-gris">{d}</span></li>
+                  ))}
+                </ul>
+              </Caja>
               <Caja titulo="Qué va incluido y qué va aparte" fuente="Así de claro" ayuda="Pagas una cuota fija al mes que lo incluye todo. Lo único que va aparte es lo que pagas directamente a otros: lo que inviertes en anuncios, el vídeo profesional, el espacio en radio o prensa y, si quieres, una nota de prensa o un artículo en un medio.">
                 <div className="grid gap-4 lg:grid-cols-2">
                   <div className="rounded-2xl bg-emerald-50 p-5">
@@ -1229,6 +1249,7 @@ export default function PanelEjemplo() {
     { id: "opcionales", grupo: "tuyo", nombre: "Lo que decides tú", corto: "Opcionales", linea: "Tiempo de respuesta, llamadas y cierre. Apagado de serie.", conclusion: "Ahora mismo no compartes nada con nosotros.", luz: "preparado", icono: "ajustes", contenido: <Mandos /> },
     { id: "peticiones", grupo: "contigo", nombre: "Tus peticiones", corto: "Peticiones", linea: "Pides, te damos fecha y apruebas.", conclusion: "Todo lo que has pedido está hecho o en curso. Tiempo medio, 19 horas.", luz: "ok", icono: "chat", contenido: piezas.peticiones },
     { id: "avisos", grupo: "contigo", nombre: "Avisos y recordatorios", corto: "Avisos", linea: "Mensajes al móvil para que no se olviden de la cita y sepan que les has recibido.", conclusion: "Sin conectar. Incluido en tu cuota: solo pagas los mensajes que se envíen.", luz: "sinconectar", icono: "chat", contenido: <AvisosPanel /> },
+    { id: "pregunta", grupo: "contigo", nombre: "Pregúntale al panel", corto: "Preguntar", linea: "Preguntas con tus palabras y respuestas con tus datos.", conclusion: "Opcional: contesta solo con lo que ves en tu panel. Va aparte de la cuota.", luz: "preparado", icono: "chat", contenido: <PreguntaPanel /> },
     { id: "gastos", grupo: "contigo", nombre: "Gastos", corto: "Gastos", linea: "Lo que has gastado este mes y lo que va aparte.", conclusion: "Comisión sobre lo invertido: 0 €. Siempre.", luz: "ok", icono: "caja", contenido: piezas.gastos },
     { id: "medicion", grupo: "contigo", nombre: "Cómo lo medimos", corto: "Medición", linea: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", conclusion: "21 de 21 herramientas funcionando.", luz: "ok", icono: "ajustes", contenido: piezas.medicion },
     { id: "trabajo", grupo: "contigo", nombre: "Todo lo que hacemos", corto: "Trabajo", linea: "Un registro con fecha y con el porqué de cada cosa.", conclusion: "64 tareas este mes, el 98 % entregadas a tiempo.", luz: "ok", icono: "documento", contenido: piezas.trabajo },
@@ -1237,6 +1258,27 @@ export default function PanelEjemplo() {
     { id: "historico", grupo: "historico", nombre: "Cómo has mejorado", corto: "Histórico", linea: "La evolución mes a mes desde el primer día.", conclusion: "En seis meses, de 120 a 312 contactos al mes.", luz: "ok", icono: "historia", contenido: piezas.historico },
   ];
   MODULOS_REF.current = MODULOS;
+  const leer = () => {
+    try {
+      const sy = window.speechSynthesis;
+      if (!sy) return;
+      if (leyendo) { sy.cancel(); setLeyendo(false); return; }
+      const texto = (document.querySelector('section[aria-label="Resumen de hoy"]') as HTMLElement | null)?.innerText ?? "";
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = "es-ES";
+      u.onend = () => setLeyendo(false);
+      setLeyendo(true);
+      sy.speak(u);
+    } catch { /* sin voz en este navegador */ }
+  };
+  const marcarRevisado = () => {
+    setRevisado(true);
+    try { window.localStorage.setItem("casiopea-panel-revisado", String(Date.now())); } catch { /* nada */ }
+  };
+  const abrirGuia = () => {
+    navegar({});
+    setTimeout(() => window.dispatchEvent(new Event("casiopea-guia")), 80);
+  };
   const navegar = (v: Vista) => {
     setVista(v);
     setMenu(false);
@@ -1248,6 +1290,7 @@ export default function PanelEjemplo() {
   };
   const ir = (id: string) => { const m = MODULOS.find((x) => x.id === id); if (m) navegar({ g: m.grupo, m: m.id }); };
   const inicio = !vista.g && !vista.m;
+  const simple = inicio && !vista.todo;
   const atencion = MODULOS.filter((m) => m.luz === "atencion");
   const urgentes = MODULOS.filter((m) => m.luz === "problema");
 
@@ -1260,8 +1303,12 @@ export default function PanelEjemplo() {
         @media print{body > *:not(main):not([data-versionante]){display:none!important}main#contenido{padding:0!important}}
       `}</style>
 
+      {!simple && (
       <div className={`bg-noche text-white print:hidden ${inicio ? "pb-10 pt-24 sm:pt-28" : "pb-4 pt-24 sm:pt-28"}`}>
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        {inicio && (
+        <button type="button" onClick={() => navegar({})} className="mb-3 min-h-11 rounded-full border border-white/30 px-5 text-sm font-bold text-white hover:bg-white/10">← Volver al resumen sencillo</button>
+        )}
         {inicio && (
         <div className="rounded-2xl bg-estrella px-5 py-3 text-sm font-bold text-tinta">
           Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.
@@ -1296,17 +1343,25 @@ export default function PanelEjemplo() {
             {urgentes.length ? `Hay algo urgente: ${urgentes.map((m) => m.nombre).join(" y ")}.` : `Hoy no hay nada urgente. Han llegado ${esc(312)} contactos en este periodo, a 10 € cada uno.`}
           </p>
           {atencion.length > 0 && <p className="mt-1 text-white/80">Piden un vistazo: {atencion.map((m) => m.nombre).join(" y ")}. Pulsa su luz y lo ves.</p>}
+          <div className="mt-3 flex flex-wrap gap-2 print:hidden">
+            <button type="button" onClick={leer} aria-pressed={leyendo} className="min-h-11 rounded-full bg-white/10 px-4 text-sm font-bold hover:bg-white/20">{leyendo ? "Parar" : "Leer en voz alta"}</button>
+            <button type="button" onClick={marcarRevisado} disabled={revisado} className="min-h-11 rounded-full bg-white/10 px-4 text-sm font-bold hover:bg-white/20 disabled:opacity-60">{revisado ? "Revisado hoy. Se olvida a los 7 días" : "Ya lo he revisado"}</button>
+          </div>
           </div>
           <div className="mt-4 border-t border-white/15 pt-4 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
             <p className="text-sm font-bold text-estrella">Lo que te toca a ti hoy</p>
-            <ul className="mt-2 space-y-2">
-              {[["Llama a los 3 contactos que llevan más de 3 días sin respuesta.", "crm"], ["Contesta las 2 reseñas nuevas de tu ficha de Google.", "redes"]].map(([t, id]) => (
-                <li key={id} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base">
-                  <span>{t}</span>
-                  <button type="button" onClick={() => ir(id)} className="text-sm font-bold text-estrella underline underline-offset-4">Ir</button>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-2 text-base font-bold sm:text-lg">Llama a los 3 contactos que llevan más de 3 días sin respuesta.</p>
+            <p className="mt-1 text-sm text-white/70">Por qué: cuanto antes se llama, más se convierte. Dónde: en tu CRM.</p>
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <button type="button" onClick={() => ir("crm")} className="min-h-11 rounded-full bg-estrella px-5 py-2.5 text-sm font-extrabold text-tinta">Ir a llamarlos</button>
+              <button type="button" onClick={() => setMasTareas((x) => !x)} aria-expanded={masTareas} className="min-h-11 rounded-full px-3 text-sm font-bold text-white underline underline-offset-4">{masTareas ? "Ocultar" : "Ver más (1)"}</button>
+            </div>
+            {masTareas && (
+              <p className="mt-2 rounded-2xl bg-white/10 p-3 text-sm">
+                Contesta las 2 reseñas nuevas de tu ficha de Google. Por qué: más reseñas contestadas ayudan a que te elijan. Dónde: en Redes y reseñas.{" "}
+                <button type="button" onClick={() => ir("redes")} className="font-bold text-estrella underline underline-offset-4">Ir</button>
+              </p>
+            )}
             <p className="mt-2 text-xs text-white/60">Son las únicas cosas de hoy que dependen de ti. Todo lo demás lo llevamos nosotros.</p>
           </div>
         </section>
@@ -1349,9 +1404,30 @@ export default function PanelEjemplo() {
         </>)}
       </div>
       </div>
+      )}
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
 
+        {simple && (
+          <PanelSimple
+            modulos={MODULOS}
+            ir={ir}
+            navegar={navegar}
+            periodo={periodo}
+            setPeriodo={setPeriodo}
+            periodos={PERIODOS.filter(([id]) => ["hoy", "ayer", "7", "28", "mes", "pasado"].includes(id)).map(([id, t]) => [id, t] as [string, string])}
+            periodoTxt={per[1]}
+            contactos={esc(312)}
+            comp={comp}
+            ahora={ahora}
+            leer={leer}
+            leyendo={leyendo}
+            revisado={revisado}
+            marcarRevisado={marcarRevisado}
+          />
+        )}
+
+        {!simple && (
         <div className="mt-6 lg:grid lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
           <div className="print:hidden">
             <IndiceLateral vista={vista} grupos={GRUPOS_MODULOS} modulos={MODULOS} navegar={navegar} abierto={menu} setAbierto={setMenu} />
@@ -1395,12 +1471,14 @@ export default function PanelEjemplo() {
             })()}
           </div>
         </div>
+        )}
 
         <div className="mt-6 space-y-5">
               <p className="rounded-2xl bg-niebla p-4 text-sm text-gris">
                 <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
               </p>
 
+          {!simple && <button type="button" onClick={abrirGuia} aria-label="Cómo se lee esta pantalla" className="fixed bottom-4 left-4 z-40 grid h-12 w-12 place-items-center rounded-full bg-estrella text-xl font-extrabold text-tinta shadow-lg ring-2 ring-noche print:hidden">?</button>}
           <section id="escribenos" className="scroll-mt-24 rounded-3xl bg-noche p-6 text-white sm:p-8 print:hidden" aria-label="Escríbenos">
             <p className="text-xl font-extrabold">Escríbenos. Te contestamos por correo.</p>
             <p className="mt-1 text-white/75">Para pedirnos una mejora, un dato que echas de menos, darnos información que nos ayude con tus campañas, o contarnos una duda. En 24 a 48 horas lo tienes.</p>
