@@ -18,7 +18,7 @@ export default function PanelCasiopea() {
       <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-4 gap-y-2 px-4 pt-4 text-[14px] print:hidden">
         <Link href="/" className="inline-flex min-h-11 items-center font-bold underline underline-offset-4">← Casiopea 360</Link>
         <p className="min-w-0 basis-full rounded-2xl border border-line bg-[#fbf6e6] px-4 py-2 sm:flex-1 sm:basis-0">
-          Panel de ejemplo con <b>datos inventados</b> de una empresa ficticia. Así verás el tuyo, con tus datos reales y desde el móvil. Aquí no se envía nada.
+          Panel de ejemplo con <b>datos inventados</b> de una empresa ficticia. Así verás el tuyo, con tus datos reales y desde el móvil. La primera vez te lleva la guía de la mano; en pocos días te lo sabes. Aquí no se envía nada.
         </p>
       </div>
       <Mesa datos={{ ...(d as Parameters<typeof Mesa>[0]["datos"]), hoy, clave: "demo" }} temas={temasDemo} resumenHoy={resumenDemo} tareas={tareasDemo} relojes={relojesDemo} base={baseDemo} />

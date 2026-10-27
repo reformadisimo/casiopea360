@@ -63,6 +63,12 @@ export function SeccionComoTrabajamos() {
         </ol>
         <p className="mt-6 max-w-3xl text-lg text-gris">No nos quedamos quietos: si trabajamos en equipo, llegamos a la luna.</p>
         <div className="mt-8 max-w-3xl rounded-3xl bg-white p-6 ring-1 ring-linea">
+          <h3 className="text-xl font-extrabold">Una curva de aprendizaje muy pequeña</h3>
+          <p className="mt-2 text-gris">
+            Un panel con tanta información pide un poco de costumbre, y lo sabemos. Por eso la primera vez te lleva de la mano, paso a paso, y cada cosa que pueda no entenderse tiene un «?» que la explica en una frase. En pocos días te sabes mover por todas las herramientas, y cada una te cuenta algo útil de tu negocio. Tú no tienes que aprender marketing: nosotros te lo traducimos.
+          </p>
+        </div>
+        <div className="mt-4 max-w-3xl rounded-3xl bg-white p-6 ring-1 ring-linea">
           <h3 className="text-xl font-extrabold">Y los errores, a la vista</h3>
           <p className="mt-2 text-gris">
             Ninguna herramienta está libre de errores, y la nuestra tampoco. La diferencia es que los buscamos cada día con pruebas automáticas y, si ves uno, nos lo cuentas con un toque («Avisar de un error») y lo arreglamos. Nos encanta encontrarlos: cada uno que arreglamos es un problema menos para ti.
