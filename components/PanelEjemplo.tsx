@@ -9,8 +9,9 @@ import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
 import PanelSimple from "@/components/PanelSimple";
+import { PanelCompleto, TEMA_CSS } from "@/components/PanelMesa";
 import { AvisosPanel, Herramientas360, IndiceValor, Mandos, PreguntaPanel, ResumenesCorreo } from "@/components/PanelMandos";
-import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, IndiceLateral, Migas, PaginaModulo, Reloj, TarjetaGrupo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
+import { GRUPOS_MODULOS, IndiceLateral, Migas, PaginaModulo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
 
 
 const LOGO: Record<string, string> = {
@@ -500,7 +501,6 @@ export default function PanelEjemplo() {
   const MODULOS_REF = useRef<Modulo[]>([]);
   const [vista, setVista] = useState<Vista>({});
   const [menu, setMenu] = useState(false);
-  const [masTareas, setMasTareas] = useState(false);
   const [revisado, setRevisado] = useState(false);
   const [leyendo, setLeyendo] = useState(false);
   const [periodo, setPeriodo] = useState("mes");
@@ -1275,10 +1275,6 @@ export default function PanelEjemplo() {
     setRevisado(true);
     try { window.localStorage.setItem("casiopea-panel-revisado", String(Date.now())); } catch { /* nada */ }
   };
-  const abrirGuia = () => {
-    navegar({});
-    setTimeout(() => window.dispatchEvent(new Event("casiopea-guia")), 80);
-  };
   const navegar = (v: Vista) => {
     setVista(v);
     setMenu(false);
@@ -1291,122 +1287,29 @@ export default function PanelEjemplo() {
   const ir = (id: string) => { const m = MODULOS.find((x) => x.id === id); if (m) navegar({ g: m.grupo, m: m.id }); };
   const inicio = !vista.g && !vista.m;
   const simple = inicio && !vista.todo;
-  const atencion = MODULOS.filter((m) => m.luz === "atencion");
-  const urgentes = MODULOS.filter((m) => m.luz === "problema");
 
+  const periodosLista = PERIODOS.filter(([id]) => ["hoy", "ayer", "7", "28", "3m", "mes", "pasado", "12m"].includes(id)).map(([id, t]) => [id, t] as [string, string]);
+  const completo = inicio && !simple;
   return (
-    <div className="bg-niebla pb-20">
-      <style>{`
-        .pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:pnFade .35s ease-out both}
-        @keyframes pnFade{from{opacity:0}to{opacity:1}}
-        @media (prefers-reduced-motion: reduce){.pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:none}}
+    <div className="mesa pb-20">
+      <style>{`${TEMA_CSS}
         @media print{body > *:not(main):not([data-versionante]){display:none!important}main#contenido{padding:0!important}}
+        body > *:not(main):not([data-versionante]) { display: none !important; }
+        main#contenido { padding: 0 !important; background: #fbfaf7 !important; background-image: none !important; }
       `}</style>
 
-      {!simple && (
-      <div className={`bg-noche text-white print:hidden ${inicio ? "pb-10 pt-24 sm:pt-28" : "pb-4 pt-24 sm:pt-28"}`}>
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        {inicio && (
-        <button type="button" onClick={() => navegar({})} className="mb-3 min-h-11 rounded-full border border-white/30 px-5 text-sm font-bold text-white hover:bg-white/10">← Volver al resumen sencillo</button>
+      <div className="mx-auto w-full max-w-[1240px] px-4 sm:px-6">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 text-sm print:hidden">
+          <Link href="/" className="font-bold underline underline-offset-4">← Casiopea 360</Link>
+          <p className="min-w-0 basis-full rounded-2xl border px-4 py-2 sm:flex-1 sm:basis-0" style={{ background: "#fbf6e6", borderColor: "#eadfb8" }}>Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.</p>
+        </div>
+
+        {!inicio && (
+          <header className="mt-4 print:hidden">
+            <p className="sans-ey">Climatización Ejemplo · panel de control</p>
+            <p className="mt-1 flex items-center gap-2 text-[15px] text-gris"><span aria-hidden className="inline-block h-2 w-2 rounded-full bg-emerald-500" />Datos de demostración de una empresa inventada · {ahora} personas en tu web ahora</p>
+          </header>
         )}
-        {inicio && (
-        <div className="rounded-2xl bg-estrella px-5 py-3 text-sm font-bold text-tinta">
-          Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.
-        </div>
-        )}
-
-        <header className="mt-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
-            {inicio ? (
-              <>
-                <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
-                <p className="mt-2 text-lg text-white/80">Casiopea te pone en el siguiente nivel: toda tu visión 360 en una pantalla.</p>
-              </>
-            ) : (
-              <p className="mt-1 text-sm font-bold text-estrella">Datos de demostración de una empresa inventada</p>
-            )}
-          </div>
-          <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            </span>
-            {ahora} personas en tu web ahora · actualizado hace {segundos} s
-          </div>
-        </header>
-
-        {inicio && (<>
-        <section className="mt-6 rounded-3xl bg-white/5 p-5 text-white sm:p-7 lg:grid lg:grid-cols-2 lg:gap-8" aria-label="Resumen de hoy">
-          <div>
-          <p className="text-sm font-bold text-estrella">Resumen de hoy</p>
-          <p className="mt-2 text-lg font-bold sm:text-xl">
-            {urgentes.length ? `Hay algo urgente: ${urgentes.map((m) => m.nombre).join(" y ")}.` : `Hoy no hay nada urgente. Han llegado ${esc(312)} contactos en este periodo, a 10 € cada uno.`}
-          </p>
-          {atencion.length > 0 && <p className="mt-1 text-white/80">Piden un vistazo: {atencion.map((m) => m.nombre).join(" y ")}. Pulsa su luz y lo ves.</p>}
-          <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-            <button type="button" onClick={leer} aria-pressed={leyendo} className="min-h-11 rounded-full bg-white/10 px-4 text-sm font-bold hover:bg-white/20">{leyendo ? "Parar" : "Leer en voz alta"}</button>
-            <button type="button" onClick={marcarRevisado} disabled={revisado} className="min-h-11 rounded-full bg-white/10 px-4 text-sm font-bold hover:bg-white/20 disabled:opacity-60">{revisado ? "Revisado hoy. Se olvida a los 7 días" : "Ya lo he revisado"}</button>
-          </div>
-          </div>
-          <div className="mt-4 border-t border-white/15 pt-4 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-            <p className="text-sm font-bold text-estrella">Lo que te toca a ti hoy</p>
-            <p className="mt-2 text-base font-bold sm:text-lg">Llama a los 3 contactos que llevan más de 3 días sin respuesta.</p>
-            <p className="mt-1 text-sm text-white/70">Por qué: cuanto antes se llama, más se convierte. Dónde: en tu CRM.</p>
-            <div className="mt-3 flex flex-wrap items-center gap-3">
-              <button type="button" onClick={() => ir("crm")} className="min-h-11 rounded-full bg-estrella px-5 py-2.5 text-sm font-extrabold text-tinta">Ir a llamarlos</button>
-              <button type="button" onClick={() => setMasTareas((x) => !x)} aria-expanded={masTareas} className="min-h-11 rounded-full px-3 text-sm font-bold text-white underline underline-offset-4">{masTareas ? "Ocultar" : "Ver más (1)"}</button>
-            </div>
-            {masTareas && (
-              <p className="mt-2 rounded-2xl bg-white/10 p-3 text-sm">
-                Contesta las 2 reseñas nuevas de tu ficha de Google. Por qué: más reseñas contestadas ayudan a que te elijan. Dónde: en Redes y reseñas.{" "}
-                <button type="button" onClick={() => ir("redes")} className="font-bold text-estrella underline underline-offset-4">Ir</button>
-              </p>
-            )}
-            <p className="mt-2 text-xs text-white/60">Son las únicas cosas de hoy que dependen de ti. Todo lo demás lo llevamos nosotros.</p>
-          </div>
-        </section>
-
-        <div className="mt-5" role="group" aria-label="Periodo">
-          <div className="flex flex-wrap items-center gap-2">
-            {PERIODOS.filter(([id]) => ["hoy", "ayer", "7", "28", "mes", "pasado"].includes(id)).map(([id, t]) => (
-              <button key={id} type="button" aria-pressed={periodo === id} onClick={() => setPeriodo(id)} className={`rounded-full px-4 py-2 text-sm font-bold ${periodo === id ? "bg-estrella text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>{t}</button>
-            ))}
-            <button type="button" aria-pressed={periodo === "rango"} onClick={() => setPeriodo("rango")} className={`rounded-full px-4 py-2 text-sm font-bold ${periodo === "rango" ? "bg-estrella text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>Desde / hasta</button>
-          </div>
-          {periodo === "rango" && (
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
-              <label className="flex items-center gap-2 font-bold">Desde <input type="date" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
-              <label className="flex items-center gap-2 font-bold">Hasta <input type="date" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
-              <span className="text-white/70">{diasRango} {diasRango === 1 ? "día" : "días"}</span>
-            </div>
-          )}
-          <details className="mt-3 text-sm text-white/80">
-            <summary className="cursor-pointer font-bold text-white">Comparar con otros periodos y cómo se lee ▾</summary>
-            <div className="mt-2 flex flex-wrap items-center gap-2" role="group" aria-label="Comparar con">
-              {([["anterior", "Periodo anterior"], ["ano", "Mismo periodo del año pasado"], ["nada", "Nada"]] as const).map(([id, t]) => (
-                <button key={id} type="button" aria-pressed={comp === id} onClick={() => setComp(id)} className={`rounded-full px-3.5 py-1.5 font-bold ${comp === id ? "bg-white text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>{t}</button>
-              ))}
-            </div>
-            <p className="mt-2">El número grande es lo que ha pasado en el periodo. La flecha dice cuánto más o menos que el periodo con el que comparas. Verde es que va mejor, rojo es que va peor (en el coste por contacto, bajar es mejorar).</p>
-          </details>
-        </div>
-
-        <div className="mt-4"><FilaLuces modulos={MODULOS} ir={ir} /></div>
-
-        <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <Reloj titulo="Contactos" valor={String(esc(312))} sub={comp === "nada" ? "sin comparar" : "16 % más que antes"} pct={78} />
-          <Reloj titulo="Coste por contacto" valor="10 €" sub="bajar es mejorar" pct={33} invertir />
-          <Reloj titulo="Presencia en IA" valor="16 de 18" sub="respuestas donde sales" pct={89} />
-          <Reloj titulo="Salud de la web" valor="7 de 8" sub="comprobaciones de hoy" pct={88} />
-        </div>
-        <p className="mt-3 text-center text-xs text-white/70">Cómo leer los relojes: la aguja en la franja verde, va bien; en la naranja, atento; en la roja, hay que actuar. En el coste, cuanto más a la izquierda, mejor.</p>
-        <p className="mt-1 text-center text-xs text-white/50">Última revisión: hoy 07:00 · Próxima: mañana 07:00 · Se actualiza solo. Si lo quieres en tu correo, lo programas en Tu informe.</p>
-        </>)}
-      </div>
-      </div>
-      )}
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
 
         {simple && (
           <PanelSimple
@@ -1415,10 +1318,11 @@ export default function PanelEjemplo() {
             navegar={navegar}
             periodo={periodo}
             setPeriodo={setPeriodo}
-            periodos={PERIODOS.filter(([id]) => ["hoy", "ayer", "7", "28", "mes", "pasado"].includes(id)).map(([id, t]) => [id, t] as [string, string])}
-            periodoTxt={per[1]}
+            periodos={periodosLista}
             contactos={esc(312)}
             comp={comp}
+            desde={desde}
+            hasta={hasta}
             ahora={ahora}
             leer={leer}
             leyendo={leyendo}
@@ -1427,7 +1331,30 @@ export default function PanelEjemplo() {
           />
         )}
 
-        {!simple && (
+        {completo && (
+          <PanelCompleto
+            modulos={MODULOS}
+            ir={ir}
+            navegar={navegar}
+            periodo={periodo}
+            setPeriodo={setPeriodo}
+            periodos={periodosLista}
+            comp={comp}
+            setComp={setComp}
+            desde={desde}
+            hasta={hasta}
+            setDesde={setDesde}
+            setHasta={setHasta}
+            factor={fp}
+            ahora={ahora}
+            segundos={segundos}
+            leer={leer}
+            leyendo={leyendo}
+            grafico={piezas.historico}
+          />
+        )}
+
+        {!inicio && (
         <div className="mt-6 lg:grid lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
           <div className="print:hidden">
             <IndiceLateral vista={vista} grupos={GRUPOS_MODULOS} modulos={MODULOS} navegar={navegar} abierto={menu} setAbierto={setMenu} />
@@ -1436,15 +1363,6 @@ export default function PanelEjemplo() {
           <div id="panel-contenido" className="mt-4 min-w-0 scroll-mt-24 space-y-5 lg:mt-0">
             {!inicio && <div className="print:hidden"><Migas vista={vista} grupos={GRUPOS_MODULOS} modulos={MODULOS} navegar={navegar} /></div>}
 
-            {inicio && (
-              <>
-                <GuiaInicio />
-                <h2 className="pt-2 text-xl font-extrabold">Elige una sección</h2>
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                  {GRUPOS_MODULOS.map((g) => <TarjetaGrupo key={g.id} g={g} ms={MODULOS.filter((m) => m.grupo === g.id)} navegar={navegar} />)}
-                </div>
-              </>
-            )}
 
             {vista.g && !vista.m && (() => {
               const g = GRUPOS_MODULOS.find((x) => x.id === vista.g);
@@ -1478,7 +1396,6 @@ export default function PanelEjemplo() {
                 <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
               </p>
 
-          {!simple && <button type="button" onClick={abrirGuia} aria-label="Cómo se lee esta pantalla" className="fixed bottom-4 left-4 z-40 grid h-12 w-12 place-items-center rounded-full bg-estrella text-xl font-extrabold text-tinta shadow-lg ring-2 ring-noche print:hidden">?</button>}
           <section id="escribenos" className="scroll-mt-24 rounded-3xl bg-noche p-6 text-white sm:p-8 print:hidden" aria-label="Escríbenos">
             <p className="text-xl font-extrabold">Escríbenos. Te contestamos por correo.</p>
             <p className="mt-1 text-white/75">Para pedirnos una mejora, un dato que echas de menos, darnos información que nos ayude con tus campañas, o contarnos una duda. En 24 a 48 horas lo tienes.</p>
