@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
-import { AvisosPanel, Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
+import { AvisosPanel, Herramientas360, IndiceValor, Mandos, ResumenesCorreo } from "@/components/PanelMandos";
 import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, IndiceLateral, Migas, PaginaModulo, Reloj, TarjetaGrupo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
 
 
@@ -780,6 +780,7 @@ export default function PanelEjemplo() {
                       <li>Se actualiza solo, cada día.</li>
                       <li>No esperas nada: lo tienes ahí.</li>
                       <li>Las luces te dicen qué mirar. Lo demás, cuando quieras.</li>
+                      <li>Y si lo prefieres en el correo, lo programas en Resúmenes por correo.</li>
                     </ul>
                   </div>
                 </div>
@@ -1231,7 +1232,8 @@ export default function PanelEjemplo() {
     { id: "gastos", grupo: "contigo", nombre: "Gastos", corto: "Gastos", linea: "Lo que has gastado este mes y lo que va aparte.", conclusion: "Comisión sobre lo invertido: 0 €. Siempre.", luz: "ok", icono: "caja", contenido: piezas.gastos },
     { id: "medicion", grupo: "contigo", nombre: "Cómo lo medimos", corto: "Medición", linea: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", conclusion: "21 de 21 herramientas funcionando.", luz: "ok", icono: "ajustes", contenido: piezas.medicion },
     { id: "trabajo", grupo: "contigo", nombre: "Todo lo que hacemos", corto: "Trabajo", linea: "Un registro con fecha y con el porqué de cada cosa.", conclusion: "64 tareas este mes, el 98 % entregadas a tiempo.", luz: "ok", icono: "documento", contenido: piezas.trabajo },
-    { id: "informes", grupo: "informes", nombre: "Tu informe y tus facturas", corto: "Informe", linea: "Este panel es tu informe: siempre al día, sin esperar a que nadie lo mande.", conclusion: "Hoy no hay nada que esperar: todo está al día. Tus facturas, dentro.", luz: "ok", icono: "documento", contenido: piezas.informes },
+    { id: "informes", grupo: "informes", nombre: "Tu informe y tus facturas", corto: "Informe", linea: "Este panel es tu informe: siempre al día. Y tus facturas.", conclusion: "Hoy no hay nada que esperar: todo está al día. Tus facturas, dentro.", luz: "ok", icono: "documento", contenido: piezas.informes },
+    { id: "resumenes", grupo: "informes", nombre: "Resúmenes por correo", corto: "Resúmenes", linea: "Si prefieres recibir el resumen del panel en tu correo: diario, semanal o mensual.", conclusion: "Ahora mismo no recibes ningún resumen por correo. Lo programas tú, cuando quieras.", luz: "preparado", icono: "documento", contenido: <ResumenesCorreo /> },
     { id: "historico", grupo: "historico", nombre: "Cómo has mejorado", corto: "Histórico", linea: "La evolución mes a mes desde el primer día.", conclusion: "En seis meses, de 120 a 312 contactos al mes.", luz: "ok", icono: "historia", contenido: piezas.historico },
   ];
   MODULOS_REF.current = MODULOS;
@@ -1343,7 +1345,7 @@ export default function PanelEjemplo() {
           <Reloj titulo="Salud de la web" valor="7 de 8" sub="comprobaciones de hoy" pct={88} />
         </div>
         <p className="mt-3 text-center text-xs text-white/70">Cómo leer los relojes: la aguja en la franja verde, va bien; en la naranja, atento; en la roja, hay que actuar. En el coste, cuanto más a la izquierda, mejor.</p>
-        <p className="mt-1 text-center text-xs text-white/50">Última revisión: hoy 07:00 · Próxima: mañana 07:00 · Se actualiza solo, no hay informes que esperar.</p>
+        <p className="mt-1 text-center text-xs text-white/50">Última revisión: hoy 07:00 · Próxima: mañana 07:00 · Se actualiza solo. Si lo quieres en tu correo, lo programas en Tu informe.</p>
         </>)}
       </div>
       </div>

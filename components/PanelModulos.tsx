@@ -35,7 +35,7 @@ export const GRUPOS_MODULOS: GrupoModulos[] = [
   { id: "anuncios", titulo: "Tus anuncios", descripcion: "Cuántos contactos llegan, cuánto cuestan y por qué campaña.", icono: "megafono", color: "#1d4ed8" },
   { id: "tuyo", titulo: "Lo tuyo", frase: "Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.", descripcion: "Tus ventas, tus clientes y el índice de valor. Opcional.", icono: "caja", color: "#7c3aed" },
   { id: "contigo", titulo: "Contigo", descripcion: "Tus peticiones, tus gastos y cómo lo medimos todo.", icono: "chat", color: "#334155" },
-  { id: "informes", titulo: "Tu informe", descripcion: "Este panel es tu informe, siempre al día. Y tus facturas.", icono: "documento", color: "#0f766e" },
+  { id: "informes", titulo: "Tu informe", descripcion: "Este panel es tu informe, siempre al día. Si lo quieres en el correo, lo programas aquí. Y tus facturas.", icono: "documento", color: "#0f766e" },
   { id: "historico", titulo: "Histórico", descripcion: "Cómo has mejorado mes a mes desde el primer día.", icono: "historia", color: "#64748b" },
 ];
 
@@ -287,6 +287,7 @@ const EXPLICA: Record<string, [string, string, string]> = {
   medicion: ["Cómo contamos visitas, llamadas y contactos, explicado fácil.", "Lo instalamos y lo revisamos, todo a tu nombre.", "Nada."],
   trabajo: ["El registro de todo lo que hacemos, con su fecha y su porqué.", "Lo apuntamos todo, sin cajas negras.", "Mirarlo cuando quieras."],
   informes: ["Aquí no hay informes que esperar: este panel es el informe, al día.", "Lo actualizamos solos, cada día.", "Nada. Tus facturas, aquí."],
+  resumenes: ["Un correo con el resumen del panel, si prefieres recibirlo en vez de entrar a verlo.", "Te lo preparamos y te lo mandamos el día y la hora que elijas: diario, semanal o mensual.", "Programarlo, si lo quieres. Está apagado de serie."],
   historico: ["Cómo ha ido cada mes desde que empezamos.", "Lo guardamos todo.", "Nada."],
 };
 

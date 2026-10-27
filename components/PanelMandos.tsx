@@ -617,3 +617,143 @@ export function AvisosPanel() {
     </Bloque>
   );
 }
+
+// ---------------------------------------------------------------------------------------------
+// Resúmenes por correo: opcional, apagado de serie. En la demostración no se envía nada.
+// ---------------------------------------------------------------------------------------------
+type Frecuencia = "diario" | "semanal" | "mensual";
+type Programa = { activo: boolean; dia: string; hora: string };
+
+const DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+const DIAS_MES = ["El día 1", "El día 15", "El último día"];
+const HORAS = ["07:00", "08:00", "09:00", "13:00", "18:00"];
+const CONTENIDOS: [string, string][] = [
+  ["hoy", "Resumen de hoy, con las luces"],
+  ["toca", "Lo que te toca a ti"],
+  ["contactos", "Contactos y coste por contacto"],
+  ["hecho", "Lo que hemos hecho"],
+];
+
+export function ResumenesCorreo() {
+  const [prog, setProg] = useState<Record<Frecuencia, Programa>>({
+    diario: { activo: false, dia: "Todos los días laborables", hora: "08:00" },
+    semanal: { activo: false, dia: "Lunes", hora: "08:00" },
+    mensual: { activo: false, dia: "El día 1", hora: "08:00" },
+  });
+  const [correo, setCorreo] = useState("");
+  const [cont, setCont] = useState<Record<string, boolean>>({ hoy: true, toca: true, contactos: true, hecho: false });
+  const [guardado, setGuardado] = useState<string | null>(null);
+  const [prueba, setPrueba] = useState(false);
+
+  const cambiar = (f: Frecuencia, p: Partial<Programa>) => {
+    setGuardado(null);
+    setProg((x) => ({ ...x, [f]: { ...x[f], ...p } }));
+  };
+  const activas = (Object.keys(prog) as Frecuencia[]).filter((f) => prog[f].activo);
+  const correoOk = /^\S+@\S+\.\S+$/.test(correo.trim());
+  const TIT: Record<Frecuencia, string> = { diario: "Diario", semanal: "Semanal", mensual: "Mensual" };
+  const DESC: Record<Frecuencia, string> = { diario: "Lo de hoy, en dos minutos de lectura.", semanal: "Cómo ha ido la semana y qué toca.", mensual: "El mes entero, comparado con el anterior." };
+
+  const guardar = () => {
+    if (!activas.length) return setGuardado("Elige al menos un resumen para guardarlo.");
+    if (!correoOk) return setGuardado("Escribe un correo válido para saber dónde mandarlo.");
+    setGuardado(`Guardado en esta demostración: ${activas.map((f) => TIT[f].toLowerCase()).join(", ")}. No se ha enviado nada. En tu panel real, el primero llegaría a ${correo.trim()}.`);
+  };
+
+  return (
+    <Bloque titulo="Resúmenes por correo" quien="opcional">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-extrabold text-sky-800 ring-1 ring-sky-200">Opcional</span>
+        <span className="rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Apagado de serie</span>
+      </div>
+      <p className="mt-3 text-[15px] leading-relaxed">
+        Tu panel ya es tu informe, siempre al día. Pero si prefieres recibirlo en tu correo, te lo mandamos: diario, semanal o mensual. Lo programas tú aquí, y lo puedes cambiar o apagar cuando quieras.
+      </p>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-3">
+        {(Object.keys(prog) as Frecuencia[]).map((f) => {
+          const p = prog[f];
+          const dias = f === "semanal" ? DIAS_SEMANA : f === "mensual" ? DIAS_MES : null;
+          return (
+            <div key={f} className={`rounded-2xl p-4 ring-1 ${p.activo ? "bg-estrella/20 ring-estrella" : "bg-niebla ring-linea"}`}>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-extrabold">{TIT[f]}</p>
+                  <p className="mt-0.5 text-sm text-gris">{DESC[f]}</p>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={p.activo}
+                  aria-label={`Resumen ${TIT[f].toLowerCase()}`}
+                  onClick={() => cambiar(f, { activo: !p.activo })}
+                  className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${p.activo ? "bg-emerald-600" : "bg-slate-300"}`}
+                >
+                  <span className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all ${p.activo ? "left-[22px]" : "left-0.5"}`} />
+                </button>
+              </div>
+              <div className={`mt-3 grid gap-2 ${p.activo ? "" : "opacity-50"}`}>
+                {dias ? (
+                  <label className="text-xs font-bold text-gris">
+                    {f === "semanal" ? "Qué día" : "Cuándo"}
+                    <select disabled={!p.activo} value={p.dia} onChange={(e) => cambiar(f, { dia: e.target.value })} className="mt-1 h-10 w-full rounded-xl border border-linea bg-white px-2 text-sm font-semibold text-tinta">
+                      {dias.map((d) => <option key={d}>{d}</option>)}
+                    </select>
+                  </label>
+                ) : (
+                  <p className="text-xs font-bold text-gris">Todos los días laborables</p>
+                )}
+                <label className="text-xs font-bold text-gris">
+                  A qué hora
+                  <select disabled={!p.activo} value={p.hora} onChange={(e) => cambiar(f, { hora: e.target.value })} className="mt-1 h-10 w-full rounded-xl border border-linea bg-white px-2 text-sm font-semibold text-tinta">
+                    {HORAS.map((h) => <option key={h}>{h}</option>)}
+                  </select>
+                </label>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        <label className="block text-sm font-bold">
+          A qué correo lo mandamos
+          <input type="email" inputMode="email" autoComplete="off" placeholder="tucorreo@tuempresa.es" value={correo} onChange={(e) => { setCorreo(e.target.value); setGuardado(null); }} className="mt-1 h-11 w-full rounded-xl border border-linea bg-white px-3 text-[15px] font-normal" />
+          <span className="mt-1 block text-xs font-normal text-gris">Puedes poner el de tu socio o tu gestor. Solo se usa para esto.</span>
+        </label>
+        <fieldset>
+          <legend className="text-sm font-bold">Qué incluye</legend>
+          <div className="mt-1 grid gap-1.5">
+            {CONTENIDOS.map(([k, t]) => (
+              <label key={k} className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked={cont[k]} onChange={(e) => { setCont((x) => ({ ...x, [k]: e.target.checked })); setGuardado(null); }} className="h-4 w-4" />
+                {t}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div className="mt-5 rounded-2xl border border-linea bg-white p-4">
+        <p className="text-xs font-extrabold uppercase tracking-wide text-gris">Así llegaría (ejemplo)</p>
+        <p className="mt-2 text-sm"><b>Asunto:</b> Tu resumen del lunes: hoy no hay nada urgente</p>
+        <div className="mt-2 space-y-1.5 text-sm text-gris">
+          {cont.hoy && <p>Han llegado 312 contactos en este periodo, a 10 € cada uno. Piden un vistazo: Lupa 360 y Espejo de la IA.</p>}
+          {cont.toca && <p>Te toca a ti: llamar a 3 contactos con más de 3 días sin respuesta y contestar 2 reseñas.</p>}
+          {cont.contactos && <p>Mejor canal: Aerotermia en Google, con el coste por contacto más bajo.</p>}
+          {cont.hecho && <p>Esta semana hemos hecho 14 tareas, todas entregadas a tiempo.</p>}
+          {!cont.hoy && !cont.toca && !cont.contactos && !cont.hecho && <p>Marca algo para que el resumen lleve contenido.</p>}
+          <p className="text-tinta">Ver mi panel completo</p>
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" onClick={guardar} className="rounded-full bg-noche px-5 py-2.5 text-sm font-bold text-white hover:bg-noche-2">Guardar programación</button>
+        <button type="button" onClick={() => setPrueba(true)} className="rounded-full border border-linea bg-white px-5 py-2.5 text-sm font-bold text-tinta hover:bg-niebla">Enviarme uno de prueba</button>
+      </div>
+      {guardado && <p role="status" className="mt-3 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-900">{guardado}</p>}
+      {prueba && <p role="status" className="mt-3 rounded-xl bg-niebla p-3 text-sm font-semibold text-gris">En la demostración no se envía ningún correo. En tu panel real, te llegaría un resumen de prueba en un minuto.</p>}
+      <p className="mt-4 text-xs text-gris">Si no programas nada, no recibes nada: el panel sigue siendo tu informe. Cada correo lleva un enlace para darte de baja.</p>
+    </Bloque>
+  );
+}

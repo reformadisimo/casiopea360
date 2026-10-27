@@ -422,7 +422,7 @@ export function SeccionParte() {
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Tu informe no se espera: lo tienes en tu panel, al día.</h2>
           <p className="mt-5 max-w-xl text-lg text-white/80">
-            No te mandamos informes semanales ni mensuales que llegan tarde. Todo lo que iba en ellos lo ves tú, en tu panel, al momento y sin entender de números.
+            No dependes de un informe que llega tarde. Todo lo que iba en él lo ves tú, en tu panel, al momento y sin entender de números. Y si prefieres recibirlo en tu correo, lo programas en el propio panel: un resumen diario, semanal o mensual, el día y a la hora que quieras.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i, k) => (
