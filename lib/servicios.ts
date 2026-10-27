@@ -147,7 +147,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     videoAlt2: "Una mano sostiene un móvil del que salen notificaciones",
     color: "#7c3aed",
     dolores: [
-      { dolor: "«Pago anuncios y no sé si sirven.»", arreglo: "Vigilamos cada euro y te decimos cuánto te cuesta cada cliente." },
+      { dolor: "«Pago anuncios y no sé si sirven.»", arreglo: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si tú quieres medir tus clientes, también cada cliente." },
       { dolor: "«Mi agencia se lleva un porcentaje de lo que invierto.»", arreglo: "Precio fijo. Nunca cobramos comisión sobre tu inversión, sea la que sea." },
       { dolor: "«Los anuncios llevan a mi portada y nadie llama.»", arreglo: "Cada campaña tiene su página, hecha por el mismo equipo, para que te contacten." },
     ],

@@ -24,30 +24,25 @@ function Bloque({ titulo, fuente, quien, children, className = "" }: { titulo: s
 // Mis mandos
 // ---------------------------------------------------------------------------------------------
 
-type EstadoCasilla = "ok" | "pronto" | "tuyo";
-type Casilla = { titulo: string; texto: string; destino: string; sub?: string; estado: EstadoCasilla };
-const GRUPOS: { titulo: string; casillas: Casilla[] }[] = [
+type EstadoCasilla = "ok" | "pronto" | "preparado";
+type Casilla = { titulo: string; texto: string; destino: string; sub?: string; estado: EstadoCasilla; dato?: string };
+const GRUPOS: { titulo: string; frase?: string; quien: Quien; casillas: Casilla[] }[] = [
   {
-    titulo: "Lo que pasa en tu web",
+    titulo: "Lo hacemos nosotros: tu web",
+    quien: "nosotros",
     casillas: [
       { titulo: "Lupa 360", texto: "Ves lo que hace la gente en tu web.", destino: "herramientas", sub: "lupa", estado: "ok" },
       { titulo: "Velocidad y seguridad", texto: "Tu web rápida, segura y con copia de cada cambio.", destino: "web", estado: "ok" },
       { titulo: "Sistemas", texto: "Comprobamos cada día que web, formularios y anuncios funcionan.", destino: "herramientas", sub: "sistemas", estado: "pronto" },
-      { titulo: "Recorrido 360", texto: "Probamos tu recorrido completo como un cliente.", destino: "herramientas", sub: "recorrido", estado: "pronto" },
+      { titulo: "Control 360", texto: "Probamos tu recorrido completo como un cliente.", destino: "herramientas", sub: "recorrido", estado: "pronto" },
     ],
   },
   {
-    titulo: "Lo que consigues",
+    titulo: "Lo hacemos nosotros: lo que llega",
+    quien: "nosotros",
     casillas: [
-      { titulo: "Contactos y clientes", texto: "Cuánta gente te escribe y cuánta se hace cliente.", destino: "resumen", estado: "ok" },
-      { titulo: "Coste por cliente", texto: "Lo que te cuesta cada cliente que llega por internet.", destino: "gastos", estado: "ok" },
-      { titulo: "Ventas (CRM)", texto: "Tus contactos, fase a fase. El CRM es tuyo.", destino: "crm", estado: "tuyo" },
-      { titulo: "De dónde viene cada cliente", texto: "El recorrido completo, desde el primer anuncio hasta la firma.", destino: "clientes", estado: "ok" },
-    ],
-  },
-  {
-    titulo: "Dónde te encuentran",
-    casillas: [
+      { titulo: "Contactos que llegan", texto: "Cuánta gente te escribe, por qué canal y desde qué anuncio o página. Sale solo.", destino: "resumen", estado: "ok" },
+      { titulo: "Coste por contacto", texto: "Lo invertido en anuncios entre los contactos que llegan, por canal. Sale solo.", destino: "gastos", estado: "ok" },
       { titulo: "Anuncios", texto: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", destino: "anuncios", estado: "ok" },
       { titulo: "Google, Bing y mapa", texto: "Tus puestos, tu ficha de Google y Bing.", destino: "google", estado: "ok" },
       { titulo: "Espejo de la IA", texto: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", destino: "herramientas", sub: "espejo", estado: "pronto" },
@@ -56,7 +51,8 @@ const GRUPOS: { titulo: string; casillas: Casilla[] }[] = [
     ],
   },
   {
-    titulo: "Tú y nosotros",
+    titulo: "Lo hacemos nosotros: contigo",
+    quien: "nosotros",
     casillas: [
       { titulo: "Tus peticiones", texto: "Pides, te damos fecha y apruebas. Informes y facturas, aquí.", destino: "peticiones", estado: "ok" },
       { titulo: "Gastos", texto: "Lo que has gastado este mes y lo que va aparte.", destino: "gastos", estado: "ok" },
@@ -64,12 +60,24 @@ const GRUPOS: { titulo: string; casillas: Casilla[] }[] = [
       { titulo: "Todo lo que hacemos", texto: "Un registro con fecha y con el porqué de cada cosa.", destino: "trabajo", estado: "ok" },
     ],
   },
+  {
+    titulo: "Lo tuyo",
+    frase: "Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.",
+    quien: "tuyo",
+    casillas: [
+      { titulo: "Ventas (CRM)", texto: "Tus contactos, fase a fase. El CRM es tuyo.", destino: "crm", estado: "preparado", dato: "Se activa cuando mueves un contacto de fase." },
+      { titulo: "Contactos que se hacen clientes", texto: "Cuántos de los que te escriben acaban firmando.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
+      { titulo: "Coste por cliente", texto: "Lo que te cuesta cada cliente que llega por internet.", destino: "gastos", estado: "preparado", dato: "Se activa cuando marcas tus firmas y lo que has facturado." },
+      { titulo: "De dónde viene cada cliente", texto: "El recorrido desde el primer anuncio hasta la firma.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
+      { titulo: "Índice de valor", texto: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", destino: "crm", estado: "preparado", dato: "Se activa cuando pones tu ticket medio." },
+    ],
+  },
 ];
 
 const ESTADO_CASILLA: Record<EstadoCasilla, { texto: string; punto: string }> = {
   ok: { texto: "Funcionando", punto: "bg-emerald-500" },
   pronto: { texto: "Próximamente", punto: "bg-amber-500" },
-  tuyo: { texto: "Es tuyo", punto: "bg-sky-500" },
+  preparado: { texto: "Preparado", punto: "bg-sky-500" },
 };
 
 type Mando = {
@@ -152,12 +160,13 @@ export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) 
         <p className="text-sm font-bold text-estrella">Control de mandos</p>
         <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Todo lo que pasa en tu sitio, en una pantalla.</p>
         <p className="mt-3 max-w-3xl text-white/80">
-          Cada casilla es una cosa que hacemos por ti. Pulsa en cualquiera y vas a ella. El punto de color dice cómo está: verde, funcionando; naranja, próximamente; azul, es tuyo y lo gestionas tú.
+          Cada casilla es una cosa que hacemos por ti. Pulsa en cualquiera y vas a ella. El punto de color dice cómo está: verde, funcionando; naranja, próximamente; azul, preparado: es tuyo y lo rellenas tú si quieres.
         </p>
       </section>
 
       {GRUPOS.map((g) => (
-        <Bloque key={g.titulo} titulo={g.titulo} fuente={`${g.casillas.length} casillas`} quien="nosotros">
+        <Bloque key={g.titulo} titulo={g.titulo} fuente={`${g.casillas.length} casillas`} quien={g.quien}>
+          {g.frase && <p className="-mt-2 mb-4 font-bold text-tinta">{g.frase}</p>}
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {g.casillas.map((c) => {
               const e = ESTADO_CASILLA[c.estado];
@@ -169,6 +178,7 @@ export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) 
                       <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-bold text-gris"><span className={`h-2.5 w-2.5 rounded-full ${e.punto}`} aria-hidden="true" />{e.texto}</span>
                     </span>
                     <span className="text-sm text-gris">{c.texto}</span>
+                    {c.dato && <span className="text-xs font-bold text-sky-800">{c.dato}</span>}
                     <span className="mt-1 text-xs font-bold text-noche-3 underline underline-offset-4">Ir</span>
                   </button>
                 </li>
@@ -291,7 +301,7 @@ const HERRAMIENTAS: Herramienta[] = [
   { id: "espejo", nombre: "Espejo de la IA", frase: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", estado: "Próximamente", nota: "Cada semana, las mismas preguntas que haría un cliente.", color: "#7c3aed" },
   { id: "vigia", nombre: "Vigía", frase: "Ves los cambios importantes de tu competencia.", estado: "Próximamente", nota: "Solo con información pública: su web, sus anuncios y sus reseñas.", color: "#0f766e" },
   { id: "sistemas", nombre: "Sistemas", frase: "Comprobamos cada día que tu web, tus formularios y tus anuncios funcionan.", estado: "Próximamente", nota: "Cada día, a primera hora y de forma automática.", color: "#1d4ed8" },
-  { id: "recorrido", nombre: "Recorrido 360", frase: "Probamos tu recorrido completo como lo haría un cliente.", estado: "Próximamente", nota: "De punta a punta, cada semana. Los contactos de prueba van marcados y no cuentan.", color: "#be123c" },
+  { id: "recorrido", nombre: "Control 360", frase: "Probamos tu recorrido completo como lo haría un cliente.", estado: "Próximamente", nota: "De punta a punta, cada semana. Los contactos de prueba van marcados y no cuentan.", color: "#be123c" },
 ];
 
 const PREGUNTAS_IA: [string, boolean, boolean, boolean][] = [
@@ -432,7 +442,7 @@ export function Herramientas360({ inicial = "lupa" }: { inicial?: string }) {
       )}
 
       {abierta === "recorrido" && (
-        <Bloque titulo="Recorrido 360 · como lo haría un cliente" fuente="Cada lunes, de punta a punta" quien="nosotros">
+        <Bloque titulo="Control 360 · como lo haría un cliente" fuente="Cada lunes, de punta a punta" quien="nosotros">
           <ol className="space-y-2">
             {RECORRIDO_PASOS.map(([t, e], i) => (
               <li key={t} className="flex items-center gap-3 rounded-2xl border border-linea p-3 text-sm">

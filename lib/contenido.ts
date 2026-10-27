@@ -230,7 +230,7 @@ export const INFORMES = [
   {
     cuando: "Cada mes",
     lectura: "El balance",
-    puntos: ["Cómo sales en Google y en las IA", "Reseñas y nota nueva", "Cuánto cuesta cada cliente", "El plan del mes siguiente"],
+    puntos: ["Cómo sales en Google y en las IA", "Reseñas y nota nueva", "Cuánto cuesta cada contacto", "El plan del mes siguiente"],
   },
 ];
 
@@ -360,7 +360,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cómo sabré qué funciona?",
-    r: "Tendrás tu propio panel de control, en el móvil y en tiempo real: cuántos contactos y clientes llegan, de dónde viene cada uno (Google, un anuncio concreto, Instagram, el mapa, ChatGPT, un correo), lo que cuesta cada cliente y todo lo que hemos hecho. Lo medimos con Tag Manager, Google Analytics, el píxel de Meta y las etiquetas de cada red, bien instalados desde el primer día. En esta web tienes un panel de ejemplo para verlo con tus propios ojos.",
+    r: "Tendrás tu propio panel de control, en el móvil y en tiempo real: cuántos contactos y clientes llegan, de dónde viene cada uno (Google, un anuncio concreto, Instagram, el mapa, ChatGPT, un correo), lo que cuesta cada contacto y todo lo que hemos hecho. Tus clientes y lo que te cuesta cada uno también los puedes ver, pero es opcional y es tuyo: nosotros no te pedimos tu facturación. Lo medimos con Tag Manager, Google Analytics, el píxel de Meta y las etiquetas de cada red, bien instalados desde el primer día. En esta web tienes un panel de ejemplo para verlo con tus propios ojos.",
   },
   {
     p: "¿Y el vídeo?",
@@ -380,7 +380,7 @@ export const DOLORES = [
   },
   {
     dolor: "Pago anuncios y no sé si sirven.",
-    solucion: "Vigilamos cada euro y te decimos cuánto te cuesta cada cliente.",
+    solucion: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si tú quieres medir tus clientes, también cada cliente.",
   },
   {
     dolor: "Me escriben de noche y cuando contesto ya es tarde.",
@@ -458,7 +458,7 @@ export const ESTUDIO_BLOQUES: BloqueEstudio[] = [
     color: "#047857",
     items: [
       { t: "Tus anuncios hoy, el borrador de los nuevos y adónde llega el cliente después del clic" },
-      { t: "Dónde se va cada euro que inviertes y cuánto te cuesta cada cliente" },
+      { t: "Dónde se va cada euro que inviertes y cuánto te cuesta cada contacto" },
       { t: "WhatsApp de empresa y respuestas automáticas, para que no se te escape nadie" },
       { t: "Tu CRM a medida, o cómo conectar el que ya usas", caso: true },
       { t: "El camino del cliente: del primer clic hasta que firma, con su seguimiento" },

@@ -111,7 +111,6 @@ const EMBUDO: [string, number, string][] = [
   ["Usan una herramienta", 1210, "Calculadora de precio, test o configurador"],
   ["Dejan sus datos", 312, "Formulario, WhatsApp, llamada o chat"],
   ["Piden presupuesto", 168, "Con visita o medidas"],
-  ["Se hacen clientes", 41, "Presupuesto firmado"],
 ];
 
 const LEADS: { nombre: string; tema: string; origen: string; canal: string; cuando: string; estado: "Nuevo" | "Llamado" | "Presupuesto enviado" | "Cliente" }[] = [
@@ -266,13 +265,13 @@ const LOGO_CANAL: Record<Ficha["canal"], string> = { WhatsApp: "WhatsApp", Llama
 
 const MESES = ["May", "Jun", "Jul", "Ago", "Sep", "Oct"];
 // Lo variable de cada mes: inversión en anuncios, vídeo profesional y notas de prensa (opcionales).
-const GASTO_MES: { google: number; meta: number; video: number; prensa: number; clientes: number }[] = [
-  { google: 1800, meta: 400, video: 0, prensa: 0, clientes: 22 },
-  { google: 2100, meta: 500, video: 900, prensa: 0, clientes: 29 },
-  { google: 2300, meta: 600, video: 0, prensa: 450, clientes: 34 },
-  { google: 1500, meta: 300, video: 0, prensa: 0, clientes: 21 },
-  { google: 2250, meta: 600, video: 0, prensa: 0, clientes: 37 },
-  { google: 2350, meta: 640, video: 0, prensa: 0, clientes: 41 },
+const GASTO_MES: { google: number; meta: number; video: number; prensa: number; clientes: number; contactos: number }[] = [
+  { google: 1800, meta: 400, video: 0, prensa: 0, clientes: 22, contactos: 168 },
+  { google: 2100, meta: 500, video: 900, prensa: 0, clientes: 29, contactos: 222 },
+  { google: 2300, meta: 600, video: 0, prensa: 450, clientes: 34, contactos: 258 },
+  { google: 1500, meta: 300, video: 0, prensa: 0, clientes: 21, contactos: 160 },
+  { google: 2250, meta: 600, video: 0, prensa: 0, clientes: 37, contactos: 281 },
+  { google: 2350, meta: 640, video: 0, prensa: 0, clientes: 41, contactos: 312 },
 ];
 
 const num = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -437,18 +436,18 @@ const PERIODOS: [string, string, number][] = [
   ["3m", "3 meses", 2.8], ["mes", "Este mes", 1], ["pasado", "Mes pasado", 0.9], ["12m", "12 meses", 11],
 ];
 
-const CANALES: [string, number, number, number][] = [
-  ["Google Ads", 128, 17, 61], ["Google (orgánico)", 74, 12, 0], ["Meta (Facebook e Instagram)", 61, 7, 84],
-  ["Microsoft Ads", 19, 2, 70], ["Directo y boca a boca", 30, 3, 0],
+const CANALES: [string, number, number][] = [
+  ["Google Ads", 128, 18], ["Google (orgánico)", 74, 0], ["Meta (Facebook e Instagram)", 61, 10],
+  ["Microsoft Ads", 19, 13], ["Directo y boca a boca", 30, 0],
 ];
 
 function TablaCanales({ esc }: { esc: (n: number) => number }) {
   const [orden, setOrden] = useState(1);
   const filas = [...CANALES].sort((a, b) => (b[orden] as number) - (a[orden] as number));
-  const cols = ["Canal", "Contactos", "Clientes", "Coste por cliente"];
+  const cols = ["Canal", "Contactos", "Coste por contacto"];
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[480px] text-left text-sm">
+      <table className="w-full min-w-[400px] text-left text-sm">
         <thead>
           <tr className="border-b border-linea text-gris">
             {cols.map((c, i) => (
@@ -459,11 +458,10 @@ function TablaCanales({ esc }: { esc: (n: number) => number }) {
           </tr>
         </thead>
         <tbody>
-          {filas.map(([n, c, k, e]) => (
+          {filas.map(([n, c, e]) => (
             <tr key={n} className="border-b border-linea last:border-0">
               <td className="py-2 font-bold">{n}</td>
               <td className="py-2 text-right">{esc(c)}</td>
-              <td className="py-2 text-right">{esc(k)}</td>
               <td className="py-2 text-right">{e ? `${e} €` : "sin anuncios"}</td>
             </tr>
           ))}
@@ -650,9 +648,9 @@ export default function PanelEjemplo() {
               <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
                 <p className="text-sm font-bold text-estrella">Lo importante de hoy, en tres frases</p>
                 <ul className="mt-4 space-y-3 text-lg">
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>Este mes llevas <b>41 clientes nuevos</b>, 4 más que en septiembre, y cada uno te ha costado <b>73 €</b> en anuncios.</span></li>
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>La campaña de <b>aerotermia</b> es la que más vende. Le hemos subido el presupuesto un 10 %.</span></li>
-                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" /><span>Tienes <b>3 presupuestos sin respuesta</b> desde hace más de 3 días. Ya les ha salido el correo de recordatorio.</span></li>
+                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>Este mes te han llegado <b>312 contactos</b>, 43 más que en septiembre, y cada uno te ha costado <b>10 €</b> en anuncios.</span></li>
+                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" /><span>La campaña de <b>aerotermia</b> es la que más contactos trae. Le hemos subido el presupuesto un 10 %.</span></li>
+                  <li className="flex gap-3"><span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" /><span>Hay <b>3 contactos sin respuesta</b> desde hace más de 3 días. Ya les ha salido el correo de recordatorio.</span></li>
                 </ul>
               </section>
 
@@ -682,9 +680,9 @@ export default function PanelEjemplo() {
 
               <div className="grid gap-4 md:grid-cols-3">
                 {[
-                  ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 62 % pide presupuesto de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
-                  ["¿Los convertimos en clientes?", `${esc(41)} clientes`, "De cada 100 contactos se firman 13. Aquí se pierde más gente: el seguimiento.", "crm", "Ver las ventas"],
-                  ["¿Qué canal nos hace ganar más?", "Aerotermia en Google", "Trae el 38 % de los clientes con el coste más bajo.", "clientes", "Ver cada canal"],
+                  ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 54 % pide presupuesto de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
+                  ["¿Los convertimos en clientes?", "Preparado para ti", "Se activa cuando marcas quién ha firmado. Nosotros no lo vemos ni te lo pedimos.", "crm", "Ver Lo tuyo"],
+                  ["¿Qué canal trae más contactos?", "Aerotermia en Google", "Trae el 38 % de los contactos con el coste más bajo.", "anuncios", "Ver cada canal"],
                 ].map(([q, v, t, dest, b]) => (
                   <div key={q} className="rounded-3xl border border-linea bg-white p-5">
                     <p className="text-sm font-bold text-gris">{q}</p>
@@ -701,10 +699,10 @@ export default function PanelEjemplo() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Cifra titulo="Clientes nuevos" valor={esc(41)} cambio={cmb(comparar === "mes" ? 11 : 156)} contra={contraTxt} explicacion="Presupuestos firmados que vienen de internet." />
-                <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido presupuesto." />
-                <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={cmb(comparar === "mes" ? -8 : -41)} invertir contra={contraTxt} explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
-                <Cifra titulo="Ventas que vienen de internet" valor={esc(318400)} formato={eur} cambio={cmb(comparar === "mes" ? 14 : 132)} contra={contraTxt} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
+                <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido presupuesto. Sale solo." />
+                <Cifra titulo="Coste por contacto" valor={10} formato={eur} cambio={cmb(comparar === "mes" ? -8 : -41)} invertir contra={contraTxt} explicacion="Lo invertido en anuncios dividido entre los contactos que llegan. Cuanto más bajo, mejor." />
+                <Cifra titulo="Visitas a la web" valor={esc(8640)} cambio={cmb(comparar === "mes" ? 9 : 87)} contra={contraTxt} explicacion="Personas distintas que han entrado en tu web." />
+                <Cifra titulo="Contactos por cada 100 visitas" valor={36} formato={(n) => (n / 10).toFixed(1).replace(".", ",")} cambio={cmb(comparar === "mes" ? 6 : 22)} contra={contraTxt} explicacion="De cada 100 personas que entran, cuántas te dejan sus datos." />
               </div>
 
               <Caja titulo="Cada canal, de un vistazo" fuente="Ordena pulsando una columna" ayuda="Cada fila es un sitio por donde llegan clientes. Pulsa el título de una columna para ordenar de mayor a menor.">
@@ -736,17 +734,17 @@ export default function PanelEjemplo() {
 
               <Caja titulo="Cómo has mejorado desde el primer día" fuente="Tus datos, mes a mes" ayuda="Aquí se ve si lo estamos haciendo mejor que antes. El primer mes es de partida: lo que ya tenías. Si a los tres meses no ves esta línea subir, puedes irte sin pagar nada y te quedas con la web.">
                 <div className="grid grid-cols-6 items-end gap-2 sm:gap-4" style={{ height: 150 }}>
-                  {[16, 21, 29, 33, 38, 41].map((v, i) => (
+                  {[120, 158, 214, 246, 281, 312].map((v, i) => (
                     <div key={i} className="flex h-full flex-col items-center justify-end">
                       <span className="mb-1 text-xs font-bold">{v}</span>
-                      <div className="pn-barra w-full rounded-t-lg" style={{ height: `${(v / 41) * 100}%`, background: i < 3 ? "#ffc53d" : "#1d4ed8" }} />
+                      <div className="pn-barra w-full rounded-t-lg" style={{ height: `${(v / 312) * 100}%`, background: i < 3 ? "#ffc53d" : "#1d4ed8" }} />
                     </div>
                   ))}
                 </div>
                 <div className="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-gris sm:gap-4">
                   {["Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6"].map((m) => <span key={m}>{m}</span>)}
                 </div>
-                <p className="mt-3 text-sm text-gris">Clientes nuevos al mes. En amarillo, los tres meses para demostrarlo: de 16 a 29 clientes. En azul, lo que viene después.</p>
+                <p className="mt-3 text-sm text-gris">Contactos al mes. En amarillo, los tres meses para demostrarlo: de 120 a 214 contactos. En azul, lo que viene después.</p>
               </Caja>
 
               <div className="grid items-start gap-5 lg:grid-cols-[1.4fr_1fr]">
@@ -964,6 +962,7 @@ export default function PanelEjemplo() {
                     </li>
                   ))}
                 </ol>
+                <p className="mt-4 rounded-2xl border border-dashed border-sky-300 bg-sky-50 p-3 text-sm"><b>Último paso: se hacen clientes.</b> Preparado para ti, por si quieres usarlo. Se activa cuando marcas quién ha firmado. Nosotros no lo vemos ni te lo pedimos.</p>
               </Caja>
 
               <Caja titulo="Así sabemos de dónde viene cada cliente" fuente="Un cliente real de ejemplo" ayuda="Esto es lo que hace posible una buena medición: seguimos el recorrido completo de cada persona, desde el primer anuncio que vio hasta que firmó. Por eso podemos decirte exactamente qué te trae clientes y qué no.">
@@ -1012,7 +1011,7 @@ export default function PanelEjemplo() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm text-gris">De media, el <b className="text-tinta">64 %</b> abre los correos. 9 clientes de este mes firmaron después de un correo.</p>
+                  <p className="mt-4 text-sm text-gris">De media, el <b className="text-tinta">64 %</b> abre los correos. 9 personas de este mes pidieron presupuesto después de un correo.</p>
                 </Caja>
                 <Caja titulo="Herramientas de tu web" fuente="Tag Manager" ayuda="Las calculadoras y tests de tu web enganchan al visitante y le ayudan a decidir. Aquí ves cuántas veces se ha usado cada una este mes.">
                   <ul className="space-y-3">
@@ -1031,10 +1030,10 @@ export default function PanelEjemplo() {
 
           {pestana === "anuncios" && (
             <>
-              <Caja titulo="Google Ads, campaña a campaña" fuente="Google Ads" ayuda="Lo que has invertido en cada campaña de Google, cuántas personas han pulsado, cuántas te han contactado y cuántas han firmado. La última columna es la que importa: lo que te cuesta cada cliente.">
+              <Caja titulo="Google Ads, campaña a campaña" fuente="Google Ads" ayuda="Lo que has invertido en cada campaña de Google, cuántas personas han pulsado, y cuántas te han contactado. La última columna es la que importa: lo que te cuesta cada contacto. Cuántos firman es cosa tuya y está en Lo tuyo.">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[620px] text-left text-sm">
-                    <thead className="text-gris"><tr><th className="pb-2">Campaña</th><th className="pb-2">Invertido</th><th className="pb-2">Clics</th><th className="pb-2">Contactos</th><th className="pb-2">Clientes</th><th className="pb-2">Coste por cliente</th></tr></thead>
+                    <thead className="text-gris"><tr><th className="pb-2">Campaña</th><th className="pb-2">Invertido</th><th className="pb-2">Clics</th><th className="pb-2">Contactos</th><th className="pb-2">Coste por contacto</th></tr></thead>
                     <tbody>
                       {CAMPANAS.map((c) => (
                         <tr key={c.nombre} className="border-t border-linea">
@@ -1042,8 +1041,7 @@ export default function PanelEjemplo() {
                           <td className="py-3">{eur(c.inversion)}</td>
                           <td className="py-3">{num(c.clics)}</td>
                           <td className="py-3">{c.contactos}</td>
-                          <td className="py-3">{c.clientes}</td>
-                          <td className="py-3 font-extrabold">{eur(c.inversion / c.clientes)}</td>
+                          <td className="py-3 font-extrabold">{eur(c.inversion / c.contactos)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1053,7 +1051,7 @@ export default function PanelEjemplo() {
               <div className="grid gap-5 lg:grid-cols-2">
                 <Caja titulo="Instagram y Facebook" fuente="Meta" ayuda="Los anuncios en Instagram y Facebook. El alcance son las personas distintas que los han visto. Lo medimos con el píxel de Meta y su API de conversiones, que funciona aunque el navegador bloquee cookies.">
                   <div className="grid grid-cols-2 gap-3">
-                    {[["Invertido", eur(META_ADS.inversion)], ["Personas alcanzadas", num(META_ADS.alcance)], ["Clics", num(META_ADS.clics)], ["Contactos", String(META_ADS.contactos)], ["Clientes", String(META_ADS.clientes)], ["Coste por cliente", eur(META_ADS.inversion / META_ADS.clientes)]].map(([t, v]) => (
+                    {[["Invertido", eur(META_ADS.inversion)], ["Personas alcanzadas", num(META_ADS.alcance)], ["Clics", num(META_ADS.clics)], ["Contactos", String(META_ADS.contactos)], ["Coste por contacto", eur(META_ADS.inversion / META_ADS.contactos)]].map(([t, v]) => (
                       <div key={t} className="rounded-2xl bg-niebla p-4"><p className="text-xs text-gris">{t}</p><p className="text-xl font-extrabold">{v}</p></div>
                     ))}
                   </div>
@@ -1061,7 +1059,7 @@ export default function PanelEjemplo() {
                 <Caja titulo="Lo que hemos ajustado este mes" fuente="Nuestro equipo" ayuda="Los anuncios no se montan y se olvidan: se revisan cada día. Esto es lo que hemos cambiado y por qué.">
                   <ul className="space-y-3 text-sm">
                     <li className="rounded-2xl bg-niebla p-3"><b>Quitadas 23 búsquedas</b> que traían curiosos («barato», «gratis», «segunda mano»). Ahorro: 210 € al mes.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de aerotermia: es la que mejor coste por cliente tiene.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de aerotermia: es la que mejor coste por contacto tiene.</li>
                     <li className="rounded-2xl bg-niebla p-3"><b>Nuevo anuncio en vídeo</b> en Instagram con una instalación real. Ha bajado el coste por contacto un 18 %.</li>
                     <li className="rounded-2xl bg-niebla p-3"><b>Horario ajustado:</b> los anuncios ya no salen de 1 a 7 de la madrugada, cuando nadie pedía presupuesto.</li>
                   </ul>
@@ -1230,20 +1228,36 @@ export default function PanelEjemplo() {
                   </ul>
                   <p className="mt-3 text-sm text-gris">Comisión sobre lo invertido: <b className="text-tinta">0 €</b>. Siempre.</p>
                 </Caja>
-                <Caja titulo="Lo que te cuesta cada cliente, mes a mes" fuente="Últimos 6 meses" ayuda="Dividimos lo invertido en anuncios entre los clientes que han llegado. Si la barra baja, cada cliente te sale más barato. En junio se grabó un vídeo y en julio se compró una nota de prensa: se ve en el gasto, no en la cuota.">
+                <Caja titulo="Lo que te cuesta cada contacto, mes a mes" fuente="Últimos 6 meses" ayuda="Dividimos lo invertido en anuncios entre los contactos que han llegado. Si la barra baja, cada contacto te sale más barato. En junio se grabó un vídeo y en julio se compró una nota de prensa: se ve en el gasto, no en la cuota.">
                   <div className="flex h-44 items-end gap-3">
                     {GASTO_MES.map((g, i) => {
-                      const coste = (g.google + g.meta) / g.clientes;
+                      const coste = (g.google + g.meta) / g.contactos;
                       return (
                         <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
                           <span className="text-xs font-bold">{eur(coste)}</span>
-                          <div className="pn-barra w-full rounded-t-lg bg-noche-3" style={{ height: `${(coste / 110) * 100}%`, animationDelay: `${i * 60}ms` }} />
+                          <div className="pn-barra w-full rounded-t-lg bg-noche-3" style={{ height: `${(coste / 16) * 100}%`, animationDelay: `${i * 60}ms` }} />
                           <span className="text-xs text-gris">{MESES[i]}</span>
                           <span className="h-4 text-[0.6rem] text-gris">{g.video ? "vídeo" : g.prensa ? "prensa" : ""}</span>
                         </div>
                       );
                     })}
                   </div>
+                </Caja>
+                <Caja quien="tuyo" titulo="Lo que te cuesta cada cliente" fuente="Preparado para ti" ayuda="Para calcularlo hace falta un dato que solo tienes tú: quién ha firmado. Si lo marcas en tu CRM, dividimos lo invertido entre tus clientes. Si no, no pasa nada y no te lo pedimos.">
+                  <p className="text-sm text-gris"><b className="text-tinta">Se activa cuando marcas quién ha firmado.</b> Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.</p>
+                  <div className="mt-4 flex h-32 items-end gap-3 opacity-80">
+                    {GASTO_MES.map((g, i) => {
+                      const coste = (g.google + g.meta) / g.clientes;
+                      return (
+                        <div key={MESES[i]} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                          <span className="text-xs font-bold">{eur(coste)}</span>
+                          <div className="w-full rounded-t-lg bg-sky-300" style={{ height: `${(coste / 110) * 100}%` }} />
+                          <span className="text-xs text-gris">{MESES[i]}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-2 text-xs text-gris">Datos de demostración, como si hubieras marcado tus firmas.</p>
                 </Caja>
               </div>
             </>

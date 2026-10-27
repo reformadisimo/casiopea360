@@ -319,7 +319,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "La escena de siempre" },
       { p: "Los anuncios traen visitas, pero nadie pide presupuesto. La agencia de anuncios dice que el problema es la web. El de la web dice que las visitas no son buenas. El SEO pide un cambio que el programador hará cuando tenga hueco. Y tú, en medio, reenviando correos." },
       { h2: "Lo que cuesta y no sale en la factura" },
-      { ul: ["Horas de reuniones y llamadas con cada proveedor.", "Cambios que tardan semanas porque dependen de otro.", "Informes que no se hablan entre sí y que no responden a la pregunta clave: cuántos clientes y a qué coste.", "Datos y cuentas repartidos, y a veces ni siquiera a tu nombre."] },
+      { ul: ["Horas de reuniones y llamadas con cada proveedor.", "Cambios que tardan semanas porque dependen de otro.", "Informes que no se hablan entre sí y que no responden a la pregunta clave: cuántos contactos y a qué coste.", "Datos y cuentas repartidos, y a veces ni siquiera a tu nombre."] },
       { h2: "Cuando el problema es el éxito" },
       { p: "Lo que buscamos es que no des abasto. Y nos ha pasado: negocios con poco trabajo que, con una web clara, buena visibilidad y un mensaje que se entiende, empiezan a recibir más peticiones de las que pueden atender. Entonces bajamos la publicidad en el momento y ajustamos para que lleguen las que puedes asumir. Con cinco proveedores, ese ajuste tarda semanas; con uno solo, minutos." },
       { h2: "Cómo salir" },
@@ -417,7 +417,7 @@ export const ARTICULOS: Articulo[] = [
         p: "Con una comisión, la agencia gana más cuanto más gastas. No quiere decir que todas actúen mal, pero el incentivo está ahí: subir la inversión siempre le conviene, aunque los resultados no suban igual.",
       },
       {
-        p: "Lo que de verdad importa para tu empresa es otra cosa: cuánto te cuesta cada cliente que llega. A veces la mejor decisión es invertir menos y mejor, añadir palabras negativas para no pagar por curiosos o arreglar la página a la que llegan las visitas.",
+        p: "Lo que de verdad importa para tu empresa es otra cosa: cuánto te cuesta cada contacto que llega (y, si tú lo mides, cada cliente). A veces la mejor decisión es invertir menos y mejor, añadir palabras negativas para no pagar por curiosos o arreglar la página a la que llegan las visitas.",
       },
       { h2: "La alternativa: precio fijo y la inversión, a tu nombre" },
       {
