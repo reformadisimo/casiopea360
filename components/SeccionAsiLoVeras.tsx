@@ -12,8 +12,13 @@ export default function SeccionAsiLoVeras() {
           <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu panel</p>
           <h2 id="asi-lo-veras" className="mt-5 text-3xl font-extrabold sm:text-5xl">Así lo verás tú</h2>
           <p className="mt-5 text-lg text-gris">
-            Entras, y en diez segundos sabes si todo va bien, qué mirar hoy y qué hacer. Sin números que no entiendes: cinco baterías de colores, cuatro cifras y una tarea. Funciona en el móvil, lo puedes oír en voz alta y le puedes preguntar con tus palabras.
+            Esto es lo que tendrías cada día: <b className="text-tinta">todos tus datos al momento</b>, en un panel que se entiende y que puedes tocar. Entras, y en diez segundos sabes si todo va bien, qué mirar hoy y qué hacer. Funciona en el móvil y le puedes preguntar con tus palabras. Es un ejemplo con datos inventados, y es exactamente el que usamos de modelo.
           </p>
+          <ul className="mt-5 grid gap-2 text-lg font-bold text-tinta">
+            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Mueve y mira qué pasaría.</li>
+            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Dinos tu meta y te decimos si es sueño u objetivo.</li>
+            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Ponnos a prueba cada semana.</li>
+          </ul>
           <p className="mt-4 text-lg text-gris">
             <b className="text-tinta">Ninguna herramienta está libre de errores, y la nuestra tampoco.</b> La diferencia es que los buscamos cada día y, si ves uno, nos lo cuentas con un toque y lo arreglamos. Nos encanta encontrarlos: cada uno que arreglamos es un problema menos para ti.
           </p>
@@ -21,7 +26,7 @@ export default function SeccionAsiLoVeras() {
           <p className="mt-3 text-sm text-gris">Datos inventados de una empresa ficticia. No se envía nada.</p>
         </div>
         <div className="relative">
-          <Image src="/panel/ejemplo-escritorio.jpg" alt="Panel de control de ejemplo en un ordenador: conclusión del día, tarea principal y cinco baterías de estado" width={1280} height={900} className="w-full rounded-2xl border border-linea shadow-xl" />
+          <Image src="/panel/ejemplo-escritorio.jpg" alt="Panel de control de ejemplo en un ordenador: guía de uso, tus sueños y tus cuentas, conclusión del día y seis casillas" width={1280} height={900} className="w-full rounded-2xl border border-linea shadow-xl" />
           <Image src="/panel/ejemplo-movil.jpg" alt="El mismo panel en el móvil" width={780} height={1688} className="absolute -bottom-6 right-3 hidden w-[28%] rounded-2xl border border-linea shadow-2xl sm:block" />
         </div>
       </div>

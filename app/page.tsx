@@ -3,6 +3,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
+import { SeccionSonarEnGrande, SeccionComoTrabajamos } from "@/components/SeccionesVender";
 import {
   BOTON,
   BOTON_CLARO,
@@ -43,9 +44,12 @@ export default function Inicio() {
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
               <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo equipo y una cuota fija. Y cada día sabes qué hemos hecho por tu negocio.
             </p>
+            <p className="mt-5 max-w-xl text-lg text-white/85">
+              <b className="text-white">Dinos hasta dónde quieres llegar.</b> Un solo contacto, todo el equipo detrás, y todos tus datos al momento. Nosotros te acompañamos.
+            </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
-              <Link prefetch={false} href="/trabajos" className={BOTON_CLARO}>Ver trabajos reales</Link>
+              <Link prefetch={false} href="/panel" className={BOTON_CLARO}>Así lo verás tú</Link>
             </div>
             <ul className="mt-8 grid grid-cols-2 gap-2 text-[0.8rem] font-bold sm:flex sm:flex-wrap sm:text-sm">
               {["+22 años en marketing digital", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
@@ -71,6 +75,8 @@ export default function Inicio() {
       <BandaMiedoAlCambio />
       <BandaControl />
       <SeccionAsiLoVeras />
+      <SeccionSonarEnGrande />
+      <SeccionComoTrabajamos />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />
