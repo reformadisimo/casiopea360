@@ -6,7 +6,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
 import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta, ICONO_SVG, SeccionPreguntas } from "@/components/secciones";
 
-const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm", "lupa-360": "lupa" };
+const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm", "lupa-360": "lupa", "avisos-recordatorios": "chat" };
 import { glosar } from "@/lib/glosario";
 import { ARTICULOS } from "@/lib/blog";
 import { PAGINAS_SERVICIO, incluyeDe, paginaServicio } from "@/lib/servicios";

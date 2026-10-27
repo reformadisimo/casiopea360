@@ -103,7 +103,7 @@ export default function TuControl() {
             <b className="text-tinta">¿Para qué lo queremos?</b> Para mover el dinero de los anuncios hacia las campañas, los anuncios y las zonas que traen tus mejores clientes. Si prefieres clientes más grandes o más pequeños este mes, también nos lo puedes decir y adaptamos las campañas. Y todo lo que te contemos será en porcentajes y en índices, nunca en euros de tu facturación.
           </p>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            <b className="text-tinta">Lo mismo con el tiempo que tardas en llamar.</b> Es tuyo y no te lo vamos a preguntar cada día. Pero si nos lo compartes, podemos decirte, por ejemplo, que una campaña no funciona porque se tarda tres días en llamar a los contactos y los estudios sobre contactos coinciden en que cuanto antes se llama, más se convierte.
+            <b className="text-tinta">Lo mismo con el tiempo que tardas en llamar.</b> Es tuyo y no te lo vamos a preguntar cada día. Pero si nos lo compartes, podemos decirte, por ejemplo, que una campaña no funciona porque se tarda tres días en llamar a los contactos y los estudios sobre contactos coinciden en que cuanto antes se llama, más se convierte. Por eso, donde hay citas, una confirmación automática por WhatsApp o SMS es otra forma de contestar al momento.
           </p>
           <Link prefetch={false} href="/panel" className={`${BOTON} mt-8 inline-flex`}>Probarlo en el panel de ejemplo</Link>
         </div>

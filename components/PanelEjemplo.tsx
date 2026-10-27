@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
-import { Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
+import { AvisosPanel, Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
 import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, IndiceLateral, Migas, PaginaModulo, Reloj, TarjetaGrupo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
 
 
@@ -1227,6 +1227,7 @@ export default function PanelEjemplo() {
     { id: "indice", grupo: "tuyo", nombre: "Índice de valor", corto: "Índice", linea: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", conclusion: "Preparado: se activa cuando pones tu ticket medio. Nunca euros.", luz: "preparado", icono: "estrella", contenido: <IndiceValor /> },
     { id: "opcionales", grupo: "tuyo", nombre: "Lo que decides tú", corto: "Opcionales", linea: "Tiempo de respuesta, llamadas y cierre. Apagado de serie.", conclusion: "Ahora mismo no compartes nada con nosotros.", luz: "preparado", icono: "ajustes", contenido: <Mandos /> },
     { id: "peticiones", grupo: "contigo", nombre: "Tus peticiones", corto: "Peticiones", linea: "Pides, te damos fecha y apruebas.", conclusion: "Todo lo que has pedido está hecho o en curso. Tiempo medio, 19 horas.", luz: "ok", icono: "chat", contenido: piezas.peticiones },
+    { id: "avisos", grupo: "contigo", nombre: "Avisos y recordatorios", corto: "Avisos", linea: "Mensajes al móvil para que no se olviden de la cita y sepan que les has recibido.", conclusion: "Sin conectar. Incluido en tu cuota: solo pagas los mensajes que se envíen.", luz: "sinconectar", icono: "chat", contenido: <AvisosPanel /> },
     { id: "gastos", grupo: "contigo", nombre: "Gastos", corto: "Gastos", linea: "Lo que has gastado este mes y lo que va aparte.", conclusion: "Comisión sobre lo invertido: 0 €. Siempre.", luz: "ok", icono: "caja", contenido: piezas.gastos },
     { id: "medicion", grupo: "contigo", nombre: "Cómo lo medimos", corto: "Medición", linea: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", conclusion: "21 de 21 herramientas funcionando.", luz: "ok", icono: "ajustes", contenido: piezas.medicion },
     { id: "trabajo", grupo: "contigo", nombre: "Todo lo que hacemos", corto: "Trabajo", linea: "Un registro con fecha y con el porqué de cada cosa.", conclusion: "64 tareas este mes, el 98 % entregadas a tiempo.", luz: "ok", icono: "documento", contenido: piezas.trabajo },

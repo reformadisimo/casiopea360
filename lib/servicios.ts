@@ -403,6 +403,83 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     ],
     articulos: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa"],
   },
+  {
+    slug: "avisos-recordatorios",
+    nombre: "Avisos y recordatorios",
+    tituloSeo: "Avisos y recordatorios por WhatsApp o SMS para tus citas",
+    descripcionSeo:
+      "Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp y, si lo prefieres, por SMS. Incluido en tu cuota: solo pagas los mensajes.",
+    titular: "Menos plantones y respuesta al momento, sin que tengas que acordarte.",
+    entradilla:
+      "Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp; y si lo prefieres, también por SMS. Lo montamos nosotros y funciona solo.",
+    video: "movil-sonrisa",
+    videoAlt: "Una persona sonríe al leer un mensaje en su móvil",
+    video2: "mujer-movil",
+    videoAlt2: "Una mujer consulta un mensaje en el móvil",
+    color: "#0f766e",
+    dolores: [
+      { dolor: "«La gente se olvida de la cita y no viene.»", arreglo: "Un mensaje el día antes y otro un par de horas antes, con un enlace para confirmar o pedir otra hora." },
+      { dolor: "«Pide cita y no sabe si le hemos recibido.»", arreglo: "En segundos le llega un «recibido, te llamamos hoy», aunque no mire el correo." },
+      { dolor: "«Tardo en enterarme de que ha entrado un contacto.»", arreglo: "Un aviso a tu móvil cuando entra un contacto o una cita, para que contestes pronto." },
+    ],
+    incluye: [
+      "Recordatorio de cita: un mensaje el día antes y otro un par de horas antes, con enlace para confirmar o pedir otra hora",
+      "Confirmación al momento: cuando alguien pide cita o deja su teléfono, le llega un mensaje en segundos",
+      "Aviso al dueño: un mensaje a tu móvil cuando entra un contacto nuevo o una cita",
+      "Petición de reseña: unos días después de terminar el trabajo, con el enlace directo a tu ficha de Google",
+      "Por WhatsApp Business y, si lo prefieres, también por SMS, con el nombre de tu negocio como remitente",
+      "Nunca de noche ni muy temprano: solo entre las 9:00 y las 21:00",
+      "Sin publicidad: no incluye campañas por WhatsApp ni por SMS, que necesitan permiso expreso de cada persona",
+    ],
+    como: [
+      { paso: "Vemos si te encaja", texto: "Te lo recomendamos según tu negocio. Encaja sobre todo donde hay citas o visitas." },
+      { paso: "Lo montamos nosotros", texto: "Los textos, los horarios y las cuentas, a tu nombre. Tú no tienes que enviar nada." },
+      { paso: "Sale solo", texto: "Cada aviso sale en su momento, con el nombre de tu negocio y de quién viene." },
+      { paso: "Lo ves en tu panel", texto: "Cuántos recordatorios han salido y cuántas citas se han confirmado." },
+    ],
+    plazos: [
+      { que: "Activarlo, cuando te lo recomendamos y lo quieres", cuando: "Unos días" },
+      { que: "Cambiar un texto o un horario", cuando: "Máximo 48 horas" },
+      { que: "Los mensajes de WhatsApp", cuando: "Los textos de inicio los aprueba Meta antes de usarlos" },
+    ],
+    demo: {
+      titulo: "Mira cómo le llegarían a tu cliente.",
+      texto: "Una demostración con un negocio y unos datos inventados: los cuatro avisos en un móvil, por WhatsApp o por SMS. No se envía nada de verdad.",
+      enlace: "Abrir los avisos de ejemplo →",
+      href: "/avisos-ejemplo",
+    },
+    preguntas: [
+      {
+        p: "¿Cuánto cuesta?",
+        r: "El servicio está incluido en tu cuota de Casiopea, sin coste extra por montarlo ni por mantenerlo. Solo pagas el coste de cada mensaje, directamente a WhatsApp (Meta) o a tu proveedor de SMS, desde tu propia cuenta y sin comisión nuestra.",
+      },
+      {
+        p: "¿Y cuánto cuesta un mensaje?",
+        r: "Es orientativo y lo marca el proveedor. En España, un SMS ronda los 0,09 dólares (precio de Twilio). Un recordatorio doble por cita sale por menos de 20 céntimos.",
+      },
+      {
+        p: "¿Es para todos los negocios?",
+        r: "No. Te lo recomendamos según tu negocio. Encaja sobre todo donde hay citas o visitas: clínicas, reformas con visita, instalaciones, talleres.",
+      },
+      {
+        p: "¿WhatsApp o SMS?",
+        r: "WhatsApp es el canal principal, porque es lo que la gente más mira. El SMS es la alternativa para quien no tiene WhatsApp, para clientes que lo prefieren, como gente mayor o citas médicas, o como respaldo si un WhatsApp no llega.",
+      },
+      {
+        p: "¿Puede contestar la persona?",
+        r: "En WhatsApp sí, y la conversación sigue en el WhatsApp de tu negocio. En SMS, el remitente lleva el nombre de tu negocio y no recibe respuestas; por eso cada SMS lleva un enlace o tu WhatsApp.",
+      },
+      {
+        p: "¿Mandáis publicidad por WhatsApp o SMS?",
+        r: "No. Los recordatorios y confirmaciones solo salen a quien ha pedido la cita o ha dejado su teléfono para eso. La petición de reseña, solo a clientes con los que se ha trabajado. Cada mensaje dice de quién viene.",
+      },
+      {
+        p: "¿Las cuentas son mías?",
+        r: "Sí. Cada cliente con su propia cuenta, a su nombre, como el resto de tus cuentas en Tu control.",
+      },
+    ],
+    articulos: [],
+  },
 ];
 
 export const paginaServicio = (slug: string) => PAGINAS_SERVICIO.find((p) => p.slug === slug);

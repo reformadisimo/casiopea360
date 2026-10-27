@@ -40,7 +40,7 @@ const MANDOS: Mando[] = [
     id: "respuesta",
     titulo: "Lo que tardas en contestar a cada contacto",
     sirve: "Saber si la gente que te escribe recibe respuesta a tiempo.",
-    ganas: "Los estudios sobre contactos coinciden: cuanto antes se llama, más se convierte. Un contacto que espera horas o días se enfría.",
+    ganas: "Los estudios sobre contactos coinciden: cuanto antes se llama, más se convierte. Un contacto que espera horas o días se enfría. Una confirmación automática por WhatsApp o SMS es otra forma de contestar al momento.",
     sin: "Sin este dato te decimos cuántos contactos te llegan.",
     con: "Con este dato te decimos si una campaña no funciona porque se tarda días en llamar y la competencia tarda una hora. Y cuántos se pierden por esperar. En el ejemplo, de cada 100 contactos contestados en menos de una hora, firman 38; contestados al día siguiente, 14.",
     cifras: [["Tiempo medio en contestar", "2 h 10 min"], ["Contestados en menos de 1 hora", "78 %"], ["Esperan más de un día", "9 %"]],
@@ -573,5 +573,47 @@ export function IndiceValor() {
         </div>
       </Bloque>
     </>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------
+// Avisos y recordatorios: servicio opcional. De momento, sin conectar: solo explica y lleva a la página del servicio.
+// ---------------------------------------------------------------------------------------------
+const AVISOS_PANEL: [string, string][] = [
+  ["Recordatorio de cita", "Un mensaje el día antes y otro un par de horas antes, con enlace para confirmar o pedir otra hora."],
+  ["Confirmación al momento", "Cuando alguien pide cita o deja su teléfono, le llega un mensaje en segundos."],
+  ["Aviso al dueño", "Un mensaje a tu móvil cuando entra un contacto nuevo o una cita."],
+  ["Petición de reseña", "Unos días después de terminar el trabajo, con el enlace directo a tu ficha de Google."],
+];
+
+export function AvisosPanel() {
+  return (
+    <Bloque titulo="Avisos y recordatorios" quien="nosotros">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-extrabold text-emerald-800 ring-1 ring-emerald-200">Incluido en tu cuota</span>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">
+          <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: "#94a3b8" }} />
+          Sin conectar
+        </span>
+      </div>
+      <p className="mt-3 text-[15px] leading-relaxed">
+        Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp; y si lo prefieres, también por SMS.
+      </p>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        {AVISOS_PANEL.map(([t, d]) => (
+          <li key={t} className="rounded-2xl bg-niebla p-4">
+            <p className="font-extrabold">{t}</p>
+            <p className="mt-1 text-sm text-gris">{d}</p>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-4 text-sm text-gris">
+        Solo pagas los mensajes que se envían, directamente a WhatsApp o a tu proveedor de SMS, sin comisión nuestra. No es para todos: te lo recomendamos si en tu negocio hay citas. Cuando esté conectado, aquí verás cuántos recordatorios han salido y cuántas citas se han confirmado.
+      </p>
+      <div className="mt-4 flex flex-wrap gap-3">
+        <Link href="/servicios/avisos-recordatorios" className="inline-block rounded-full bg-noche px-5 py-2.5 text-sm font-bold text-white hover:bg-noche-2">Quiero activarlo</Link>
+        <Link href="/avisos-ejemplo" className="inline-block rounded-full border border-linea bg-white px-5 py-2.5 text-sm font-bold text-tinta hover:bg-niebla">Ver cómo le llegaría a tu cliente</Link>
+      </div>
+    </Bloque>
   );
 }
