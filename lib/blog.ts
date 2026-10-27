@@ -55,6 +55,7 @@ export const ARTICULOS: Articulo[] = [
     ],
     enlaces: [
       { texto: "Cómo cuidamos Google y las IA", href: "/servicios/seo-google-ia" },
+      { texto: "Cómo quedaría: tarjeta, WhatsApp y web", href: "/servicios#ejemplo-resenas" },
       { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
     ],
   },
