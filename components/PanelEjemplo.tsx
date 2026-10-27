@@ -12,8 +12,8 @@ import { Herramientas360, Mandos } from "@/components/PanelMandos";
 
 type Pestana = "resumen" | "mandos" | "herramientas" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
 const PESTANAS: [Pestana, string][] = [
+  ["mandos", "Control de mandos"],
   ["resumen", "Resumen"],
-  ["mandos", "Mis mandos"],
   ["herramientas", "Herramientas 360"],
   ["peticiones", "Tus peticiones"],
   ["crm", "Tu CRM"],
@@ -473,7 +473,8 @@ const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: n
 ];
 
 export default function PanelEjemplo() {
-  const [pestana, setPestana] = useState<Pestana>("resumen");
+  const [pestana, setPestana] = useState<Pestana>("mandos")
+  const [herramienta, setHerramienta] = useState("lupa");
   const [comparar, setComparar] = useState<"mes" | "inicio">("mes");
   const [directo, setDirecto] = useState<{ id: number; tipo: string; titulo: string; detalle: string; hora: string }[]>([]);
   const [hoy, setHoy] = useState({ visitas: 318, contactos: 9, llamadas: 4 });
@@ -557,8 +558,8 @@ export default function PanelEjemplo() {
 
         <header className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-bold text-white/70">Tu panel de control · Climatización Ejemplo, S.L.</p>
-            <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo tu marketing, en una pantalla.</h1>
+            <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
+            <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
           </div>
           <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
@@ -700,9 +701,9 @@ export default function PanelEjemplo() {
             </>
           )}
 
-          {pestana === "mandos" && <Mandos ir={(id) => setPestana(id as Pestana)} />}
+          {pestana === "mandos" && <Mandos ir={(id, sub) => { if (sub) setHerramienta(sub); setPestana(id as Pestana); window.scrollTo({ top: 0, behavior: "smooth" }); }} />}
 
-          {pestana === "herramientas" && <Herramientas360 />}
+          {pestana === "herramientas" && <Herramientas360 key={herramienta} inicial={herramienta} />}
 
           {pestana === "peticiones" && (
             <>

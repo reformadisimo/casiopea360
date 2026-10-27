@@ -24,16 +24,53 @@ function Bloque({ titulo, fuente, quien, children, className = "" }: { titulo: s
 // Mis mandos
 // ---------------------------------------------------------------------------------------------
 
-const NOSOTROS: { id: string; titulo: string; texto: string }[] = [
-  { id: "anuncios", titulo: "Tus anuncios", texto: "Google Ads, Meta y Microsoft Ads: los montamos, los revisamos cada día y te contamos qué hemos cambiado." },
-  { id: "google", titulo: "Google, Bing y las IA", texto: "Que te encuentren, en el mapa y cuando preguntan a ChatGPT, Gemini o Claude." },
-  { id: "web", titulo: "Tu web", texto: "Rápida, segura y con copia de cada cambio. Los cambios del día a día, en 48 horas." },
-  { id: "redes", titulo: "Tus redes", texto: "Contenido, publicaciones y reseñas, con tu visto bueno antes de salir." },
-  { id: "medicion", titulo: "La medición", texto: "Tag Manager, Analytics y el resto, bien puestos para que cada contacto se cuente una sola vez." },
-  { id: "herramientas", titulo: "Las cinco herramientas 360", texto: "Lupa, Espejo de la IA, Vigía, Sistemas y Recorrido: vigilan tu web mientras tú trabajas." },
-  { id: "peticiones", titulo: "Tus peticiones", texto: "Pides, te damos fecha, ves en qué punto está y apruebas." },
-  { id: "trabajo", titulo: "Todo lo que hacemos", texto: "Un registro con fecha y con el porqué de cada cosa. Sin cajas negras." },
+type EstadoCasilla = "ok" | "pronto" | "tuyo";
+type Casilla = { titulo: string; texto: string; destino: string; sub?: string; estado: EstadoCasilla };
+const GRUPOS: { titulo: string; casillas: Casilla[] }[] = [
+  {
+    titulo: "Lo que pasa en tu web",
+    casillas: [
+      { titulo: "Lupa 360", texto: "Ves lo que hace la gente en tu web.", destino: "herramientas", sub: "lupa", estado: "ok" },
+      { titulo: "Velocidad y seguridad", texto: "Tu web rápida, segura y con copia de cada cambio.", destino: "web", estado: "ok" },
+      { titulo: "Sistemas", texto: "Comprobamos cada día que web, formularios y anuncios funcionan.", destino: "herramientas", sub: "sistemas", estado: "pronto" },
+      { titulo: "Recorrido 360", texto: "Probamos tu recorrido completo como un cliente.", destino: "herramientas", sub: "recorrido", estado: "pronto" },
+    ],
+  },
+  {
+    titulo: "Lo que consigues",
+    casillas: [
+      { titulo: "Contactos y clientes", texto: "Cuánta gente te escribe y cuánta se hace cliente.", destino: "resumen", estado: "ok" },
+      { titulo: "Coste por cliente", texto: "Lo que te cuesta cada cliente que llega por internet.", destino: "gastos", estado: "ok" },
+      { titulo: "Ventas (CRM)", texto: "Tus contactos, fase a fase. El CRM es tuyo.", destino: "crm", estado: "tuyo" },
+      { titulo: "De dónde viene cada cliente", texto: "El recorrido completo, desde el primer anuncio hasta la firma.", destino: "clientes", estado: "ok" },
+    ],
+  },
+  {
+    titulo: "Dónde te encuentran",
+    casillas: [
+      { titulo: "Anuncios", texto: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", destino: "anuncios", estado: "ok" },
+      { titulo: "Google, Bing y mapa", texto: "Tus puestos, tu ficha de Google y Bing.", destino: "google", estado: "ok" },
+      { titulo: "Espejo de la IA", texto: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", destino: "herramientas", sub: "espejo", estado: "pronto" },
+      { titulo: "Vigía", texto: "Ves los cambios importantes de tu competencia.", destino: "herramientas", sub: "vigia", estado: "pronto" },
+      { titulo: "Redes y reseñas", texto: "Instagram, LinkedIn, Facebook, TikTok y tus reseñas.", destino: "redes", estado: "ok" },
+    ],
+  },
+  {
+    titulo: "Tú y nosotros",
+    casillas: [
+      { titulo: "Tus peticiones", texto: "Pides, te damos fecha y apruebas. Informes y facturas, aquí.", destino: "peticiones", estado: "ok" },
+      { titulo: "Gastos", texto: "Lo que has gastado este mes y lo que va aparte.", destino: "gastos", estado: "ok" },
+      { titulo: "Cómo lo medimos", texto: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", destino: "medicion", estado: "ok" },
+      { titulo: "Todo lo que hacemos", texto: "Un registro con fecha y con el porqué de cada cosa.", destino: "trabajo", estado: "ok" },
+    ],
+  },
 ];
+
+const ESTADO_CASILLA: Record<EstadoCasilla, { texto: string; punto: string }> = {
+  ok: { texto: "Funcionando", punto: "bg-emerald-500" },
+  pronto: { texto: "Próximamente", punto: "bg-amber-500" },
+  tuyo: { texto: "Es tuyo", punto: "bg-sky-500" },
+};
 
 type Mando = {
   id: string;
@@ -103,7 +140,7 @@ function Interruptor({ on, set, etiqueta }: { on: boolean; set: (v: boolean) => 
   );
 }
 
-export function Mandos({ ir }: { ir: (pestana: string) => void }) {
+export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) {
   const [encendido, setEncendido] = useState<Record<string, boolean>>({});
   const [comparte, setComparte] = useState<Record<string, boolean>>({});
   const activos = MANDOS.filter((m) => encendido[m.id]);
@@ -112,32 +149,41 @@ export function Mandos({ ir }: { ir: (pestana: string) => void }) {
   return (
     <>
       <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-        <p className="text-sm font-bold text-estrella">Tu cabina de mandos</p>
-        <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Lo importante lo llevamos nosotros. Lo tuyo, lo decides tú.</p>
+        <p className="text-sm font-bold text-estrella">Control de mandos</p>
+        <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Todo lo que pasa en tu sitio, en una pantalla.</p>
         <p className="mt-3 max-w-3xl text-white/80">
-          Hay tres zonas y siempre sabes en cuál estás. Lo que hacemos nosotros va encendido. Lo que es de tu empresa por dentro, como lo que facturas o lo que tardas en contestar, está apagado hasta que tú lo enciendas. Y tu CRM y tu contabilidad no los tocamos.
-        </p>
-        <p className="mt-3 max-w-3xl rounded-2xl bg-white/10 p-4 text-sm">
-          <b className="text-estrella">Si te ayudas a ti mismo, te ayudamos mejor.</b> Con los datos de tus campañas ya te damos conclusiones. Si además enciendes lo opcional, esas conclusiones suben de nivel. Eso es gestión interna tuya: no te preguntaremos cuánto has facturado ni a cuántos has llamado.
+          Cada casilla es una cosa que hacemos por ti. Pulsa en cualquiera y vas a ella. El punto de color dice cómo está: verde, funcionando; naranja, próximamente; azul, es tuyo y lo gestionas tú.
         </p>
       </section>
 
-      <Bloque titulo="Lo llevamos nosotros" fuente="Siempre encendido" quien="nosotros">
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {NOSOTROS.map((n) => (
-            <li key={n.id}>
-              <button type="button" onClick={() => ir(n.id)} className="flex h-full w-full items-start gap-3 rounded-2xl border border-linea p-4 text-left transition-colors hover:bg-niebla">
-                <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
-                <span className="min-w-0">
-                  <span className="block font-extrabold">{n.titulo}</span>
-                  <span className="mt-1 block text-sm text-gris">{n.texto}</span>
-                  <span className="mt-2 block text-xs font-bold text-noche-3 underline underline-offset-4">Verlo</span>
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </Bloque>
+      {GRUPOS.map((g) => (
+        <Bloque key={g.titulo} titulo={g.titulo} fuente={`${g.casillas.length} casillas`} quien="nosotros">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {g.casillas.map((c) => {
+              const e = ESTADO_CASILLA[c.estado];
+              return (
+                <li key={c.titulo}>
+                  <button type="button" onClick={() => ir(c.destino, c.sub)} className="flex h-full w-full flex-col items-start gap-1 rounded-2xl border border-linea p-4 text-left transition-colors hover:bg-niebla">
+                    <span className="flex w-full items-center justify-between gap-2">
+                      <span className="font-extrabold">{c.titulo}</span>
+                      <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-bold text-gris"><span className={`h-2.5 w-2.5 rounded-full ${e.punto}`} aria-hidden="true" />{e.texto}</span>
+                    </span>
+                    <span className="text-sm text-gris">{c.texto}</span>
+                    <span className="mt-1 text-xs font-bold text-noche-3 underline underline-offset-4">Ir</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </Bloque>
+      ))}
+
+      <section className="rounded-3xl border border-linea bg-white p-5 sm:p-7">
+        <p className="text-lg font-extrabold">Tú decides qué más quieres ver.</p>
+        <p className="mt-1 text-gris">
+          Lo de abajo es opcional: son datos de la gestión de tu empresa y están apagados hasta que tú los enciendas. <b className="text-tinta">Si te ayudas a ti mismo, te ayudamos mejor:</b> con los datos de tus campañas ya te damos conclusiones, y con estos suben de nivel.
+        </p>
+      </section>
 
       <Bloque titulo="Lo decides tú" fuente={`Encendidos: ${activos.length} de ${MANDOS.length}`} quien="opcional">
         <p className="text-gris">
@@ -237,15 +283,15 @@ export function Mandos({ ir }: { ir: (pestana: string) => void }) {
 // Herramientas 360
 // ---------------------------------------------------------------------------------------------
 
-type Estado = "Disponible" | "En preparación";
+type Estado = "Disponible" | "Próximamente";
 type Herramienta = { id: string; nombre: string; frase: string; estado: Estado; nota: string; color: string };
 
 const HERRAMIENTAS: Herramienta[] = [
-  { id: "lupa", nombre: "Lupa 360", frase: "Ves lo que hace la gente en tu web.", estado: "En preparación", nota: "La demo ya funciona. El grabador real se activa en tu web con tu permiso de cookies.", color: "#c2410c" },
-  { id: "espejo", nombre: "Espejo de la IA", frase: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", estado: "Disponible", nota: "Cada semana, las mismas preguntas que haría un cliente.", color: "#7c3aed" },
-  { id: "vigia", nombre: "Vigía", frase: "Ves los cambios importantes de tu competencia.", estado: "En preparación", nota: "Solo con información pública: su web, sus anuncios y sus reseñas.", color: "#0f766e" },
-  { id: "sistemas", nombre: "Sistemas", frase: "Comprobamos cada día que tu web, tus formularios y tus anuncios funcionan.", estado: "Disponible", nota: "Cada día, a primera hora y de forma automática.", color: "#1d4ed8" },
-  { id: "recorrido", nombre: "Recorrido 360", frase: "Probamos tu recorrido completo como lo haría un cliente.", estado: "En preparación", nota: "De punta a punta, cada semana. Los contactos de prueba van marcados y no cuentan.", color: "#be123c" },
+  { id: "lupa", nombre: "Lupa 360", frase: "Ves lo que hace la gente en tu web.", estado: "Disponible", nota: "Se activa en tu web con el permiso de cookies de cada visitante. Aquí, datos de ejemplo.", color: "#c2410c" },
+  { id: "espejo", nombre: "Espejo de la IA", frase: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", estado: "Próximamente", nota: "Cada semana, las mismas preguntas que haría un cliente.", color: "#7c3aed" },
+  { id: "vigia", nombre: "Vigía", frase: "Ves los cambios importantes de tu competencia.", estado: "Próximamente", nota: "Solo con información pública: su web, sus anuncios y sus reseñas.", color: "#0f766e" },
+  { id: "sistemas", nombre: "Sistemas", frase: "Comprobamos cada día que tu web, tus formularios y tus anuncios funcionan.", estado: "Próximamente", nota: "Cada día, a primera hora y de forma automática.", color: "#1d4ed8" },
+  { id: "recorrido", nombre: "Recorrido 360", frase: "Probamos tu recorrido completo como lo haría un cliente.", estado: "Próximamente", nota: "De punta a punta, cada semana. Los contactos de prueba van marcados y no cuentan.", color: "#be123c" },
 ];
 
 const PREGUNTAS_IA: [string, boolean, boolean, boolean][] = [
@@ -286,10 +332,10 @@ const RECORRIDO_PASOS: [string, string][] = [
   ["Los datos de prueba no entran en Google, Meta ni en tus informes", "Correcto"],
 ];
 
-const COLOR_ESTADO: Record<Estado, string> = { Disponible: "bg-emerald-100 text-emerald-800", "En preparación": "bg-amber-100 text-amber-800" };
+const COLOR_ESTADO: Record<Estado, string> = { Disponible: "bg-emerald-100 text-emerald-800", "Próximamente": "bg-amber-100 text-amber-800" };
 
-export function Herramientas360() {
-  const [abierta, setAbierta] = useState<string>("lupa");
+export function Herramientas360({ inicial = "lupa" }: { inicial?: string }) {
+  const [abierta, setAbierta] = useState<string>(inicial);
   const h = HERRAMIENTAS.find((x) => x.id === abierta) ?? HERRAMIENTAS[0];
   return (
     <>
