@@ -59,7 +59,7 @@ export default function LupaEjemplo() {
   const [version, setVersion] = useState<"todas" | "A" | "B">("todas");
   const [fuente, setFuente] = useState<Fuente | "todas">("todas");
   const [ruta, setRuta] = useState("/");
-  const [capas, setCapas] = useState<Capas>({ calor: true, vano: true, baja: false });
+  const [capas, setCapas] = useState<Capas>({ calor: true, vano: true, baja: true });
   const [listas, setListas] = useState<Listas>({ mas: [], vano: [] });
   const [cargado, setCargado] = useState(0);
   const [disponible, setDisponible] = useState(400);
@@ -186,6 +186,8 @@ export default function LupaEjemplo() {
   // Modo señalar: el siguiente toque dentro de la página no navega, deja una chincheta.
   useEffect(() => {
     if (!senalando) return;
+    // En móvil el botón queda debajo del marco: se vuelve a llevar el marco a la vista para poder tocar.
+    caja.current?.scrollIntoView({ block: "center" });
     const doc = marco.current?.contentDocument;
     if (!doc) return;
     const alTocar = (e: MouseEvent) => {
@@ -224,6 +226,7 @@ export default function LupaEjemplo() {
       if (pos === "fixed") el.setAttribute("data-lupa-oculto", "1");
     });
 
+    const z = Math.min(4, 1 / Math.max(0.2, escala)); // lo que se pinta encima se ve del mismo tamaño en móvil y en ordenador
     const H = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
     const W = doc.documentElement.clientWidth || win.innerWidth;
     const alto = win.innerHeight;
@@ -259,7 +262,7 @@ export default function LupaEjemplo() {
 
     const pesoDe = (el: Element) => {
       const top = el.getBoundingClientRect().top + win.scrollY;
-      return 1 / (1 + top / 1400);
+      return 1 / (1 + top / 6000);
     };
 
     type Punto = { x: number; y: number; tipo: TipoToque; etiqueta: string };
@@ -287,6 +290,35 @@ export default function LupaEjemplo() {
         puntos.push({ x, y, tipo: k.tipo, etiqueta: textoDe(elegido) });
       }
     }
+
+    // Siempre algo de calor en los botones de contacto y en los enlaces de cada sección, en proporción
+    // a la gente que llega hasta esa altura (así el calor se apaga hacia abajo igual que las franjas).
+    const secciones = [...doc.querySelectorAll("main section")].filter((e) => visible(e) && !e.querySelector("section"));
+    secciones.forEach((sec, idx) => {
+      const r0 = sec.getBoundingClientRect();
+      if (r0.height < 80) return;
+      const top = r0.top + win.scrollY;
+      const llegan = deRuta.filter((t) => (t.baja / 100) * H + alto * 0.8 >= top).length;
+      if (!llegan) return;
+      const dentro = (tipo: TipoToque) => cand[tipo].filter((e) => sec.contains(e)).slice(0, 3);
+      const contactos = dentro("contacto");
+      const tipo: TipoToque = contactos.length ? "contacto" : "enlace";
+      const objetivos = contactos.length ? contactos : dentro("enlace");
+      if (!objetivos.length) return;
+      const n = Math.max(2, Math.round(llegan * 0.06));
+      for (let i = 0; i < n; i++) {
+        const el = objetivos[i % objetivos.length];
+        const b = (i * 0.37 + idx * 0.11) % 1;
+        const c3 = (i * 0.53 + idx * 0.29) % 1;
+        const r = el.getBoundingClientRect();
+        puntos.push({
+          x: Math.min(W - 2, Math.max(2, r.left + win.scrollX + r.width * (0.15 + 0.7 * b))),
+          y: Math.min(H - 2, Math.max(2, r.top + win.scrollY + r.height * (0.2 + 0.6 * c3))),
+          tipo,
+          etiqueta: textoDe(el),
+        });
+      }
+    });
 
     // Listas de lo más tocado y de lo que se toca en vano.
     const cuenta = (tipos: TipoToque[]) => {
@@ -350,10 +382,10 @@ export default function LupaEjemplo() {
       for (let i = 0; i < 10; i++) {
         const llegan = Math.round((deRuta.filter((t) => t.baja >= i * 10).length / deRuta.length) * 100);
         const franja = doc.createElement("div");
-        franja.style.cssText = `position:absolute;left:0;width:100%;top:${(H * i) / 10}px;height:${H / 10}px;background:rgba(14,26,61,${(((100 - llegan) / 100) * 0.62).toFixed(2)});border-top:1px dashed rgba(255,255,255,.55)`;
+        franja.style.cssText = `position:absolute;left:0;width:100%;top:${(H * i) / 10}px;height:${H / 10}px;background:rgba(14,26,61,${(((100 - llegan) / 100) * 0.62).toFixed(2)});border-top:${z}px dashed rgba(255,255,255,.55)`;
         const et = doc.createElement("div");
         et.textContent = `${llegan} % llega aquí`;
-        et.style.cssText = "position:absolute;right:6px;top:6px;background:#0e1a3d;color:#fff;font:700 13px/1 system-ui,sans-serif;padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.6)";
+        et.style.cssText = `position:absolute;right:${6 * z}px;top:${6 * z}px;background:#0e1a3d;color:#fff;font:700 ${13 * z}px/1 system-ui,sans-serif;padding:${6 * z}px ${9 * z}px;border-radius:999px;border:${z}px solid rgba(255,255,255,.6)`;
         franja.appendChild(et);
         capa.appendChild(franja);
       }
@@ -364,7 +396,7 @@ export default function LupaEjemplo() {
       for (const p of puntos) {
         if (!EN_VANO.includes(p.tipo)) continue;
         const d = doc.createElement("div");
-        d.style.cssText = `position:absolute;left:${p.x - 8}px;top:${p.y - 8}px;width:16px;height:16px;border-radius:50%;background:#e11d48;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)`;
+        d.style.cssText = `position:absolute;left:${p.x - 8 * z}px;top:${p.y - 8 * z}px;width:${16 * z}px;height:${16 * z}px;border-radius:50%;background:#e11d48;border:${2 * z}px solid #fff;box-shadow:0 ${z}px ${4 * z}px rgba(0,0,0,.45)`;
         capa.appendChild(d);
       }
     }
@@ -373,12 +405,12 @@ export default function LupaEjemplo() {
     const chincheta = (x: number, y: number, texto: string, viva: boolean) => {
       const c2 = doc.createElement("div");
       c2.textContent = texto;
-      c2.style.cssText = `position:absolute;left:${(x / 100) * W - 14}px;top:${y - 14}px;width:28px;height:28px;border-radius:50%;background:#ffde00;color:#141c33;font:700 13px/24px system-ui,sans-serif;text-align:center;border:2px solid #141c33;box-shadow:0 0 0 ${viva ? 5 : 0}px rgba(255,222,0,.45),0 2px 8px rgba(0,0,0,.35)`;
+      c2.style.cssText = `position:absolute;left:${(x / 100) * W - 14 * z}px;top:${y - 14 * z}px;width:${28 * z}px;height:${28 * z}px;border-radius:50%;background:#ffde00;color:#141c33;font:700 ${13 * z}px/${24 * z}px system-ui,sans-serif;text-align:center;border:${2 * z}px solid #141c33;box-shadow:0 0 0 ${(viva ? 5 : 0) * z}px rgba(255,222,0,.45),0 ${2 * z}px ${8 * z}px rgba(0,0,0,.35)`;
       capa.appendChild(c2);
     };
     for (const n of notasPagina) if (n.x !== null && n.y !== null) chincheta(n.x, n.y, String(n.id), false);
     if (marca) chincheta(marca.x, marca.y, "+", true);
-  }, [ruta, deRuta, capas, notasPagina, marca]);
+  }, [ruta, deRuta, capas, notasPagina, marca, escala]);
 
   // Dibujar al cargar y cuando cambian los datos, el dispositivo o las capas; varias veces porque
   // la página del marco termina de colocarse con retraso (fotos, tipografías).
@@ -400,9 +432,9 @@ export default function LupaEjemplo() {
       <header className="border-b px-4 py-3" style={{ background: "rgba(250,247,241,.96)", borderColor: C.linea }}>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <h1 className="text-[19px] font-bold leading-tight">
-            Lupa 360 <span className="font-normal" style={{ color: C.suave }}>· la web con lo que hace la gente encima</span>
+            Lupa 360 <span className="hidden font-normal sm:inline" style={{ color: C.suave }}>· la web con lo que hace la gente encima</span>
           </h1>
-          <div className="flex flex-wrap items-center gap-2 text-[13.5px]">
+          <div className="-mx-4 flex min-w-0 flex-nowrap items-center gap-2 overflow-x-auto px-4 pb-1 text-[13.5px] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
             <Grupo valor={String(dias)} set={(v) => setDias(Number(v))} ops={[["7", "7 días"], ["28", "28 días"], ["90", "90 días"]]} />
             <Grupo valor={disp} set={(v) => setDisp(v as Dispositivo)} ops={[["movil", "Móvil"], ["pc", "Ordenador"]]} />
             <Grupo valor={version} set={(v) => setVersion(v as "todas" | "A" | "B")} ops={[["todas", "Todas"], ["A", "Versión A"], ["B", "Versión B"]]} />
@@ -410,7 +442,7 @@ export default function LupaEjemplo() {
               value={fuente}
               onChange={(e) => setFuente(e.target.value as Fuente | "todas")}
               aria-label="De dónde vienen"
-              className="h-9 rounded-full border bg-white px-3"
+              className="h-9 shrink-0 rounded-full border bg-white px-3"
               style={{ borderColor: C.linea }}
             >
               <option value="todas">Todas las fuentes</option>
@@ -420,12 +452,13 @@ export default function LupaEjemplo() {
             </select>
           </div>
         </div>
-        <p className="mt-2 text-[13.5px]" style={{ color: C.suave }}>
+        <p className="mt-2 hidden text-[13.5px] sm:block" style={{ color: C.suave }}>
           <b style={{ color: C.tinta }}>{visitas}</b> visitas · <b style={{ color: C.tinta }}>{filtrados.length}</b> páginas vistas · <b style={{ color: C.tinta }}>{visitas ? (filtrados.length / visitas).toFixed(1).replace(".", ",") : "0"}</b> páginas por visita · <b style={{ color: C.tinta }}>{total.activo} s</b> activos por página · solo quien acepta cookies de analítica
         </p>
         <p className="mt-1 text-[12.5px] font-semibold" style={{ color: C.ambar }}>
-          Datos de demostración sobre nuestra propia web. Son inventados.{" "}
-          <Link href="/servicios/lupa-360" className="underline underline-offset-4" style={{ color: C.enlace }}>Cómo funciona la Lupa 360</Link>
+          <span className="sm:hidden">Datos de demostración, inventados.</span>
+          <span className="hidden sm:inline">Datos de demostración sobre nuestra propia web. Son inventados.{" "}</span>
+          <Link href="/servicios/lupa-360" className="hidden underline underline-offset-4 sm:inline" style={{ color: C.enlace }}>Cómo funciona la Lupa 360</Link>
         </p>
       </header>
 
@@ -434,7 +467,7 @@ export default function LupaEjemplo() {
       <div className="grid grid-cols-[minmax(0,1fr)] gap-4 p-4 lg:grid-cols-[260px_minmax(0,1fr)_320px]">
         {/* Páginas */}
         <aside className="min-w-0 lg:max-h-[calc(100vh-24px)] lg:overflow-y-auto">
-          <p className="mb-2 text-[12px] font-bold uppercase tracking-[.12em]" style={{ color: C.suave }}>Páginas, de más a menos vistas</p>
+          <p className="mb-2 hidden text-[12px] font-bold uppercase tracking-[.12em] lg:block" style={{ color: C.suave }}>Páginas, de más a menos vistas</p>
           <select
             className="mb-3 h-10 w-full rounded-xl border bg-white px-3 lg:hidden"
             style={{ borderColor: C.linea }}
@@ -482,11 +515,11 @@ export default function LupaEjemplo() {
 
         {/* La web, con la capa */}
         <section className="min-w-0" aria-label="La web con lo que hace la gente encima">
-          <div className="mb-2 flex flex-wrap items-center gap-2 text-[13px]">
+          <div className="-mx-4 mb-2 flex flex-nowrap items-center gap-2 overflow-x-auto px-4 pb-1 text-[13px] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
             <Casilla on={capas.calor} set={(v) => setCapas({ ...capas, calor: v })} color="linear-gradient(90deg,#2878ff,#28c878,#ffd200,#e62828)">Dónde tocan</Casilla>
             <Casilla on={capas.vano} set={(v) => setCapas({ ...capas, vano: v })} color={C.rojo}>Tocan y no pasa nada</Casilla>
             <Casilla on={capas.baja} set={(v) => setCapas({ ...capas, baja: v })} color={C.noche}>Hasta dónde bajan</Casilla>
-            <a href={ruta} target="_blank" rel="noopener" className="ml-auto underline underline-offset-4" style={{ color: C.enlace }}>Abrir la página aparte ↗</a>
+            <a href={ruta} target="_blank" rel="noopener" className="ml-auto shrink-0 whitespace-nowrap underline underline-offset-4" style={{ color: C.enlace }}>Abrir la página aparte ↗</a>
           </div>
           <div ref={caja} className="w-full min-w-0">
             <div
@@ -518,7 +551,7 @@ export default function LupaEjemplo() {
               <Cifra n={`${c.baja} %`} t="bajan de media" />
               <Cifra n={`${c.alFinal} %`} t="llegan al final" />
               <Cifra n={`${c.activo} s`} t="tiempo activo" />
-              <Cifra n={`${c.rapidos} %`} t="se van en menos de 10 s" />
+              <Cifra n={`${c.rapidos} %`} t="se van en menos de 10 segundos" />
               <Cifra n={c.toques} t="toques" />
             </dl>
           </div>
@@ -593,14 +626,14 @@ export default function LupaEjemplo() {
 
 function Grupo({ valor, set, ops }: { valor: string; set: (v: string) => void; ops: [string, string][] }) {
   return (
-    <span className="inline-flex flex-wrap rounded-full border bg-white p-0.5" style={{ borderColor: C.linea }}>
+    <span className="inline-flex shrink-0 rounded-full border bg-white p-0.5" style={{ borderColor: C.linea }}>
       {ops.map(([v, t]) => (
         <button
           key={v}
           type="button"
           onClick={() => set(v)}
           aria-pressed={valor === v}
-          className="h-8 rounded-full px-3 font-semibold transition-colors"
+          className="h-8 whitespace-nowrap rounded-full px-3 font-semibold transition-colors"
           style={{ background: valor === v ? C.noche : "transparent", color: valor === v ? "#fff" : C.tinta }}
         >
           {t}
@@ -612,7 +645,7 @@ function Grupo({ valor, set, ops }: { valor: string; set: (v: string) => void; o
 
 function Casilla({ on, set, color, children }: { on: boolean; set: (v: boolean) => void; color: string; children: React.ReactNode }) {
   return (
-    <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border bg-white px-3 py-1.5 font-medium transition-opacity" style={{ borderColor: C.linea, opacity: on ? 1 : 0.55 }}>
+    <label className="inline-flex shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap rounded-full border bg-white px-3 py-1.5 font-medium transition-opacity" style={{ borderColor: C.linea, opacity: on ? 1 : 0.55 }}>
       <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} className="sr-only" />
       <span className="h-3 w-5 rounded-full" style={{ background: color }} />
       {children}
@@ -677,7 +710,7 @@ function Conclusiones({ lista, visitas, fia, ir }: { lista: Conclusion[]; visita
           <span className="rounded-full px-3 py-1 text-[12.5px]" style={{ background: C.estrella, color: C.tinta }}>{abierto ? "Cerrar" : "Ver"}</span>
         </button>
         <span className="rounded-full px-3 py-1 text-[12.5px] font-semibold text-white" style={{ background: color }}>{fia.nombre}</span>
-        <span className="text-[13px]" style={{ color: C.suave }}>{fia.texto}</span>
+        <span className="hidden text-[13px] sm:inline" style={{ color: C.suave }}>{fia.texto}</span>
         <span className="ml-auto flex items-center gap-2 text-[12px]" style={{ color: C.suave }}>
           <span className="block h-1.5 w-28 rounded-full" style={{ background: C.linea }} role="progressbar" aria-valuenow={fia.avance} aria-valuemin={0} aria-valuemax={100} aria-label="Avance hacia las 1.000 visitas">
             <span className="block h-1.5 rounded-full" style={{ width: `${fia.avance}%`, background: color }} />
