@@ -6,7 +6,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
 import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta, ICONO_SVG, SeccionPreguntas } from "@/components/secciones";
 
-const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm" };
+const ICONO_SERVICIO: Record<string, string> = { "diseno-web": "pagina", "seo-google-ia": "lupa", "publicidad-google-ads-redes": "euro", "redes-sociales": "video", "automatizacion-ia": "chip", "crm-a-medida": "crm", "lupa-360": "lupa" };
 import { glosar } from "@/lib/glosario";
 import { ARTICULOS } from "@/lib/blog";
 import { PAGINAS_SERVICIO, incluyeDe, paginaServicio } from "@/lib/servicios";
@@ -172,7 +172,15 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
                 </p>
               </Link>
             )}
-            {!p.dato && !p.caso && (
+            {p.demo && (
+              <Link href={p.demo.href} className="group rounded-3xl bg-white/[0.08] p-7 ring-1 ring-white/15 transition-colors hover:bg-white/[0.12]">
+                <p className="text-sm font-bold text-estrella">Demostración</p>
+                <p className="mt-2 text-2xl font-extrabold">{p.demo.titulo}</p>
+                <p className="mt-2 text-white/80">{p.demo.texto}</p>
+                <p className="mt-4 font-bold text-estrella">{p.demo.enlace}</p>
+              </Link>
+            )}
+            {!p.dato && !p.caso && !p.demo && (
               <div className="rounded-3xl bg-white/[0.08] p-7 ring-1 ring-white/15">
                 <p className="text-2xl font-extrabold">Y lo ves todo en tu panel.</p>
                 <p className="mt-2 text-white/80">Cada petición, quién la lleva y cuándo estará lista. Sin preguntar.</p>
@@ -193,7 +201,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
         <div className={ENVOLTORIO}>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Y todo lo demás, en la misma cuota.</h2>
           <p className="mt-4 max-w-2xl text-lg text-gris">Un solo equipo para todo, conectado. Lo que pasa en un frente se aprovecha en los demás el mismo día.</p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {otros.map((o, k) => (
               <li key={o.slug}>
                 <Link href={`/servicios/${o.slug}`} className="group inclina flex h-full flex-col rounded-3xl bg-white p-5 shadow-sm ring-1 ring-linea">

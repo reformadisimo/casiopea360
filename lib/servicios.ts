@@ -24,6 +24,8 @@ export type PaginaServicio = {
   caso?: { nombre: string; texto: string; slug: string };
   preguntas: { p: string; r: string }[];
   articulos: string[]; // slugs del blog
+  // Bloque opcional con enlace a una demostración (sustituye al de "tu panel").
+  demo?: { titulo: string; texto: string; enlace: string; href: string };
 };
 
 export const PAGINAS_SERVICIO: PaginaServicio[] = [
@@ -326,6 +328,80 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
     ],
     articulos: ["que-es-un-crm-y-para-que-sirve"],
+  },
+  {
+    slug: "lupa-360",
+    nombre: "Lupa 360",
+    tituloSeo: "Lupa 360: mapa de calor propio para mejorar tu web cada mes",
+    descripcionSeo:
+      "Ve lo que hace la gente en tu web: dónde toca, dónde se para y dónde se va. Mapa de calor propio, con conclusiones claras y sin guardar nada de lo que escriben. Para mejorar tu web cada mes, sin adivinar.",
+    titular: "Tu web deja de ser una apuesta. Se mejora cada mes con datos.",
+    entradilla:
+      "La Lupa 360 te enseña lo que hace la gente de verdad en tu web: dónde toca, dónde se para, qué espera que funcione y no funciona. Cambiamos una cosa, medimos y volvemos a mirar. Sin ir a ciegas.",
+    video: "ojo-pantallas",
+    videoAlt: "Un ojo reflejado en varias pantallas",
+    video2: "telescopios",
+    videoAlt2: "Telescopios apuntando al cielo",
+    color: "#c2410c",
+    dolores: [
+      { dolor: "«Tengo visitas, pero no sé qué hacen en mi web.»", arreglo: "Ves, sobre tu propia web, dónde tocan, hasta dónde bajan y en qué página se van." },
+      { dolor: "«Cambio cosas y no sé si ha ido mejor.»", arreglo: "Cambiamos una cosa, medimos otra vez y comparamos: la versión A contra la B." },
+      { dolor: "«La gente toca algo y no pasa nada.»", arreglo: "Los toques en vano salen marcados en rojo, y lo arreglamos en horas." },
+    ],
+    incluye: [
+      "Mapa de calor de tu web, hecho por nosotros y sin depender de herramientas de terceros",
+      "Conclusiones claras arriba del todo: qué pasa y qué conviene hacer, sin jerga",
+      "Dónde tocan, dónde tocan y no pasa nada y hasta dónde bajan, sobre tu web real",
+      "Filtros por periodo, móvil u ordenador, versión de la web y de dónde vienen",
+      "Cuánta confianza dan los datos: pistas, tendencias o datos firmes, según las visitas",
+      "Solo con permiso de cookies, sin guardar nunca lo que escriben ni datos personales",
+      "Los datos son tuyos, a tu nombre, y se borran solos a los 90 días",
+    ],
+    como: [
+      { paso: "Miramos", texto: "Vemos qué hace la gente en cada página, con las conclusiones de la Lupa 360." },
+      { paso: "Cambiamos una cosa", texto: "Una sola, para saber qué ha servido: un botón, un titular, un orden." },
+      { paso: "Medimos otra vez", texto: "Comparamos antes y después, con el mismo tipo de visitas." },
+      { paso: "Y vuelta a empezar", texto: "Cada mes, la web un poco mejor. Mejora continua, con datos y no con suposiciones." },
+    ],
+    plazos: [
+      { que: "Activar la Lupa 360 en tu web", cuando: "Unos días" },
+      { que: "Primeras pistas", cuando: "Desde las primeras visitas, avisando de lo poco fiables que aún son" },
+      { que: "Datos firmes", cuando: "A partir de unas 1.000 visitas en el filtro que estés mirando" },
+      { que: "Un cambio que sale de lo que vemos", cuando: "Máximo 48 horas" },
+    ],
+    demo: {
+      titulo: "Pruébala tú mismo, sobre nuestra web.",
+      texto: "Una demostración con datos inventados: filtros, conclusiones, mapa de calor y toques en vano, sobre la propia web de Casiopea.",
+      enlace: "Abrir la Lupa 360 de ejemplo →",
+      href: "/lupa-ejemplo",
+    },
+    preguntas: [
+      {
+        p: "¿Qué es un mapa de calor?",
+        r: "Es tu propia página con colores encima: donde más toca la gente, rojo; donde casi nadie, azul. Así ves de un vistazo qué funciona y qué no.",
+      },
+      {
+        p: "¿Guardáis lo que escribe la gente?",
+        r: "Nunca. Solo guardamos qué ha tocado, no lo que escribe. No hay datos personales y todo se borra solo a los 90 días.",
+      },
+      {
+        p: "¿Funciona con cualquier visitante?",
+        r: "Solo con quienes aceptan las cookies de analítica. Si alguien las rechaza, no se registra nada de esa visita.",
+      },
+      {
+        p: "¿Cuántas visitas hacen falta?",
+        r: "Con menos de 100 visitas son pistas, no certezas, y la herramienta te lo dice. Con más de 100 hay tendencias y a partir de unas 1.000, datos firmes.",
+      },
+      {
+        p: "¿Los datos son míos?",
+        r: "Sí, siempre. Están a tu nombre y encajan con lo que ves en Tu control.",
+      },
+      {
+        p: "¿Me asegura más ventas?",
+        r: "No lo prometemos. Lo que sí hace es que dejes de decidir a ciegas y puedas mejorar tu web cada mes con datos de lo que hace la gente de verdad.",
+      },
+    ],
+    articulos: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa"],
   },
 ];
 
