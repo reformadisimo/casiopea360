@@ -80,6 +80,16 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
             <Pinta b={b} g={g} />
           </Fragment>
         ))}
+        {a.enlaces && (
+          <p>
+            {a.enlaces.map((e, i) => (
+              <Fragment key={e.href}>
+                {i > 0 && " · "}
+                <Link href={e.href}>{e.texto}</Link>
+              </Fragment>
+            ))}
+          </p>
+        )}
         <p>
           <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test de idoneidad</Link>.
         </p>

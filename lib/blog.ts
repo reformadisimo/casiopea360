@@ -12,9 +12,74 @@ export type Articulo = {
   apoyo: { video: string; alt: string }; // vídeo a mitad del artículo
   respuesta: string; // respuesta corta al principio, pensada para Google y las IA
   cuerpo: Bloque[];
+  // Enlaces opcionales a páginas de la web (servicio, demostración), al final del artículo.
+  enlaces?: { texto: string; href: string }[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa",
+    video: "ojo-pantallas",
+    apoyo: { video: "telescopios", alt: "Telescopios apuntando al cielo para mirar con más detalle" },
+    titulo: "Cómo dejar de ir a ciegas con tu web: lo que te enseña ver qué hace la gente",
+    descripcion: "Tener visitas no es lo mismo que saber qué hacen en tu web. Qué herramientas te dicen cada cosa y cómo un mapa de calor propio permite mejorar tu web cada mes, sin adivinar.",
+    fecha: "2026-10-27",
+    lectura: "6 minutos",
+    categoria: "Web",
+    respuesta:
+      "Para no ir a ciegas con tu web necesitas dos tipos de datos: cuánta gente llega y de dónde (Analytics, Search Console y los anuncios), y qué hace dentro: dónde toca, hasta dónde baja y dónde se va. Esto último lo enseña un mapa de calor, y permite mejorar la web cada mes cambiando una cosa y midiendo el resultado.",
+    cuerpo: [
+      { h2: "Tener visitas no es saber qué pasa" },
+      { p: "Muchos dueños de negocio miran las visitas de su web como quien mira la puerta de su tienda: ven cuánta gente entra, pero no ven qué hace cuando está dentro. Si tienes un negocio con local, lo sabes de sobra: ves a quien mira, a quien pregunta y a quien se da la vuelta en el pasillo. En una web, todo eso ocurre a oscuras." },
+      { p: "El resultado es que se decide a ciegas. Se cambia un color porque a alguien le gusta, se añade una sección porque la tiene la competencia, se rehace la web entera cada tres o cuatro años y nadie sabe de verdad si ha ido mejor o peor." },
+      { h2: "Las herramientas que te dicen cuánta gente llega" },
+      { p: "Primero hay que saber lo básico, y para eso hay herramientas muy buenas, casi todas gratuitas. Cada una responde a una pregunta distinta:" },
+      { ul: [
+        "Google Analytics: cuánta gente entra, desde dónde, a qué páginas y cuánta acaba contactando.",
+        "Search Console: qué buscan en Google las personas que llegan a ti y en qué posición apareces.",
+        "El seguimiento de tus anuncios (Google Ads y Meta): qué anuncio trae contactos y cuál solo trae clics.",
+        "Tag Manager: la caja donde se ordenan todas esas etiquetas, para que lo que mide cada herramienta esté bien configurado y no se duplique ni se pierda.",
+        "Tu CRM: qué contactos acaban siendo clientes y de dónde venían.",
+      ] },
+      { p: "Con eso ya sabes mucho: cuántos, de dónde y cuánto cuesta cada uno. Pero hay una pregunta que ninguna de ellas contesta del todo: qué hace la persona una vez dentro de tu página." },
+      { h2: "Lo que pasa dentro de la página" },
+      { p: "Ahí entra el mapa de calor. Es tu propia página con colores encima: donde más toca la gente se pinta de rojo, y donde casi nadie toca, de azul. Y a eso se le suman otras cosas útiles: hasta dónde baja la gente, cuántas personas se van sin hacer nada y qué páginas son las que hacen que alguien se marche de la web." },
+      { p: "Lo que se ve suele sorprender, incluso a quien lleva años con su web. Por ejemplo:" },
+      { ul: [
+        "Un botón de contacto que casi nadie toca, no porque no interese, sino porque está tan abajo que casi nadie llega hasta él.",
+        "Una foto grande que muchísima gente toca creyendo que es un enlace, y que no lleva a ninguna parte. Cada toque en vano es alguien que quería seguir y se ha quedado parado.",
+        "Un artículo de tu blog al que llega mucha gente desde Google, que lo lee y se va sin ver nada más de tu web, porque no hay un siguiente paso claro.",
+        "Una página donde mucha gente se va en menos de diez segundos, porque lo primero que ve no es lo que esperaba al pulsar el anuncio.",
+      ] },
+      { p: "Ninguna de estas cosas se descubre mirando una cifra de visitas. Se descubren viendo lo que hace la gente." },
+      { h2: "Cómo se mejora una web con esto" },
+      { p: "Cuando ves esto, mejorar deja de ser una cuestión de gustos. Se convierte en un ciclo sencillo:" },
+      { ol: [
+        "Miras qué hace la gente y dónde se pierde.",
+        "Cambias una sola cosa: subir un botón, cambiar un titular, convertir una foto en enlace.",
+        "Mides otra vez, con el mismo tipo de visitas, y comparas con la versión anterior.",
+        "Si ha ido mejor, te quedas con el cambio. Si no, lo deshaces. Y vuelta a empezar.",
+      ] },
+      { p: "Es lo que se llama mejora continua. No necesita grandes rediseños, solo pequeños cambios cada mes que, sumados, hacen una web que cada vez funciona mejor. Y lo mejor es que cada cambio se apoya en algo que has visto, no en una suposición." },
+      { h2: "Cuántos datos hacen falta, con honestidad" },
+      { p: "Hay un riesgo en mirar datos: sacar conclusiones de muy pocas visitas. Si solo han entrado 30 personas, lo que veas puede ser pura casualidad. Por eso, en nuestra Lupa 360, cada conclusión indica lo fiable que es:" },
+      { ul: [
+        "Pistas: con menos de 100 visitas. Son indicios, no certezas.",
+        "Tendencias: entre 100 y 1.000 visitas. Hay una dirección clara, pero conviene confirmarla.",
+        "Datos firmes: a partir de unas 1.000 visitas. Ya se puede decidir con tranquilidad.",
+      ] },
+      { p: "No te prometemos que esto multiplique tus ventas. Lo que sí hace es que dejes de decidir a ciegas, y eso, sumado mes tras mes, suele notarse." },
+      { h2: "Y la privacidad, qué" },
+      { p: "Ver lo que hace la gente no significa espiarla. La Lupa 360 funciona solo con quienes aceptan las cookies de analítica, nunca guarda lo que la persona escribe (solo qué toca), no recoge datos personales y borra todo a los 90 días. Los datos son tuyos y están a tu nombre, como el resto de tus cuentas." },
+      { h2: "Qué puedes hacer ahora" },
+      { p: "Si tienes web, empieza por lo más sencillo: comprueba que tienes Analytics y Search Console y que están a tu nombre. Después, pregúntate qué es lo que más te gustaría saber de lo que hacen tus visitas dentro de tu página, y apúntalo. Esa lista es el punto de partida de cualquier mejora." },
+      { p: "Si quieres ver cómo se ve una Lupa 360, hemos preparado una demostración con datos inventados, sobre nuestra propia web, para que la toques tú mismo. Y si quieres que miremos tu web juntos, el estudio gratuito empieza justo por ahí." },
+    ],
+    enlaces: [
+      { texto: "Cómo funciona la Lupa 360", href: "/servicios/lupa-360" },
+      { texto: "Probar la Lupa 360 de ejemplo", href: "/lupa-ejemplo" },
+    ],
+  },
   {
     slug: "si-tu-web-no-esta-a-tu-nombre-no-es-tuya",
     video: "lapiz-medicion",
