@@ -3,6 +3,7 @@ import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { BandaCompromisos,
   SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionVelocidad, SeccionTecnologia, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios } from "@/components/secciones";
+import { SeccionFichaGoogle } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas, schemaServicios } from "@/lib/schema";
 
@@ -39,6 +40,7 @@ export default function Servicios() {
         ]}
       />
       <SeccionEspecialistas />
+      <SeccionFichaGoogle />
       <SeccionCostes />
       <SeccionPorQueBarato />
       <SeccionVelocidad />

@@ -78,3 +78,39 @@ export function SeccionComoTrabajamos() {
     </section>
   );
 }
+
+/** Ficha de Google (Perfil de empresa): sección corta para la página de servicios, con llamada a la acción. */
+export function SeccionFichaGoogle() {
+  const cosas = [
+    "Respondemos cada reseña con un texto cuidado, no con un «gracias» suelto.",
+    "Publicamos novedades y trabajos terminados, y subimos fotos nuevas.",
+    "Mantenemos servicios, horario y categorías al día, y contestamos las preguntas de tus clientes.",
+    "Te damos una tarjeta con código QR para que tus clientes dejen su reseña fácil.",
+  ];
+  return (
+    <section className="bg-niebla py-14 sm:py-20" aria-labelledby="ficha-google">
+      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]`}>
+        <div>
+          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu ficha de Google</p>
+          <h2 id="ficha-google" className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo primero que ve quien te busca</h2>
+          <p className="mt-5 text-lg text-gris">
+            Cuando alguien busca «ventanas cerca de mí» o «abogado laboralista en Madrid», lo primero que ve es una ficha con tu nota, tus reseñas y tu teléfono. <b className="text-tinta">Esa ficha es tuya; nosotros la cuidamos con tu permiso y tú apruebas todo antes de que se publique.</b>
+          </p>
+          <p className="mt-4 text-lg text-gris">Puedes quitarnos el acceso cuando quieras. Tus cuentas son tuyas, siempre.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/blog/ficha-de-google-que-es-y-como-sacarle-partido" className={BOTON}>Cómo cuidamos tu ficha</Link>
+            <a href="/estudio-gratuito" className="inline-flex min-h-12 items-center justify-center rounded-full px-5 font-bold text-tinta underline underline-offset-4">Que miren la mía, sin compromiso</a>
+          </div>
+        </div>
+        <ul className="grid gap-3">
+          {cosas.map((c) => (
+            <li key={c} className="flex items-start gap-3 rounded-2xl bg-white p-4 ring-1 ring-linea">
+              <span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-estrella text-sm font-extrabold">✓</span>
+              <span className="text-tinta">{c}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
