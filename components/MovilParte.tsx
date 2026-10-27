@@ -35,7 +35,7 @@ export default function MovilParte() {
           </div>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-sm text-gris">Un ejemplo de parte diario. Las cifras son ilustrativas.</figcaption>
+      <figcaption className="mt-3 text-center text-sm text-gris">Un ejemplo de aviso corto, si lo prefieres. Lo importante está siempre en tu panel. Las cifras son ilustrativas.</figcaption>
     </figure>
   );
 }

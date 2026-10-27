@@ -241,7 +241,7 @@ const RECORRIDO_PASOS: [string, string][] = [
   ["Le llega el aviso al comercial por WhatsApp", "Correcto"],
   ["La ficha entra en el CRM marcada como prueba", "Correcto"],
   ["Recibe el correo de bienvenida y el seguimiento número 1", "Correcto"],
-  ["Los datos de prueba no entran en Google, Meta ni en tus informes", "Correcto"],
+  ["Los datos de prueba no entran en Google, Meta ni en tu panel", "Correcto"],
 ];
 
 const COLOR_ESTADO: Record<Estado, string> = { Disponible: "bg-emerald-100 text-emerald-800", "Próximamente": "bg-amber-100 text-amber-800" };
@@ -357,7 +357,7 @@ export function Herramientas360({ inicial = "lupa", solo }: { inicial?: string; 
               </li>
             ))}
           </ol>
-          <p className="mt-4 rounded-2xl bg-niebla p-3 text-sm text-gris">Los contactos de prueba llevan una marca y se quedan fuera de tu CRM real, de las conversiones de Google y de Meta y de tus informes. Así nunca inflamos tus resultados.</p>
+          <p className="mt-4 rounded-2xl bg-niebla p-3 text-sm text-gris">Los contactos de prueba llevan una marca y se quedan fuera de tu CRM real, de las conversiones de Google y de Meta y de tu panel. Así nunca inflamos tus resultados.</p>
           <p className="mt-2 text-sm text-gris">Última prueba completa: lunes, 07:30. Próxima: el lunes que viene.</p>
         </Bloque>
       )}

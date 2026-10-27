@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Cómo trabajamos: pídelo y lo hacemos",
-  "Respuesta el mismo día, 48 horas para el día a día, tu web en unos días y un parte diario. Casi todo por escrito y sin reuniones que no hagan falta.",
+  "Respuesta el mismo día, 48 horas para el día a día, tu web en unos días y tu panel siempre al día. Casi todo por escrito y sin reuniones que no hagan falta.",
   "/como-trabajamos",
 );
 

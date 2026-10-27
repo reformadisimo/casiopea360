@@ -2,7 +2,7 @@
 
 // Piezas de la cabina de mando del panel: iconos, luces, relojes y módulos plegables.
 // Animaciones solo de opacidad o color. Sin librerías de gráficos: los relojes son SVG propio.
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export type Luz = "ok" | "atencion" | "problema" | "sinconectar" | "preparado";
 
@@ -149,9 +149,100 @@ export function ModuloPlegable({ m, abierto, alternar, color }: { m: Modulo; abi
       </button>
       {abierto && (
         <div id={`cuerpo-${m.id}`} className="pn-fade space-y-5 border-t border-linea bg-niebla/60 p-4 sm:p-6">
+          <ExplicaModulo id={m.id} />
           {m.contenido}
         </div>
       )}
     </section>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------
+// Explicación al abrir cada módulo: qué es, qué hacemos nosotros y qué te toca a ti
+// ---------------------------------------------------------------------------------------------
+const EXPLICA: Record<string, [string, string, string]> = {
+  lupa: ["Una grabación anónima de dónde pulsa y hasta dónde baja la gente en tu web.", "Miramos qué zonas confunden y arreglamos lo que toca.", "Nada. Si quieres, abres la lupa a pantalla completa."],
+  sistemas: ["Una comprobación diaria de que tu web, tus formularios y tus anuncios funcionan.", "Si algo falla, lo arreglamos antes de que lo notes.", "Nada."],
+  control360: ["Una prueba como la haría un cliente: entra, usa la calculadora y rellena el formulario.", "La hacemos cada lunes y marcamos los contactos de prueba para que no cuenten.", "Nada."],
+  web: ["Lo rápida y segura que es tu web, y qué hace la gente dentro.", "Medimos, cuidamos la seguridad y guardamos copia de cada cambio.", "Nada."],
+  espejo: ["Lo que responden ChatGPT, Gemini y Claude cuando un cliente pregunta por lo tuyo.", "Preguntamos cada semana y reforzamos tu información donde no sales.", "Nada."],
+  redes: ["Cuánta gente te sigue, cuántos te piden presupuesto desde ahí y tus reseñas.", "Publicamos, diseñamos y seguimos los resultados.", "Contestar reseñas, si quieres hacerlo tú. Si no, nos lo pides."],
+  vigia: ["Lo que hace tu competencia y cualquiera puede ver: precios, anuncios, reseñas y posiciones.", "Te avisamos de lo importante y te proponemos qué hacer.", "Decidir si ajustas algo. La decisión es tuya."],
+  contactos: ["Las personas que te escriben, llaman o piden presupuesto, y por dónde llegan.", "Lo medimos todo solos, sin que tengas que apuntar nada.", "Atenderlos cuanto antes: cuanto antes se llama, más se convierte."],
+  costecontacto: ["Lo invertido en anuncios dividido entre los contactos que llegan.", "Lo vigilamos y movemos el dinero a lo que mejor funciona.", "Nada."],
+  campanas: ["Cada campaña de anuncios: cuánto se gasta y cuántos contactos trae.", "Las llevamos y las ajustamos cada día, sin comisión.", "Nada. Los anuncios los paga tu tarjeta y ves cada euro."],
+  google: ["Dónde sales cuando te buscan en Google, en el mapa y en Bing.", "SEO, ficha de Google y Bing: todo incluido en la cuota.", "Nada."],
+  crm: ["Tu agenda de contactos, fase a fase, hasta que firman.", "Cada contacto entra solo, con su origen.", "Moverlo de fase. Es tuyo: no entramos en él."],
+  clientes: ["Cuántos de los que te escriben acaban firmando y de dónde viene cada uno.", "Dejamos el cálculo preparado.", "Marcar quién ha firmado. Opcional: si no, no pasa nada."],
+  costecliente: ["Lo que te cuesta cada cliente que llega por internet.", "Dejamos el cálculo preparado.", "Marcar tus firmas. Opcional."],
+  indice: ["Qué clientes valen más que tu media, sin decirnos cuánto facturas.", "Con el índice movemos el dinero hacia las campañas que traen los mejores.", "Poner tu ticket medio una vez. Opcional, y se queda en tu navegador."],
+  opcionales: ["Datos de tu gestión interna: tiempo de respuesta, llamadas y cierre.", "Con ellos te damos más conclusiones.", "Encenderlos, si quieres. Están apagados de serie."],
+  peticiones: ["Todo lo que nos pides, con fecha de entrega y estado.", "Respondemos el mismo día y entregamos en 48 horas como máximo.", "Pedir lo que necesites y aprobar."],
+  gastos: ["Lo que pagas: la cuota fija, los anuncios y los extras.", "Sin comisión sobre lo que inviertes en anuncios.", "Nada."],
+  medicion: ["Cómo contamos visitas, llamadas y contactos, explicado fácil.", "Lo instalamos y lo revisamos, todo a tu nombre.", "Nada."],
+  trabajo: ["El registro de todo lo que hacemos, con su fecha y su porqué.", "Lo apuntamos todo, sin cajas negras.", "Mirarlo cuando quieras."],
+  informes: ["Aquí no hay informes que esperar: este panel es el informe, al día.", "Lo actualizamos solos, cada día.", "Nada. Tus facturas, aquí."],
+  historico: ["Cómo ha ido cada mes desde que empezamos.", "Lo guardamos todo.", "Nada."],
+};
+
+export function ExplicaModulo({ id }: { id: string }) {
+  const e = EXPLICA[id];
+  if (!e) return null;
+  const celdas: [string, string][] = [["Qué es", e[0]], ["Lo hacemos nosotros", e[1]], ["Te toca a ti", e[2]]];
+  return (
+    <dl className="grid gap-3 sm:grid-cols-3">
+      {celdas.map(([t, d]) => (
+        <div key={t} className="rounded-2xl bg-white p-4 ring-1 ring-linea">
+          <dt className="text-xs font-extrabold uppercase tracking-wide text-gris">{t}</dt>
+          <dd className="mt-1 text-sm text-tinta">{d}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------
+// Empieza aquí (se puede cerrar) y leyenda de colores
+// ---------------------------------------------------------------------------------------------
+const CLAVE_GUIA = "casiopea-panel-guia-cerrada";
+
+export function GuiaInicio() {
+  const [cerrada, setCerrada] = useState(false);
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(CLAVE_GUIA) === "1") setCerrada(true);
+    } catch {
+      /* sin almacenamiento: se muestra siempre */
+    }
+  }, []);
+  const cerrar = () => {
+    setCerrada(true);
+    try {
+      window.localStorage.setItem(CLAVE_GUIA, "1");
+    } catch {
+      /* nada */
+    }
+  };
+  return (
+    <div className="space-y-3">
+      {!cerrada && (
+        <section className="rounded-3xl bg-white p-5 ring-1 ring-linea sm:p-6" aria-label="Empieza aquí">
+          <div className="flex items-start justify-between gap-3">
+            <p className="text-lg font-extrabold">Empieza aquí, en tres pasos</p>
+            <button type="button" onClick={cerrar} className="shrink-0 rounded-full border border-linea px-3 py-1 text-xs font-bold hover:bg-niebla">Entendido, ocultar</button>
+          </div>
+          <ol className="mt-3 grid gap-3 text-sm sm:grid-cols-3">
+            <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">1. Mira las luces</b><span className="text-gris">Verde, todo bien. Naranja, mira esto cuando puedas. Rojo, lo estamos arreglando.</span></li>
+            <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">2. Abre solo lo que te interese</b><span className="text-gris">Cada franja de abajo se abre con un toque y empieza explicándote qué es.</span></li>
+            <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">3. Lo azul es tuyo</b><span className="text-gris">Son datos de tu empresa. Los usas si quieres. Nosotros no los vemos ni te los pedimos.</span></li>
+          </ol>
+        </section>
+      )}
+      <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gris" aria-label="Qué significa cada color">
+        {(Object.keys(LUZ) as Luz[]).map((k) => (
+          <li key={k} className="flex items-center gap-1.5"><PuntoLuz luz={k} tam={9} /><b className="text-tinta">{LUZ[k].texto}</b>{k === "ok" ? ": va bien" : k === "atencion" ? ": mira esto" : k === "problema" ? ": lo estamos arreglando" : k === "sinconectar" ? ": falta conectar algo" : ": es tuyo, si quieres"}</li>
+        ))}
+      </ul>
+    </div>
   );
 }

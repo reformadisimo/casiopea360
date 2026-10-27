@@ -421,9 +421,9 @@ export function SeccionParte() {
       <div className="absolute inset-0 bg-gradient-to-b from-noche/90 via-noche/70 to-noche/40 lg:bg-gradient-to-r lg:from-noche lg:via-noche/80 lg:to-noche/20" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-14 lg:grid-cols-[1fr_auto]`}>
         <div>
-          <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Cada día sabes qué hemos hecho por tu negocio.</h2>
+          <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Tu informe no se espera: lo tienes en tu panel, al día.</h2>
           <p className="mt-5 max-w-xl text-lg text-white/80">
-            Sin entrar en ninguna herramienta ni entender de números. Te llega un mensaje corto por WhatsApp, por correo o por Slack, como prefieras.
+            No te mandamos informes semanales ni mensuales que llegan tarde. Todo lo que iba en ellos lo ves tú, en tu panel, al momento y sin entender de números. Si prefieres un aviso corto, también lo puedes recibir por WhatsApp.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i, k) => (
@@ -440,7 +440,7 @@ export function SeccionParte() {
             ))}
           </div>
           <p className="mt-6 max-w-xl text-white/70">
-            Además, tienes tu propio panel de control, donde ves en tiempo real de dónde viene cada cliente, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
+            Tu panel de control es tu informe: ves en tiempo real de dónde viene cada contacto, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
           </p>
           <Link href="/panel" className={`${BOTON} mt-6 inline-flex`}>Ver un panel de ejemplo</Link>
         </div>
@@ -1571,7 +1571,7 @@ export function SeccionSaberMas() {
     { t: "Tecnología de hoy", d: "Sin WordPress ni plugins: más segura.", href: "/servicios#tecnologia", icono: "escudo", color: "#6d28d9" },
     { t: "Tu propio CRM", d: "Cada contacto con su origen, sin licencias.", href: "/servicios/crm-a-medida", icono: "chat", color: "#be185d" },
     { t: "Todo lo que entra en la cuota", d: "Reservas, reseñas, tienda, apps y más.", href: "/servicios#incluido", icono: "regalo", color: "#0f766e" },
-    { t: "Cada día sabes qué hemos hecho", d: "Tu parte diario y tu panel.", href: "/como-trabajamos", icono: "calendario", color: "#e37400" },
+    { t: "Cada día sabes qué hemos hecho", d: "Tu panel, siempre al día.", href: "/como-trabajamos", icono: "calendario", color: "#e37400" },
     { t: "¿Te suena alguno?", d: "Los problemas de siempre y cómo los arreglamos.", href: "/como-trabajamos#dolores", icono: "lupa", color: "#e8457a" },
   ];
   return (

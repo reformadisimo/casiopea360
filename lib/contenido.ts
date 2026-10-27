@@ -191,7 +191,7 @@ export const PASOS = [
   },
   {
     titulo: "Los primeros 30 días",
-    texto: "Textos y reseñas, publicación, ficha y artículos, correos y primer informe. Semana a semana.",
+    texto: "Textos y reseñas, publicación, ficha y artículos, correos y tu panel funcionando. Semana a semana.",
   },
   {
     titulo: "Cada día, mejor",
@@ -213,13 +213,13 @@ export const PLAZOS = [
 
 export const INFORMES = [
   {
-    cuando: "Cada día",
-    lectura: "Un minuto",
+    cuando: "Hoy",
+    lectura: "Al momento",
     puntos: ["Visitas de la web", "Llamadas, WhatsApp, formularios y chat", "Gasto de los anuncios", "Aviso si algo falla"],
   },
   {
-    cuando: "Cada semana",
-    lectura: "Una página, sin jerga",
+    cuando: "Esta semana",
+    lectura: "Una pantalla, sin jerga",
     puntos: [
       "De dónde llega la gente y dónde se pierde",
       "Qué anuncios funcionan y cuáles no",
@@ -228,8 +228,8 @@ export const INFORMES = [
     ],
   },
   {
-    cuando: "Cada mes",
-    lectura: "El balance",
+    cuando: "Este mes",
+    lectura: "El balance, ya hecho",
     puntos: ["Cómo sales en Google y en las IA", "Reseñas y nota nueva", "Cuánto cuesta cada contacto", "El plan del mes siguiente"],
   },
 ];
@@ -568,7 +568,7 @@ export const COMO_ES_POSIBLE: { antes: string; ahora: string; tema: string }[] =
   { tema: "Los plazos", antes: "Meses para cualquier cosa.", ahora: "Horas o días. Y por escrito." },
   { tema: "El CRM y los correos", antes: "Licencias por usuario y meses para montar los correos automáticos.", ahora: "Tu CRM a medida y tus correos funcionando, si los quieres." },
   { tema: "La IA", antes: "«Eso de un asistente con IA es para grandes empresas.»", ahora: "Tu asistente con IA atendiendo a cualquier hora, también por voz." },
-  { tema: "Los datos", antes: "Informes que no se entienden, cuando llegan.", ahora: "Cada contacto con su origen, y un parte claro cada día." },
+  { tema: "Los datos", antes: "Informes que no se entienden, cuando llegan.", ahora: "Cada contacto con su origen, en tu panel y al momento. Sin esperar a ningún informe." },
 ];
 
 // Opiniones REALES de clientes, con su permiso. No inventar ninguna.

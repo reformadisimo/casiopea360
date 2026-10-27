@@ -161,7 +161,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { que: "Una campaña nueva o un cambio", cuando: "Máximo 48 horas" },
       { que: "Una página para la campaña", cuando: "Máximo 48 horas" },
       { que: "Notarlo en los anuncios", cuando: "Días" },
-      { que: "Informe de lo que funciona", cuando: "Cada semana, en tu panel" },
+      { que: "Lo que funciona y lo que no", cuando: "Siempre al día, en tu panel" },
     ],
     preguntas: [
       {

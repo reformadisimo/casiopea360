@@ -35,7 +35,7 @@ ${PASOS.map((p, i) => `${i + 1}. ${p.titulo}: ${p.texto}`).join("\n")}
 ## Qué trae el estudio gratuito
 ${ESTUDIO.map((e) => `- ${e.titulo}: ${e.texto}`).join("\n")}
 
-## Los informes que recibe el cliente
+## Lo que ve el cliente en su panel de control (no recibe informes: el panel es el informe, siempre al día)
 ${INFORMES.map((x) => `- ${x.cuando} (${x.lectura}): ${x.puntos.join(", ")}`).join("\n")}
 
 ## Oficios que reunimos en un solo equipo

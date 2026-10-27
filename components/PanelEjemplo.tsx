@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
 import { Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
-import { FilaLuces, GRUPOS_MODULOS, ModuloPlegable, Reloj, type Modulo } from "@/components/PanelModulos";
+import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, ModuloPlegable, Reloj, type Modulo } from "@/components/PanelModulos";
 
 
 const LOGO: Record<string, string> = {
@@ -140,7 +140,6 @@ const BUSQUEDAS: [string, number, number, number][] = [
 const TENDENCIA = [22, 18, 20, 31, 48, 79, 100, 92, 51, 30, 24, 21];
 const MESES_12 = ["Nov", "Dic", "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct"];
 
-const IA_SEMANAS = [3, 3, 4, 5, 6, 6, 8, 9];
 
 const REDES: { red: string; serie: number[]; color: string; extra: string }[] = [
   { red: "Instagram", serie: [1200, 1260, 1330, 1390, 1470, 1580, 1690, 1810, 1950, 2110, 2260, 2430], color: "#c13584", extra: "Reel más visto: «Así se instala una aerotermia en un día», 48.000 reproducciones" },
@@ -182,7 +181,7 @@ const ACTIVIDAD: [string, string, string][] = [
   ["Ayer, 18:30", "Reseñas", "Contestadas 4 reseñas nuevas, con tu visto bueno en la de 3 estrellas."],
   ["Ayer, 12:00", "Blog", "Publicado: «Aerotermia o aire acondicionado: qué te conviene en Madrid»."],
   ["Ayer, 10:00", "Redes", "Montado y programado el reel de la instalación en Las Rozas."],
-  ["Lunes, 08:00", "Informe", "Enviado el parte semanal a tu correo y a tu móvil."],
+  ["Lunes, 08:00", "Panel", "Actualizado con los datos de la semana. Ya lo tienes en tu panel, sin esperar a ningún informe."],
   ["Domingo", "Tendencias", "Google Trends avisa: las búsquedas de aire acondicionado suben desde marzo. Preparamos la campaña de primavera."],
   ["Viernes", "Medición", "Añadido el evento «configurador terminado» en Tag Manager."],
   ["Jueves", "IA", "Actualizada la información para las IA con tus nuevas zonas de trabajo."],
@@ -219,9 +218,7 @@ const COLOR_ESTADO: Record<Estado, string> = {
   Hecha: "bg-emerald-100 text-emerald-800",
 };
 const DOCUMENTOS: [string, string][] = [
-  ["Informe mensual de septiembre", "Informe"],
   ["Factura de septiembre", "Factura"],
-  ["Informe mensual de agosto", "Informe"],
   ["Factura de agosto", "Factura"],
 ];
 
@@ -687,7 +684,7 @@ export default function PanelEjemplo() {
                     <p className="font-extrabold text-emerald-800">Incluido en tu cuota fija</p>
                     <ul className="mt-3 space-y-2 text-sm">
                       {["Tu web, regalada, y todos los cambios en 48 horas", "SEO completo en Google y Bing: técnico, contenidos, fichas de mapa y visibilidad en las IA", "Gestión de anuncios en Google, Bing, Instagram, Facebook y TikTok, sin comisión", "Redes sociales, diseño y montaje de vídeos con tu material", "Correos y WhatsApp automáticos, asistente con IA",
-                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, el parte diario y el informe mensual", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas", "Reservas online, reseñas, landings sin límite, encuestas y programa de recomendación", "Presupuestos con firma, tienda online, Google Shopping, web en varios idiomas y área privada para tus clientes", "Medición de llamadas, vigilancia de la competencia, y vídeos con IA"].map((t) => (
+                        "Conexión con tu CRM, o un CRM a medida si no tienes", "Dominio, servidor, seguridad y copias", "Este panel, siempre al día, en lugar de informes", "Gestión de campañas de radio y prensa: guion, voces, diseño y trato con los medios", "Rediseño del logo si lo necesitas", "Reservas online, reseñas, landings sin límite, encuestas y programa de recomendación", "Presupuestos con firma, tienda online, Google Shopping, web en varios idiomas y área privada para tus clientes", "Medición de llamadas, vigilancia de la competencia, y vídeos con IA"].map((t) => (
                         <li key={t} className="flex gap-2"><span className="text-emerald-700">✓</span>{t}</li>
                       ))}
                     </ul>
@@ -757,7 +754,27 @@ export default function PanelEjemplo() {
               </Caja>
     </>),
     informes: (<>
-              <Caja titulo="Informes y facturas" fuente="Para descargar" ayuda="Tus informes mensuales y tus facturas, siempre a mano. Sin pedirlos por correo.">
+              <Caja titulo="Tu informe es este panel" fuente="Siempre al día" ayuda="Antes, un informe llegaba un día fijo y ya estaba viejo. Aquí no hay que esperar: todo lo que iba en el informe lo ves tú, ahora, y se actualiza solo.">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-niebla p-4">
+                    <h3 className="font-extrabold">Un informe de los de siempre</h3>
+                    <ul className="mt-2 space-y-1.5 text-sm text-gris">
+                      <li>Llega un día fijo: ya es de ayer.</li>
+                      <li>Hay que esperar y pedirlo.</li>
+                      <li>Un PDF que nadie vuelve a abrir.</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-2xl bg-estrella/25 p-4">
+                    <h3 className="font-extrabold">Con Casiopea</h3>
+                    <ul className="mt-2 space-y-1.5 text-sm">
+                      <li>Se actualiza solo, cada día.</li>
+                      <li>No esperas nada: lo tienes ahí.</li>
+                      <li>Las luces te dicen qué mirar. Lo demás, cuando quieras.</li>
+                    </ul>
+                  </div>
+                </div>
+              </Caja>
+              <Caja titulo="Tus facturas" fuente="Para descargar" ayuda="Tus facturas, siempre a mano. Sin pedirlas por correo.">
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {DOCUMENTOS.map(([n, t]) => (
                     <li key={n} className="flex items-center gap-3 rounded-2xl bg-niebla p-4">
@@ -903,19 +920,6 @@ export default function PanelEjemplo() {
                   </div>
                 </div>
                 <p className="mt-4 rounded-2xl bg-estrella/20 p-3 text-sm">Pocos contactos, pero baratos: en Bing compiten menos empresas y el clic suele salir más barato. Por eso estamos en todas partes: Google, Bing, Apple Maps y las IA.</p>
-              </Caja>
-              <Caja titulo="Si preguntan a las IA, ¿te recomiendan?" fuente="ChatGPT, Gemini y Claude" ayuda="Cada semana preguntamos a ChatGPT, Gemini y Claude lo mismo que preguntaría un cliente: «¿qué empresa de climatización me recomiendas en Madrid?». Contamos en cuántas de 10 preguntas sales.">
-                <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
-                  <div>
-                    <Linea serie={IA_SEMANAS} color="#8b5cf6" alto={80} />
-                    <p className="mt-2 text-sm text-gris">Hace 8 semanas salías en 3 de cada 10 respuestas. Hoy, en 9.</p>
-                  </div>
-                  <ul className="flex gap-3">
-                    {["ChatGPT", "Gemini", "Claude"].map((n) => (
-                      <li key={n} className="flex flex-col items-center gap-1 rounded-2xl bg-niebla p-3"><Logo nombre={n} tam={30} /><span className="text-xs font-bold">{n}</span><span className="text-xs text-emerald-700">Te recomienda</span></li>
-                    ))}
-                  </ul>
-                </div>
               </Caja>
     </>),
     redes: (<>
@@ -1214,7 +1218,7 @@ export default function PanelEjemplo() {
     { id: "gastos", grupo: "contigo", nombre: "Gastos", corto: "Gastos", linea: "Lo que has gastado este mes y lo que va aparte.", conclusion: "Comisión sobre lo invertido: 0 €. Siempre.", luz: "ok", icono: "caja", contenido: piezas.gastos },
     { id: "medicion", grupo: "contigo", nombre: "Cómo lo medimos", corto: "Medición", linea: "Tag Manager, etiquetas, cookies y privacidad, explicado fácil.", conclusion: "21 de 21 herramientas funcionando.", luz: "ok", icono: "ajustes", contenido: piezas.medicion },
     { id: "trabajo", grupo: "contigo", nombre: "Todo lo que hacemos", corto: "Trabajo", linea: "Un registro con fecha y con el porqué de cada cosa.", conclusion: "64 tareas este mes, el 98 % entregadas a tiempo.", luz: "ok", icono: "documento", contenido: piezas.trabajo },
-    { id: "informes", grupo: "informes", nombre: "Informes y facturas", corto: "Informes", linea: "Los informes que mandamos, por mes, y tus facturas.", conclusion: "El de septiembre está listo para descargar.", luz: "ok", icono: "documento", contenido: piezas.informes },
+    { id: "informes", grupo: "informes", nombre: "Tu informe y tus facturas", corto: "Informe", linea: "Este panel es tu informe: siempre al día, sin esperar a que nadie lo mande.", conclusion: "Hoy no hay nada que esperar: todo está al día. Tus facturas, dentro.", luz: "ok", icono: "documento", contenido: piezas.informes },
     { id: "historico", grupo: "historico", nombre: "Cómo has mejorado", corto: "Histórico", linea: "La evolución mes a mes desde el primer día.", conclusion: "En seis meses, de 120 a 312 contactos al mes.", luz: "ok", icono: "historia", contenido: piezas.historico },
   ];
   const abiertosEf = abiertos ?? MODULOS.filter((m) => m.luz === "problema").map((m) => m.id);
@@ -1254,12 +1258,26 @@ export default function PanelEjemplo() {
           </div>
         </header>
 
-        <section className="mt-6 rounded-3xl bg-white/5 p-5 text-white sm:p-7" aria-label="Resumen de hoy">
+        <section className="mt-6 rounded-3xl bg-white/5 p-5 text-white sm:p-7 lg:grid lg:grid-cols-2 lg:gap-8" aria-label="Resumen de hoy">
+          <div>
           <p className="text-sm font-bold text-estrella">Resumen de hoy</p>
           <p className="mt-2 text-lg font-bold sm:text-xl">
             {urgentes.length ? `Hay algo urgente: ${urgentes.map((m) => m.nombre).join(" y ")}.` : `Hoy no hay nada urgente. Han llegado ${esc(312)} contactos en este periodo, a 10 € cada uno.`}
           </p>
           {atencion.length > 0 && <p className="mt-1 text-white/80">Piden un vistazo: {atencion.map((m) => m.nombre).join(" y ")}. Pulsa su luz y lo ves.</p>}
+          </div>
+          <div className="mt-4 border-t border-white/15 pt-4 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <p className="text-sm font-bold text-estrella">Lo que te toca a ti hoy</p>
+            <ul className="mt-2 space-y-2">
+              {[["Llama a los 3 contactos que llevan más de 3 días sin respuesta.", "crm"], ["Contesta las 2 reseñas nuevas de tu ficha de Google.", "redes"]].map(([t, id]) => (
+                <li key={id} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base">
+                  <span>{t}</span>
+                  <button type="button" onClick={() => ir(id)} className="text-sm font-bold text-estrella underline underline-offset-4">Ir</button>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-white/60">Son las únicas cosas de hoy que dependen de ti. Todo lo demás lo llevamos nosotros.</p>
+          </div>
         </section>
 
         <div className="mt-5" role="group" aria-label="Periodo">
@@ -1295,10 +1313,14 @@ export default function PanelEjemplo() {
           <Reloj titulo="Presencia en IA" valor="16 de 18" sub="respuestas donde sales" pct={89} />
           <Reloj titulo="Salud de la web" valor="7 de 8" sub="comprobaciones de hoy" pct={88} />
         </div>
+        <p className="mt-3 text-center text-xs text-white/70">Cómo leer los relojes: la aguja en la franja verde, va bien; en la naranja, atento; en la roja, hay que actuar. En el coste, cuanto más a la izquierda, mejor.</p>
+        <p className="mt-1 text-center text-xs text-white/50">Última revisión: hoy 07:00 · Próxima: mañana 07:00 · Se actualiza solo, no hay informes que esperar.</p>
       </div>
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+
+        <div className="mt-6"><GuiaInicio /></div>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm font-bold text-gris">Todo cerrado al entrar. Abre solo lo que te interese.</p>
@@ -1331,7 +1353,7 @@ export default function PanelEjemplo() {
               </p>
 
           <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-            <p className="text-xl font-extrabold">¿Echas algún dato de menos? ¿Quieres otro informe?</p>
+            <p className="text-xl font-extrabold">¿Echas algún dato de menos? ¿Quieres ver algo más en tu panel?</p>
             <p className="mt-1 text-white/75">Escríbelo aquí y lo añadimos a tu panel en 24 a 48 horas.</p>
             {enviado ? (
               <p className="mt-4 rounded-2xl bg-white/10 p-4 font-bold text-estrella">Recibido. Lo tendrás en 24 a 48 horas. (En esta demostración no se envía nada.)</p>
@@ -1343,7 +1365,7 @@ export default function PanelEjemplo() {
                   if (pedido.trim()) setEnviado(true);
                 }}
               >
-                <label className="sr-only" htmlFor="pedido-panel">Qué dato o informe quieres</label>
+                <label className="sr-only" htmlFor="pedido-panel">Qué dato quieres ver en tu panel</label>
                 <input id="pedido-panel" value={pedido} onChange={(e) => setPedido(e.target.value)} placeholder="Por ejemplo: ventas por zona de Madrid" className="flex-1 rounded-full bg-white px-5 py-3 text-tinta focus:outline-none focus:ring-4 focus:ring-estrella/50" />
                 <button type="submit" className="rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Pedirlo</button>
               </form>
