@@ -1,4 +1,4 @@
-import type { Modulo, Reloj, Tarea, Resumen } from "@/lib/mesaTipos";
+import type { Modulo, Reloj, Tarea, Resumen, CifrasBase } from "@/lib/mesaTipos";
 
 /* Panel de EJEMPLO de Casiopea 360 (27-oct-2026): mismas piezas que la mesa de control de Reformadísimo
    (luces, qué hago hoy, relojes), con datos INVENTADOS de una empresa ficticia, "Climatización Ejemplo".
@@ -61,9 +61,12 @@ export const tareasDemo: Tarea[] = [
   { id: "d3", texto: "Mejora la portada", porque: "En la portada la mitad de la gente no pasa del 25 % de la página.", donde: "La web", ir: "web", boton: "Ver con la lupa" },
 ];
 
+/** Cifras base de ejemplo para "Tus sueños y tus cuentas": 28 días, todo inventado. */
+export const baseDemo: CifrasBase = { dias: 28, coste: 5582, contactosAnuncios: 49, contactos: 71, visitasPedidas: 19, leadsCrm: 76, firmas: 9, ticket: 2400, medicionIncompleta: false };
+
 export const relojesDemo: Reloj[] = [
-  { frase: "71 personas dejaron sus datos", detalle: "Un 42 % más que antes (eran 50).", t: "Contactos", v: "71", sub: "+42 % frente a antes", lleno: 0.8, luz: "verde", ayuda: "Personas distintas que han enviado un formulario desde la web. Una misma persona solo cuenta una vez al día." },
-  { frase: "19 pidieron una visita", detalle: "Son 27 de cada 100 personas que dejaron sus datos. Antes eran 48.", t: "Piden la visita", v: "27 %", sub: "de los contactos", lleno: 0.27, luz: "ambar", ayuda: "De cada 100 personas que dejaron sus datos, cuántas solicitaron una visita técnica." },
-  { frase: "Cada contacto costó 93 €", detalle: "Antes costaba 84 €.", t: "Coste por contacto", v: "93 €", sub: "+11 % frente a antes", lleno: 0.62, luz: "ambar", ayuda: "El dinero gastado en anuncios dividido entre los contactos conseguidos por esos anuncios. Cuanto más bajo, mejor." },
+  { n: 71, frase: "71 personas dejaron sus datos", detalle: "Un 42 % más que antes (eran 50).", t: "Contactos", v: "71", sub: "+42 % frente a antes", lleno: 0.8, luz: "verde", ayuda: "Personas distintas que han enviado un formulario desde la web. Una misma persona solo cuenta una vez al día." },
+  { n: 19, frase: "19 pidieron una visita", detalle: "Son 27 de cada 100 personas que dejaron sus datos. Antes eran 48.", t: "Piden la visita", v: "27 %", sub: "de los contactos", lleno: 0.27, luz: "ambar", ayuda: "De cada 100 personas que dejaron sus datos, cuántas solicitaron una visita técnica." },
+  { n: 93, frase: "Cada contacto costó 93 €", detalle: "Antes costaba 84 €.", t: "Coste por contacto", v: "93 €", sub: "+11 % frente a antes", lleno: 0.62, luz: "ambar", ayuda: "El dinero gastado en anuncios dividido entre los contactos conseguidos por esos anuncios. Cuanto más bajo, mejor." },
   { frase: "Tus clientes te valoran con un 4,7", detalle: "Sobre 5, con 180 reseñas de Google.", t: "Nota en Google", v: "4,7", sub: "180 reseñas", lleno: 0.94, luz: "verde", ayuda: "La valoración media que han dejado los clientes en Google, sobre 5." },
 ];
