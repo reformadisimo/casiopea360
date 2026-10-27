@@ -10,6 +10,25 @@
   --color-tinta: #141c33;
   --color-gris: #535c7a;
   --color-linea: #d9deeb;
+  /* Colores de la mesa de control (copiados de Reformadísimo; solo los usa components/mesa) */
+  --color-ink: #1a3d47;
+  --color-yellow: #ffde00;
+  --color-cream: #fbfaf7;
+  --color-line: #e9e2d4;
+  --color-paper: #fffdf9;
+  --color-teal: #2c7c98;
+  --color-teal-deep: #236278;
+  --color-teal-mid: #5aaabf;
+  --color-teal-soft: #8cc4d3;
+  --color-teal-pale: #c5e2eb;
+  --color-teal-dark: #1a3d47;
+  --color-arena: #f6ede6;
+  --color-arena-deep: #eadbd0;
+  --color-amber: #b8924a;
+  --color-amber-deep: #7c5e27;
+  --color-amber-soft: #efe2c4;
+  --color-amber-line: #e6d5b0;
+  --color-brown: #5e3a1f;
   --font-titular: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
   --font-texto: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 }
@@ -445,3 +464,13 @@ html[data-fuente] .ajustes-lectura, html[data-fuente] .ajustes-lectura * { lette
 html[data-texto="1"] header { zoom: 0.87; }
 html[data-texto="2"] header { zoom: 0.77; }
 html[data-texto="3"] header { zoom: 0.667; }
+
+/* La mesa de control: letras y fondo propios, solo dentro de .mesa */
+@font-face{font-family:'Roboto Mesa';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/panel/roboto-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Roboto Mesa';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/panel/roboto-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Roboto Mesa';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/panel/roboto-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Roboto Mesa';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/panel/roboto-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Lora Mesa';font-style:italic;font-weight:500;font-display:swap;src:url(/fonts/panel/lora-latin-500-italic.woff2) format('woff2')}
+.mesa{--font-sans:'Roboto Mesa',system-ui,sans-serif;--font-serif:'Lora Mesa',Georgia,serif;background:#fbfaf7;color:#1a3d47;font-family:var(--font-sans);line-height:1.65;min-height:100vh}
+.mesa h1,.mesa h2,.mesa h3,.mesa h4{font-family:var(--font-serif);letter-spacing:0;text-wrap:initial}
+.mesa :focus-visible{outline:2px solid #2c7c98;outline-offset:3px;border-radius:3px}

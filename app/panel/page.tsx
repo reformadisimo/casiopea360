@@ -1,15 +1,17 @@
-import PanelEjemplo from "@/components/PanelEjemplo";
 import { meta } from "@/lib/meta";
+import PanelCasiopea from "@/components/mesa/PanelCasiopea";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   ...meta(
-    "Control de mandos de ejemplo",
-    "Así verás tu marketing con Casiopea 360: contactos y clientes en tiempo real, de dónde viene cada uno, lo que cuesta y todo lo que hacemos. Datos de ejemplo.",
+    "Así lo verás tú",
+    "Un panel de control de ejemplo, con datos inventados de una empresa ficticia: qué va bien, qué mirar hoy y qué hacer, en lenguaje llano y desde el móvil.",
     "/panel",
   ),
   robots: { index: false, follow: true },
 };
 
 export default function Panel() {
-  return <PanelEjemplo />;
+  return <PanelCasiopea />;
 }
