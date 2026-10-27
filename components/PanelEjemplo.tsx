@@ -8,15 +8,16 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
-import { Herramientas360, Mandos } from "@/components/PanelMandos";
+import { Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
 
-type Pestana = "resumen" | "mandos" | "herramientas" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
+type Pestana = "resumen" | "indice" | "mandos" | "herramientas" | "peticiones" | "crm" | "clientes" | "anuncios" | "google" | "redes" | "web" | "gastos" | "medicion" | "trabajo";
 const PESTANAS: [Pestana, string][] = [
   ["mandos", "Control de mandos"],
   ["resumen", "Resumen"],
   ["herramientas", "Herramientas 360"],
   ["peticiones", "Tus peticiones"],
   ["crm", "Ventas (CRM)"],
+  ["indice", "Índice de valor"],
   ["clientes", "Clientes"],
   ["anuncios", "Anuncios"],
   ["google", "Google, Bing e IA"],
@@ -800,6 +801,7 @@ export default function PanelEjemplo() {
 
           {pestana === "mandos" && <Mandos ir={(id, sub) => { if (sub) setHerramienta(sub); setPestana(id as Pestana); window.scrollTo({ top: 0, behavior: "smooth" }); }} />}
 
+          {pestana === "indice" && <IndiceValor />}
           {pestana === "herramientas" && <Herramientas360 key={herramienta} inicial={herramienta} />}
 
           {pestana === "peticiones" && (

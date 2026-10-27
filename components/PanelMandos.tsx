@@ -3,7 +3,7 @@
 // Dos pestañas del panel de ejemplo: «Mis mandos» (lo que lleva Casiopea, lo que decide el cliente y lo que
 // nunca tocamos) y «Herramientas 360» (Lupa, Espejo de la IA, Vigía, Sistemas y Recorrido). TODOS LOS DATOS SON INVENTADOS.
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
 
 function Bloque({ titulo, fuente, quien, children, className = "" }: { titulo: string; fuente?: string; quien?: Quien; children: React.ReactNode; className?: string }) {
@@ -69,7 +69,7 @@ const GRUPOS: { titulo: string; frase?: string; quien: Quien; casillas: Casilla[
       { titulo: "Contactos que se hacen clientes", texto: "Cuántos de los que te escriben acaban firmando.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
       { titulo: "Coste por cliente", texto: "Lo que te cuesta cada cliente que llega por internet.", destino: "gastos", estado: "preparado", dato: "Se activa cuando marcas tus firmas y lo que has facturado." },
       { titulo: "De dónde viene cada cliente", texto: "El recorrido desde el primer anuncio hasta la firma.", destino: "clientes", estado: "preparado", dato: "Se activa cuando marcas quién ha firmado." },
-      { titulo: "Índice de valor", texto: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", destino: "crm", estado: "preparado", dato: "Se activa cuando pones tu ticket medio." },
+      { titulo: "Índice de valor", texto: "Qué clientes valen más que tu media, sin decirnos cuánto facturas.", destino: "indice", estado: "preparado", dato: "Se activa cuando pones tu ticket medio." },
     ],
   },
 ];
@@ -93,22 +93,12 @@ type Mando = {
 
 const MANDOS: Mando[] = [
   {
-    id: "facturado",
-    titulo: "Lo facturado a clientes que vienen de internet",
-    sirve: "Ver cuánto dinero trae cada canal, no solo cuántos contactos.",
-    ganas: "Dejas de repartir el dinero de anuncios por clics y lo repartes por lo que de verdad factura cada canal.",
-    sin: "Sin este dato te decimos qué canal trae más contactos.",
-    con: "Con este dato te decimos qué canal trae más dinero. A veces no es el mismo: en el ejemplo, Instagram trae menos contactos que Google, pero cada cliente factura más.",
-    cifras: [["Ventas por internet este mes", "318.400 €"], ["Canal que más factura", "Google sin pagar"], ["Sube frente al mes pasado", "14 %"]],
-    extra: [["Google sin pagar", 96200], ["Anuncios de Google", 84900], ["Instagram y Facebook", 47800], ["Ficha de Google (mapa)", 38100], ["ChatGPT y otras IA", 19600], ["Correos de seguimiento", 18400], ["Bing", 11800], ["Otros", 1600]],
-  },
-  {
     id: "respuesta",
     titulo: "Lo que tardas en contestar a cada contacto",
     sirve: "Saber si la gente que te escribe recibe respuesta a tiempo.",
-    ganas: "Un contacto contestado enseguida se hace cliente bastante más que uno que espera un día.",
+    ganas: "Los estudios sobre contactos coinciden: cuanto antes se llama, más se convierte. Un contacto que espera horas o días se enfría.",
     sin: "Sin este dato te decimos cuántos contactos te llegan.",
-    con: "Con este dato te decimos cuántos se pierden por esperar. En el ejemplo, de cada 100 contactos contestados en menos de una hora, firman 38; contestados al día siguiente, 14.",
+    con: "Con este dato te decimos si una campaña no funciona porque se tarda días en llamar y la competencia tarda una hora. Y cuántos se pierden por esperar. En el ejemplo, de cada 100 contactos contestados en menos de una hora, firman 38; contestados al día siguiente, 14.",
     cifras: [["Tiempo medio en contestar", "2 h 10 min"], ["Contestados en menos de 1 hora", "78 %"], ["Esperan más de un día", "9 %"]],
   },
   {
@@ -239,7 +229,7 @@ export function Mandos({ ir }: { ir: (pestana: string, sub?: string) => void }) 
                     <p className="mt-4 rounded-2xl bg-estrella/20 p-3 text-sm"><b>Lo que te diríamos con este dato:</b> {m.con}</p>
                     <label className="mt-3 flex cursor-pointer items-start gap-3 text-sm">
                       <input type="checkbox" checked={!!comparte[m.id]} onChange={(e) => setComparte({ ...comparte, [m.id]: e.target.checked })} className="mt-1 h-4 w-4 accent-yellow-500" />
-                      <span><b>Compartirlo con Casiopea 360</b> para que ajustemos mejor tus campañas. Solo totales y porcentajes, nunca datos por cliente. Puedes quitarlo cuando quieras.</span>
+                      <span><b>Compartirlo con Casiopea 360</b> para que ajustemos mejor tus campañas. Solo porcentajes, nunca euros ni datos de cada cliente. Puedes quitarlo cuando quieras.</span>
                     </label>
                   </div>
                 )}
@@ -456,6 +446,217 @@ export function Herramientas360({ inicial = "lupa" }: { inicial?: string }) {
           <p className="mt-2 text-sm text-gris">Última prueba completa: lunes, 07:30. Próxima: el lunes que viene.</p>
         </Bloque>
       )}
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------
+// Índice de valor: tu facturación es tuya. Nunca se pregunta cuánto se factura. Todo en el navegador.
+// ---------------------------------------------------------------------------------------------
+
+type TamanoCliente = "pequeno" | "normal" | "grande" | "muygrande";
+const TAMANOS: [TamanoCliente, string, number][] = [
+  ["pequeno", "Más pequeño de lo normal", 60],
+  ["normal", "Normal", 100],
+  ["grande", "Más grande", 150],
+  ["muygrande", "Mucho más grande", 250],
+];
+type ClienteDemo = { id: number; nombre: string; campana: string; firmo: boolean; importe: string; tamano: TamanoCliente | "" };
+const CLIENTES_DEMO: ClienteDemo[] = [
+  { id: 1, nombre: "A. G.", campana: "Búsqueda en Google", firmo: true, importe: "1800", tamano: "" },
+  { id: 2, nombre: "M. T.", campana: "Búsqueda en Google", firmo: true, importe: "1450", tamano: "" },
+  { id: 3, nombre: "L. R.", campana: "Instagram", firmo: true, importe: "", tamano: "pequeno" },
+  { id: 4, nombre: "P. S.", campana: "Instagram", firmo: true, importe: "700", tamano: "" },
+  { id: 5, nombre: "C. V.", campana: "Ficha de Google", firmo: true, importe: "", tamano: "grande" },
+  { id: 6, nombre: "J. B.", campana: "Búsqueda en Google", firmo: true, importe: "2600", tamano: "" },
+  { id: 7, nombre: "N. D.", campana: "Ficha de Google", firmo: true, importe: "980", tamano: "" },
+  { id: 8, nombre: "E. F.", campana: "Instagram", firmo: false, importe: "", tamano: "" },
+];
+const CLAVE_TICKET = "casiopea-ticket-medio";
+
+function indiceDe(c: ClienteDemo, ticket: number): number | null {
+  if (!c.firmo) return null;
+  const imp = parseFloat(c.importe.replace(",", "."));
+  if (Number.isFinite(imp) && imp > 0 && ticket > 0) return Math.round((imp / ticket) * 100);
+  const t = TAMANOS.find(([id]) => id === c.tamano);
+  return t ? t[2] : null;
+}
+
+export function IndiceValor() {
+  const [ticket, setTicket] = useState("1000");
+  const [clientes, setClientes] = useState<ClienteDemo[]>(CLIENTES_DEMO);
+  const [comparte, setComparte] = useState(false);
+  const [quiere, setQuiere] = useState("");
+  const [cargado, setCargado] = useState(false);
+
+  useEffect(() => {
+    try {
+      const v = window.localStorage.getItem(CLAVE_TICKET);
+      if (v) setTicket(v);
+    } catch {
+      /* sin almacenamiento: se queda el ejemplo */
+    }
+    setCargado(true);
+  }, []);
+  const cambiarTicket = (v: string) => {
+    setTicket(v);
+    try {
+      window.localStorage.setItem(CLAVE_TICKET, v);
+    } catch {
+      /* se vuelve a poner si cambia de ordenador */
+    }
+  };
+
+  const tk = parseFloat(ticket.replace(",", ".")) || 0;
+  const filas = clientes.map((c) => ({ c, idx: indiceDe(c, tk) }));
+  const conIndice = filas.filter((f) => f.idx !== null) as { c: ClienteDemo; idx: number }[];
+  const percentil = (idx: number) => {
+    if (conIndice.length < 5) return null;
+    const menores = conIndice.filter((f) => f.idx <= idx).length;
+    return Math.max(1, Math.round((menores / conIndice.length) * 100));
+  };
+  const porCampana = Array.from(new Set(clientes.map((c) => c.campana))).map((nombre) => {
+    const xs = conIndice.filter((f) => f.c.campana === nombre).map((f) => f.idx);
+    return { nombre, n: xs.length, media: xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null };
+  });
+  const actualiza = (id: number, cambio: Partial<ClienteDemo>) => setClientes(clientes.map((c) => (c.id === id ? { ...c, ...cambio } : c)));
+  const mejor = [...porCampana].filter((x) => x.media !== null).sort((a, b) => (b.media as number) - (a.media as number))[0];
+
+  return (
+    <>
+      <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
+        <p className="text-sm font-bold text-estrella">Índice de valor</p>
+        <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Nos dices qué clientes valen más, sin decirnos cuánto facturas.</p>
+        <p className="mt-3 max-w-3xl text-white/80">
+          No necesitamos tu facturación ni te la vamos a pedir. Nos da igual que factures 1 millón o 100. Lo que sí ayuda a que tus anuncios mejoren es saber si los contactos de una campaña acaban siendo clientes de 100 y los de otra, clientes de 1.000. Con un índice lo sabemos sin ver ni un euro.
+        </p>
+      </section>
+
+      <Bloque titulo="Cómo funciona, en diez segundos" quien="tuyo">
+        <ol className="grid gap-3 text-sm sm:grid-cols-4">
+          <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">1. Tu ticket medio</b><span className="text-gris">Una vez, aquí. Es lo que facturas de media con cada cliente. Se queda en tu navegador.</span></li>
+          <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">2. Marcas quién firma</b><span className="text-gris">Y, si quieres, apuntas lo que ha facturado. Si no quieres, eliges un tamaño.</span></li>
+          <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">3. El panel calcula</b><span className="text-gris">El índice y el percentil de cada cliente, aquí, en tu navegador.</span></li>
+          <li className="rounded-2xl bg-niebla p-4"><b className="block text-tinta">4. Nosotros vemos</b><span className="text-gris">Solo si lo activas: si firmó, su índice y su percentil. Nunca euros.</span></li>
+        </ol>
+        <p className="mt-4 rounded-2xl bg-estrella/20 p-4 text-sm"><b>Un ejemplo con números inventados:</b> tu ticket medio son 100. Un cliente te deja 180: su índice es 180. Nosotros solo vemos 180. No sabemos cuánto es en euros, y tampoco lo necesitamos.</p>
+        <details className="mt-4 rounded-2xl border border-linea p-4 text-sm text-gris">
+          <summary className="cursor-pointer font-bold text-tinta">¿Qué es un índice y qué es un percentil?</summary>
+          <p className="mt-2"><b className="text-tinta">Índice:</b> 100 es tu ticket medio. 150 es un cliente un 50 % más grande que tu media. 60 es un cliente un 40 % más pequeño. Si prefieres no poner la cifra, eliges un tamaño y se usa 60, 100, 150 o 250.</p>
+          <p className="mt-2"><b className="text-tinta">Percentil del 1 al 100:</b> dónde queda ese cliente entre los tuyos. Un percentil 90 quiere decir que solo 1 de cada 10 clientes tuyos vale más. Se calcula cuando ya tienes varios clientes marcados (cinco o más).</p>
+          <p className="mt-2"><b className="text-tinta">Para qué lo usamos:</b> para saber qué campañas, anuncios, zonas y palabras traen clientes con índice alto, y mover ahí el dinero. Cuando lo conectes a Google Ads y a Meta, se les puede mandar el índice como valor de cada contacto, no los euros, para que sus sistemas busquen más contactos como los que mejor valen.</p>
+        </details>
+      </Bloque>
+
+      <Bloque titulo="Pruébalo con datos inventados" fuente="Datos de demostración" quien="tuyo">
+        <label className="flex flex-wrap items-center gap-3 text-sm font-bold">
+          Tu ticket medio por cliente
+          <input type="number" inputMode="decimal" min="0" value={ticket} onChange={(e) => cambiarTicket(e.target.value)} className="w-32 rounded-lg border border-linea px-3 py-2 font-normal" aria-describedby="ticket-ayuda" />
+        </label>
+        <p id="ticket-ayuda" className="mt-1 text-xs text-gris">Este dato no sale de tu navegador: se guarda solo en este dispositivo. Si cambias de ordenador, lo vuelves a poner. {cargado ? "" : ""}</p>
+
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="text-gris">
+              <tr><th className="pb-2">Contacto</th><th className="pb-2">Llegó por</th><th className="pb-2">Ha firmado</th><th className="pb-2">Lo facturado, o su tamaño</th><th className="pb-2 text-right">Índice</th><th className="pb-2 text-right">Percentil</th></tr>
+            </thead>
+            <tbody>
+              {filas.map(({ c, idx }) => {
+                const p = idx !== null ? percentil(idx) : null;
+                return (
+                  <tr key={c.id} className="border-t border-linea">
+                    <td className="py-2 font-bold">{c.nombre}</td>
+                    <td className="py-2">{c.campana}</td>
+                    <td className="py-2"><label className="flex items-center gap-2"><input type="checkbox" checked={c.firmo} onChange={(e) => actualiza(c.id, { firmo: e.target.checked })} className="h-4 w-4 accent-yellow-500" aria-label={`${c.nombre} ha firmado`} />{c.firmo ? "Sí" : "No"}</label></td>
+                    <td className="py-2">
+                      {c.firmo ? (
+                        <span className="flex flex-wrap items-center gap-2">
+                          <input type="number" inputMode="decimal" min="0" value={c.importe} placeholder="importe" onChange={(e) => actualiza(c.id, { importe: e.target.value, tamano: e.target.value ? "" : c.tamano })} className="w-24 rounded-lg border border-linea px-2 py-1" aria-label={`Lo facturado con ${c.nombre}`} />
+                          <select value={c.tamano} onChange={(e) => actualiza(c.id, { tamano: e.target.value as TamanoCliente | "", importe: e.target.value ? "" : c.importe })} className="rounded-lg border border-linea px-2 py-1" aria-label={`Tamaño del cliente ${c.nombre}`}>
+                            <option value="">o elige un tamaño</option>
+                            {TAMANOS.map(([id, t]) => <option key={id} value={id}>{t}</option>)}
+                          </select>
+                        </span>
+                      ) : <span className="text-gris">Todavía no</span>}
+                    </td>
+                    <td className="py-2 text-right font-extrabold">{idx ?? "·"}</td>
+                    <td className="py-2 text-right">{p ?? "·"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        {conIndice.length < 5 && <p className="mt-2 text-xs text-gris">El percentil aparece cuando hay cinco clientes o más con índice.</p>}
+
+        <h3 className="mt-6 font-extrabold">Qué campañas traen clientes que valen más</h3>
+        <ul className="mt-3 space-y-2">
+          {porCampana.map((x) => (
+            <li key={x.nombre} className="grid grid-cols-[minmax(0,9rem)_minmax(0,1fr)_auto] items-center gap-3 text-sm">
+              <span className="truncate">{x.nombre}</span>
+              <span className="h-3 overflow-hidden rounded-full bg-niebla"><span className="block h-full rounded-full bg-estrella" style={{ width: `${Math.min(100, ((x.media ?? 0) / 250) * 100)}%` }} /></span>
+              <b>{x.media === null ? "sin datos" : `índice ${x.media}`}</b>
+            </li>
+          ))}
+        </ul>
+        {mejor && <p className="mt-3 rounded-2xl bg-estrella/20 p-3 text-sm"><b>Lo que te diríamos:</b> {mejor.nombre.toLowerCase()} trae clientes con índice {mejor.media}, la media de tus clientes es 100. Ahí merece la pena poner más presupuesto.</p>}
+      </Bloque>
+
+      <Bloque titulo="Qué clientes quieres" fuente="Opcional" quien="opcional">
+        <p className="text-sm text-gris">Si quieres, dinos qué tipo de cliente te interesa más este mes, y adaptamos las campañas. No es una cifra: es una preferencia.</p>
+        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Qué clientes quieres este mes">
+          {[["", "Me da igual"], ["pequenos", "Más pequeños y rápidos"], ["normales", "Los de siempre"], ["grandes", "Más grandes"]].map(([id, t]) => (
+            <button key={id} type="button" aria-pressed={quiere === id} onClick={() => setQuiere(id)} className={`rounded-full px-4 py-2 text-sm font-bold ${quiere === id ? "bg-noche text-white" : "bg-niebla hover:bg-linea"}`}>{t}</button>
+          ))}
+        </div>
+      </Bloque>
+
+      <Bloque titulo="Compartir con Casiopea" fuente="Apagado de serie" quien="opcional">
+        <div className="flex items-start justify-between gap-4">
+          <p className="font-bold">Compartir con Casiopea si ha firmado y su índice (nunca euros)</p>
+          <Interruptor on={comparte} set={setComparte} etiqueta="Compartir con Casiopea si ha firmado y su índice, nunca euros" />
+        </div>
+        <p className="mt-2 text-sm text-gris">Si nos dejas ver qué contactos acaban siendo tus mejores clientes, podemos mover el dinero de los anuncios hacia lo que de verdad te da más. Es opcional, y puedes apagarlo cuando quieras.</p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl bg-niebla p-4">
+            <h3 className="font-extrabold">Lo que nos llega</h3>
+            <ul className="mt-2 space-y-1.5 text-sm text-gris">
+              <li>Si el contacto firmó: sí o no.</li>
+              <li>Su índice y su percentil.</li>
+              <li>Por qué campaña, anuncio y página llegó.</li>
+              <li>Si lo has elegido, qué tipo de cliente prefieres.</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl bg-niebla p-4">
+            <h3 className="font-extrabold">Lo que nunca nos llega</h3>
+            <ul className="mt-2 space-y-1.5 text-sm text-gris">
+              <li>Tu ticket medio.</li>
+              <li>Lo que facturas.</li>
+              <li>Lo que cobras a cada cliente.</li>
+              <li>El nombre de tus clientes.</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-4 rounded-2xl border border-dashed border-linea p-4" aria-live="polite">
+          <p className="text-sm font-extrabold">Esto es lo que le llegaría a Casiopea ahora mismo</p>
+          {!comparte ? (
+            <p className="mt-2 text-sm text-gris">Nada. Está apagado, y puedes seguir así todo el tiempo que quieras.</p>
+          ) : (
+            <table className="mt-2 w-full text-left text-sm">
+              <thead className="text-gris"><tr><th className="pb-1">Llegó por</th><th className="pb-1">Firmó</th><th className="pb-1 text-right">Índice</th><th className="pb-1 text-right">Percentil</th></tr></thead>
+              <tbody>
+                {filas.map(({ c, idx }) => (
+                  <tr key={c.id} className="border-t border-linea">
+                    <td className="py-1">{c.campana}</td><td className="py-1">{c.firmo ? "Sí" : "No"}</td>
+                    <td className="py-1 text-right font-bold">{idx ?? "·"}</td><td className="py-1 text-right">{(idx !== null ? percentil(idx) : null) ?? "·"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {comparte && quiere && <p className="mt-2 text-xs text-gris">Y que prefieres clientes: {quiere === "pequenos" ? "más pequeños y rápidos" : quiere === "normales" ? "los de siempre" : "más grandes"}.</p>}
+        </div>
+      </Bloque>
     </>
   );
 }
