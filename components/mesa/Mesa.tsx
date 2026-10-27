@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities -- fichero copiado tal cual de la mesa de Reformadísimo; no se reescribe para que siga siendo idéntico */
+/* eslint-disable react/no-unescaped-entities -- fichero copiado tal cual de la mesa de Reformadísimo; no se reescribe para que siga siendo idéntico */ /* Cambios de Casiopea sobre el original: textos de marca y sin importes en euros de ventas (Casiopea nunca presume de facturación). */
 "use client";
 import type { Modulo, Reloj, Tarea, Resumen } from "@/lib/mesaTipos";
 import { LUZ, TEMAS_RESUMEN, primeraFrase, frasesDe, fechaEnPalabras, type Luz } from "@/lib/mesaTextos";
@@ -667,7 +667,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes }: { da
                 );
               })}
               <CifraFija nombre="Visitas comerciales" ayuda="Visitas técnicas a casas de clientes, del CRM (clientes que entraron en estas fechas)." v={detalle ? num(crmT.visitas) : errorDetalle ? "-" : "…"} antes={crmA ? num(crmA.visitas) : undefined} a={crmT.visitas} b={crmA?.visitas} />
-              <CifraFija nombre="Contratos firmados" ayuda="Instalaciones firmadas de los clientes que entraron en estas fechas (CRM)." v={detalle ? num(crmT.firm) : errorDetalle ? "-" : "…"} antes={crmA && crmT.firm ? num(crmA.firm) : undefined} a={crmT.firm} b={crmT.firm ? crmA?.firm : undefined} extra={crmT.imp ? eur(crmT.imp) : crmT.leads ? "Una instalación tarda semanas en firmarse: los contactos de estas fechas aún están en marcha" : "Las firmas antiguas llegarán con la base de clientes"} />
+              <CifraFija nombre="Contratos firmados" ayuda="Instalaciones firmadas de los clientes que entraron en estas fechas (CRM)." v={detalle ? num(crmT.firm) : errorDetalle ? "-" : "…"} antes={crmA && crmT.firm ? num(crmA.firm) : undefined} a={crmT.firm} b={crmT.firm ? crmA?.firm : undefined} extra={crmT.leads ? "Una instalación tarda semanas en firmarse: los contactos de estas fechas aún están en marcha" : "Las firmas antiguas llegarán con la base de clientes"} />
               {(() => { const m = M("cpl"); const v = m.f(T); return <CifraFija nombre="Coste por contacto" ayuda={m.ayuda} v={T.ads.conv ? m.formato(v) : T.ads.coste ? "Sin contactos medidos" : "-"} antes={C && C.ads.conv ? m.formato(m.f(C)) : undefined} a={v} b={C ? m.f(C) : undefined} menosEsMejor extra={`${nf1.format(T.ads.conv)} contactos según las plataformas · ${eur(T.ads.coste)} invertidos`} />; })()}
               <CifraFija nombre="Margen de las instalaciones" ayuda="Margen previsto de las instalaciones captadas." v="Pendiente" extra="Falta apuntar el coste previsto y real de cada instalación" pendiente />
             </div>
@@ -977,7 +977,7 @@ function TresPreguntas({ T, C, crm, cargando, largo }: { T: Totales; C: Totales 
     if (t.firm === 0 && largo <= 60) { c2 = "gris"; f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} visitas y ${num(t.pres)} presupuestos. Aún no hay firmas: una instalación tarda semanas en decidirse, la tasa de cierre se mira con 3 a 6 meses.`; }
     else {
       c2 = t.firm === 0 ? "ambar" : tasa >= 8 ? "verde" : "ambar";
-      f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} visitas, ${num(t.pres)} presupuestos y ${num(t.firm)} instalaciones firmadas (${eur(t.imp)}).`;
+      f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} visitas, ${num(t.pres)} presupuestos y ${num(t.firm)} instalaciones firmadas.`;
     }
   }
   const pagoPlat: Record<string, string> = { "Google Ads": "google", "Meta (anuncio)": "meta", "ChatGPT Ads": "chatgpt" };
@@ -987,7 +987,7 @@ function TresPreguntas({ T, C, crm, cargando, largo }: { T: Totales; C: Totales 
     const mejor = porCanal[0];
     const pagos = porCanal.filter((r) => r.coste > 0).map((r) => `${r.origen}: ${eur(r.coste / r.firmados)} por instalación`);
     c3 = "verde";
-    f3 = `${mejor.origen} es el que más factura: ${num(mejor.firmados)} ${mejor.firmados === 1 ? "instalación" : "instalaciones"}, ${eur(mejor.firmado)}.${pagos.length ? ` En anuncios: ${pagos.join("; ")}.` : ""}`;
+    f3 = `${mejor.origen} es el que más cierra: ${num(mejor.firmados)} ${mejor.firmados === 1 ? "instalación" : "instalaciones"}.${pagos.length ? ` En anuncios: ${pagos.join("; ")}.` : ""}`;
   }
   const filas: Resp[] = [
     { pregunta: "¿Nos llegan buenos contactos?", color: c1, frase: f1, dato: `${num(T.peticiones)} contactos · ${num(T.visitas)} piden visita` },
@@ -1074,7 +1074,6 @@ function Ventas({ crm, cargando, inversion }: { crm: Detalle["crm"]; cargando: b
           ["Visitas", num(t.visitas)],
           ["Presupuestos", num(t.presupuestos)],
           ["Instalaciones firmadas", num(t.firmados)],
-          ["Importe firmado", eur(t.firmado)],
           ["Coste en anuncios por instalación firmada", pago ? eur(inversion / pago) : "-"],
           ["Tiempo medio hasta la primera llamada", tiempo],
           ["Seguimientos atrasados", num(resp.v)],
@@ -1100,8 +1099,6 @@ function Ventas({ crm, cargando, inversion }: { crm: Detalle["crm"]; cargando: b
             { k: "presupuestos", t: "Presupuestos", v: (r) => r.presupuestos, num: true },
             { k: "firmados", t: "Firmadas", v: (r) => r.firmados, num: true },
             { k: "conv", t: "De contacto a instalación", v: (r) => (r.leads ? r.firmados / r.leads : 0), num: true, f: (r) => (r.leads ? pct((r.firmados / r.leads) * 100) : "-") },
-            { k: "firmado", t: "Firmado", v: (r) => r.firmado, num: true, f: (r) => eur(r.firmado) },
-            { k: "facturado", t: "Facturado", v: (r) => r.facturado, num: true, f: (r) => eur(r.facturado) },
           ]}
         />
         <p className="mt-3 text-[12.5px] text-ink/50">Sale del CRM, que rellena tu equipo. Cuantos más estados y firmas apuntados, más fiel es esta pestaña.</p>
