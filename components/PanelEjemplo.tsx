@@ -329,6 +329,8 @@ function Caja({ titulo, fuente, ayuda, children, className = "", quien = "nosotr
 
 function Grafico({ barras, linea }: { barras: number[]; linea: number[] }) {
   const [sel, setSel] = useState<number | null>(null);
+  const [verBarras, setVerBarras] = useState(true);
+  const [verLinea, setVerLinea] = useState(true);
   const max = Math.max(...barras);
   const maxL = Math.max(...linea);
   const w = 600;
@@ -338,7 +340,7 @@ function Grafico({ barras, linea }: { barras: number[]; linea: number[] }) {
   return (
     <div>
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label="Contactos y visitas de los últimos 30 días (ejemplo)" onMouseLeave={() => setSel(null)}>
-        {barras.map((v, i) => {
+        {verBarras && barras.map((v, i) => {
           const alto = (v / max) * (h - 44);
           return (
             <g key={i} onMouseEnter={() => setSel(i)} onClick={() => setSel(i)}>
@@ -347,7 +349,7 @@ function Grafico({ barras, linea }: { barras: number[]; linea: number[] }) {
             </g>
           );
         })}
-        <polyline points={puntos} fill="none" stroke="#24387a" strokeWidth={2.5} strokeLinejoin="round" className="pn-trazo" />
+        {verLinea && <polyline points={puntos} fill="none" stroke="#24387a" strokeWidth={2.5} strokeLinejoin="round" className="pn-trazo" />}
         <line x1={0} y1={h - 18} x2={w} y2={h - 18} stroke="#d9deeb" />
         <text x={0} y={h - 3} fontSize={11} fill="#535c7a">Hace 30 días</text>
         <text x={w} y={h - 3} fontSize={11} fill="#535c7a" textAnchor="end">Hoy</text>
@@ -361,9 +363,9 @@ function Grafico({ barras, linea }: { barras: number[]; linea: number[] }) {
           </>
         )}
       </p>
-      <div className="mt-1 flex gap-5 text-sm">
-        <span className="flex items-center gap-2"><span className="h-3 w-3 rounded bg-estrella" />Contactos</span>
-        <span className="flex items-center gap-2"><span className="h-0.5 w-4 bg-noche-3" />Visitas</span>
+      <div className="mt-1 flex flex-wrap gap-3 text-sm" role="group" aria-label="Qué mostrar en el gráfico">
+        <button type="button" aria-pressed={verBarras} onClick={() => setVerBarras((v) => !v)} className={`flex items-center gap-2 rounded-full border px-3 py-1 font-bold ${verBarras ? "border-noche bg-white" : "border-linea text-gris line-through"}`}><span className="h-3 w-3 rounded bg-estrella" />Contactos</button>
+        <button type="button" aria-pressed={verLinea} onClick={() => setVerLinea((v) => !v)} className={`flex items-center gap-2 rounded-full border px-3 py-1 font-bold ${verLinea ? "border-noche bg-white" : "border-linea text-gris line-through"}`}><span className="h-0.5 w-4 bg-noche-3" />Visitas</button>
       </div>
     </div>
   );
@@ -520,7 +522,10 @@ export default function PanelEjemplo() {
   const [comp, setComp] = useState<"anterior" | "ano" | "nada">("anterior");
   const comparar: "mes" | "inicio" = comp === "ano" ? "inicio" : "mes";
   const per = PERIODOS.find(([id]) => id === periodo) ?? PERIODOS[5];
-  const fp = per[2];
+  const [desde, setDesde] = useState("2026-10-01");
+  const [hasta, setHasta] = useState("2026-10-27");
+  const diasRango = Math.max(1, Math.round((new Date(hasta).getTime() - new Date(desde).getTime()) / 86400000) + 1);
+  const fp = periodo === "rango" ? (Number.isFinite(diasRango) ? diasRango / 30 : 1) : per[2];
   const esc = (n: number) => Math.max(1, Math.round(n * fp));
   const cmb = (n: number) => (comp === "nada" ? undefined : n);
   const contraTxt = comp === "ano" ? "que el mismo periodo del año pasado" : "que el periodo anterior";
@@ -657,7 +662,15 @@ export default function PanelEjemplo() {
                   {PERIODOS.map(([id, t]) => (
                     <button key={id} type="button" aria-pressed={periodo === id} onClick={() => setPeriodo(id)} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${periodo === id ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>{t}</button>
                   ))}
+                  <button type="button" aria-pressed={periodo === "rango"} onClick={() => setPeriodo("rango")} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${periodo === "rango" ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>Desde / hasta</button>
                 </div>
+                {periodo === "rango" && (
+                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+                    <label className="flex items-center gap-2 font-bold text-gris">Desde <input type="date" value={desde} max={hasta} onChange={(e) => setDesde(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
+                    <label className="flex items-center gap-2 font-bold text-gris">Hasta <input type="date" value={hasta} min={desde} onChange={(e) => setHasta(e.target.value)} className="rounded-lg border border-linea px-2 py-1 font-normal text-tinta" /></label>
+                    <span className="text-gris">{diasRango} {diasRango === 1 ? "día" : "días"}</span>
+                  </div>
+                )}
                 <div className="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Comparar con">
                   <span className="mr-1 text-sm font-bold text-gris">Comparar con:</span>
                   {([["anterior", "Periodo anterior"], ["ano", "Mismo periodo del año pasado"], ["nada", "Nada"]] as const).map(([id, t]) => (
