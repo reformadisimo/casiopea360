@@ -16,12 +16,12 @@ const PESTANAS: [Pestana, string][] = [
   ["resumen", "Resumen"],
   ["herramientas", "Herramientas 360"],
   ["peticiones", "Tus peticiones"],
-  ["crm", "Tu CRM"],
+  ["crm", "Ventas (CRM)"],
   ["clientes", "Clientes"],
   ["anuncios", "Anuncios"],
   ["google", "Google, Bing e IA"],
   ["redes", "Redes"],
-  ["web", "Tu web"],
+  ["web", "La web"],
   ["gastos", "Gastos"],
   ["medicion", "Cómo lo medimos"],
   ["trabajo", "Nuestro trabajo"],
@@ -430,6 +430,47 @@ function Medidor({ valor, etiqueta }: { valor: number; etiqueta: string }) {
   );
 }
 
+const PERIODOS: [string, string, number][] = [
+  ["hoy", "Hoy", 0.04], ["ayer", "Ayer", 0.04], ["7", "7 días", 0.25], ["28", "28 días", 0.95],
+  ["3m", "3 meses", 2.8], ["mes", "Este mes", 1], ["pasado", "Mes pasado", 0.9], ["12m", "12 meses", 11],
+];
+
+const CANALES: [string, number, number, number][] = [
+  ["Google Ads", 128, 17, 61], ["Google (orgánico)", 74, 12, 0], ["Meta (Facebook e Instagram)", 61, 7, 84],
+  ["Microsoft Ads", 19, 2, 70], ["Directo y boca a boca", 30, 3, 0],
+];
+
+function TablaCanales({ esc }: { esc: (n: number) => number }) {
+  const [orden, setOrden] = useState(1);
+  const filas = [...CANALES].sort((a, b) => (b[orden] as number) - (a[orden] as number));
+  const cols = ["Canal", "Contactos", "Clientes", "Coste por cliente"];
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[480px] text-left text-sm">
+        <thead>
+          <tr className="border-b border-linea text-gris">
+            {cols.map((c, i) => (
+              <th key={c} scope="col" className={`py-2 ${i > 0 ? "text-right" : ""}`}>
+                {i === 0 ? c : <button type="button" onClick={() => setOrden(i)} className={`font-bold ${orden === i ? "text-tinta underline underline-offset-4" : ""}`}>{c}</button>}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filas.map(([n, c, k, e]) => (
+            <tr key={n} className="border-b border-linea last:border-0">
+              <td className="py-2 font-bold">{n}</td>
+              <td className="py-2 text-right">{esc(c)}</td>
+              <td className="py-2 text-right">{esc(k)}</td>
+              <td className="py-2 text-right">{e ? `${e} €` : "sin anuncios"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function Cifra({ titulo, valor, formato, cambio, invertir = false, explicacion, contra = "que el mes pasado" }: { titulo: string; valor: number; formato?: (n: number) => string; cambio?: number; invertir?: boolean; explicacion: string; contra?: string }) {
   const bueno = cambio === undefined ? true : invertir ? cambio < 0 : cambio > 0;
   return (
@@ -475,7 +516,14 @@ const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: n
 export default function PanelEjemplo() {
   const [pestana, setPestana] = useState<Pestana>("mandos")
   const [herramienta, setHerramienta] = useState("lupa");
-  const [comparar, setComparar] = useState<"mes" | "inicio">("mes");
+  const [periodo, setPeriodo] = useState("mes");
+  const [comp, setComp] = useState<"anterior" | "ano" | "nada">("anterior");
+  const comparar: "mes" | "inicio" = comp === "ano" ? "inicio" : "mes";
+  const per = PERIODOS.find(([id]) => id === periodo) ?? PERIODOS[5];
+  const fp = per[2];
+  const esc = (n: number) => Math.max(1, Math.round(n * fp));
+  const cmb = (n: number) => (comp === "nada" ? undefined : n);
+  const contraTxt = comp === "ano" ? "que el mismo periodo del año pasado" : "que el periodo anterior";
   const [directo, setDirecto] = useState<{ id: number; tipo: string; titulo: string; detalle: string; hora: string }[]>([]);
   const [hoy, setHoy] = useState({ visitas: 318, contactos: 9, llamadas: 4 });
   const [ahora, setAhora] = useState(14);
@@ -603,20 +651,54 @@ export default function PanelEjemplo() {
                 </ul>
               </section>
 
-              <div className="flex flex-wrap items-center gap-3" role="group" aria-label="Comparar con">
-                <span className="text-sm font-bold text-gris">Comparar con:</span>
-                {([["mes", "El mes pasado"], ["inicio", "El día que empezamos"]] as const).map(([id, t]) => (
-                  <button key={id} type="button" aria-pressed={comparar === id} onClick={() => setComparar(id)} className={`rounded-full px-4 py-2 text-sm font-bold ${comparar === id ? "bg-noche text-white" : "bg-white text-tinta hover:bg-white/70"}`}>{t}</button>
+              <section className="rounded-3xl border border-linea bg-white p-4 sm:p-5" aria-label="Periodo y comparación">
+                <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Periodo">
+                  <span className="mr-1 text-sm font-bold text-gris">Periodo:</span>
+                  {PERIODOS.map(([id, t]) => (
+                    <button key={id} type="button" aria-pressed={periodo === id} onClick={() => setPeriodo(id)} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${periodo === id ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>{t}</button>
+                  ))}
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Comparar con">
+                  <span className="mr-1 text-sm font-bold text-gris">Comparar con:</span>
+                  {([["anterior", "Periodo anterior"], ["ano", "Mismo periodo del año pasado"], ["nada", "Nada"]] as const).map(([id, t]) => (
+                    <button key={id} type="button" aria-pressed={comp === id} onClick={() => setComp(id)} className={`rounded-full px-3.5 py-1.5 text-sm font-bold ${comp === id ? "bg-noche text-white" : "bg-niebla text-tinta hover:bg-linea"}`}>{t}</button>
+                  ))}
+                </div>
+                <p className="mt-3 text-sm text-gris"><b className="text-tinta">Cómo se lee:</b> el número grande es lo que ha pasado en el periodo. La flecha dice cuánto más o menos que el periodo con el que comparas. <b className="text-emerald-700">Verde es que va mejor</b>, rojo es que va peor (en el coste por cliente, bajar es mejorar).</p>
+              </section>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                {[
+                  ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 62 % pide presupuesto de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
+                  ["¿Los convertimos en clientes?", `${esc(41)} clientes`, "De cada 100 contactos se firman 13. Aquí se pierde más gente: el seguimiento.", "crm", "Ver las ventas"],
+                  ["¿Qué canal nos hace ganar más?", "Aerotermia en Google", "Trae el 38 % de los clientes con el coste más bajo.", "clientes", "Ver cada canal"],
+                ].map(([q, v, t, dest, b]) => (
+                  <div key={q} className="rounded-3xl border border-linea bg-white p-5">
+                    <p className="text-sm font-bold text-gris">{q}</p>
+                    <p className="mt-1 text-2xl font-extrabold">{v}</p>
+                    <p className="mt-2 text-sm text-gris">{t}</p>
+                    <button type="button" onClick={() => setPestana(dest as Pestana)} className="mt-2 text-sm font-bold text-noche-3 underline underline-offset-4">{b}</button>
+                  </div>
                 ))}
               </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Cifra titulo="Clientes nuevos este mes" valor={41} cambio={comparar === "mes" ? 11 : 156} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Presupuestos firmados que vienen de internet." />
-                <Cifra titulo="Contactos este mes" valor={312} cambio={comparar === "mes" ? 16 : 118} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Personas que te han escrito, llamado o pedido presupuesto." />
-                <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={comparar === "mes" ? -8 : -41} invertir contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
-                <Cifra titulo="Ventas que vienen de internet" valor={318400} formato={eur} cambio={comparar === "mes" ? 14 : 132} contra={comparar === "mes" ? "que el mes pasado" : "que cuando empezamos"} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
+
+              <div className="grid gap-3 md:grid-cols-2">
+                <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: 3 presupuestos sin respuesta</p><p className="mt-1 text-sm text-gris">Llevan más de 3 días esperando. Qué hacer: llámalos hoy; el correo de recordatorio ya ha salido.</p></div>
+                <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: la ficha de Google tiene 2 reseñas sin contestar</p><p className="mt-1 text-sm text-gris">Qué hacer: respóndelas esta semana. Te lo dejamos redactado en Tus peticiones.</p></div>
               </div>
 
-              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comparar === "mes" ? "Frente al mes pasado" : "Frente al día que empezamos"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte sin pagar nada.">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Cifra titulo="Clientes nuevos" valor={esc(41)} cambio={cmb(comparar === "mes" ? 11 : 156)} contra={contraTxt} explicacion="Presupuestos firmados que vienen de internet." />
+                <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido presupuesto." />
+                <Cifra titulo="Coste por cliente" valor={73} formato={eur} cambio={cmb(comparar === "mes" ? -8 : -41)} invertir contra={contraTxt} explicacion="Lo invertido en anuncios dividido entre clientes. Cuanto más bajo, mejor." />
+                <Cifra titulo="Ventas que vienen de internet" valor={esc(318400)} formato={eur} cambio={cmb(comparar === "mes" ? 14 : 132)} contra={contraTxt} explicacion="Suma de los presupuestos firmados que han llegado por la web." />
+              </div>
+
+              <Caja titulo="Cada canal, de un vistazo" fuente="Ordena pulsando una columna" ayuda="Cada fila es un sitio por donde llegan clientes. Pulsa el título de una columna para ordenar de mayor a menor.">
+                <TablaCanales esc={esc} />
+              </Caja>
+
+              <Caja titulo="Los parámetros que más importan, de un vistazo" fuente={comp === "nada" ? "Sin comparar" : comp === "ano" ? "Frente al año pasado" : "Frente al periodo anterior"} ayuda="Aquí ves si tu web mejora de verdad. Verde es que va mejor; la línea, los seis últimos meses. Si a los tres meses no los ves mejorar, puedes irte sin pagar nada.">
                 <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {PARAMETROS.map((x) => {
                     const ahora = x.serie[5];
@@ -628,7 +710,7 @@ export default function PanelEjemplo() {
                         <p className="text-sm font-bold text-gris">{x.t}</p>
                         <p className="mt-1 text-3xl font-extrabold">{x.f(ahora)}</p>
                         <p className={`text-sm font-bold ${bueno ? "text-emerald-700" : "text-rose-600"}`}>
-                          {cambio >= 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{comparar === "mes" ? "que el mes pasado" : "que al empezar"}</span>
+                          {cambio >= 0 ? "▲" : "▼"} {Math.abs(cambio)} % <span className="font-normal text-gris">{contraTxt}</span>
                         </p>
                         <div className="mt-2"><Linea serie={x.serie} color={bueno ? "#047857" : "#e11d48"} alto={44} /></div>
                         <p className="mt-1 text-xs text-gris">Antes: <b>{x.f(ref)}</b></p>
@@ -698,6 +780,10 @@ export default function PanelEjemplo() {
                   </ul>
                 </Caja>
               </div>
+
+              <p className="rounded-2xl bg-niebla p-4 text-sm text-gris">
+                <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
+              </p>
             </>
           )}
 
