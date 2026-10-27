@@ -26,15 +26,17 @@ export type Modulo = {
   contenido: ReactNode;
 };
 
-export const GRUPOS_MODULOS: { id: string; titulo: string; frase?: string; color: string }[] = [
-  { id: "web", titulo: "Tu web", color: "#4f46e5" },
-  { id: "dicen", titulo: "Lo que dicen de ti", color: "#be185d" },
-  { id: "mercado", titulo: "Tu mercado", color: "#0e7490" },
-  { id: "anuncios", titulo: "Tus anuncios", color: "#1d4ed8" },
-  { id: "tuyo", titulo: "Lo tuyo", frase: "Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.", color: "#7c3aed" },
-  { id: "contigo", titulo: "Contigo", color: "#334155" },
-  { id: "informes", titulo: "Informes", color: "#0f766e" },
-  { id: "historico", titulo: "Histórico", color: "#64748b" },
+export type GrupoModulos = { id: string; titulo: string; frase?: string; descripcion: string; icono: string; color: string };
+
+export const GRUPOS_MODULOS: GrupoModulos[] = [
+  { id: "web", titulo: "Tu web", descripcion: "Qué hace la gente en tu web y si todo funciona.", icono: "globo", color: "#4f46e5" },
+  { id: "dicen", titulo: "Lo que dicen de ti", descripcion: "Qué responden las IA y qué se ve en tus redes y reseñas.", icono: "espejo", color: "#be185d" },
+  { id: "mercado", titulo: "Tu mercado", descripcion: "Qué hace tu competencia.", icono: "catalejo", color: "#0e7490" },
+  { id: "anuncios", titulo: "Tus anuncios", descripcion: "Cuántos contactos llegan, cuánto cuestan y por qué campaña.", icono: "megafono", color: "#1d4ed8" },
+  { id: "tuyo", titulo: "Lo tuyo", frase: "Preparado para ti, por si quieres usarlo. Nosotros no lo vemos ni te lo pedimos.", descripcion: "Tus ventas, tus clientes y el índice de valor. Opcional.", icono: "caja", color: "#7c3aed" },
+  { id: "contigo", titulo: "Contigo", descripcion: "Tus peticiones, tus gastos y cómo lo medimos todo.", icono: "chat", color: "#334155" },
+  { id: "informes", titulo: "Tu informe", descripcion: "Este panel es tu informe, siempre al día. Y tus facturas.", icono: "documento", color: "#0f766e" },
+  { id: "historico", titulo: "Histórico", descripcion: "Cómo has mejorado mes a mes desde el primer día.", icono: "historia", color: "#64748b" },
 ];
 
 const TRAZOS: Record<string, string> = {
@@ -124,36 +126,138 @@ export function Reloj({ titulo, valor, sub, pct, invertir = false }: { titulo: s
 }
 
 // ---------------------------------------------------------------------------------------------
-// Módulo plegable: cerrado es una sola franja; al abrir, el contenido entra con un fundido
+// Navegación: inicio, sección y página. Índice a la izquierda, migas y vuelta atrás siempre a mano.
 // ---------------------------------------------------------------------------------------------
-export function ModuloPlegable({ m, abierto, alternar, color }: { m: Modulo; abierto: boolean; alternar: () => void; color: string }) {
+export type Vista = { g?: string; m?: string };
+export const hashDe = (v: Vista) => (v.m ? `#m-${v.m}` : v.g ? `#g-${v.g}` : "#inicio");
+
+export function luzDeGrupo(ms: Modulo[]): Luz {
+  if (ms.some((m) => m.luz === "problema")) return "problema";
+  if (ms.some((m) => m.luz === "atencion")) return "atencion";
+  if (ms.length && ms.every((m) => m.luz === "preparado")) return "preparado";
+  return "ok";
+}
+
+export function Migas({ vista, grupos, modulos, navegar }: { vista: Vista; grupos: GrupoModulos[]; modulos: Modulo[]; navegar: (v: Vista) => void }) {
+  const m = modulos.find((x) => x.id === vista.m);
+  const g = grupos.find((x) => x.id === (vista.g ?? m?.grupo));
+  const subir = () => navegar(vista.m ? { g: g?.id } : {});
+  return (
+    <nav aria-label="Dónde estás" className="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm">
+      <button type="button" onClick={subir} className="rounded-full bg-noche px-4 py-2 font-bold text-white hover:bg-noche-2">← {vista.m ? `Volver a ${g?.titulo ?? "la sección"}` : "Volver al inicio"}</button>
+      <span className="ml-1 flex flex-wrap items-center gap-x-2 text-gris">
+        <button type="button" onClick={() => navegar({})} className="font-bold underline underline-offset-4 hover:text-tinta">Inicio</button>
+        {g && (<><span aria-hidden="true">›</span>{vista.m ? <button type="button" onClick={() => navegar({ g: g.id })} className="font-bold underline underline-offset-4 hover:text-tinta">{g.titulo}</button> : <b className="text-tinta" aria-current="page">{g.titulo}</b>}</>)}
+        {m && (<><span aria-hidden="true">›</span><b className="text-tinta" aria-current="page">{m.nombre}</b></>)}
+      </span>
+    </nav>
+  );
+}
+
+export function IndiceLateral({ vista, grupos, modulos, navegar, abierto, setAbierto }: { vista: Vista; grupos: GrupoModulos[]; modulos: Modulo[]; navegar: (v: Vista) => void; abierto: boolean; setAbierto: (v: boolean) => void }) {
+  const gActivo = vista.g ?? modulos.find((x) => x.id === vista.m)?.grupo;
+  const donde = vista.m ? modulos.find((x) => x.id === vista.m)?.nombre : vista.g ? grupos.find((x) => x.id === vista.g)?.titulo : "Inicio";
+  return (
+    <aside className="lg:sticky lg:top-24 lg:self-start">
+      <button type="button" onClick={() => setAbierto(!abierto)} aria-expanded={abierto} aria-controls="indice-panel" className="flex w-full items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3 text-left font-bold ring-1 ring-linea lg:hidden">
+        <span>Índice <span className="font-normal text-gris">· estás en {donde}</span></span>
+        <span aria-hidden="true">{abierto ? "▴" : "▾"}</span>
+      </button>
+      <nav id="indice-panel" aria-label="Índice del panel" className={`${abierto ? "block" : "hidden"} mt-2 rounded-3xl bg-white p-3 ring-1 ring-linea lg:mt-0 lg:block lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto`}>
+        <button type="button" onClick={() => navegar({})} aria-current={!vista.g && !vista.m ? "page" : undefined} className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-extrabold ${!vista.g && !vista.m ? "bg-noche text-white" : "hover:bg-niebla"}`}>
+          <Icono n="estrella" className="h-4 w-4" />Inicio
+        </button>
+        <ul className="mt-1 space-y-0.5">
+          {grupos.map((g) => {
+            const ms = modulos.filter((m) => m.grupo === g.id);
+            const activo = gActivo === g.id;
+            return (
+              <li key={g.id}>
+                <button type="button" onClick={() => navegar({ g: g.id })} aria-current={vista.g === g.id && !vista.m ? "page" : undefined} className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-extrabold ${vista.g === g.id && !vista.m ? "text-white" : "hover:bg-niebla"}`} style={vista.g === g.id && !vista.m ? { background: g.color } : { color: activo ? g.color : undefined }}>
+                  <Icono n={g.icono} className="h-4 w-4 shrink-0" />
+                  <span className="min-w-0 flex-1">{g.titulo}</span>
+                  <PuntoLuz luz={luzDeGrupo(ms)} tam={9} />
+                </button>
+                {activo && (
+                  <ul className="mb-1 ml-5 mt-0.5 space-y-0.5 border-l border-linea pl-2">
+                    {ms.map((m) => (
+                      <li key={m.id}>
+                        <button type="button" onClick={() => navegar({ g: g.id, m: m.id })} aria-current={vista.m === m.id ? "page" : undefined} className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[13px] ${vista.m === m.id ? "bg-niebla font-extrabold text-tinta" : "text-gris hover:bg-niebla hover:text-tinta"}`}>
+                          <PuntoLuz luz={m.luz} tam={8} />
+                          <span className="min-w-0 flex-1">{m.nombre}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
+  );
+}
+
+export function TarjetaGrupo({ g, ms, navegar }: { g: GrupoModulos; ms: Modulo[]; navegar: (v: Vista) => void }) {
+  const l = luzDeGrupo(ms);
+  const atencion = ms.filter((m) => m.luz === "atencion" || m.luz === "problema").length;
+  return (
+    <button type="button" onClick={() => navegar({ g: g.id })} className="flex h-full w-full flex-col items-start gap-2 rounded-3xl border border-linea bg-white p-5 text-left transition-colors hover:bg-niebla" style={{ borderTop: `6px solid ${g.color}` }}>
+      <span className="flex w-full items-center justify-between">
+        <span className="grid h-11 w-11 place-items-center rounded-2xl" style={{ background: `${g.color}18`, color: g.color }}><Icono n={g.icono} /></span>
+        <PuntoLuz luz={l} tam={14} />
+      </span>
+      <span className="text-lg font-extrabold">{g.titulo}</span>
+      <span className="text-sm text-gris">{g.descripcion}</span>
+      <span className="mt-auto pt-1 text-xs font-bold text-gris">
+        {ms.length} {ms.length === 1 ? "apartado" : "apartados"}{atencion > 0 ? ` · ${atencion} para mirar` : ""}
+      </span>
+    </button>
+  );
+}
+
+export function TarjetaModulo({ m, color, navegar }: { m: Modulo; color: string; navegar: (v: Vista) => void }) {
   const l = LUZ[m.luz];
   return (
-    <section id={`mod-${m.id}`} className="scroll-mt-24 overflow-hidden rounded-3xl border border-linea bg-white" style={{ borderLeft: `8px solid ${color}` }}>
-      <button type="button" onClick={alternar} aria-expanded={abierto} aria-controls={`cuerpo-${m.id}`} className="flex w-full items-start gap-3 p-4 text-left transition-colors hover:bg-niebla sm:items-center sm:gap-4 sm:p-5">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl" style={{ background: `${color}18`, color }}>
-          <Icono n={m.icono} />
+    <button type="button" onClick={() => navegar({ g: m.grupo, m: m.id })} className="flex w-full items-start gap-3 rounded-3xl border border-linea bg-white p-4 text-left transition-colors hover:bg-niebla sm:items-center sm:gap-4 sm:p-5" style={{ borderLeft: `8px solid ${color}` }}>
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl" style={{ background: `${color}18`, color }}><Icono n={m.icono} /></span>
+      <span className="min-w-0 flex-1">
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="text-base font-extrabold sm:text-lg">{m.nombre}</span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-niebla px-2.5 py-0.5 text-[11px] font-bold text-gris"><PuntoLuz luz={m.luz} tam={9} />{l.texto}</span>
         </span>
-        <span className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="text-base font-extrabold sm:text-lg">{m.nombre}</span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-niebla px-2.5 py-0.5 text-[11px] font-bold text-gris">
-              <PuntoLuz luz={m.luz} tam={9} />
-              {l.texto}
-            </span>
-          </span>
-          <span className="mt-0.5 block text-sm text-gris">{m.linea}</span>
-          <span className="mt-1 block text-sm font-bold text-tinta">{m.conclusion}</span>
-        </span>
-        <span className="mt-1 shrink-0 text-lg font-bold text-gris" aria-hidden="true">{abierto ? "▴" : "▾"}</span>
-      </button>
-      {abierto && (
-        <div id={`cuerpo-${m.id}`} className="pn-fade space-y-5 border-t border-linea bg-niebla/60 p-4 sm:p-6">
-          <ExplicaModulo id={m.id} />
-          {m.contenido}
+        <span className="mt-0.5 block text-sm text-gris">{m.linea}</span>
+        <span className="mt-1 block text-sm font-bold text-tinta">{m.conclusion}</span>
+      </span>
+      <span className="mt-1 shrink-0 text-sm font-bold text-gris" aria-hidden="true">Abrir ›</span>
+    </button>
+  );
+}
+
+export function PaginaModulo({ m, color, ant, sig, navegar }: { m: Modulo; color: string; ant?: Modulo; sig?: Modulo; navegar: (v: Vista) => void }) {
+  const l = LUZ[m.luz];
+  return (
+    <article className="pn-fade space-y-5" aria-labelledby={`t-${m.id}`}>
+      <header className="flex items-start gap-4 rounded-3xl bg-white p-5 ring-1 ring-linea sm:p-6" style={{ borderLeft: `8px solid ${color}` }}>
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl" style={{ background: `${color}18`, color }}><Icono n={m.icono} className="h-7 w-7" /></span>
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <h2 id={`t-${m.id}`} className="text-2xl font-extrabold">{m.nombre}</h2>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-niebla px-2.5 py-0.5 text-xs font-bold text-gris"><PuntoLuz luz={m.luz} tam={9} />{l.texto}</span>
+          </div>
+          <p className="mt-1 text-gris">{m.linea}</p>
+          <p className="mt-1 font-bold text-tinta">{m.conclusion}</p>
         </div>
-      )}
-    </section>
+      </header>
+      <ExplicaModulo id={m.id} />
+      {m.contenido}
+      <nav aria-label="Seguir" className="flex flex-wrap items-center justify-between gap-3 border-t border-linea pt-5">
+        {ant ? <button type="button" onClick={() => navegar({ g: ant.grupo, m: ant.id })} className="rounded-full border border-linea bg-white px-4 py-2 text-sm font-bold hover:bg-niebla">← {ant.nombre}</button> : <span />}
+        <button type="button" onClick={() => navegar({ g: m.grupo })} className="rounded-full bg-noche px-4 py-2 text-sm font-bold text-white hover:bg-noche-2">Ver toda la sección</button>
+        {sig ? <button type="button" onClick={() => navegar({ g: sig.grupo, m: sig.id })} className="rounded-full border border-linea bg-white px-4 py-2 text-sm font-bold hover:bg-niebla">{sig.nombre} →</button> : <span />}
+      </nav>
+    </article>
   );
 }
 

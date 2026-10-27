@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import LogoMarca from "@/components/LogoMarca";
 import { EtiquetaQuien, Glosa, type Quien } from "@/components/GlosaPanel";
 import { Herramientas360, IndiceValor, Mandos } from "@/components/PanelMandos";
-import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, ModuloPlegable, Reloj, type Modulo } from "@/components/PanelModulos";
+import { FilaLuces, GRUPOS_MODULOS, GuiaInicio, IndiceLateral, Migas, PaginaModulo, Reloj, TarjetaGrupo, TarjetaModulo, hashDe, type Modulo, type Vista } from "@/components/PanelModulos";
 
 
 const LOGO: Record<string, string> = {
@@ -496,7 +496,9 @@ const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: n
 ];
 
 export default function PanelEjemplo() {
-  const [abiertos, setAbiertos] = useState<string[] | null>(null);
+  const MODULOS_REF = useRef<Modulo[]>([]);
+  const [vista, setVista] = useState<Vista>({});
+  const [menu, setMenu] = useState(false);
   const [periodo, setPeriodo] = useState("mes");
   const [comp, setComp] = useState<"anterior" | "ano" | "nada">("anterior");
   const comparar: "mes" | "inicio" = comp === "ano" ? "inicio" : "mes";
@@ -530,6 +532,7 @@ export default function PanelEjemplo() {
     setTimeout(() => cambiaEstado(id, "En curso"), 3500);
   };
   const [enviado, setEnviado] = useState(false);
+  const [tipoMsg, setTipoMsg] = useState("Una mejora para el panel");
   const contador = useRef(0);
 
   useEffect(() => {
@@ -556,14 +559,21 @@ export default function PanelEjemplo() {
     };
   }, []);
 
-  // Se puede abrir un módulo concreto con el enlace, p. ej. /panel#crm
+  // Se puede abrir una sección o una página concreta con el enlace (/panel#m-crm, /panel#g-anuncios) y el botón Atrás funciona
   useEffect(() => {
-    const viejo: Record<string, string> = { anuncios: "campanas", herramientas: "lupa", resumen: "contactos", mandos: "" };
-    const h0 = window.location.hash.replace("#", "");
-    const h = h0 in viejo ? viejo[h0] : h0;
-    if (!h) return;
-    setAbiertos([h]);
-    setTimeout(() => document.getElementById(`mod-${h}`)?.scrollIntoView({ block: "start" }), 120);
+    const leer = () => {
+      const h = window.location.hash.replace("#", "");
+      const mods = MODULOS_REF.current;
+      const viejo: Record<string, string> = { anuncios: "campanas", herramientas: "lupa", resumen: "contactos" };
+      if (h.startsWith("m-")) { const m = mods.find((x) => x.id === h.slice(2)); setVista(m ? { g: m.grupo, m: m.id } : {}); return; }
+      if (h.startsWith("g-")) { setVista({ g: h.slice(2) }); return; }
+      const id = h in viejo ? viejo[h] : h;
+      const m = mods.find((x) => x.id === id);
+      setVista(m ? { g: m.grupo, m: m.id } : {});
+    };
+    leer();
+    window.addEventListener("popstate", leer);
+    return () => window.removeEventListener("popstate", leer);
   }, []);
 
   const gastoMes = GASTO_MES[GASTO_MES.length - 1];
@@ -773,6 +783,8 @@ export default function PanelEjemplo() {
                     </ul>
                   </div>
                 </div>
+                <button type="button" onClick={() => window.print()} className="mt-4 rounded-full bg-noche px-5 py-2.5 text-sm font-bold text-white hover:bg-noche-2 print:hidden">Imprimir esta pantalla o guardarla en PDF</button>
+                <p className="mt-2 text-xs text-gris">Imprime la pantalla en la que estás. Para tener el resumen entero, vuelve al inicio y pulsa imprimir.</p>
               </Caja>
               <Caja titulo="Tus facturas" fuente="Para descargar" ayuda="Tus facturas, siempre a mano. Sin pedirlas por correo.">
                 <ul className="grid gap-3 sm:grid-cols-2">
@@ -1221,12 +1233,18 @@ export default function PanelEjemplo() {
     { id: "informes", grupo: "informes", nombre: "Tu informe y tus facturas", corto: "Informe", linea: "Este panel es tu informe: siempre al día, sin esperar a que nadie lo mande.", conclusion: "Hoy no hay nada que esperar: todo está al día. Tus facturas, dentro.", luz: "ok", icono: "documento", contenido: piezas.informes },
     { id: "historico", grupo: "historico", nombre: "Cómo has mejorado", corto: "Histórico", linea: "La evolución mes a mes desde el primer día.", conclusion: "En seis meses, de 120 a 312 contactos al mes.", luz: "ok", icono: "historia", contenido: piezas.historico },
   ];
-  const abiertosEf = abiertos ?? MODULOS.filter((m) => m.luz === "problema").map((m) => m.id);
-  const alternar = (id: string) => setAbiertos((a) => { const base = a ?? abiertosEf; return base.includes(id) ? base.filter((x) => x !== id) : [...base, id]; });
-  const ir = (id: string) => {
-    setAbiertos((a) => { const base = a ?? abiertosEf; return base.includes(id) ? base : [...base, id]; });
-    setTimeout(() => document.getElementById(`mod-${id}`)?.scrollIntoView({ block: "start" }), 60);
+  MODULOS_REF.current = MODULOS;
+  const navegar = (v: Vista) => {
+    setVista(v);
+    setMenu(false);
+    try { window.history.pushState(null, "", hashDe(v)); } catch { /* sin historial */ }
+    setTimeout(() => {
+      if (!v.g && !v.m) window.scrollTo({ top: 0 });
+      else document.getElementById("panel-contenido")?.scrollIntoView({ block: "start" });
+    }, 30);
   };
+  const ir = (id: string) => { const m = MODULOS.find((x) => x.id === id); if (m) navegar({ g: m.grupo, m: m.id }); };
+  const inicio = !vista.g && !vista.m;
   const atencion = MODULOS.filter((m) => m.luz === "atencion");
   const urgentes = MODULOS.filter((m) => m.luz === "problema");
 
@@ -1236,19 +1254,28 @@ export default function PanelEjemplo() {
         .pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:pnFade .35s ease-out both}
         @keyframes pnFade{from{opacity:0}to{opacity:1}}
         @media (prefers-reduced-motion: reduce){.pn-barra,.pn-trazo,.pn-entra,.pn-fade{animation:none}}
+        @media print{body > *:not(main):not([data-versionante]){display:none!important}main#contenido{padding:0!important}}
       `}</style>
 
-      <div className="bg-noche pb-10 pt-24 text-white sm:pt-28">
+      <div className={`bg-noche text-white print:hidden ${inicio ? "pb-10 pt-24 sm:pt-28" : "pb-4 pt-24 sm:pt-28"}`}>
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        {inicio && (
         <div className="rounded-2xl bg-estrella px-5 py-3 text-sm font-bold text-tinta">
           Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.
         </div>
+        )}
 
         <header className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
-            <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
-            <p className="mt-2 text-lg text-white/80">Casiopea te pone en el siguiente nivel: toda tu visión 360 en una pantalla.</p>
+            {inicio ? (
+              <>
+                <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
+                <p className="mt-2 text-lg text-white/80">Casiopea te pone en el siguiente nivel: toda tu visión 360 en una pantalla.</p>
+              </>
+            ) : (
+              <p className="mt-1 text-sm font-bold text-estrella">Datos de demostración de una empresa inventada</p>
+            )}
           </div>
           <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
@@ -1258,6 +1285,7 @@ export default function PanelEjemplo() {
           </div>
         </header>
 
+        {inicio && (<>
         <section className="mt-6 rounded-3xl bg-white/5 p-5 text-white sm:p-7 lg:grid lg:grid-cols-2 lg:gap-8" aria-label="Resumen de hoy">
           <div>
           <p className="text-sm font-bold text-estrella">Resumen de hoy</p>
@@ -1315,36 +1343,54 @@ export default function PanelEjemplo() {
         </div>
         <p className="mt-3 text-center text-xs text-white/70">Cómo leer los relojes: la aguja en la franja verde, va bien; en la naranja, atento; en la roja, hay que actuar. En el coste, cuanto más a la izquierda, mejor.</p>
         <p className="mt-1 text-center text-xs text-white/50">Última revisión: hoy 07:00 · Próxima: mañana 07:00 · Se actualiza solo, no hay informes que esperar.</p>
+        </>)}
       </div>
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
 
-        <div className="mt-6"><GuiaInicio /></div>
-
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm font-bold text-gris">Todo cerrado al entrar. Abre solo lo que te interese.</p>
-          <div className="flex gap-2">
-            <button type="button" onClick={() => setAbiertos(MODULOS.map((m) => m.id))} className="rounded-full bg-white px-4 py-2 text-sm font-bold hover:bg-white/70">Abrir todo</button>
-            <button type="button" onClick={() => setAbiertos([])} className="rounded-full bg-white px-4 py-2 text-sm font-bold hover:bg-white/70">Cerrar todo</button>
+        <div className="mt-6 lg:grid lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
+          <div className="print:hidden">
+            <IndiceLateral vista={vista} grupos={GRUPOS_MODULOS} modulos={MODULOS} navegar={navegar} abierto={menu} setAbierto={setMenu} />
+            <a href="#escribenos" className="mt-3 hidden rounded-2xl bg-estrella px-4 py-3 text-center text-sm font-extrabold text-tinta hover:bg-estrella-2 lg:block">Escríbenos</a>
           </div>
-        </div>
+          <div id="panel-contenido" className="mt-4 min-w-0 scroll-mt-24 space-y-5 lg:mt-0">
+            {!inicio && <div className="print:hidden"><Migas vista={vista} grupos={GRUPOS_MODULOS} modulos={MODULOS} navegar={navegar} /></div>}
 
-        <div className="mt-4 space-y-8">
-          {GRUPOS_MODULOS.map((g) => {
-            const ms = MODULOS.filter((m) => m.grupo === g.id);
-            return (
-              <section key={g.id} aria-label={g.titulo}>
-                <div className="mb-3 flex flex-wrap items-baseline gap-x-3">
-                  <h2 className="text-sm font-extrabold uppercase tracking-wide" style={{ color: g.color }}>{g.titulo}</h2>
-                  {g.frase && <p className="text-sm font-bold text-tinta">{g.frase}</p>}
+            {inicio && (
+              <>
+                <GuiaInicio />
+                <h2 className="pt-2 text-xl font-extrabold">Elige una sección</h2>
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {GRUPOS_MODULOS.map((g) => <TarjetaGrupo key={g.id} g={g} ms={MODULOS.filter((m) => m.grupo === g.id)} navegar={navegar} />)}
                 </div>
-                <div className="space-y-3">
-                  {ms.map((m) => <ModuloPlegable key={m.id} m={m} abierto={abiertosEf.includes(m.id)} alternar={() => alternar(m.id)} color={g.color} />)}
-                </div>
-              </section>
-            );
-          })}
+              </>
+            )}
+
+            {vista.g && !vista.m && (() => {
+              const g = GRUPOS_MODULOS.find((x) => x.id === vista.g);
+              if (!g) return null;
+              return (
+                <section className="pn-fade space-y-3" aria-label={g.titulo}>
+                  <div className="rounded-3xl bg-white p-5 ring-1 ring-linea sm:p-6" style={{ borderTop: `6px solid ${g.color}` }}>
+                    <h2 className="text-2xl font-extrabold">{g.titulo}</h2>
+                    <p className="mt-1 text-gris">{g.descripcion}</p>
+                    {g.frase && <p className="mt-2 font-bold text-tinta">{g.frase}</p>}
+                  </div>
+                  {MODULOS.filter((m) => m.grupo === g.id).map((m) => <TarjetaModulo key={m.id} m={m} color={g.color} navegar={navegar} />)}
+                </section>
+              );
+            })()}
+
+            {vista.m && (() => {
+              const m = MODULOS.find((x) => x.id === vista.m);
+              if (!m) return null;
+              const g = GRUPOS_MODULOS.find((x) => x.id === m.grupo);
+              const hermanos = MODULOS.filter((x) => x.grupo === m.grupo);
+              const i = hermanos.findIndex((x) => x.id === m.id);
+              return <PaginaModulo m={m} color={g?.color ?? "#334155"} ant={hermanos[i - 1]} sig={hermanos[i + 1]} navegar={navegar} />;
+            })()}
+          </div>
         </div>
 
         <div className="mt-6 space-y-5">
@@ -1352,22 +1398,30 @@ export default function PanelEjemplo() {
                 <b className="text-tinta">De dónde salen estos datos:</b> Google Analytics, Google Ads, Meta, Microsoft Ads, Search Console y los formularios de tu web. Actualizados hace unos minutos. Son datos de ejemplo de una empresa inventada.
               </p>
 
-          <section className="rounded-3xl bg-noche p-6 text-white sm:p-8">
-            <p className="text-xl font-extrabold">¿Echas algún dato de menos? ¿Quieres ver algo más en tu panel?</p>
-            <p className="mt-1 text-white/75">Escríbelo aquí y lo añadimos a tu panel en 24 a 48 horas.</p>
+          <section id="escribenos" className="scroll-mt-24 rounded-3xl bg-noche p-6 text-white sm:p-8 print:hidden" aria-label="Escríbenos">
+            <p className="text-xl font-extrabold">Escríbenos. Te contestamos por correo.</p>
+            <p className="mt-1 text-white/75">Para pedirnos una mejora, un dato que echas de menos, darnos información que nos ayude con tus campañas, o contarnos una duda. En 24 a 48 horas lo tienes.</p>
             {enviado ? (
-              <p className="mt-4 rounded-2xl bg-white/10 p-4 font-bold text-estrella">Recibido. Lo tendrás en 24 a 48 horas. (En esta demostración no se envía nada.)</p>
+              <p className="mt-4 rounded-2xl bg-white/10 p-4 font-bold text-estrella">Recibido. Te contestamos por correo en 24 a 48 horas. (En esta demostración no se envía nada.)</p>
             ) : (
               <form
-                className="mt-4 flex flex-col gap-3 sm:flex-row"
+                className="mt-4 space-y-3"
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (pedido.trim()) setEnviado(true);
                 }}
               >
-                <label className="sr-only" htmlFor="pedido-panel">Qué dato quieres ver en tu panel</label>
-                <input id="pedido-panel" value={pedido} onChange={(e) => setPedido(e.target.value)} placeholder="Por ejemplo: ventas por zona de Madrid" className="flex-1 rounded-full bg-white px-5 py-3 text-tinta focus:outline-none focus:ring-4 focus:ring-estrella/50" />
-                <button type="submit" className="rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Pedirlo</button>
+                <div className="flex flex-wrap gap-2" role="group" aria-label="De qué se trata">
+                  {["Una mejora para el panel", "Un dato que echo de menos", "Información para vosotros", "Una duda", "Algo no funciona"].map((t) => (
+                    <button key={t} type="button" aria-pressed={tipoMsg === t} onClick={() => setTipoMsg(t)} className={`rounded-full px-4 py-2 text-sm font-bold ${tipoMsg === t ? "bg-estrella text-tinta" : "bg-white/10 text-white hover:bg-white/20"}`}>{t}</button>
+                  ))}
+                </div>
+                <label className="sr-only" htmlFor="pedido-panel">Tu mensaje</label>
+                <textarea id="pedido-panel" rows={3} value={pedido} onChange={(e) => setPedido(e.target.value)} placeholder={tipoMsg === "Información para vosotros" ? "Por ejemplo: en noviembre hacemos una promoción de calderas" : "Por ejemplo: quiero ver los contactos por zona de Madrid"} className="w-full rounded-2xl bg-white px-5 py-3 text-tinta focus:outline-none focus:ring-4 focus:ring-estrella/50" />
+                <div className="flex flex-wrap items-center gap-3">
+                  <button type="submit" className="rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Enviar por correo</button>
+                  <span className="text-xs text-white/60">Es un mensaje para tu equipo de Casiopea. No hace falta que escribas cifras de tu empresa.</span>
+                </div>
               </form>
             )}
           </section>

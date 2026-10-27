@@ -15,7 +15,6 @@ import TrasCarga from "@/components/TrasCarga";
 import Comisiones from "@/components/Comisiones";
 import { glosar } from "@/lib/glosario";
 import CostesDiferido from "@/components/CostesDiferido";
-import MovilParte from "@/components/MovilParte";
 import DiagnosticoDiferido from "@/components/DiagnosticoDiferido";
 import RelojMundoDiferido from "@/components/RelojMundoDiferido";
 import {
@@ -419,11 +418,11 @@ export function SeccionParte() {
         <VideoFondo nombre="equipo-riendo" alt="" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-noche/90 via-noche/70 to-noche/40 lg:bg-gradient-to-r lg:from-noche lg:via-noche/80 lg:to-noche/20" />
-      <div className={`${ENVOLTORIO} relative grid items-center gap-14 lg:grid-cols-[1fr_auto]`}>
+      <div className={`${ENVOLTORIO} relative`}>
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Tu informe no se espera: lo tienes en tu panel, al día.</h2>
           <p className="mt-5 max-w-xl text-lg text-white/80">
-            No te mandamos informes semanales ni mensuales que llegan tarde. Todo lo que iba en ellos lo ves tú, en tu panel, al momento y sin entender de números. Si prefieres un aviso corto, también lo puedes recibir por WhatsApp.
+            No te mandamos informes semanales ni mensuales que llegan tarde. Todo lo que iba en ellos lo ves tú, en tu panel, al momento y sin entender de números.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i, k) => (
@@ -444,7 +443,6 @@ export function SeccionParte() {
           </p>
           <Link href="/panel" className={`${BOTON} mt-6 inline-flex`}>Ver un panel de ejemplo</Link>
         </div>
-        <MovilParte />
       </div>
     </section>
   );
