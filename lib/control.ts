@@ -54,5 +54,6 @@ export const FICHA: [string, string, string][] = [
   ["Ficha de Google (tu negocio en el mapa)", "Con tu correo como propietario", "Tú, propietario. Casiopea, como administradora invitada."],
   ["Facebook e Instagram", "Tu cuenta de empresa, con tu correo como propietario", "Tú, propietario. Casiopea, como socia invitada."],
   ["Contactos y clientes", "Tuyos. En Excel cuando los pidas", "Tú. Casiopea los usa para trabajar contigo."],
+  ["Tu facturación y tu ticket medio", "Tuyos. Ni los vemos ni te los pedimos", "Tú. Se quedan en tu navegador. Nosotros, como mucho, ven un índice."],
   ["Herramientas de Casiopea (informes y panel de control)", "Son nuestras. Tus datos, no: son tuyos", "Casiopea. Tú ves tu panel."],
 ];

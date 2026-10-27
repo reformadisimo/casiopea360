@@ -1244,6 +1244,7 @@ export default function PanelEjemplo() {
           <div>
             <p className="text-sm font-bold text-white/70">Control de mandos · Climatización Ejemplo, S.L.</p>
             <h1 className="mt-1 text-3xl font-extrabold sm:text-5xl">Todo lo que pasa en tu sitio.</h1>
+            <p className="mt-2 text-lg text-white/80">Casiopea te pone en el siguiente nivel: toda tu visión 360 en una pantalla.</p>
           </div>
           <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-tinta shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
