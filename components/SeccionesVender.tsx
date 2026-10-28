@@ -120,3 +120,54 @@ export function SeccionFichaGoogle() {
     </section>
   );
 }
+
+/** El equipo detrás: seleccionado durante 22 años, autónomos que cobran por proyecto, con plazos cerrados.
+    Sin nombres, sin cifras de plantilla y sin superlativos: lo que se cuenta es el método de selección y de trabajo. */
+export function SeccionEquipo() {
+  const oficios: [string, string][] = [
+    ["SEO y posicionamiento", "Que Google y las IA entiendan tu web y te enseñen a quien te busca."],
+    ["Campañas en Google", "Anuncios de búsqueda y de marca, medidos al céntimo."],
+    ["Campañas en Meta", "Facebook e Instagram, con el mensaje y el público correctos."],
+    ["Diseño", "Imagen, web y materiales que se reconocen y se recuerdan."],
+    ["Experiencia de usuario", "Que quien llega encuentre lo que busca y dé el paso."],
+    ["Analítica", "Que cada cifra se mida bien y se entienda."],
+    ["Programación", "Webs rápidas, herramientas a medida y automatizaciones."],
+    ["Contenidos y textos", "Lo que explicas, escrito para que se lea y convenza."],
+  ];
+  const claves: [string, string][] = [
+    ["22 años seleccionando", "Desde 2004 hemos ido probando, filtrando y quedándonos con los profesionales que cumplen: en calidad, en plazos y en trato."],
+    ["Autónomos, por proyecto", "Trabajan por su cuenta y solo cobran por cada proyecto. Sin gasto fijo de personal: tú no pagas a nadie que esté parado."],
+    ["Plazos cerrados", "Cada encargo sale con su fecha de entrega clara desde el principio, y se cumple o se te cuenta por qué."],
+    ["Un solo contacto", "Tú hablas con una persona, que coordina a los especialistas que tu proyecto necesite."],
+  ];
+  return (
+    <section className="bg-noche py-16 text-white sm:py-24" aria-labelledby="equipo-detras">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">El equipo detrás</p>
+        <h2 id="equipo-detras" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Un equipo seleccionado durante 22 años</h2>
+        <p className="mt-5 max-w-3xl text-lg text-white/85">
+          No contratamos a quien tiene un hueco: elegimos a los especialistas con los que de verdad queremos trabajar, y llevamos más de veinte años afinando esa lista. Son profesionales independientes de cada oficio, con una forma de trabajar muy clara y una colaboración continua con nosotros.
+        </p>
+        <ul className="mt-10 grid gap-4 md:grid-cols-2">
+          {claves.map(([t, d]) => (
+            <li key={t} className="rounded-3xl bg-white/10 p-6 ring-1 ring-white/15">
+              <h3 className="text-xl font-extrabold text-estrella">{t}</h3>
+              <p className="mt-2 text-white/85">{d}</p>
+            </li>
+          ))}
+        </ul>
+        <h3 className="mt-12 text-2xl font-extrabold">Los oficios que cubrimos con especialistas</h3>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {oficios.map(([t, d]) => (
+            <li key={t} className="rounded-2xl bg-white p-4 text-tinta">
+              <p className="font-extrabold">{t}</p>
+              <p className="mt-1 text-sm text-gris">{d}</p>
+              <p className="mt-2 inline-block rounded-full bg-[#e4f3e6] px-2.5 py-0.5 text-[12px] font-bold text-[#17653a]">Especialista de nuestra red</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-8 max-w-3xl text-white/80">Por eso nuestros precios son tan buenos: no pagamos oficinas ni plantilla ociosa, y todo lo que cobras va a trabajo hecho.</p>
+      </div>
+    </section>
+  );
+}

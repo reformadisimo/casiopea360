@@ -3,7 +3,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
-import { SeccionSonarEnGrande, SeccionComoTrabajamos } from "@/components/SeccionesVender";
+import { SeccionSonarEnGrande, SeccionComoTrabajamos, SeccionEquipo } from "@/components/SeccionesVender";
 import {
   BOTON,
   BOTON_CLARO,
@@ -69,6 +69,7 @@ export default function Inicio() {
 
       <CintaHerramientas />
       <SeccionVeinteProveedores />
+      <SeccionEquipo />
       <SeccionComoEsPosible />
       <SeccionPromesas />
       <SeccionLoFirmamos />

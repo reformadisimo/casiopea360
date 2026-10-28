@@ -1176,8 +1176,8 @@ export function SeccionVeinteProveedores() {
           <div className="relative rounded-[2rem] bg-noche p-8 text-white shadow-[0_30px_60px_-30px_rgba(14,26,61,0.8)] sm:p-10">
             <span aria-hidden="true" className="absolute -right-3 -top-3 h-8 w-8 rounded-full bg-estrella shadow-[0_0_0_8px_rgba(255,197,61,0.25),0_0_30px_rgba(255,197,61,0.8)]" />
             <p className="text-sm font-bold text-estrella">Te facilitamos la vida.</p>
-            <p className="mt-3 text-4xl font-extrabold sm:text-5xl">1 equipo.<br />1 factura.<br />Todo dentro.</p>
-            <p className="mt-5 text-lg text-white/85">Un solo equipo que lo hace todo. Y responde. Todo eso, con la misma cuota.</p>
+            <p className="mt-3 text-4xl font-extrabold sm:text-5xl">1 contacto.<br />1 factura.<br />Todo dentro.</p>
+            <p className="mt-5 text-lg text-white/85">Un solo contacto y, detrás, un especialista de nuestra red para cada oficio. Con plazos claros y la misma cuota.</p>
             <Link href="/servicios#costes" className="mt-7 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Calcula lo que te ahorras</Link>
           </div>
         </div>

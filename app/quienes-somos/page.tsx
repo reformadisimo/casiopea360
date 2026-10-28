@@ -8,6 +8,7 @@ import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
 import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre, SeccionVentaja, Loseta } from "@/components/secciones";
+import { SeccionEquipo } from "@/components/SeccionesVender";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -65,7 +66,7 @@ export default function QuienesSomos() {
               Tuvimos nuestros propios negocios y sufrimos lo mismo que tú: un proveedor para la web, otro para Google, otro para los anuncios, reuniones con todos y nadie que mirara el conjunto. Las webs tardaban meses y cada cambio era eterno.
             </p>
             <p className="mt-4 text-lg text-gris">
-              Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te enseña cada día lo que ha hecho. Seguimos llevando así nuestras propias empresas.
+              Casiopea 360 es lo que entonces no encontramos: un solo contacto, con los especialistas que hagan falta, rápido, y que te enseña cada día lo que se ha hecho. Seguimos llevando así nuestras propias empresas.
             </p>
             <Link href="/trabajos" className={`${BOTON} mt-8 inline-flex`}>Ver lo que hemos hecho</Link>
           </div>
@@ -75,6 +76,8 @@ export default function QuienesSomos() {
           </div>
         </div>
       </section>
+
+      <SeccionEquipo />
 
       <SeccionVentaja />
 
