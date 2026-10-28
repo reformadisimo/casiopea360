@@ -121,6 +121,48 @@ export function SeccionFichaGoogle() {
   );
 }
 
+/** Probamos versiones (landings y pruebas A/B, A/B/C/D...), también de la web entera, por el mismo coste. Sin promesas de resultado. */
+export function SeccionPruebasAB() {
+  const que = [
+    "La imagen principal: dos fotos distintas para la misma página.",
+    "El titular y el botón: qué frase y qué color hacen que más gente te escriba.",
+    "El orden de la página y el formulario: qué se ve primero y qué se pide.",
+    "Una landing distinta para cada campaña, servicio o ciudad.",
+  ];
+  return (
+    <section className="bg-white py-14 sm:py-20" aria-labelledby="pruebas-ab">
+      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]`}>
+        <div>
+          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Probamos versiones</p>
+          <h2 id="pruebas-ab" className="mt-5 text-3xl font-extrabold sm:text-5xl">Dos versiones, una medida. También de tu web.</h2>
+          <p className="mt-5 text-lg text-gris">
+            Hacemos landings y pruebas A/B, y las que haga falta: A/B, A/B/C/D. No solo en los anuncios, también en la web. Ya trabajamos con clientes que enseñan <b className="text-tinta">dos imágenes distintas a la mitad de sus visitas</b> para ver cuál les escribe más. De cada prueba se aprende mucho sobre lo que mira y prefiere tu público, y esa información sirve para ir mejorando los resultados.
+          </p>
+          <p className="mt-4 text-lg text-gris">
+            <b className="text-tinta">Y lo hacemos por el mismo coste.</b> Una versión alternativa de tu web va dentro de tu cuota, sin pagar aparte. Solemos ser nosotros quienes lo aconsejamos, pero siempre decides tú si quieres hacerlo y qué probar. No podemos prometer cuánto mejorará cada prueba; lo que sí te damos es el dato para decidir con números y no a ojo.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/panel" className={BOTON}>Cómo lo verías en tu panel</Link>
+            <a href="/estudio-gratuito" className="inline-flex min-h-12 items-center justify-center rounded-full px-5 font-bold text-tinta underline underline-offset-4">Cuéntanos qué probarías</a>
+          </div>
+        </div>
+        <div>
+          <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Qué se puede probar</p>
+          <ul className="mt-3 grid gap-3">
+            {que.map((c) => (
+              <li key={c} className="flex items-start gap-3 rounded-2xl bg-niebla p-4 ring-1 ring-linea">
+                <span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-estrella text-sm font-extrabold">✓</span>
+                <span className="text-tinta">{c}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-gris">Una prueba necesita visitas suficientes para poder fiarse de ella: con pocas visitas tarda más en dar una respuesta clara. Te lo decimos con honestidad.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /** El equipo detrás: seleccionado durante 22 años, autónomos que cobran por proyecto, con plazos cerrados.
     Sin nombres, sin cifras de plantilla y sin superlativos: lo que se cuenta es el método de selección y de trabajo. */
 export function SeccionEquipo() {

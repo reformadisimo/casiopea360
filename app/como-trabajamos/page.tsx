@@ -3,6 +3,7 @@ import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
+import { SeccionPruebasAB } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -35,6 +36,7 @@ export default function ComoTrabajamos() {
         ]}
       />
       <SeccionPuntosDolor />
+      <SeccionPruebasAB />
       <SeccionParte />
       <SeccionLoFirmamos />
       <LlamadaFinal />
