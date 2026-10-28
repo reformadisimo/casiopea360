@@ -679,10 +679,10 @@ const COSTE_OCULTO: [string, string, string][] = [
 /* Nuestra ventaja: el trabajo de un equipo grande, sin la estructura de uno. */
 export function SeccionVentaja() {
   const T: [string, string, string][] = [
-    ["Sin capas", "Quien te lo cuenta es quien lo hace. Nada se pierde entre comerciales, jefes de cuenta y subcontratas.", "chat"],
+    ["Un solo contacto, todo el equipo detrás", "Hablas con una persona, y detrás están los especialistas de cada oficio. Nada se pierde entre comerciales, jefes de cuenta y subcontratas.", "chat"],
     ["Sin lastre", "Cambiamos en días. Las estructuras grandes tardan meses en adaptarse porque primero tienen que desmontar lo que ya tienen.", "cohete"],
     ["Todos los oficios, conectados", "Web, Google, anuncios, redes, CRM e IA trabajando juntos. En otros sitios, cada una de esas cosas es un departamento distinto.", "engranaje"],
-    ["Pagas el trabajo, no la estructura", "Menos que con una agencia grande, porque no mantenemos jerarquías ni oficinas enormes. Pero no es low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
+    ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal: trabajamos con especialistas independientes, por proyecto y en colaboración continua. Por eso el precio es mejor, pero no es low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
   ];
   return (
     <section id="ventaja" className="scroll-mt-24 bg-white py-20 sm:py-28">
@@ -690,7 +690,7 @@ export function SeccionVentaja() {
         <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Nuestra ventaja</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">El trabajo de un equipo enorme. <Subrayado>Sin la estructura</Subrayado> de uno.</h2>
         <p className="mt-6 max-w-3xl text-lg text-gris">
-          Una gran empresa de marketing necesita cien personas, reuniones entre departamentos y mucho tiempo para adaptarse a cada cambio. Aquí quien dirige la agencia está dentro del trabajo, la inteligencia artificial y la automatización se encargan de lo pesado, y cada oficio está conectado con los demás. El resultado es el de un equipo muy grande, hecho con más cuidado y a un precio razonable.
+          Una gran empresa de marketing necesita cien personas, reuniones entre departamentos y mucho tiempo para adaptarse a cada cambio. Aquí trabajamos con especialistas de cada oficio (programación, diseño, experiencia de usuario, analítica, SEO y anuncios), coordinados en un solo método, y la inteligencia artificial y la automatización se encargan de lo pesado. Cada oficio está conectado con los demás. El resultado es el de un equipo muy grande, hecho con más cuidado y a un precio razonable.
         </p>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2">
           {T.map(([t, d, ic], i) => (

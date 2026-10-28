@@ -316,7 +316,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Cómo podéis cobrar menos por tanto?",
-    r: "Porque no tenemos estructura que pagar: ni oficinas de lujo, ni capas de jefes, ni comerciales a comisión. Las herramientas profesionales las pagamos una vez y sirven a todos nuestros clientes, y la IA y la automatización hacen en horas lo que antes llevaba semanas. Ese ahorro no nos lo quedamos: lo volcamos en tu cuota, porque preferimos clientes para muchos años a facturas para hoy.",
+    r: "Porque no tenemos estructura que pagar: ni oficinas, ni gastos fijos de personal, ni capas de jefes, ni comerciales a comisión. Trabajamos con especialistas independientes, por proyecto y con un método de colaboración continuo. Las herramientas profesionales las pagamos una vez y sirven a todos nuestros clientes, y la IA y la automatización hacen en horas lo que antes llevaba semanas. Ese ahorro no nos lo quedamos: lo volcamos en tu cuota, porque preferimos clientes para muchos años a facturas para hoy.",
   },
   {
     p: "¿De verdad lo hacéis mejor que quien me cobra 25.000 € por una web?",
@@ -544,7 +544,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
 
 // Por qué podemos cobrar menos.
 export const POR_QUE_BARATO: { t: string; d: string }[] = [
-  { t: "Sin estructura que pagar", d: "Sin oficinas de lujo, sin capas de jefes y sin comerciales a comisión. Trabajamos en remoto, y ese dinero no sale de tu bolsillo." },
+  { t: "Sin estructura que pagar", d: "Sin oficinas, sin gastos fijos de personal, sin capas de jefes y sin comerciales a comisión. Trabajamos en remoto con especialistas independientes, por proyecto, y ese dinero no sale de tu bolsillo." },
   { t: "Herramientas compartidas", d: "Las licencias profesionales de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
   { t: "La tecnología de hoy", d: "La IA y la automatización hacen lo repetitivo; las personas, lo que hay que pensar. Lo que antes llevaba semanas hoy lleva horas." },
   { t: "Todo el margen, para ti", d: "Lo que otros gastan en estructura lo volcamos en tu cuota. Queremos clientes para muchos años, no facturas para hoy." },

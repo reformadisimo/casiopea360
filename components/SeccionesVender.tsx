@@ -61,6 +61,12 @@ export function SeccionComoTrabajamos() {
             </li>
           ))}
         </ol>
+        <div className="mt-8 max-w-3xl rounded-3xl bg-white p-6 ring-1 ring-linea">
+          <h3 className="text-xl font-extrabold">Un equipo de especialistas, sin oficinas que pagar</h3>
+          <p className="mt-2 text-gris">
+            Detrás de tu contacto trabajan programadores, diseñadores, expertos en experiencia de usuario, en analítica, en SEO y en anuncios. No tenemos oficinas ni gastos fijos de personal: trabajamos con especialistas independientes, por proyecto y con un método de colaboración continuo. Cada uno hace lo que mejor sabe hacer, cuando hace falta, y tú solo pagas ese trabajo. Por eso podemos tener muy buenos precios sin renunciar a la calidad.
+          </p>
+        </div>
         <p className="mt-6 max-w-3xl text-lg text-gris">No nos quedamos quietos: si trabajamos en equipo, llegamos a la luna.</p>
         <div className="mt-8 max-w-3xl rounded-3xl bg-white p-6 ring-1 ring-linea">
           <h3 className="text-xl font-extrabold">Una curva de aprendizaje muy pequeña</h3>
