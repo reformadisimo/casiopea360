@@ -286,8 +286,9 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
 export function SeccionOficios() {
   return (
     <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
-      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Un especialista para cada oficio. Coordinados en un solo equipo.</h2>
-      <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto, y lo vemos todo a la vez.</p>
+      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Un especialista para cada oficio. Coordinados por una sola persona.</h2>
+      <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto: un solo contacto que lo coordina todo y, para cada oficio, un especialista de confianza de nuestra red.</p>
+      <p className="mt-4 max-w-2xl text-lg text-gris">Colaboramos desde hace años con expertos en SEO, en campañas de Google Ads y de Meta (Facebook e Instagram), en diseño, en analítica y en experiencia de usuario. Entran en tu proyecto cuando hace falta y tú solo pagas ese trabajo.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
         {OFICIOS.map((o) => (
           <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold sm:px-4 sm:py-2 sm:text-[0.95rem]">
