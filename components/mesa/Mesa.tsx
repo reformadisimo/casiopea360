@@ -620,6 +620,10 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           )}
           </>)}
 
+          {/* cl·v939: el resumen por correo, destacado y siempre a la vista (como en el panel de AMS) */}
+          <Plegable id="pl-correo" icono="sobre" color="#2f7d57" destacado accion="Programarlo" titulo="Recibe un resumen por correo" pista="Cada día, cada lunes o cada mes, sin tener que entrar. Tú eliges de qué.">
+          <Resumenes clave={datos.clave} />
+          </Plegable>
           {sencillaPosible && vista === "sencilla" && (
             <Sencilla temas={temas!} resumen={resumenHoy} tareas={tareas ?? []} relojes={relojes ?? []} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((s, q) => s + datos.web[q].peticiones, 0); }} clave={datos.clave} irCompleta={() => cambiaVista("completa")} herramientas={<Accesos sinId demo={datos.clave === "demo"} irA={(p) => { cambiaVista("completa"); setPestana(p); setTimeout(() => document.querySelector('[role="tablist"]')?.scrollIntoView({ behavior: suave(), block: "start" }), 80); }} />} />
           )}
@@ -689,11 +693,6 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           {!soloCifras && (
           <Plegable id="pl-pregunta" icono="chat" color={PALETA_ALEGRIA.ia} titulo="Pregunta lo que quieras" pista="Escribe o dicta; contesta con las cifras de 28 días">
           <Pregunta clave={datos.clave} />
-          </Plegable>
-          )}
-          {!soloCifras && (
-          <Plegable id="pl-correo" icono="sobre" color={PALETA_ALEGRIA.mercado} titulo="Recibe un resumen por correo" pista="Cada día, cada lunes o cada mes">
-          <Resumenes clave={datos.clave} />
           </Plegable>
           )}
 
