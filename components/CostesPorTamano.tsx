@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FILAS, TAMANOS, type Fila } from "@/lib/costes";
+import { ChipIcono, iconoPorTexto } from "@/components/Vida";
 
 // Calculadora: marca lo que necesitas y mira lo que te costaría contratarlo por separado,
 // con cuántos proveedores, facturas y reuniones. Sin dar nuestra cifra.
@@ -93,7 +94,7 @@ export default function CostesPorTamano() {
                 </div>
               </div>
               <ul>
-                {filas.map((f) => {
+                {filas.map((f, k) => {
                   const activo = marcados.has(f.id);
                   return (
                     <li key={f.id} className="border-t border-linea first:border-t-0">
@@ -102,9 +103,10 @@ export default function CostesPorTamano() {
                         role="switch"
                         aria-checked={activo}
                         onClick={() => cambiar(f.id)}
-                        className={`grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-4 text-left transition-colors sm:px-6 ${activo ? "bg-emerald-50/60" : "hover:bg-niebla"}`}
+                        className={`grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-4 text-left transition-colors sm:grid-cols-[auto_auto_1fr_auto] sm:gap-4 sm:px-6 ${activo ? "bg-emerald-50/60" : "hover:bg-niebla"}`}
                       >
                         <Interruptor activo={activo} />
+                        <span className={`hidden sm:block ${activo ? "" : "opacity-50 grayscale"}`}><ChipIcono icono={iconoPorTexto(f.que, k)} i={k} tam="h-9 w-9" /></span>
                         <span className="min-w-0">
                           <b className={`block ${activo ? "" : "text-gris"}`}>{f.que}</b>
                           <span className="block text-sm text-gris">{f.nota} · {f.quien}</span>

@@ -475,3 +475,9 @@ html[data-texto="3"] header { zoom: 0.667; }
 .mesa h1,.mesa h2,.mesa h3,.mesa h4{font-family:var(--font-serif);letter-spacing:0;text-wrap:initial;line-height:1.65}
 .mesa h1.leading-tight,.mesa h2.leading-tight{line-height:1.25}
 .mesa :focus-visible{outline:2px solid #2c7c98;outline-offset:3px;border-radius:3px}
+
+/* Artículos del blog con vida: listas y pasos sin marcas de lista (llevan las suyas) */
+.prosa ul.lv, .prosa ol.lv { list-style: none; padding-left: 0; display: grid; gap: 0.6rem; }
+.prosa ul.lv li + li, .prosa ol.lv li + li { margin-top: 0; }
+.prosa details.grupo > summary::-webkit-details-marker { display: none; }
+.prosa details.grupo + details.grupo { margin-top: 0.7rem; }

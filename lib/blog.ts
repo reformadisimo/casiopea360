@@ -1,5 +1,5 @@
 // Artículos del blog. Cada bloque es un párrafo, un subtítulo o una lista.
-export type Bloque = { h2: string } | { h3: string } | { p: string } | { ul: string[] } | { ol: string[] };
+export type Bloque = { caja: string; t?: string } | { h2: string } | { h3: string } | { p: string } | { ul: string[] } | { ol: string[] };
 
 export type Articulo = {
   slug: string;
@@ -546,6 +546,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Cuando se hacen anuncios, hay un número que sale enseguida: lo que cuesta cada contacto, es decir, cada persona que llama, escribe o rellena un formulario. Se calcula con una división: lo que has invertido entre los contactos que han llegado." },
       { p: "Un ejemplo con cifras inventadas. Inviertes 1.000 euros y llegan 10 contactos. Cada contacto te ha costado 100 euros. Hasta aquí, lo sabemos nosotros solos, mirando las campañas." },
       { p: "Lo que no vemos desde fuera es qué pasó después. Y ahí está lo importante: si de esos 10 contactos firman 2, cada cliente te ha costado 500 euros. Si firman 5, 200 euros. La inversión es la misma, los contactos son los mismos, y el negocio es muy distinto." },
+      { caja: "El mismo coste por contacto puede esconder negocios muy distintos: con 2 firmas, cada cliente cuesta 500 euros; con 5, 200. Por eso necesitamos saber cuántos contactos acaban en cliente.", t: "Para quedarte con una idea" },
       { h2: "Primer número: cuántos contactos acaban siendo clientes" },
       { p: "Es el dato que solo tienes tú, porque eres quien habla con la gente y cierra el trabajo. No hace falta ningún importe: basta el número, o un porcentaje aproximado. Algo como «este mes han firmado 3 de los 12 que llegaron»." },
       { p: "Nos lo cuentas en un mensaje corto, cada semana o cada mes, como mejor te venga. No hace falta que sea exacto. Y si usas un CRM, sale casi solo: cada contacto tiene su estado, y se ve quién firmó." },
@@ -554,6 +555,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Es una cifra aproximada del importe medio por cliente. «Más o menos unos 4.000 euros por cliente», por ejemplo. Vale una estimación, y la puedes cambiar cuando quieras, porque tu negocio cambia." },
       { p: "Importa porque no es lo mismo que los contactos traigan clientes de 5.000 euros que de 20.000. Si cada cliente te deja más, podemos permitirnos pagar más por cada contacto y llegar a más gente. Si te deja menos, hay que vigilar cada euro todavía más de cerca." },
       { p: "En marketing a esto se le llama coste límite de adquisición: el máximo que puedes gastar en conseguir un cliente sin poner en riesgo la rentabilidad del negocio. Hay varias formas de calcularlo y ninguna es universal. Nosotros usamos tu cifra como orden de magnitud, y tú nos avisas con una frase si tu margen es muy ajustado («cuidado, en mi caso el margen es corto»). Para eso tampoco hace falta ningún número más." },
+      { caja: "Dos números aproximados, y nada más: cuántos contactos acaban siendo clientes y cuánto te deja de media cada uno. Sin facturación, sin balances y sin papeles." },
       { h2: "Lo que no te pedimos" },
       { ul: ["Tu facturación.", "Tus balances ni tus cuentas.", "Tus márgenes.", "Ningún documento de tu empresa."] },
       { p: "Muchas veces se pide todo eso, y no hace falta. Con dos datos aproximados se hace casi todo el trabajo útil de ajustar una campaña." },
@@ -600,6 +602,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Hay clientes con los que ya trabajamos así: quieren dos tipos de imagen distintos y los ponemos a competir. Se aprende muchísimo sobre lo que mira y prefiere su público, y esa información sirve para seguir mejorando. No podemos prometer cuánto mejora cada prueba, pero sí que cada una enseña algo." },
       { h2: "Qué se puede probar" },
       { ul: ["La imagen principal: dos fotos distintas para la misma página.", "El titular: qué frase hace que más gente siga leyendo.", "El botón: su texto, su color y dónde está.", "El orden de la página: qué se ve primero.", "El formulario: cuántos datos se piden.", "Una landing distinta para cada campaña, servicio o ciudad."] },
+      { caja: "Una prueba A/B no es una opinión: es una medida. Enseñas dos versiones, miras cuál consigue más contactos y te quedas con la que gana. Y si no hay diferencia, también has aprendido algo." },
       { h2: "Las reglas para que la prueba sirva de algo" },
       { ol: ["Cambia una sola cosa cada vez. Si cambias foto, titular y botón a la vez, no sabrás qué ha funcionado.", "Decide antes qué vas a medir. Lo útil son los contactos (llamadas, mensajes, formularios), no las visitas.", "No pares en cuanto una versión vaya ganando. Los primeros días engañan. Conviene esperar a tener suficientes datos y a que pase al menos una semana completa, con sus días laborables y sus fines de semana.", "No hagas demasiadas versiones a la vez: cuantas más haya, más visitas hacen falta para saber algo.", "Ten claro que a veces la respuesta es «no hay diferencia». También es información: te ahorra cambiar algo que no importaba."] },
       { h2: "Cuántas visitas hacen falta, con honestidad" },
@@ -608,6 +611,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Probar versiones en una web no tiene por qué dañar tu posicionamiento en Google, pero hay que hacerlo bien. Las recomendaciones de Google para estas pruebas son claras:" },
       { ul: ["No mostrar una versión a Google y otra a tus visitas (eso es cloaking y está penalizado).", "Si las versiones están en direcciones distintas, indicar con la etiqueta rel=canonical cuál es la original.", "Si hay redirecciones, usar la temporal (302) y no la permanente (301).", "Hacer la prueba solo el tiempo necesario y retirar después todo lo que sobra."] },
       { p: "Son detalles técnicos que no tienes que vigilar tú: forman parte de cómo trabajamos." },
+      { caja: "Las pruebas A/B y las landings que hagan falta van dentro de tu cuota. Tú eliges entre dos opciones; nosotros hacemos el resto.", t: "Por el mismo coste" },
       { h2: "Una versión alternativa de tu web, por el mismo coste" },
       { p: "En Casiopea 360 las pruebas A/B y las landings que hagan falta van dentro de tu cuota, también las de la web entera. Una versión alternativa de tu web se puede preparar por el mismo coste. Solemos ser nosotros quienes lo aconsejamos, pero siempre decides tú si quieres hacerla y qué probar." },
       { p: "Y como todo lo que hacemos, se hace sin quitarte tiempo: tú eliges entre dos opciones y nosotros nos ocupamos del resto." },
@@ -645,6 +649,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "Las reseñas no llegan solas: llegan cuando se piden" },
       { p: "Casi nadie se pone a escribir una reseña por iniciativa propia, ni siquiera cuando está encantado. Lo hacen cuando se lo piden, de forma fácil y con un solo paso. Por eso las fichas con muchas reseñas suelen ser las de quien las pide de forma constante, no necesariamente las de quien trabaja mejor." },
       { p: "Las reseñas pesan mucho cuando alguien busca un negocio cerca: son parte de lo primero que ve en tu ficha de Google. Pedirlas bien es de lo más rentable que puedes hacer." },
+      { caja: "Las reseñas no llegan solas: llegan cuando se piden, de forma fácil y con un solo paso. Un enlace, un QR o un mensaje corto bastan." },
       { h2: "Lo que permite Google y lo que prohíbe" },
       { p: "Google deja pedir reseñas, y de hecho lo recomienda: puedes compartir un enlace o un código QR. Pero tiene normas, y saltárselas puede hacer que te quiten reseñas:" },
       { ul: ["Prohibido ofrecer algo a cambio: ni descuentos, ni regalos, ni productos o servicios gratis a cambio de una reseña. Google lo considera interacción falsa.", "Prohibido pedirlas solo a los clientes que sabes que están contentos. Hay que pedirlas a todos por igual, y no se puede desanimar a nadie de escribir una opinión negativa.", "No se puede exigir a tu equipo un número de reseñas ni que incluyan contenido concreto, como el nombre de un empleado.", "No se debe presionar al cliente para que la escriba mientras está en tu local."] },
@@ -652,6 +657,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "Cómo conseguir el enlace y el código QR" },
       { ol: ["Entra en tu Perfil de Empresa de Google.", "Pulsa en Leer reseñas.", "Elige Consigue más reseñas.", "Copia el enlace, o descarga el código QR."] },
       { p: "Una pega: el código QR solo se puede generar desde un navegador de ordenador, no desde el móvil. Y el enlace de Google es largo y feo. Lo ideal es acortarlo en una dirección propia, por ejemplo tuweb.es/opinion, que lleve a una página sencilla con tu logo y un botón grande." },
+      { caja: "Regla de oro de Google: la reseña tiene que reflejar una experiencia auténtica. Nada de regalos a cambio, y pídela a todos tus clientes, no solo a los contentos.", t: "Regla de oro" },
       { h2: "Cuándo pedirla" },
       { p: "Google no marca un momento concreto, pero la experiencia es clara: el mismo día que terminas el trabajo, o cuando el cliente te dice espontáneamente que está contento, porque el recuerdo está fresco. Lo importante es hacerlo con todos tus clientes y de forma constante, no solo con los que te caen mejor." },
       { h2: "Tres formas de pedirla, con mensajes de ejemplo" },
@@ -704,9 +710,11 @@ export const ARTICULOS: Articulo[] = [
       { h2: "Cuando el marketing te quita más tiempo que tu propio trabajo" },
       { p: "Hay una trampa que conocemos bien porque nos ha pasado. En más de 22 años de trabajo, más de una vez hemos dedicado más tiempo al marketing que a nuestro propio oficio. Sobre todo en los momentos en que había poco trabajo: como hay tiempo, te metes en la web, en los anuncios, en las redes. Y al final acabas dedicado a eso en vez de a lo tuyo, que es una pena." },
       { p: "Pasa aún más cuando el marketing se reparte entre varios proveedores. Uno lleva la web, otro los anuncios, otro las redes. Cada uno tiene sus reuniones, sus llamadas, sus correos. Y quien lo coordina todo, sin habérselo pedido nadie, eres tú." },
+      { caja: "Muchas veces el marketing no te quita dinero: te quita tiempo. Y el tiempo que dedicas a coordinar proveedores es tiempo que no dedicas a tus clientes.", t: "El punto de dolor" },
       { h2: "El coste que no sale en la factura" },
       { ul: ["Reuniones, presenciales y online, con cada proveedor.", "Desplazamientos.", "Llamadas para explicar lo mismo por tercera vez.", "Correos cruzados en los que nadie sabe quién tiene que contestar.", "Horas pensando en marketing en vez de atender a tus clientes."] },
       { p: "Es un coste enorme y casi nadie lo suma. Lo hemos desarrollado más en otro artículo sobre lo que de verdad cuesta el marketing digital." },
+      { caja: "Con nosotros, el marketing deja de ser una segunda jornada. Sin reuniones ni llamadas innecesarias, por correo y WhatsApp, y tu tiempo vuelve a tu trabajo.", t: "Lo que cambia contigo" },
       { h2: "Nuestra forma de trabajar" },
       { p: "Nuestro objetivo es conseguirte el mayor número de clientes o de trabajos posible, dentro de lo que puedas atender, dándote la menor guerra posible. Para eso hacemos las cosas así:" },
       { ul: ["Sin reuniones presenciales ni online, y sin llamadas, salvo que sean imprescindibles. Casi nunca lo son.", "Nos comunicamos por correo y por WhatsApp, a diario si hace falta, de forma breve y rápida.", "Un solo contacto que coordina todo, para que no tengas que hablar con cinco personas.", "Tú eliges entre opciones claras y nosotros nos ocupamos del resto."] },
@@ -753,6 +761,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "El problema: el marketing te lleva muchísimo tiempo" },
       { p: "Casi todos los empresarios con los que hablamos dicen lo mismo: «esto me lleva muchísimo tiempo». Reuniones con la agencia, llamadas con quien lleva la web, correos cruzados con quien hace los anuncios. Acabas más dedicado al marketing que a tu propio trabajo." },
       { p: "Esta es la razón principal de que existamos. Y es la primera por la que contratarnos: con nosotros eso no ocurre." },
+      { caja: "«Esto me lleva muchísimo tiempo» es lo que más oímos. Por eso es la primera razón: con nosotros, el marketing no te lleva el tiempo que le dedicabas.", t: "Lo que más oímos" },
       { h2: "Razón 1: tu tiempo vuelve a tu trabajo" },
       { p: "Trabajamos sin reuniones presenciales, sin reuniones online y sin llamadas, salvo que sean imprescindibles. Hablamos por correo y por WhatsApp, de forma breve y rápida. Al principio hace falta algo de esfuerzo por tu parte, y después, en velocidad de crucero, puedes dedicarte casi todo el tiempo a lo tuyo." },
       { h2: "Razón 2: un solo contacto para todo" },

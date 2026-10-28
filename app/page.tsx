@@ -3,6 +3,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
+import { ChipIcono, Etiqueta } from "@/components/Vida";
 import { SeccionSonarEnGrande, SeccionComoTrabajamos, SeccionEquipo, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import {
   BOTON,
@@ -39,7 +40,7 @@ export default function Inicio() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
-            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Todo. Mejor. En días.</p>
+            <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Todo. Mejor. En días.</Etiqueta>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
               <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo equipo y una cuota fija. Y cada día sabes qué hemos hecho por tu negocio.
@@ -52,9 +53,9 @@ export default function Inicio() {
               <Link prefetch={false} href="/panel" className={BOTON_CLARO}>Así lo verás tú</Link>
             </div>
             <ul className="mt-8 grid grid-cols-2 gap-2 text-[0.8rem] font-bold sm:flex sm:flex-wrap sm:text-sm">
-              {["+22 años en marketing digital", "Tu web en días, no en meses", "La misma cuota para todos", "Sin comisiones"].map((t) => (
-                <li key={t} className="flex min-h-9 items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 leading-tight text-white ring-1 ring-white/15 backdrop-blur sm:px-3.5">
-                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
+              {([["trofeo", "+22 años en marketing digital"], ["rayo", "Tu web en días, no en meses"], ["euro", "La misma cuota para todos"], ["escudo", "Sin comisiones"]] as [string, string][]).map(([ic, t], k) => (
+                <li key={t} className="flex min-h-9 items-center gap-2 rounded-full bg-white/10 py-1 pl-1.5 pr-3 leading-tight text-white ring-1 ring-white/15 backdrop-blur sm:pr-3.5">
+                  <ChipIcono icono={ic} i={k} tam="h-7 w-7" className="[&>svg]:h-4 [&>svg]:w-4" />
                   {t}
                 </li>
               ))}
@@ -69,6 +70,8 @@ export default function Inicio() {
 
       <CintaHerramientas />
       <SeccionVeinteProveedores />
+      <SeccionTiempo />
+      <SeccionPorQueContratarnos />
       <SeccionEquipo />
       <SeccionComoEsPosible />
       <SeccionPromesas />
@@ -78,8 +81,6 @@ export default function Inicio() {
       <SeccionAsiLoVeras />
       <SeccionSonarEnGrande />
       <SeccionComoTrabajamos />
-      <SeccionTiempo />
-      <SeccionPorQueContratarnos />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />

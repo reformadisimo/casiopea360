@@ -36,6 +36,7 @@ import {
   COMO_ES_POSIBLE,
   OPINIONES,
 } from "@/lib/contenido";
+import { Etiqueta, Nebulosa, ChipIcono, ListaViva, Bocadillo, iconoPorTexto } from "@/components/Vida";
 
 export const ENVOLTORIO = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 export const BOTON =
@@ -160,13 +161,16 @@ export function SeccionCaos() {
 /* Puntos de dolor con su solución. */
 export function SeccionPuntosDolor() {
   return (
-    <section id="dolores" className="scroll-mt-24 bg-niebla py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
-        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">¿Te suena alguno?</h2>
+    <section id="dolores" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
+      <Nebulosa variante={1} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="chat">Lo que nos cuentan</Etiqueta>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">¿Te suena alguno?</h2>
         <p className="mt-5 max-w-2xl text-lg text-gris">Lo que nos cuentan directores y dueños de empresa, y lo que hacemos con ello.</p>
         <ul className="carrusel mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {DOLORES.map((d, i) => (
             <li key={d.dolor} className={`flex flex-col rounded-3xl p-6 sm:p-7 ${i === 0 ? "bg-noche text-white" : "bg-white"}`}>
+              <Loseta icono={iconoPorTexto(d.dolor, i)} i={i} className="mb-4" />
               <p className="font-titular text-xl font-extrabold leading-snug">«{d.dolor}»</p>
               <div className={`mt-auto flex gap-3 border-t pt-5 ${i === 0 ? "border-white/15" : "border-linea"} mt-6`}>
                 <Punto className="mt-1.5" />
@@ -194,10 +198,13 @@ export function BandaCompromisos() {
           ["48 horas", "como máximo, para lo del día a día"],
           ["0 %", "de comisión sobre lo que inviertas"],
           ["Cada día", "un parte de lo que hemos hecho"],
-        ].map(([n, t]) => (
-          <div key={n}>
+        ].map(([n, t], k) => (
+          <div key={n} className="flex items-start gap-4">
+            <Loseta icono={["sonrisa", "reloj", "euro", "calendario"][k]} i={k} />
+            <div>
             <p className="whitespace-nowrap font-titular text-5xl font-extrabold leading-none text-noche sm:text-6xl lg:text-5xl">{n}</p>
             <p className="mt-3 text-lg font-bold text-noche/75">{t}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -246,13 +253,18 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                 id={f.id}
                 className={`inclina scroll-mt-28 rounded-[2rem] p-7 sm:p-9 ${ancho} ${oscura ? "bg-noche text-white" : "border border-linea bg-white"}`}
               >
-                <p className={`font-titular text-sm font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>Frente {i + 1} de 5</p>
-                <h2 className="mt-2 text-3xl font-extrabold">{f.nombre}</h2>
+                <div className="flex items-center gap-3">
+                  <Loseta icono={["pagina", "lupa", "diana", "video", "chip"][i % 5]} i={i} />
+                  <p className={`font-titular text-sm font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>Frente {i + 1} de 5</p>
+                </div>
+                <h2 className="mt-4 text-3xl font-extrabold">{f.nombre}</h2>
                 <p className={`mt-3 text-lg ${oscura ? "text-white/80" : "text-gris"}`}>{glosar(f.frase)}</p>
                 <ul className="mt-6 space-y-2.5">
-                  {f.servicios.map((s) => (
+                  {f.servicios.map((s, k) => (
                     <li key={s} className="flex gap-3">
-                      {oscura ? <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" /> : <Visto />}
+                      <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-white" style={{ background: COLOR_SELLO[(k + i) % COLOR_SELLO.length][0] }}>
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12.5 4.5 4.5L19 7" /></svg>
+                      </span>
                       <span className={oscura ? "text-white/90" : ""}>{glosar(s)}</span>
                     </li>
                   ))}
@@ -268,7 +280,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
           <article className="relative overflow-hidden rounded-[2rem] bg-niebla p-7 sm:p-9 lg:col-span-6">
             <div className="grid items-center gap-6 md:grid-cols-[1fr_auto]">
               <div>
-                <h3 className="text-2xl font-extrabold">Y lo único que no hacemos</h3>
+                <h3 className="flex items-center gap-3 text-2xl font-extrabold"><Loseta icono="video" i={3} /> Y lo único que no hacemos</h3>
                 <p className="mt-2 max-w-3xl text-gris">
                   Grabar vídeos profesionales. Te damos las ideas y el guion, y los montamos si nos los das. Para grabar, te ponemos en contacto con la agencia con la que trabajamos, y le pagas tú directamente.
                 </p>
@@ -290,9 +302,9 @@ export function SeccionOficios() {
       <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto: un solo contacto que lo coordina todo y, para cada oficio, un especialista de confianza de nuestra red.</p>
       <p className="mt-4 max-w-2xl text-lg text-gris">Colaboramos desde hace años con expertos en SEO, en campañas de Google Ads y de Meta (Facebook e Instagram), en diseño, en analítica y en experiencia de usuario. Entran en tu proyecto cuando hace falta y tú solo pagas ese trabajo.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
-        {OFICIOS.map((o) => (
-          <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold sm:px-4 sm:py-2 sm:text-[0.95rem]">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-estrella" />
+        {OFICIOS.map((o, k) => (
+          <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold shadow-sm sm:px-4 sm:py-2 sm:text-[0.95rem]">
+            <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full" style={{ background: COLOR_SELLO[k % COLOR_SELLO.length][0] }} />
             {o}
           </li>
         ))}
@@ -320,8 +332,8 @@ export function SeccionOrigen() {
               Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te cuenta cada día lo que pasa. Lo que antes eran semanas, ahora son minutos.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
-              <div className="rounded-2xl bg-white/10 p-4"><p className="text-4xl font-extrabold text-estrella"><Cifra valor={60000} despues=" €" /></p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="trofeo" i={4} className="mb-3" /><p className="text-4xl font-extrabold text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="diana" i={2} className="mb-3" /><p className="text-4xl font-extrabold text-estrella"><Cifra valor={60000} despues=" €" /></p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
             </div>
             <Link href="/quienes-somos" className="mt-6 inline-flex font-bold text-estrella hover:underline">Conoce quiénes somos →</Link>
           </div>
@@ -338,7 +350,7 @@ export function SeccionAntesDespues({ compacta = false }: { compacta?: boolean }
       <div className={ENVOLTORIO}>
         <div className="grid items-end gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Antes y después</p>
+            <Etiqueta>Antes y después</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Mueve el tirador. <Subrayado>Mira la diferencia</Subrayado>.</h2>
           </div>
           {!compacta && <p className="text-lg text-gris">Reformadísimo, nuestra propia empresa de reformas: la web que tenía y la que tiene ahora, con calculadoras de precio y una asistente que atiende por voz.</p>}
@@ -461,8 +473,9 @@ const COMPARA: [string, string][] = [
 export function SeccionEspecialistas() {
   return (
     <section className="relative overflow-hidden bg-white py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">La pregunta que todos nos hacen</p>
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="chat">La pregunta que todos nos hacen</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">
           «Si hacéis de todo, lo haréis todo regular.» <span className="text-noche-3">Es justo al revés.</span>
         </h2>
@@ -490,8 +503,9 @@ export function SeccionEspecialistas() {
             ["No nos creas: entra y compruébalo", "Webs con calculadoras y asistentes de IA, una app en las tiendas. Funcionando hoy, con empresas reales.", "/trabajos", "Ver los trabajos"],
             ["Míralo tú, cada día", "En tu panel ves qué hemos hecho, qué funciona y de dónde viene cada cliente. Sin cajas negras.", "/panel", "Ver un panel de ejemplo"],
             ["Compáranos con lo que tienes", "El estudio gratuito pone lado a lado lo que tienes hoy y lo que haríamos, con datos de tu empresa.", "/estudio-gratuito", "Pedir el estudio"],
-          ].map(([t, d, href, cta]) => (
+          ].map(([t, d, href, cta], k) => (
             <Link key={t} href={href} className="group flex flex-col rounded-[2rem] bg-noche p-7 text-white transition-transform hover:-translate-y-1">
+              <Loseta icono={["trofeo", "grafica", "lupa"][k % 3]} i={k} className="mb-4" />
               <p className="text-2xl font-extrabold">{t}</p>
               <p className="mt-3 flex-1 text-white/75">{d}</p>
               <p className="mt-6 font-bold text-estrella group-hover:underline">{cta} →</p>
@@ -534,6 +548,26 @@ export const ICONO_SVG: Record<string, React.ReactNode> = {
   cohete: <path d="M12 2c3 2 5 6 5 11l-5 4-5-4c0-5 2-9 5-11zM12 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM7 13l-3 3h4M17 13l3 3h-4M10 17l-1 4 3-2 3 2-1-4" />,
   lista: <path d="M4 5h16v16H4zM8 3v4M16 3v4M8 12l2 2 4-4M8 17h8" />,
   reloj: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2" />,
+  // 28-oct (cas·v173): más iconos para que toda la web tenga su dibujo
+  rayo: <path d="M13 2 4.5 13.5H12L11 22l8.5-11.5H12z" />,
+  trofeo: <path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3M12 14v4M8 21h8M9 18h6" />,
+  bombilla: <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z" />,
+  diana: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2M12 3v4M21 12h-4" />,
+  corazon: <path d="M12 20.5 4.5 13a4.5 4.5 0 0 1 6.4-6.4L12 7.7l1.1-1.1a4.5 4.5 0 0 1 6.4 6.4z" />,
+  grafica: <path d="M4 20h16M4 4v16M8 16v-5M12 16V8M16 16v-3M20 16V6" />,
+  mano: <path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.6 14a1.5 1.5 0 0 1 2.4-1.8L8 14" />,
+  mapa: <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14" />,
+  persona: <path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21a8 8 0 0 1 16 0" />,
+  campana: <path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4" />,
+  candado: <path d="M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4M12 15v2" />,
+  sol: <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />,
+  globo: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />,
+  check: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8 12l3 3 5-6" />,
+  ojo: <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />,
+  cafe: <path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2M7 3v2M10 3v2M13 3v2" />,
+  moneda: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v10M9.5 9.5h3.5a1.75 1.75 0 0 1 0 3.5h-2a1.75 1.75 0 0 0 0 3.5H14" />,
+  casa: <path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6" />,
+  fiesta: <path d="M4 20l4-11 7 7zM9 4l1 2M14 3l-1 3M19 6l-3 1M20 11l-2 .5M15 9l4-4" />,
 };
 
 /* Loseta de color, ligeramente girada, con su icono y una estrella: la pieza que da vida a cualquier tarjeta. */
@@ -570,21 +604,19 @@ export function SeccionLoQueSea() {
         <VideoFondo nombre="constelaciones-azules" alt="" />
       </div>
       <div className={`${ENVOLTORIO} relative`}>
-        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Si se te ocurre, lo hacemos</p>
+        <Etiqueta tono="estrella">Si se te ocurre, lo hacemos</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Prácticamente cualquier cosa. Y te decimos si te conviene.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">
           Una app, un CRM, una campaña de radio, un vídeo profesional. Lo hacemos nosotros, y lo poco que no hacemos en casa lo hacemos con las productoras y agencias con las que ya trabajamos. Tú no tienes que buscar a nadie.
         </p>
         <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {LO_QUE_SEA.map((x) => (
+          {LO_QUE_SEA.map((x, k) => (
             <div key={x.t} className="flex flex-col rounded-[1.8rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm transition-transform hover:-translate-y-1">
               <div className="flex items-center gap-3">
                 {x.logo ? (
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-white"><LogoMarca nombre={x.logo} tam={24} /></span>
                 ) : (
-                  <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-xl bg-estrella text-tinta">
-                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONO_SVG[x.icono ?? "crm"]}</svg>
-                  </span>
+                  <Loseta icono={x.icono ?? "crm"} i={k} />
                 )}
                 <p className="text-2xl font-extrabold">{x.t}</p>
               </div>
@@ -629,7 +661,7 @@ export function SeccionTambienIncluido() {
       <div className={ENVOLTORIO}>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Y también entra en tu cuota</p>
+            <Etiqueta tono="verde">Y también entra en tu cuota</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
             <p className="mt-5 text-lg text-gris">
               No es una lista para rellenar. Es lo que de verdad hace crecer a una empresa, y te montamos lo que tenga sentido para la tuya, cuando lo necesites.
@@ -686,9 +718,10 @@ export function SeccionVentaja() {
     ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal: trabajamos con una red de especialistas de confianza, que entran en cada proyecto cuando hace falta. Por eso el precio es mejor, pero no es low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
   ];
   return (
-    <section id="ventaja" className="scroll-mt-24 bg-white py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Nuestra ventaja</p>
+    <section id="ventaja" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
+      <Nebulosa variante={3} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="trofeo">Nuestra ventaja</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">El trabajo de un equipo de especialistas. <Subrayado>Sin la estructura</Subrayado> de una gran agencia.</h2>
         <p className="mt-6 max-w-3xl text-lg text-gris">
           Una gran empresa de marketing necesita cien personas, reuniones entre departamentos y mucho tiempo para adaptarse a cada cambio. Aquí lleva tu proyecto una persona de principio a fin, con una red de especialistas de confianza (programación, diseño, experiencia de usuario, analítica, SEO y anuncios) que entran cuando hace falta, y la inteligencia artificial y la automatización se encargan de lo pesado. Cada oficio está conectado con los demás. El resultado es el de un equipo de especialistas, hecho con más cuidado y a un precio razonable.
@@ -707,9 +740,9 @@ export function SeccionVentaja() {
             <span className="hidden bg-noche p-5 sm:block" />
             <span className="hidden bg-noche p-5 text-sm font-extrabold uppercase tracking-wide text-rose-300 sm:block">Hacerlo por tu cuenta</span>
             <span className="hidden bg-noche p-5 text-sm font-extrabold uppercase tracking-wide text-estrella sm:block">Con Casiopea 360</span>
-            {COSTE_OCULTO.map(([q, a, b]) => (
+            {COSTE_OCULTO.map(([q, a, b], k) => (
               <div key={q} className="contents">
-                <b className="bg-noche px-5 pt-5 sm:py-5">{q}</b>
+                <b className="flex items-center gap-3 bg-noche px-5 pt-5 sm:py-5"><ChipIcono icono={["chat", "engranaje", "reloj", "calendario", "euro"][k]} i={k} tam="h-9 w-9" />{q}</b>
                 <span className="bg-noche px-5 pb-1 text-white/70 sm:py-5"><b className="block text-xs font-extrabold uppercase tracking-wide text-rose-300 sm:hidden">Por tu cuenta</b>{a}</span>
                 <span className="bg-noche px-5 pb-5 pt-2 font-bold text-white sm:py-5"><b className="block text-xs font-extrabold uppercase tracking-wide text-estrella sm:hidden">Con Casiopea 360</b>{b}</span>
               </div>
@@ -734,7 +767,7 @@ export function SeccionComoEsPosible() {
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[70%]"><VideoFondo nombre="equipo-celebra" alt="" /></div>
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-noche/45 via-noche/85 via-40% to-noche" />
       <div className={`${ENVOLTORIO} relative`}>
-        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Lo que nos dicen todos</p>
+        <Etiqueta tono="estrella">Lo que nos dicen todos</Etiqueta>
         <h2 className="mt-6 font-titular text-5xl font-extrabold leading-[1.02] sm:text-7xl">
           «Pero… <span className="text-estrella">¿cómo es posible?</span>»
         </h2>
@@ -803,13 +836,16 @@ export function SeccionPromesas() {
     <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-28">
       <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
-        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestras cuatro promesas</p>
+        <Etiqueta tono="estrella">Nuestras cuatro promesas</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No solo lo hacemos todo. Mejor, en días y a precio fijo.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">Ya sabemos que suena demasiado bien. Por eso no te pedimos que nos creas: pide el estudio gratuito y compáralo con lo que tienes hoy.</p>
         <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROMESAS.map((x, i) => (
             <div key={x.t} className={`flex flex-col rounded-[2rem] p-7 sm:p-8 ${i === 2 ? "bg-estrella text-tinta" : "bg-white/[0.07] ring-1 ring-white/15 backdrop-blur-sm"}`}>
-              <span aria-hidden="true" className={`grid h-11 w-11 place-items-center rounded-full text-lg font-extrabold ${i === 2 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
+              <div className="flex items-center gap-3">
+                <Loseta icono={["trofeo", "rayo", "euro", "chat"][i % 4]} i={i} />
+                <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-full text-base font-extrabold ${i === 2 ? "bg-noche text-estrella" : "bg-estrella text-tinta"}`}>{i + 1}</span>
+              </div>
               <p className="mt-5 text-3xl font-extrabold xl:text-4xl">{x.t}</p>
               <p className={`mt-4 flex-1 text-lg ${i === 2 ? "text-tinta/85" : "text-white/85"}`}>{x.d}</p>
               <p className={`mt-5 border-t pt-4 text-[0.95rem] ${i === 2 ? "border-tinta/15 text-tinta/75" : "border-white/15 text-white/70"}`}>{x.pie}</p>
@@ -824,10 +860,11 @@ export function SeccionPromesas() {
 /* Por qué podemos cobrar menos. */
 export function SeccionPorQueBarato() {
   return (
-    <section id="barato" className="scroll-mt-24 bg-white py-20 sm:py-28">
-      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]`}>
+    <section id="barato" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
+      <Nebulosa variante={0} />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]`}>
         <div className="min-w-0">
-          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Sin trampa</p>
+          <Etiqueta>Sin trampa</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">¿Cómo puede costar <Subrayado>menos</Subrayado>? Así de sencillo.</h2>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-2">
             {POR_QUE_BARATO.map((x, i) => (
@@ -871,7 +908,7 @@ const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres meses no has visto que mejoramos, te vas sin pagar nada." },
 ];
 
-const COLOR_SELLO: [string, string][] = [
+export const COLOR_SELLO: [string, string][] = [
   ["linear-gradient(140deg,#3b82f6,#1d4ed8)", "rgba(29,78,216,0.7)"],
   ["linear-gradient(140deg,#a855f7,#6d28d9)", "rgba(109,40,217,0.7)"],
   ["linear-gradient(140deg,#22c55e,#047857)", "rgba(4,120,87,0.7)"],
@@ -889,7 +926,7 @@ export function SeccionLoFirmamos() {
       <div className={ENVOLTORIO}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Más de 22 años de experiencia en marketing digital</p>
+            <Etiqueta>Más de 22 años de experiencia en marketing digital</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">La seriedad de una gran agencia. <Subrayado>Sin su factura.</Subrayado></h2>
           </div>
           <p className="text-lg text-gris">Sabemos lo que es la responsabilidad, y por eso lo importante lo dejamos por escrito.</p>
@@ -924,10 +961,11 @@ export function SeccionMiedoAlCambio() {
   const reparto = [70, 60, 50];
   return (
     <section id="miedo-al-cambio" className="relative overflow-hidden bg-niebla py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">¿Te da miedo cambiar?</p>
+            <Etiqueta icono="bombilla">¿Te da miedo cambiar?</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Pruébalo con tu web actual al lado. <Subrayado>Sin riesgo.</Subrayado></h2>
           </div>
           <p className="text-lg text-gris">Es normal. Por eso no te pedimos que cierres los ojos: te proponemos que lo compruebes con tus propios números.</p>
@@ -935,8 +973,8 @@ export function SeccionMiedoAlCambio() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
           <div className="rounded-[2rem] bg-noche p-7 text-white sm:p-9">
-            <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Test A/B</p>
-            <p className="mt-2 text-2xl font-extrabold sm:text-3xl">Tu web actual y la nuestra, a la vez.</p>
+            <p className="flex items-center gap-3 text-sm font-extrabold uppercase tracking-wide text-estrella"><Loseta icono="pagina" i={0} /> Test A/B</p>
+            <p className="mt-4 text-2xl font-extrabold sm:text-3xl">Tu web actual y la nuestra, a la vez.</p>
             <p className="mt-3 text-white/85">Repartimos las visitas entre las dos webs. El reparto lo eliges tú: que la mitad vea la nueva, o seis de cada diez, o siete. En unos días o semanas comparas cuál consigue más contactos.</p>
             <ul className="mt-6 space-y-4" aria-label="Ejemplos de reparto de visitas">
               {reparto.map((n) => (
@@ -959,7 +997,7 @@ export function SeccionMiedoAlCambio() {
               ["Lo tuyo, siempre tuyo", "Tus cuentas y tus contactos, siempre. La web, al cumplir los doce meses, o antes si pagas la parte que falte."],
             ].map(([t, d], i) => (
               <div key={t} className="flex gap-4 rounded-[1.6rem] border border-linea bg-white p-5">
-                <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
+                <Loseta icono={["calendario", "firma", "llave"][i]} i={i} />
                 <div>
                   <p className="text-lg font-extrabold">{t}</p>
                   <p className="mt-1 text-gris">{d}</p>
@@ -980,14 +1018,16 @@ export function BandaMiedoAlCambio() {
     <section className="bg-niebla py-6">
       <div className={ENVOLTORIO}>
         <a href="/miedo-al-cambio" className="group flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <span>
+          <Loseta icono="bombilla" i={3} className="sm:mr-1" />
+          <span className="flex-1">
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
             <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses sin pagar nada si no mejoramos.</span>
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
         </a>
         <a href="/un-dia-de-trabajo" className="group mt-4 flex flex-col gap-3 rounded-[1.6rem] border border-linea bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-noche sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <span>
+          <Loseta icono="ojo" i={5} className="sm:mr-1" />
+          <span className="flex-1">
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">Sin cajas negras</span>
             <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Mira lo que hacemos por dentro en un día de trabajo real. Casi nadie te lo cuenta.</span>
           </span>
@@ -1001,10 +1041,11 @@ export function BandaMiedoAlCambio() {
 /* Portada: tus cuentas son tuyas (siete compromisos de control). */
 export function BandaControl() {
   return (
-    <section className="bg-white py-14 sm:py-20">
-      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
+    <section className="relative overflow-hidden bg-white py-14 sm:py-20">
+      <Nebulosa variante={3} />
+      <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
-          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu control</p>
+          <Etiqueta icono="escudo">Tu control</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
           <p className="mt-5 text-lg text-gris">
             Queremos que seas tú quien tenga el control, no nosotros. Tu dominio y tus cuentas de Google están a tu nombre, y nosotros entramos como invitados. Si un día quieres irte, te llevas tus cuentas y tus contactos, y la web la tienes tuya al cumplir los doce meses. Sin enfados.
@@ -1015,7 +1056,7 @@ export function BandaControl() {
         <ol className="grid gap-3">
           {COMPROMISOS.map((c, i) => (
             <li key={c.titulo} className="flex items-start gap-4 rounded-[1.4rem] bg-niebla p-4 sm:p-5">
-              <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-estrella font-extrabold text-tinta">{i + 1}</span>
+              <Loseta icono={c.icono} i={i} />
               <span>
                 <b className="block text-lg leading-snug">{c.titulo}</b>
                 <span className="mt-1 block text-gris">{c.corto}</span>
@@ -1035,7 +1076,7 @@ export function SeccionConfidenciales() {
       <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
-          <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Bajo llave</p>
+          <Etiqueta tono="cristal">Bajo llave</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo que ves es solo una parte.</h2>
           <p className="mt-5 text-lg text-white/80">
             Muchos de nuestros mejores trabajos no los podemos enseñar: el cliente prefiere que su competencia no sepa quién está detrás de lo bien que le va. Nos encantaría publicarlos todos. En el estudio gratuito te contamos casos parecidos al tuyo.
@@ -1073,7 +1114,7 @@ export function SeccionIncluidoCompacta() {
       <div className={ENVOLTORIO}>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-3xl">
-            <p className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-bold text-emerald-800">Todo esto entra en tu cuota</p>
+            <Etiqueta tono="verde">Todo esto entra en tu cuota</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
           </div>
           <p className="flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm ring-1 ring-linea">
@@ -1104,7 +1145,7 @@ export function SeccionVelocidad() {
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-noche/85 via-noche/50 to-noche/20" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
-          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Nuestro compromiso de velocidad</p>
+          <Etiqueta tono="estrella">Nuestro compromiso de velocidad</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Tu web, más rápida que la de la mayoría.</h2>
           <p className="mt-6 text-lg text-white/85">
             Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google. Una web lenta pierde visitas antes de que la vean, y Google lo tiene en cuenta al ordenar los resultados.
@@ -1114,9 +1155,9 @@ export function SeccionVelocidad() {
               "Tu web cargada en 2 segundos como máximo. Lo ideal, menos de medio segundo.",
               "100, 100, 100 en PageSpeed Insights, la herramienta de Google que mide rendimiento, accesibilidad y buenas prácticas.",
               "No te diremos que lo clavamos a la primera, pero siempre vas a estar muy cerca de lo óptimo y muy por encima de la media.",
-            ].map((t) => (
+            ].map((t, k) => (
               <li key={t} className="flex gap-3">
-                <span aria-hidden="true" className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-emerald-500 text-sm font-extrabold text-white">✓</span>
+                <span aria-hidden="true" className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full text-sm font-extrabold text-white" style={{ background: COLOR_SELLO[(k + 2) % COLOR_SELLO.length][0] }}>✓</span>
                 <span>{t}</span>
               </li>
             ))}
@@ -1156,9 +1197,10 @@ export function SeccionVeinteProveedores() {
   const giros = [-4, 3, -2, 5, -5, 2, 4, -3, 3, -4, 2, -2, 5, -3, 1, -5, 4, -1, 3, -4];
   return (
     <section className="relative overflow-hidden bg-white py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
+      <Nebulosa variante={0} />
+      <div className={`${ENVOLTORIO} relative`}>
         <div className="max-w-4xl">
-          <p className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-sm font-bold text-rose-800">El lío de siempre</p>
+          <Etiqueta tono="rosa" icono="engranaje">El lío de siempre</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">¿Sientes que, en tu marketing, cada proveedor va a lo suyo? Y tú, en medio, coordinándolos a todos.</h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
             Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes un proveedor para cada cosa, una factura de cada uno y una contraseña para cada sitio. Ninguno habla con los demás. Y cuando algo falla, nadie responde.
@@ -1198,10 +1240,11 @@ const COMPARA_TECNO: [string, string, string][] = [
 export function SeccionTecnologia() {
   return (
     <section id="tecnologia" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
+      <Nebulosa variante={1} />
+      <div className={`${ENVOLTORIO} relative`}>
         <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tecnología limpia, sin lastre</p>
+            <Etiqueta>Tecnología limpia, sin lastre</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo último en tecnología. Sin la carga de lo antiguo.</h2>
           </div>
           <p className="text-lg text-gris">
@@ -1214,9 +1257,9 @@ export function SeccionTecnologia() {
             <span className="text-rose-300">Una web típica en WordPress</span>
             <span className="text-estrella">Una web de Casiopea 360</span>
           </div>
-          {COMPARA_TECNO.map(([q, a, b]) => (
+          {COMPARA_TECNO.map(([q, a, b], k) => (
             <div key={q} className="grid items-start gap-2 border-t border-linea px-5 py-4 text-[0.95rem] transition-colors first:border-t-0 hover:bg-niebla/60 sm:grid-cols-[0.8fr_1fr_1fr] sm:gap-3 sm:px-7">
-              <b>{q}</b>
+              <b className="flex items-center gap-2.5"><ChipIcono icono={["engranaje", "rayo", "candado", "campana", "lista", "globo"][k]} i={k} tam="h-8 w-8" />{q}</b>
               <span className="flex gap-2.5 text-gris"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-rose-100 text-rose-700"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></span><span><b className="font-bold text-rose-700 sm:hidden">WordPress: </b>{a}</span></span>
               <span className="flex gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span><b className="font-bold text-emerald-700 sm:hidden">Casiopea: </b>{q === "Velocidad" ? <><span className="mr-1.5 inline-flex gap-1 align-middle">{[0, 1, 2].map((k) => <span key={k} className="grid h-7 w-7 place-items-center rounded-full bg-emerald-600 text-[0.65rem] font-extrabold text-white ring-2 ring-emerald-200">100</span>)}</span>en PageSpeed, como esta web</> : b}</span></span>
             </div>
@@ -1238,10 +1281,11 @@ export function SeccionCRM() {
     ["Cliente", ["Suelo radiante · Seguimiento", "Caldera · Mapa de Google"]],
   ];
   return (
-    <section id="crm" className="scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
-      <div className={`${ENVOLTORIO} grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]`}>
+    <section id="crm" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]`}>
         <div>
-          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Valor añadido · si lo quieres</p>
+          <Etiqueta tono="estrella" icono="crm">Valor añadido · si lo quieres</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Tu propio CRM, hecho a medida.</h2>
           <p className="mt-5 text-lg text-gris">Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. Sin licencias que pagar por usuario.</p>
           <ul className="mt-7 space-y-3 text-[1.05rem]">
@@ -1252,8 +1296,8 @@ export function SeccionCRM() {
               "Ves qué canal trae clientes que firman, no solo clics.",
               "En el móvil, para ti y tu equipo. Tus datos, a tu nombre.",
               "¿Ya tienes uno? Lo conectamos al tuyo: HubSpot, Zoho, Pipedrive o el que uses.",
-            ].map((t) => (
-              <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-noche text-xs text-estrella">✓</span>{t}</li>
+            ].map((t, k) => (
+              <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-extrabold text-white" style={{ background: COLOR_SELLO[k % COLOR_SELLO.length][0] }}>✓</span>{t}</li>
             ))}
           </ul>
           <Link href="/crm-ejemplo" className={`${BOTON} mt-8 inline-flex`}>Ver un CRM de ejemplo</Link>
@@ -1291,16 +1335,17 @@ export function SeccionCRM() {
 /* Fuera de internet: radio (la recomendamos) y prensa escrita (si el cliente la quiere). */
 export function SeccionFueraInternet() {
   return (
-    <section id="fuera" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">360 de verdad</p>
+    <section id="fuera" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-24">
+      <Nebulosa variante={3} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="radio">360 de verdad</Etiqueta>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Y si hace falta, también fuera de internet.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
           Preferimos lo digital porque se mide al euro. Pero si a tu negocio le conviene la radio, o quieres un anuncio en el periódico, también te lo llevamos. Sin buscar a nadie más.
         </p>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <div className="relative overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-9">
-            <span className="inline-block rounded-full bg-estrella px-3 py-1 text-xs font-extrabold text-tinta">Lo recomendamos</span>
+            <div className="flex items-center gap-3"><Loseta icono="radio" i={0} /><span className="inline-block rounded-full bg-estrella px-3 py-1 text-xs font-extrabold text-tinta">Lo recomendamos</span></div>
             <p className="mt-4 text-3xl font-extrabold">Campañas de radio</p>
             <p className="mt-3 text-white/80">La radio empuja todo lo demás: después de oír tu anuncio, mucha gente te busca en Google. Bien hecha, hace que tus campañas de internet rindan más.</p>
             <ul className="mt-5 space-y-2 text-white/90">
@@ -1310,7 +1355,7 @@ export function SeccionFueraInternet() {
             </ul>
           </div>
           <div className="rounded-[2rem] border border-linea bg-white p-7 sm:p-9">
-            <span className="inline-block rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Si tú lo quieres</span>
+            <div className="flex items-center gap-3"><Loseta icono="prensa" i={3} /><span className="inline-block rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Si tú lo quieres</span></div>
             <p className="mt-4 text-3xl font-extrabold">Prensa escrita</p>
             <p className="mt-3 text-gris">No solemos aconsejarla: es cara y no se puede medir bien. Pero si te interesa, por ejemplo en un periódico local o una revista de tu sector, te lo resolvemos.</p>
             <ul className="mt-5 space-y-2">
@@ -1320,9 +1365,9 @@ export function SeccionFueraInternet() {
             </ul>
           </div>
         </div>
-        <p className="mt-6 rounded-2xl bg-white p-5 text-[0.95rem]">
+        <p className="mt-6 flex items-start gap-3 rounded-2xl bg-white p-5 text-[0.95rem]"><ChipIcono icono="euro" i={4} tam="h-9 w-9" /><span>
           <b>Cómo se paga:</b> la idea, el guion, el diseño y toda la gestión van incluidos en tu cuota. El espacio en la emisora o en el periódico lo pagas tú directamente al medio, igual que pagas a Google o a Meta tus anuncios. Sin comisiones nuestras.
-        </p>
+        </span></p>
       </div>
     </section>
   );
@@ -1332,8 +1377,9 @@ export function SeccionFueraInternet() {
 export function SeccionCostes() {
   return (
     <section id="costes" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Haz cuentas</p>
+      <Nebulosa variante={0} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="euro">Haz cuentas</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
         <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa y marca lo que necesitas. Verás lo que pagarías contratándolo por separado, a cuántos proveedores y cuántas facturas. Spoiler: la suma asusta.</p>
         <CostesDiferido />
@@ -1346,7 +1392,8 @@ export function SeccionCostes() {
 export function SeccionMetodo() {
   return (
     <section id="metodo" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
-      <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Cómo trabajamos, paso a paso.</h2>
+      <Etiqueta icono="cohete">Paso a paso</Etiqueta>
+      <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Cómo trabajamos, paso a paso.</h2>
       <p className="mt-5 max-w-2xl text-lg text-gris">Casi todo por internet y por escrito. Sin reuniones que no hagan falta y dándote el menor trabajo posible.</p>
       <ol className="carrusel mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {PASOS.map((p, i) => (
@@ -1366,12 +1413,12 @@ export function SeccionMetodo() {
           <div className="aspect-[16/10]"><VideoFondo nombre="mano-pantalla" alt="Una mano toca una pantalla luminosa" /></div>
         </div>
         <div>
-          <h3 className="text-2xl font-extrabold sm:text-3xl">Lo de cada día, en 48 horas. Lo grande, con fecha.</h3>
+          <h3 className="flex items-center gap-3 text-2xl font-extrabold sm:text-3xl"><Loseta icono="reloj" i={4} /> Lo de cada día, en 48 horas. Lo grande, con fecha.</h3>
           <table className="mt-4 w-full text-left">
             <tbody>
-              {PLAZOS.map((p) => (
+              {PLAZOS.map((p, k) => (
                 <tr key={p.que} className="border-b border-linea">
-                  <td className="py-3 pr-4">{p.que}</td>
+                  <td className="flex items-center gap-2.5 py-3 pr-4"><ChipIcono icono={iconoPorTexto(p.que, k)} i={k} tam="h-8 w-8" />{p.que}</td>
                   <td className="py-3 text-right font-bold">{p.cuando}</td>
                 </tr>
               ))}
@@ -1389,12 +1436,15 @@ export function SeccionMetodo() {
 /* Garantías. */
 export function SeccionGarantias() {
   return (
-    <section className="bg-niebla py-20 sm:py-28">
-      <div className={ENVOLTORIO}>
-        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Tus cuentas son tuyas. Y te quedas porque quieres.</h2>
+    <section className="relative overflow-hidden bg-niebla py-20 sm:py-28">
+      <Nebulosa variante={1} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="escudo">Garantías</Etiqueta>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tus cuentas son tuyas. Y te quedas porque quieres.</h2>
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {GARANTIAS.map((g, i) => (
             <div key={g.titulo} className={`rounded-[2rem] p-7 sm:p-9 ${i === 3 ? "bg-estrella" : "bg-white"}`}>
+              <Loseta icono={iconoPorTexto(g.titulo, i)} i={i} className="mb-4" />
               <h3 className="text-2xl font-extrabold">{g.titulo}</h3>
               <p className={`mt-3 ${i === 3 ? "text-noche/80" : "text-gris"}`}>{g.texto}</p>
             </div>
@@ -1417,11 +1467,12 @@ export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo =
     return m ? [m[1], m[2]] : [r, ""];
   };
   return (
-    <section id="preguntas" className={`scroll-mt-24 ${fondo} py-20 sm:py-28`}>
-      <div className={ENVOLTORIO}>
+    <section id="preguntas" className={`relative scroll-mt-24 overflow-hidden ${fondo} py-20 sm:py-28`}>
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
         {titulo && (
           <>
-            <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Pregúntanos lo que quieras</p>
+            <Etiqueta icono="chat">Pregúntanos lo que quieras</Etiqueta>
             <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Lo que nos suelen preguntar.</h2>
             <p className="mt-4 max-w-2xl text-lg text-gris">Toca una pregunta y te contestamos al momento.</p>
           </>
@@ -1469,9 +1520,10 @@ export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo =
 export function SeccionEmpezamos({ base = "" }: { base?: string }) {
   const colores = ["#1d4ed8", "#6d28d9", "#be185d", "#047857"];
   return (
-    <section id="como-empezamos" className="scroll-mt-24 bg-niebla py-20 sm:py-24">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Cómo empezamos</p>
+    <section id="como-empezamos" className="relative scroll-mt-24 overflow-hidden bg-niebla py-20 sm:py-24">
+      <Nebulosa variante={3} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="cohete">Cómo empezamos</Etiqueta>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>dos minutos</Subrayado>.</h2>
         <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
@@ -1498,7 +1550,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
 export function SeccionEstudioResumen() {
   return (
     <section id="estudio" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-24`}>
-      <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu estudio gratuito</p>
+      <Etiqueta tono="estrella">Tu estudio gratuito</Etiqueta>
       <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-5xl">No es un informe. Es tu plan <Subrayado>completo</Subrayado>.</h2>
       <p className="mt-4 max-w-3xl text-lg text-gris">{ESTUDIO_TOTAL} apartados hechos a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías, al euro.</p>
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -1534,7 +1586,7 @@ export function SeccionNombre() {
           <p className="mt-3 text-center text-sm text-white/60">La W de Casiopea, como se ve desde España cualquier noche del año.</p>
         </AlEntrar>
         <div>
-          <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-estrella ring-1 ring-white/15">Por qué nos llamamos así</p>
+          <Etiqueta tono="cristal">Por qué nos llamamos así</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Casiopea es la <Subrayado>reina</Subrayado> del cielo del norte.</h2>
           <p className="mt-6 text-lg text-white/80">Sus cinco estrellas dibujan una W que, desde España, se ve todas las noches del año. Nunca se pone. Nunca se esconde. Siempre está ahí.</p>
           <p className="mt-4 text-lg text-white/80">Así queremos ser para tu negocio: cinco frentes, un solo equipo y siempre ahí. Por eso nuestra W sube y termina en una estrella.</p>
@@ -1550,7 +1602,7 @@ export function SeccionMundo() {
     <section id="mundo" className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
       <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-60"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
       <div className={`${ENVOLTORIO} relative`}>
-        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">En directo, ahora mismo</p>
+        <Etiqueta tono="estrella">En directo, ahora mismo</Etiqueta>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra <Subrayado>nunca</Subrayado>.</h2>
         <p className="mt-4 max-w-2xl text-lg text-white/80">Mientras lees esto, en algún sitio es de día y alguien está buscando lo que haces. Tu web y tu asistente con IA le atienden a cualquier hora, estés donde estés.</p>
         <div className="mt-10">
@@ -1574,9 +1626,11 @@ export function SeccionSaberMas() {
     { t: "¿Te suena alguno?", d: "Los problemas de siempre y cómo los arreglamos.", href: "/como-trabajamos#dolores", icono: "lupa", color: "#e8457a" },
   ];
   return (
-    <section className="bg-niebla py-20 sm:py-24">
-      <div className={ENVOLTORIO}>
-        <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Para saber más.</h2>
+    <section className="relative overflow-hidden bg-niebla py-20 sm:py-24">
+      <Nebulosa variante={0} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="bombilla">A un toque</Etiqueta>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Para saber más.</h2>
         <p className="mt-4 max-w-2xl text-lg text-gris">Todo lo demás, a un toque.</p>
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {tarjetas.map((x, k) => (
@@ -1630,7 +1684,7 @@ export function MuestraEstudio() {
 export function SeccionEstudio() {
   return (
     <section id="estudio" className={`${ENVOLTORIO} scroll-mt-24 py-20 sm:py-28`}>
-      <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu estudio gratuito</p>
+      <Etiqueta tono="estrella">Tu estudio gratuito</Etiqueta>
       <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No es un informe. Es tu plan completo.</h2>
       <p className="mt-5 max-w-3xl text-lg text-gris sm:text-xl">
         {ESTUDIO_TOTAL} apartados hechos a medida para tu empresa, con datos reales y fechados, y la propuesta de rediseño completo de tu web. Por eso no se lo hacemos a todo el mundo.
@@ -1648,7 +1702,7 @@ export function SeccionEstudio() {
             <ul className="mt-5 space-y-2.5">
               {b.items.map((x) => (
                 <li key={x.t} className="flex gap-2.5 text-[0.98rem]">
-                  <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full" style={{ background: b.color }} />
+                  <span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-white" style={{ background: b.color }}><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12.5 4.5 4.5L19 7" /></svg></span>
                   <span>
                     {x.t}
                     {x.caso && <span className="ml-1.5 whitespace-nowrap rounded-full bg-niebla px-2 py-0.5 text-xs font-bold text-gris">según tu caso</span>}
@@ -1669,12 +1723,14 @@ export function SeccionEstudio() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <Loseta icono="casa" i={2} className="mb-3" />
             <p className="text-sm font-bold text-gris">Reformadísimo</p>
             <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700"><Cifra valor={23} antes="−" despues=" %" /></p>
             <p className="mt-1 font-bold">en toda su inversión en marketing</p>
             <p className="mt-2 text-[0.95rem] text-gris">Proveedores, anuncios y herramientas, todo sumado.</p>
           </div>
           <div className="rounded-[1.6rem] bg-white p-6 shadow-sm">
+            <Loseta icono="edificio" i={5} className="mb-3" />
             <p className="text-sm font-bold text-gris">AMS Cerramientos</p>
             <p className="mt-2 font-titular text-5xl font-extrabold text-emerald-700"><Cifra valor={36} antes="−" despues=" %" /></p>
             <p className="mt-1 font-bold">en lo que paga cada mes en marketing</p>
@@ -1705,10 +1761,11 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
       <p className="text-lg font-extrabold">¿Quieres ver ejemplos de nuestros trabajos?</p>
       <p className={`mt-1 text-sm ${claro ? "text-gris" : "text-white/75"}`}>Entra y pruébalos: están funcionando hoy.</p>
       <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-        {lista.map((x) => (
+        {lista.map((x, k) => (
           <li key={x.n}>
-            <a href={x.url} target="_blank" rel="noopener" className={`flex items-center justify-between gap-3 rounded-2xl px-4 py-3 font-bold transition-colors ${claro ? "bg-white ring-1 ring-linea hover:ring-noche" : "bg-white/10 hover:bg-white/20"}`}>
-              <span>
+            <a href={x.url} target="_blank" rel="noopener" className={`flex items-center gap-3 rounded-2xl px-4 py-3 font-bold transition-colors ${claro ? "bg-white ring-1 ring-linea hover:ring-noche" : "bg-white/10 hover:bg-white/20"}`}>
+              <ChipIcono icono={["casa", "edificio", "birrete", "telefono"][k]} i={k} tam="h-9 w-9" />
+              <span className="flex-1">
                 {x.n}
                 <span className={`block text-xs font-normal ${claro ? "text-gris" : "text-white/70"}`}>{x.d}</span>
               </span>
@@ -1724,10 +1781,11 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
 /* Solicitud con test de idoneidad. */
 export function SeccionSolicitud() {
   return (
-    <section id="solicitud" className="scroll-mt-24 bg-noche py-20 text-white sm:py-28">
-      <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
+    <section id="solicitud" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
+      <Nebulosa oscura variante={3} />
+      <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
-          <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Unos 4 minutos · Una pregunta cada vez</p>
+          <Etiqueta tono="estrella">Unos 4 minutos · Una pregunta cada vez</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
             Preparar un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar de verdad. Contesta tocando, sin escribir, y al final te damos tu nota.
@@ -1749,6 +1807,7 @@ export function LlamadaFinal() {
         <div aria-hidden="true" className="estrellas profundo absolute inset-0 opacity-80"><VideoFondo nombre="constelaciones-azules" alt="" /></div>
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
           <div>
+            <Loseta icono="cohete" i={4} tam="lg" className="mb-5" />
             <h2 className="text-3xl font-extrabold sm:text-5xl">¿Empezamos por un estudio gratuito?</h2>
             <p className="mt-4 max-w-2xl text-lg text-white/80">Te contamos cómo está hoy tu marketing y qué haríamos. Sin compromiso.</p>
           </div>

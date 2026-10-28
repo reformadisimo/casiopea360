@@ -8,6 +8,7 @@ import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal } from "@/components/secciones";
 import { ARTICULOS, articuloPorSlug, type Bloque } from "@/lib/blog";
 import { schemaArticulo, schemaFaqArticulo, schemaMigas } from "@/lib/schema";
+import { CajaIdea, ChipIcono, ListaViva, PasosVivos, PreguntaViva, TituloVivo, idDe } from "@/components/ArticuloVisual";
 import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
@@ -41,11 +42,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function Pinta({ b, g }: { b: Bloque; g: ContextoGlosario }) {
-  if ("h2" in b) return <h2>{b.h2}</h2>;
+function Pinta({ b, g, n }: { b: Bloque; g: ContextoGlosario; n: number }) {
+  if ("caja" in b) return <CajaIdea t={b.t}>{glosar(b.caja, g)}</CajaIdea>;
+  if ("h2" in b) return <TituloVivo t={b.h2} i={n} />;
   if ("h3" in b) return <h3>{b.h3}</h3>;
-  if ("ul" in b) return <ul>{b.ul.map((x) => <li key={x}>{glosar(x, g)}</li>)}</ul>;
-  if ("ol" in b) return <ol>{b.ol.map((x) => <li key={x}>{glosar(x, g)}</li>)}</ol>;
+  if ("ul" in b) return <ListaViva items={b.ul} render={(x) => glosar(x, g)} />;
+  if ("ol" in b) return <PasosVivos items={b.ol} render={(x) => glosar(x, g)} />;
   return <p>{glosar(b.p, g)}</p>;
 }
 
@@ -64,7 +66,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
     <>
       <DatosEstructurados
         datos={[
-          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").split(/\s+/).length }),
+          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("caja" in b ? b.caja : "p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").split(/\s+/).length }),
           ...(a.faq?.length ? [schemaFaqArticulo(a.faq)] : []),
           schemaMigas([
             { texto: "Inicio", ruta: "/" },
@@ -80,10 +82,31 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
         video={a.video}
       />
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-        <div className="rounded-2xl border-l-4 border-estrella bg-niebla p-6 text-lg">
-          <p className="font-titular text-sm font-bold text-noche-3">En pocas palabras</p>
-          <p className="mt-2">{glosar(a.respuesta, g)}</p>
+        <div className="rounded-[1.6rem] border-2 border-estrella bg-gradient-to-br from-estrella/20 via-white to-niebla p-6 text-lg">
+          <p className="flex items-center gap-3 font-titular text-sm font-extrabold uppercase tracking-wide text-noche-3">
+            <ChipIcono icono="estrella" i={4} tam="h-9 w-9" />
+            En pocas palabras
+          </p>
+          <p className="mt-3">{glosar(a.respuesta, g)}</p>
         </div>
+        {titulos.length >= 4 && (
+          <nav aria-label="En este artículo" className="rounded-2xl bg-white p-4 ring-1 ring-linea sm:p-5">
+            <p className="font-titular text-sm font-bold text-noche-3">En este artículo</p>
+            <ol className="lv mt-3 !gap-1.5">
+              {titulos.map((ti, k) => {
+                const t = (a.cuerpo[ti] as { h2: string }).h2;
+                return (
+                  <li key={t}>
+                    <a href={`#${idDe(t)}`} className="flex items-center gap-3 rounded-xl px-2 py-1.5 font-semibold no-underline hover:bg-niebla">
+                      <span aria-hidden="true" className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-estrella text-sm font-extrabold text-tinta">{k + 1}</span>
+                      <span className="min-w-0">{t}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        )}
         {a.cuerpo.map((b, i) => (
           <Fragment key={i}>
             {i === mitad && (
@@ -93,23 +116,22 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
                 </div>
               </figure>
             )}
-            <Pinta b={b} g={g} />
+            <Pinta b={b} g={g} n={titulos.indexOf(i)} />
           </Fragment>
         ))}
         {a.faq && a.faq.length > 0 && (
           <>
-            <h2>Preguntas frecuentes</h2>
-            {a.faq.map((q) => (
-              <Fragment key={q.p}>
-                <h3>{q.p}</h3>
-                <p>{glosar(q.r, g)}</p>
-              </Fragment>
-            ))}
+            <TituloVivo t="Preguntas frecuentes" i={titulos.length} />
+            <div>
+              {a.faq.map((q, k) => (
+                <PreguntaViva key={q.p} p={q.p} i={k}>{glosar(q.r, g)}</PreguntaViva>
+              ))}
+            </div>
           </>
         )}
         {a.fuentes && a.fuentes.length > 0 && (
           <>
-            <h2>Fuentes</h2>
+            <TituloVivo t="Fuentes" i={titulos.length + 1} />
             <ul>
               {a.fuentes.map((f) => (
                 <li key={f.href}><a href={f.href} target="_blank" rel="noopener noreferrer">{f.texto}</a></li>

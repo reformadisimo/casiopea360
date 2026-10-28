@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ENVOLTORIO } from "@/components/secciones";
+import { ENVOLTORIO, Loseta } from "@/components/secciones";
+import { Etiqueta, Nebulosa } from "@/components/Vida";
 
 /* Cómo quedaría pedir reseñas: la tarjeta con QR, el mensaje de WhatsApp y el bloque en la web del cliente.
    Todo de ejemplo, con una empresa ficticia ("Climatización Ejemplo"). El logo es un marcador: en producto va el logo del cliente.
@@ -115,16 +116,18 @@ export default function EjemploResenas() {
     ["En tu web", "Un bloque con tu logo, tu nota y una invitación a recomendarte. Quien ya te conoce lo ve y deja su opinión con un toque.", <EnLaWeb key="e" />],
   ];
   return (
-    <section className="bg-white py-14 sm:py-20" aria-labelledby="ejemplo-resenas">
-      <div className={ENVOLTORIO}>
-        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Así quedaría</p>
+    <section className="relative overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="ejemplo-resenas">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="estrella">Así quedaría</Etiqueta>
         <h2 id="ejemplo-resenas" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Pedir una reseña, bonito y fácil</h2>
         <p className="mt-4 max-w-3xl text-lg text-gris">Te lo dejamos todo preparado, con el logo de tu empresa arriba: la tarjeta, el mensaje y el bloque de tu web. Ejemplo con una empresa ficticia.</p>
         <div className="mt-10 grid gap-10 lg:grid-cols-3">
-          {piezas.map(([t, d, nodo]) => (
+          {piezas.map(([t, d, nodo], k) => (
             <figure key={t} className="flex flex-col gap-4">
               {nodo}
               <figcaption className="mx-auto max-w-[340px] text-center">
+                <Loseta icono={["regalo", "chat", "pagina"][k]} i={k + 1} className="mx-auto mb-3" />
                 <b className="text-lg text-tinta">{t}</b>
                 <span className="mt-1 block text-gris">{d}</span>
               </figcaption>

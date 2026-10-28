@@ -44,16 +44,16 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
   },
 ];
 
-// Ejemplo hipotético de ficha de cuentas.
-export const FICHA: [string, string, string][] = [
-  ["Dominio (la dirección de tu web)", "A tu nombre, con tu correo como propietario", "Tú, propietario. Casiopea, como invitada."],
-  ["Web", "Alojada por Casiopea durante los doce primeros meses; a tu nombre al cumplirlos o al pagar lo que falte", "Casiopea, titular del alojamiento hasta entonces. Tú, propietario después."],
-  ["Google Ads", "Cuenta tuya, pagada con tu tarjeta", "Tú, administrador. Casiopea, como usuaria invitada."],
-  ["Google Analytics", "Cuenta tuya", "Tú, propietario. Casiopea, como invitada."],
-  ["Search Console y Tag Manager", "Cuentas tuyas", "Tú, propietario. Casiopea, como invitada."],
-  ["Ficha de Google (tu negocio en el mapa)", "Con tu correo como propietario", "Tú, propietario. Casiopea, como administradora invitada."],
-  ["Facebook e Instagram", "Tu cuenta de empresa, con tu correo como propietario", "Tú, propietario. Casiopea, como socia invitada."],
-  ["Contactos y clientes", "Tuyos. En Excel cuando los pidas", "Tú. Casiopea los usa para trabajar contigo."],
-  ["Tu facturación y tu ticket medio", "Tuyos. Ni los vemos ni te los pedimos", "Tú. Se quedan en tu navegador. Nosotros, como mucho, ven un índice."],
-  ["Herramientas de Casiopea (informes y panel de control)", "Son nuestras. Tus datos, no: son tuyos", "Casiopea. Tú ves tu panel."],
+// Ejemplo hipotético de ficha de cuentas. Cada fila: [cuenta, cómo debe quedar, quién tiene acceso, icono del chip].
+export const FICHA: [string, string, string, string][] = [
+  ["Dominio (la dirección de tu web)", "A tu nombre, con tu correo como propietario", "Tú, propietario. Casiopea, como invitada.", "globo"],
+  ["Web", "Alojada por Casiopea durante los doce primeros meses; a tu nombre al cumplirlos o al pagar lo que falte", "Casiopea, titular del alojamiento hasta entonces. Tú, propietario después.", "pagina"],
+  ["Google Ads", "Cuenta tuya, pagada con tu tarjeta", "Tú, administrador. Casiopea, como usuaria invitada.", "diana"],
+  ["Google Analytics", "Cuenta tuya", "Tú, propietario. Casiopea, como invitada.", "grafica"],
+  ["Search Console y Tag Manager", "Cuentas tuyas", "Tú, propietario. Casiopea, como invitada.", "lupa"],
+  ["Ficha de Google (tu negocio en el mapa)", "Con tu correo como propietario", "Tú, propietario. Casiopea, como administradora invitada.", "mapa"],
+  ["Facebook e Instagram", "Tu cuenta de empresa, con tu correo como propietario", "Tú, propietario. Casiopea, como socia invitada.", "video"],
+  ["Contactos y clientes", "Tuyos. En Excel cuando los pidas", "Tú. Casiopea los usa para trabajar contigo.", "crm"],
+  ["Tu facturación y tu ticket medio", "Tuyos. Ni los vemos ni te los pedimos", "Tú. Se quedan en tu navegador. Nosotros, como mucho, ven un índice.", "euro"],
+  ["Herramientas de Casiopea (informes y panel de control)", "Son nuestras. Tus datos, no: son tuyos", "Casiopea. Tú ves tu panel.", "herramienta"],
 ];

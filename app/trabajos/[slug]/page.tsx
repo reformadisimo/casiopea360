@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import VideoFondo from "@/components/VideoFondo";
-import { BOTON, ENVOLTORIO, LlamadaFinal, ICONO_SVG } from "@/components/secciones";
+import { BOTON, ENVOLTORIO, LlamadaFinal, ICONO_SVG, Loseta } from "@/components/secciones";
+import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, iconoPorTexto } from "@/components/Vida";
 import { CASOS, casoPorSlug } from "@/lib/casos";
 import { TRABAJOS } from "@/lib/contenido";
 import { PAGINAS_SERVICIO } from "@/lib/servicios";
@@ -54,13 +55,14 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
       />
 
       {/* Los datos */}
-      <section className="bg-white py-16 sm:py-20">
-        <div className={ENVOLTORIO}>
+      <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+        <Nebulosa variante={0} />
+        <div className={`${ENVOLTORIO} relative`}>
           <div className="flex flex-wrap items-center justify-between gap-6">
             {t.logo && (
               <Image src={t.logo.src} alt={`Logotipo de ${c.nombre}`} width={t.logo.ancho} height={t.logo.alto} className={`h-16 w-auto object-contain ${t.logo.ancho === t.logo.alto ? "rounded-2xl" : ""}`} />
             )}
-            <a href={t.url} target="_blank" rel="noopener" className={BOTON}>
+            <a href={t.url} target="_blank" rel="noopener" className={`${BOTON} min-h-11`}>
               {t.enlaceTexto}
             </a>
           </div>
@@ -68,7 +70,8 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
             {c.datos.map((d, i) => (
               <li key={d.texto} className={`relative overflow-hidden rounded-3xl p-7 ${i === 0 ? "bg-noche text-white" : "bg-niebla"}`}>
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: c.color }} />
-                <p className={`font-titular text-5xl font-extrabold ${i === 0 ? "text-estrella" : ""}`} style={i === 0 ? undefined : { color: c.color }}>
+                <Loseta icono={iconoPorTexto(d.texto, i)} i={i} />
+                <p className={`mt-5 font-titular text-5xl font-extrabold ${i === 0 ? "text-estrella" : ""}`} style={i === 0 ? undefined : { color: c.color }}>
                   {d.cifra}
                 </p>
                 <p className={`mt-2 text-lg ${i === 0 ? "text-white/85" : "text-gris"}`}>{d.texto}</p>
@@ -80,36 +83,31 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
       </section>
 
       {/* El reto y lo que hicimos */}
-      <section className="bg-niebla py-16 sm:py-24">
-        <div className={`${ENVOLTORIO} grid items-start gap-10 lg:grid-cols-2`}>
+      <section className="relative overflow-hidden bg-niebla py-16 sm:py-24">
+        <Nebulosa variante={1} />
+        <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-2`}>
           <div>
-            <p className="font-titular text-sm font-bold text-noche-3">El punto de partida</p>
-            <h2 className="mt-3 text-4xl font-extrabold sm:text-5xl">El reto.</h2>
+            <Etiqueta icono="bombilla">El punto de partida</Etiqueta>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">El reto.</h2>
             <p className="mt-5 text-lg text-gris">{c.reto}</p>
             <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[2rem]">
               <VideoFondo nombre={c.video} alt={c.videoAlt} />
             </div>
           </div>
           <div>
-            <p className="font-titular text-sm font-bold text-noche-3">Con la misma cuota</p>
-            <h2 className="mt-3 text-4xl font-extrabold sm:text-5xl">Lo que hicimos.</h2>
-            <ul className="mt-6 grid gap-3">
-              {c.hicimos.map((h, i) => (
-                <li key={h} className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-linea">
-                  <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-sm font-extrabold text-white" style={{ background: c.color }}>
-                    {i + 1}
-                  </span>
-                  <span className="pt-1.5 text-[1.05rem]">{h}</span>
-                </li>
-              ))}
-            </ul>
+            <Etiqueta icono="regalo" i={1}>Con la misma cuota</Etiqueta>
+            <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que hicimos.</h2>
+            <ListaViva items={c.hicimos} className="mt-6 [&>li]:bg-white [&>li]:text-[1.05rem] [&>li]:shadow-sm [&>li]:ring-1 [&>li]:ring-linea" />
             {servicios.length > 0 && (
               <div className="mt-8">
-                <p className="font-bold">Servicios que entraron en juego</p>
+                <p className="flex items-center gap-3 font-bold">
+                  <ChipIcono icono="herramienta" i={5} tam="h-9 w-9" />
+                  Servicios que entraron en juego
+                </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {servicios.map((s) => (
                     <li key={s.slug}>
-                      <Link href={`/servicios/${s.slug}`} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold ring-1 ring-linea hover:ring-noche">
+                      <Link href={`/servicios/${s.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold ring-1 ring-linea hover:ring-noche">
                         <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full" style={{ background: s.color }} />
                         {s.nombre}
                       </Link>
@@ -123,9 +121,13 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
       </section>
 
       {/* Más casos */}
-      <section className="bg-white py-16 sm:py-20">
-        <div className={ENVOLTORIO}>
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Más trabajos.</h2>
+      <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+        <Nebulosa variante={2} />
+        <div className={`${ENVOLTORIO} relative`}>
+          <h2 className="flex items-center gap-3 text-3xl font-extrabold sm:gap-4 sm:text-4xl">
+            <Loseta icono="trofeo" i={4} />
+            <span>Más trabajos.</span>
+          </h2>
           <ul className="mt-6 grid gap-4 md:grid-cols-3">
             {otros.map((o, k) => (
               <li key={o.slug}>
@@ -140,7 +142,7 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-gris">Y muchos más que no podemos enseñar: hay clientes que prefieren discreción.</p>
+          <Bocadillo className="mt-8 max-w-3xl">Y muchos más que no podemos enseñar: hay clientes que prefieren discreción.</Bocadillo>
         </div>
       </section>
       <LlamadaFinal />

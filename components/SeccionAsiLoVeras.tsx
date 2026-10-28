@@ -1,27 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BOTON, ENVOLTORIO } from "@/components/secciones";
+import { Bocadillo, Etiqueta, ListaViva, Nebulosa } from "@/components/Vida";
 
 /* "Así lo verás tú": el panel de ejemplo, a la vista desde la portada. Las imágenes son capturas del propio panel de ejemplo
    (datos inventados de una empresa ficticia). Incluye lo que decimos sobre los errores: se buscan cada día y, si el cliente ve uno, avisa con un toque. */
 export default function SeccionAsiLoVeras() {
   return (
-    <section className="bg-niebla py-14 sm:py-20" aria-labelledby="asi-lo-veras">
-      <div className={`${ENVOLTORIO} grid items-center gap-10 lg:grid-cols-[1fr_1.15fr]`}>
+    <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="asi-lo-veras">
+      <Nebulosa variante={1} />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.15fr]`}>
         <div>
-          <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu panel</p>
+          <Etiqueta icono="grafica">Tu panel</Etiqueta>
           <h2 id="asi-lo-veras" className="mt-5 text-3xl font-extrabold sm:text-5xl">Así lo verás tú</h2>
           <p className="mt-5 text-lg text-gris">
             Esto es lo que tendrías cada día: <b className="text-tinta">todos tus datos al momento</b>, en un panel que se entiende y que puedes tocar. Entras, y en diez segundos sabes si todo va bien, qué mirar hoy y qué hacer. Funciona en el móvil y le puedes preguntar con tus palabras. Es un ejemplo con datos inventados, y es exactamente el que usamos de modelo.
           </p>
-          <ul className="mt-5 grid gap-2 text-lg font-bold text-tinta">
-            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Mueve y mira qué pasaría.</li>
-            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Dinos tu meta y te decimos si es sueño u objetivo.</li>
-            <li className="flex items-start gap-3"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />Ponnos a prueba cada semana.</li>
-          </ul>
-          <p className="mt-4 text-lg text-gris">
-            <b className="text-tinta">Ninguna herramienta está libre de errores, y la nuestra tampoco.</b> La diferencia es que los buscamos cada día y, si ves uno, nos lo cuentas con un toque y lo arreglamos. Nos encanta encontrarlos: cada uno que arreglamos es un problema menos para ti.
-          </p>
+          <ListaViva items={["Mueve y mira qué pasaría.", "Dinos tu meta y te decimos si es sueño u objetivo.", "Ponnos a prueba cada semana."]} className="mt-5 font-bold [&>li]:bg-white" />
+          <Bocadillo className="mt-5"><b>Ninguna herramienta está libre de errores, y la nuestra tampoco.</b> La diferencia es que los buscamos cada día y, si ves uno, nos lo cuentas con un toque y lo arreglamos. Nos encanta encontrarlos: cada uno que arreglamos es un problema menos para ti.</Bocadillo>
           <Link href="/panel" className={`${BOTON} mt-8 inline-flex`}>Abrir el panel de ejemplo</Link>
           <p className="mt-3 text-sm text-gris">Datos inventados de una empresa ficticia. No se envía nada.</p>
         </div>
