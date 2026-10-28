@@ -195,6 +195,42 @@ export function SeccionTiempo() {
   );
 }
 
+/** "¿Por qué contratarnos?": el mensaje central de Casiopea. Sin promesas de cifras, sin precios publicados. */
+export function SeccionPorQueContratarnos() {
+  const razones: [string, string][] = [
+    ["Tu tiempo vuelve a tu trabajo", "Sin reuniones ni llamadas innecesarias. Correo y WhatsApp, breve y rápido. Con otros, el marketing te lleva muchísimo tiempo; con nosotros, no."],
+    ["Un solo contacto para todo", "Web, Google, anuncios, redes, CRM e IA. Una persona coordina, y detrás hay una red de especialistas. Tú hablas con uno."],
+    ["Rápido", "Tu web nueva en unos días, no en meses. Landings y mejoras en horas o en pocos días, sin presupuestos nuevos cada vez."],
+    ["Todos tus datos, al momento", "Un panel que se entiende a la primera y un CRM para ver de dónde viene cada cliente. Sabes qué va bien y qué hacer."],
+    ["Todo es tuyo", "Dominio, cuentas, ficha de Google y contactos, a tu nombre. Y no te pedimos tu facturación: solo dos números aproximados."],
+    ["Una cuota fija, razonable", "Sin comisiones sobre tus anuncios y con muchas cosas dentro. Por separado, suele costar bastante más."],
+  ];
+  return (
+    <section className="bg-white py-14 sm:py-20" aria-labelledby="por-que">
+      <div className={ENVOLTORIO}>
+        <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">¿Por qué contratarnos?</p>
+        <h2 id="por-que" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Con nosotros no pierdes tiempo. Lo que ganas son datos y trabajo hecho.</h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          Lo que más oímos es «esto me lleva muchísimo tiempo». Por eso está todo pensado para quitártelo de encima. Y el marketing, con medidas y con pruebas, para que dé resultados. No prometemos cifras: medimos cada euro y cada contacto y te lo contamos con datos.
+        </p>
+        <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {razones.map(([t, d], i) => (
+            <li key={t} className="rounded-[1.6rem] bg-niebla p-6">
+              <span aria-hidden="true" className="grid h-10 w-10 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
+              <h3 className="mt-3 text-xl font-extrabold">{t}</h3>
+              <p className="mt-2 text-gris">{d}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link href="/blog/por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo" className={BOTON}>Las seis razones, con detalle</Link>
+          <a href="/estudio-gratuito" className="inline-flex min-h-12 items-center justify-center rounded-full px-5 font-bold text-tinta underline underline-offset-4">Pide tu estudio gratuito</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /** El equipo detrás: seleccionado durante 22 años, autónomos que cobran por proyecto, con plazos cerrados.
     Sin nombres, sin cifras de plantilla y sin superlativos: lo que se cuenta es el método de selección y de trabajo. */
 export function SeccionEquipo() {

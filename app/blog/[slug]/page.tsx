@@ -7,7 +7,7 @@ import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal } from "@/components/secciones";
 import { ARTICULOS, articuloPorSlug, type Bloque } from "@/lib/blog";
-import { schemaArticulo, schemaMigas } from "@/lib/schema";
+import { schemaArticulo, schemaFaqArticulo, schemaMigas } from "@/lib/schema";
 import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
@@ -19,10 +19,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const a = articuloPorSlug(slug);
   if (!a) return {};
   return {
-    title: a.titulo,
+    title: a.tituloSeo ?? a.titulo,
     description: a.descripcion,
     alternates: { canonical: `/blog/${a.slug}` },
-    openGraph: { type: "article", title: a.titulo, description: a.descripcion, publishedTime: a.fecha, url: `/blog/${a.slug}` },
+    keywords: a.claves,
+    authors: [{ name: "Casiopea 360" }],
+    openGraph: {
+      type: "article",
+      title: a.tituloSeo ?? a.titulo,
+      description: a.descripcion,
+      publishedTime: a.fecha,
+      modifiedTime: a.fecha,
+      section: a.categoria,
+      tags: a.claves,
+      url: `/blog/${a.slug}`,
+      locale: "es_ES",
+      siteName: "Casiopea 360",
+      images: [{ url: `/video/${a.video}.jpg`, alt: a.titulo }],
+    },
+    twitter: { card: "summary_large_image", title: a.tituloSeo ?? a.titulo, description: a.descripcion, images: [`/video/${a.video}.jpg`] },
   };
 }
 
@@ -49,7 +64,8 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
     <>
       <DatosEstructurados
         datos={[
-          schemaArticulo(a),
+          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").split(/\s+/).length }),
+          ...(a.faq?.length ? [schemaFaqArticulo(a.faq)] : []),
           schemaMigas([
             { texto: "Inicio", ruta: "/" },
             { texto: "Blog", ruta: "/blog" },
@@ -80,6 +96,27 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
             <Pinta b={b} g={g} />
           </Fragment>
         ))}
+        {a.faq && a.faq.length > 0 && (
+          <>
+            <h2>Preguntas frecuentes</h2>
+            {a.faq.map((q) => (
+              <Fragment key={q.p}>
+                <h3>{q.p}</h3>
+                <p>{glosar(q.r, g)}</p>
+              </Fragment>
+            ))}
+          </>
+        )}
+        {a.fuentes && a.fuentes.length > 0 && (
+          <>
+            <h2>Fuentes</h2>
+            <ul>
+              {a.fuentes.map((f) => (
+                <li key={f.href}><a href={f.href} target="_blank" rel="noopener noreferrer">{f.texto}</a></li>
+              ))}
+            </ul>
+          </>
+        )}
         {a.enlaces && (
           <p>
             {a.enlaces.map((e, i) => (

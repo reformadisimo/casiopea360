@@ -95,7 +95,7 @@ export function schemaServicios() {
   }));
 }
 
-export function schemaArticulo(a: { titulo: string; descripcion: string; slug: string; fecha: string; video?: string }) {
+export function schemaArticulo(a: { titulo: string; descripcion: string; slug: string; fecha: string; video?: string; categoria?: string; claves?: string[]; palabras?: number; fuentes?: { texto: string; href: string }[] }) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -105,9 +105,22 @@ export function schemaArticulo(a: { titulo: string; descripcion: string; slug: s
     dateModified: a.fecha,
     inLanguage: "es-ES",
     mainEntityOfPage: url(`/blog/${a.slug}`),
+    url: url(`/blog/${a.slug}`),
     image: url(`/video/${a.video ?? "constelaciones"}.jpg`),
+    ...(a.categoria ? { articleSection: a.categoria } : {}),
+    ...(a.claves?.length ? { keywords: a.claves.join(", ") } : {}),
+    ...(a.palabras ? { wordCount: a.palabras } : {}),
+    ...(a.fuentes?.length ? { citation: a.fuentes.map((f) => ({ "@type": "CreativeWork", name: f.texto, url: f.href })) } : {}),
     author: { "@type": "Organization", name: SITIO.nombre, url: url("/") },
     publisher: { "@id": url("/#empresa") },
+  };
+}
+
+export function schemaFaqArticulo(faq: { p: string; r: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((q) => ({ "@type": "Question", name: q.p, acceptedAnswer: { "@type": "Answer", text: q.r } })),
   };
 }
 

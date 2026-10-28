@@ -3,7 +3,7 @@ import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
-import { SeccionSonarEnGrande, SeccionComoTrabajamos, SeccionEquipo, SeccionTiempo } from "@/components/SeccionesVender";
+import { SeccionSonarEnGrande, SeccionComoTrabajamos, SeccionEquipo, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import {
   BOTON,
   BOTON_CLARO,
@@ -79,6 +79,7 @@ export default function Inicio() {
       <SeccionSonarEnGrande />
       <SeccionComoTrabajamos />
       <SeccionTiempo />
+      <SeccionPorQueContratarnos />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />

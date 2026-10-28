@@ -3,7 +3,7 @@ import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
-import { SeccionPruebasAB, SeccionTiempo } from "@/components/SeccionesVender";
+import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -26,6 +26,7 @@ export default function ComoTrabajamos() {
       />
       <SeccionEmpezamos base="/estudio-gratuito" />
       <SeccionTiempo />
+      <SeccionPorQueContratarnos />
       <SeccionMetodo />
       <FranjaVideos
         frase="Casi todo por correo. Cero reuniones que no quieras."
