@@ -367,7 +367,7 @@ export default function TestIdoneidad() {
         <div className="mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea">
           <BarraEstrella
             avance={fase === "datos" ? 0.97 : hechas / total}
-            texto={fase === "datos" ? "¡Último paso! Dinos a quién enviárselo" : hechas === 0 ? "Unos 4 minutos. La estrella te acompaña hasta la meta" : `¡Llevas ${hechas} de ${total}! Te quedan ${Math.max(total - hechas, 0)}`}
+            texto={fase === "datos" ? "¡Último paso! Dinos a quién enviárselo" : hechas === 0 ? "Unos 5 minutos. La estrella te acompaña hasta la meta" : `¡Llevas ${hechas} de ${total}! Te quedan ${Math.max(total - hechas, 0)}`}
           />
         </div>
       )}

@@ -107,7 +107,7 @@ export default function AvisoSalida() {
           </button>
           <p className="text-sm font-bold text-estrella">Antes de irte</p>
           <p id="salida-titulo" className="mt-2 pr-8 font-titular text-3xl font-extrabold leading-tight">Tu estudio gratuito te está esperando.</p>
-          <p className="mt-3 text-white/85">Haz el test de idoneidad, son dos minutos. Si encajamos, te preparamos gratis tu plan completo:</p>
+          <p className="mt-3 text-white/85">Haz el test de idoneidad, son unos cinco minutos. Si encajamos, te preparamos gratis tu plan completo:</p>
         </div>
         <ul className="grid gap-2.5 px-7 py-6">
           {RESUMEN.map((x, i) => (

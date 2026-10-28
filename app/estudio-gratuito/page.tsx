@@ -20,7 +20,7 @@ export default function EstudioGratuito() {
         titulo="Tu estudio gratuito: tu plan completo, hecho a medida."
         clave="a medida"
         chip={{ grande: `${ESTUDIO_TOTAL} apartados`, chico: "Con tu web rediseñada" }}
-        entradilla="Dónde estás hoy, tu competencia, el rediseño de tu web, tus anuncios y tu plan. Empieza por el test de idoneidad: son dos minutos."
+        entradilla="Dónde estás hoy, tu competencia, el rediseño de tu web, tus anuncios y tu plan. Empieza por el test de idoneidad: son unos cinco minutos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
         video="hombre-sonriendo"
         videoAlt="Un empresario sonríe satisfecho"

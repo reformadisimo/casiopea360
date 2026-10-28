@@ -491,7 +491,7 @@ export const ESTUDIO_TOTAL = ESTUDIO_BLOQUES.reduce((n, b) => n + b.items.length
 
 // Cómo empezamos: del test de idoneidad a tu estudio.
 export const EMPEZAMOS: { t: string; d: string }[] = [
-  { t: "Haz el test de idoneidad", d: "Dos minutos: nos cuentas tu empresa y en qué momento estás." },
+  { t: "Haz el test de idoneidad", d: "Unos cinco minutos: nos cuentas tu empresa y en qué momento estás." },
   { t: "Lo revisamos", d: "Si podemos ayudarte, te lo decimos en 48 horas laborables. Y si no, también, con el porqué." },
   { t: "Preparamos tu estudio gratuito", d: "Tu plan completo a medida, con el rediseño de tu web y cuánto ahorrarías, al euro." },
   { t: "Te lo presentamos y decides", d: "Con calma, en una videollamada o como prefieras. Y sin ningún compromiso." },

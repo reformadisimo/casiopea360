@@ -49,7 +49,7 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 - [Un día de trabajo real: así arrancamos las campañas por dentro](${u}/un-dia-de-trabajo)
 - [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos, Tierno Centella.
 ${CASOS.map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}
-- [Test de idoneidad](${u}/test): unos 4 minutos, nota de marketing y paso para el estudio gratuito
+- [Test de idoneidad](${u}/test): unos 5 minutos, nota de marketing y paso para el estudio gratuito
 - [Estudio gratuito](${u}/estudio-gratuito)
 - [Preguntas frecuentes](${u}/preguntas)
 

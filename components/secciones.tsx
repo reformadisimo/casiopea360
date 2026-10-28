@@ -1524,7 +1524,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
       <Nebulosa variante={3} />
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta icono="cohete">Cómo empezamos</Etiqueta>
-        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>dos minutos</Subrayado>.</h2>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Cuatro pasos. Y el primero son <Subrayado>cinco minutos</Subrayado>.</h2>
         <ol className="carrusel mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EMPEZAMOS.map((x, i) => (
             <li key={x.t} className="group inclina relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
@@ -1785,7 +1785,7 @@ export function SeccionSolicitud() {
       <Nebulosa oscura variante={3} />
       <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
-          <Etiqueta tono="estrella">Unos 4 minutos · Una pregunta cada vez</Etiqueta>
+          <Etiqueta tono="estrella">Unos 5 minutos · Una pregunta cada vez</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
             Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
