@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Tu control: tus cuentas son tuyas",
-  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos. No te pedimos tu facturación: solo una cifra aproximada.",
+  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos. No te pedimos tu facturación: te pedimos dos números.",
   "/tu-control",
 );
 
@@ -27,7 +27,7 @@ export default function TuControl() {
       <CabeceraPagina
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
-        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: solo una cifra."
+        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: te pedimos dos números."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
       />
 
@@ -83,39 +83,31 @@ export default function TuControl() {
             Nos da igual que factures un millón o cien mil. Lo que sí ayuda a que tus anuncios mejoren es saber si los contactos de una campaña acaban siendo clientes de 100 y los de otra, clientes de 1.000. Para eso no hace falta ver ni un euro: basta un índice.
           </p>
           <div className="mt-10 rounded-[1.8rem] border-2 border-estrella bg-estrella/20 p-6 sm:p-8">
-            <h3 className="text-2xl font-extrabold sm:text-3xl">No te pedimos tu facturación. Solo una cifra.</h3>
-            <p className="mt-3 max-w-3xl text-lg text-gris">Muchos piden la facturación; nosotros no la necesitamos. Esto es lo que sí y lo que no.</p>
-            <ol className="mt-6 grid gap-3 md:grid-cols-3">
-              {[
-                ["1. Lo que cuesta cada contacto", "Lo sabemos nosotros: lo que se invierte, entre los contactos que llegan."],
-                ["2. De contacto a cliente", "Nos lo cuentas tú: cuáles de esos contactos acaban firmando."],
-                ["3. De cliente a facturación", "Una cifra aproximada: lo que te deja de media cada cliente."],
-              ].map(([t, d]) => (
-                <li key={t} className="rounded-[1.4rem] bg-white p-5">
-                  <p className="font-extrabold">{t}</p>
-                  <p className="mt-1 text-gris">{d}</p>
-                </li>
-              ))}
-            </ol>
+            <h3 className="text-2xl font-extrabold sm:text-3xl">No te pedimos tu facturación. Te pedimos dos números.</h3>
+            <p className="mt-3 max-w-3xl text-lg text-gris">
+              No pedimos facturación, ni balances, ni cuentas, ni ningún documento de tu empresa. Lo que sí necesitamos son dos datos tuyos, y son importantísimos.
+            </p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className="rounded-[1.4rem] bg-white p-5">
-                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que no te pedimos</p>
-                <p className="mt-2">Ni tu facturación, ni tus balances, ni tus cuentas, ni tus márgenes. Ningún papel.</p>
+              <div className="rounded-[1.4rem] bg-white p-5 sm:p-6">
+                <p className="grid h-9 w-9 place-items-center rounded-full bg-estrella text-lg font-extrabold">1</p>
+                <p className="mt-3 text-xl font-extrabold">Cuántos contactos acaban siendo clientes</p>
+                <p className="mt-2 text-gris">Solo el número, o un porcentaje aproximado. Sin importes. Nos lo cuentas en un mensaje corto cada semana o cada mes.</p>
+                <p className="mt-4 rounded-2xl bg-niebla p-4">
+                  <b>Un ejemplo:</b> invertimos 1.000 euros y llegan 10 contactos. Sabemos que cada contacto cuesta 100 euros, pero desde fuera no vemos si se convirtieron en clientes. Si firman 2, cada cliente cuesta 500 euros.
+                </p>
               </div>
-              <div className="rounded-[1.4rem] bg-white p-5">
-                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que sí te pedimos</p>
-                <p className="mt-2">Una sola cifra aproximada, la del paso 3: el importe medio que te deja cada cliente. Por ejemplo, «más o menos unos 4.000 euros por cliente». Vale a ojo, no hace falta que sea exacta y la puedes cambiar cuando quieras.</p>
-              </div>
-              <div className="rounded-[1.4rem] bg-white p-5">
-                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Por qué importa</p>
-                <p className="mt-2">No es lo mismo un cliente de 5.000 € que uno de 20.000 €. Si cada cliente te deja más, podemos permitirnos pagar más por cada contacto y llegar a más gente. Si te deja menos, hay que vigilar cada euro todavía más de cerca.</p>
-              </div>
-              <div className="rounded-[1.4rem] bg-white p-5">
-                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Para qué la usamos</p>
-                <p className="mt-2">Con las tres piezas juntas sabemos cuánto nos podemos permitir pagar por cada contacto sin que tu negocio deje de ser rentable, y qué campañas priorizar. Para nada más. Es una estimación para ajustar campañas, no una garantía de resultados.</p>
+              <div className="rounded-[1.4rem] bg-white p-5 sm:p-6">
+                <p className="grid h-9 w-9 place-items-center rounded-full bg-estrella text-lg font-extrabold">2</p>
+                <p className="mt-3 text-xl font-extrabold">El importe medio aproximado por cliente</p>
+                <p className="mt-2 text-gris">Vale una estimación, y la puedes cambiar cuando quieras.</p>
+                <p className="mt-4 rounded-2xl bg-niebla p-4">
+                  <b>Por qué importa:</b> no es lo mismo que los contactos traigan clientes de 5.000 euros que de 20.000. Eso decide cuánto podemos pagar por cada contacto.
+                </p>
               </div>
             </div>
-            <p className="mt-6 max-w-3xl text-lg font-bold">Solo la sabes tú, y tú mandas siempre sobre ella.</p>
+            <p className="mt-6 max-w-3xl text-lg">
+              <b>Solo para ajustar las campañas.</b> No es una promesa de resultados. Y estos datos los conoces solo tú.
+            </p>
           </div>
           <ol className="mt-10 grid gap-4 md:grid-cols-2">
             {[
