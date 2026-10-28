@@ -41,6 +41,7 @@ export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
       { icono: "calendario", texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
     ],
   },
+  { texto: "Panel", href: "/panel", detalle: "Así verás tus resultados" },
   { texto: "Trabajos", href: "/trabajos" },
   { texto: "Nosotros", href: "/quienes-somos" },
   {

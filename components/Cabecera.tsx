@@ -60,7 +60,7 @@ export default function Cabecera() {
         solida || movil ? "bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
       }`}
     >
-      <div className="relative mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
         {/* El azul exacto de la loseta del logo nace detrás de él y se funde hacia la noche: la loseta desaparece y resalta la W. */}
         <span
           aria-hidden="true"
@@ -87,7 +87,7 @@ export default function Cabecera() {
                     aria-expanded={abierto === m.texto}
                     aria-haspopup="true"
                     onClick={() => setAbierto(abierto === m.texto ? null : m.texto)}
-                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 hover:text-white"
+                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
                   >
                     {m.texto}
                     <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${abierto === m.texto ? "rotate-180" : ""}`}>
@@ -127,7 +127,7 @@ export default function Cabecera() {
                 </li>
               ) : (
                 <li key={m.texto}>
-                  <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-3 py-2 hover:text-white">
+                  <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3">
                     {m.texto}
                   </Link>
                 </li>
