@@ -85,6 +85,18 @@ export default function TuControl() {
           <div className="mt-10 rounded-[1.8rem] border-2 border-estrella bg-estrella/20 p-6 sm:p-8">
             <h3 className="text-2xl font-extrabold sm:text-3xl">No te pedimos tu facturación. Solo una cifra.</h3>
             <p className="mt-3 max-w-3xl text-lg text-gris">Muchos piden la facturación; nosotros no la necesitamos. Esto es lo que sí y lo que no.</p>
+            <ol className="mt-6 grid gap-3 md:grid-cols-3">
+              {[
+                ["1. Lo que cuesta cada contacto", "Lo sabemos nosotros: lo que se invierte, entre los contactos que llegan."],
+                ["2. De contacto a cliente", "Nos lo cuentas tú: cuáles de esos contactos acaban firmando."],
+                ["3. De cliente a facturación", "Una cifra aproximada: lo que te deja de media cada cliente."],
+              ].map(([t, d]) => (
+                <li key={t} className="rounded-[1.4rem] bg-white p-5">
+                  <p className="font-extrabold">{t}</p>
+                  <p className="mt-1 text-gris">{d}</p>
+                </li>
+              ))}
+            </ol>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <div className="rounded-[1.4rem] bg-white p-5">
                 <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que no te pedimos</p>
@@ -92,7 +104,7 @@ export default function TuControl() {
               </div>
               <div className="rounded-[1.4rem] bg-white p-5">
                 <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que sí te pedimos</p>
-                <p className="mt-2">Una cifra aproximada: el importe medio que te deja cada cliente. Por ejemplo, «más o menos unos 4.000 euros por cliente». Vale a ojo, no hace falta que sea exacta y la puedes cambiar cuando quieras.</p>
+                <p className="mt-2">Una sola cifra aproximada, la del paso 3: el importe medio que te deja cada cliente. Por ejemplo, «más o menos unos 4.000 euros por cliente». Vale a ojo, no hace falta que sea exacta y la puedes cambiar cuando quieras.</p>
               </div>
               <div className="rounded-[1.4rem] bg-white p-5">
                 <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Por qué importa</p>
@@ -100,7 +112,7 @@ export default function TuControl() {
               </div>
               <div className="rounded-[1.4rem] bg-white p-5">
                 <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Para qué la usamos</p>
-                <p className="mt-2">Para decidir cuánto puede costar un contacto sin que tu negocio deje de ser rentable y qué campañas priorizar. Para nada más. Es una estimación para ajustar campañas, no una garantía de resultados.</p>
+                <p className="mt-2">Con las tres piezas juntas sabemos cuánto nos podemos permitir pagar por cada contacto sin que tu negocio deje de ser rentable, y qué campañas priorizar. Para nada más. Es una estimación para ajustar campañas, no una garantía de resultados.</p>
               </div>
             </div>
             <p className="mt-6 max-w-3xl text-lg font-bold">Solo la sabes tú, y tú mandas siempre sobre ella.</p>
