@@ -402,7 +402,7 @@ export function GuiaDeUso({ pasos = GUIA_PASOS, nombre = "la mesa", modo = "late
             {actual && (
               <div className="mt-1 flex flex-wrap gap-1.5 px-1.5 pb-1">
                 <button type="button" onClick={siguiente} className="min-h-[40px] rounded-full bg-yellow px-4 text-[13.5px] font-semibold text-ink">{paso === pasos.length - 1 ? "Terminar" : "Lo he visto, siguiente"}</button>
-                <button type="button" onClick={() => guardaPaso(-1)} className="min-h-[40px] rounded-full border border-line bg-white px-3.5 text-[13.5px] font-semibold text-ink/70">Saltar la guía</button>
+                <button type="button" onClick={() => guardaPaso(-1)} className="min-h-11 rounded-full border border-line bg-white px-3.5 text-[13.5px] font-semibold text-ink/70">Saltar la guía</button>
               </div>
             )}
           </li>
@@ -426,8 +426,8 @@ export function GuiaDeUso({ pasos = GUIA_PASOS, nombre = "la mesa", modo = "late
         <div className="sticky top-0 z-30 -mx-4 mb-2 flex items-center gap-2 border-b-2 border-yellow bg-[#fffbe6] px-4 py-2 xl:hidden sm:-mx-6 sm:px-6" role="status">
           <Loseta n={pasos[paso!].icono} color={pasos[paso!].color} tam={32} />
           <span className="min-w-0 flex-1"><span className="block text-[12px] font-bold uppercase tracking-wide text-ink/55">Guía · paso {paso! + 1} de {pasos.length}</span><span className="block truncate text-[14px] font-semibold leading-tight text-ink">{pasos[paso!].t}</span></span>
-          <button type="button" onClick={siguiente} className="min-h-[40px] shrink-0 rounded-full bg-yellow px-3.5 text-[13.5px] font-semibold text-ink">{paso === pasos.length - 1 ? "Terminar" : "Siguiente"}</button>
-          <button type="button" onClick={() => guardaPaso(-1)} aria-label="Saltar la guía" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-white text-[16px] text-ink/60">×</button>
+          <button type="button" onClick={siguiente} className="min-h-11 shrink-0 rounded-full bg-yellow px-3.5 text-[13.5px] font-semibold text-ink">{paso === pasos.length - 1 ? "Terminar" : "Siguiente"}</button>
+          <button type="button" onClick={() => guardaPaso(-1)} aria-label="Saltar la guía" className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-white text-[16px] text-ink/60">×</button>
         </div>
       )}
       <section className="mt-3 rounded-[18px] border border-line bg-white xl:hidden" aria-label="Guía de uso">
@@ -455,7 +455,7 @@ export function CerrarYVolver({ onClose, a }: { onClose: () => void; a?: string 
 /* ───────────────────────── "¿Esto qué es?" (cl·v931) ───────────────────────── */
 /** Botón redondo con "?" que abre una frase en llano. Para el dueño que no tiene por qué saber nada. */
 export function Que({ texto, etiqueta, abierto, onToggle, tam = 28 }: { texto: string; etiqueta: string; abierto: boolean; onToggle: () => void; tam?: number }) {
-  return <button type="button" aria-label={`Qué es: ${etiqueta}`} aria-expanded={abierto} onClick={(e) => { e.stopPropagation(); onToggle(); }} className={`relative grid shrink-0 place-items-center rounded-full border text-[13px] font-bold before:absolute before:-inset-2 before:content-[''] ${abierto ? "border-ink bg-ink text-white" : "border-line bg-white text-ink/70 hover:border-ink"}`} style={{ width: tam, height: tam }}>?</button>;
+  return <button type="button" aria-label={`Qué es: ${etiqueta}`} aria-expanded={abierto} onClick={(e) => { e.stopPropagation(); onToggle(); }} className={`relative grid shrink-0 place-items-center rounded-full border text-[13px] font-bold before:absolute before:-inset-3 before:content-[''] ${abierto ? "border-ink bg-ink text-white" : "border-line bg-white text-ink/70 hover:border-ink"}`} style={{ width: tam, height: tam }}>?</button>;
 }
 export function QueTexto({ texto }: { texto: string }) {
   return <p className="mt-2 rounded-[10px] bg-[#fbf6ea] px-3 py-2 text-[13.5px] leading-snug text-ink/85">{texto}</p>;

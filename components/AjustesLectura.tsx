@@ -110,7 +110,7 @@ export default function AjustesLectura() {
         aria-expanded={abierto}
         aria-controls="panel-lectura"
         onClick={() => setAbierto((x) => !x)}
-        className="relative grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white hover:bg-white/10 sm:h-10 sm:w-10"
+        className="relative grid h-9 w-9 place-items-center rounded-full border border-white/25 before:absolute before:-inset-1 before:content-[''] text-white hover:bg-white/10 sm:h-10 sm:w-10"
       >
         <span aria-hidden="true" className="font-titular text-[0.95rem] font-extrabold leading-none">
           A<span className="text-[0.7rem]">a</span>

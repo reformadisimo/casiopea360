@@ -150,7 +150,7 @@ export default function Cabecera() {
             aria-label={movil ? "Cerrar el menú" : "Abrir el menú"}
             aria-expanded={movil}
             onClick={() => setMovil(!movil)}
-            className="grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/10 sm:h-10 sm:w-10 xl:hidden"
+            className="relative grid h-9 w-9 place-items-center rounded-full text-white before:absolute before:-inset-1 before:content-[''] hover:bg-white/10 sm:h-10 sm:w-10 xl:hidden"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
               {movil ? (

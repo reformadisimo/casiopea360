@@ -270,7 +270,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
                   ))}
                 </ul>
                 {servicioDeFrente(f.id) && (
-                  <Link href={`/servicios/${servicioDeFrente(f.id)!.slug}`} className={`mt-6 inline-flex items-center gap-2 font-bold ${oscura ? "bg-noche text-estrella" : "text-noche-3"}`}>
+                  <Link href={`/servicios/${servicioDeFrente(f.id)!.slug}`} className={`mt-6 inline-flex min-h-11 items-center gap-2 font-bold ${oscura ? "bg-noche text-estrella" : "text-noche-3"}`}>
                     Más sobre {f.nombre} <span aria-hidden="true">→</span>
                   </Link>
                 )}
@@ -360,7 +360,7 @@ export function SeccionAntesDespues({ compacta = false }: { compacta?: boolean }
         </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-gris">Capturas reales de la portada de cada web, vistas en ordenador.</p>
-          <Link href="/trabajos/reformadisimo" className="inline-flex items-center gap-2 font-bold text-noche-3">Ver el caso completo <span aria-hidden="true">→</span></Link>
+          <Link href="/trabajos/reformadisimo" className="inline-flex min-h-11 items-center gap-2 font-bold text-noche-3">Ver el caso completo <span aria-hidden="true">→</span></Link>
         </div>
       </div>
     </section>

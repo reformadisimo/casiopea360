@@ -9,6 +9,7 @@ export default function VolverWeb({ que }: { que: string }) {
         main#contenido { padding-top: 48px !important; }
         [role="dialog"].fixed.inset-0, .fixed.inset-0.z-50 { top: 48px !important; }
         aside[aria-label="Guía de uso"] { top: 48px !important; }
+        .mesa .sticky.top-0 { top: 48px !important; }
         @media print { [data-volver-web] { display: none !important; } main#contenido { padding-top: 0 !important; } }
       `}</style>
       <div data-volver-web style={{ zIndex: 2147483000 }} className="fixed inset-x-0 top-0 flex h-12 items-center justify-between gap-3 bg-[#0e1a3d] px-3 text-white shadow-[0_2px_10px_rgba(0,0,0,0.18)] sm:px-5">
