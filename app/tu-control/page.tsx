@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Tu control: tus cuentas son tuyas",
-  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos.",
+  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos. No te pedimos tu facturación: solo una cifra aproximada.",
   "/tu-control",
 );
 
@@ -27,7 +27,7 @@ export default function TuControl() {
       <CabeceraPagina
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
-        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte."
+        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: solo una cifra."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
       />
 
@@ -75,19 +75,42 @@ export default function TuControl() {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section id="una-cifra" className="scroll-mt-24 bg-white py-20 sm:py-24">
         <div className={ENVOLTORIO}>
           <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Tu facturación es tuya</p>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">No necesitamos saber cuánto facturas. Y no te lo vamos a preguntar.</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
             Nos da igual que factures un millón o cien mil. Lo que sí ayuda a que tus anuncios mejoren es saber si los contactos de una campaña acaban siendo clientes de 100 y los de otra, clientes de 1.000. Para eso no hace falta ver ni un euro: basta un índice.
           </p>
+          <div className="mt-10 rounded-[1.8rem] border-2 border-estrella bg-estrella/20 p-6 sm:p-8">
+            <h3 className="text-2xl font-extrabold sm:text-3xl">No te pedimos tu facturación. Solo una cifra.</h3>
+            <p className="mt-3 max-w-3xl text-lg text-gris">Muchos piden la facturación; nosotros no la necesitamos. Esto es lo que sí y lo que no.</p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <div className="rounded-[1.4rem] bg-white p-5">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que no te pedimos</p>
+                <p className="mt-2">Ni tu facturación, ni tus balances, ni tus cuentas, ni tus márgenes. Ningún papel.</p>
+              </div>
+              <div className="rounded-[1.4rem] bg-white p-5">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que sí te pedimos</p>
+                <p className="mt-2">Una cifra aproximada: el importe medio que te deja cada cliente. Por ejemplo, «más o menos unos 4.000 euros por cliente». Vale a ojo, no hace falta que sea exacta y la puedes cambiar cuando quieras.</p>
+              </div>
+              <div className="rounded-[1.4rem] bg-white p-5">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Por qué importa</p>
+                <p className="mt-2">No es lo mismo un cliente de 5.000 € que uno de 20.000 €. Si cada cliente te deja más, podemos permitirnos pagar más por cada contacto y llegar a más gente. Si te deja menos, hay que vigilar cada euro todavía más de cerca.</p>
+              </div>
+              <div className="rounded-[1.4rem] bg-white p-5">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Para qué la usamos</p>
+                <p className="mt-2">Para decidir cuánto puede costar un contacto sin que tu negocio deje de ser rentable y qué campañas priorizar. Para nada más. Es una estimación para ajustar campañas, no una garantía de resultados.</p>
+              </div>
+            </div>
+            <p className="mt-6 max-w-3xl text-lg font-bold">Solo la sabes tú, y tú mandas siempre sobre ella.</p>
+          </div>
           <ol className="mt-10 grid gap-4 md:grid-cols-2">
             {[
-              ["Tu ticket medio, una vez", "En tu panel pones lo que facturas de media con cada cliente. Ese dato no sale de tu navegador: se guarda solo en tu dispositivo. Nosotros no lo vemos ni lo guardamos."],
+              ["Tu ticket medio, una vez", "En tu panel pones, a ojo, lo que te deja de media cada cliente. Se guarda solo en tu dispositivo. Si quieres que ajustemos lo que puede costar un contacto, nos la dices tú; si no, no la vemos."],
               ["Marcas quién firma", "Y, si quieres, apuntas lo que ha facturado. Si no quieres poner la cifra, eliges un tamaño: más pequeño de lo normal, normal, más grande o mucho más grande."],
               ["El panel calcula el índice", "100 es tu ticket medio. 150 es un cliente un 50 % más grande que tu media. 60, un 40 % más pequeño. Además, un percentil del 1 al 100: dónde queda ese cliente entre los tuyos."],
-              ["Nosotros solo vemos eso, y solo si tú quieres", "Si el contacto firmó, su índice y su percentil, y por qué campaña llegó. Nunca euros. Nunca tu ticket medio. Está apagado de serie y lo apagas cuando quieras."],
+              ["Nosotros solo vemos eso, y solo si tú quieres", "Si el contacto firmó, su índice y su percentil, y por qué campaña llegó. Nunca euros de facturación, y tu cifra media solo si tú nos la dices. Está apagado de serie y lo apagas cuando quieras."],
             ].map(([t, d], i) => (
               <li key={t} className="rounded-[1.6rem] bg-niebla p-6">
                 <span aria-hidden="true" className="grid h-10 w-10 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
