@@ -25,6 +25,11 @@ export default function Pie() {
             <a href={`mailto:${CONTACTO.correo}`} className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
               {CONTACTO.correo}
             </a>
+            <br />
+            WhatsApp:{" "}
+            <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
+              619 394 733
+            </a>
           </p>
         </div>
         <div>
