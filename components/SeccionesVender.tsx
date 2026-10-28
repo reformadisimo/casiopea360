@@ -50,9 +50,9 @@ export function SeccionComoTrabajamos() {
     <section className="bg-niebla py-14 sm:py-20" aria-labelledby="como-trabajamos">
       <div className={ENVOLTORIO}>
         <p className="etiqueta inline-block rounded-full px-4 py-1.5 text-sm font-bold">Cómo trabajamos</p>
-        <h2 id="como-trabajamos" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Un solo contacto, todo el equipo detrás</h2>
+        <h2 id="como-trabajamos" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Un solo contacto, los especialistas que haga falta</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          No tienes que hablar con un diseñador, un programador, el de Analytics, el del SEO y el de los anuncios. Hablas con una persona, y detrás está todo el equipo. Te acompañamos, te asesoramos, te guiamos y te damos <b className="text-tinta">todos los datos, al momento</b>, en un panel que se entiende desde el móvil.
+          No tienes que hablar con un diseñador, un programador, el de Analytics, el del SEO y el de los anuncios. Hablas con una persona, y detrás están los especialistas que tu proyecto necesite. Te acompañamos, te asesoramos, te guiamos y te damos <b className="text-tinta">todos los datos, al momento</b>, en un panel que se entiende desde el móvil.
         </p>
         <ol className="mt-8 flex flex-wrap gap-3" aria-label="Nuestro ciclo de trabajo">
           {pasos.map((p, i) => (
@@ -62,9 +62,9 @@ export function SeccionComoTrabajamos() {
           ))}
         </ol>
         <div className="mt-8 max-w-3xl rounded-3xl bg-white p-6 ring-1 ring-linea">
-          <h3 className="text-xl font-extrabold">Un equipo de especialistas, sin oficinas que pagar</h3>
+          <h3 className="text-xl font-extrabold">Una red de especialistas, sin oficinas que pagar</h3>
           <p className="mt-2 text-gris">
-            Detrás de tu contacto trabajan programadores, diseñadores, expertos en experiencia de usuario, en analítica, en SEO y en anuncios. No tenemos oficinas ni gastos fijos de personal: trabajamos con especialistas independientes, por proyecto y con un método de colaboración continuo. Cada uno hace lo que mejor sabe hacer, cuando hace falta, y tú solo pagas ese trabajo. Por eso podemos tener muy buenos precios sin renunciar a la calidad.
+            Tu proyecto lo lleva una persona de principio a fin, y detrás hay colaboradores de confianza, con los que trabajamos desde hace años: programación, diseño, experiencia de usuario, analítica, SEO y anuncios. Entran en cada proyecto cuando hace falta. No tenemos oficinas ni gastos fijos de personal, y tú solo pagas el trabajo que se hace. Por eso podemos tener muy buenos precios sin renunciar a la calidad.
           </p>
         </div>
         <p className="mt-6 max-w-3xl text-lg text-gris">No nos quedamos quietos: si trabajamos en equipo, llegamos a la luna.</p>

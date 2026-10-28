@@ -45,7 +45,7 @@ export default function Inicio() {
               <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo equipo y una cuota fija. Y cada día sabes qué hemos hecho por tu negocio.
             </p>
             <p className="mt-5 max-w-xl text-lg text-white/85">
-              <b className="text-white">Dinos hasta dónde quieres llegar.</b> Un solo contacto, todo el equipo detrás, y todos tus datos al momento. Nosotros te acompañamos.
+              <b className="text-white">Dinos hasta dónde quieres llegar.</b> Un solo contacto, los especialistas que tu proyecto necesite, y todos tus datos al momento. Nosotros te acompañamos.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
