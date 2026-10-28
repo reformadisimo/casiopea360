@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import VolverWeb from "@/components/VolverWeb";
 import CrmApp from "./CrmApp";
 import { ESTADOS, ORIGENES, CANALES, MOTIVOS, FASES } from "@/lib/crmListas";
 
@@ -11,8 +11,8 @@ const listas = { estados: ESTADOS, origenes: ORIGENES, canales: CANALES, motivos
 export default function DemoCrm() {
   return (
     <div className="mesa">
+      <VolverWeb que="CRM de ejemplo" />
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-[#11343d] px-4 py-2 text-[14px] text-white">
-        <Link href="/" className="inline-flex min-h-11 items-center font-bold underline underline-offset-4">← Casiopea 360</Link>
         <p className="min-w-0 flex-1 basis-full sm:basis-0">
           CRM de ejemplo con <b>datos inventados</b> de una empresa ficticia, Climatización Ejemplo. Puedes tocarlo todo; no se guarda ni se envía nada.
         </p>

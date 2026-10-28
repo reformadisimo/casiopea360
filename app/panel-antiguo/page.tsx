@@ -1,5 +1,6 @@
 import PanelEjemplo from "@/components/PanelEjemplo";
 import { meta } from "@/lib/meta";
+import VolverWeb from "@/components/VolverWeb";
 
 export const metadata = {
   ...meta(
@@ -11,5 +12,10 @@ export const metadata = {
 };
 
 export default function Panel() {
-  return <PanelEjemplo />;
+  return (
+    <>
+      <VolverWeb que="Control de mandos de ejemplo" />
+      <PanelEjemplo />
+    </>
+  );
 }

@@ -116,7 +116,7 @@ export default function CrmApp({ usuario, listas }: { usuario: Usuario; listas: 
     else if (destino === "todos") { setFiltro(vacio); setVista("lista"); }
     else if (destino === "estado") { setFiltro({ ...vacio, estado: estado ?? "" }); setVista("lista"); }
     else if (destino === "exportar") exportar();
-    else if (destino === "mesa") window.open("/panel", "_blank", "noopener");
+    else if (destino === "mesa") window.location.assign("/panel");
     else setModal(destino as typeof modal);
     setMenu(false);
     window.scrollTo({ top: 0 });

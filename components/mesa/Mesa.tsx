@@ -1643,7 +1643,7 @@ function Temas({ temas, resumen }: { temas: Modulo[]; resumen?: Resumen }) {
           </ul>
           {m.enlaces.length > 0 && (
             <p className="mt-3 flex flex-wrap gap-2">
-              {m.enlaces.filter((e) => !e.href.startsWith("/mesa-")).map((e) => <a key={e.href} href={e.href} {...(/^\/(crm|plan)-/.test(e.href) ? { target: "_blank", rel: "noopener" } : {})} className="inline-flex min-h-[40px] items-center rounded-full bg-yellow px-5 text-[14px] font-semibold text-ink">{e.t} →</a>)}
+              {m.enlaces.filter((e) => !e.href.startsWith("/mesa-")).map((e) => <a key={e.href} href={e.href} className="inline-flex min-h-[40px] items-center rounded-full bg-yellow px-5 text-[14px] font-semibold text-ink">{e.t} →</a>)}
             </p>
           )}
         </section>
@@ -1960,7 +1960,7 @@ function EstadoLista({ temas, abierto, setAbierto }: { temas: Modulo[]; abierto:
                   </ul>
                   {m.enlaces.filter((e) => !e.href.startsWith("/mesa-")).length > 0 && (
                     <p className="mt-3 flex flex-wrap gap-2">
-                      {m.enlaces.filter((e) => !e.href.startsWith("/mesa-")).map((e) => <a key={e.href} href={e.href} {...(/^\/(crm|plan)-/.test(e.href) ? { target: "_blank", rel: "noopener" } : {})} className="inline-flex min-h-[44px] items-center rounded-full bg-yellow px-5 text-[15px] font-semibold text-ink">{e.t} →</a>)}
+                      {m.enlaces.filter((e) => !e.href.startsWith("/mesa-")).map((e) => <a key={e.href} href={e.href} className="inline-flex min-h-[44px] items-center rounded-full bg-yellow px-5 text-[15px] font-semibold text-ink">{e.t} →</a>)}
                     </p>
                   )}
                 </div>

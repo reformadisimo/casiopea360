@@ -1,5 +1,6 @@
 import AvisosEjemplo from "@/components/AvisosEjemplo";
 import { meta } from "@/lib/meta";
+import VolverWeb from "@/components/VolverWeb";
 
 export const metadata = {
   ...meta(
@@ -18,6 +19,7 @@ export default function Pagina() {
         body > *:not(main):not([data-versionante]) { display: none !important; }
         main#contenido { padding: 0 !important; background: #faf7f1 !important; background-image: none !important; }
       `}</style>
+      <VolverWeb que="Avisos de ejemplo" />
       <AvisosEjemplo />
     </>
   );

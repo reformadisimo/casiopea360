@@ -1,4 +1,4 @@
-import Link from "next/link";
+import VolverWeb from "@/components/VolverWeb";
 import Mesa from "@/components/mesa/Mesa";
 import { datosDemo } from "@/lib/mesaDemo";
 import { temasDemo, resumenDemo, tareasDemo, relojesDemo, baseDemo } from "@/lib/panelDemo";
@@ -14,9 +14,9 @@ export default function PanelCasiopea() {
   const d = datosDemo(hoy);
   return (
     <div className="mesa">
+      <VolverWeb que="Panel de control de ejemplo" />
       <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 0 !important; background: #fff !important; background-image: none !important; }`}</style>
       <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-4 gap-y-2 px-4 pt-4 text-[14px] print:hidden">
-        <Link href="/" className="inline-flex min-h-11 items-center font-bold underline underline-offset-4">← Casiopea 360</Link>
         <p className="min-w-0 basis-full rounded-2xl border border-line bg-[#fbf6e6] px-4 py-2 sm:flex-1 sm:basis-0">
           Panel de ejemplo con <b>datos inventados</b> de una empresa ficticia. Así verás el tuyo, con tus datos reales y desde el móvil. La primera vez te lleva la guía de la mano; en pocos días te lo sabes. Aquí no se envía nada.
         </p>
