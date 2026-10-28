@@ -104,7 +104,7 @@ export function SeccionCaos() {
       <div className="max-w-3xl">
         <h2 className="text-4xl font-extrabold sm:text-6xl">¿Cómo trabajas hoy?</h2>
         <p className="mt-5 text-lg text-gris sm:text-xl">
-          Una agencia para la web, un SEO, otra empresa para los anuncios, alguien para las redes… Cada uno a lo suyo. Una reunión con este, una llamada con el otro, otro correo más. Y tú en medio, coordinando a todos.
+          Una agencia para la web, un SEO, otra para los anuncios, alguien para las redes. Una reunión con este, una llamada con el otro. Y tú en medio, coordinando a todos.
         </p>
       </div>
 
@@ -282,7 +282,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
               <div>
                 <h3 className="flex items-center gap-3 text-2xl font-extrabold"><Loseta icono="video" i={3} /> Y lo único que no hacemos</h3>
                 <p className="mt-2 max-w-3xl text-gris">
-                  Grabar vídeos profesionales. Te damos las ideas y el guion, y los montamos si nos los das. Para grabar, te ponemos en contacto con la agencia con la que trabajamos, y le pagas tú directamente.
+                  Grabar vídeos profesionales. Ponemos la idea y el guion, y los montamos. Para grabar, te presentamos a la productora con la que trabajamos y le pagas tú.
                 </p>
               </div>
               <Link href="/estudio-gratuito" className={BOTON}>Cuéntanos tu caso</Link>
@@ -300,7 +300,7 @@ export function SeccionOficios() {
     <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
       <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Un especialista para cada oficio. Coordinados por una sola persona.</h2>
       <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto: un solo contacto que lo coordina todo y, para cada oficio, un especialista de confianza de nuestra red.</p>
-      <p className="mt-4 max-w-2xl text-lg text-gris">Colaboramos desde hace años con expertos en SEO, en campañas de Google Ads y de Meta (Facebook e Instagram), en diseño, en analítica y en experiencia de usuario. Entran en tu proyecto cuando hace falta y tú solo pagas ese trabajo.</p>
+      <p className="mt-4 max-w-2xl text-lg text-gris">Expertos en SEO, Google Ads, Meta, diseño, analítica y experiencia de usuario, con los que colaboramos desde hace años. Entran cuando hace falta y solo pagas ese trabajo.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
         {OFICIOS.map((o, k) => (
           <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold shadow-sm sm:px-4 sm:py-2 sm:text-[0.95rem]">
@@ -326,10 +326,10 @@ export function SeccionOrigen() {
           <div className="max-w-xl">
             <h2 className="text-4xl font-extrabold sm:text-5xl">La empresa que nos habría gustado contratar.</h2>
             <p className="mt-6 text-lg text-white/80">
-              Cuando montamos nuestros primeros negocios, hacer una web tardaba meses y cualquier cambio era eterno. Teníamos un proveedor para cada cosa y ninguno hablaba con los demás.
+              En nuestros primeros negocios, una web tardaba meses y cualquier cambio era eterno. Un proveedor para cada cosa y ninguno hablaba con los demás.
             </p>
             <p className="mt-4 text-lg text-white/80">
-              Casiopea 360 es lo que entonces no encontramos: un solo equipo que lo hace todo, rápido, y que te cuenta cada día lo que pasa. Lo que antes eran semanas, ahora son minutos.
+              Casiopea 360 es lo que entonces no encontramos: un solo contacto que lo hace todo, rápido, y te cuenta cada día lo que pasa.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
               <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="trofeo" i={4} className="mb-3" /><p className="text-4xl font-extrabold text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
@@ -435,7 +435,7 @@ export function SeccionParte() {
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Tu informe no se espera: lo tienes en tu panel, al día.</h2>
           <p className="mt-5 max-w-xl text-lg text-white/80">
-            No dependes de un informe que llega tarde. Todo lo que iba en él lo ves tú, en tu panel, al momento y sin entender de números. Y si prefieres recibirlo en tu correo, lo programas en el propio panel: un resumen diario, semanal o mensual, el día y a la hora que quieras.
+            Todo lo que iba en el informe lo ves en tu panel, al momento y sin entender de números. Y si lo prefieres en el correo, lo programas tú: diario, semanal o mensual.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i, k) => (
@@ -452,7 +452,7 @@ export function SeccionParte() {
             ))}
           </div>
           <p className="mt-6 max-w-xl text-white/70">
-            Tu panel de control es tu informe: ves en tiempo real de dónde viene cada contacto, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente, todos los días: sabemos qué preocupa a tus clientes con sus propias palabras.
+            Ves de dónde viene cada contacto, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente: sabemos qué preocupa a tus clientes con sus palabras.
           </p>
           <Link href="/panel" className={`${BOTON} mt-6 inline-flex`}>Ver un panel de ejemplo</Link>
         </div>
@@ -480,7 +480,7 @@ export function SeccionEspecialistas() {
           «Si hacéis de todo, lo haréis todo regular.» <span className="text-noche-3">Es justo al revés.</span>
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-gris">
-          Hacemos todo porque sabemos hacerlo todo bien. Y lo hacemos mejor precisamente porque lo hacemos todo: una campaña solo funciona si la web convence, la web solo vende si se mide, y lo que se mide solo sirve si alguien lo arregla al momento.
+          Lo hacemos mejor porque lo hacemos todo: una campaña solo funciona si la web convence, la web solo vende si se mide, y lo medido solo sirve si alguien lo arregla al momento.
         </p>
 
         <div className="mt-12 overflow-hidden rounded-[2rem] border border-linea">
@@ -607,7 +607,7 @@ export function SeccionLoQueSea() {
         <Etiqueta tono="estrella">Si se te ocurre, lo hacemos</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Prácticamente cualquier cosa. Y te decimos si te conviene.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">
-          Una app, un CRM, una campaña de radio, un vídeo profesional. Lo hacemos nosotros, y lo poco que no hacemos en casa lo hacemos con las productoras y agencias con las que ya trabajamos. Tú no tienes que buscar a nadie.
+          Una app, un CRM, una campaña de radio, un vídeo profesional. Lo que no hacemos en casa, con las productoras con las que ya trabajamos. No tienes que buscar a nadie.
         </p>
         <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {LO_QUE_SEA.map((x, k) => (
@@ -715,7 +715,7 @@ export function SeccionVentaja() {
     ["Quien te lo cuenta es quien lo hace", "Un solo contacto, y cuando el proyecto necesita a un especialista de confianza, lo llamamos. Nada se pierde entre comerciales, jefes de cuenta y subcontratas.", "chat"],
     ["Sin lastre", "Cambiamos en días. Las estructuras grandes tardan meses en adaptarse porque primero tienen que desmontar lo que ya tienen.", "cohete"],
     ["Todos los oficios, conectados", "Web, Google, anuncios, redes, CRM e IA trabajando juntos. En otros sitios, cada una de esas cosas es un departamento distinto.", "engranaje"],
-    ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal: trabajamos con una red de especialistas de confianza, que entran en cada proyecto cuando hace falta. Por eso el precio es mejor, pero no es low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
+    ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal: una red de especialistas que entran cuando hace falta. Mejor precio, pero no low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
   ];
   return (
     <section id="ventaja" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
@@ -724,7 +724,7 @@ export function SeccionVentaja() {
         <Etiqueta icono="trofeo">Nuestra ventaja</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">El trabajo de un equipo de especialistas. <Subrayado>Sin la estructura</Subrayado> de una gran agencia.</h2>
         <p className="mt-6 max-w-3xl text-lg text-gris">
-          Una gran empresa de marketing necesita cien personas, reuniones entre departamentos y mucho tiempo para adaptarse a cada cambio. Aquí lleva tu proyecto una persona de principio a fin, con una red de especialistas de confianza (programación, diseño, experiencia de usuario, analítica, SEO y anuncios) que entran cuando hace falta, y la inteligencia artificial y la automatización se encargan de lo pesado. Cada oficio está conectado con los demás. El resultado es el de un equipo de especialistas, hecho con más cuidado y a un precio razonable.
+          Una gran agencia necesita cien personas y reuniones entre departamentos. Aquí lleva tu proyecto una persona de principio a fin, con una red de especialistas que entran cuando hace falta. Mismo resultado, más cuidado y un precio razonable.
         </p>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2">
           {T.map(([t, d, ic], i) => (
@@ -750,7 +750,7 @@ export function SeccionVentaja() {
           </div>
         </div>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          Lo que de verdad cuesta el marketing digital no es solo la factura: son las reuniones, las horas de coordinar a cada proveedor y el tiempo que no dedicas a tu negocio. Eso es lo que te quitamos. Lo vivimos cada día en nuestras propias empresas, y por eso lo decimos con tranquilidad.
+          El marketing no cuesta solo la factura: cuesta reuniones, horas coordinando proveedores y tiempo que no dedicas a tu negocio. Eso es lo que te quitamos.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link prefetch={false} href="/un-dia-de-trabajo" className={BOTON}>Ver un día de trabajo real</Link>
@@ -1048,7 +1048,7 @@ export function BandaControl() {
           <Etiqueta icono="escudo">Tu control</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
           <p className="mt-5 text-lg text-gris">
-            Queremos que seas tú quien tenga el control, no nosotros. Tu dominio y tus cuentas de Google están a tu nombre, y nosotros entramos como invitados. Si un día quieres irte, te llevas tus cuentas y tus contactos, y la web la tienes tuya al cumplir los doce meses. Sin enfados.
+            Tu dominio y tus cuentas, a tu nombre; nosotros entramos como invitados. Si te vas, te llevas tus cuentas y tus contactos, y la web es tuya al cumplir los doce meses.
           </p>
           <p className="mt-4 text-lg text-gris">Te quedas porque te servimos, no porque no puedas irte.</p>
           <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver tus siete compromisos</a>
@@ -1079,7 +1079,7 @@ export function SeccionConfidenciales() {
           <Etiqueta tono="cristal">Bajo llave</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo que ves es solo una parte.</h2>
           <p className="mt-5 text-lg text-white/80">
-            Muchos de nuestros mejores trabajos no los podemos enseñar: el cliente prefiere que su competencia no sepa quién está detrás de lo bien que le va. Nos encantaría publicarlos todos. En el estudio gratuito te contamos casos parecidos al tuyo.
+            Muchos de nuestros mejores trabajos no se pueden enseñar: el cliente prefiere que su competencia no sepa quién está detrás. En el estudio gratuito te contamos casos parecidos al tuyo.
           </p>
         </div>
         <ul aria-hidden="true" className="grid grid-cols-3 gap-3">
@@ -1203,7 +1203,7 @@ export function SeccionVeinteProveedores() {
           <Etiqueta tono="rosa" icono="engranaje">El lío de siempre</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">¿Sientes que, en tu marketing, cada proveedor va a lo suyo? Y tú, en medio, coordinándolos a todos.</h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
-            Quieres que tu web vaya rápida y contratas a una empresa. Luego a otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM y las licencias de HubSpot para el seguimiento. Cuando te das cuenta, tienes un proveedor para cada cosa, una factura de cada uno y una contraseña para cada sitio. Ninguno habla con los demás. Y cuando algo falla, nadie responde.
+            Una empresa para la web, otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM. Un proveedor para cada cosa, una factura de cada uno, y ninguno habla con los demás. Cuando algo falla, nadie responde.
           </p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
@@ -1248,7 +1248,7 @@ export function SeccionTecnologia() {
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo último en tecnología. Sin la carga de lo antiguo.</h2>
           </div>
           <p className="text-lg text-gris">
-            Muchas agencias no pueden cambiar: tienen equipos enteros montados sobre la tecnología de hace diez años, y empezar de nuevo les saldría carísimo. Nosotros no arrastramos esa carga. Trabajamos limpios, con lo mejor de hoy, y eso se nota en cada web.
+            Muchas agencias arrastran la tecnología de hace diez años, y empezar de nuevo les saldría carísimo. Nosotros trabajamos limpios, con lo mejor de hoy, y se nota en cada web.
           </p>
         </div>
         <div className="mt-12 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
@@ -1718,7 +1718,7 @@ export function SeccionEstudio() {
         <div>
           <p className="text-sm font-bold uppercase tracking-wide">Tu inversión, optimizada al máximo</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
-          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad para crecer más. Y casi siempre, solo con esa optimización, ya tienes mejores resultados con la misma inversión, y encima margen para subirla. El estudio te lo dice al euro.</p>
+          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad. El estudio te lo dice al euro.</p>
           <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -1788,7 +1788,7 @@ export function SeccionSolicitud() {
           <Etiqueta tono="estrella">Unos 4 minutos · Una pregunta cada vez</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
-            Preparar un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar de verdad. Contesta tocando, sin escribir, y al final te damos tu nota.
+            Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
           </p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre: si encajas, para preparar tu estudio; y si no, también, con el porqué.</p>
           <div className="hidden lg:block"><EjemplosTrabajos /></div>

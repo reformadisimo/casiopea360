@@ -21,10 +21,10 @@ const PASOS: [string, string, string][] = [
 ];
 
 const PREGUNTAS: { icono: string; p: string; r: string }[] = [
-  { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual sigue recibiendo la parte de visitas que tú decidas. Si te da más seguridad, empezamos con un reparto pequeño y lo vamos subiendo." },
+  { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual sigue recibiendo las visitas que tú decidas. Si te da más seguridad, empezamos con un reparto pequeño y lo subimos poco a poco." },
   { icono: "reloj", p: "¿Cuánto dura?", r: "Depende de las visitas que tengas: con mucho tráfico, unos días; con poco, unas semanas. Te lo decimos antes de empezar." },
   { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no has visto que mejoramos, puedes irte sin pagar nada y quedarte con la web." },
-  { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No se puede prometer. Hasta hoy ha funcionado mejor en todos los clientes con los que hemos trabajado, pero lo comprobamos contigo, con tus datos." },
+  { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No. Hasta hoy la nueva ha ganado en todos los clientes con los que hemos trabajado, pero eso se comprueba contigo." },
 ];
 
 const PANEL = [
@@ -42,7 +42,7 @@ export default function MiedoAlCambio() {
       <CabeceraPagina
         titulo="¿Te da miedo cambiar? Pruébalo sin riesgo."
         clave="sin riesgo"
-        entradilla="Es normal. Por eso no te pedimos que cierres los ojos: ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus propios números. Y si en tres meses no has visto que mejoramos, te vas sin pagar nada."
+        entradilla="Ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus números. Si en tres meses no mejoramos, te vas sin pagar nada."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Miedo al cambio" }]}
       />
 
@@ -67,7 +67,7 @@ export default function MiedoAlCambio() {
           <div>
             <Etiqueta tono="cristal" icono="grafica">Tu panel de control</Etiqueta>
             <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo ves tú, cada día, sin pedírnoslo.</h2>
-            <p className="mt-4 text-lg text-white/85">Visitas, contactos, clientes y lo que cuesta cada uno, en tiempo real y desde el móvil. Con la evolución desde el primer día, para que veas con tus ojos si estamos mejorando, no porque nosotros lo digamos.</p>
+            <p className="mt-4 text-lg text-white/85">Visitas, contactos, clientes y lo que cuesta cada uno, en tiempo real y desde el móvil. Y la evolución desde el primer día, para que juzgues con tus ojos.</p>
             <ListaViva items={PANEL} claro className="mt-5" />
             <Link href="/panel" className={`${BOTON} mt-7 inline-flex`}>Ver el panel de ejemplo</Link>
           </div>

@@ -18,7 +18,7 @@ export default function Test() {
         titulo="¿Cómo está tu marketing digital?"
         clave="marketing digital"
         chip={{ grande: "4 minutos", chico: "Tocando, sin escribir" }}
-        entradilla="Unos 4 minutos, tocando, sin escribir. Te damos tu nota y dónde se te escapan clientes. Y si encajas, te preparamos gratis tu estudio completo."
+        entradilla="Te damos tu nota y dónde se te escapan clientes. Y si encajas, te preparamos gratis tu estudio completo."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
         video="movil-sonrisa"
         videoAlt="Una mujer sonríe mirando su móvil en la ciudad"

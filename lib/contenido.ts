@@ -26,7 +26,7 @@ export const FRENTES: Frente[] = [
       "Rediseño de tu logo e imagen, si lo necesitas",
       "Calculadoras para que tus clientes vean precios al momento",
       "Apps para iPhone y Android, publicadas y cobrando",
-      "Cambiar de web sin perder lo que ya habías ganado en Google",
+      "Cambiar de web sin perder lo ganado en Google",
       "Los avisos legales y de cookies, como pide la ley",
     ],
   },
@@ -41,7 +41,7 @@ export const FRENTES: Frente[] = [
       "Que Google entienda tu web y te enseñe a quien te busca cerca",
       "Artículos que atraen clientes: los escribimos nosotros, tú solo los revisas",
       "Que ChatGPT y las demás IA te recomienden cuando preguntan por lo tuyo",
-      "También en Bing y Apple Maps: tu ficha en todos los mapas y buscadores, no solo en Google",
+      "Tu ficha también en Bing y Apple Maps, no solo en Google",
     ],
   },
   {
@@ -73,10 +73,10 @@ export const FRENTES: Frente[] = [
     frase: "Contactos que no se pierden, aunque estés en plena faena.",
     servicios: [
       "Asistente con inteligencia artificial en tu web, también por voz",
-      "Correos que se envían solos para no perder a nadie que pidió información",
+      "Correos que salen solos, para no perder a nadie que pidió información",
       "WhatsApp de empresa con respuestas ya preparadas",
       "Panel con cada conversación, para saber qué preocupa a tus clientes",
-      "Conectamos tu web y tus campañas con el CRM que ya uses, o te creamos uno a medida",
+      "Tu web y tus campañas conectadas al CRM que ya uses, o uno a medida",
     ],
   },
 ];
@@ -183,7 +183,7 @@ export const PASOS = [
   },
   {
     titulo: "Tu web nueva, antes de firmar",
-    texto: "Antes de firmar nada, ves una demostración de tu futura web con tu nombre.",
+    texto: "Ves una demostración de tu futura web, con tu nombre.",
   },
   {
     titulo: "Quince minutos de accesos",
@@ -237,11 +237,11 @@ export const INFORMES = [
 export const GARANTIAS = [
   {
     titulo: "Tus cuentas, a tu nombre",
-    texto: "Dominio y cuentas de Google, de anuncios y de redes, a tu nombre desde el primer día. La web, tuya al cumplir los doce meses, o antes si pagas lo que falta. Si te vas, te llevas siempre tus cuentas y tus contactos.",
+    texto: "Dominio y cuentas, a tu nombre desde el primer día. La web, tuya a los doce meses o antes, si pagas lo que falta. Si te vas, te llevas cuentas y contactos.",
   },
   {
     titulo: "Tu web, regalada",
-    texto: "No pagas la web: solo la cuota mensual, con doce meses de permanencia. Si a los tres meses no has visto que mejoramos, te vas sin pagar nada y te quedas con la web. Si te vas más tarde, pagas solo la parte de la web que falte por cubrir. Pasados los doce meses no hay ninguna: sigues porque te compensa.",
+    texto: "Solo pagas la cuota, con doce meses de permanencia. Si a los tres no ves mejora, te vas sin pagar nada y con la web. Más tarde, pagas solo lo que falte de la web. A los doce, sin permanencia.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -249,7 +249,7 @@ export const GARANTIAS = [
   },
   {
     titulo: "Precio fijo, sin comisiones",
-    texto: "Inviertas mil euros en anuncios o un millón, nunca te cobramos un porcentaje de lo que inviertes. Pagas a Google o a Meta con tu tarjeta; nosotros no tocamos ese dinero.",
+    texto: "Inviertas mil euros o un millón, nunca cobramos un porcentaje de lo que inviertes. Pagas a Google o a Meta con tu tarjeta; nosotros no tocamos ese dinero.",
   },
 ];
 
@@ -380,7 +380,7 @@ export const DOLORES = [
   },
   {
     dolor: "Pago anuncios y no sé si sirven.",
-    solucion: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si tú quieres medir tus clientes, también cada cliente.",
+    solucion: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si quieres, también cada cliente.",
   },
   {
     dolor: "Me escriben de noche y cuando contesto ya es tarde.",
@@ -401,7 +401,7 @@ export const DOLORES = [
   },
   {
     dolor: "Mi agencia tiene mi web y mis cuentas. Si me voy, lo pierdo todo.",
-    solucion: "Dominio y cuentas a tu nombre desde el primer día, y la web tuya al cumplir los doce meses o antes, si pagas lo que falta. Si te vas, te llevas tus cuentas y tus contactos.",
+    solucion: "Dominio y cuentas a tu nombre desde el primer día. La web, tuya a los doce meses o antes, si pagas lo que falta. Si te vas, te llevas cuentas y contactos.",
   },
   {
     dolor: "Una web nueva tarda meses y cada cambio es otro presupuesto.",
@@ -492,26 +492,26 @@ export const ESTUDIO_TOTAL = ESTUDIO_BLOQUES.reduce((n, b) => n + b.items.length
 // Cómo empezamos: del test de idoneidad a tu estudio.
 export const EMPEZAMOS: { t: string; d: string }[] = [
   { t: "Haz el test de idoneidad", d: "Dos minutos: nos cuentas tu empresa y en qué momento estás." },
-  { t: "Lo revisamos", d: "Si vemos que podemos ayudarte de verdad, te lo decimos en 48 horas laborables. Y si no, también, con el porqué." },
-  { t: "Preparamos tu estudio gratuito", d: "Tu plan completo, hecho a medida, con la propuesta de rediseño de tu web y cuánto ahorrarías al euro." },
+  { t: "Lo revisamos", d: "Si podemos ayudarte, te lo decimos en 48 horas laborables. Y si no, también, con el porqué." },
+  { t: "Preparamos tu estudio gratuito", d: "Tu plan completo a medida, con el rediseño de tu web y cuánto ahorrarías, al euro." },
   { t: "Te lo presentamos y decides", d: "Con calma, en una videollamada o como prefieras. Y sin ningún compromiso." },
 ];
 
 
 // Más cosas que entran en la cuota, para la visión 360 (decidido por Ig el 24 oct 2026).
 export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: string }[] = [
-  { icono: "calendario", logo: "WhatsApp", t: "Reservas y citas online", d: "Tus clientes reservan solos desde la web y reciben el recordatorio por WhatsApp. Menos citas a las que no viene nadie." },
+  { icono: "calendario", logo: "WhatsApp", t: "Reservas y citas online", d: "Tus clientes reservan desde la web y reciben el recordatorio por WhatsApp. Menos plantones." },
   { icono: "estrella", logo: "Ficha de Google", t: "Reseñas", d: "Pedimos reseña después de cada venta y contestamos todas, en Google, Bing y Apple Maps." },
-  { icono: "pagina", t: "Landings a medida", d: "Una página a medida para cada campaña, cada servicio o cada ciudad. Las que necesites, dentro del alcance que acordemos." },
+  { icono: "pagina", t: "Landings a medida", d: "Una página para cada campaña, servicio o ciudad. Las que necesites, dentro del alcance que acordemos." },
   { icono: "chat", logo: "Claude", t: "Asistente con IA", d: "En tu web y en WhatsApp, a cualquier hora. Responde, recoge los datos y los mete en tu CRM." },
   { icono: "firma", t: "Presupuestos con firma", d: "Calculadoras y presupuestos online que tu cliente acepta y firma desde el móvil, sin papeles." },
-  { icono: "sonrisa", t: "Encuestas de satisfacción", d: "Saltan solas después de cada trabajo: detectan al cliente descontento a tiempo y al contento le piden la reseña." },
+  { icono: "sonrisa", t: "Encuestas de satisfacción", d: "Salen solas tras cada trabajo: avisan a tiempo del cliente descontento y al contento le piden la reseña." },
   { icono: "regalo", t: "Programa de recomendación", d: "Trae a un amigo, con su código y su seguimiento en el CRM, para que el boca a boca se note." },
   { icono: "idiomas", t: "Web en varios idiomas", d: "Inglés, francés o el idioma de tus clientes, bien traducido y posicionado en cada uno." },
   { icono: "carrito", logo: "Google", t: "Tienda online y Shopping", d: "Para vender por internet, con pagos y envíos, y tus productos con foto y precio en Google Shopping." },
   { icono: "llave", t: "Área privada para tus clientes", d: "Donde tus clientes ven sus pedidos, documentos o el estado de su trabajo." },
   { icono: "engranaje", t: "Herramientas internas", d: "Partes de trabajo, inventario, fichajes o tu propia intranet, hechas a la medida de tu empresa." },
-  { icono: "pincel", t: "Tu marca", d: "Diseño de logo, colores, manual de marca, tarjetas y papelería. La impresión, si la necesitas, la encargas tú a la imprenta." },
+  { icono: "pincel", t: "Tu marca", d: "Logo, colores, manual de marca, tarjetas y papelería. La impresión la encargas tú a la imprenta." },
   { icono: "telefono", t: "Medición de llamadas", d: "Cada llamada entra en tu CRM con el anuncio o la página que la trajo, no solo los formularios." },
   { icono: "lupa", t: "Vigilancia de tu competencia", d: "Cada mes, qué hacen tus competidores en Google, en anuncios y en redes, y cómo adelantarlos." },
   { icono: "video", logo: "YouTube", t: "Vídeos con IA y con móvil", d: "Vídeos cortos para redes y anuncios, montados por nosotros con tu material o con IA." },
@@ -523,29 +523,29 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "Mejor.",
     d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
-    pie: "Nos comprometemos por escrito: plazos, transparencia cada día y objetivos medibles. Y hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+    pie: "Por escrito: plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
   },
   {
     t: "En días, no en meses.",
-    d: "Donde otros tardan tres, cuatro o cinco meses en entregarte una web, tú la tienes en unos días: a veces 48 horas, normalmente menos de una semana. Y cada cambio del día a día, en 48 horas como máximo.",
+    d: "Donde otros tardan meses, tú tienes tu web en unos días: a veces 48 horas, normalmente menos de una semana. Y lo del día a día, en 48 horas como máximo.",
     pie: "Lo caro de una agencia no es solo la factura: es todo lo que tardan. Aquí no esperas.",
   },
   {
     t: "A precio fijo.",
-    d: "Una sola cuota, la misma para cualquier tamaño de empresa y con todo dentro. Menos de lo que te costaría contratar cada cosa por separado, y sin sorpresas en la factura.",
+    d: "Una sola cuota, la misma para cualquier tamaño de empresa, con todo dentro. Menos de lo que te costaría cada cosa por separado, y sin sorpresas.",
     pie: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres no ves que mejoramos, te vas sin pagar nada.",
   },
   {
     t: "Sin perseguirnos.",
-    d: "Te lo gestionamos todo nosotros. Sin reuniones innecesarias, casi todo por escrito y tu panel para mirarlo cuando te apetezca.",
+    d: "Lo gestionamos todo nosotros. Sin reuniones innecesarias, casi todo por escrito y tu panel para mirarlo cuando quieras.",
     pie: "Lo único que debería ocuparte son los resultados. Y vamos a por los mejores posibles.",
   },
 ];
 
 // Por qué podemos cobrar menos.
 export const POR_QUE_BARATO: { t: string; d: string }[] = [
-  { t: "Sin estructura que pagar", d: "Sin oficinas, sin gastos fijos de personal, sin capas de jefes y sin comerciales a comisión. Trabajamos en remoto, con una red de especialistas de confianza que entran por proyecto, y ese dinero no sale de tu bolsillo." },
-  { t: "Herramientas compartidas", d: "Las licencias profesionales de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
+  { t: "Sin estructura que pagar", d: "Sin oficinas, sin capas de jefes ni comerciales a comisión. Trabajamos en remoto, con especialistas que entran por proyecto. Ese dinero no sale de tu bolsillo." },
+  { t: "Herramientas compartidas", d: "Las licencias de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
   { t: "La tecnología de hoy", d: "La IA y la automatización hacen lo repetitivo; las personas, lo que hay que pensar. Lo que antes llevaba semanas hoy lleva horas." },
   { t: "Todo el margen, para ti", d: "Lo que otros gastan en estructura lo volcamos en tu cuota. Queremos clientes para muchos años, no facturas para hoy." },
 ];
@@ -555,7 +555,7 @@ export const CREEMOS: string[] = [
   "Que el buen marketing no debería ser un lujo. Queremos democratizar los precios.",
   "Que se crece con clientes a largo plazo, no a base de facturas.",
   "Que a un proveedor no deberías tener que perseguirle. Si nos tienes que perseguir, lo estamos haciendo mal.",
-  "Que la mejor tecnología tiene que estar al alcance de cualquier empresa, y nosotros la estrenamos cada semana.",
+  "Que la mejor tecnología debe estar al alcance de cualquier empresa. Nosotros la estrenamos cada semana.",
   "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
   "Que nuestro trabajo es ayudarte a crecer o, cuando toca, a estabilizarte y mantener lo que has construido.",
 ];

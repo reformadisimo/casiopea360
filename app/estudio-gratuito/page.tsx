@@ -20,7 +20,7 @@ export default function EstudioGratuito() {
         titulo="Tu estudio gratuito: tu plan completo, hecho a medida."
         clave="a medida"
         chip={{ grande: `${ESTUDIO_TOTAL} apartados`, chico: "Con tu web rediseñada" }}
-        entradilla="Dónde estás hoy, tu competencia, la propuesta de rediseño de tu web, tus anuncios, tu plan y cómo trabajaríamos. Empieza por el test de idoneidad: son dos minutos."
+        entradilla="Dónde estás hoy, tu competencia, el rediseño de tu web, tus anuncios y tu plan. Empieza por el test de idoneidad: son dos minutos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
         video="hombre-sonriendo"
         videoAlt="Un empresario sonríe satisfecho"
@@ -29,7 +29,7 @@ export default function EstudioGratuito() {
       <SeccionEstudio />
       <FranjaVideos
         frase="Miramos tu negocio con telescopio."
-        detalle="Tu web, tu ficha de Google, tus anuncios, tu competencia y lo que dicen de ti las IA. Todo, antes de proponerte nada."
+        detalle="Tu web, tu ficha de Google, tus anuncios, tu competencia y lo que dicen de ti las IA. Antes de proponerte nada."
         clips={[
           { nombre: "telescopios", alt: "Telescopios bajo un cielo estrellado" },
           { nombre: "arquitecto-mesa", alt: "Un profesional trabaja en su mesa con luz natural" },

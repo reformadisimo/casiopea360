@@ -9,9 +9,9 @@ import { Bocadillo, Etiqueta, ListaViva, Nebulosa, PasosVivos, TarjetaViva } fro
 /** "Soñar en grande": la imagen se construye, y se puede construir para otro público sin perder al de siempre. */
 export function SeccionSonarEnGrande() {
   const ideas: [string, string, string][] = [
-    ["fiesta", "Tú pones el sueño", "Dinos hasta dónde quieres llegar: más clientes, clientes que gasten más, abrir otra línea de negocio. Sin vergüenza."],
-    ["diana", "Nosotros lo convertimos en objetivo", "Con tus cifras y con supuestos a la vista te decimos si es un sueño o un objetivo, cuánto tardaríamos y qué haría falta."],
-    ["lupa", "Probamos, medimos, corregimos", "Una prueba A/B no es una opinión: es una medida. Lo que funciona se queda, lo que no, se cambia."],
+    ["fiesta", "Tú pones el sueño", "Más clientes, clientes que gasten más, otra línea de negocio. Sin vergüenza."],
+    ["diana", "Nosotros lo convertimos en objetivo", "Con tus cifras te decimos si es un sueño o un objetivo, cuánto tardaríamos y qué haría falta."],
+    ["lupa", "Probamos, medimos, corregimos", "Una prueba A/B no es una opinión: es una medida. Lo que funciona se queda."],
   ];
   return (
     <section className="relative overflow-hidden bg-noche py-14 text-white sm:py-20" aria-labelledby="sonar-en-grande">
@@ -20,10 +20,7 @@ export function SeccionSonarEnGrande() {
         <Etiqueta tono="cristal" icono="fiesta">Soñar en grande</Etiqueta>
         <h2 id="sonar-en-grande" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Hasta donde tú quieras llegar. Y más.</h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
-          Las marcas grandes no venden solo por lo que hacen: venden por la imagen que proyectan. Y esa imagen se construye. Empresas enormes tienen webs flojas, y empresas pequeñas pueden tener una web y unas campañas pensadas para el público que quieren atraer.
-        </p>
-        <p className="mt-4 max-w-3xl text-lg text-white/85">
-          ¿Por qué no ir a por clientes que gastan mucho más? Con una web pensada para ese público, campañas para ese público y una prueba A/B que lo mida, se puede intentar. <b className="text-white">Y sin dejar de atender al cliente de hoy: tú eliges el reparto.</b>
+          La imagen de una marca se construye. ¿Por qué no ir a por clientes que gastan más? Una web y unas campañas para ese público, y una prueba A/B que lo mida. <b className="text-white">Sin dejar de atender al cliente de hoy: tú eliges el reparto.</b>
         </p>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {ideas.map(([ic, t, d], i) => (
@@ -31,7 +28,7 @@ export function SeccionSonarEnGrande() {
           ))}
         </ul>
         <Bocadillo claro className="mt-8 max-w-3xl">
-          No te traemos más de lo que puedes atender bien: tú nos dices tu capacidad y la meta se ajusta a ella. Y si una meta es poco realista, te lo decimos claro y te proponemos un escalón intermedio.
+          No te traemos más de lo que puedas atender. Y si una meta no es realista, te lo decimos y te proponemos un escalón intermedio.
         </Bocadillo>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/panel" className={BOTON}>Prueba «Tus sueños y tus cuentas»</Link>
@@ -46,9 +43,9 @@ export function SeccionSonarEnGrande() {
 export function SeccionComoTrabajamos() {
   const pasos = ["Investigamos", "Probamos", "Medimos", "Corregimos", "Volvemos a probar"];
   const tarjetas: [string, string, string][] = [
-    ["sonrisa", "Una red de especialistas, sin oficinas que pagar", "Tu proyecto lo lleva una persona de principio a fin, y detrás hay colaboradores de confianza, con los que trabajamos desde hace años: programación, diseño, experiencia de usuario, analítica, SEO y anuncios. Entran en cada proyecto cuando hacen falta y cobran por lo que hacen."],
-    ["bombilla", "Una curva de aprendizaje muy pequeña", "Un panel con tanta información pide un poco de costumbre, y lo sabemos. Por eso la primera vez te lleva de la mano, paso a paso, y cada cosa que pueda no entenderse tiene un «?» que la explica en una frase. En pocos días te sabes mover."],
-    ["lupa", "Y los errores, a la vista", "Ninguna herramienta está libre de errores, y la nuestra tampoco. La diferencia es que los buscamos cada día con pruebas automáticas y, si ves uno, nos lo cuentas con un toque («Avisar de un error») y lo arreglamos. Nos encanta encontrarlos: cada uno que arreglamos es un problema menos para ti."],
+    ["sonrisa", "Una red de especialistas, sin oficinas que pagar", "Una persona lleva tu proyecto de principio a fin. Detrás, colaboradores de años: programación, diseño, analítica, SEO y anuncios. Entran cuando hacen falta."],
+    ["bombilla", "Una curva de aprendizaje muy pequeña", "La primera vez, el panel te lleva de la mano. Cada cosa rara tiene un «?» que la explica en una frase. En pocos días te sabes mover."],
+    ["lupa", "Y los errores, a la vista", "Ninguna herramienta está libre de errores. Los buscamos cada día y, si ves uno, nos lo dices con un toque y lo arreglamos."],
   ];
   return (
     <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="como-trabajamos">
@@ -57,7 +54,7 @@ export function SeccionComoTrabajamos() {
         <Etiqueta icono="cohete">Cómo trabajamos</Etiqueta>
         <h2 id="como-trabajamos" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Un solo contacto, los especialistas que haga falta</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          No tienes que hablar con un diseñador, un programador, el de Analytics, el del SEO y el de los anuncios. Hablas con una persona, y detrás están los especialistas que tu proyecto necesite. Te acompañamos, te asesoramos, te guiamos y te damos todos los datos, al momento.
+          Hablas con una persona. Detrás están los especialistas que tu proyecto necesite. Te acompañamos, te asesoramos y te damos todos los datos al momento.
         </p>
         <ol className="mt-8 flex flex-wrap gap-3" aria-label="Nuestro ciclo de trabajo">
           {pasos.map((p, i) => (
@@ -82,7 +79,7 @@ export function SeccionFichaGoogle() {
   const cosas = [
     "Respondemos cada reseña con un texto cuidado, no con un «gracias» suelto.",
     "Publicamos novedades y trabajos terminados, y subimos fotos nuevas.",
-    "Mantenemos servicios, horario y categorías al día, y contestamos las preguntas de tus clientes.",
+    "Servicios, horario y categorías al día, y contestamos las preguntas de tus clientes.",
     "Te damos una tarjeta con código QR para que tus clientes dejen su reseña fácil.",
   ];
   return (
@@ -93,7 +90,7 @@ export function SeccionFichaGoogle() {
           <Etiqueta icono="mapa">Tu ficha de Google</Etiqueta>
           <h2 id="ficha-google" className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo primero que ve quien te busca</h2>
           <p className="mt-5 text-lg text-gris">
-            Cuando alguien busca «ventanas cerca de mí» o «abogado laboralista en Madrid», lo primero que ve es una ficha con tu nota, tus reseñas y tu teléfono. <b className="text-tinta">Esa ficha es tuya; nosotros la cuidamos con tu permiso y sin que te quite tiempo.</b>
+            Quien busca «ventanas cerca de mí» ve primero una ficha con tu nota, tus reseñas y tu teléfono. <b className="text-tinta">Es tuya; nosotros la cuidamos con tu permiso y sin quitarte tiempo.</b>
           </p>
           <Bocadillo className="mt-5">Puedes quitarnos el acceso cuando quieras. Tus cuentas son tuyas, siempre.</Bocadillo>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -126,11 +123,11 @@ export function SeccionPruebasAB() {
           <Etiqueta icono="lupa">Probamos versiones</Etiqueta>
           <h2 id="pruebas-ab" className="mt-5 text-3xl font-extrabold sm:text-5xl">Dos versiones, una medida. También de tu web.</h2>
           <p className="mt-5 text-lg text-gris">
-            Hacemos landings y pruebas A/B, y las que haga falta: A/B, A/B/C/D. No solo en los anuncios, también en la web. Ya trabajamos con clientes que enseñan <b className="text-tinta">dos imágenes distintas a la mitad de sus visitas</b> para ver cuál les escribe más. De cada prueba se aprende mucho sobre lo que mira y prefiere tu público, y esa información sirve para ir mejorando los resultados.
+            Landings y pruebas A/B (o A/B/C/D), en los anuncios y en la web. Hay clientes que enseñan <b className="text-tinta">dos imágenes distintas a la mitad de sus visitas</b> para ver cuál les escribe más. De cada prueba se aprende, y eso mejora los resultados.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <TarjetaViva como="div" icono="regalo" i={2} titulo="Por el mismo coste" texto="Una versión alternativa de tu web va dentro de tu cuota, sin pagar aparte. Solemos ser nosotros quienes lo aconsejamos, pero siempre decides tú si quieres hacerlo y qué probar." />
-            <TarjetaViva como="div" icono="grafica" i={0} titulo="Con números, no a ojo" texto="No podemos prometer cuánto mejorará cada prueba; lo que sí te damos es el dato para decidir con números y no a ojo." />
+            <TarjetaViva como="div" icono="regalo" i={2} titulo="Por el mismo coste" texto="Una versión alternativa de tu web va dentro de tu cuota. Solemos aconsejarlo nosotros; decides tú." />
+            <TarjetaViva como="div" icono="grafica" i={0} titulo="Con números, no a ojo" texto="No prometemos cuánto mejora cada prueba. Te damos el dato para decidir." />
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/panel" className={BOTON}>Cómo lo verías en tu panel</Link>
@@ -140,7 +137,7 @@ export function SeccionPruebasAB() {
         <div className="rounded-[1.8rem] bg-niebla p-4 ring-1 ring-linea sm:p-5">
           <p className="flex items-center gap-3 font-extrabold"><Loseta icono="pagina" i={1} /> Qué se puede probar</p>
           <ListaViva items={que} className="mt-4 [&>li]:bg-white" />
-          <Bocadillo className="mt-4">Una prueba necesita visitas suficientes para fiarse de ella: con pocas visitas tarda más en dar una respuesta clara. Te lo decimos con honestidad.</Bocadillo>
+          <Bocadillo className="mt-4">Una prueba necesita visitas suficientes. Con pocas, tarda más en responder. Te lo decimos claro.</Bocadillo>
         </div>
       </div>
     </section>
@@ -150,9 +147,9 @@ export function SeccionPruebasAB() {
 /** "Rápida, eficaz y robándote el menor tiempo posible": sin reuniones ni llamadas, por correo y WhatsApp. Valor de Casiopea. */
 export function SeccionTiempo() {
   const pasos: [string, string, string][] = [
-    ["mano", "Al principio, un poco de esfuerzo", "Hace falta tu parte: accesos, datos y fotos. Nosotros también nos volcamos al principio, para que arranque cuanto antes."],
-    ["cohete", "Después, velocidad de crucero", "Con todo en marcha, puedes dedicarte casi todo el tiempo a tu trabajo, y cada vez te robamos menos."],
-    ["chat", "Sin reuniones ni llamadas", "Ni presenciales, ni online, ni llamadas, salvo que sean imprescindibles, y casi nunca lo son. Hablamos por correo y por WhatsApp, a diario si hace falta, de forma breve y rápida."],
+    ["mano", "Al principio, un poco de esfuerzo", "Tu parte: accesos, datos y fotos. Nosotros también nos volcamos, para que arranque cuanto antes."],
+    ["cohete", "Después, velocidad de crucero", "Tú, casi todo el tiempo a tu trabajo. Cada vez te robamos menos."],
+    ["chat", "Sin reuniones ni llamadas", "Salvo que sean imprescindibles, y casi nunca lo son. Correo y WhatsApp, a diario si hace falta, breve y rápido."],
   ];
   return (
     <section className="relative overflow-hidden bg-noche py-14 text-white sm:py-20" aria-labelledby="tiempo">
@@ -161,7 +158,7 @@ export function SeccionTiempo() {
         <Etiqueta tono="estrella" icono="reloj">Tu tiempo es para tu trabajo</Etiqueta>
         <h2 id="tiempo" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Rápida, eficaz y robándote el menor tiempo posible</h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
-          Nuestro objetivo es conseguirte el mayor número de clientes o de trabajos posible, dentro de lo que puedas atender, dándote la menor guerra posible. No podemos prometer cifras; sí cuidar tu tiempo.
+          Nuestro objetivo: el mayor número de clientes posible, dentro de lo que puedas atender, dándote la menor guerra. No prometemos cifras; sí cuidar tu tiempo.
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {pasos.map(([ic, t, d], i) => (
@@ -171,7 +168,7 @@ export function SeccionTiempo() {
         <div className="mt-8 grid gap-4 lg:grid-cols-[1.2fr_1fr] lg:items-start">
           <div className="rounded-[1.6rem] bg-estrella/15 p-6 ring-1 ring-estrella/40">
             <p className="flex items-center gap-3 text-lg font-extrabold text-estrella"><Loseta icono="reloj" i={4} /> Lo que pasa con varios proveedores</p>
-            <p className="mt-3 text-lg">Con una agencia de marketing, y más aún con varios proveedores, se pierde muchísimo tiempo en reuniones, desplazamientos, llamadas y correos cruzados, y acabas más dedicado al marketing que a tu propio trabajo. Lo sabemos de primera mano: en más de 22 años nos ha pasado. Con nosotros no ocurre, y es uno de nuestros puntos fuertes.</p>
+            <p className="mt-3 text-lg">Reuniones, desplazamientos, llamadas y correos cruzados. Acabas más dedicado al marketing que a tu trabajo. En más de 22 años nos ha pasado. Con nosotros no ocurre, y es uno de nuestros puntos fuertes.</p>
           </div>
           <Bocadillo claro>Tu agenda, para tus clientes. La nuestra, para tu marketing. Así se reparte.</Bocadillo>
         </div>
@@ -183,12 +180,12 @@ export function SeccionTiempo() {
 /** "¿Por qué contratarnos?": el mensaje central de Casiopea. Sin promesas de cifras, sin precios publicados. */
 export function SeccionPorQueContratarnos() {
   const razones: [string, string, string][] = [
-    ["reloj", "Tu tiempo vuelve a tu trabajo", "Sin reuniones ni llamadas innecesarias. Correo y WhatsApp, breve y rápido. Con otros, el marketing te lleva muchísimo tiempo; con nosotros, no."],
-    ["sonrisa", "Un solo contacto para todo", "Web, Google, anuncios, redes, CRM e IA. Una persona coordina, y detrás hay una red de especialistas. Tú hablas con uno."],
-    ["rayo", "Rápido", "Tu web nueva en unos días, no en meses. Landings y mejoras en horas o en pocos días, sin presupuestos nuevos cada vez."],
-    ["grafica", "Todos tus datos, al momento", "Un panel que se entiende a la primera y un CRM para ver de dónde viene cada cliente. Sabes qué va bien y qué hacer."],
-    ["escudo", "Todo es tuyo", "Dominio, cuentas, ficha de Google y contactos, a tu nombre. Y no te pedimos tu facturación: solo dos números aproximados."],
-    ["euro", "Una cuota fija, razonable", "Sin comisiones sobre tus anuncios y con muchas cosas dentro. Por separado, suele costar bastante más."],
+    ["reloj", "Tu tiempo vuelve a tu trabajo", "Sin reuniones ni llamadas innecesarias. Correo y WhatsApp, breve y rápido."],
+    ["sonrisa", "Un solo contacto para todo", "Web, Google, anuncios, redes, CRM e IA. Una persona coordina a la red de especialistas."],
+    ["rayo", "Rápido", "Tu web en unos días, no en meses. Las mejoras, en horas o pocos días, sin presupuestos nuevos."],
+    ["grafica", "Todos tus datos, al momento", "Un panel que se entiende a la primera y un CRM que dice de dónde viene cada cliente."],
+    ["escudo", "Todo es tuyo", "Dominio, cuentas, ficha de Google y contactos, a tu nombre. No te pedimos tu facturación."],
+    ["euro", "Una cuota fija, razonable", "Sin comisiones sobre tus anuncios y con mucho dentro. Por separado cuesta bastante más."],
   ];
   return (
     <section className="relative overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="por-que">
@@ -197,7 +194,7 @@ export function SeccionPorQueContratarnos() {
         <Etiqueta icono="trofeo">¿Por qué contratarnos?</Etiqueta>
         <h2 id="por-que" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Con nosotros no pierdes tiempo. Lo que ganas son datos y trabajo hecho.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          Lo que más oímos es «esto me lleva muchísimo tiempo». Por eso está todo pensado para quitártelo de encima. Y el marketing, con medidas y con pruebas, para que dé resultados. No prometemos cifras: medimos cada euro y cada contacto y te lo contamos con datos.
+          Lo que más oímos: «esto me lleva muchísimo tiempo». Por eso todo está pensado para quitártelo de encima. No prometemos cifras: medimos cada euro y cada contacto.
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {razones.map(([ic, t, d], i) => (
@@ -226,10 +223,10 @@ export function SeccionEquipo() {
     ["prensa", "Contenidos y textos", "Lo que explicas, escrito para que se lea y convenza."],
   ];
   const claves: [string, string, string][] = [
-    ["trofeo", "22 años seleccionando", "Desde 2004 hemos ido probando, filtrando y quedándonos con los profesionales que cumplen: en calidad, en plazos y en trato."],
-    ["euro", "Autónomos, por proyecto", "Trabajan por su cuenta y solo cobran por cada proyecto. Sin gasto fijo de personal: tú no pagas a nadie que esté parado."],
-    ["calendario", "Plazos cerrados", "Cada encargo sale con su fecha de entrega clara desde el principio, y se cumple o se te cuenta por qué."],
-    ["sonrisa", "Un solo contacto", "Tú hablas con una persona, que coordina a los especialistas que tu proyecto necesite."],
+    ["trofeo", "22 años seleccionando", "Desde 2004, probando y quedándonos con los que cumplen: en calidad, en plazos y en trato."],
+    ["euro", "Autónomos, por proyecto", "Cobran por cada proyecto. Sin gasto fijo de personal: no pagas a nadie parado."],
+    ["calendario", "Plazos cerrados", "Cada encargo sale con su fecha desde el principio, y se cumple o se te cuenta por qué."],
+    ["sonrisa", "Un solo contacto", "Hablas con una persona, que coordina a los especialistas que haga falta."],
   ];
   return (
     <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="equipo-detras">
@@ -238,7 +235,7 @@ export function SeccionEquipo() {
         <Etiqueta tono="cristal" icono="sonrisa">El equipo detrás</Etiqueta>
         <h2 id="equipo-detras" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Un equipo seleccionado durante 22 años</h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
-          No contratamos a quien tiene un hueco: elegimos a los especialistas con los que de verdad queremos trabajar, y llevamos más de veinte años afinando esa lista. Son profesionales independientes de cada oficio, con una forma de trabajar muy clara y una colaboración continua con nosotros.
+          No contratamos a quien tiene un hueco: elegimos con quién queremos trabajar, y llevamos más de veinte años afinando esa lista.
         </p>
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {claves.map(([ic, t, d], i) => (
@@ -251,7 +248,7 @@ export function SeccionEquipo() {
             <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} chip="De nuestra red" className="!p-5 [&>h3]:text-lg" />
           ))}
         </ul>
-        <Bocadillo claro className="mt-8 max-w-3xl">Por eso nuestros precios son tan buenos: no pagamos oficinas ni plantilla ociosa, y todo lo que cobras va a trabajo hecho.</Bocadillo>
+        <Bocadillo claro className="mt-8 max-w-3xl">Por eso el precio es tan bueno: sin oficinas ni plantilla parada, todo va a trabajo hecho.</Bocadillo>
       </div>
     </section>
   );

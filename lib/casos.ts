@@ -26,7 +26,7 @@ export const CASOS: Caso[] = [
     videoAlt: "Un arquitecto trabaja en su mesa",
     color: "#c2410c",
     reto:
-      "Es nuestra propia empresa de reformas integrales en Madrid. Lo que ofrecemos a nuestros clientes lo probamos primero aquí: si no trae clientes a una empresa real, no lo vendemos.",
+      "Es nuestra propia empresa de reformas en Madrid. Todo lo que ofrecemos lo probamos primero aquí: si no trae clientes a una empresa real, no lo vendemos.",
     hicimos: [
       "Calculadoras para que cada cliente vea un precio orientativo al momento",
       "Una asistente con inteligencia artificial que atiende a cualquier hora, también por voz",
@@ -50,7 +50,7 @@ export const CASOS: Caso[] = [
     videoAlt: "Personas en holograma conversando sobre un móvil",
     color: "#7c3aed",
     reto:
-      "Una app familiar para saber que los tuyos han llegado bien, sin vigilar a nadie. Había que pasar de la idea a las tiendas de Apple y Google, con pagos y en muchos idiomas.",
+      "Una app familiar para saber que los tuyos han llegado bien, sin vigilar a nadie. De la idea a las tiendas de Apple y Google, con pagos y en muchos idiomas.",
     hicimos: [
       "La app para iPhone y Android, publicada en App Store y Google Play",
       "Suscripción de pago dentro de la app",
@@ -75,7 +75,7 @@ export const CASOS: Caso[] = [
     videoAlt: "Un hombre trabaja en su taller",
     color: "#1f6feb",
     reto:
-      "Una empresa de ventanas y cerramientos con una web lenta en el móvil, que es justo donde la busca la gente. Y clientes que querían saber cuánto les iba a costar antes de llamar.",
+      "Una web lenta en el móvil, justo donde la busca la gente. Y clientes que querían saber el precio antes de llamar.",
     hicimos: [
       "Un configurador que da el precio al momento",
       "Páginas por zona, para aparecer donde trabajan",
@@ -98,10 +98,10 @@ export const CASOS: Caso[] = [
     videoAlt: "Una reunión distendida en un despacho",
     color: "#0f766e",
     reto:
-      "Un despacho de abogados laboralistas con una web lenta en el móvil. La idea: que quien tiene un problema laboral encuentre respuestas y herramientas gratis, y confíe en quien se las da.",
+      "Una web lenta en el móvil. La idea: que quien tiene un problema laboral encuentre respuestas y herramientas gratis, y confíe en quien se las da.",
     hicimos: [
       "Catorce herramientas gratuitas para trabajadores y empresas",
-      "47 guías que responden a lo que de verdad pregunta la gente",
+      "47 guías que responden a lo que pregunta la gente",
       "Un asistente con inteligencia artificial",
       "Versión completa en inglés",
       "Una web nueva, rápida en el móvil",

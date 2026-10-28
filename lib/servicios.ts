@@ -38,7 +38,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Web a medida en unos días, con calculadoras y asistente con IA, 100 en PageSpeed como objetivo, y tuya al cumplir los doce meses. Incluida en tu cuota de marketing.",
     titular: "Tu web, en días. Rápida, bonita y a tu nombre.",
     entradilla:
-      "Donde otros tardan meses, tú la tienes en unos días: normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
+      "En unos días, normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
     video: "mano-pantalla",
     videoAlt: "Una mano toca una pantalla luminosa",
     video2: "arquitecto-mesa",
@@ -50,7 +50,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio y cuentas a tu nombre desde el primer día, y la web tuya al cumplir los doce meses. Si te vas, te llevas tus cuentas y tus contactos." },
     ],
     como: [
-      { paso: "Miramos lo que tienes", texto: "Qué te trae clientes hoy y qué no, para no perder nada de lo que ya habías ganado en Google." },
+      { paso: "Miramos lo que tienes", texto: "Qué te trae clientes hoy y qué no, para no perder lo ganado en Google." },
       { paso: "La hacemos en días", texto: "Diseño a tu medida, textos que venden y herramientas como calculadoras o un asistente con IA." },
       { paso: "La medimos", texto: "Velocidad, accesibilidad y buenas prácticas en PageSpeed, con 100 como objetivo." },
       { paso: "La mejoramos cada semana", texto: "Lo que aprendemos en los anuncios y en el asistente se convierte en cambios en tu web." },
@@ -92,7 +92,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Que te encuentre quien te busca: SEO, ficha de Google, reseñas y visibilidad en ChatGPT y las demás IA. Sin permanencias eternas ni informes que no se entienden.",
     titular: "Que te encuentre quien te está buscando. También en ChatGPT.",
     entradilla:
-      "Tu ficha de Google al día, todas las reseñas contestadas, artículos que atraen clientes y una web que Google y las IA entienden. Todo con el mismo equipo que lleva tus anuncios.",
+      "Ficha de Google al día, reseñas contestadas, artículos que atraen clientes y una web que Google y las IA entienden. Con el mismo equipo que lleva tus anuncios.",
     video: "ojo-pantallas",
     videoAlt: "Un ojo rodeado de pantallas con resultados",
     video2: "brujula",
@@ -106,7 +106,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     como: [
       { paso: "Vemos dónde estás", texto: "Qué buscan tus clientes, dónde sales tú y dónde sale tu competencia, también en las IA." },
       { paso: "Arreglamos la base", texto: "Ficha de Google, Bing y Apple Maps, y una web rápida que Google entiende sin esfuerzo." },
-      { paso: "Creamos contenido útil", texto: "Artículos que responden a lo que de verdad te preguntan. Los escribimos nosotros; tú solo los revisas." },
+      { paso: "Creamos contenido útil", texto: "Artículos que responden a lo que te preguntan. Los escribimos nosotros; tú solo los revisas." },
       { paso: "Lo medimos cada semana", texto: "Qué búsquedas te traen clientes, no solo visitas." },
     ],
     plazos: [
@@ -140,14 +140,14 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Google Ads, Instagram, Facebook, TikTok y Bing con precio fijo: no cobramos comisión sobre lo que inviertes. Cada euro vigilado y revisado cada semana.",
     titular: "Cada euro, vigilado. Y sin comisiones sobre lo que inviertes.",
     entradilla:
-      "Anuncios en Google, Instagram, Facebook, TikTok y Bing que llevan a páginas hechas para que te contacten. Pagas tú a Google y a Meta, con el tope que tú decidas. Nosotros, ni un porcentaje.",
+      "Anuncios en Google, Instagram, Facebook, TikTok y Bing, con páginas hechas para que te contacten. Pagas tú a Google y a Meta. Nosotros, ni un porcentaje.",
     video: "holograma-mesa",
     videoAlt: "Dos personas ríen alrededor de un holograma",
     video2: "holograma-redes",
     videoAlt2: "Una mano sostiene un móvil del que salen notificaciones",
     color: "#7c3aed",
     dolores: [
-      { dolor: "«Pago anuncios y no sé si sirven.»", arreglo: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si tú quieres medir tus clientes, también cada cliente." },
+      { dolor: "«Pago anuncios y no sé si sirven.»", arreglo: "Vigilamos cada euro y te decimos cuánto te cuesta cada contacto. Y si quieres, también cada cliente." },
       { dolor: "«Mi agencia se lleva un porcentaje de lo que invierto.»", arreglo: "Precio fijo. Nunca cobramos comisión sobre tu inversión, sea la que sea." },
       { dolor: "«Los anuncios llevan a mi portada y nadie llama.»", arreglo: "Cada campaña tiene su página, hecha por el mismo equipo, para que te contacten." },
     ],
@@ -235,7 +235,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Asistente con inteligencia artificial en tu web, también por voz; WhatsApp de empresa, correos automáticos y un panel con cada conversación. Contactos que no se pierden.",
     titular: "Contactos que no se pierden, aunque estés en plena faena.",
     entradilla:
-      "Un asistente con inteligencia artificial que atiende en tu web a cualquier hora, también por voz. Correos y WhatsApp que se envían solos. Y un panel con cada conversación.",
+      "Un asistente con IA que atiende en tu web a cualquier hora, también por voz. Correos y WhatsApp que se envían solos. Y un panel con cada conversación.",
     video: "neon-llamada",
     videoAlt: "Una mujer habla por el móvil entre luces de neón",
     video2: "fibra-luz",
@@ -243,11 +243,11 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     color: "#0f766e",
     dolores: [
       { dolor: "«Me escriben de noche y cuando contesto ya es tarde.»", arreglo: "Un asistente atiende a cualquier hora y te avisa con todo apuntado." },
-      { dolor: "«Se me olvida volver a llamar.»", arreglo: "Correos y recordatorios que se envían solos para no perder a nadie que pidió información." },
+      { dolor: "«Se me olvida volver a llamar.»", arreglo: "Correos y recordatorios que salen solos, para no perder a nadie que pidió información." },
       { dolor: "«No sé qué preguntan mis clientes.»", arreglo: "Un panel con cada conversación: sabrás qué les preocupa con sus propias palabras." },
     ],
     como: [
-      { paso: "Le enseñamos tu negocio", texto: "Precios orientativos, zonas, plazos y lo que no hace tu empresa, para que responda como tú." },
+      { paso: "Le enseñamos tu negocio", texto: "Precios orientativos, zonas, plazos y lo que no haces, para que responda como tú." },
       { paso: "Lo ponemos donde te escriben", texto: "Tu web, por texto o por voz, y tu WhatsApp de empresa." },
       { paso: "Lo conectamos con tu CRM", texto: "Cada contacto entra solo, con la página y el anuncio de donde vino." },
       { paso: "Lo afinamos cada día", texto: "Leemos las conversaciones y mejoramos sus respuestas." },
@@ -257,7 +257,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { que: "Respuestas preparadas en WhatsApp", cuando: "Máximo 48 horas" },
       { que: "Conectar con tu CRM", cuando: "Fecha cerrada desde el primer día" },
     ],
-    caso: { nombre: "Reformadísimo", texto: "Una asistente con inteligencia artificial que atiende por voz, conectada a calculadoras de precio y a la medición completa.", slug: "reformadisimo" },
+    caso: { nombre: "Reformadísimo", texto: "Una asistente con IA que atiende por voz, conectada a calculadoras de precio y a la medición completa.", slug: "reformadisimo" },
     preguntas: [
       {
         p: "¿El asistente se inventa cosas?",
@@ -337,7 +337,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Ve lo que hace la gente en tu web: dónde toca, dónde se para y dónde se va. Mapa de calor propio, con conclusiones claras y sin guardar nada de lo que escriben. Para mejorar tu web cada mes, sin adivinar.",
     titular: "Tu web deja de ser una apuesta. Se mejora cada mes con datos.",
     entradilla:
-      "La Lupa 360 te enseña lo que hace la gente de verdad en tu web: dónde toca, dónde se para, qué espera que funcione y no funciona. Cambiamos una cosa, medimos y volvemos a mirar. Sin ir a ciegas.",
+      "La Lupa 360 te enseña lo que hace la gente en tu web: dónde toca, dónde se para y qué toca sin que pase nada. Cambiamos una cosa, medimos y volvemos a mirar.",
     video: "ojo-pantallas",
     videoAlt: "Un ojo reflejado en varias pantallas",
     video2: "telescopios",
@@ -349,7 +349,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { dolor: "«La gente toca algo y no pasa nada.»", arreglo: "Los toques en vano salen marcados en rojo, y lo arreglamos en horas." },
     ],
     incluye: [
-      "Mapa de calor de tu web, hecho por nosotros y sin depender de herramientas de terceros",
+      "Mapa de calor de tu web, hecho por nosotros, sin herramientas de terceros",
       "Conclusiones claras arriba del todo: qué pasa y qué conviene hacer, sin jerga",
       "Dónde tocan, dónde tocan y no pasa nada y hasta dónde bajan, sobre tu web real",
       "Filtros por periodo, móvil u ordenador, versión de la web y de dónde vienen",
@@ -361,7 +361,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { paso: "Miramos", texto: "Vemos qué hace la gente en cada página, con las conclusiones de la Lupa 360." },
       { paso: "Cambiamos una cosa", texto: "Una sola, para saber qué ha servido: un botón, un titular, un orden." },
       { paso: "Medimos otra vez", texto: "Comparamos antes y después, con el mismo tipo de visitas." },
-      { paso: "Y vuelta a empezar", texto: "Cada mes, la web un poco mejor. Mejora continua, con datos y no con suposiciones." },
+      { paso: "Y vuelta a empezar", texto: "Cada mes, la web un poco mejor. Con datos, no con suposiciones." },
     ],
     plazos: [
       { que: "Activar la Lupa 360 en tu web", cuando: "Unos días" },
@@ -411,7 +411,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp y, si lo prefieres, por SMS. Incluido en tu cuota: solo pagas los mensajes.",
     titular: "Menos plantones y respuesta al momento, sin que tengas que acordarte.",
     entradilla:
-      "Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp; y si lo prefieres, también por SMS. Lo montamos nosotros y funciona solo.",
+      "Mensajes automáticos para que tus clientes no olviden la cita y sepan que les has recibido. Por WhatsApp y, si lo prefieres, por SMS. Lo montamos nosotros.",
     video: "movil-sonrisa",
     videoAlt: "Una persona sonríe al leer un mensaje en su móvil",
     video2: "mujer-movil",
@@ -420,7 +420,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     dolores: [
       { dolor: "«La gente se olvida de la cita y no viene.»", arreglo: "Un mensaje el día antes y otro un par de horas antes, con un enlace para confirmar o pedir otra hora." },
       { dolor: "«Pide cita y no sabe si le hemos recibido.»", arreglo: "En segundos le llega un «recibido, te llamamos hoy», aunque no mire el correo." },
-      { dolor: "«Tardo en enterarme de que ha entrado un contacto.»", arreglo: "Un aviso a tu móvil cuando entra un contacto o una cita, para que contestes pronto." },
+      { dolor: "«Tardo en enterarme de que ha entrado un contacto.»", arreglo: "Un aviso a tu móvil cada vez que entra un contacto o una cita." },
     ],
     incluye: [
       "Recordatorio de cita: un mensaje el día antes y otro un par de horas antes, con enlace para confirmar o pedir otra hora",
@@ -432,8 +432,8 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       "Sin publicidad: no incluye campañas por WhatsApp ni por SMS, que necesitan permiso expreso de cada persona",
     ],
     como: [
-      { paso: "Vemos si te encaja", texto: "Te lo recomendamos según tu negocio. Encaja sobre todo donde hay citas o visitas." },
-      { paso: "Lo montamos nosotros", texto: "Los textos, los horarios y las cuentas, a tu nombre. Tú no tienes que enviar nada." },
+      { paso: "Vemos si te encaja", texto: "Encaja sobre todo donde hay citas o visitas. Te lo recomendamos según tu negocio." },
+      { paso: "Lo montamos nosotros", texto: "Textos, horarios y cuentas, a tu nombre. Tú no envías nada." },
       { paso: "Sale solo", texto: "Cada aviso sale en su momento, con el nombre de tu negocio y de quién viene." },
       { paso: "Lo ves en tu panel", texto: "Cuántos recordatorios han salido y cuántas citas se han confirmado." },
     ],
@@ -444,7 +444,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     ],
     demo: {
       titulo: "Mira cómo le llegarían a tu cliente.",
-      texto: "Una demostración con un negocio y unos datos inventados: los cuatro avisos en un móvil, por WhatsApp o por SMS. No se envía nada de verdad.",
+      texto: "Demostración con datos inventados: los cuatro avisos en un móvil, por WhatsApp o por SMS. No se envía ningún mensaje real.",
       enlace: "Abrir los avisos de ejemplo →",
       href: "/avisos-ejemplo",
     },

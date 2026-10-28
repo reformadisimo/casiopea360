@@ -3,7 +3,7 @@ import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
-import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
+import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos, SeccionComoTrabajamos } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -20,7 +20,7 @@ export default function ComoTrabajamos() {
       <CabeceraPagina
         titulo="Pídelo. Lo hacemos. Y sabes cuándo estará listo."
         clave="listo"
-        entradilla="Te quitamos el menor tiempo posible: casi todo por correo, respuesta el mismo día, 48 horas como máximo para lo del día a día y fecha cerrada para los proyectos grandes. Y en tu panel ves cada petición y cuándo estará lista."
+        entradilla="Casi todo por correo. Respuesta el mismo día, 48 horas para lo del día a día y fecha cerrada para lo grande. En tu panel, cada petición y cuándo estará lista."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos" }]}
         visual={<GloboDiferido />}
       />
@@ -28,9 +28,10 @@ export default function ComoTrabajamos() {
       <SeccionTiempo />
       <SeccionPorQueContratarnos />
       <SeccionMetodo />
+      <SeccionComoTrabajamos />
       <FranjaVideos
         frase="Casi todo por correo. Cero reuniones que no quieras."
-        detalle="Nos escribes, te respondemos el mismo día, lo hacemos en 48 horas como máximo y te lo contamos en el parte del día."
+        detalle="Escribes. Respondemos el mismo día. Lo hacemos en 48 horas como máximo. Y te lo contamos en el parte del día."
         clips={[
           { nombre: "llamada-risa", alt: "Un cliente ríe al teléfono" },
           { nombre: "graba-movil", alt: "Una mujer graba un vídeo con el móvil en una cafetería" },

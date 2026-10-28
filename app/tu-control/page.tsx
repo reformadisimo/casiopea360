@@ -22,10 +22,10 @@ const PREGUNTAS: [string, string, string][] = [
 ];
 
 const PASOS_TICKET: [string, string, string][] = [
-  ["euro", "Tu ticket medio, una vez", "En tu panel pones, a ojo, lo que te deja de media cada cliente. Se guarda solo en tu dispositivo. Si quieres que ajustemos lo que puede costar un contacto, nos la dices tú; si no, no la vemos."],
-  ["firma", "Marcas quién firma", "Y, si quieres, apuntas lo que ha facturado. Si no quieres poner la cifra, eliges un tamaño: más pequeño de lo normal, normal, más grande o mucho más grande."],
-  ["grafica", "El panel calcula el índice", "100 es tu ticket medio. 150 es un cliente un 50 % más grande que tu media. 60, un 40 % más pequeño. Además, un percentil del 1 al 100: dónde queda ese cliente entre los tuyos."],
-  ["ojo", "Nosotros solo vemos eso, y solo si tú quieres", "Si el contacto firmó, su índice y su percentil, y por qué campaña llegó. Nunca euros de facturación, y tu cifra media solo si tú nos la dices. Está apagado de serie y lo apagas cuando quieras."],
+  ["euro", "Tu ticket medio, una vez", "En tu panel pones, a ojo, lo que te deja de media cada cliente. Se guarda en tu dispositivo. Solo la vemos si nos la das para ajustar el coste por contacto."],
+  ["firma", "Marcas quién firma", "Y, si quieres, apuntas lo que ha facturado. Sin cifra, eliges un tamaño: más pequeño de lo normal, normal, más grande o mucho más grande."],
+  ["grafica", "El panel calcula el índice", "100 es tu ticket medio; 150, un cliente un 50 % más grande; 60, un 40 % más pequeño. Y un percentil del 1 al 100: dónde queda ese cliente entre los tuyos."],
+  ["ojo", "Nosotros solo vemos eso, y solo si tú quieres", "Si firmó, su índice, su percentil y por qué campaña llegó. Nunca euros; tu ticket medio, solo si nos lo dices. Apagado de serie; lo apagas cuando quieras."],
 ];
 
 export default function TuControl() {
@@ -35,7 +35,7 @@ export default function TuControl() {
       <CabeceraPagina
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
-        entradilla="Tu dominio y tus cuentas de Google tienen que estar a tu nombre. No queremos atarte: queremos que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: te pedimos dos números."
+        entradilla="Tu dominio y tus cuentas, a tu nombre. Que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: te pedimos dos números."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
       />
 
@@ -45,7 +45,7 @@ export default function TuControl() {
           <Etiqueta icono="firma">Siete compromisos</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Esto es lo que te prometemos. Y solo esto.</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            A muchos negocios les pasa que su web, su dominio o su cuenta de anuncios están a nombre de otra persona. Y eso da miedo a la hora de cambiar.
+            En muchos negocios, la web, el dominio o la cuenta de anuncios están a nombre de otro. Y eso da miedo a la hora de cambiar.
           </p>
           <Bocadillo className="mt-5 max-w-3xl">Aquí es al revés: el jefe eres tú.</Bocadillo>
           <ol className="mt-12 grid gap-5 md:grid-cols-2">
@@ -61,7 +61,7 @@ export default function TuControl() {
         <div className={`${ENVOLTORIO} relative`}>
           <Etiqueta icono="lista">Un ejemplo</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Así queda tu ficha de cuentas</h2>
-          <p className="mt-5 max-w-3xl text-lg text-gris">Es un ejemplo inventado, para que veas cómo se ve. La tuya la tienes siempre a mano y la mantenemos al día.</p>
+          <p className="mt-5 max-w-3xl text-lg text-gris">Un ejemplo inventado. La tuya la tienes siempre a mano y al día.</p>
           <div className="mt-10 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
             <div className="hidden grid-cols-[1fr_1.1fr_1fr] gap-3 bg-noche px-5 py-4 text-sm font-extrabold text-white sm:grid sm:px-7">
               <span>Cuenta</span>
@@ -88,7 +88,7 @@ export default function TuControl() {
           <Etiqueta icono="escudo">Tu facturación es tuya</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">No necesitamos saber cuánto facturas. Y no te lo vamos a preguntar.</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            Nos da igual que factures un millón o cien mil. Lo que sí ayuda a que tus anuncios mejoren es saber si los contactos de una campaña acaban siendo clientes de 100 y los de otra, clientes de 1.000. Para eso no hace falta ver ni un euro: basta un índice.
+            Nos da igual que factures un millón o cien mil. Lo que mejora tus anuncios es saber si una campaña trae clientes de 100 y otra, de 1.000. Para eso no hace falta ver ni un euro: basta un índice.
           </p>
           <div className="mt-10 rounded-[1.8rem] border-2 border-estrella bg-estrella/20 p-6 sm:p-8">
             <h3 className="flex items-center gap-3 text-2xl font-extrabold sm:text-3xl">
@@ -133,11 +133,11 @@ export default function TuControl() {
             ))}
           </ol>
           <CajaIdea t="Un ejemplo con números inventados" icono="grafica" className="mt-8 max-w-3xl">
-            Tu ticket medio son 100. Un cliente te deja 180: su índice es 180. Nosotros solo vemos 180. No sabemos cuánto es en euros, y tampoco lo necesitamos.
+            Tu ticket medio son 100. Un cliente te deja 180: su índice es 180. Nosotros solo vemos ese 180, no cuántos euros son. Ni lo necesitamos.
           </CajaIdea>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <TarjetaViva como="div" icono="diana" i={0} titulo="¿Para qué lo queremos?" texto="Para mover el dinero de los anuncios hacia las campañas, los anuncios y las zonas que traen tus mejores clientes. Si prefieres clientes más grandes o más pequeños este mes, también nos lo puedes decir y adaptamos las campañas. Y todo lo que te contemos será en porcentajes y en índices, nunca en euros de tu facturación." />
-            <TarjetaViva como="div" icono="reloj" i={1} titulo="Lo mismo con el tiempo que tardas en llamar" texto="Es tuyo y no te lo vamos a preguntar cada día. Pero si nos lo compartes, podemos decirte, por ejemplo, que una campaña no funciona porque se tarda tres días en llamar a los contactos y los estudios sobre contactos coinciden en que cuanto antes se llama, más se convierte. Por eso, donde hay citas, una confirmación automática por WhatsApp o SMS es otra forma de contestar al momento." />
+            <TarjetaViva como="div" icono="diana" i={0} titulo="¿Para qué lo queremos?" texto="Para llevar el presupuesto a las campañas y zonas que traen tus mejores clientes, o más grandes o pequeños si lo prefieres. Siempre en índices, nunca en euros." />
+            <TarjetaViva como="div" icono="reloj" i={1} titulo="Lo mismo con el tiempo que tardas en llamar" texto="Es tuyo y no te lo preguntamos cada día. Si lo compartes, vemos si una campaña falla porque se tarda tres días en llamar: cuanto antes, más se convierte." />
           </div>
           <Link prefetch={false} href="/panel" className={`${BOTON} mt-8 inline-flex`}>Probarlo en el panel de ejemplo</Link>
         </div>
@@ -148,7 +148,7 @@ export default function TuControl() {
         <div className={`${ENVOLTORIO} relative`}>
           <Etiqueta tono="estrella" icono="chat">Compruébalo hoy</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Cinco preguntas que puedes hacer a quien lleve tu marketing</h2>
-          <p className="mt-5 max-w-3xl text-lg text-white/80">Sirven con cualquiera, también con nosotros. Si alguna respuesta no te gusta, ahora ya sabes por qué preguntarlo.</p>
+          <p className="mt-5 max-w-3xl text-lg text-white/80">Sirven con cualquiera, también con nosotros. Si alguna respuesta no te gusta, ya sabes dónde mirar.</p>
           <ol className="mt-10 grid gap-4 md:grid-cols-2">
             {PREGUNTAS.map(([ic, p, d], i) => (
               <TarjetaViva key={p} icono={ic} i={i} titulo={p} texto={d} claro chip={`Pregunta ${i + 1}`} />
@@ -167,7 +167,7 @@ export default function TuControl() {
           <div className="flex max-w-2xl items-start gap-4">
             <Loseta icono="mano" i={3} className="mt-1" />
             <p className="text-lg text-gris">
-              ¿Y si algún día quieres irte? Puedes salir con calma: a los tres meses y sin pagar nada, si no has visto que mejoramos; o más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
+              ¿Y si quieres irte? A los tres meses, sin pagar nada si no has visto que mejoramos; más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
             </p>
           </div>
           <Link prefetch={false} href="/miedo-al-cambio" className={`${BOTON} shrink-0`}>Ver cómo es la salida</Link>

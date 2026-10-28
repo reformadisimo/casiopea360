@@ -51,7 +51,7 @@ export default function QuienesSomos() {
         titulo="Más de 22 años haciendo que el teléfono suene."
         clave="suene"
         chip={{ grande: "El mismo día", chico: "Respuesta a cada petición" }}
-        entradilla="Somos profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, lo hacemos mejor y en días, por menos de lo que te costaría por separado. Y sin que tengas que perseguirnos."
+        entradilla="Profesionales con más de 22 años en marketing digital. Lo hacemos todo, mejor y en días, por menos de lo que te costaría por separado. Y sin que nos persigas."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="equipo-portatil"
         videoAlt="Dos profesionales trabajan con el portátil y el móvil en una oficina moderna"
@@ -73,7 +73,7 @@ export default function QuienesSomos() {
             <p className="mt-6 text-lg text-gris">Tuvimos nuestros propios negocios y sufrimos lo mismo que tú:</p>
             <ListaViva items={SUFRIMOS} icono="rayo" className="mt-4" />
             <p className="mt-5 text-lg text-gris">
-              Casiopea 360 es lo que entonces no encontramos: un solo contacto, con los especialistas que hagan falta, rápido, y que te enseña cada día lo que se ha hecho. Seguimos llevando así nuestras propias empresas.
+              Casiopea 360 es lo que entonces no encontramos: un solo contacto, los especialistas que hagan falta, rapidez y el parte de cada día. Así seguimos llevando nuestras empresas.
             </p>
             <Link href="/trabajos" className={`${BOTON} mt-8 inline-flex`}>Ver lo que hemos hecho</Link>
           </div>
@@ -98,10 +98,7 @@ export default function QuienesSomos() {
               <Etiqueta tono="estrella" icono="sol">Una mirada desde fuera</Etiqueta>
               <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Damos luz a tu marketing.</h2>
               <p className="mt-5 text-lg text-white/85">
-                Cuando llevas el marketing de tu empresa todos los días, dejas de verlo. Te acostumbras a los mismos números, cada proveedor te enseña su trozo y nadie mira el conjunto. Y hasta el mejor equipo acaba sin saber por dónde tirar.
-              </p>
-              <p className="mt-4 text-lg text-white/85">
-                Nos ha pasado a nosotros. Por eso sabemos que el salto de gigante no se ve desde dentro, hasta que alguien con visión 360 te lo muestra.
+                Cuando llevas el marketing cada día, dejas de verlo: cada proveedor enseña su trozo y nadie mira el conjunto. Nos pasó a nosotros. El salto no se ve desde dentro hasta que alguien con visión 360 te lo muestra.
               </p>
             </div>
             <div className="rounded-[1.8rem] bg-white/10 p-6 ring-1 ring-white/15">
@@ -154,7 +151,7 @@ export default function QuienesSomos() {
             ))}
           </ul>
           <p className="mt-10 max-w-3xl text-lg text-white/80">
-            Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor dentro de tu cuota. Nos comprometemos por escrito con plazos, transparencia cada día y objetivos medibles. Y hasta hoy, esos resultados han llegado en todas las empresas con las que hemos trabajado: las que ves en nuestros trabajos y muchas más en más de veintidós años.
+            Si te piden 25.000 € por una web, queremos hacértela mejor dentro de tu cuota. Por escrito: plazos, transparencia diaria y objetivos medibles. Y hasta hoy lo hemos cumplido con todos nuestros clientes.
           </p>
         </div>
       </section>
@@ -164,7 +161,7 @@ export default function QuienesSomos() {
 
       <FranjaVideos
         frase="Especialistas en todo, en la misma mesa."
-        detalle="Cada frente con quien mejor lo domina, trabajando juntos para que todo empuje en la misma dirección."
+        detalle="Cada frente con quien mejor lo domina, y todos empujando en la misma dirección."
         clips={[
           { nombre: "holograma-mesa", alt: "Dos personas ríen alrededor de un holograma" },
           { nombre: "neon-sonrisa", alt: "Una mujer sonríe mirando su tableta entre luces de neón" },
@@ -187,7 +184,7 @@ export default function QuienesSomos() {
           <div className="mt-10 flex flex-col gap-5 rounded-[2rem] bg-noche p-7 text-white sm:flex-row sm:items-center sm:justify-between sm:p-9">
             <div className="max-w-2xl">
               <Bocadillo claro>Con quien hablas es con quien trabaja.</Bocadillo>
-              <p className="mt-3 text-lg text-white/85">En el estudio gratuito te atiende directamente la persona que llevaría tu cuenta, sin comerciales por medio.</p>
+              <p className="mt-3 text-lg text-white/85">En el estudio gratuito te atiende quien llevaría tu cuenta, sin comerciales por medio.</p>
             </div>
             <Link href="/estudio-gratuito" className={`${BOTON} shrink-0 text-center`}>Pedir mi estudio gratuito</Link>
           </div>

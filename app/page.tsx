@@ -4,7 +4,7 @@ import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
 import { ChipIcono, Etiqueta } from "@/components/Vida";
-import { SeccionSonarEnGrande, SeccionComoTrabajamos, SeccionEquipo, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
+import { SeccionSonarEnGrande, SeccionEquipo, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import {
   BOTON,
   BOTON_CLARO,
@@ -14,14 +14,11 @@ import {
   SeccionEmpezamos,
   SeccionEstudioResumen,
   SeccionFrentes,
-  SeccionPromesas,
   SeccionComoEsPosible,
   SeccionVeinteProveedores,
   SeccionLoFirmamos,
   BandaMiedoAlCambio,
-  BandaControl,
   SeccionPreguntas,
-  SeccionSaberMas,
   SeccionMundo,
   SeccionAntesDespues,
   SeccionSolicitud,
@@ -43,10 +40,7 @@ export default function Inicio() {
             <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Todo. Mejor. En días.</Etiqueta>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
             <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
-              <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo equipo y una cuota fija. Y cada día sabes qué hemos hecho por tu negocio.
-            </p>
-            <p className="mt-5 max-w-xl text-lg text-white/85">
-              <b className="text-white">Dinos hasta dónde quieres llegar.</b> Un solo contacto, los especialistas que tu proyecto necesite, y todos tus datos al momento. Nosotros te acompañamos.
+              <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo contacto y una cuota fija. Y cada día sabes qué hemos hecho.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
@@ -74,19 +68,15 @@ export default function Inicio() {
       <SeccionPorQueContratarnos />
       <SeccionEquipo />
       <SeccionComoEsPosible />
-      <SeccionPromesas />
       <SeccionLoFirmamos />
       <BandaMiedoAlCambio />
-      <BandaControl />
       <SeccionAsiLoVeras />
       <SeccionSonarEnGrande />
-      <SeccionComoTrabajamos />
       <SeccionFrentes />
       <BandaVideo />
       <SeccionTrabajos />
       <SeccionAntesDespues />
       <SeccionMundo />
-      <SeccionSaberMas />
       <SeccionPreguntas todas={false} />
       <SeccionEmpezamos />
       <SeccionEstudioResumen />

@@ -101,7 +101,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
           <div className="lg:sticky lg:top-28">
             <Etiqueta icono="regalo">Dentro de tu cuota</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Qué incluye.</h2>
-            <Bocadillo className="mt-5 max-w-md">Sin extras escondidos ni presupuestos por cada cosa. Y con el mismo equipo que lleva el resto de tu marketing.</Bocadillo>
+            <Bocadillo className="mt-5 max-w-md">Sin extras escondidos ni presupuestos por cada cosa. Con el mismo equipo que lleva el resto de tu marketing.</Bocadillo>
             <div className="relative mt-8 hidden aspect-[4/3] overflow-hidden rounded-[2rem] lg:block">
               <VideoFondo nombre={p.video2} alt={p.videoAlt2} />
             </div>
