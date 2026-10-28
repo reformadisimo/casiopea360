@@ -306,7 +306,7 @@ export default function TestIdoneidad() {
     const texto =
       `Test de idoneidad completado.\n` +
       `Nombre y cargo: ${d.get("nombre")}\nEmpresa: ${d.get("empresa")}\nWeb: ${d.get("web") || "-"}\nDónde: ${d.get("ciudad")}\n` +
-      `Teléfono: ${d.get("telefono")}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\n\n` +
+      `Teléfono: ${d.get("telefono")}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\nQuiere novedades por correo: ${d.get("novedades") === "si" ? "sí" : "no"}\n\n` +
       `Nota: ${r.nota}/100 (${r.areas.map((a) => `${a.titulo} ${a.nota}`).join(", ")})\n\n` +
       respuestaTexto() +
       (r.fallos.length ? `\n\nFallos principales:\n- ${r.fallos.slice(0, 8).map((q) => q.fallo).join("\n- ")}` : "");
@@ -316,7 +316,7 @@ export default function TestIdoneidad() {
       const res = await fetch("/api/solicitud", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), trampa: d.get("sitio_web") }),
+        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), novedades: d.get("novedades") === "si", trampa: d.get("sitio_web") }),
       });
       ok = res.ok;
     } catch {}
@@ -510,6 +510,12 @@ export default function TestIdoneidad() {
               ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
               <textarea name="mas" rows={2} maxLength={1000} className={campo} />
             </label>
+            <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-2xl bg-niebla px-4 py-3 text-sm sm:col-span-2">
+              <input name="novedades" type="checkbox" value="si" className="mt-0.5 h-5 w-5 shrink-0 accent-[#2440ff]" />
+              <span>
+                <b>Quiero recibir ideas y novedades de Casiopea 360 por correo.</b> Unos pocos correos en tres semanas. Me doy de baja con un clic cuando quiera.
+              </span>
+            </label>
             <label className="hidden" aria-hidden="true">
               No rellenes esto
               <input name="sitio_web" tabIndex={-1} autoComplete="off" />
@@ -523,7 +529,7 @@ export default function TestIdoneidad() {
               </button>
             </div>
             <p className="text-xs text-gris sm:col-span-2">
-              Usamos tus datos solo para responderte. Más información en nuestra <Link href="/privacidad" className="underline">política de privacidad</Link>.
+              Usamos tus datos para responderte y, solo si marcas la casilla, para enviarte ideas y novedades. Más información en nuestra <Link href="/privacidad" className="underline">política de privacidad</Link>.
             </p>
           </div>
         </form>

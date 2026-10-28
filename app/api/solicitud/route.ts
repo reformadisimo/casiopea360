@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { CORREO_BIENVENIDA_ASUNTO, CORREO_BIENVENIDA_HTML } from "@/lib/correoBienvenida";
 
 // Recibe las solicitudes del estudio gratuito y las manda por correo con Resend.
 // Se activa sola cuando existen estas variables en Vercel:
@@ -12,7 +13,7 @@ export async function POST(req: Request) {
   const remitente = process.env.SOLICITUD_REMITENTE;
   if (!clave || !destino || !remitente) return NextResponse.json({ ok: false, configurado: false }, { status: 503 });
 
-  let datos: { texto?: string; correo?: string; nombre?: string; trampa?: string; encaje?: string };
+  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; novedades?: boolean; trampa?: string; encaje?: string };
   try {
     datos = await req.json();
   } catch {
@@ -34,13 +35,33 @@ export async function POST(req: Request) {
   const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test de idoneidad: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto });
   if (!aviso.ok) return NextResponse.json({ ok: false }, { status: 502 });
 
-  // Acuse de recibo al solicitante: siempre contestamos, encaje o no.
+  // Acuse de recibo al solicitante, con el correo de bienvenida de la serie. Siempre contestamos, encaje o no.
+  const nombrePila = String(datos.nombre ?? "").trim().split(/\s+/)[0]?.slice(0, 40) || "";
+  const escapar = (t: string) => t.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
   await enviar({
     from: remitente,
     to: [correo],
-    subject: "Hemos recibido tu solicitud · Casiopea 360",
-    text: `Hola${datos.nombre ? " " + String(datos.nombre).split(" ")[0] : ""}:\n\nGracias por hacer el test de idoneidad. Lo hemos recibido y te contestamos en un máximo de 48 horas laborables, encaje o no tu empresa con lo que hacemos.\n\nMientras tanto, puedes ver algunos de nuestros trabajos:\n- Reformadísimo: https://www.reformadisimo.es\n- AMS Cerramientos: https://ams-cerramientos-ejemplo.vercel.app\n- Tierno Centella: https://tierno-centella-web.vercel.app\n- Mi Estela: https://miestela.app\n\nUn saludo,\nEl equipo de Casiopea 360`,
+    reply_to: destino,
+    subject: CORREO_BIENVENIDA_ASUNTO.replace(", {{{FIRST_NAME}}}", nombrePila ? `, ${nombrePila}` : ""),
+    html: CORREO_BIENVENIDA_HTML.replace("Hola, {{{FIRST_NAME}}}.", nombrePila ? `Hola, ${escapar(nombrePila)}.` : "Hola."),
   }).catch(() => null);
+
+  // Serie de correos: solo si la persona marcó la casilla de recibir novedades.
+  // Crea el contacto en Resend y lanza el evento que arranca la automatización.
+  if (datos.novedades === true) {
+    const api = (ruta: string, cuerpo: Record<string, unknown>) =>
+      fetch(`https://api.resend.com${ruta}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
+        body: JSON.stringify(cuerpo),
+      }).catch(() => null);
+    await api("/contacts", { email: correo, first_name: nombrePila || undefined, unsubscribed: false, properties: { estado_casiopea: "activo" } });
+    await api("/events/send", {
+      event: "casiopea.test_novedades",
+      email: correo,
+      payload: { empresa: String(datos.empresa ?? "").slice(0, 120), encaje: String(datos.encaje ?? "").slice(0, 20) },
+    });
+  }
 
   return NextResponse.json({ ok: true });
 }
