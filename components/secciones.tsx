@@ -444,8 +444,8 @@ export function SeccionParte() {
                 <p className="font-titular text-xl font-extrabold text-estrella">{i.cuando}</p>
                 <p className="text-sm text-white/60">{i.lectura}</p>
                 <ul className="mt-3 space-y-1.5 text-[0.95rem] text-white/85">
-                  {i.puntos.map((p) => (
-                    <li key={p}>{p}</li>
+                  {i.puntos.map((p, q) => (
+                    <li key={p} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-[0.7rem] font-extrabold text-white" style={{ background: COLOR_SELLO[(q + k) % COLOR_SELLO.length][0] }}>✓</span>{p}</li>
                   ))}
                 </ul>
               </div>
@@ -1350,7 +1350,7 @@ export function SeccionFueraInternet() {
             <p className="mt-3 text-white/80">La radio empuja todo lo demás: después de oír tu anuncio, mucha gente te busca en Google. Bien hecha, hace que tus campañas de internet rindan más.</p>
             <ul className="mt-5 space-y-2 text-white/90">
               {["Idea y guion del anuncio", "Grabación con voces profesionales y música", "Elección de emisoras, franjas y fechas", "Trato y negociación con las emisoras o la central de medios", "Medimos el efecto: cuánto suben las búsquedas de tu marca"].map((t) => (
-                <li key={t} className="flex gap-2"><span aria-hidden="true" className="text-estrella">✓</span>{t}</li>
+                <li key={t} className="flex items-start gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-extrabold text-white" style={{ background: COLOR_SELLO[t.length % COLOR_SELLO.length][0] }}>✓</span>{t}</li>
               ))}
             </ul>
           </div>
@@ -1360,7 +1360,7 @@ export function SeccionFueraInternet() {
             <p className="mt-3 text-gris">No solemos aconsejarla: es cara y no se puede medir bien. Pero si te interesa, por ejemplo en un periódico local o una revista de tu sector, te lo resolvemos.</p>
             <ul className="mt-5 space-y-2">
               {["Redacción y diseño del anuncio", "Contacto con periódicos y revistas", "Comparativa de precios y formatos", "Nada se contrata sin tu visto bueno"].map((t) => (
-                <li key={t} className="flex gap-2"><span aria-hidden="true" className="text-emerald-600">✓</span>{t}</li>
+                <li key={t} className="flex items-start gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-extrabold text-white" style={{ background: COLOR_SELLO[t.length % COLOR_SELLO.length][0] }}>✓</span>{t}</li>
               ))}
             </ul>
           </div>

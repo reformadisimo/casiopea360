@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CajaIdea, ChipIcono, TituloVivo, iconoPorTexto } from "@/components/Vida";
 import { notFound } from "next/navigation";
 import Picto from "@/components/Picto";
 import CabeceraPagina from "@/components/CabeceraPagina";
@@ -59,15 +60,12 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Glosario", href: "/glosario" }, { texto: t.nombre }]}
       />
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-        <div className="rounded-2xl border-l-4 border-estrella bg-niebla p-6 text-lg">
-          <p className="font-titular text-sm font-bold text-noche-3">En pocas palabras</p>
-          <p className="mt-2">{t.corta}</p>
-        </div>
-        <h2>Explicado sin tecnicismos</h2>
+        <CajaIdea t="En pocas palabras">{t.corta}</CajaIdea>
+        <TituloVivo t="Explicado sin tecnicismos" i={0} />
         {t.def.map((p) => (
           <p key={p}>{glosar(p, ctx)}</p>
         ))}
-        <h2>Un ejemplo</h2>
+        <TituloVivo t="Un ejemplo" i={1} />
         <p>{glosar(t.ejemplo, ctx)}</p>
         {servicio && (
           <p>
@@ -78,13 +76,16 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
 
       {rel.length > 0 && (
         <section className="mx-auto w-full max-w-3xl px-4 pb-4 sm:px-6">
-          <h2 className="font-titular text-2xl font-extrabold">Palabras relacionadas</h2>
+          <h2 className="flex items-center gap-3 font-titular text-2xl font-extrabold"><ChipIcono icono="lista" i={2} /> Palabras relacionadas</h2>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {rel.map((r) => (
+            {rel.map((r, k) => (
               <li key={r.slug}>
-                <Link href={`/glosario/${r.slug}`} className="group block h-full rounded-2xl border border-linea p-4 transition-colors hover:border-noche">
-                  <span className="font-extrabold group-hover:text-[#1d4ed8]">{r.nombre}</span>
-                  <span className="mt-1 block text-sm text-gris">{r.corta}</span>
+                <Link href={`/glosario/${r.slug}`} className="group flex h-full items-start gap-3 rounded-2xl bg-niebla p-4 transition-colors hover:bg-white hover:ring-1 hover:ring-noche">
+                  <ChipIcono icono={iconoPorTexto(r.nombre + " " + r.corta, k)} i={k + 3} tam="h-10 w-10" />
+                  <span className="min-w-0">
+                    <span className="block font-extrabold group-hover:text-[#1d4ed8]">{r.nombre}</span>
+                    <span className="mt-1 block text-sm text-gris">{r.corta}</span>
+                  </span>
                 </Link>
               </li>
             ))}
@@ -94,12 +95,13 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
 
       {articulos.length > 0 && (
         <section className="mx-auto w-full max-w-3xl px-4 pb-4 pt-10 sm:px-6">
-          <h2 className="font-titular text-2xl font-extrabold">Donde lo contamos en el blog</h2>
-          <ul className="mt-4 space-y-2">
-            {articulos.map((a) => (
+          <h2 className="flex items-center gap-3 font-titular text-2xl font-extrabold"><ChipIcono icono="prensa" i={4} /> Donde lo contamos en el blog</h2>
+          <ul className="mt-4 grid gap-2.5">
+            {articulos.map((a, k) => (
               <li key={a.slug}>
-                <Link href={`/blog/${a.slug}`} className="font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-[#1d4ed8]">
-                  {a.titulo}
+                <Link href={`/blog/${a.slug}`} className="flex min-h-11 items-center gap-3 rounded-2xl bg-white px-4 py-3 font-bold text-tinta ring-1 ring-linea hover:text-[#1d4ed8] hover:ring-noche">
+                  <ChipIcono icono={iconoPorTexto(a.categoria, k)} i={k} tam="h-9 w-9" />
+                  <span className="min-w-0">{a.titulo}</span>
                 </Link>
               </li>
             ))}

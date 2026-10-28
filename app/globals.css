@@ -481,3 +481,17 @@ html[data-texto="3"] header { zoom: 0.667; }
 .prosa ul.lv li + li, .prosa ol.lv li + li { margin-top: 0; }
 .prosa details.grupo > summary::-webkit-details-marker { display: none; }
 .prosa details.grupo + details.grupo { margin-top: 0.7rem; }
+
+/* 28-oct (cas·v178): cualquier lista de texto (páginas legales, glosario, contenidos) con marcas de color, como el kit Vida */
+.prosa ul:not(.lv) { list-style: none; padding-left: 0; }
+.prosa ul:not(.lv) > li { position: relative; padding-left: 2.2em; }
+.prosa ul:not(.lv) > li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 1.4em; height: 1.4em; border-radius: 999px; background: #1d4ed8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E") center / 62% no-repeat; }
+.prosa ul:not(.lv) > li:nth-child(6n+2)::before { background-color: #6d28d9; }
+.prosa ul:not(.lv) > li:nth-child(6n+3)::before { background-color: #047857; }
+.prosa ul:not(.lv) > li:nth-child(6n+4)::before { background-color: #be185d; }
+.prosa ul:not(.lv) > li:nth-child(6n+5)::before { background-color: #d97706; }
+.prosa ul:not(.lv) > li:nth-child(6n+6)::before { background-color: #0f766e; }
+.prosa ol:not(.lv) { list-style: none; padding-left: 0; counter-reset: paso; }
+.prosa ol:not(.lv) > li { position: relative; padding-left: 2.4em; counter-increment: paso; }
+.prosa ol:not(.lv) > li::before { content: counter(paso); position: absolute; left: 0; top: 0.1em; width: 1.6em; height: 1.6em; border-radius: 999px; background: #ffc53d; color: #141c33; font-weight: 800; font-size: 0.9em; display: grid; place-items: center; }
+.prosa ol:not(.lv) > li + li, .prosa ul:not(.lv) > li + li { margin-top: 0.6em; }
