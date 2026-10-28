@@ -163,6 +163,38 @@ export function SeccionPruebasAB() {
   );
 }
 
+/** "Rápida, eficaz y robándote el menor tiempo posible": sin reuniones ni llamadas, por correo y WhatsApp. Valor de Casiopea. */
+export function SeccionTiempo() {
+  const pasos: [string, string][] = [
+    ["Al principio, un poco de esfuerzo", "Hace falta tu parte: accesos, datos y fotos. Nosotros también nos volcamos al principio, para que arranque cuanto antes."],
+    ["Después, velocidad de crucero", "Con todo en marcha, puedes dedicarte casi todo el tiempo a tu trabajo, y cada vez te robamos menos."],
+    ["Sin reuniones ni llamadas", "Ni presenciales, ni online, ni llamadas, salvo que sean imprescindibles, y casi nunca lo son. Hablamos por correo y por WhatsApp, a diario si hace falta, de forma breve y rápida."],
+  ];
+  return (
+    <section className="bg-noche py-14 text-white sm:py-20" aria-labelledby="tiempo">
+      <div className={ENVOLTORIO}>
+        <p className="inline-block rounded-full bg-estrella px-4 py-1.5 text-sm font-bold text-tinta">Tu tiempo es para tu trabajo</p>
+        <h2 id="tiempo" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Rápida, eficaz y robándote el menor tiempo posible</h2>
+        <p className="mt-5 max-w-3xl text-lg text-white/85">
+          Nuestro objetivo es conseguirte el mayor número de clientes o de trabajos posible, dentro de lo que puedas atender, dándote la menor guerra posible. No podemos prometer cifras; sí cuidar tu tiempo.
+        </p>
+        <ol className="mt-10 grid gap-4 md:grid-cols-3">
+          {pasos.map(([t, d], i) => (
+            <li key={t} className="rounded-[1.6rem] bg-white/10 p-6 ring-1 ring-white/15">
+              <span aria-hidden="true" className="grid h-10 w-10 place-items-center rounded-full bg-estrella text-lg font-extrabold text-tinta">{i + 1}</span>
+              <h3 className="mt-3 text-xl font-extrabold">{t}</h3>
+              <p className="mt-2 text-white/85">{d}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 max-w-4xl rounded-[1.6rem] bg-estrella/20 p-6 ring-1 ring-estrella/40">
+          <p className="text-lg"><b>Lo que pasa con varios proveedores.</b> Con una agencia de marketing, y más aún con varios proveedores, se pierde muchísimo tiempo en reuniones, desplazamientos, llamadas y correos cruzados, y acabas más dedicado al marketing que a tu propio trabajo. Lo sabemos de primera mano: en más de 22 años nos ha pasado. Con nosotros no ocurre, y es uno de nuestros puntos fuertes.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /** El equipo detrás: seleccionado durante 22 años, autónomos que cobran por proyecto, con plazos cerrados.
     Sin nombres, sin cifras de plantilla y sin superlativos: lo que se cuenta es el método de selección y de trabajo. */
 export function SeccionEquipo() {
