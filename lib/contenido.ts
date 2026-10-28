@@ -1,10 +1,10 @@
 // Contenido de la portada. Todo lo que dice la web vive aquí, para cambiarlo sin tocar el diseño.
 
-// PENDIENTE de Ig: canales de contacto de Casiopea 360 (WhatsApp y correo).
-// Mientras estén vacíos, el formulario no envía y lo dice con claridad.
+// Canales de contacto de Casiopea 360. Correo activo desde el 28 oct 2026 (Google Workspace).
+// PENDIENTE de Ig: el número de WhatsApp. Mientras esté vacío, no se ofrece WhatsApp.
 export const CONTACTO = {
   whatsapp: "", // ej. "34600000000"
-  correo: "", // ej. "hola@casiopea360.es"
+  correo: "hola@casiopea360.es",
 };
 
 export type Frente = {

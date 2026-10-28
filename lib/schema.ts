@@ -11,7 +11,6 @@ export const EMPRESA = {
   ciudad: "Madrid",
   registro:
     "Inscrita en el Registro Mercantil de Madrid, tomo 17722, folio 165, sección octava, hoja M-305353, inscripción 1ª",
-  // PENDIENTE: correo propio de Casiopea cuando esté el dominio.
   correo: "hola@casiopea360.es",
 };
 

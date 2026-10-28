@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import BotonCookies from "@/components/BotonCookies";
 import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
+import { CONTACTO } from "@/lib/contenido";
 
 export default function Pie() {
   const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Haz el test"), { texto: "Glosario", href: "/glosario" }, { texto: "Panel de ejemplo", href: "/panel" }];
@@ -19,6 +20,12 @@ export default function Pie() {
           >
             Solicita tu estudio gratuito
           </Link>
+          <p className="mt-5 text-[0.95rem]">
+            Escríbenos:{" "}
+            <a href={`mailto:${CONTACTO.correo}`} className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
+              {CONTACTO.correo}
+            </a>
+          </p>
         </div>
         <div>
           <p className="font-titular font-extrabold text-white">Servicios</p>
