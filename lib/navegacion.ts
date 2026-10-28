@@ -1,8 +1,8 @@
 // Menú principal. Lo usan la cabecera, el pie y el mapa del sitio.
 export const SITIO = {
   nombre: "Casiopea 360",
-  // Mientras no esté comprado y apuntado el dominio, se usa la dirección de Vercel.
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://casiopea360.vercel.app",
+  // Dominio propio desde el 28 oct 2026 (casiopea360.es redirige a www).
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.casiopea360.es",
   descripcion:
     "Crece en digital sin ir de proveedor en proveedor: web en días, SEO, anuncios, redes, CRM e IA con un solo equipo. Una cuota fija para cualquier empresa.",
   // Mientras la web sea provisional, no se deja indexar. El día del lanzamiento: true.
