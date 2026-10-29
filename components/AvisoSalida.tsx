@@ -115,8 +115,8 @@ export default function AvisoSalida() {
           </div>
           {/* Un velo suave a la izquierda para que el texto se lea bien sobre las constelaciones */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(14,26,61,0.6),rgba(14,26,61,0)_65%)]" />
-          {/* La W de Casiopea dibujándose en bucle: los puntos se encienden al paso de la línea y la estrella dorada cierra con sus ondas */}
-          <ConstelacionAnimada className="pointer-events-none absolute right-3 top-[4.5rem] h-32 w-32 sm:right-8 sm:top-16 sm:h-52 sm:w-52" />
+          {/* La gráfica en bucle: la línea sube, los puntos se encienden a su paso y el orbe de Estela cierra con su halo y sus ondas */}
+          <ConstelacionAnimada className="pointer-events-none absolute right-2 top-[4.5rem] h-[8.4rem] w-40 sm:right-6 sm:top-14 sm:h-[13rem] sm:w-[15.5rem]" />
           <div className="relative flex items-center justify-between">
             <Logo claro fundido chico />
             <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar" className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
