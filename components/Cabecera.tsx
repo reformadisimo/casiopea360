@@ -16,6 +16,16 @@ export default function Cabecera() {
   const [abierto, setAbierto] = useState<string | null>(null);
   const [movil, setMovil] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  // Al salir el ratón, el submenú espera un instante antes de cerrarse: así no se va si el ratón cruza un hueco.
+  const cierre = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const abrir = (t: string) => {
+    if (cierre.current) clearTimeout(cierre.current);
+    setAbierto(t);
+  };
+  const cerrarLuego = () => {
+    if (cierre.current) clearTimeout(cierre.current);
+    cierre.current = setTimeout(() => setAbierto(null), 250);
+  };
 
   useEffect(() => {
     const alBajar = () => setSolida(window.scrollY > 40);
@@ -79,14 +89,18 @@ export default function Cabecera() {
                 <li
                   key={m.texto}
                   className="relative"
-                  onMouseEnter={() => setAbierto(m.texto)}
-                  onMouseLeave={() => setAbierto(null)}
+                  onMouseEnter={() => abrir(m.texto)}
+                  onMouseLeave={cerrarLuego}
                 >
                   <button
                     type="button"
                     aria-expanded={abierto === m.texto}
                     aria-haspopup="true"
-                    onClick={() => setAbierto(abierto === m.texto ? null : m.texto)}
+                    onClick={(e) => {
+                      // Con ratón el menú ya está abierto por pasar por encima: el clic no debe cerrarlo.
+                      if (e.detail > 0 && window.matchMedia("(hover: hover)").matches) return abrir(m.texto);
+                      setAbierto(abierto === m.texto ? null : m.texto);
+                    }}
                     className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
                   >
                     {m.texto}
