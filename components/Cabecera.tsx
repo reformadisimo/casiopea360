@@ -18,6 +18,7 @@ export default function Cabecera() {
   const navRef = useRef<HTMLElement>(null);
   // Al salir el ratón, el submenú espera un instante antes de cerrarse: así no se va si el ratón cruza un hueco.
   const cierre = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const puntero = useRef("");
   const abrir = (t: string) => {
     if (cierre.current) clearTimeout(cierre.current);
     setAbierto(t);
@@ -89,16 +90,21 @@ export default function Cabecera() {
                 <li
                   key={m.texto}
                   className="relative"
-                  onMouseEnter={() => abrir(m.texto)}
-                  onMouseLeave={cerrarLuego}
+                  // Solo el ratón abre al pasar por encima; en pantallas táctiles (iPad) manda el toque.
+                  onPointerEnter={(e) => e.pointerType === "mouse" && abrir(m.texto)}
+                  onPointerLeave={(e) => e.pointerType === "mouse" && cerrarLuego()}
                 >
                   <button
                     type="button"
                     aria-expanded={abierto === m.texto}
                     aria-haspopup="true"
+                    onPointerDown={(e) => {
+                      puntero.current = e.pointerType;
+                    }}
                     onClick={(e) => {
                       // Con ratón el menú ya está abierto por pasar por encima: el clic no debe cerrarlo.
-                      if (e.detail > 0 && window.matchMedia("(hover: hover)").matches) return abrir(m.texto);
+                      if (e.detail > 0 && puntero.current === "mouse") return abrir(m.texto);
+                      // Toque o teclado: abre y cierra.
                       setAbierto(abierto === m.texto ? null : m.texto);
                     }}
                     className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
