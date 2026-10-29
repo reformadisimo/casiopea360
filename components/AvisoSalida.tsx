@@ -30,6 +30,18 @@ export default function AvisoSalida() {
   const boton = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
+    // Para revisarlo cuando haga falta: con ?aviso=ver en la dirección sale enseguida, aunque ya se haya visto.
+    let forzar = false;
+    try {
+      forzar = new URLSearchParams(window.location.search).get("aviso") === "ver";
+    } catch {}
+    if (forzar) {
+      try {
+        sessionStorage.removeItem(CLAVE);
+      } catch {}
+      const t = setTimeout(() => setAbierto(true), 600);
+      return () => clearTimeout(t);
+    }
     if (ruta?.startsWith("/estudio-gratuito")) return;
     let visto = false;
     try {
