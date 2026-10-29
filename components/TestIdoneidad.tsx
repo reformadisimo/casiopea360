@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
+import Logo from "@/components/Logo";
 import VideoFondo from "@/components/VideoFondo";
 import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 import Image from "next/image";
@@ -382,12 +383,16 @@ export default function TestIdoneidad() {
                 <VideoFondo key={tramo.id} nombre={tramo.video} alt="" />
               </div>
               <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-br opacity-[0.8] ${tramo.color}`} />
+              {/* Arriba, la marca: dentro del test los únicos logos eran los de Google y compañía; que se vea de quién es */}
+              <div className="relative z-10 mb-4 flex items-center justify-between gap-4">
+                <Logo claro fundido chico />
+                <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">
+                  {tramo.extra ? "Opcional" : `Parte ${ti + 1} de ${BASE.length}`}
+                </p>
+              </div>
               <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
                 <div className="max-w-xl">
-                  <p className="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">
-                    {tramo.extra ? "Opcional" : `Parte ${ti + 1} de ${BASE.length}`}
-                  </p>
-                  <p className="mt-2 text-2xl font-extrabold sm:text-3xl">{tramo.titulo}</p>
+                  <p className="text-2xl font-extrabold sm:text-3xl">{tramo.titulo}</p>
                   <p className="mt-1 text-white/90">{tramo.intro}</p>
                 </div>
                 <div aria-hidden="true" className="hidden gap-2 sm:flex">
@@ -476,7 +481,10 @@ export default function TestIdoneidad() {
       {fase === "datos" && (
         <form onSubmit={enviar} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
           <div className="bg-noche px-6 py-6 text-white sm:px-9">
-            <p className="text-sm font-bold text-estrella">Último paso</p>
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <Logo claro fundido chico />
+              <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Último paso</p>
+            </div>
             <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le enviamos tu resultado?</p>
             <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables, encaje o no.</p>
             <div className="mt-5"><Muestra oscuro /></div>
