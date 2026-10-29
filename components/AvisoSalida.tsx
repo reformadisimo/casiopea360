@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import VideoFondo from "@/components/VideoFondo";
+import ConstelacionAnimada from "@/components/ConstelacionAnimada";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -114,17 +115,8 @@ export default function AvisoSalida() {
           </div>
           {/* Un velo suave a la izquierda para que el texto se lea bien sobre las constelaciones */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(14,26,61,0.6),rgba(14,26,61,0)_65%)]" />
-          {/* La W de Casiopea: las líneas se trazan, las estrellas van apareciendo y la dorada cierra el dibujo */}
-          <svg aria-hidden="true" viewBox="0 0 100 100" className="pointer-events-none absolute right-2 top-[4.5rem] h-32 w-32 sm:right-6 sm:top-16 sm:h-52 sm:w-52">
-            <polyline points="13,50 32,72 50,52 66,64 84,24" fill="none" stroke="#fff" strokeOpacity="0.75" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="cons-linea" />
-            {[[13, 50], [32, 72], [50, 52], [66, 64]].map(([x, y], k) => (
-              <circle key={x} cx={x} cy={y} r="4.6" fill="#fff" className="cons-nodo" style={{ animationDelay: `${0.35 + k * 0.4}s` }} />
-            ))}
-            <g className="cons-estrella">
-              <circle cx="84" cy="22" r="16" fill="#ffc53d" fillOpacity="0.35" className="cons-halo" />
-              <polygon points="84,8 88.23,18.18 99.22,19.06 90.85,26.22 93.4,36.94 84,31.2 74.6,36.94 77.15,26.22 68.78,19.06 79.77,18.18" fill="#ffc53d" />
-            </g>
-          </svg>
+          {/* La W de Casiopea dibujándose en bucle: los puntos se encienden al paso de la línea y la estrella dorada cierra con sus ondas */}
+          <ConstelacionAnimada className="pointer-events-none absolute right-3 top-[4.5rem] h-32 w-32 sm:right-8 sm:top-16 sm:h-52 sm:w-52" />
           <div className="relative flex items-center justify-between">
             <Logo claro fundido chico />
             <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar" className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
