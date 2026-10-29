@@ -1,6 +1,7 @@
 import { servicioDeFrente } from "@/lib/servicios";
 import { casoDe } from "@/lib/casos";
 import Image from "next/image";
+import EstudioDeVerdad from "@/components/EstudioDeVerdad";
 import Link from "next/link";
 import { COMPROMISOS } from "@/lib/control";
 import VideoFondo from "@/components/VideoFondo";
@@ -1791,6 +1792,7 @@ export function SeccionSolicitud() {
             Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
           </p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre: si encajas, para preparar tu estudio; y si no, también, con el porqué.</p>
+          <EstudioDeVerdad />
           <div className="hidden lg:block"><EjemplosTrabajos /></div>
         </div>
         <DiagnosticoDiferido />
