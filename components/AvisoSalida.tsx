@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import VideoFondo from "@/components/VideoFondo";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,12 +11,6 @@ import { useEffect, useRef, useState } from "react";
 // Móvil: cuando alguien ha leído buena parte de la página y vuelve hacia arriba de golpe.
 // Una sola vez por visita; nunca en el estudio gratuito ni encima del aviso de cookies.
 const CLAVE = "casiopea-salida";
-// Estrellitas del cielo de la cabecera: [x, y, radio] en un lienzo de 560 x 300.
-const ESTRELLAS: [number, number, number][] = [
-  [28, 40, 1.2], [96, 24, 0.8], [150, 70, 1], [210, 30, 0.7], [262, 96, 1.1], [320, 22, 0.8], [372, 60, 1.3],
-  [430, 18, 0.7], [500, 40, 1], [540, 110, 0.8], [60, 150, 0.9], [120, 200, 0.7], [20, 250, 1.1], [200, 262, 0.8],
-  [300, 232, 1], [250, 170, 0.7], [470, 250, 0.9], [530, 190, 0.7], [410, 280, 1], [350, 140, 0.6],
-];
 // Lo que se lleva hoy mismo cualquiera que termine el test, encaje o no.
 const HOY = ["Tu nota, de 0 a 100", "Dónde se te escapan clientes", "Qué arreglaríamos primero"];
 // Lo que recibe gratis quien encaja: el estudio completo.
@@ -113,12 +108,12 @@ export default function AvisoSalida() {
       >
         {/* Cabecera: el logo y la constelación de Casiopea dibujándose, como en la portada y en los correos */}
         <div className="relative overflow-hidden bg-noche px-6 pb-5 pt-5 text-white sm:px-8 sm:pb-7 sm:pt-6">
-          {/* Cielo: estrellitas que parpadean */}
-          <svg aria-hidden="true" viewBox="0 0 560 300" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 h-full w-full">
-            {ESTRELLAS.map(([x, y, r], k) => (
-              <circle key={k} cx={x} cy={y} r={r} fill="#fff" className="cons-fondo" style={{ animationDelay: `${(k * 0.7) % 4}s`, animationDuration: `${3 + (k % 3)}s` }} />
-            ))}
-          </svg>
+          {/* Cielo: las constelaciones azules de la portada, en movimiento; en negro no pintan, así que solo se ven los puntos y las líneas sobre el azul noche */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-90">
+            <VideoFondo nombre="constelaciones-azules" alt="" className="mix-blend-screen" />
+          </div>
+          {/* Un velo suave a la izquierda para que el texto se lea bien sobre las constelaciones */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(14,26,61,0.6),rgba(14,26,61,0)_65%)]" />
           {/* La W de Casiopea: las líneas se trazan, las estrellas van apareciendo y la dorada cierra el dibujo */}
           <svg aria-hidden="true" viewBox="0 0 100 100" className="pointer-events-none absolute right-2 top-[4.5rem] h-32 w-32 sm:right-6 sm:top-16 sm:h-52 sm:w-52">
             <polyline points="13,50 32,72 50,52 66,64 84,24" fill="none" stroke="#fff" strokeOpacity="0.75" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="cons-linea" />

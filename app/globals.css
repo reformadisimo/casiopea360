@@ -244,10 +244,8 @@ main > section:not(:first-of-type):not(:last-of-type):not(#solicitud) {
 @keyframes cons-brilla { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 .cons-halo { animation: cons-halo 3s ease-in-out 2.6s infinite; }
 @keyframes cons-halo { 0%, 100% { fill-opacity: 0.25; r: 14px; } 50% { fill-opacity: 0.5; r: 19px; } }
-.cons-fondo { fill-opacity: 0.25; animation: cons-fondo 4s ease-in-out infinite; }
-@keyframes cons-fondo { 0%, 100% { fill-opacity: 0.2; } 50% { fill-opacity: 0.8; } }
 @media (prefers-reduced-motion: reduce) {
-  .confeti, .salta, .entra, .burbuja, .brinca, .aviso-entra, .late, .cons-halo, .cons-fondo { animation: none; } .confeti { display: none; }
+  .confeti, .salta, .entra, .burbuja, .brinca, .aviso-entra, .late, .cons-halo { animation: none; } .confeti { display: none; }
   .cons-linea { animation: none; stroke-dashoffset: 0; } .cons-nodo, .cons-estrella { animation: none; transform: none; }
 }
 
