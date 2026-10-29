@@ -15,7 +15,7 @@ export default function PanelCasiopea() {
   return (
     <div className="mesa">
       <VolverWeb que="Panel de control de ejemplo" />
-      <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 0 !important; background: #fff !important; background-image: none !important; }`}</style>
+      <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 48px 0 0 !important; background: #fff !important; background-image: none !important; }`}</style>
       <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-4 gap-y-2 px-4 pt-4 text-[14px] print:hidden">
         <p className="min-w-0 basis-full rounded-2xl border border-line bg-[#fbf6e6] px-4 py-2 sm:flex-1 sm:basis-0">
           Panel de ejemplo con <b>datos inventados</b> de una empresa ficticia. Así verás el tuyo, con tus datos reales y desde el móvil. La primera vez te lleva la guía de la mano; en pocos días te lo sabes. Aquí no se envía nada.

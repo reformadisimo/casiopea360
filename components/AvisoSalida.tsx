@@ -159,7 +159,7 @@ export default function AvisoSalida() {
 
         {/* Lo que recibe quien encaja. En móviles bajitos se oculta: lo importante (la nota de hoy y el botón) tiene que verse sin desplazarse */}
         <div className="px-6 pb-3 pt-3 [@media(max-height:700px)_and_(max-width:639px)]:hidden sm:px-8 sm:pb-[clamp(0.5rem,1.2dvh,1rem)] sm:pt-[clamp(0.7rem,1.6dvh,1.25rem)]">
-          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Y si encajamos, gratis, en 48 horas laborables</p>
+          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Si encajamos, gratis: un día de trabajo solo para ti</p>
           <ul className="mt-1.5 grid gap-x-5 gap-y-1 text-[0.93rem] sm:mt-2 sm:gap-y-[clamp(0.25rem,0.9dvh,0.6rem)] sm:grid-cols-2 sm:text-[0.98rem]">
             {RESUMEN.map((x, i) => (
               <li key={x} className="flex items-center gap-3">
@@ -183,16 +183,23 @@ export default function AvisoSalida() {
               Ver mi nota en 5 minutos
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </Link>
-            <button type="button" onClick={() => setAbierto(false)} className="hidden min-h-11 rounded-full px-5 py-3 font-bold text-gris hover:text-tinta sm:inline-block">
+            <Link href="/test#estudio-de-verdad" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">
+              Qué te llevas
+            </Link>
+            <button type="button" onClick={() => setAbierto(false)} className="hidden min-h-11 rounded-full px-3 font-bold text-gris hover:text-tinta sm:inline-block">
               Ahora no
             </button>
           </div>
-          <div className="mt-2.5 flex items-center justify-between gap-3 sm:mt-2.5 sm:block">
-            <p className="text-[13px] leading-snug text-gris sm:text-sm">Sin llamadas ni reuniones. Encajes o no, te escribimos siempre con el porqué.</p>
-            <button type="button" onClick={() => setAbierto(false)} className="min-h-11 shrink-0 rounded-full px-3 font-bold text-gris hover:text-tinta sm:hidden">
+          {/* Móvil: «ver un ejemplo» y «ahora no» en una fila bajo el botón */}
+          <div className="mt-1.5 flex items-center justify-between gap-3 sm:hidden">
+            <Link href="/test#estudio-de-verdad" onClick={() => setAbierto(false)} className="inline-flex min-h-11 items-center font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4">
+              Ver qué te llevas
+            </Link>
+            <button type="button" onClick={() => setAbierto(false)} className="min-h-11 shrink-0 px-2 font-bold text-gris">
               Ahora no
             </button>
           </div>
+          <p className="mt-2 hidden text-sm leading-snug text-gris sm:block [@media(max-height:680px)]:!hidden">Sin llamadas ni reuniones. Encajes o no, te escribimos siempre con el porqué.</p>
         </div>
       </div>
     </div>

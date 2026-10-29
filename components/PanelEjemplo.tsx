@@ -1295,7 +1295,7 @@ export default function PanelEjemplo() {
       <style>{`${TEMA_CSS}
         @media print{body > *:not(main):not([data-versionante]){display:none!important}main#contenido{padding:0!important}}
         body > *:not(main):not([data-versionante]) { display: none !important; }
-        main#contenido { padding: 0 !important; background: #fbfaf7 !important; background-image: none !important; }
+        main#contenido { padding: 48px 0 0 !important; background: #fbfaf7 !important; background-image: none !important; }
       `}</style>
 
       <div className="mx-auto w-full max-w-[1240px] px-4 sm:px-6">
