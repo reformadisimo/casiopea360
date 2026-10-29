@@ -131,8 +131,8 @@ export default function AvisoSalida() {
           <ConstelacionAnimada className="pointer-events-none absolute right-2 top-[4.2rem] h-[clamp(6.5rem,16dvh,8.4rem)] w-[clamp(7.7rem,19dvh,10rem)] sm:right-6 sm:top-12 sm:h-[clamp(9rem,25dvh,13rem)] sm:w-[clamp(10.7rem,29.8dvh,15.5rem)]" />
           <div className="relative flex items-center justify-between">
             <Logo claro fundido chico />
-            <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            <button type="button" onClick={() => setAbierto(false)} aria-label="Cerrar" className="relative z-20 -mr-1 grid h-11 w-11 touch-manipulation place-items-center rounded-full bg-white/15 text-white before:absolute before:-inset-2 before:content-[''] hover:bg-white/25 active:bg-white/30">
+              <svg viewBox="0 0 24 24" className="pointer-events-none h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
           </div>
           <p className="relative mt-2.5 text-[0.8rem] font-bold uppercase tracking-wider text-estrella sm:mt-3 sm:text-sm">Antes de irte</p>
