@@ -199,7 +199,7 @@ export default function CostesPorTamano() {
         </div>
       </div>
       {barra && createPortal(
-        <div className="aparece fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-noche/95 px-4 py-3 pr-20 text-white backdrop-blur lg:hidden">
+        <div data-barra-inferior className="aparece fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-noche/95 px-4 py-3 pr-20 text-white backdrop-blur lg:hidden">
           <button type="button" onClick={() => resumen.current?.scrollIntoView({ behavior: "smooth", block: "start" })} className="flex w-full items-center justify-between gap-3 text-left">
             <span>
               <span className="block text-xs text-white/70">Por separado, al mes</span>

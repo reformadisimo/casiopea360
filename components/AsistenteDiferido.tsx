@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const Asistente = dynamic(() => import("@/components/Asistente"), { ssr: false });
 const AvisoSalida = dynamic(() => import("@/components/AvisoSalida"), { ssr: false });
 const Carruseles = dynamic(() => import("@/components/Carruseles"), { ssr: false });
+const BarraEstudio = dynamic(() => import("@/components/BarraEstudio"), { ssr: false });
 
 export default function AsistenteDiferido() {
   const [listo, setListo] = useState(false);
@@ -32,6 +33,7 @@ export default function AsistenteDiferido() {
       <Asistente />
       <AvisoSalida />
       <Carruseles />
+      <BarraEstudio />
     </>
   ) : null;
 }
