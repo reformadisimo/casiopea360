@@ -9,7 +9,8 @@ export const LEGAL: TerminoGlosario[] = [
     familia: "legal",
     corta: "La ley europea que regula cómo puedes recoger y usar los datos personales de la gente.",
     def: [
-      "Afecta a toda web que pida un nombre, un correo o un teléfono, o que use cookies de medición. Obliga a informar de para qué se usan los datos, a pedir permiso cuando hace falta y a dejar que la persona los consulte o los borre.",
+      "Afecta a toda web que pida un nombre, un correo o un teléfono, o que use cookies de medición.",
+      "Obliga a informar de para qué se usan los datos, a pedir permiso cuando hace falta y a dejar que la persona los consulte o los borre.",
       "Su incumplimiento puede acarrear sanciones. Este glosario es orientativo y no sustituye el consejo de un abogado.",
     ],
     ejemplo: "Un formulario de contacto debe indicar quién guarda los datos, para qué y cómo ejercer los derechos.",

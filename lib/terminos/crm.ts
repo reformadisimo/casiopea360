@@ -7,7 +7,7 @@ export const CRM: TerminoGlosario[] = [
     largo: "Gestión de relaciones con clientes (Customer Relationship Management)",
     formas: ["gestión de clientes"],
     familia: "crm",
-    corta: "El programa donde guardas a todos tus contactos y el historial con cada uno: qué pidió, qué le dijiste, qué toca hacer.",
+    corta: "El programa con todos tus contactos y su historial: qué pidió, qué le dijiste, qué toca hacer.",
     def: [
       "Sustituye a las hojas de cálculo, las notas sueltas y la memoria. Cada contacto tiene su ficha y su estado, y nada se pierde si alguien del equipo falta.",
       "Bien montado, avisa de a quién llamar hoy, enseña qué ventas están cerca y mide de dónde llegan los mejores clientes.",

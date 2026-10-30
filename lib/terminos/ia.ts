@@ -52,7 +52,8 @@ export const IA: TerminoGlosario[] = [
     familia: "ia",
     corta: "Trabajar tu web para que los asistentes de IA la entiendan y la citen cuando alguien les pregunta.",
     def: [
-      "Es el hermano del SEO para la era de la IA. Pide lo mismo de siempre, bien hecho: respuestas claras al principio, datos estructurados, autoría visible y menciones en sitios fiables.",
+      "Es el hermano del SEO para la era de la IA. Pide lo mismo de siempre, bien hecho.",
+      "Es decir: respuestas claras al principio, datos estructurados, autoría visible y menciones en sitios fiables.",
       "Nadie puede garantizar aparecer en una respuesta, porque cada IA decide por su cuenta. Lo que sí se puede es ponerlo fácil.",
     ],
     ejemplo: "Una página que responde «cuánto cuesta una reforma» en la primera frase y lo detalla debajo tiene más opciones de ser citada.",
@@ -78,7 +79,7 @@ export const IA: TerminoGlosario[] = [
     nombre: "llms.txt",
     formas: ["llms.txt"],
     familia: "ia",
-    corta: "Un archivo propuesto para presentar tu web a las IA en un formato claro. Es una propuesta, no un estándar oficial.",
+    corta: "Un archivo para presentar tu web a las IA en formato claro. Es una propuesta, no un estándar oficial.",
     def: [
       "Se coloca en la raíz de la web y resume quién eres, qué ofreces y qué páginas son las importantes, en texto sencillo.",
       "Ninguna gran plataforma ha confirmado que lo use de forma sistemática. Es barato de hacer y no perjudica, pero no se debe esperar milagros.",

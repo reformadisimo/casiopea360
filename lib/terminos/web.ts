@@ -145,7 +145,7 @@ export const WEB: TerminoGlosario[] = [
     nombre: "accesibilidad web",
     formas: ["accesibilidad", "web accesible"],
     familia: "web",
-    corta: "Que tu web pueda usarla todo el mundo, también quien no ve bien, no oye o no puede usar el ratón.",
+    corta: "Que tu web pueda usarla todo el mundo, también quien ve poco, no oye o no usa ratón.",
     def: [
       "Incluye contraste suficiente entre texto y fondo, textos alternativos en las imágenes, navegación con teclado y subtítulos en los vídeos.",
       "Además de ser lo correcto, ya es una obligación legal en muchos casos y mejora la experiencia de todos, también en móvil bajo el sol.",

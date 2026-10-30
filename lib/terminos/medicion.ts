@@ -23,7 +23,8 @@ export const MEDICION: TerminoGlosario[] = [
     familia: "medicion",
     corta: "Un panel donde se colocan y se cambian todos los códigos de medición de tu web sin tocar su programación.",
     def: [
-      "En lugar de pedir a un programador que pegue en la web el código de Analytics, el de Meta y el de Google Ads, se instala una sola vez Tag Manager y desde su panel se añaden y se quitan los demás.",
+      "Sin Tag Manager, un programador tiene que pegar en la web el código de Analytics, el de Meta y el de Google Ads.",
+      "Con él, se instala una sola vez y desde su panel se añaden y se quitan los demás.",
       "Ordena la medición y evita errores. También permite activar cada código solo cuando el visitante acepta las cookies.",
     ],
     ejemplo: "Para medir cuántos pulsan el botón de WhatsApp, se crea una regla en Tag Manager sin volver a tocar la web.",
@@ -131,7 +132,8 @@ export const MEDICION: TerminoGlosario[] = [
     corta: "Decidir qué canal se lleva el mérito de una venta cuando el cliente pasó por varios antes de comprar.",
     def: [
       "Casi nadie compra en el primer contacto. Quizá te vio en Instagram, te buscó en Google y entró por un correo. ¿Quién merece el crédito?",
-      "Hay varios modelos: el primer contacto, el último o repartirlo. Ninguno es perfecto, pero conviene saber con cuál estás mirando los datos para no recortar justo el canal que abre las ventas.",
+      "Hay varios modelos: el primer contacto, el último o repartirlo. Ninguno es perfecto.",
+      "Conviene saber con cuál estás mirando los datos, para no recortar justo el canal que abre las ventas.",
     ],
     ejemplo: "Instagram nunca cierra ventas por sí solo, pero si lo apagas, las búsquedas de tu marca en Google caen.",
     rel: ["google-analytics", "utm", "embudo"],
@@ -141,7 +143,7 @@ export const MEDICION: TerminoGlosario[] = [
     nombre: "tasa de rebote",
     formas: ["rebote", "porcentaje de rebote", "tasa de interacción"],
     familia: "medicion",
-    corta: "El porcentaje de visitas que entran, no hacen nada y se van. En GA4 se mide mejor con la tasa de interacción.",
+    corta: "El porcentaje de visitas que entran, no hacen nada y se van. En GA4 se usa la tasa de interacción.",
     def: [
       "Una visita rebota si llega a una página y se marcha sin hacer nada más. No siempre es malo: quien encuentra tu teléfono y llama también «rebota».",
       "En GA4 se mira sobre todo su contrario, el porcentaje de visitas con interacción. Importa más como pista que como nota.",
