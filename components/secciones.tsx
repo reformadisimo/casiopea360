@@ -1754,6 +1754,7 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
   const lista = [
     { n: "Reformadísimo", d: "Reformas integrales", url: "https://www.reformadisimo.es", i: "casa" },
     { n: "Mi Estela", d: "App para iPhone y Android", url: "https://miestela.app", i: "telefono" },
+    { n: "Fuero Abogados", d: "Web de ejemplo, despacho ficticio", url: "https://fuero-abogados.vercel.app", i: "birrete" },
   ];
   return (
     <div className={`mt-8 rounded-[1.8rem] p-6 ${claro ? "bg-niebla" : "bg-white/[0.07] ring-1 ring-white/15"}`}>

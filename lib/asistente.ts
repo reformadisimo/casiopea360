@@ -44,6 +44,12 @@ ${OFICIOS.join(", ")}.
 ## Trabajos que se pueden enseñar
 ${TRABAJOS.filter((t) => t.publicado).map((t) => `- ${t.nombre} (${t.sector}): ${t.resumen}`).join("\n")}
 
+## Ejemplos que se pueden probar (todos con datos inventados de un despacho ficticio, Fuero Abogados)
+- Web completa de ejemplo: https://fuero-abogados.vercel.app (así quedaría una web hecha por nosotros: herramientas, guías, asistente, vídeos, versión en inglés).
+- Guía de ejemplo, como la que preparamos en el estudio gratuito: https://fuero-abogados.vercel.app/guia-fuero
+- Panel de control de ejemplo: /panel. CRM de ejemplo: /crm-ejemplo. Lupa 360 de ejemplo: /lupa-ejemplo. Avisos y recordatorios de ejemplo: /avisos-ejemplo.
+- Fuero Abogados no existe: es un ejemplo. Si preguntan, dilo claro. AMS Cerramientos y Tierno Centella son clientes reales, pero sus webs no se enlazan hasta que den permiso.
+
 ## Lo que creemos
 ${CREEMOS.map((c) => `- ${c}`).join("\n")}
 

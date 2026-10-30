@@ -141,6 +141,16 @@ export const TRABAJOS: Trabajo[] = [
     publicado: true,
   },
   {
+    nombre: "Fuero Abogados",
+    logo: { src: "/logos/fuero.png", ancho: 500, alto: 148 },
+    sector: "Web de ejemplo · despacho ficticio",
+    resumen:
+      "Así sería tu web completa: más de 300 páginas en español e inglés, 14 herramientas gratuitas, guías, asistente con IA, vídeos, panel y CRM. El despacho es inventado; el trabajo, real.",
+    url: "https://fuero-abogados.vercel.app",
+    enlaceTexto: "Ver la web de ejemplo",
+    publicado: true,
+  },
+  {
     nombre: "AMS Cerramientos",
     logo: { src: "/logos/ams.png", ancho: 640, alto: 214 },
     sector: "Ventanas y cerramientos",
