@@ -1,6 +1,6 @@
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { ConsiguesCompleto, Ventana } from "@/components/Consigues";
+import { ConsiguesCompleto } from "@/components/Consigues";
 import { PIEZAS } from "@/lib/consigues";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -12,7 +12,8 @@ export const metadata = meta(
 );
 
 export default function LoQueConsigues() {
-  const web = PIEZAS[0];
+  // Mosaico de la cabecera: las piezas que NO son la web (la web ya sale grande en la pieza 1, justo debajo)
+  const mosaico = PIEZAS.filter((p) => ["guia", "correos", "panel", "crm"].includes(p.id));
   return (
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Un ejemplo real", ruta: "/lo-que-consigues" }])} />
@@ -21,7 +22,19 @@ export default function LoQueConsigues() {
         clave="ejemplo real"
         entradilla="Haz el test: si podemos ayudarte, lo recibes gratis, sin compromiso y en menos de una semana."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Un ejemplo real" }]}
-        visual={<Ventana src={web.captura} alt="La web de ejemplo, en el ordenador y en el móvil" movil={web.movil} color={web.color} prioridad />}
+        visual={
+          <ul className="grid grid-cols-2 gap-3">
+            {mosaico.map((p, k) => (
+              <li key={p.id} className={k % 2 ? "translate-y-4" : ""}>
+                <a href={`#${p.id}`} className="block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-20px_rgba(14,26,61,0.6)] ring-1 ring-black/10 transition-transform hover:-translate-y-1">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.captura} alt={`${p.titulo}: captura del ejemplo`} width={700} height={438} loading={k < 2 ? "eager" : "lazy"} decoding="async" className="block aspect-[16/11] w-full object-cover object-top" />
+                  <span className="block px-3 py-2 text-center text-sm font-extrabold text-white" style={{ background: p.color }}>{p.corto}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        }
         icono="regalo"
       />
       <ConsiguesCompleto />
