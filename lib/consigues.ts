@@ -24,7 +24,7 @@ export const PIEZAS: Pieza[] = [
     titulo: "Tu web, entera y nueva",
     corto: "Tu web nueva",
     frase: "No un boceto: tu web completa, página a página, lista para abrir.",
-    detalle: "La hacemos con lo que sabemos de tu negocio y te la enseñamos funcionando, también en el móvil. Si trabajas con nosotros, se publica. Si no, te quedas con ella.",
+    detalle: "La hacemos con lo que sabemos de tu negocio y te la enseñamos funcionando, también en el móvil. La ves en un enlace privado, como la verían tus clientes. Si trabajas con nosotros, se publica.",
     captura: "/ejemplo/web-portada.webp",
     movil: "/ejemplo/web-movil.webp",
     href: FUERO,

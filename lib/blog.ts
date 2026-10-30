@@ -34,11 +34,11 @@ export const ARTICULOS: Articulo[] = [
     categoria: "Estrategia",
     claves: ["estudio de marketing gratis", "rediseño web gratis", "auditoría de marketing digital gratuita", "plan de marketing gratis para pymes", "test de idoneidad Casiopea 360"],
     respuesta:
-      "Haces nuestro test de idoneidad (cinco minutos, tocando) y, si vemos que podemos ayudarte, le dedicamos un día entero de trabajo y te enviamos gratis y sin ningún compromiso: tu web nueva ya hecha, una guía de 29 apartados sobre tu negocio, lo que falla hoy con pruebas, tu competencia al detalle, los correos que recibirían tus clientes, tu panel de control y tu CRM. Es tuyo aunque no trabajes nunca con nosotros. Hay un ejemplo real, de un despacho inventado, para que lo veas entero antes de pedirlo.",
+      "Haces nuestro test de idoneidad (cinco minutos, tocando) y, si vemos que podemos ayudarte, le dedicamos un día entero de trabajo y te enviamos gratis y sin ningún compromiso: tu web nueva ya hecha, una guía de 29 apartados sobre tu negocio, lo que falla hoy con pruebas, tu competencia al detalle, los correos que recibirían tus clientes, tu panel de control y tu CRM. Hay un ejemplo real, de un despacho inventado, para que lo veas entero antes de pedirlo.",
     cuerpo: [
       { h2: "Lo decimos claro, porque cuesta creerlo" },
       { p: "Cuando alguien lo lee por primera vez, suele pensar que hay truco. No lo hay. Haces [el test de idoneidad](/test) y, si vemos que podemos ayudarte, nuestro equipo dedica un día entero de trabajo a tu negocio y te envía el resultado. Gratis. Sin compromiso. Sin reunión. Sin que nadie te llame para venderte nada." },
-      { caja: "Si podemos ayudarte, esto es lo que recibes: tu web nueva, tu guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Gratis, sin compromiso, y tuyo aunque no trabajes con nosotros.", t: "En una frase" },
+      { caja: "Si podemos ayudarte, esto es lo que recibes: tu web nueva, tu guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Gratis y sin ningún compromiso.", t: "En una frase" },
       { h2: "Qué recibes, cosa por cosa" },
       { p: "Para que no tengas que imaginarlo, lo hemos hecho entero para un despacho inventado, Fuero Abogados. Cada punto de esta lista lleva a su ejemplo real, que puedes abrir y tocar como si fueras su cliente." },
       { ol: [
@@ -61,11 +61,11 @@ export const ARTICULOS: Articulo[] = [
       { p: "Por tres razones, y ninguna es de buen samaritano." },
       { ul: [
         "Porque es la mejor forma de demostrar lo que hacemos. Contar que hacemos webs en días y no en meses suena a frase de agencia. Enseñarte tu web ya hecha, no.",
-        "Porque así decides con datos. Ves exactamente qué tendrías, lo tocas, se lo enseñas a quien quieras, y luego hablamos o no. Y te quedas con el estudio igual.",
+        "Porque así decides con datos. Ves exactamente qué tendrías, lo tocas, se lo enseñas a quien quieras, y luego hablamos o no.",
         "Porque nos sale a cuenta. Trabajamos sin oficinas ni gastos fijos, y con herramientas que ya tenemos montadas. Un día de trabajo para nosotros es una inversión pequeña; para una empresa que luego se queda, es el principio de años de trabajo juntos."
       ] },
       { h2: "¿Y qué pasa si después no quiero seguir?" },
-      { p: "Nada. El estudio es tuyo. La web de ejemplo que te enseñamos es tuya para lo que quieras, y la guía también. No hay letra pequeña, ni permanencia, ni una llamada incómoda. Lo decimos en [Tu control](/tu-control) y lo cumplimos: nada te ata." },
+      { p: "Nada. La guía te la puedes descargar en PDF y guardarla. La web, los correos, el panel y el CRM los ves en un enlace privado durante un mes, para que lo mires con calma y se lo enseñes a quien quieras; si no seguimos, pasado ese tiempo cerramos el acceso y ya está. No hay letra pequeña, ni permanencia, ni una llamada incómoda. Lo decimos en [Tu control](/tu-control) y lo cumplimos: nada te ata." },
       { h2: "El test no es un examen" },
       { p: "No buscamos empresas perfectas ni queremos ponerte nota para quedar por encima. Al revés: el test nos sirve para entender tu negocio y ver si de verdad podemos aportarte algo. Y también es una cuestión de tiempo: cada estudio son días de trabajo de varias personas, solo podemos hacer unos pocos a la vez y hoy tenemos lista de espera. Son unas preguntas sobre tu negocio y lo que quieres conseguir, se contestan tocando en unos cinco minutos, y al terminar te llevas tu nota y dónde se te escapan clientes, pase lo que pase." },
       { p: "Si podemos coger tu estudio ahora, en menos de una semana lo tienes en el correo. Si en este momento no podemos, te lo decimos igual, con tu nota, y te avisamos en cuanto haya hueco." },
@@ -867,7 +867,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "Qué esperar en cuanto a resultados" },
       { p: "Seremos claros: nadie puede prometer cuántos clientes traerá el marketing, y desconfía de quien lo haga. Lo que sí hacemos es medir cada euro y cada contacto, probar versiones, dejar de gastar donde no funciona y contártelo con datos, no con opiniones. Los resultados que consiguen nuestros clientes se ven en sus datos, y tú los verás en los tuyos." },
       { h2: "Cómo empezar" },
-      { p: "El primer paso es un estudio gratuito y sin compromiso: miramos cómo está tu web, tu ficha de Google y tu presencia hoy, te decimos qué haríamos y cuánto costaría. Si decides seguir, empezamos. Si no, te quedas con el estudio." },
+      { p: "El primer paso es un estudio gratuito y sin compromiso: miramos cómo está tu web, tu ficha de Google y tu presencia hoy, te decimos qué haríamos y cuánto costaría. Si decides seguir, empezamos. Si no, te quedas con tu guía en PDF." },
     ],
     faq: [
       { p: "¿Por qué contratar Casiopea 360 y no varios proveedores?", r: "Con varios proveedores acabas coordinando reuniones, llamadas y correos cruzados, y quedas más dedicado al marketing que a tu trabajo. Con Casiopea 360 tienes un solo contacto y una sola cuota." },

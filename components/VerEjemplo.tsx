@@ -17,7 +17,7 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
             Tu web nueva, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Gratis y sin ningún compromiso.</span>
           </p>
           <p className={`mt-2 text-[0.95rem] ${claro ? "text-gris" : "text-white/75"}`}>
-            No es una propuesta: es trabajo hecho, de varias personas, en tu correo en menos de una semana. Y es tuyo aunque no sigas con nosotros. Lo hemos hecho para un despacho inventado para que lo veas; el tuyo sería igual, con tu negocio.
+            No es una propuesta: es trabajo hecho, de varias personas, en tu correo en menos de una semana. Lo hemos hecho para un despacho inventado para que lo veas; el tuyo sería igual, con tu negocio.
           </p>
           <Link
             href="/lo-que-consigues"
