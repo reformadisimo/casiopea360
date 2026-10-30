@@ -126,7 +126,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿Me garantizáis el primer puesto?",
-        r: "No, y desconfía de quien lo haga. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+        r: "No. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
       },
     ],
     articulos: ["como-aparecer-en-chatgpt-y-google", "ficha-de-google-que-es-y-como-sacarle-partido", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr"],
