@@ -68,9 +68,25 @@ export function ConsiguesCompleto() {
         <Nebulosa oscura variante={2} />
         <div className={`${ENVOLTORIO} relative`}>
           <Etiqueta tono="estrella" icono="regalo">Si podemos ayudarte, esto es lo que recibes</Etiqueta>
-          <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Todo esto, gratis y sin ningún compromiso. En menos de una semana.</h2>
-          <p className="mt-5 max-w-2xl text-lg text-white/80">
-            No es una propuesta de lo que haríamos: es trabajo hecho, de varias personas, para tu empresa. Nos comprometemos a enviártelo en menos de una semana desde que hacemos tu estudio; lo normal es que lo tengas en tres días. El test no es un examen: nos sirve para ver dónde podemos aportarte más. Hacemos pocos estudios a la vez y los revisamos uno a uno, por pura cuestión de tiempo. Lo que has visto es de un despacho inventado, Fuero Abogados, para que puedas tocarlo todo; el tuyo sería con tu negocio, tu competencia y tus clientes. La guía te la puedes descargar en PDF; el resto lo ves en un enlace privado durante un mes.
+          <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Todo esto, gratis y sin ningún compromiso.</h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {[
+              { i: "herramienta", t: "Trabajo hecho", d: "No es una propuesta de lo que haríamos: lo ves terminado." },
+              { i: "reloj", t: "En menos de una semana", d: "Es nuestro compromiso. Lo normal, tres días." },
+              { i: "sonrisa", t: "El test no es un examen", d: "Nos sirve para ver dónde podemos aportarte más." },
+              { i: "candado", t: "Privado", d: "La guía, en PDF para ti. El resto, en un enlace privado durante un mes." },
+            ].map((c, k) => (
+              <li key={c.t} className="flex items-start gap-4 rounded-2xl bg-white/[0.07] p-5 ring-1 ring-white/15">
+                <ChipIcono icono={c.i} i={k} />
+                <span>
+                  <span className="block text-lg font-extrabold text-white">{c.t}</span>
+                  <span className="mt-1 block text-white/75">{c.d}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 max-w-2xl text-white/70">
+            Lo que has visto es de un despacho inventado, Fuero Abogados. <b className="text-white">El tuyo, con tu negocio, tu competencia y tus clientes.</b>
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/test" className={BOTON}>Hacer el test de idoneidad (5 min)</Link>
