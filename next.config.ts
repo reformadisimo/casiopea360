@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // El CSS va dentro del HTML: una petición menos que bloquee el primer pintado.
   // experimental: { inlineCss: true }, (desactivado: duplicaba el CSS dentro de la página)
+  async redirects() {
+    return [
+      { source: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan-si-pasas-el-test", destination: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: seguridad }];
   },

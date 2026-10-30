@@ -23,7 +23,7 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
-    slug: "te-regalamos-tu-web-tu-guia-y-tu-plan-si-pasas-el-test",
+    slug: "te-regalamos-tu-web-tu-guia-y-tu-plan",
     tituloSeo: "Tu web, tu guía y tu plan, gratis",
     video: "equipo-celebra",
     apoyo: { video: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
