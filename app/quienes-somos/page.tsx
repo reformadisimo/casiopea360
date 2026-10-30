@@ -53,7 +53,7 @@ export default function QuienesSomos() {
         titulo="Más de 22 años haciendo que el teléfono suene."
         clave="suene"
         chip={{ grande: "El mismo día", chico: "Respuesta a cada petición" }}
-        entradilla="Profesionales con más de 22 años en marketing digital. Lo hacemos todo, mejor y en días, por menos de lo que te costaría por separado. Y sin que nos persigas."
+        entradilla="Más de 22 años en marketing digital. Todo, mejor y en días, por menos que por separado."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Quiénes somos" }]}
         video="equipo-portatil"
         videoAlt="Dos profesionales trabajan con el portátil y el móvil en una oficina moderna"
@@ -75,7 +75,7 @@ export default function QuienesSomos() {
             <p className="mt-6 text-lg text-gris">Tuvimos nuestros propios negocios y sufrimos lo mismo que tú:</p>
             <ListaViva items={SUFRIMOS} icono="rayo" className="mt-4" />
             <p className="mt-5 text-lg text-gris">
-              Casiopea 360 es lo que entonces no encontramos: un solo contacto, los especialistas que hagan falta, rapidez y el parte de cada día. Así seguimos llevando nuestras empresas.
+              <b className="text-tinta">Casiopea 360 es lo que entonces no encontramos:</b> un solo contacto, especialistas, rapidez y el parte de cada día.
             </p>
             <Link href="/trabajos" className={`${BOTON} mt-8 inline-flex`}>Ver lo que hemos hecho</Link>
           </div>
@@ -100,7 +100,7 @@ export default function QuienesSomos() {
               <Etiqueta tono="estrella" icono="sol">Una mirada desde fuera</Etiqueta>
               <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Damos luz a tu marketing.</h2>
               <p className="mt-5 text-lg text-white/85">
-                Cuando llevas el marketing cada día, dejas de verlo: cada proveedor enseña su trozo y nadie mira el conjunto. Nos pasó a nosotros. El salto no se ve desde dentro hasta que alguien con visión 360 te lo muestra.
+                <b className="text-white">Desde dentro, dejas de verlo:</b> cada proveedor enseña su trozo y nadie mira el conjunto. Nos pasó a nosotros.
               </p>
             </div>
             <div className="rounded-[1.8rem] bg-white/10 p-6 ring-1 ring-white/15">
@@ -153,7 +153,7 @@ export default function QuienesSomos() {
             ))}
           </ul>
           <p className="mt-10 max-w-3xl text-lg text-white/80">
-            Si te piden 25.000 € por una web, queremos hacértela mejor dentro de tu cuota. Por escrito: plazos, transparencia diaria y objetivos medibles. Y hasta hoy lo hemos cumplido con todos nuestros clientes.
+            <b className="text-white">Si te piden 25.000 € por una web, queremos hacértela mejor dentro de tu cuota.</b> Con plazos y objetivos medibles, por escrito.
           </p>
         </div>
       </section>

@@ -106,7 +106,7 @@ export function SeccionCaos() {
       <div className="max-w-3xl">
         <h2 className="text-4xl font-extrabold sm:text-6xl">¿Cómo trabajas hoy?</h2>
         <p className="mt-5 text-lg text-gris sm:text-xl">
-          Una agencia para la web, un SEO, otra para los anuncios, alguien para las redes. Una reunión con este, una llamada con el otro. Y tú en medio, coordinando a todos.
+          Un proveedor para cada cosa, una reunión con cada uno. <b className="text-tinta">Y tú en medio, coordinando a todos.</b>
         </p>
       </div>
 
@@ -227,7 +227,7 @@ export function BandaVideo() {
       <div className={`${ENVOLTORIO} relative flex h-full items-end pb-14`}>
         <div className="max-w-3xl">
           <p className="font-titular text-4xl font-extrabold text-white sm:text-6xl">Nuestro objetivo: que no des abasto.</p>
-          <p className="mt-4 text-lg text-white/85 sm:text-xl">Y si un día te llega más trabajo del que puedes atender, bajamos la publicidad en ese momento. Nos ha pasado, y es el mejor problema que se puede tener.</p>
+          <p className="mt-4 text-lg text-white/85 sm:text-xl">¿Más trabajo del que puedes atender? <b className="text-white">Bajamos la publicidad al momento.</b> Nos ha pasado.</p>
         </div>
       </div>
     </section>
@@ -284,7 +284,7 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
               <div>
                 <h3 className="flex items-center gap-3 text-2xl font-extrabold"><Loseta icono="video" i={3} /> Y lo único que no hacemos</h3>
                 <p className="mt-2 max-w-3xl text-gris">
-                  Grabar vídeos profesionales. Ponemos la idea y el guion, y los montamos. Para grabar, te presentamos a la productora con la que trabajamos y le pagas tú.
+                  <b className="text-tinta">Grabar vídeos profesionales.</b> Idea, guion y montaje son nuestros. La grabación, con una productora que te presentamos y pagas tú.
                 </p>
               </div>
               <Link href="/estudio-gratuito" className={BOTON}>Cuéntanos tu caso</Link>
@@ -301,8 +301,8 @@ export function SeccionOficios() {
   return (
     <section className={`${ENVOLTORIO} py-20 sm:py-28`}>
       <h2 className="max-w-3xl text-4xl font-extrabold sm:text-5xl">Un especialista para cada oficio. Coordinados por una sola persona.</h2>
-      <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. Con nosotros viene junto: un solo contacto que lo coordina todo y, para cada oficio, un especialista de confianza de nuestra red.</p>
-      <p className="mt-4 max-w-2xl text-lg text-gris">Expertos en SEO, Google Ads, Meta, diseño, analítica y experiencia de usuario, con los que colaboramos desde hace años. Entran cuando hace falta y solo pagas ese trabajo.</p>
+      <p className="mt-5 max-w-2xl text-lg text-gris">Todo esto hace falta para que una web traiga clientes. <b className="text-tinta">Con nosotros viene junto, con un solo contacto.</b></p>
+      <p className="mt-4 max-w-2xl text-lg text-gris">Especialistas de confianza que entran cuando hace falta. Solo pagas ese trabajo.</p>
       <ul className="mt-10 flex flex-wrap gap-2.5">
         {OFICIOS.map((o, k) => (
           <li key={o} className="flex items-center gap-2 rounded-full border border-linea bg-white px-3 py-1.5 text-sm font-bold shadow-sm sm:px-4 sm:py-2 sm:text-[0.95rem]">
@@ -355,7 +355,7 @@ export function SeccionAntesDespues({ compacta = false }: { compacta?: boolean }
             <Etiqueta>Antes y después</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Mueve el tirador. <Subrayado>Mira la diferencia</Subrayado>.</h2>
           </div>
-          {!compacta && <p className="text-lg text-gris">Reformadísimo, nuestra propia empresa de reformas: la web que tenía y la que tiene ahora, con calculadoras de precio y una asistente que atiende por voz.</p>}
+          {!compacta && <p className="text-lg text-gris"><b className="text-tinta">Reformadísimo, nuestra empresa de reformas:</b> la web de antes y la de ahora, con calculadoras y asistente por voz.</p>}
         </div>
         <div className="mt-10">
           <AntesDespues nombre="Reformadísimo" antes="/antes-despues/reformadisimo-antes.webp" despues="/antes-despues/reformadisimo-despues.webp" />
@@ -377,7 +377,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
       {titulo && (
         <>
           <h2 className="max-w-3xl text-4xl font-extrabold sm:text-6xl">Trabajos reales, funcionando hoy.</h2>
-          <p className="mt-5 max-w-2xl text-lg text-gris">Webs, apps y asistentes que ya traen clientes, a nuestra propia empresa y a quienes confían en nosotros. Y muchos más que no podemos enseñar: hay clientes que prefieren discreción.</p>
+          <p className="mt-5 max-w-2xl text-lg text-gris"><b className="text-tinta">Webs, apps y asistentes que ya traen clientes.</b> Y muchos más que no enseñamos: hay clientes que prefieren discreción.</p>
         </>
       )}
       <div className={`carrusel ${titulo ? "mt-12" : ""} grid gap-6 md:grid-cols-2`}>
@@ -437,7 +437,7 @@ export function SeccionParte() {
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold sm:text-6xl">Tu informe no se espera: lo tienes en tu panel, al día.</h2>
           <p className="mt-5 max-w-xl text-lg text-white/80">
-            Todo lo que iba en el informe lo ves en tu panel, al momento y sin entender de números. Y si lo prefieres en el correo, lo programas tú: diario, semanal o mensual.
+            <b className="text-white">Todo, en tu panel y al momento.</b> Si lo prefieres en el correo: diario, semanal o mensual.
           </p>
           <div className="carrusel mt-10 grid gap-4 sm:grid-cols-3">
             {INFORMES.map((i, k) => (
@@ -454,7 +454,7 @@ export function SeccionParte() {
             ))}
           </div>
           <p className="mt-6 max-w-xl text-white/70">
-            Ves de dónde viene cada contacto, cuánto te cuesta y todo lo que hemos hecho. Y leemos cada conversación de tu asistente: sabemos qué preocupa a tus clientes con sus palabras.
+            Y leemos cada conversación de tu asistente: sabemos qué preocupa a tus clientes, con sus palabras.
           </p>
           <Link href="/panel" className={`${BOTON} mt-6 inline-flex`}>Ver un panel de ejemplo</Link>
         </div>
@@ -482,7 +482,7 @@ export function SeccionEspecialistas() {
           «Si hacéis de todo, lo haréis todo regular.» <span className="text-noche-3">Es justo al revés.</span>
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-gris">
-          Lo hacemos mejor porque lo hacemos todo: una campaña solo funciona si la web convence, la web solo vende si se mide, y lo medido solo sirve si alguien lo arregla al momento.
+          <b className="text-tinta">Lo hacemos mejor porque lo hacemos todo.</b> La campaña necesita una web que convenza, y la web, alguien que mida y arregle.
         </p>
 
         <div className="mt-12 overflow-hidden rounded-[2rem] border border-linea">
@@ -592,7 +592,7 @@ export function Loseta({ icono, i = 0, tam = "md", className = "" }: { icono: st
 
 const LO_QUE_SEA: { t: string; d: string; nota: string; logo?: string; icono?: string }[] = [
   { t: "Tu propia app", d: "Para iPhone y Android, publicada en las dos tiendas, como hicimos con Mi Estela.", nota: "Te diremos con sinceridad si la necesitas o si con la web basta.", logo: "App Store" },
-  { icono: "crm", t: "Un CRM", d: "Tu agenda de clientes, pero lista: cada contacto entra solo con de dónde vino, qué pidió, qué presupuesto le enviaste y si firmó. Así sabemos qué te trae clientes de verdad.", nota: "Te conectamos el que ya uses, que es lo que recomendamos, o te creamos uno a medida." },
+  { icono: "crm", t: "Un CRM", d: "Tu agenda de clientes, pero lista: de dónde vino cada uno, qué pidió y si firmó. Así sabemos qué te trae clientes.", nota: "Te conectamos el que ya uses, que es lo que recomendamos, o te creamos uno a medida." },
   { icono: "radio", t: "Campañas de radio", d: "Guion, voces profesionales, emisoras y seguimiento. Empuja todo lo demás.", nota: "Lo recomendamos en muchos casos." },
   { icono: "prensa", t: "Prensa escrita", d: "Diseño del anuncio y trato con periódicos y revistas.", nota: "No solemos aconsejarla, pero si la quieres, te la hacemos." },
   { t: "Vídeo profesional", d: "Guion y montaje nuestros; la grabación, con la productora con la que trabajamos.", nota: "La productora la pagas tú directamente.", logo: "YouTube" },
@@ -609,7 +609,7 @@ export function SeccionLoQueSea() {
         <Etiqueta tono="estrella">Si se te ocurre, lo hacemos</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Prácticamente cualquier cosa. Y te decimos si te conviene.</h2>
         <p className="mt-6 max-w-3xl text-xl text-white/80">
-          Una app, un CRM, una campaña de radio, un vídeo profesional. Lo que no hacemos en casa, con las productoras con las que ya trabajamos. No tienes que buscar a nadie.
+          Una app, un CRM, radio o vídeo. <b className="text-white">No tienes que buscar a nadie:</b> lo que no hacemos en casa, lo hacen productoras con las que ya trabajamos.
         </p>
         <div className="carrusel mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {LO_QUE_SEA.map((x, k) => (
@@ -628,7 +628,7 @@ export function SeccionLoQueSea() {
           ))}
         </div>
         <p className="mt-10 max-w-3xl text-lg text-white/85">
-          <b className="text-white">Nuestro consejo va por delante:</b> te recomendamos lo que te interesa y te desaconsejamos lo que no, aunque podamos hacerlo. Preferimos lo digital porque se mide al euro.
+          <b className="text-white">Nuestro consejo va por delante:</b> te desaconsejamos lo que no te interesa, aunque podamos hacerlo. Preferimos lo digital: se mide al euro.
         </p>
       </div>
     </section>
@@ -666,7 +666,7 @@ export function SeccionTambienIncluido() {
             <Etiqueta tono="verde">Y también entra en tu cuota</Etiqueta>
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo que otras agencias te cobran aparte, aquí va dentro.</h2>
             <p className="mt-5 text-lg text-gris">
-              No es una lista para rellenar. Es lo que de verdad hace crecer a una empresa, y te montamos lo que tenga sentido para la tuya, cuando lo necesites.
+              No es una lista para rellenar: <b className="text-tinta">te montamos lo que tenga sentido para tu empresa</b>, cuando lo necesites.
             </p>
             <div className="mt-7 inline-flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-linea">
               <span className="font-titular text-5xl font-extrabold text-emerald-600">{TAMBIEN_INCLUIDO.length}</span>
@@ -714,10 +714,10 @@ const COSTE_OCULTO: [string, string, string][] = [
 /* Nuestra ventaja: el trabajo de un equipo grande, sin la estructura de uno. */
 export function SeccionVentaja() {
   const T: [string, string, string][] = [
-    ["Quien te lo cuenta es quien lo hace", "Un solo contacto, y cuando el proyecto necesita a un especialista de confianza, lo llamamos. Nada se pierde entre comerciales, jefes de cuenta y subcontratas.", "chat"],
-    ["Sin lastre", "Cambiamos en días. Las estructuras grandes tardan meses en adaptarse porque primero tienen que desmontar lo que ya tienen.", "cohete"],
-    ["Todos los oficios, conectados", "Web, Google, anuncios, redes, CRM e IA trabajando juntos. En otros sitios, cada una de esas cosas es un departamento distinto.", "engranaje"],
-    ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal: una red de especialistas que entran cuando hace falta. Mejor precio, pero no low-cost: cuidamos cada cosa como si fuera nuestra.", "euro"],
+    ["Quien te lo cuenta es quien lo hace", "Un solo contacto, que llama al especialista cuando hace falta. Nada se pierde por el camino.", "chat"],
+    ["Sin lastre", "Cambiamos en días. Las estructuras grandes tardan meses en adaptarse.", "cohete"],
+    ["Todos los oficios, conectados", "Web, Google, anuncios, redes, CRM e IA, trabajando juntos y no por departamentos.", "engranaje"],
+    ["Pagas el trabajo, no la estructura", "Sin oficinas ni gastos fijos de personal. Mejor precio, pero no low-cost: cuidamos cada cosa como nuestra.", "euro"],
   ];
   return (
     <section id="ventaja" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
@@ -726,7 +726,7 @@ export function SeccionVentaja() {
         <Etiqueta icono="trofeo">Nuestra ventaja</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">El trabajo de un equipo de especialistas. <Subrayado>Sin la estructura</Subrayado> de una gran agencia.</h2>
         <p className="mt-6 max-w-3xl text-lg text-gris">
-          Una gran agencia necesita cien personas y reuniones entre departamentos. Aquí lleva tu proyecto una persona de principio a fin, con una red de especialistas que entran cuando hace falta. Mismo resultado, más cuidado y un precio razonable.
+          <b className="text-tinta">Una persona lleva tu proyecto de principio a fin</b>, con especialistas que entran cuando hace falta. Más cuidado y un precio razonable.
         </p>
         <ul className="carrusel mt-12 grid gap-5 sm:grid-cols-2">
           {T.map(([t, d, ic], i) => (
@@ -752,7 +752,7 @@ export function SeccionVentaja() {
           </div>
         </div>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          El marketing no cuesta solo la factura: cuesta reuniones, horas coordinando proveedores y tiempo que no dedicas a tu negocio. Eso es lo que te quitamos.
+          El marketing no cuesta solo la factura: <b className="text-tinta">cuesta reuniones y horas coordinando.</b> Eso es lo que te quitamos.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link prefetch={false} href="/un-dia-de-trabajo" className={BOTON}>Ver un día de trabajo real</Link>
@@ -774,7 +774,7 @@ export function SeccionComoEsPosible() {
           «Pero… <span className="text-estrella">¿cómo es posible?</span>»
         </h2>
         <p className="mt-6 max-w-3xl text-xl text-white/85">
-          Nuestros clientes no se lo creen hasta que lo ven. ¿Una web mejor, su CRM, landings a medida y su asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b> Con el trabajo de un equipo enorme y sin su estructura. <Link prefetch={false} href="/quienes-somos#ventaja" className="font-bold text-estrella underline underline-offset-4">Cómo lo hacemos</Link>.
+          ¿Web, CRM, landings y asistente con IA, en días y por una cuota? <b className="text-white">Es posible. Lo hacemos cada día.</b> <Link prefetch={false} href="/quienes-somos#ventaja" className="font-bold text-estrella underline underline-offset-4">Cómo lo hacemos</Link>.
         </p>
         <ul className="carrusel mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {COMO_ES_POSIBLE.map((x, i) => (
@@ -902,12 +902,12 @@ export function SeccionPorQueBarato() {
 
 /* Lo que firmamos: seriedad de gran agencia, por escrito. */
 const SELLOS: { t: string; d: string; icono: string }[] = [
-  { icono: "firma", t: "Plazos por escrito", d: "Respuesta el mismo día, 48 horas para el día a día y fecha cerrada para lo grande. Por escrito desde el primer día." },
+  { icono: "firma", t: "Plazos por escrito", d: "Respuesta el mismo día, 48 horas para el día a día y fecha cerrada para lo grande." },
   { icono: "llave", t: "Tus cuentas, a tu nombre", d: "Dominio y cuentas de Google y de anuncios, desde el primer día. La web, tuya a los doce meses." },
   { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
   { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
   { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
-  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada." },
+  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web." },
 ];
 
 export const COLOR_SELLO: [string, string][] = [
@@ -977,7 +977,7 @@ export function SeccionMiedoAlCambio() {
           <div className="rounded-[2rem] bg-noche p-7 text-white sm:p-9">
             <p className="flex items-center gap-3 text-sm font-extrabold uppercase tracking-wide text-estrella"><Loseta icono="pagina" i={0} /> Test A/B</p>
             <p className="mt-4 text-2xl font-extrabold sm:text-3xl">Tu web actual y la nuestra, a la vez.</p>
-            <p className="mt-3 text-white/85">Repartimos las visitas entre las dos webs. El reparto lo eliges tú: que la mitad vea la nueva, o seis de cada diez, o siete. En unos días o semanas comparas cuál consigue más contactos.</p>
+            <p className="mt-3 text-white/85"><b className="text-white">Tú eliges cómo repartir las visitas</b> entre las dos webs. En unos días o semanas ves cuál consigue más contactos.</p>
             <ul className="mt-6 space-y-4" aria-label="Ejemplos de reparto de visitas">
               {reparto.map((n) => (
                 <li key={n}>
@@ -989,7 +989,7 @@ export function SeccionMiedoAlCambio() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-sm text-white/70">Hasta hoy, la nuestra ha funcionado mejor en todos los clientes con los que hemos trabajado. No lo damos por hecho: te lo enseñamos con tus datos.</p>
+            <p className="mt-6 text-sm text-white/70">Hasta hoy, la nuestra ha funcionado mejor en todos nuestros clientes. No lo damos por hecho: lo ves con tus datos.</p>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -1023,7 +1023,7 @@ export function BandaMiedoAlCambio() {
           <Loseta icono="bombilla" i={3} className="sm:mr-1" />
           <span className="flex-1">
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
-            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses sin pagar nada si no mejoramos los indicadores acordados.</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la web nueva al lado de la tuya. Sin riesgo.</span>
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
         </a>
@@ -1050,7 +1050,7 @@ export function BandaControl() {
           <Etiqueta icono="escudo">Tu control</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
           <p className="mt-5 text-lg text-gris">
-            Tu dominio y tus cuentas, a tu nombre; nosotros entramos como invitados. Si te vas, te llevas tus cuentas y tus contactos, y la web es tuya al cumplir los doce meses.
+            <b className="text-tinta">Tu dominio y tus cuentas, a tu nombre.</b> Si te vas, te llevas cuentas y contactos. La web, a los doce meses.
           </p>
           <p className="mt-4 text-lg text-gris">Te quedas porque te servimos, no porque no puedas irte.</p>
           <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver tus siete compromisos</a>
@@ -1081,7 +1081,7 @@ export function SeccionConfidenciales() {
           <Etiqueta tono="cristal">Bajo llave</Etiqueta>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo que ves es solo una parte.</h2>
           <p className="mt-5 text-lg text-white/80">
-            Muchos de nuestros mejores trabajos no se pueden enseñar: el cliente prefiere que su competencia no sepa quién está detrás. En el estudio gratuito te contamos casos parecidos al tuyo.
+            <b className="text-white">Muchos de nuestros mejores trabajos no se pueden enseñar.</b> En el estudio gratuito te contamos casos parecidos al tuyo.
           </p>
         </div>
         <ul aria-hidden="true" className="grid grid-cols-3 gap-3">
@@ -1150,13 +1150,13 @@ export function SeccionVelocidad() {
           <Etiqueta tono="estrella">Nuestro compromiso de velocidad</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">Tu web, más rápida que la de la mayoría.</h2>
           <p className="mt-6 text-lg text-white/85">
-            Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google. Una web lenta pierde visitas antes de que la vean, y Google lo tiene en cuenta al ordenar los resultados.
+            <b className="text-white">Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google.</b> Una web lenta pierde visitas y puestos.
           </p>
           <ul className="mt-8 space-y-3 text-lg">
             {[
               "Tu web cargada en 2 segundos como máximo. Lo ideal, menos de medio segundo.",
-              "100, 100, 100 en PageSpeed Insights, la herramienta de Google que mide rendimiento, accesibilidad y buenas prácticas.",
-              "No te diremos que lo clavamos a la primera, pero siempre vas a estar muy cerca de lo óptimo y muy por encima de la media.",
+              "100, 100, 100 en PageSpeed Insights, la herramienta de Google.",
+              "Quizá no a la primera, pero siempre muy cerca de lo óptimo.",
             ].map((t, k) => (
               <li key={t} className="flex gap-3">
                 <span aria-hidden="true" className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full text-sm font-extrabold text-white" style={{ background: COLOR_SELLO[(k + 2) % COLOR_SELLO.length][0] }}>✓</span>
@@ -1205,7 +1205,7 @@ export function SeccionVeinteProveedores() {
           <Etiqueta tono="rosa" icono="engranaje">El lío de siempre</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">¿Sientes que, en tu marketing, cada proveedor va a lo suyo? Y tú, en medio, coordinándolos a todos.</h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
-            Una empresa para la web, otra para el SEO, otra para las campañas, otra para el diseño, una consultora para el CRM. Un proveedor para cada cosa, una factura de cada uno, y ninguno habla con los demás. Cuando algo falla, nadie responde.
+            Un proveedor y una factura para cada cosa. <b className="text-tinta">Ninguno habla con los demás</b>, y cuando algo falla, nadie responde.
           </p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
@@ -1250,7 +1250,7 @@ export function SeccionTecnologia() {
             <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Lo último en tecnología. Sin la carga de lo antiguo.</h2>
           </div>
           <p className="text-lg text-gris">
-            Muchas agencias arrastran la tecnología de hace diez años, y empezar de nuevo les saldría carísimo. Nosotros trabajamos limpios, con lo mejor de hoy, y se nota en cada web.
+            <b className="text-tinta">Trabajamos limpios, con lo mejor de hoy</b>, sin arrastrar tecnología de hace diez años. Se nota en cada web.
           </p>
         </div>
         <div className="mt-12 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
@@ -1268,7 +1268,7 @@ export function SeccionTecnologia() {
           ))}
         </div>
         <p className="mt-5 text-xs text-gris">
-          WordPress mueve el 42,6 % de las webs del mundo (W3Techs, 2026), y por eso es el blanco favorito de los ataques. Datos de seguridad: Patchstack, informe sobre la seguridad de WordPress en 2026. Ninguna web es invulnerable; la nuestra es mucho más difícil de atacar y mucho más fácil de recuperar.
+          Fuentes: W3Techs 2026 (WordPress mueve el 42,6 % de las webs) y Patchstack 2026. Ninguna web es invulnerable; la nuestra es más difícil de atacar.
         </p>
       </div>
     </section>
@@ -1289,7 +1289,7 @@ export function SeccionCRM() {
         <div>
           <Etiqueta tono="estrella" icono="crm">Valor añadido · si lo quieres</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Tu propio CRM, hecho a medida.</h2>
-          <p className="mt-5 text-lg text-gris">Tu agenda de clientes, pero lista: sabe de dónde viene cada uno, en qué punto está y a quién toca llamar hoy. Sin licencias que pagar por usuario.</p>
+          <p className="mt-5 text-lg text-gris"><b className="text-tinta">Tu agenda de clientes, pero lista:</b> de dónde viene cada uno y a quién llamar hoy. Sin licencias por usuario.</p>
           <ul className="mt-7 space-y-3 text-[1.05rem]">
             {[
               "Cada contacto entra solo: formulario, chat, WhatsApp, llamadas y calculadoras, con la página y el anuncio de donde vino.",
@@ -1343,13 +1343,13 @@ export function SeccionFueraInternet() {
         <Etiqueta icono="radio">360 de verdad</Etiqueta>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Y si hace falta, también fuera de internet.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          Preferimos lo digital porque se mide al euro. Pero si a tu negocio le conviene la radio, o quieres un anuncio en el periódico, también te lo llevamos. Sin buscar a nadie más.
+          Preferimos lo digital porque se mide al euro. <b className="text-tinta">Pero si te conviene la radio o la prensa, también te lo llevamos.</b>
         </p>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <div className="relative overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-9">
             <div className="flex items-center gap-3"><Loseta icono="radio" i={0} /><span className="inline-block rounded-full bg-estrella px-3 py-1 text-xs font-extrabold text-tinta">Lo recomendamos</span></div>
             <p className="mt-4 text-3xl font-extrabold">Campañas de radio</p>
-            <p className="mt-3 text-white/80">La radio empuja todo lo demás: después de oír tu anuncio, mucha gente te busca en Google. Bien hecha, hace que tus campañas de internet rindan más.</p>
+            <p className="mt-3 text-white/80"><b className="text-white">Empuja todo lo demás:</b> tras oír tu anuncio, mucha gente te busca en Google.</p>
             <ul className="mt-5 space-y-2 text-white/90">
               {["Idea y guion del anuncio", "Grabación con voces profesionales y música", "Elección de emisoras, franjas y fechas", "Trato y negociación con las emisoras o la central de medios", "Medimos el efecto: cuánto suben las búsquedas de tu marca"].map((t) => (
                 <li key={t} className="flex items-start gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-extrabold text-white" style={{ background: COLOR_SELLO[t.length % COLOR_SELLO.length][0] }}>✓</span>{t}</li>
@@ -1359,7 +1359,7 @@ export function SeccionFueraInternet() {
           <div className="rounded-[2rem] border border-linea bg-white p-7 sm:p-9">
             <div className="flex items-center gap-3"><Loseta icono="prensa" i={3} /><span className="inline-block rounded-full bg-niebla px-3 py-1 text-xs font-extrabold text-gris">Si tú lo quieres</span></div>
             <p className="mt-4 text-3xl font-extrabold">Prensa escrita</p>
-            <p className="mt-3 text-gris">No solemos aconsejarla: es cara y no se puede medir bien. Pero si te interesa, por ejemplo en un periódico local o una revista de tu sector, te lo resolvemos.</p>
+            <p className="mt-3 text-gris">No solemos aconsejarla: es cara y se mide mal. <b className="text-tinta">Pero si te interesa, te lo resolvemos.</b></p>
             <ul className="mt-5 space-y-2">
               {["Redacción y diseño del anuncio", "Contacto con periódicos y revistas", "Comparativa de precios y formatos", "Nada se contrata sin tu visto bueno"].map((t) => (
                 <li key={t} className="flex items-start gap-2.5"><span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-extrabold text-white" style={{ background: COLOR_SELLO[t.length % COLOR_SELLO.length][0] }}>✓</span>{t}</li>
@@ -1368,7 +1368,7 @@ export function SeccionFueraInternet() {
           </div>
         </div>
         <p className="mt-6 flex items-start gap-3 rounded-2xl bg-white p-5 text-[0.95rem]"><ChipIcono icono="euro" i={4} tam="h-9 w-9" /><span>
-          <b>Cómo se paga:</b> la idea, el guion, el diseño y toda la gestión van incluidos en tu cuota. El espacio en la emisora o en el periódico lo pagas tú directamente al medio, igual que pagas a Google o a Meta tus anuncios. Sin comisiones nuestras.
+          <b>Cómo se paga:</b> idea, guion, diseño y gestión, en tu cuota. El espacio lo pagas tú directamente al medio, sin comisiones nuestras.
         </span></p>
       </div>
     </section>
@@ -1383,7 +1383,7 @@ export function SeccionCostes() {
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta icono="euro">Haz cuentas</Etiqueta>
         <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">Esto es lo que te costaría por separado.</h2>
-        <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige el tamaño de tu empresa y marca lo que necesitas. Verás lo que pagarías contratándolo por separado, a cuántos proveedores y cuántas facturas. Spoiler: la suma asusta.</p>
+        <p className="mt-5 mb-10 max-w-3xl text-lg text-gris">Elige tu tamaño y marca lo que necesitas. <b className="text-tinta">Verás lo que pagarías por separado.</b> Spoiler: la suma asusta.</p>
         <CostesDiferido />
       </div>
     </section>
@@ -1427,7 +1427,7 @@ export function SeccionMetodo() {
             </tbody>
           </table>
           <p className="mt-4 text-sm text-gris">
-            Lo que tarda Google en notarlo no depende de nosotros, y te lo decimos claro desde el principio. Y nada de «eso son 100 € más» por cada cambio.
+            Lo que tarda Google en notarlo no depende de nosotros. Y nada de «eso son 100 € más» por cada cambio.
           </p>
         </div>
       </div>
@@ -1460,8 +1460,8 @@ export function SeccionGarantias() {
 /* Preguntas frecuentes. */
 const PREGUNTAS_PORTADA = ["¿Cuánto cuesta?", "¿Hay permanencia?", "¿Cuánto tardáis en hacer una web?", "¿Cómo podéis cobrar menos por tanto?", "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?", "¿Garantizáis resultados?", "¿Y si me entra más trabajo del que puedo atender?"];
 
-export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo = "bg-niebla" }: { titulo?: boolean; todas?: boolean; propias?: { p: string; r: string }[]; fondo?: string }) {
-  const lista = propias ?? (todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p)));
+export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo = "bg-niebla" }: { titulo?: boolean; todas?: boolean; propias?: { p: string; r: string; corta?: string; puntos?: string[] }[]; fondo?: string }) {
+  const lista: { p: string; r: string; corta?: string; puntos?: string[] }[] = propias ?? (todas ? PREGUNTAS : PREGUNTAS.filter((q) => PREGUNTAS_PORTADA.includes(q.p)));
   const colores = ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309", "#0f766e", "#e8457a"];
   // La primera frase es la respuesta corta; lo demás, el detalle.
   const partir = (r: string) => {
@@ -1481,7 +1481,7 @@ export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo =
         )}
         <div className={`${titulo ? "mt-10" : ""} gap-3 lg:columns-2`}>
           {lista.map((q, i) => {
-            const [corta, resto] = partir(q.r);
+            const [corta, resto] = q.corta ? [q.corta, ""] : partir(q.r);
             const color = colores[i % colores.length];
             return (
               <details key={q.p} className="group mb-3 break-inside-avoid rounded-[1.6rem] bg-white shadow-sm ring-1 ring-linea transition-shadow open:shadow-[0_20px_40px_-24px_rgba(14,26,61,0.45)]">
@@ -1496,6 +1496,16 @@ export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo =
                     <img src="/marca/icono.svg" alt="" width={32} height={32} className="mt-1 h-8 w-8 shrink-0 rounded-lg" />
                     <div className="aparece rounded-2xl rounded-tl-md bg-noche px-4 py-3 text-white">
                       <p className="font-bold">{glosar(corta)}</p>
+                      {q.puntos && q.puntos.length > 0 && (
+                        <ul className="mt-2 grid gap-1.5 text-[0.95rem] leading-snug text-white/85">
+                          {q.puntos.map((x) => (
+                            <li key={x} className="flex items-start gap-2">
+                              <span aria-hidden="true" className="mt-0.5 font-extrabold text-estrella">✓</span>
+                              <span className="min-w-0">{glosar(x)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                       {resto && <p className="mt-2 text-[0.95rem] leading-relaxed text-white/85">{glosar(resto)}</p>}
                     </div>
                   </div>
@@ -1606,7 +1616,7 @@ export function SeccionMundo() {
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta tono="estrella">En directo, ahora mismo</Etiqueta>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-6xl">Tu web no cierra <Subrayado>nunca</Subrayado>.</h2>
-        <p className="mt-4 max-w-2xl text-lg text-white/80">Mientras lees esto, en algún sitio es de día y alguien está buscando lo que haces. Tu web y tu asistente con IA le atienden a cualquier hora, estés donde estés.</p>
+        <p className="mt-4 max-w-2xl text-lg text-white/80">Ahora mismo, alguien busca lo que haces. <b className="text-white">Tu web y tu asistente con IA le atienden a cualquier hora.</b></p>
         <div className="mt-10">
           <RelojMundoDiferido />
         </div>
@@ -1689,7 +1699,7 @@ export function SeccionEstudio() {
       <Etiqueta tono="estrella">Tu estudio gratuito</Etiqueta>
       <h2 className="mt-5 max-w-4xl text-4xl font-extrabold sm:text-6xl">No es un informe. Es tu plan completo.</h2>
       <p className="mt-5 max-w-3xl text-lg text-gris sm:text-xl">
-        {ESTUDIO_TOTAL} apartados hechos a medida para tu empresa, con datos reales y fechados, y la propuesta de rediseño completo de tu web. Por eso no se lo hacemos a todo el mundo.
+        <b className="text-tinta">{ESTUDIO_TOTAL} apartados a medida</b>, con datos reales y fechados, y el rediseño completo de tu web.
       </p>
       <div className="carrusel mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {ESTUDIO_BLOQUES.map((b, k) => (
@@ -1720,7 +1730,18 @@ export function SeccionEstudio() {
         <div>
           <p className="text-sm font-bold uppercase tracking-wide">Tu inversión, optimizada al máximo</p>
           <p className="mt-2 font-titular text-3xl font-extrabold sm:text-4xl">Lo normal es ahorrar, y mucho.</p>
-          <p className="mt-3 text-lg">Unificamos lo que hoy pagas a cada proveedor y lo optimizamos. Con lo que liberas, tú eliges: ahorrártelo o invertirlo en publicidad. El estudio te lo dice al euro.</p>
+          <ul className="mt-3 grid gap-1.5 text-lg">
+            {[
+              ["Unificamos", "lo que hoy pagas a cada proveedor."],
+              ["Lo que liberas,", "lo ahorras o lo inviertes en publicidad. Tú eliges."],
+              ["El estudio", "te lo dice al euro."],
+            ].map(([b, r]) => (
+              <li key={b} className="flex items-start gap-2">
+                <span aria-hidden="true" className="mt-0.5 font-extrabold">✓</span>
+                <span><b>{b}</b> {r}</span>
+              </li>
+            ))}
+          </ul>
           <p className="mt-3 font-bold">Dos casos reales, con permiso de sus dueños:</p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -1742,7 +1763,8 @@ export function SeccionEstudio() {
       </div>
       <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">
         <p className="text-xl font-extrabold sm:text-2xl">
-          Es una guía viva: se actualiza mientras la comentamos contigo. <span className="text-estrella">En una consultora, esto es un proyecto de pago. Si podemos ayudarte, te lo preparamos gratis.</span>
+          Una guía viva, que se actualiza mientras la comentamos.
+          <span className="mt-2 block text-estrella">En una consultora, es un proyecto de pago. Si podemos ayudarte, es gratis.</span>
         </p>
         <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
       </div>
@@ -1789,7 +1811,7 @@ export function SeccionSolicitud() {
           <Etiqueta tono="estrella">Unos 5 minutos · Una pregunta cada vez</Etiqueta>
           <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
-            Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
+            <b className="text-white">Un estudio nos lleva un día de trabajo:</b> lo hacemos si podemos ayudarte. Contesta tocando y al final tienes tu nota.
           </p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
           <VerEjemplo className="mt-6" />

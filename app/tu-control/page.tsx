@@ -22,10 +22,10 @@ const PREGUNTAS: [string, string, string][] = [
 ];
 
 const PASOS_TICKET: [string, string, string][] = [
-  ["euro", "Tu ticket medio, una vez", "En tu panel pones, a ojo, lo que te deja de media cada cliente. Se guarda en tu dispositivo. Solo la vemos si nos la das para ajustar el coste por contacto."],
-  ["firma", "Marcas quién firma", "Y, si quieres, apuntas lo que ha facturado. Sin cifra, eliges un tamaño: más pequeño de lo normal, normal, más grande o mucho más grande."],
-  ["grafica", "El panel calcula el índice", "100 es tu ticket medio; 150, un cliente un 50 % más grande; 60, un 40 % más pequeño. Y un percentil del 1 al 100: dónde queda ese cliente entre los tuyos."],
-  ["ojo", "Nosotros solo vemos eso, y solo si tú quieres", "Si firmó, su índice, su percentil y por qué campaña llegó. Nunca euros; tu ticket medio, solo si nos lo dices. Apagado de serie; lo apagas cuando quieras."],
+  ["euro", "Tu ticket medio, una vez", "Lo pones a ojo en tu panel y se guarda en tu dispositivo. Solo lo vemos si nos lo das."],
+  ["firma", "Marcas quién firma", "Y, si quieres, lo que facturó. O sin cifra: más pequeño, normal, más grande o mucho más grande."],
+  ["grafica", "El panel calcula el índice", "100 es tu ticket medio; 150, un cliente un 50 % más grande. Y un percentil del 1 al 100."],
+  ["ojo", "Nosotros solo vemos eso, y solo si tú quieres", "Si firmó, su índice y por qué campaña llegó. Nunca euros. Apagado de serie."],
 ];
 
 export default function TuControl() {
@@ -36,7 +36,7 @@ export default function TuControl() {
         ejemplo
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
-        entradilla="Tu dominio y tus cuentas, a tu nombre. Que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: te pedimos dos números."
+        entradilla="Tu dominio y tus cuentas, a tu nombre. Te quedas porque te servimos, no porque no puedas irte."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
       />
 
@@ -46,12 +46,29 @@ export default function TuControl() {
           <Etiqueta icono="firma">Siete compromisos</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Esto es lo que te prometemos. Y solo esto.</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            En muchos negocios, la web, el dominio o la cuenta de anuncios están a nombre de otro. Y eso da miedo a la hora de cambiar.
+            <b className="text-tinta">Muchas veces, la web o el dominio están a nombre de otro.</b> Y eso da miedo al cambiar.
           </p>
           <Bocadillo className="mt-5 max-w-3xl">Aquí es al revés: el jefe eres tú.</Bocadillo>
           <ol className="mt-12 grid gap-5 md:grid-cols-2">
             {COMPROMISOS.map((c, i) => (
-              <TarjetaViva key={c.titulo} icono={c.icono} i={i} titulo={c.titulo} texto={c.largo} chip={`Compromiso ${i + 1}`} className="bg-niebla ring-0 [&>h3]:text-2xl" />
+              <TarjetaViva
+                key={c.titulo}
+                icono={c.icono}
+                i={i}
+                titulo={c.titulo}
+                chip={`Compromiso ${i + 1}`}
+                className="bg-niebla ring-0 [&>h3]:text-2xl"
+                hijo={
+                  <ul className="grid gap-1.5 text-gris">
+                    {c.puntos.map((x) => (
+                      <li key={x} className="flex items-start gap-2">
+                        <span aria-hidden="true" className="mt-0.5 font-extrabold text-noche-3">✓</span>
+                        <span className="min-w-0">{x}</span>
+                      </li>
+                    ))}
+                  </ul>
+                }
+              />
             ))}
           </ol>
         </div>
@@ -89,7 +106,7 @@ export default function TuControl() {
           <Etiqueta icono="escudo">Tu facturación es tuya</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">No necesitamos saber cuánto facturas. Y no te lo vamos a preguntar.</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            Nos da igual que factures un millón o cien mil. Lo que mejora tus anuncios es saber si una campaña trae clientes de 100 y otra, de 1.000. Para eso no hace falta ver ni un euro: basta un índice.
+            <b className="text-tinta">Basta un índice:</b> saber si una campaña trae clientes de 100 y otra, de 1.000. Sin ver ni un euro.
           </p>
           <div className="mt-10 rounded-[1.8rem] border-2 border-estrella bg-estrella/20 p-6 sm:p-8">
             <h3 className="flex items-center gap-3 text-2xl font-extrabold sm:text-3xl">
@@ -97,7 +114,7 @@ export default function TuControl() {
               <span className="min-w-0">No te pedimos tu facturación. Te pedimos dos números.</span>
             </h3>
             <p className="mt-3 max-w-3xl text-lg text-gris">
-              No pedimos facturación, ni balances, ni cuentas, ni ningún documento de tu empresa. Lo que sí necesitamos son dos datos tuyos, y son importantísimos.
+              Ni balances ni documentos de tu empresa. <b className="text-tinta">Solo dos datos, y son importantísimos.</b>
             </p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <div className="rounded-[1.4rem] bg-white p-5 sm:p-6">
@@ -106,9 +123,9 @@ export default function TuControl() {
                   <p className="grid h-9 w-9 place-items-center rounded-full bg-estrella text-lg font-extrabold">1</p>
                 </div>
                 <p className="mt-3 text-xl font-extrabold">Cuántos contactos acaban siendo clientes</p>
-                <p className="mt-2 text-gris">Solo el número, o un porcentaje aproximado. Sin importes. Nos lo cuentas en un mensaje corto cada semana o cada mes.</p>
+                <p className="mt-2 text-gris">Solo el número o un porcentaje, sin importes. En un mensaje corto, cada semana o cada mes.</p>
                 <CajaIdea t="Un ejemplo" icono="bombilla" className="mt-4">
-                  Invertimos 1.000 euros y llegan 10 contactos. Sabemos que cada contacto cuesta 100 euros, pero desde fuera no vemos si se convirtieron en clientes. Si firman 2, cada cliente cuesta 500 euros.
+                  1.000 euros, 10 contactos: 100 euros cada uno. Si firman 2, cada cliente cuesta 500. Eso solo lo sabes tú.
                 </CajaIdea>
               </div>
               <div className="rounded-[1.4rem] bg-white p-5 sm:p-6">
@@ -119,7 +136,7 @@ export default function TuControl() {
                 <p className="mt-3 text-xl font-extrabold">El importe medio aproximado por cliente</p>
                 <p className="mt-2 text-gris">Vale una estimación, y la puedes cambiar cuando quieras.</p>
                 <CajaIdea t="Por qué importa" icono="diana" className="mt-4">
-                  No es lo mismo que los contactos traigan clientes de 5.000 euros que de 20.000. Eso decide cuánto podemos pagar por cada contacto.
+                  Un cliente de 5.000 euros no es uno de 20.000. Eso decide cuánto pagar por cada contacto.
                 </CajaIdea>
               </div>
             </div>
@@ -134,11 +151,11 @@ export default function TuControl() {
             ))}
           </ol>
           <CajaIdea t="Un ejemplo con números inventados" icono="grafica" className="mt-8 max-w-3xl">
-            Tu ticket medio son 100. Un cliente te deja 180: su índice es 180. Nosotros solo vemos ese 180, no cuántos euros son. Ni lo necesitamos.
+            Tu ticket medio son 100. Un cliente te deja 180: su índice es 180. <b>Vemos ese 180, nunca los euros.</b>
           </CajaIdea>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <TarjetaViva como="div" icono="diana" i={0} titulo="¿Para qué lo queremos?" texto="Para llevar el presupuesto a las campañas y zonas que traen tus mejores clientes, o más grandes o pequeños si lo prefieres. Siempre en índices, nunca en euros." />
-            <TarjetaViva como="div" icono="reloj" i={1} titulo="Lo mismo con el tiempo que tardas en llamar" texto="Es tuyo y no te lo preguntamos cada día. Si lo compartes, vemos si una campaña falla porque se tarda tres días en llamar: cuanto antes, más se convierte." />
+            <TarjetaViva como="div" icono="diana" i={0} titulo="¿Para qué lo queremos?" texto="Para llevar el presupuesto a las campañas y zonas que traen tus mejores clientes. Siempre en índices." />
+            <TarjetaViva como="div" icono="reloj" i={1} titulo="Lo mismo con el tiempo que tardas en llamar" texto="Si lo compartes, vemos si una campaña falla porque se tarda en llamar. Cuanto antes, más se convierte." />
           </div>
           <Link prefetch={false} href="/panel" className={`${BOTON} mt-8 inline-flex`}>Probarlo en el panel de ejemplo</Link>
         </div>
@@ -167,9 +184,21 @@ export default function TuControl() {
         <div className={`${ENVOLTORIO} relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between`}>
           <div className="flex max-w-2xl items-start gap-4">
             <Loseta icono="mano" i={3} className="mt-1" />
-            <p className="text-lg text-gris">
-              ¿Y si quieres irte? A los tres meses, sin pagar nada si no hemos mejorado los indicadores que fijamos contigo al empezar; más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
-            </p>
+            <div className="min-w-0 text-lg text-gris">
+              <p className="font-extrabold text-tinta">¿Y si quieres irte?</p>
+              <ul className="mt-2 grid gap-1.5">
+                {[
+                  ["A los tres meses:", "sin pagar nada, si no hemos mejorado los indicadores que fijamos contigo al empezar."],
+                  ["Más adelante:", "pagando solo la parte de la web que falte."],
+                  ["Siempre:", "te llevas tus cuentas y tus contactos."],
+                ].map(([b, r]) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <span aria-hidden="true" className="mt-0.5 font-extrabold text-noche-3">✓</span>
+                    <span><b className="text-tinta">{b}</b> {r}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <Link prefetch={false} href="/miedo-al-cambio" className={`${BOTON} shrink-0`}>Ver cómo es la salida</Link>
         </div>

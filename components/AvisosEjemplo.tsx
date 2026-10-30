@@ -18,7 +18,7 @@ const NEGOCIO = "Fuero Abogados";
 const MENSAJES: Record<Quien, Msg[]> = {
   cliente: [
     { aviso: "confirmacion", dia: "Lunes", hora: "10:02", texto: `${NEGOCIO}: hemos recibido tu petición de consulta. Te llamamos hoy antes de las 14:00. Si prefieres que te escribamos, contesta a este mensaje.` },
-    { aviso: "recordatorio", dia: "Martes", hora: "18:00", texto: `${NEGOCIO}: mañana miércoles tienes tu consulta a las 17:30, en Paseo del Fuero 12. Trae tu contrato, tus nóminas y la carta de despido si la tienes. ¿Vienes?`, enlace: "fueroabogados.es/c/8f3k", boton: "Confirmar o pedir otra hora" },
+    { aviso: "recordatorio", dia: "Martes", hora: "18:00", texto: `${NEGOCIO}: mañana miércoles, consulta a las 17:30 en Paseo del Fuero 12. Trae contrato, nóminas y carta de despido. ¿Vienes?`, enlace: "fueroabogados.es/c/8f3k", boton: "Confirmar o pedir otra hora" },
     { aviso: "recordatorio", dia: "Miércoles", hora: "15:30", texto: `${NEGOCIO}: te esperamos hoy a las 17:30. Si prefieres hacerla por videollamada o no puedes venir, avísanos aquí.`, enlace: "fueroabogados.es/c/8f3k", boton: "Pedir otra hora" },
     { aviso: "resena", dia: "Sábado", hora: "11:00", texto: `Gracias por confiar en ${NEGOCIO}. Si te hemos ayudado, ¿nos dejas tu opinión en Google? Te lleva un minuto.`, enlace: "fueroabogados.es/o/2m9x", boton: "Dejar mi opinión" },
   ],
@@ -29,10 +29,10 @@ const MENSAJES: Record<Quien, Msg[]> = {
 };
 
 const AVISOS: { id: AvisoId; titulo: string; quien: Quien; cuando: string; porque: string }[] = [
-  { id: "recordatorio", titulo: "Recordatorio de cita", quien: "cliente", cuando: "El día antes y un par de horas antes de la cita, entre las 9:00 y las 21:00.", porque: "Es lo que más valor da: menos plantones y menos llamadas para confirmar. Lleva un enlace para confirmar o pedir otra hora." },
-  { id: "confirmacion", titulo: "Confirmación al momento", quien: "cliente", cuando: "En segundos, cuando alguien pide cita o deja su teléfono en un formulario.", porque: "Así sabe que le hemos recibido aunque no mire el correo. Solo si ha dejado su teléfono para eso." },
-  { id: "dueno", titulo: "Aviso al dueño", quien: "dueno", cuando: "Cuando entra un contacto nuevo o una cita. Llega a tu móvil, no al del cliente.", porque: "Para que la respuesta de una persona también llegue pronto: cuanto antes se llama, más se convierte." },
-  { id: "resena", titulo: "Petición de reseña", quien: "cliente", cuando: "Unos días después de terminar el trabajo, solo a clientes con los que se ha trabajado.", porque: "Más reseñas sin esfuerzo, y ayuda a que las inteligencias artificiales te recomienden." },
+  { id: "recordatorio", titulo: "Recordatorio de cita", quien: "cliente", cuando: "El día antes y dos horas antes, de 9:00 a 21:00.", porque: "Menos plantones. Con enlace para confirmar o cambiar la hora." },
+  { id: "confirmacion", titulo: "Confirmación al momento", quien: "cliente", cuando: "En segundos, al pedir cita o dejar su teléfono.", porque: "Sabe que le hemos recibido, aunque no mire el correo." },
+  { id: "dueno", titulo: "Aviso al dueño", quien: "dueno", cuando: "Al entrar un contacto o una cita. Llega a tu móvil.", porque: "Cuanto antes llamas, más se convierte." },
+  { id: "resena", titulo: "Petición de reseña", quien: "cliente", cuando: "Unos días después de terminar, solo a clientes reales.", porque: "Más reseñas sin esfuerzo, y las IA te recomiendan más." },
 ];
 
 function Burbuja({ m, canal, resaltado }: { m: Msg; canal: Canal; resaltado: boolean }) {
@@ -140,7 +140,7 @@ export default function AvisosEjemplo() {
                   );
                 })}
                 {!wa && quien === "cliente" && (
-                  <p className="mt-2 text-center text-[11.5px]" style={{ color: "#6b7280" }}>Este remitente no admite respuestas. Por eso cada SMS lleva su enlace o el WhatsApp del negocio.</p>
+                  <p className="mt-2 text-center text-[11.5px]" style={{ color: "#6b7280" }}>No admite respuestas: cada SMS lleva un enlace o el WhatsApp del negocio.</p>
                 )}
                 {wa && quien === "cliente" && (
                   <p className="mt-2 text-center text-[11.5px]" style={{ color: "#6b7280" }}>La persona puede contestar y la conversación sigue en el WhatsApp del negocio.</p>
@@ -170,11 +170,19 @@ export default function AvisosEjemplo() {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl bg-white p-4 ring-1" style={{ ["--tw-ring-color" as string]: C.linea }}>
               <p className="text-[12px] font-bold uppercase tracking-wide" style={{ color: C.suave }}>Cuánto cuesta</p>
-              <p className="mt-1 text-[14.5px]"><b>Incluido en tu cuota.</b> Solo pagas los mensajes que se envían, directamente a WhatsApp o a tu proveedor de SMS, sin comisión nuestra. Orientativo: un SMS en España ronda los 0,09 dólares, y un recordatorio doble por cita sale por menos de 20 céntimos. El precio lo marca el proveedor.</p>
+              <p className="mt-1 text-[14.5px]"><b>Incluido en tu cuota.</b> Solo pagas los mensajes, al proveedor, sin comisión nuestra.</p>
+              <details className="mt-1 text-[13.5px]" style={{ color: C.suave }}>
+                <summary className="cursor-pointer font-bold" style={{ color: C.enlace }}>Ver más</summary>
+                <p className="mt-1">Orientativo: un SMS en España ronda los 0,09 dólares; un recordatorio doble por cita, menos de 20 céntimos. El precio lo marca el proveedor.</p>
+              </details>
             </div>
             <div className="rounded-2xl bg-white p-4 ring-1" style={{ ["--tw-ring-color" as string]: C.linea }}>
               <p className="text-[12px] font-bold uppercase tracking-wide" style={{ color: C.suave }}>Con permiso y con cabeza</p>
-              <p className="mt-1 text-[14.5px]">Solo a quien ha pedido la cita o ha dejado su teléfono, y la reseña solo a clientes con los que se ha trabajado. Cada mensaje dice de quién viene. Nunca de noche. Sin publicidad.</p>
+              <ul className="mt-1 space-y-1 text-[14.5px]">
+                {["Solo a quien pidió cita o dejó su teléfono.", "La reseña, solo a clientes reales.", "Dice de quién viene. Nunca de noche. Sin publicidad."].map((t) => (
+                  <li key={t} className="flex gap-2"><span aria-hidden className="font-extrabold" style={{ color: C.verde }}>✓</span>{t}</li>
+                ))}
+              </ul>
             </div>
           </div>
           <p className="mt-5 text-[14px]" style={{ color: C.suave }}>

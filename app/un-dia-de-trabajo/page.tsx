@@ -15,31 +15,31 @@ export const metadata = meta(
 );
 
 const HALLAZGOS: { icono: string; t: string; que: string; hicimos: string }[] = [
-  { icono: "euro", t: "La búsqueda estaba frenada por presupuesto", que: "Google la marcaba como «limitada por presupuesto»: había clientes a la vista y no podía enseñar los anuncios. Y solo apuntaba a la ciudad, no a la provincia.", hicimos: "Campaña nueva para toda la provincia, con el presupuesto diario que hace falta." },
-  { icono: "escudo", t: "Los anuncios prometían lo que no se puede prometer", que: "«Sin sorpresas», «plazos garantizados», «sin sobrecostes». Suenan bien, pero cuesta cumplirlas y acaban en clientes enfadados.", hicimos: "Textos honestos y concretos: visita técnica gratuita, presupuesto partida a partida, el equipo que lo hará." },
-  { icono: "lupa", t: "La campaña de marca perdía búsquedas", que: "Quien buscaba el nombre de la empresa a veces no veía el anuncio: la puja máxima era demasiado baja. Y son los clientes más fáciles.", hicimos: "Subimos la puja y apuntamos a la web nueva en cuanto se retiró el proveedor anterior." },
+  { icono: "euro", t: "La búsqueda estaba frenada por presupuesto", que: "«Limitada por presupuesto»: había clientes y no salían los anuncios. Y solo cubría la ciudad.", hicimos: "Campaña nueva para toda la provincia, con el presupuesto que hace falta." },
+  { icono: "escudo", t: "Los anuncios prometían lo que no se puede prometer", que: "«Sin sorpresas», «plazos garantizados». Suenan bien, pero acaban en clientes enfadados.", hicimos: "Textos concretos: visita técnica gratuita y presupuesto partida a partida." },
+  { icono: "lupa", t: "La campaña de marca perdía búsquedas", que: "Quien buscaba la empresa por su nombre a veces no veía el anuncio. La puja era baja.", hicimos: "Subimos la puja y apuntamos a la web nueva." },
 ];
 
 const BORRADORES: [string, string, string][] = [
-  ["lupa", "Búsqueda de Google", "La principal: quien busca lo que vendes. Dos grupos de anuncios, cada uno a su página, y palabras negativas para no pagar por curiosos."],
-  ["pagina", "Red de contenido (contextual)", "Fotos de obras reales en webs de casa y decoración, con un clic muy barato. Excluimos de antemano once tipos de sitios que no convienen."],
+  ["lupa", "Búsqueda de Google", "La principal: quien busca lo que vendes. Cada grupo de anuncios, a su página, y sin pagar por curiosos."],
+  ["pagina", "Red de contenido (contextual)", "Fotos de obras reales en webs de casa y decoración. Clic barato y sin sitios que no convienen."],
   ["campana", "Remarketing en Google y Meta", "Anuncios solo para quien ya visitó la web, para que vuelva cuando esté listo."],
-  ["video", "Meta hacia la web", "Instagram y Facebook hacia la web, con fotos y vídeos reales. Los formularios de Meta, que traían contactos de mala calidad, se paran."],
+  ["video", "Meta hacia la web", "Instagram y Facebook hacia la web, con fotos y vídeos reales. Paramos los formularios de Meta: traían malos contactos."],
   ["trofeo", "Campaña de marca", "Que quien te busque por tu nombre te encuentre a ti, y no a un competidor."],
 ];
 
 const MEDICION: [string, string, string][] = [
-  ["diana", "La conversión que importa", "Que cada petición de visita llegue a Google Ads como una conversión. Sin eso, la puja automática trabaja a ciegas."],
-  ["candado", "Conversiones mejoradas", "El correo del formulario, cifrado, ayuda a Google a reconocer a más personas. Y prepara el día en que le devolvamos las obras firmadas."],
-  ["chip", "Conexión directa con Meta", "Cada contacto llega a Meta desde nuestro servidor, solo con base legal y respetando la privacidad de cada persona, para que aprenda a quién mostrar el anuncio."],
+  ["diana", "La conversión que importa", "Cada petición de visita llega a Google Ads como conversión. Si no, la puja va a ciegas."],
+  ["candado", "Conversiones mejoradas", "El correo del formulario, cifrado, ayuda a Google a reconocer a más personas."],
+  ["chip", "Conexión directa con Meta", "Cada contacto llega a Meta desde nuestro servidor, con base legal y respetando la privacidad. Así aprende a quién enseñar el anuncio."],
   ["ojo", "Avisos del píxel", "Los revisamos uno a uno: los que se arreglan solos, los que no importan y los que sí hay que corregir."],
 ];
 
 const NO_SE_ENCIENDE: [string, string][] = [
-  ["Si un canal no trae contactos, lo decimos.", "Un canal que gastaba y no traía ni un contacto se propone parar, aunque podríamos seguir cobrando por gestionarlo."],
-  ["Nada de pagar dos veces.", "El mismo día que se encienden las campañas nuevas se pausan las anteriores, para no pagar por las mismas búsquedas."],
-  ["Nada sin tu visto bueno.", "Hasta la prueba A/B de la web entera queda preparada y apagada hasta que lo confirmas."],
-  ["Sin inventar contactos de prueba.", "No mandamos peticiones falsas que lleguen a tu equipo: se verifica con el primer contacto real."],
+  ["Si un canal no trae contactos, lo decimos.", "Si gasta y no trae contactos, proponemos pararlo."],
+  ["Nada de pagar dos veces.", "Al encender las nuevas, se pausan las anteriores."],
+  ["Nada sin tu visto bueno.", "Hasta la prueba A/B queda apagada hasta que lo confirmas."],
+  ["Sin inventar contactos de prueba.", "Se verifica con el primer contacto real, sin molestar a tu equipo."],
 ];
 
 export default function UnDiaDeTrabajo() {
@@ -51,7 +51,7 @@ export default function UnDiaDeTrabajo() {
         ejemplo
         titulo="Así es un día de trabajo real. Sin cajas negras."
         clave="sin cajas negras"
-        entradilla="Lo que hicimos en una mañana al arrancar las campañas de una empresa de reformas: la nuestra. Lo contamos tal cual porque es lo que verás en la tuya."
+        entradilla="Una mañana real arrancando las campañas de una empresa de reformas, la nuestra. Es lo que verás en la tuya."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Un día de trabajo" }]}
       />
 
@@ -127,7 +127,7 @@ export default function UnDiaDeTrabajo() {
           <div className="rounded-[2rem] bg-niebla p-7 sm:p-9">
             <Etiqueta icono="bombilla">Por qué te lo contamos</Etiqueta>
             <p className="mt-4 text-2xl font-extrabold">Lo normal es no saber nunca qué ocurre dentro de tus campañas.</p>
-            <p className="mt-3 text-gris">Aquí lo ves todo, con palabras claras y cada día en tu panel. Lo hacemos nosotros, con nuestras manos, en cada cliente.</p>
+            <p className="mt-3 text-gris"><b className="text-tinta">Aquí lo ves todo</b>, con palabras claras y cada día en tu panel.</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/estudio-gratuito" className={BOTON}>Quiero mi estudio gratuito</Link>
               <Link href="/panel" className="inline-flex min-h-11 items-center rounded-full border border-noche px-6 py-3 font-bold hover:bg-white">Ver el panel de ejemplo</Link>

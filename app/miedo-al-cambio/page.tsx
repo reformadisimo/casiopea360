@@ -16,21 +16,21 @@ const PASOS: [string, string, string][] = [
   ["pagina", "Dejamos tu web como está", "No la tocamos ni la apagamos. Sigue funcionando mientras hacemos la nueva."],
   ["herramienta", "Montamos la nueva al lado", "La preparamos, la medimos igual que la tuya y la dejamos lista para recibir visitas."],
   ["mano", "Tú eliges el reparto", "La mitad de las visitas, seis de cada diez o siete. El porcentaje que te dé tranquilidad."],
-  ["grafica", "Comparas con tus datos", "En unos días o semanas, según las visitas que tengas, ves cuál consigue más contactos y más clientes."],
-  ["check", "Decides tú", "Si la nueva gana, pasa a recibir todas las visitas. Si no te convence, paras la prueba cuando quieras."],
+  ["grafica", "Comparas con tus datos", "Según tus visitas, en días o semanas ves cuál trae más contactos y clientes."],
+  ["check", "Decides tú", "Si gana la nueva, recibe todas las visitas. Si no te convence, paras cuando quieras."],
 ];
 
 const PREGUNTAS: { icono: string; p: string; r: string }[] = [
-  { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual sigue recibiendo las visitas que tú decidas. Si te da más seguridad, empezamos con un reparto pequeño y lo subimos poco a poco." },
-  { icono: "reloj", p: "¿Cuánto dura?", r: "Depende de las visitas que tengas: con mucho tráfico, unos días; con poco, unas semanas. Te lo decimos antes de empezar." },
-  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no hemos mejorado los indicadores que fijamos contigo al empezar, puedes irte sin pagar nada y con tu web." },
-  { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No. Hasta hoy la nueva ha ganado en todos los clientes con los que hemos trabajado, pero eso se comprueba contigo." },
+  { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual recibe las visitas que tú decidas. Si quieres, empezamos con poco y subimos poco a poco." },
+  { icono: "reloj", p: "¿Cuánto dura?", r: "Con muchas visitas, unos días; con pocas, unas semanas. Te lo decimos antes de empezar." },
+  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "Deciden los números. Y si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web." },
+  { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No. Hasta hoy ha ganado en todos nuestros clientes, pero eso se comprueba contigo." },
 ];
 
 const PANEL = [
   "Comparas con el mes pasado o con el día que empezamos.",
   "Con la prueba A/B, ves lado a lado la web actual y la nueva.",
-  "Si a los tres meses no ves la línea subir, te vas sin pagar nada.",
+  "Si a los tres meses no mejoran los indicadores fijados contigo, te vas sin pagar nada.",
 ];
 
 const EVOLUCION = [16, 21, 29, 33, 38, 41];
@@ -43,7 +43,7 @@ export default function MiedoAlCambio() {
         ejemplo
         titulo="¿Te da miedo cambiar? Pruébalo sin riesgo."
         clave="sin riesgo"
-        entradilla="Ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus números. Si en tres meses no mejoramos los indicadores que fijamos contigo al empezar, te vas sin pagar nada."
+        entradilla="La web nueva, al lado de la tuya. Tú eliges cuántas visitas ve cada una y decides con tus números."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Miedo al cambio" }]}
       />
 
@@ -68,7 +68,7 @@ export default function MiedoAlCambio() {
           <div>
             <Etiqueta tono="cristal" icono="grafica">Tu panel de control</Etiqueta>
             <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Lo ves tú, cada día, sin pedírnoslo.</h2>
-            <p className="mt-4 text-lg text-white/85">Visitas, contactos, clientes y lo que cuesta cada uno, en tiempo real y desde el móvil. Y la evolución desde el primer día, para que juzgues con tus ojos.</p>
+            <p className="mt-4 text-lg text-white/85"><b className="text-white">Visitas, contactos, clientes y lo que cuesta cada uno</b>, en tiempo real y desde el móvil.</p>
             <ListaViva items={PANEL} claro className="mt-5" />
             <Link href="/panel" className={`${BOTON} mt-7 inline-flex`}>Ver el panel de ejemplo</Link>
           </div>

@@ -601,7 +601,7 @@ export default function TestIdoneidad() {
             {envio === "enviado" && (
               <>
                 <p className="text-2xl font-extrabold">¡Recibido! Ahora nos toca a nosotros.</p>
-                <p className="mt-2 text-lg">Revisamos tu caso y en 48 horas laborables te decimos si te preparamos tu estudio gratuito. Mientras, échale un vistazo a nuestros trabajos.</p>
+                <p className="mt-2 text-lg"><b>En 48 horas laborables te decimos si podemos ayudarte.</b> Mientras, mira nuestros trabajos.</p>
               </>
             )}
             {envio === "sin-canal" && (

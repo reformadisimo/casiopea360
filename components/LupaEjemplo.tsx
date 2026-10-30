@@ -615,7 +615,7 @@ export default function LupaEjemplo() {
             )}
           </Bloque>
           <p className="px-1 text-[12px]" style={{ color: C.suave }}>
-            En un cliente real, esto se activa solo si la persona acepta las cookies de analítica, nunca guarda lo que escribe y los datos se borran a los 90 días. Los datos son tuyos.{" "}
+            <b>Solo si la persona acepta las cookies.</b> Nunca guarda lo que escribe y se borra a los 90 días.{" "}
             <Link href="/estudio-gratuito" className="font-bold underline underline-offset-4" style={{ color: C.enlace }}>Pide tu estudio gratuito</Link>
           </p>
         </aside>

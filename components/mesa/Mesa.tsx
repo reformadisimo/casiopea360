@@ -2,7 +2,7 @@
 "use client";
 import type { Modulo, Reloj, Tarea, Resumen } from "@/lib/mesaTipos";
 import { LUZ, TEMAS_RESUMEN, primeraFrase, frasesDe, fechaEnPalabras, type Luz } from "@/lib/mesaTextos";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Ludoteca } from "@/components/mesa/Suenos";
 import type { CifrasBase } from "@/components/mesa/Suenos";
 import { Plegable, Apartados, GuiaDeUso, LogoMarca, iconoDeTitulo, Que, QueTexto, EXPLICA, GLOSARIO, terminosEn, C as PALETA_ALEGRIA, Loseta, Icono, ICONO_AREA, ICONO_CIFRA, ICONO_BARRA, FranjaConectado, Despedida, MarcaTitulo, ICONO_MEDIDA, tinte, LogoCanal, LogoFila, useSaludo, elige, CHISPA_TODO_BIEN, CHISPA_HECHO, CHISPA_SIN_TAREAS, CHISPA_TODO_REVISADO } from "@/components/mesa/Alegria";
@@ -438,6 +438,16 @@ type Pestana = "resumen" | "ventas" | "anuncios" | "web" | "google" | "redes";
 const ICONO_PESTANA: Record<Pestana, [string, string]> = { resumen: ["estrella", "#c79a00"], ventas: ["persona", "#2f6fd0"], anuncios: ["megafono", "#d93f3f"], web: ["globo", "#2a6f86"], google: ["lupa", "#1d6b3a"], redes: ["chat", "#d9822b"] };
 const PESTANAS: [Pestana, string][] = [["resumen", "Resumen"], ["ventas", "Ventas (CRM)"], ["anuncios", "Anuncios"], ["web", "La web"], ["google", "Google sin pagar"], ["redes", "Ficha de Google y redes"]];
 
+/** Texto de ayuda de una línea y, plegado detrás de "Ver más", el detalle (30-oct-2026). */
+function VerMas({ corto, children, className = "text-[13px] text-ink/60" }: { corto: ReactNode; children: ReactNode; className?: string }) {
+  return (
+    <details className={`group mt-3 leading-relaxed ${className}`}>
+      <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">{corto} <span className="font-semibold text-ink/70 underline group-open:hidden">Ver más</span></summary>
+      <p className="mt-1">{children}</p>
+    </details>
+  );
+}
+
 export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }: { datos: DatosMesa; temas?: Modulo[]; resumenHoy?: Resumen; tareas?: Tarea[]; relojes?: Reloj[]; base?: CifrasBase }) {
   /* Vista sencilla o completa (27-oct, cl·v890; Ig: "que lo entienda quien no sabe nada"). Se recuerda en este navegador. */
   const [vista, setVista] = useState<"sencilla" | "completa">("sencilla");
@@ -557,7 +567,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
     const plat = Object.entries(T.ads.porPlat).sort((x, y) => y[1].coste - x[1].coste)[0];
     if (plat) o.push(`Donde más se invierte: ${PLATAFORMA[plat[0]]?.nombre ?? plat[0]}, ${eur(plat[1].coste)} (${num((plat[1].coste / Math.max(1, T.ads.coste)) * 100)} % del total).`);
     if (T.whatsapp + T.llamadas) o.push(`${num(T.whatsapp)} pulsaciones en WhatsApp y ${num(T.llamadas)} en llamar.`);
-    if (T.ads.conv && pagoPet) o.push(`Coste por contacto de anuncios: ${eur(T.ads.coste / T.ads.conv)} según las plataformas (cuentan todos sus contactos) y ${eur(T.ads.coste / pagoPet)} contando solo los que llegan a nuestra web. Difieren porque algunos anuncios llevan a una página propia, no a la web.`);
+    if (T.ads.conv && pagoPet) o.push(`Coste por contacto de anuncios: ${eur(T.ads.coste / T.ads.conv)} según las plataformas y ${eur(T.ads.coste / pagoPet)} en la web (algunos anuncios no llevan a la web).`);
     return o.slice(0, 6);
   }, [T, C, pagoPet]);
 
@@ -826,8 +836,8 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
                 ["Propuestas de honorarios", crmT.pres, crmA?.pres],
                 ["Encargos firmados", crmT.firm, undefined],
               ]} />
-              {!crmT.firm && crmT.leads > 0 && <p className="mt-3 text-[13.5px] leading-relaxed text-ink/70">Todavía no hay firmas de los contactos que entraron en este periodo: hay {num(crmT.visitas)} consultas y {num(crmT.pres)} propuestas en curso. Un encargo puede tardar semanas en decidirse; la tasa de cierre se mira con contactos de hace 3 a 6 meses.</p>}
-              <p className="mt-3 text-[13px] leading-relaxed text-ink/60">Los pasos de la web cuentan solo lo que pasa en la web. Los del CRM incluyen también a quien llega por teléfono, WhatsApp, Instagram o recomendación (por eso pueden ser más). Además, {num(T.whatsapp)} pulsaciones en WhatsApp y {num(T.llamadas)} en llamar: son pulsaciones del botón, no conversaciones; las conversaciones reales las apunta tu equipo en el CRM.</p>
+              {!crmT.firm && crmT.leads > 0 && <p className="mt-3 text-[13.5px] leading-relaxed text-ink/70"><b>Aún no hay firmas de este periodo:</b> {num(crmT.visitas)} consultas y {num(crmT.pres)} propuestas en curso. El cierre se mira a 3-6 meses.</p>}
+              <VerMas corto={<><b>El CRM puede sumar más que la web:</b> incluye teléfono, WhatsApp y recomendaciones.</>}>Además, {num(T.whatsapp)} pulsaciones en WhatsApp y {num(T.llamadas)} en llamar. Son toques del botón, no conversaciones: esas las apunta tu equipo en el CRM.</VerMas>
             </Caja>
           </>
         )}
@@ -1023,9 +1033,10 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
         )}
 
         <Despedida demo={datos.clave === "demo"} />
-        <p className="pt-4 text-center text-[12.5px] text-ink/45">
-          Fuentes y su última actualización: la web y el CRM, al momento · Google Analytics, al momento (el día de hoy es provisional) · Search Console, datos hasta el {ultGsc ? fechaLarga(ultGsc) : "(sin datos)"} · Google Ads, Meta y ChatGPT Ads (Supermetrics), {datos.anuncios.actualizado ? `al ${fechaLarga(datos.anuncios.actualizado)}` : "sin datos"} · Ficha de Google e Instagram (Supermetrics), {datos.redes?.actualizado ? `al ${fechaLarga(datos.redes.actualizado)}` : "sin datos"} · otras reseñas, a mano. Las pruebas del equipo no cuentan.
-        </p>
+        <details className="pt-4 text-center text-[12.5px] text-ink/45">
+          <summary className="cursor-pointer font-semibold">Fuentes de los datos · Ver más</summary>
+          <p className="mt-1">Última actualización: la web y el CRM, al momento · Google Analytics, al momento (el día de hoy es provisional) · Search Console, datos hasta el {ultGsc ? fechaLarga(ultGsc) : "(sin datos)"} · Google Ads, Meta y ChatGPT Ads (Supermetrics), {datos.anuncios.actualizado ? `al ${fechaLarga(datos.anuncios.actualizado)}` : "sin datos"} · Ficha de Google e Instagram (Supermetrics), {datos.redes?.actualizado ? `al ${fechaLarga(datos.redes.actualizado)}` : "sin datos"} · otras reseñas, a mano. Las pruebas del equipo no cuentan.</p>
+        </details>
       </div>
       )}
       {sencillaPosible && <BarraMovil vista={vista} />}
@@ -1266,7 +1277,7 @@ function PorCanal({ T, C }: { T: Totales; C: Totales | null }) {
           { k: "cpc", t: "Coste por contacto en la web", v: (r) => r.cpc ?? 0, num: true, f: (r) => (r.cpc ? eur(r.cpc) : "-") },
         ]}
       />
-      <p className="mt-3 text-[12.5px] leading-relaxed text-ink/50">Los contactos son los que llegan a nuestra web. Algunos anuncios llevan a una página propia, así que su coste por contacto aquí puede salir más alto que el que da cada plataforma. «Meta» junta anuncios e Instagram: la web no siempre puede distinguirlos.</p>
+      <VerMas corto={<>Contactos que llegan a la web. «Meta» junta anuncios e Instagram.</>} className="text-[12.5px] text-ink/50">Algunos anuncios llevan a una página propia, así que aquí su coste por contacto puede salir más alto que en la plataforma. La web no siempre distingue anuncios de Instagram.</VerMas>
     </Caja>
   );
 }

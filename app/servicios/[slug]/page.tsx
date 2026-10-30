@@ -86,8 +86,9 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: p.color }} />
                 <Loseta icono={iconoPorTexto(d.dolor, i)} i={i} />
                 <p className="mt-5 text-xl font-extrabold leading-snug">{glosar(d.dolor)}</p>
-                <p className={`mt-4 ${i === 0 ? "text-white/85" : "text-gris"}`}>
-                  <b className={i === 0 ? "text-estrella" : "text-tinta"}>Lo arreglamos así:</b> {glosar(d.arreglo)}
+                <p className={`mt-5 flex items-start gap-3 border-t pt-5 font-bold ${i === 0 ? "border-white/15 text-white/90" : "border-linea text-tinta"}`}>
+                  <ChipIcono icono="check" i={i + 2} tam="h-8 w-8" />
+                  <span className="min-w-0">{glosar(d.arreglo)}</span>
                 </p>
               </li>
             ))}

@@ -255,7 +255,7 @@ export function Agenda({ personas, abrir, cerrar }: { personas: Persona[]; abrir
   const hoy = hoyMadrid();
   return (
     <Panel titulo="Agenda de consultas" cerrar={cerrar}>
-      <p className="text-[14px] text-ink/65">Las consultas programadas de ayer a dentro de 14 días. Para poner una consulta, abre al cliente, márcalo en "Consulta programada" y pon fecha, hora y abogado.</p>
+      <p className="text-[14px] text-ink/65"><b className="text-ink">Consultas de ayer a 14 días vista.</b> Para añadir una: abre al cliente y marca "Consulta programada".</p>
       {v === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !v.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">No hay consultas programadas estos días.</p> : null}
       {dias.map((d) => (
         <div key={d} className="mt-5">
@@ -370,7 +370,7 @@ export function Instalaciones({ personas, abrir, cerrar }: { personas: Persona[]
   const hoy = hoyMadrid();
   return (
     <Panel titulo="Casos en marcha" cerrar={cerrar} ancho="max-w-[860px]">
-      <p className="text-[14px] text-ink/65">Los casos firmados (y los cerrados hace menos de dos meses). Toca uno para abrirlo: ahí se pone el abogado del procedimiento, la fase, el avance y los partes de actuaciones.</p>
+      <p className="text-[14px] text-ink/65"><b className="text-ink">Casos firmados y cerrados hace menos de dos meses.</b> Toca uno para ver abogado, fase y actuaciones.</p>
       {d === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !d.instalaciones.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">Todavía no hay casos firmados en el CRM.</p> : null}
       <ul className="mt-4 space-y-2">
         {(d?.instalaciones ?? []).map((o) => {

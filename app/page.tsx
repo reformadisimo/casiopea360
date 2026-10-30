@@ -40,8 +40,9 @@ export default function Inicio() {
           <div>
             <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Todo. Mejor. En días.</Etiqueta>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
-            <p className="mt-6 max-w-xl text-lg text-white/85 sm:text-xl">
-              <b className="text-white">Deja de coordinar proveedores. Empieza a crecer.</b> Web, Google, anuncios, redes, CRM e IA con un solo contacto y una cuota fija. Y cada día sabes qué hemos hecho.
+            <p className="mt-6 max-w-xl text-lg font-extrabold text-white sm:text-xl">Deja de coordinar proveedores. Empieza a crecer.</p>
+            <p className="mt-2 max-w-xl text-lg text-white/85 sm:text-xl">
+              Web, Google, anuncios, redes, CRM e IA: <b className="text-white">un solo contacto y una cuota fija.</b> Cada día sabes qué hemos hecho.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>

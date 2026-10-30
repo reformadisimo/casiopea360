@@ -1,46 +1,70 @@
 // Los siete compromisos de control del cliente. Una sola fuente para la portada y la página «Tu control».
-export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo: string }[] = [
+export const COMPROMISOS: { icono: string; titulo: string; corto: string; puntos: string[] }[] = [
   {
     icono: "llave",
     titulo: "Todas tus cuentas, a tu nombre",
-    corto: "Dominio, Google Ads, Analytics, Search Console, Tag Manager, ficha de Google y redes, con tu correo como propietario. Nosotros entramos como invitados.",
-    largo: "Dominio, Google Ads, Analytics, Search Console, Tag Manager, ficha de Google y redes, con tu correo. Nosotros, invitados. Si alguna falta, lo arreglamos.",
+    corto: "Dominio, Google Ads, Analytics, ficha de Google y redes, con tu correo. Nosotros, invitados.",
+    puntos: [
+      "Dominio, Google Ads, Analytics, Search Console, Tag Manager, ficha de Google y redes.",
+      "Con tu correo como propietario. Nosotros, invitados.",
+      "Si alguna falta, lo arreglamos.",
+    ],
   },
   {
     icono: "escudo",
     titulo: "Tú decides quién entra",
-    corto: "Puedes quitar el acceso a cualquiera, nosotros incluidos, en un minuto. Nadie te lo puede impedir.",
-    largo: "Puedes quitar el acceso a cualquiera, nosotros incluidos, en un minuto. Ojo: durante la permanencia (compromiso 6), quitarnos el acceso no te libra de la cuota.",
+    corto: "Puedes quitar el acceso a cualquiera, nosotros incluidos, en un minuto.",
+    puntos: [
+      "Quitas el acceso a cualquiera, nosotros incluidos, en un minuto.",
+      "Ojo: durante la permanencia, quitarnos el acceso no te libra de la cuota.",
+    ],
   },
   {
     icono: "euro",
     titulo: "Tu dinero en anuncios va entero a los anuncios",
     corto: "Lo pagas con tu tarjeta, en tu cuenta. Sin comisión sobre la inversión.",
-    largo: "El dinero de publicidad lo pagas tú, con tu tarjeta, en tu propia cuenta. Ninguna comisión sobre esa inversión: nos pagas la cuota fija y nada más.",
+    puntos: [
+      "Lo pagas tú, con tu tarjeta, en tu propia cuenta.",
+      "Cero comisión sobre esa inversión: solo la cuota fija.",
+    ],
   },
   {
     icono: "pagina",
     titulo: "La web acaba siendo tuya",
-    corto: "Al cumplir los doce meses queda a tu nombre, con copia completa: textos, fotos, formularios y código. Antes, pagas solo lo que falte.",
-    largo: "A los doce meses queda en una cuenta tuya, con copia completa: textos, fotos, formularios y código. Antes, pagas solo lo que falte. Te ayudamos con el traspaso.",
+    corto: "A los doce meses, a tu nombre y con copia completa. Antes, pagas solo lo que falte.",
+    puntos: [
+      "A los doce meses, en una cuenta tuya.",
+      "Con copia completa: textos, fotos, formularios y código.",
+      "Antes, pagas solo lo que falte. Te ayudamos con el traspaso.",
+    ],
   },
   {
     icono: "crm",
     titulo: "Tus contactos y tus clientes son tuyos",
     corto: "Te los damos en una hoja de Excel cuando los pidas.",
-    largo: "Cuando los pidas, te los damos en una hoja de Excel con todo lo que sabemos de cada uno. Lo que ya vive en tus cuentas de Google o de Meta ya es tuyo.",
+    puntos: [
+      "Cuando los pidas, en un Excel con todo lo que sabemos de cada uno.",
+      "Lo que vive en tus cuentas de Google o de Meta ya es tuyo.",
+    ],
   },
   {
     icono: "calendario",
     titulo: "Nada te ata",
     corto: "Doce meses de permanencia, porque la web te la regalamos. A los tres puedes irte sin pagar nada si no mejoramos los indicadores acordados.",
-    largo: "Doce meses de permanencia y ni uno más, porque la web te la regalamos. A los tres, si no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web. Importe y calendario, en la propuesta antes de firmar.",
+    puntos: [
+      "Doce meses de permanencia y ni uno más, porque la web te la regalamos.",
+      "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+      "Importe y calendario, en la propuesta antes de firmar.",
+    ],
   },
   {
     icono: "lista",
     titulo: "Todo apuntado en una ficha",
     corto: "Qué es cada cuenta, quién es el propietario y quién tiene acceso. Siempre al día.",
-    largo: "Qué es cada cuenta, quién es el propietario y quién tiene acceso. La tienes tú y la ponemos al día con cada cambio. Nunca más preguntarte de quién es qué.",
+    puntos: [
+      "Qué es cada cuenta, quién es el propietario y quién tiene acceso.",
+      "La tienes tú y la actualizamos con cada cambio.",
+    ],
   },
 ];
 

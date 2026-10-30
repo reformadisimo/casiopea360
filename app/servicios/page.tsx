@@ -32,7 +32,7 @@ export default function Servicios() {
       <FranjaVideos
         tipo="mosaico"
         frase="Todo conectado. Todo a la vez."
-        detalle="Lo que pasa en tus anuncios se arregla en tu web el mismo día. Lo que preguntan tus clientes se convierte en artículo. Un solo equipo mirando el conjunto."
+        detalle="Lo que pasa en tus anuncios se arregla en tu web el mismo día. Lo que preguntan tus clientes se convierte en artículo."
         etiquetas={["Web", "Google y las IA", "Anuncios", "Redes", "Automatización"]}
         clips={[
           { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },

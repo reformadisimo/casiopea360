@@ -163,7 +163,7 @@ export default function CrmApp({ usuario, listas }: { usuario: Usuario; listas: 
       ) : (
       <div className="mx-auto max-w-[1240px] px-4 pt-5 sm:px-6">
         {!filtro.q && !filtro.estado && !filtro.mias ? <TuDia nombre={usuario.nombre} abrir={(n, a) => setAbierto(n, a ?? "")} ir={ir} recarga={total} /> : null}
-        <p className="mb-3 text-[14px] text-ink/60">Estos son tus clientes. <b className="text-ink">Toca uno para abrir su ficha.</b> Los recuadros de colores filtran por el paso en que está cada uno. Todo lo demás está en <b className="text-ink">Menú</b>, arriba.</p>
+        <p className="mb-3 text-[14px] text-ink/60"><b className="text-ink">Toca un cliente para abrir su ficha.</b> Los colores filtran por paso; lo demás, en <b className="text-ink">Menú</b>.</p>
         {/* Lo mío de hoy: las acciones de seguimiento que tocan hoy o ya han vencido */}
         <button type="button" onClick={() => setFiltro({ ...filtro, mias: filtro.mias ? "" : "1", estado: "" })} className={`mb-3 flex w-full items-center justify-between gap-3 rounded-[18px] border-2 px-4 py-3 text-left ${filtro.mias ? "border-[#a3505a] bg-[#a3505a] text-white" : pendientes ? "border-[#a3505a] bg-[#f8e8ea] text-[#a3505a]" : "border-line bg-white text-ink/60"}`}>
           <span>
@@ -637,7 +637,7 @@ function Equipo({ cerrar }: { cerrar: () => void }) {
   useEffect(() => { cargar(); }, []);
   return (
     <Panel titulo="Equipo y accesos" cerrar={cerrar} ancho="max-w-[620px]">
-      <p className="text-[14px] text-ink/70">Cada persona entra con su correo y su contraseña. Toda alta nueva (salvo Lucía y Álvaro) la aprueba Álvaro desde un correo; solo entonces le llega a la persona el enlace para crear su contraseña.</p>
+      <p className="text-[14px] text-ink/70"><b className="text-ink">Cada persona entra con su correo y contraseña.</b> Álvaro aprueba cada alta nueva desde un correo.</p>
       <ul className="mt-4 space-y-2">
         {lista.map((x) => (
           <li key={x.id} className="flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-line bg-white px-4 py-3">
@@ -679,7 +679,7 @@ function Importar({ cerrar }: { cerrar: (hecho: boolean) => void }) {
   const [hecho, setHecho] = useState(false);
   return (
     <Panel titulo="Importar el CRM antiguo" cerrar={() => cerrar(hecho)} ancho="max-w-[560px]">
-      <p className="text-[14px] leading-relaxed text-ink/75">Sube el CSV exportado del CRM antiguo (separado por punto y coma, con la cabecera idcliente;fecha;referencia…). Se puede subir varias veces: las fichas que ya estén no se duplican.</p>
+      <p className="text-[14px] leading-relaxed text-ink/75"><b className="text-ink">Sube el CSV del CRM antiguo</b> (con punto y coma). Puedes repetirlo: no duplica fichas.</p>
       <input
         type="file" accept=".csv,text/csv" className="mt-4 block w-full text-[14px]"
         onChange={async (e) => {

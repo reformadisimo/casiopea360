@@ -16,9 +16,18 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
           <p className={`mt-3 text-2xl font-extrabold leading-tight sm:text-3xl ${claro ? "text-tinta" : "text-white"}`}>
             Tu web nueva, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Gratis y sin ningún compromiso.</span>
           </p>
-          <p className={`mt-2 text-[0.95rem] ${claro ? "text-gris" : "text-white/75"}`}>
-            No es una propuesta: es trabajo hecho, de varias personas, en tu correo en menos de una semana. Lo hemos hecho para un despacho inventado para que lo veas; el tuyo sería igual, con tu negocio.
-          </p>
+          <ul className={`mt-3 grid gap-1.5 text-[0.95rem] ${claro ? "text-gris" : "text-white/80"}`}>
+            {[
+              ["Trabajo hecho,", "no una propuesta."],
+              ["En tu correo", "en menos de una semana."],
+              ["Ejemplo de un despacho inventado:", "el tuyo, con tu negocio."],
+            ].map(([b, r]) => (
+              <li key={b} className="flex items-start gap-2">
+                <span aria-hidden="true" className="mt-0.5 font-extrabold text-estrella">✓</span>
+                <span><b className={claro ? "text-tinta" : "text-white"}>{b}</b> {r}</span>
+              </li>
+            ))}
+          </ul>
           <Link
             href="/lo-que-consigues"
             className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-estrella px-6 font-extrabold text-tinta shadow-[0_10px_30px_-10px_rgba(255,197,61,0.8)] hover:bg-estrella-2"

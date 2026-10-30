@@ -360,7 +360,7 @@ export function PonnosAPrueba({ base, hoy, realEntre, demo }: { base: CifrasBase
         <Loseta n="rayo" color={C.ia} tam={44} />
         <div>
           <h3 className="font-serif text-[21px] italic leading-tight text-ink">Ponnos a prueba</h3>
-          <p className="mt-0.5 text-[14px] text-ink/65">La mesa se moja con una predicción para los próximos 7 días. Tú también puedes. Luego se comprueba quién se acercó más, y si la mesa falla, lo verás aquí.</p>
+          <p className="mt-0.5 text-[14px] text-ink/65"><b className="text-ink">Predice los próximos 7 días, como la mesa.</b> Luego verás quién se acercó más.</p>
         </div>
       </div>
       {!ap && (

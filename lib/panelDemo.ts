@@ -48,12 +48,12 @@ export const temasDemo: Modulo[] = [
       { t: "Ventas (CRM)", v: "76 contactos · 33 consultas" },
       { t: "Encargos firmados", v: "9", luz: "azul" },
       { t: "Contactos sin respuesta", v: "3 llevan más de 3 días esperando. Cuanto antes se llama, más se convierte.", luz: "ambar" },
-      { t: "Índice de valor", v: "Preparado: qué clientes valen más que tu media, sin decirnos cuánto facturas. Se activa cuando marcas quién ha firmado.", luz: "azul" },
-      { t: "Avisos y recordatorios", v: "Ejemplo: avisamos al cliente por WhatsApp o SMS antes de su consulta. Va incluido en tu cuota; solo se pagan los mensajes. Aquí no se envía nada.", luz: "azul" },
+      { t: "Índice de valor", v: "Qué clientes valen más que tu media, sin decirnos cuánto facturas. Se activa al marcar quién firma.", luz: "azul" },
+      { t: "Avisos y recordatorios", v: "WhatsApp o SMS al cliente antes de su consulta. Incluido en tu cuota; solo pagas los mensajes.", luz: "azul" },
     ], enlaces: [{ t: "Ver el recorrido de un contacto", href: "/crm-ejemplo" }, { t: "Ver los avisos de ejemplo", href: "/avisos-ejemplo" }] },
 ];
 
-export const resumenDemo: Resumen = { titulo: "Hay dos cosas que requieren atención", texto: "Hay 3 contactos esperando respuesta desde hace más de 3 días. Y la campaña «Meta · Remarketing» ha gastado 608 € y solo ha traído 1 contacto." };
+export const resumenDemo: Resumen = { titulo: "Hay dos cosas que requieren atención", texto: "3 contactos llevan más de 3 días sin respuesta. «Meta · Remarketing»: 608 € y solo 1 contacto." };
 
 export const tareasDemo: Tarea[] = [
   { id: "d1", texto: "Llama a los 3 contactos que llevan más de 3 días sin respuesta", porque: "Cuanto antes se llama, más se convierte. Están en tu CRM.", donde: "Ventas", ir: "tuyo", boton: "Ver quiénes son" },

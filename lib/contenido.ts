@@ -125,7 +125,7 @@ export const TRABAJOS: Trabajo[] = [
     logo: { src: "/logos/reformadisimo.png", ancho: 687, alto: 187 },
     sector: "Reformas integrales en Madrid",
     resumen:
-      "Nuestra propia empresa, desde 2012 y con más de 1.150 obras. Web con calculadoras de precio, una asistente con inteligencia artificial que atiende por voz y medición completa.",
+      "Nuestra empresa, desde 2012 y con más de 1.150 obras. Calculadoras de precio y asistente con IA por voz.",
     url: "https://www.reformadisimo.es",
     enlaceTexto: "Ver la web de Reformadísimo",
     publicado: true,
@@ -135,7 +135,7 @@ export const TRABAJOS: Trabajo[] = [
     logo: { src: "/logos/mi-estela.png", ancho: 240, alto: 240 },
     sector: "App familiar para iPhone y Android",
     resumen:
-      "De la idea a la App Store y Google Play en unos 120 días, con suscripción de pago. Mapa en tiempo real, avisos de llegada, chat, llamadas, asistente con IA y 17 idiomas.",
+      "De la idea a las dos tiendas en unos 120 días, con suscripción de pago. Mapa en tiempo real, chat e IA.",
     url: "https://miestela.app",
     enlaceTexto: "Conocer la app Mi Estela",
     publicado: true,
@@ -145,7 +145,7 @@ export const TRABAJOS: Trabajo[] = [
     logo: { src: "/logos/fuero.png", ancho: 500, alto: 148 },
     sector: "Web de ejemplo · despacho ficticio",
     resumen:
-      "Así sería tu web completa: más de 300 páginas en español e inglés, 14 herramientas gratuitas, guías, asistente con IA, vídeos, panel y CRM. El despacho es inventado; el trabajo, real.",
+      "Así sería tu web: más de 300 páginas, 14 herramientas, asistente con IA, panel y CRM. Despacho inventado, trabajo real.",
     url: "https://fuero-abogados.vercel.app",
     enlaceTexto: "Ver la web de ejemplo",
     publicado: true,
@@ -155,7 +155,7 @@ export const TRABAJOS: Trabajo[] = [
     logo: { src: "/logos/ams.png", ancho: 640, alto: 214 },
     sector: "Ventanas y cerramientos",
     resumen:
-      "Web con configurador que da el precio al momento, páginas por zona y una velocidad en el móvil que pasó de 56 a 94 sobre 100.",
+      "Configurador con precio al momento y páginas por zona. Velocidad en el móvil: de 56 a 94 sobre 100.",
     url: "", // sin enlace hasta que su dueño dé el visto bueno (antes https://ams-cerramientos-ejemplo.vercel.app),
     enlaceTexto: "Ver la web",
     publicado: true,
@@ -165,7 +165,7 @@ export const TRABAJOS: Trabajo[] = [
     logo: { src: "/logos/tierno-centella.png", ancho: 500, alto: 148 },
     sector: "Despacho de abogados laboralistas",
     resumen:
-      "Catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés. La velocidad en el móvil pasó de 49 a 94 sobre 100.",
+      "14 herramientas gratuitas, 47 guías y asistente con IA. Velocidad en el móvil: de 49 a 94 sobre 100.",
     url: "", // sin enlace hasta que su dueño dé el visto bueno (antes https://tierno-centella-web.vercel.app),
     enlaceTexto: "Ver la web",
     publicado: true,
@@ -246,11 +246,11 @@ export const INFORMES = [
 export const GARANTIAS = [
   {
     titulo: "Tus cuentas, a tu nombre",
-    texto: "Dominio y cuentas, a tu nombre desde el primer día. La web, tuya a los doce meses o antes, si pagas lo que falta. Si te vas, te llevas cuentas y contactos.",
+    texto: "Dominio y cuentas, tuyos desde el primer día. La web, a los doce meses. Si te vas, te llevas cuentas y contactos.",
   },
   {
     titulo: "Tu web, regalada",
-    texto: "Solo pagas la cuota, con doce meses de permanencia. Si a los tres no hemos mejorado los indicadores acordados, te vas sin pagar nada y con tu web. Más tarde, pagas solo lo que falte de la web. A los doce, sin permanencia.",
+    texto: "Doce meses de permanencia. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -258,124 +258,264 @@ export const GARANTIAS = [
   },
   {
     titulo: "Precio fijo, sin comisiones",
-    texto: "Inviertas mil euros o un millón, nunca cobramos un porcentaje de lo que inviertes. Pagas a Google o a Meta con tu tarjeta; nosotros no tocamos ese dinero.",
+    texto: "Nunca cobramos un porcentaje de lo que inviertes. Pagas a Google o a Meta con tu tarjeta.",
   },
 ];
 
-export const PREGUNTAS = [
+// Preguntas frecuentes: respuesta corta (una frase) y, si hace falta, puntos breves.
+// `r` junta las dos cosas en un solo texto, para los datos estructurados y el resumen para IA.
+export type Pregunta = { p: string; corta: string; puntos?: string[]; r: string };
+const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
   {
     p: "Ya tengo web. ¿Hay que tirarla?",
-    r: "No necesariamente. En el estudio gratuito te decimos qué vale y qué no. Si cambiamos de web, redirigimos todas las direcciones antiguas para que no pierdas lo que ya tienes en Google.",
+    corta: "No necesariamente. En el estudio gratuito te decimos qué vale y qué no.",
+    puntos: ["Si cambiamos de web, redirigimos todas las direcciones antiguas.", "Así no pierdes lo que ya tienes en Google."],
   },
   {
     p: "Me lo lleva un sobrino, o un conocido. ¿Para qué cambiar?",
-    r: "Si te funciona, genial. Normalmente esa persona lleva una parte, la web o las redes. Una empresa que capta clientes por internet necesita unos veinte oficios trabajando juntos, y eso es lo que hacemos.",
+    corta: "Si te funciona, genial.",
+    puntos: [
+      "Normalmente esa persona lleva una parte: la web o las redes.",
+      "Captar clientes por internet necesita unos veinte oficios trabajando juntos.",
+      "Eso es lo que hacemos.",
+    ],
   },
   {
     p: "¿Cuánto tardáis en hacer lo que os pido?",
-    r: "Te respondemos el mismo día laborable. Lo del día a día (un cambio, una página nueva, un artículo, una campaña) está hecho en 48 horas como máximo, y normalmente mucho antes. Una web nueva la tienes en unos días, normalmente en menos de una semana según el volumen de trabajo, no en los tres, cuatro o cinco meses habituales. Los proyectos más grandes, como una app o conectar tu CRM, llevan una fecha cerrada que te damos antes de empezar. Si nos falta algo tuyo (un texto, una foto, un acceso), el plazo empieza cuando lo tenemos, y te lo decimos al momento. Y en tu panel ves cada petición, quién la lleva y cuándo estará lista.",
+    corta: "Te respondemos el mismo día laborable.",
+    puntos: [
+      "Lo del día a día (un cambio, una página, un artículo, una campaña): 48 horas como máximo.",
+      "Una web nueva: unos días, normalmente menos de una semana.",
+      "Lo grande, como una app o conectar tu CRM: fecha cerrada antes de empezar.",
+      "Si nos falta algo tuyo, el plazo cuenta desde que lo tenemos.",
+      "En tu panel ves cada petición, quién la lleva y cuándo estará lista.",
+    ],
   },
   {
     p: "¿Me cobraréis aparte por cada cosa que os pida?",
-    r: "No. Va todo incluido en la cuota: cambios en la web, calculadoras nuevas, artículos, campañas, el rediseño del logo si lo necesitas. Nada de «eso son 100 € más». El SEO también va incluido: muchas agencias lo cobran como cuota aparte. Solo va aparte lo que pagas directamente a otros: lo que inviertas en anuncios, la grabación de vídeo profesional y, si quieres, el espacio en radio o prensa o un artículo en un medio, que cobra el propio medio. Te lo proponemos con su precio y no se compra nada sin tu visto bueno.",
+    corta: "No. Va todo incluido en la cuota, también el SEO.",
+    puntos: [
+      "Cambios en la web, calculadoras, artículos, campañas y el rediseño del logo si lo necesitas.",
+      "Aparte, solo lo que pagas a otros: tus anuncios, la grabación de vídeo profesional y el espacio en radio, prensa o medios.",
+      "Te lo proponemos con su precio y nada se compra sin tu visto bueno.",
+    ],
   },
   {
     p: "¿Cuánto cuesta?",
-    r: "Una cuota mensual fija, la misma seas pyme, mediana o gran empresa, que lo incluye todo: web, CRM, Google, anuncios, redes, automatizaciones y cada cambio que pidas. Te la contamos en el estudio gratuito, junto con lo que haríamos por tu negocio. Por separado, todo eso te costaría bastante más: lo tienes calculado en la tabla de servicios.",
+    corta: "Una cuota mensual fija, la misma para cualquier tamaño de empresa, con todo dentro.",
+    puntos: [
+      "Web, CRM, Google, anuncios, redes, automatizaciones y cada cambio que pidas.",
+      "Te la contamos en el estudio gratuito, con lo que haríamos por tu negocio.",
+      "Por separado costaría bastante más: lo tienes calculado en la tabla de servicios.",
+    ],
   },
   {
     p: "¿Hay permanencia?",
-    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Ese importe se reduce poco a poco hasta cero a los doce meses, y lo conoces antes de firmar, en tu propuesta. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
+    corta: "Doce meses, porque la web te la regalamos.",
+    puntos: [
+      "Dominio y cuentas, a tu nombre desde el primer día. La web, al cumplir los doce meses.",
+      "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+      "Más tarde, pagas solo la parte de la web que falte. Baja hasta cero a los doce meses y la conoces antes de firmar.",
+      "Pasados los doce meses, ninguna permanencia.",
+    ],
   },
   {
     p: "¿Garantizáis resultados?",
-    r: "Los resultados no los puede garantizar nadie con honradez: ni el primer puesto en Google ni que una IA te recomiende, porque dependen también del mercado y de tu negocio. Lo que sí te garantizamos, por escrito, son los plazos, la transparencia de cada día y objetivos medibles que revisamos contigo. Y te podemos decir que, hasta hoy, esos resultados los hemos conseguido en todas las empresas con las que hemos trabajado.",
+    corta: "Nadie puede garantizarlos con honradez: dependen también del mercado y de tu negocio.",
+    puntos: [
+      "Ni el primer puesto en Google ni que una IA te recomiende.",
+      "Sí garantizamos por escrito los plazos, la transparencia diaria y objetivos medibles que revisamos contigo.",
+      "Hasta hoy, esos resultados han llegado en todas las empresas con las que hemos trabajado.",
+    ],
   },
   {
     p: "¿Con cuántas empresas habéis trabajado?",
-    r: "Con muchas: las que ves en nuestros trabajos y muchas más a lo largo de más de veintidós años, algunas durante muchos años seguidos. No damos una cifra porque preferimos enseñarte resultados, no números redondos. En el estudio gratuito te contamos casos parecidos al tuyo.",
+    corta: "Con muchas, a lo largo de más de veintidós años.",
+    puntos: [
+      "Algunas, durante muchos años seguidos.",
+      "No damos una cifra: preferimos enseñarte resultados.",
+      "En el estudio gratuito te contamos casos parecidos al tuyo.",
+    ],
   },
   {
     p: "¿Y si me entra más trabajo del que puedo atender?",
-    r: "Es justo lo que buscamos: que no des abasto. Y nos ha pasado. Si llega el momento, bajamos la publicidad o la pausamos en el momento y ajustamos para que te lleguen solo las peticiones que puedes asumir. Lo hacemos rápido, que es otro de nuestros puntos fuertes, y cuando vuelvas a tener hueco, lo subimos otra vez.",
+    corta: "Es justo lo que buscamos: que no des abasto. Y nos ha pasado.",
+    puntos: [
+      "Bajamos o pausamos la publicidad al momento.",
+      "Te llegan solo las peticiones que puedes asumir.",
+      "Cuando vuelvas a tener hueco, la subimos otra vez.",
+    ],
   },
   {
     p: "¿Qué velocidad tendrá mi web?",
-    r: "Más rápida que la de la mayoría: es un compromiso. Tu web, cargada en 2 segundos como máximo y, lo ideal, en menos de medio segundo; y 100, 100, 100 en PageSpeed Insights, la herramienta de Google. No te diremos que lo clavamos a la primera, pero siempre estarás muy cerca de lo óptimo, como esta misma web. Para que te hagas una idea, solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google, según HTTP Archive.",
+    corta: "Más rápida que la de la mayoría: es un compromiso.",
+    puntos: [
+      "Carga en 2 segundos como máximo; lo ideal, en menos de medio segundo.",
+      "Y 100, 100, 100 en PageSpeed Insights, la herramienta de Google.",
+      "Quizá no a la primera, pero siempre muy cerca, como esta web.",
+      "Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google (HTTP Archive).",
+    ],
   },
   {
     p: "¿Hacéis las webs en WordPress?",
-    r: "No. Hacemos código propio, a medida y sin plugins, con la tecnología que usan hoy las empresas más punteras, y la publicamos en la red mundial de Vercel. Por eso nuestras webs sacan 100 en PageSpeed y son mucho más difíciles de atacar. WordPress mueve el 42,6 % de las webs del mundo y es el blanco favorito: solo en 2025 aparecieron 11.334 fallos de seguridad nuevos en su ecosistema, el 91 % en plugins (Patchstack). Si ya tienes WordPress, te lo pasamos sin perder lo que tienes en Google.",
+    corta: "No. Código propio, a medida y sin plugins, publicado en la red mundial de Vercel.",
+    puntos: [
+      "Por eso sacan 100 en PageSpeed y son mucho más difíciles de atacar.",
+      "WordPress mueve el 42,6 % de las webs; en 2025 tuvo 11.334 fallos de seguridad nuevos, el 91 % en plugins (Patchstack).",
+      "Si ya tienes WordPress, te lo pasamos sin perder lo que tienes en Google.",
+    ],
   },
   {
     p: "¿Y si me hackean la web?",
-    r: "Ninguna web del mundo es invulnerable, pero la nuestra es muchísimo más difícil de atacar que un WordPress: no hay plugins ni panel de administración a la vista. Y si algo pasara, volvemos a la versión anterior en minutos, porque cada cambio queda guardado con su historial. En un WordPress hackeado, recuperarlo puede llevar días.",
+    corta: "Ninguna web es invulnerable, pero la nuestra es muchísimo más difícil de atacar.",
+    puntos: [
+      "Sin plugins ni panel de administración a la vista.",
+      "Si algo pasara, volvemos a la versión anterior en minutos.",
+      "En un WordPress hackeado, recuperarlo puede llevar días.",
+    ],
   },
   {
     p: "¿Trabajáis también para mi competencia?",
-    r: "Trabajamos para quien consideramos oportuno y no firmamos exclusividad por defecto. Si quieres que no trabajemos para tu competencia directa, se puede pactar, con una cuota más alta; hay clientes que lo han elegido y están encantados. Por cierto: muchos de nuestros mejores trabajos no los podemos enseñar, porque el cliente prefiere que su competencia no sepa quién está detrás.",
+    corta: "No firmamos exclusividad por defecto.",
+    puntos: [
+      "Si la quieres frente a tu competencia directa, se pacta, con una cuota más alta.",
+      "Muchos de nuestros mejores trabajos no los enseñamos: el cliente prefiere que su competencia no lo sepa.",
+    ],
   },
   {
     p: "¿Y si lo pruebo y no me convence?",
-    r: "Para eso están los primeros meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas cuotas. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te puedes ir sin pagar nada y con tu web. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
+    corta: "Para eso están los primeros meses.",
+    puntos: [
+      "Ya tienes tu web nueva, tu CRM y todo lo que hayamos puesto en marcha.",
+      "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+      "Si te da miedo el cambio, prueba antes con un test A/B: tu web actual y la nueva, con el reparto que elijas.",
+    ],
   },
   {
     p: "¿Cuánto tardáis en hacer una web?",
-    r: "Unos días, no meses. Según el volumen de trabajo que tengamos, pueden ser 48 horas, tres días o una semana; lo normal es no pasar de una semana. No te lo garantizamos por escrito, igual que quien te dice tres meses tampoco te lo garantiza y luego tarda cinco. Y nuestra intención es que además sea mejor que la de quien te cobra 25.000 €, dentro de tu cuota.",
+    corta: "Unos días, no meses.",
+    puntos: [
+      "Según el trabajo que tengamos: 48 horas, tres días o una semana.",
+      "Lo normal es no pasar de una semana, aunque no lo garantizamos por escrito.",
+      "Y nuestra intención es que sea mejor que la de quien te cobra 25.000 €.",
+    ],
   },
   {
     p: "¿Cómo podéis cobrar menos por tanto?",
-    r: "Porque no tenemos estructura que pagar: ni oficinas, ni gastos fijos de personal, ni capas de jefes, ni comerciales a comisión. Trabajamos con una red de especialistas de confianza, que entran en cada proyecto cuando hace falta, con un método de colaboración continuo. Las herramientas profesionales las pagamos una vez y sirven a todos nuestros clientes, y la IA y la automatización hacen en horas lo que antes llevaba semanas. Ese ahorro no nos lo quedamos: lo volcamos en tu cuota, porque preferimos clientes para muchos años a facturas para hoy.",
+    corta: "Porque no tenemos estructura que pagar.",
+    puntos: [
+      "Ni oficinas, ni gastos fijos de personal, ni capas de jefes, ni comerciales a comisión.",
+      "Una red de especialistas de confianza entra en cada proyecto cuando hace falta.",
+      "Las herramientas las pagamos una vez y sirven a todos. La IA hace en horas lo que llevaba semanas.",
+      "Ese ahorro va a tu cuota: preferimos clientes para muchos años.",
+    ],
   },
   {
     p: "¿De verdad lo hacéis mejor que quien me cobra 25.000 € por una web?",
-    r: "Esa es nuestra intención, y la de cada cosa que hacemos. No podemos garantizarlo por escrito, porque cada caso es distinto, pero lo intentamos con todas nuestras fuerzas y con más de veintidós años de experiencia, y hasta hoy no ha habido un solo caso en que no lo consiguiéramos. No hace falta que nos creas: en el estudio gratuito ves lo que haríamos antes de decidir nada.",
+    corta: "Esa es nuestra intención en cada cosa que hacemos.",
+    puntos: [
+      "No podemos garantizarlo por escrito: cada caso es distinto.",
+      "Hasta hoy, no ha habido un solo caso en que no lo consiguiéramos.",
+      "En el estudio gratuito ves lo que haríamos antes de decidir nada.",
+    ],
   },
   {
     p: "¿Cuánto tarda en notarse?",
-    r: "La velocidad de la web, el primer día. La ficha de Google y las reseñas, en semanas. Google y las IA, entre 3 y 6 meses. Te lo contamos cada día para que veas por dónde va.",
+    corta: "Depende de cada cosa. Te lo contamos cada día.",
+    puntos: ["La velocidad de la web: el primer día.", "La ficha de Google y las reseñas: semanas.", "Google y las IA: entre 3 y 6 meses."],
   },
   {
     p: "¿Qué tengo que hacer yo?",
-    r: "Lo mínimo: quince minutos para darnos los accesos, unas fotos de tus trabajos y tu visto bueno a lo que salga en tu nombre. Del resto nos ocupamos nosotros.",
+    corta: "Lo mínimo. Del resto nos ocupamos nosotros.",
+    puntos: ["Quince minutos para darnos los accesos.", "Unas fotos de tus trabajos.", "Tu visto bueno a lo que salga en tu nombre."],
   },
   {
     p: "Si hacéis de todo, ¿no lo haréis peor que una agencia especializada?",
-    r: "Es justo al revés. Una agencia de anuncios no puede tocar tu web aunque vea que falla, y un SEO no puede cambiar tus campañas. Cada una hace bien su trozo y nadie responde del resultado. Nosotros dominamos cada frente y los trabajamos juntos: lo que descubrimos en los anuncios lo arreglamos en la web el mismo día, y medimos lo que de verdad importa, los clientes. No hace falta que nos creas: mira nuestros trabajos, tu panel y el estudio gratuito, que compara lo que tienes hoy con lo que haríamos.",
+    corta: "Es justo al revés: trabajamos todos los frentes juntos.",
+    puntos: [
+      "Por separado, nadie puede tocar el trozo del otro aunque vea que falla.",
+      "Lo que descubrimos en los anuncios lo arreglamos en la web el mismo día.",
+      "Medimos lo que de verdad importa: los clientes.",
+      "Compruébalo en nuestros trabajos, en tu panel y en el estudio gratuito.",
+    ],
   },
   {
     p: "¿Podéis hacer cualquier cosa que se me ocurra?",
-    r: "Prácticamente sí: una app para iPhone y Android, un CRM, una campaña de radio, un anuncio en prensa, un vídeo profesional. Lo poco que no hacemos en casa, como grabar vídeo o la locución de un anuncio, lo hacemos con productoras y agencias con las que ya trabajamos, y tú no tienes que buscar a nadie. Eso sí: te diremos con sinceridad qué te conviene y qué no, y te preparamos un plan de inversión mes a mes y para el año, para sacar el máximo a cada euro.",
+    corta: "Prácticamente sí: una app, un CRM, radio, prensa o un vídeo profesional.",
+    puntos: [
+      "Lo poco que no hacemos en casa, con productoras y agencias con las que ya trabajamos.",
+      "Te decimos con sinceridad qué te conviene y qué no.",
+      "Y te preparamos un plan de inversión mes a mes y para el año.",
+    ],
   },
   {
     p: "¿Qué más entra en la cuota, aparte de web, SEO, anuncios y redes?",
-    r: "Mucho de lo que otras agencias cobran aparte: reservas y citas online con recordatorio por WhatsApp, gestión de reseñas, landings a medida, un asistente con IA en tu web y en WhatsApp, presupuestos online con firma, encuestas de satisfacción, un programa de recomendación, la web en varios idiomas, Google Shopping, tienda online, un área privada para tus clientes, herramientas internas, el diseño de tu marca (logo, manual y papelería; la impresión va aparte), medición de llamadas, vigilancia de tu competencia, vídeos con IA y una web accesible y legal. Te montamos lo que tenga sentido para tu empresa, cuando lo necesites, sin pagar más.",
+    corta: "Mucho. Te montamos lo que tenga sentido para tu empresa, sin pagar más.",
+    puntos: [
+      "Citas online con recordatorio por WhatsApp, reseñas, landings y asistente con IA.",
+      "Presupuestos con firma, encuestas, programa de recomendación y web en varios idiomas.",
+      "Tienda online, Google Shopping, área privada para clientes y herramientas internas.",
+      "Tu marca (la impresión va aparte), medición de llamadas, vigilancia de la competencia, vídeos con IA y web accesible.",
+    ],
   },
   {
     p: "¿Qué es un CRM y para qué lo quiero?",
-    r: "Es tu agenda de clientes, pero inteligente. Cada persona que te contacta entra sola, con de dónde vino (Google, un anuncio, Instagram, una recomendación), qué te pidió, qué presupuesto le enviaste y si acabó firmando. Con eso sabemos qué te trae clientes de verdad y dónde poner el dinero, y tu equipo no pierde ningún contacto. Es opcional, pero muy recomendable.",
+    corta: "Tu agenda de clientes, pero inteligente. Opcional, pero muy recomendable.",
+    puntos: [
+      "Cada contacto entra solo, con de dónde vino, qué pidió y si firmó.",
+      "Sabemos qué te trae clientes y dónde poner el dinero.",
+      "Tu equipo no pierde ningún contacto.",
+    ],
   },
   {
     p: "¿Os conectáis con mi CRM? ¿Y si no tengo?",
-    r: "Sí, y te lo recomendamos: que cada contacto de la web, del chat, de WhatsApp o de los anuncios entre solo en tu programa de clientes, con su origen y todo lo que hizo antes de escribirte. Trabajamos con los habituales, como HubSpot, Zoho, Salesforce o Pipedrive. Y si no tienes ninguno, te creamos un CRM a medida, sencillo y a tu nombre, sin licencias por usuario. Es opcional: lo montamos si lo quieres. Con él hacemos los seguimientos: nada de boletines masivos, sino el mensaje justo a quien lo necesita.",
+    corta: "Sí, y te lo recomendamos.",
+    puntos: [
+      "Cada contacto entra solo en tu CRM, con su origen y lo que hizo antes de escribirte.",
+      "Trabajamos con los habituales: HubSpot, Zoho, Salesforce o Pipedrive.",
+      "Si no tienes, te creamos uno a medida, a tu nombre y sin licencias por usuario. Es opcional.",
+      "Con él hacemos los seguimientos: el mensaje justo a quien lo necesita, sin boletines masivos.",
+    ],
   },
   {
     p: "¿Hacéis también radio o prensa?",
-    r: "Sí. Preferimos lo digital porque se mide al euro, pero la radio la recomendamos en muchos casos: empuja todo lo demás y hace que tus campañas de internet rindan más. Te hacemos el guion, la grabación con voces profesionales, elegimos emisoras y franjas, y tratamos con las emisoras. La prensa escrita no solemos aconsejarla, pero si la quieres te diseñamos el anuncio y hablamos con los periódicos. Todo eso va incluido en la cuota; el espacio en la emisora o el periódico lo pagas tú directamente al medio.",
+    corta: "Sí. Preferimos lo digital porque se mide al euro, pero la radio la recomendamos en muchos casos.",
+    puntos: [
+      "Radio: guion, voces profesionales, emisoras y franjas. Empuja todo lo demás.",
+      "Prensa: no solemos aconsejarla, pero si la quieres, diseñamos el anuncio.",
+      "Va en la cuota; el espacio en el medio lo pagas tú directamente.",
+    ],
   },
   {
     p: "¿Y Bing? ¿Merece la pena?",
-    r: "Sí, y va incluido. En España Bing se lleva cerca del 3,5 % de las búsquedas, pero en los ordenadores pasa del 12 %, porque viene de serie en Windows y en Edge. Además alimenta a Copilot, el asistente de Microsoft. Como casi nadie lo trabaja, es más fácil salir arriba y los anuncios suelen costar menos. Ponemos tu web y tu ficha en Bing y, si conviene, campañas en Microsoft Ads.",
+    corta: "Sí, y va incluido.",
+    puntos: [
+      "En España tiene cerca del 3,5 % de las búsquedas, y más del 12 % en ordenadores.",
+      "Alimenta a Copilot, el asistente de Microsoft.",
+      "Casi nadie lo trabaja: es más fácil salir arriba y los anuncios suelen costar menos.",
+    ],
   },
   {
     p: "¿Cómo sabré qué funciona?",
-    r: "Tendrás tu propio panel de control, en el móvil y en tiempo real: cuántos contactos y clientes llegan, de dónde viene cada uno (Google, un anuncio concreto, Instagram, el mapa, ChatGPT, un correo), lo que cuesta cada contacto y todo lo que hemos hecho. Tus clientes y lo que te cuesta cada uno también los puedes ver, pero es opcional y es tuyo: nosotros no te pedimos tu facturación. Lo medimos con Tag Manager, Google Analytics, el píxel de Meta y las etiquetas de cada red, bien instalados desde el primer día. En esta web tienes un panel de ejemplo para verlo con tus propios ojos.",
+    corta: "Con tu propio panel de control, en el móvil y en tiempo real.",
+    puntos: [
+      "Cuántos contactos llegan, de dónde viene cada uno y lo que cuesta.",
+      "Todo lo que hemos hecho, día a día.",
+      "Tus clientes y su coste, solo si quieres: es tuyo y no te pedimos tu facturación.",
+      "En esta web tienes un panel de ejemplo para verlo.",
+    ],
   },
   {
     p: "¿Y el vídeo?",
-    r: "Te damos las ideas, el guion, cómo grabarlo con el móvil, y lo montamos si nos lo das. Para grabarlo de forma profesional te ponemos en contacto con la agencia audiovisual con la que trabajamos. Va aparte, y se lo pagas tú directamente: más transparente. Lo mismo que lo que inviertas en anuncios o una nota de prensa en un medio, si la quieres.",
+    corta: "Ponemos las ideas, el guion y el montaje.",
+    puntos: [
+      "Te enseñamos a grabar con el móvil.",
+      "La grabación profesional, con la productora con la que trabajamos.",
+      "Esa parte va aparte y la pagas tú directamente: más transparente.",
+    ],
   },
 ];
+export const PREGUNTAS: Pregunta[] = PREGUNTAS_BASE.map((q) => ({ ...q, r: [q.corta, ...(q.puntos ?? [])].join(" ") }));
 
 // Puntos de dolor, en palabras de quien dirige la empresa, con su solución en una frase.
 export const DOLORES = [
@@ -410,7 +550,7 @@ export const DOLORES = [
   },
   {
     dolor: "Mi agencia tiene mi web y mis cuentas. Si me voy, lo pierdo todo.",
-    solucion: "Dominio y cuentas a tu nombre desde el primer día. La web, tuya a los doce meses o antes, si pagas lo que falta. Si te vas, te llevas cuentas y contactos.",
+    solucion: "Dominio y cuentas a tu nombre desde el primer día. La web, a los doce meses o antes, pagando lo que falte.",
   },
   {
     dolor: "Una web nueva tarda meses y cada cambio es otro presupuesto.",
@@ -531,18 +671,18 @@ export const TAMBIEN_INCLUIDO: { t: string; d: string; logo?: string; icono: str
 export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "Mejor.",
-    d: "Si alguien te pide 25.000 € por una web, nuestra intención es hacértela mejor, dentro de tu cuota. Y lo mismo con el SEO, los anuncios o el CRM.",
-    pie: "Por escrito: plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+    d: "Si te piden 25.000 € por una web, queremos hacértela mejor dentro de tu cuota. Igual con SEO, anuncios o CRM.",
+    pie: "Por escrito: plazos, transparencia diaria y objetivos medibles.",
   },
   {
     t: "En días, no en meses.",
-    d: "Donde otros tardan meses, tú tienes tu web en unos días: a veces 48 horas, normalmente menos de una semana. Y lo del día a día, en 48 horas como máximo.",
+    d: "Tu web en unos días, normalmente menos de una semana. Lo del día a día, en 48 horas como máximo.",
     pie: "Lo caro de una agencia no es solo la factura: es todo lo que tardan. Aquí no esperas.",
   },
   {
     t: "A precio fijo.",
-    d: "Una sola cuota, la misma para cualquier tamaño de empresa, con todo dentro. Menos de lo que te costaría cada cosa por separado, y sin sorpresas.",
-    pie: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres no hemos mejorado los indicadores acordados, te vas sin pagar nada.",
+    d: "Una sola cuota, la misma para cualquier empresa, con todo dentro. Menos que cada cosa por separado.",
+    pie: "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
   },
   {
     t: "Sin perseguirnos.",
@@ -553,17 +693,17 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
 
 // Por qué podemos cobrar menos.
 export const POR_QUE_BARATO: { t: string; d: string }[] = [
-  { t: "Sin estructura que pagar", d: "Sin oficinas, sin capas de jefes ni comerciales a comisión. Trabajamos en remoto, con especialistas que entran por proyecto. Ese dinero no sale de tu bolsillo." },
+  { t: "Sin estructura que pagar", d: "Sin oficinas, capas de jefes ni comerciales a comisión. Especialistas que entran por proyecto." },
   { t: "Herramientas compartidas", d: "Las licencias de análisis, diseño, SEO e IA las pagamos una vez y las aprovechan todos nuestros clientes." },
   { t: "La tecnología de hoy", d: "La IA y la automatización hacen lo repetitivo; las personas, lo que hay que pensar. Lo que antes llevaba semanas hoy lleva horas." },
-  { t: "Todo el margen, para ti", d: "Lo que otros gastan en estructura lo volcamos en tu cuota. Queremos clientes para muchos años, no facturas para hoy." },
+  { t: "Todo el margen, para ti", d: "Ese ahorro va a tu cuota. Queremos clientes para muchos años, no facturas para hoy." },
 ];
 
 // Lo que creemos (Quiénes somos).
 export const CREEMOS: string[] = [
   "Que el buen marketing no debería ser un lujo. Queremos democratizar los precios.",
   "Que se crece con clientes a largo plazo, no a base de facturas.",
-  "Que a un proveedor no deberías tener que perseguirle. Si nos tienes que perseguir, lo estamos haciendo mal.",
+  "Que a un proveedor no hay que perseguirle. Si nos persigues, lo hacemos mal.",
   "Que la mejor tecnología debe estar al alcance de cualquier empresa. Nosotros la estrenamos cada semana.",
   "Que esto se hace bien cuando se disfruta. Y a nosotros nos encanta ver crecer a una empresa.",
   "Que nuestro trabajo es ayudarte a crecer o, cuando toca, a estabilizarte y mantener lo que has construido.",

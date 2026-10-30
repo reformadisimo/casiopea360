@@ -367,14 +367,14 @@ export function Apartados({ items }: { items: Apartado[] }) {
 /* ───────────────────────── Guía de uso (cl·v928) ───────────────────────── */
 /** Pasos para alguien que no sabe nada. Para otro negocio se cambian aquí los textos y nada más. */
 export const GUIA_PASOS: { icono: string; color: string; t: string; d: string; ancla?: string }[] = [
-  { icono: "campana", color: "#a3505a", t: "Mira la primera línea", d: "Si es roja, hay algo que atender; si es verde, todo va bien. Pulsa el + para ver por qué.", ancla: "pl-conclusion" },
-  { icono: "check", color: "#c79a00", t: "Haz lo primero de hoy", d: "En «Lo primero que haría hoy» tienes una sola cosa que hacer. Cuando la revises, pulsa «Ya lo he revisado».", ancla: "pl-hoy" },
-  { icono: "grid", color: "#2a6f86", t: "Mira las baterías", d: "Cada parte del negocio tiene una batería: llena y verde, bien; naranja, mira esto; roja, importante. Pulsa una y verás el detalle.", ancla: "pl-temas" },
-  { icono: "moneda", color: "#7a4fd0", t: "Lee las cuatro cifras", d: "Cuántas personas dejaron sus datos, cuántas piden presupuesto, qué cuesta cada contacto y tu nota en Google. Si una no se entiende, pulsa el ?.", ancla: "pl-cifras" },
-  { icono: "mando", color: "#7a4fd0", t: "Sueña y haz cuentas", d: "Arriba, en «Tus sueños y tus cuentas»: mueve la inversión, marca tu meta y ponnos a prueba. Son estimaciones, para pensar.", ancla: "mesa-suenos" },
-  { icono: "catalejo", color: "#1d6b3a", t: "Baja a todas las cifras", d: "Las pestañas separan los temas: Ventas, Anuncios, La web, Google, Ficha y redes. En cada gráfica, la estrella es el mejor día.", ancla: "mesa-cifras-todas" },
-  { icono: "chat", color: "#d9822b", t: "Pregunta lo que quieras", d: "Escribe o dicta una pregunta como se la harías a una persona. Contesta con tus cifras de 28 días.", ancla: "pl-pregunta" },
-  { icono: "sobre", color: "#2f6fd0", t: "Recíbelo por correo", d: "En «Más herramientas» puedes pedir el resumen cada día, cada lunes o cada mes, sin tener que entrar.", ancla: "pl-mas" },
+  { icono: "campana", color: "#a3505a", t: "Mira la primera línea", d: "Roja, hay algo que atender; verde, todo bien. El + te dice por qué.", ancla: "pl-conclusion" },
+  { icono: "check", color: "#c79a00", t: "Haz lo primero de hoy", d: "Una sola tarea. Al terminar, pulsa «Ya lo he revisado».", ancla: "pl-hoy" },
+  { icono: "grid", color: "#2a6f86", t: "Mira las baterías", d: "Verde, bien; naranja, mira esto; roja, importante. Pulsa una para el detalle.", ancla: "pl-temas" },
+  { icono: "moneda", color: "#7a4fd0", t: "Lee las cuatro cifras", d: "Contactos, peticiones, coste por contacto y nota en Google. Dudas: pulsa el ?.", ancla: "pl-cifras" },
+  { icono: "mando", color: "#7a4fd0", t: "Sueña y haz cuentas", d: "Mueve la inversión y marca tu meta. Son estimaciones, para pensar.", ancla: "mesa-suenos" },
+  { icono: "catalejo", color: "#1d6b3a", t: "Baja a todas las cifras", d: "Una pestaña por tema. En cada gráfica, la estrella es el mejor día.", ancla: "mesa-cifras-todas" },
+  { icono: "chat", color: "#d9822b", t: "Pregunta lo que quieras", d: "Escríbela o díctala. Contesta con tus cifras de 28 días.", ancla: "pl-pregunta" },
+  { icono: "sobre", color: "#2f6fd0", t: "Recíbelo por correo", d: "Pide el resumen cada día, cada lunes o cada mes, sin entrar.", ancla: "pl-mas" },
   { icono: "escudo", color: "#25a244", t: "Si ves algo raro, avísanos", d: "Abajo del todo está «Avisar de un error». Nos encanta arreglarlos." },
 ];
 

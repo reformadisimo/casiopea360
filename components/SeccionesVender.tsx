@@ -20,7 +20,7 @@ export function SeccionSonarEnGrande() {
         <Etiqueta tono="cristal" icono="fiesta">Soñar en grande</Etiqueta>
         <h2 id="sonar-en-grande" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Hasta donde tú quieras llegar. Y más.</h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
-          La imagen de una marca se construye. ¿Por qué no ir a por clientes que gastan más? Una web y unas campañas para ese público, y una prueba A/B que lo mida. <b className="text-white">Sin dejar de atender al cliente de hoy: tú eliges el reparto.</b>
+          ¿Por qué no ir a por clientes que gastan más? Web y campañas para ese público, medido con una prueba A/B. <b className="text-white">Sin perder al cliente de hoy: tú eliges el reparto.</b>
         </p>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {ideas.map(([ic, t, d], i) => (
@@ -43,8 +43,8 @@ export function SeccionSonarEnGrande() {
 export function SeccionComoTrabajamos() {
   const pasos = ["Investigamos", "Probamos", "Medimos", "Corregimos", "Volvemos a probar"];
   const tarjetas: [string, string, string][] = [
-    ["sonrisa", "Una red de especialistas, sin oficinas que pagar", "Una persona lleva tu proyecto de principio a fin. Detrás, colaboradores de años: programación, diseño, analítica, SEO y anuncios. Entran cuando hacen falta."],
-    ["bombilla", "Una curva de aprendizaje muy pequeña", "La primera vez, el panel te lleva de la mano. Cada cosa rara tiene un «?» que la explica en una frase. En pocos días te sabes mover."],
+    ["sonrisa", "Una red de especialistas, sin oficinas que pagar", "Una persona lleva tu proyecto. Detrás, colaboradores de años que entran cuando hacen falta."],
+    ["bombilla", "Una curva de aprendizaje muy pequeña", "El panel te lleva de la mano y cada cosa rara tiene su «?». En pocos días te mueves solo."],
     ["lupa", "Y los errores, a la vista", "Ninguna herramienta está libre de errores. Los buscamos cada día y, si ves uno, nos lo dices con un toque y lo arreglamos."],
   ];
   return (
@@ -147,9 +147,9 @@ export function SeccionPruebasAB() {
 /** "Rápida, eficaz y robándote el menor tiempo posible": sin reuniones ni llamadas, por correo y WhatsApp. Valor de Casiopea. */
 export function SeccionTiempo() {
   const pasos: [string, string, string][] = [
-    ["mano", "Al principio, un poco de esfuerzo", "Tu parte: accesos, datos y fotos. Nosotros también nos volcamos, para que arranque cuanto antes."],
+    ["mano", "Al principio, un poco de esfuerzo", "Tu parte: accesos, datos y fotos. Nosotros nos volcamos para arrancar cuanto antes."],
     ["cohete", "Después, velocidad de crucero", "Tú, casi todo el tiempo a tu trabajo. Cada vez te robamos menos."],
-    ["chat", "Sin reuniones ni llamadas", "Salvo que sean imprescindibles, y casi nunca lo son. Correo y WhatsApp, a diario si hace falta, breve y rápido."],
+    ["chat", "Sin reuniones ni llamadas", "Solo si son imprescindibles, y casi nunca lo son. Correo y WhatsApp, breve y rápido."],
   ];
   return (
     <section className="relative overflow-hidden bg-noche py-14 text-white sm:py-20" aria-labelledby="tiempo">
@@ -158,7 +158,7 @@ export function SeccionTiempo() {
         <Etiqueta tono="estrella" icono="reloj">Tu tiempo es para tu trabajo</Etiqueta>
         <h2 id="tiempo" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Rápida, eficaz y robándote el menor tiempo posible</h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
-          Nuestro objetivo: el mayor número de clientes posible, dentro de lo que puedas atender, dándote la menor guerra. No prometemos cifras; sí cuidar tu tiempo.
+          <b className="text-white">Todos los clientes que puedas atender, con la menor guerra.</b> No prometemos cifras; sí cuidar tu tiempo.
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {pasos.map(([ic, t, d], i) => (
@@ -168,7 +168,11 @@ export function SeccionTiempo() {
         <div className="mt-8 grid gap-4 lg:grid-cols-[1.2fr_1fr] lg:items-start">
           <div className="rounded-[1.6rem] bg-estrella/15 p-6 ring-1 ring-estrella/40">
             <p className="flex items-center gap-3 text-lg font-extrabold text-estrella"><Loseta icono="reloj" i={4} /> Lo que pasa con varios proveedores</p>
-            <p className="mt-3 text-lg">Reuniones, desplazamientos, llamadas y correos cruzados. Acabas más dedicado al marketing que a tu trabajo. En más de 22 años nos ha pasado. Con nosotros no ocurre, y es uno de nuestros puntos fuertes.</p>
+            <ul className="mt-3 grid gap-1.5 text-lg">
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-rose-300">✗</span>Reuniones, viajes, llamadas y correos cruzados.</li>
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-rose-300">✗</span>Acabas más en el marketing que en tu trabajo.</li>
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-estrella">✓</span><span><b>Con nosotros no pasa.</b> Es uno de nuestros puntos fuertes.</span></li>
+            </ul>
           </div>
           <Bocadillo claro>Tu agenda, para tus clientes. La nuestra, para tu marketing. Así se reparte.</Bocadillo>
         </div>
@@ -194,7 +198,7 @@ export function SeccionPorQueContratarnos() {
         <Etiqueta icono="trofeo">¿Por qué contratarnos?</Etiqueta>
         <h2 id="por-que" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Con nosotros no pierdes tiempo. Lo que ganas son datos y trabajo hecho.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          Lo que más oímos: «esto me lleva muchísimo tiempo». Por eso todo está pensado para quitártelo de encima. No prometemos cifras: medimos cada euro y cada contacto.
+          Lo que más oímos: «esto me lleva muchísimo tiempo». <b className="text-tinta">Todo está pensado para quitártelo de encima.</b> No prometemos cifras: medimos cada euro.
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {razones.map(([ic, t, d], i) => (
