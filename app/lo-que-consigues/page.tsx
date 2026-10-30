@@ -17,9 +17,9 @@ export default function LoQueConsigues() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Lo que consigues", ruta: "/lo-que-consigues" }])} />
       <CabeceraPagina
-        titulo="Esto es lo que consigues. Míralo antes de pedirlo."
+        titulo="Esto es lo que consigues, gratis. Míralo antes de pedirlo."
         clave="Míralo"
-        entradilla="Diez cosas, todas de verdad y todas tuyas. Las hemos hecho para un despacho inventado, Fuero Abogados, para que las toques como si fueras su cliente."
+        entradilla="Todo esto te lo enviamos gratis y sin compromiso. Solo tienes que pasar el test de idoneidad. Y es solo el principio de lo que podemos conseguir juntos."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Lo que consigues" }]}
         visual={<Ventana src={web.captura} alt="La web de ejemplo, en el ordenador y en el móvil" movil={web.movil} color={web.color} prioridad />}
         icono="regalo"

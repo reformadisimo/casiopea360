@@ -67,10 +67,10 @@ export function ConsiguesCompleto() {
       <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24">
         <Nebulosa oscura variante={2} />
         <div className={`${ENVOLTORIO} relative`}>
-          <Etiqueta tono="estrella" icono="regalo">Y todo esto es tuyo</Etiqueta>
-          <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Un día entero de trabajo de nuestro equipo, solo para tu empresa. Gratis.</h2>
+          <Etiqueta tono="estrella" icono="regalo">Gratis y sin compromiso</Etiqueta>
+          <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Todo esto te lo enviamos gratis. Y es solo el principio.</h2>
           <p className="mt-5 max-w-2xl text-lg text-white/80">
-            Lo que has visto es de un despacho inventado, Fuero Abogados, para que puedas tocarlo todo. El tuyo sería con tu negocio, tu competencia y tus clientes. Y es tuyo aunque no trabajes con nosotros.
+            Un día entero de trabajo de nuestro equipo, solo para tu empresa, sin compromiso. Solo tienes que pasar el test de idoneidad. Lo que has visto es de un despacho inventado, Fuero Abogados, para que puedas tocarlo todo; el tuyo sería con tu negocio, tu competencia y tus clientes. Y es tuyo aunque no trabajes con nosotros.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/test" className={BOTON}>Hacer el test de idoneidad (5 min)</Link>
