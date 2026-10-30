@@ -19,7 +19,7 @@ export default function LoQueConsigues() {
       <CabeceraPagina
         titulo="Un ejemplo real de todo lo que te llevas gratis."
         clave="ejemplo real"
-        entradilla="Si pasas el test de idoneidad, esto es lo que recibes: gratis, sin ningún compromiso y en menos de una semana. No es una propuesta, es trabajo hecho. Y es solo el principio."
+        entradilla="Haz el test y, si vemos que podemos ayudarte, esto es lo que recibes: gratis, sin ningún compromiso y en menos de una semana. No es una propuesta, es trabajo hecho. Y es solo el principio."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Un ejemplo real" }]}
         visual={<Ventana src={web.captura} alt="La web de ejemplo, en el ordenador y en el móvil" movil={web.movil} color={web.color} prioridad />}
         icono="regalo"

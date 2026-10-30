@@ -9,7 +9,7 @@ export default function EstudioDeVerdad() {
       <p className="text-sm font-extrabold uppercase tracking-wider text-estrella">No te lo pierdas</p>
       <p className="mt-1 text-xl font-extrabold sm:text-2xl">Esto es lo que te preparamos si encajas.</p>
       <p className="mt-2 text-[0.95rem] text-white/80">
-        Si pasas el test, esto es lo que recibes, <b className="text-white">gratis y sin ningún compromiso</b>, en menos de una semana. No es una propuesta: es trabajo hecho. Y es solo el principio.
+        Haz el test y, si podemos ayudarte, esto es lo que recibes, <b className="text-white">gratis y sin ningún compromiso</b>, en menos de una semana. No es una propuesta: es trabajo hecho. Y es solo el principio.
       </p>
       <ConsiguesGaleria />
       <Link href="/estudio-gratuito" className="mt-4 inline-flex min-h-10 items-center text-sm font-bold text-white/80 underline underline-offset-4 hover:text-white">

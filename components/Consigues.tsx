@@ -67,10 +67,10 @@ export function ConsiguesCompleto() {
       <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24">
         <Nebulosa oscura variante={2} />
         <div className={`${ENVOLTORIO} relative`}>
-          <Etiqueta tono="estrella" icono="regalo">Si pasas el test, esto es lo que recibes</Etiqueta>
+          <Etiqueta tono="estrella" icono="regalo">Si podemos ayudarte, esto es lo que recibes</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl">Todo esto, gratis y sin ningún compromiso. En menos de una semana.</h2>
           <p className="mt-5 max-w-2xl text-lg text-white/80">
-            No es una propuesta de lo que haríamos: es trabajo hecho, de varias personas, para tu empresa. Nos comprometemos a enviártelo en menos de una semana desde que pasas el test; lo normal es que lo tengas en tres días. Hacemos pocos a la vez y nuestro equipo revisa cada test uno a uno; no es por darnos importancia, es una cuestión de tiempo y de recursos. Lo que has visto es de un despacho inventado, Fuero Abogados, para que puedas tocarlo todo; el tuyo sería con tu negocio, tu competencia y tus clientes. Y es tuyo aunque no trabajes con nosotros.
+            No es una propuesta de lo que haríamos: es trabajo hecho, de varias personas, para tu empresa. Nos comprometemos a enviártelo en menos de una semana desde que hacemos tu estudio; lo normal es que lo tengas en tres días. El test no es un examen: nos sirve para ver dónde podemos aportarte más. Hacemos pocos estudios a la vez y los revisamos uno a uno, por pura cuestión de tiempo. Lo que has visto es de un despacho inventado, Fuero Abogados, para que puedas tocarlo todo; el tuyo sería con tu negocio, tu competencia y tus clientes. Y es tuyo aunque no trabajes con nosotros.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/test" className={BOTON}>Hacer el test de idoneidad (5 min)</Link>

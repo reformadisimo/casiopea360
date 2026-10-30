@@ -11,7 +11,7 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
       <div className="relative grid gap-6">
         <div className="min-w-0">
           <p className="inline-flex items-center gap-2 rounded-full bg-estrella px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-tinta">
-            <span aria-hidden="true">★</span> Si pasas el test, esto es lo que recibes
+            <span aria-hidden="true">★</span> Si podemos ayudarte, esto es lo que recibes
           </p>
           <p className={`mt-3 text-2xl font-extrabold leading-tight sm:text-3xl ${claro ? "text-tinta" : "text-white"}`}>
             Tu web nueva, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Gratis y sin ningún compromiso.</span>
