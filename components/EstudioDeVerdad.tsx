@@ -3,13 +3,14 @@ import { ESTUDIO_TOTAL } from "@/lib/contenido";
 
 // «No te lo pierdas»: lo que de verdad se lleva quien encaja, encima del test.
 // No son capturas sueltas: es la lista de lo que entregamos, y donde hay un ejemplo vivo en la web, se puede abrir.
-const PIEZAS: { t: string; d: string; color: string; href?: string; ver?: string }[] = [
-  { t: "Tu guía completa", d: `${ESTUDIO_TOTAL} apartados sobre tu empresa: tu situación, qué falla y qué haríamos`, color: "#1d4ed8", href: "https://fuero-abogados.vercel.app/guia-fuero", ver: "Ver una guía de ejemplo" },
-  { t: "Tu web, rediseñada entera", d: "Te enseñamos tu web nueva, página a página, como quedaría", color: "#be185d", href: "https://fuero-abogados.vercel.app", ver: "Ver una web de ejemplo completa" },
-  { t: "Tu panel de control", d: "Cómo verías cada día de dónde llegan tus clientes y qué haríamos hoy", color: "#047857", href: "/panel", ver: "Probar un panel de ejemplo" },
-  { t: "Tu CRM", d: "Tus contactos y su seguimiento, en una herramienta hecha para ti", color: "#6d28d9", href: "/crm-ejemplo", ver: "Probar un CRM de ejemplo" },
-  { t: "Tu competencia, sin secretos", d: "Quién gana en tu zona, sus anuncios reales y qué no copiaríamos", color: "#b45309" },
-  { t: "Google y las IA", d: "Cómo te ven Google y ChatGPT, y qué hace falta para que te recomienden", color: "#0f766e" },
+const F = "https://fuero-abogados.vercel.app";
+const PIEZAS: { t: string; d: string; color: string; href: string; ver: string }[] = [
+  { t: "Tu guía completa", d: `${ESTUDIO_TOTAL} apartados: cómo estás, qué falla y qué haríamos`, color: "#1d4ed8", href: `${F}/guia-fuero`, ver: "Ver una guía de ejemplo" },
+  { t: "Tu web, rediseñada entera", d: "Te enseñamos tu web nueva, página a página", color: "#be185d", href: F, ver: "Ver una web de ejemplo" },
+  { t: "Tu panel de control", d: "Cada día ves de dónde llegan tus clientes", color: "#047857", href: "/panel", ver: "Probar un panel de ejemplo" },
+  { t: "Tu CRM", d: "Tus contactos y su seguimiento, en una herramienta para ti", color: "#6d28d9", href: "/crm-ejemplo", ver: "Probar un CRM de ejemplo" },
+  { t: "Tu competencia, sin secretos", d: "Quién gana en tu zona y qué anuncios pone", color: "#b45309", href: `${F}/guia-fuero#7-tus-competidores-en-madrid`, ver: "Ver un ejemplo" },
+  { t: "Google y las IA", d: "Cómo te ven Google y ChatGPT, y qué falta para que te recomienden", color: "#0f766e", href: `${F}/guia-fuero#13-como-ponerte-por-delante-en-google-y-en-las-ia`, ver: "Ver un ejemplo" },
 ];
 
 export default function EstudioDeVerdad() {
@@ -27,11 +28,9 @@ export default function EstudioDeVerdad() {
             <span className="min-w-0">
               <span className="block font-extrabold">{x.t}</span>
               <span className="block text-sm text-white/75">{x.d}</span>
-              {x.href && (
-                <Link href={x.href} target="_blank" rel="noopener" className="mt-1 inline-flex min-h-9 items-center text-sm font-bold text-estrella underline underline-offset-4 hover:text-estrella-2">
+              <Link href={x.href} target="_blank" rel="noopener" className="mt-1 inline-flex min-h-9 items-center text-sm font-bold text-estrella underline underline-offset-4 hover:text-estrella-2">
                   {x.ver} →
                 </Link>
-              )}
             </span>
           </li>
         ))}
