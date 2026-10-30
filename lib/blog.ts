@@ -47,7 +47,7 @@ export const ARTICULOS: Articulo[] = [
         "[Lo que falla en tu web de hoy, con pruebas](https://fuero-abogados.vercel.app/guia-fuero#4-lo-que-falla-en-la-web-actual-con-pruebas). Cuánto tarda en cargar, qué nota le pone Google y dónde se te escapan clientes.",
         "[Tu competencia, sin secretos](https://fuero-abogados.vercel.app/guia-fuero#7-tus-competidores-en-madrid). Quién gana en tu zona, qué anuncios pone y qué promete.",
         "[Calculadoras y tests para tus clientes](https://fuero-abogados.vercel.app/herramientas). Herramientas que resuelven dudas solas y te traen contactos con nombre y teléfono.",
-        "[Los correos que recibirían tus clientes](https://fuero-abogados.vercel.app/guia-fuero/correos). Desde el minuto uno hasta que te contratan, escritos uno a uno para que los firmes.",
+        "[Los correos que recibirían tus clientes](https://fuero-abogados.vercel.app/guia-fuero/correos). Desde el minuto uno hasta que te contratan, escritos uno a uno para que los firmes. En el ejemplo son los de un despacho que ayuda a una trabajadora; los tuyos hablan de tu negocio y de tus clientes, con tu tono.",
         "[Tu panel de control](/panel). De dónde llegan tus clientes y qué haríamos hoy, cada día al día y en lenguaje llano.",
         "[Tu CRM](/crm-ejemplo). Cada contacto con su historia y lo que toca hacer hoy, para que ninguno se pierda.",
         "[La lupa](/lupa-ejemplo). Ves dónde toca la gente en tu web y dónde se atasca.",
