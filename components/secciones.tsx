@@ -1742,7 +1742,7 @@ export function SeccionEstudio() {
       </div>
       <div className="mt-5 grid items-center gap-6 rounded-[2rem] bg-noche p-7 text-white sm:p-9 lg:grid-cols-[1fr_auto]">
         <p className="text-xl font-extrabold sm:text-2xl">
-          Es una guía viva: se actualiza mientras la comentamos contigo. <span className="text-estrella">En una consultora, esto es un proyecto de pago. Para las empresas que encajan, es nuestro regalo.</span>
+          Es una guía viva: se actualiza mientras la comentamos contigo. <span className="text-estrella">En una consultora, esto es un proyecto de pago. Si podemos ayudarte, te lo preparamos gratis.</span>
         </p>
         <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
       </div>

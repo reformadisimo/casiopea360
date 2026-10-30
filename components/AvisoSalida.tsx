@@ -140,7 +140,7 @@ export default function AvisoSalida() {
             ¿Qué nota tiene tu marketing?
           </p>
           <p id="salida-texto" className="relative mt-2.5 text-[clamp(0.88rem,2dvh,0.97rem)] leading-snug text-white/85 sm:mt-3 sm:text-[clamp(0.9rem,2.1dvh,1.02rem)]">
-            En cinco minutos lo sabes, tocando, sin escribir. Y si encajamos, te preparamos gratis tu plan completo.
+            En cinco minutos lo sabes, tocando, sin escribir. Y si podemos ayudarte, te preparamos gratis tu plan completo.
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default function AvisoSalida() {
 
         {/* Lo que recibe quien encaja. En móviles bajitos se oculta: lo importante (la nota de hoy y el botón) tiene que verse sin desplazarse */}
         <div className="px-6 pb-3 pt-3 [@media(max-height:700px)_and_(max-width:639px)]:hidden sm:px-8 sm:pb-[clamp(0.5rem,1.2dvh,1rem)] sm:pt-[clamp(0.7rem,1.6dvh,1.25rem)]">
-          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Si encajamos, gratis: un día de trabajo solo para ti</p>
+          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Si podemos ayudarte, gratis: un día de trabajo solo para ti</p>
           <ul className="mt-1.5 grid gap-x-5 gap-y-1 text-[0.93rem] sm:mt-2 sm:gap-y-[clamp(0.25rem,0.9dvh,0.6rem)] sm:grid-cols-2 sm:text-[0.98rem]">
             {RESUMEN.map(([x, id], i) => (
               <li key={id} className="flex items-center gap-3">

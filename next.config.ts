@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
   // experimental: { inlineCss: true }, (desactivado: duplicaba el CSS dentro de la página)
   async redirects() {
     return [
-      { source: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan-si-pasas-el-test", destination: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan", permanent: true },
+      { source: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan-si-pasas-el-test", destination: "/blog/tu-web-tu-guia-y-tu-plan-gratis", permanent: true },
+      { source: "/blog/te-regalamos-tu-web-tu-guia-y-tu-plan", destination: "/blog/tu-web-tu-guia-y-tu-plan-gratis", permanent: true },
     ];
   },
   async headers() {

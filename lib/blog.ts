@@ -23,16 +23,16 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
-    slug: "te-regalamos-tu-web-tu-guia-y-tu-plan",
+    slug: "tu-web-tu-guia-y-tu-plan-gratis",
     tituloSeo: "Tu web, tu guía y tu plan, gratis",
     video: "equipo-celebra",
     apoyo: { video: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
-    titulo: "Haz el test y, si podemos ayudarte, te regalamos tu web nueva, tu guía y tu plan. Gratis y sin compromiso.",
+    titulo: "Si podemos ayudarte, te preparamos gratis tu web nueva, tu guía y tu plan.",
     descripcion: "Un día entero de trabajo de nuestro equipo, para tu empresa, hecho en menos de una semana y sin pagar nada: tu web rediseñada, una guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Te enseñamos un ejemplo real y te contamos por qué lo hacemos.",
     fecha: "2026-10-30",
     lectura: "6 minutos",
     categoria: "Estrategia",
-    claves: ["estudio de marketing gratis", "rediseño web gratis", "auditoría de marketing digital gratuita", "plan de marketing gratis para pymes", "test de idoneidad Casiopea 360"],
+    claves: ["estudio de marketing gratis", "auditoría de marketing digital gratuita", "plan de marketing gratis para pymes", "test de idoneidad Casiopea 360"],
     respuesta:
       "Haces nuestro test de idoneidad (cinco minutos, tocando) y, si vemos que podemos ayudarte, le dedicamos un día entero de trabajo y te enviamos gratis y sin ningún compromiso: tu web nueva ya hecha, una guía de 29 apartados sobre tu negocio, lo que falla hoy con pruebas, tu competencia al detalle, los correos que recibirían tus clientes, tu panel de control y tu CRM. Hay un ejemplo real, de un despacho inventado, para que lo veas entero antes de pedirlo.",
     cuerpo: [
@@ -53,7 +53,7 @@ export const ARTICULOS: Articulo[] = [
         "[La lupa](/lupa-ejemplo). Ves dónde toca la gente en tu web y dónde se atasca.",
         "[Los avisos por WhatsApp](/avisos-ejemplo). Confirmación, recordatorio y petición de reseña, solos."
       ] },
-      { p: "Todo esto, junto, está en una sola página: [un ejemplo real de todo lo que te llevas](/lo-que-consigues)." },
+      { p: "Todo esto, junto, está en una sola página: [un ejemplo real de todo lo que te preparamos](/lo-que-consigues)." },
       { h2: "No es una propuesta: es trabajo hecho" },
       { p: "Lo normal, cuando pides presupuesto, es recibir un documento con lo que harían. Aquí recibes lo hecho. Tu web ya se puede abrir, tu guía ya se puede leer, tus correos ya están escritos y tu panel ya funciona con tus datos. Son semanas de trabajo de varias personas, y las tienes en tu correo antes de decidir nada, sin haber firmado nada." },
       { caja: "Si cogemos tu estudio, lo recibes completo en menos de una semana. Es nuestro compromiso, por escrito. Lo normal es que lo tengas en tres días.", t: "Plazo máximo: una semana" },
@@ -81,7 +81,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "¿Puedo ver un ejemplo antes?", r: "Sí: hay uno entero, hecho para un despacho inventado, con la web, la guía, los correos, el panel y el CRM. Está en la página Un ejemplo real." },
     ],
     enlaces: [
-      { texto: "Ver un ejemplo real de todo lo que te llevas", href: "/lo-que-consigues" },
+      { texto: "Ver un ejemplo real de todo lo que te preparamos", href: "/lo-que-consigues" },
       { texto: "Hacer el test de idoneidad", href: "/test" },
       { texto: "Cómo funciona el estudio gratuito", href: "/estudio-gratuito" },
     ],

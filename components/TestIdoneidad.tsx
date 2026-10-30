@@ -20,7 +20,7 @@ const MUESTRA = [
 function Muestra({ oscuro = false }: { oscuro?: boolean }) {
   return (
     <div>
-      <p className={`text-sm font-bold ${oscuro ? "text-estrella" : "text-noche-3"}`}>Si encajas, esto es lo que te preparamos gratis</p>
+      <p className={`text-sm font-bold ${oscuro ? "text-estrella" : "text-noche-3"}`}>Si podemos ayudarte, esto es lo que te preparamos gratis</p>
       <ul className="mt-3 grid grid-cols-4 gap-2 sm:gap-3">
         {MUESTRA.map((x, i) => (
           <li key={x.src} className={`overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 ${i % 2 ? "rotate-2" : "-rotate-2"}`}>

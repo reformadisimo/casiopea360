@@ -86,7 +86,7 @@ export function ConsiguesCompleto() {
 export function ConsiguesGaleria({ claro = false }: { claro?: boolean }) {
   return (
     <div className="mt-8">
-      <p className={`text-sm font-extrabold uppercase tracking-wider ${claro ? "text-noche-3" : "text-estrella"}`}>Un ejemplo real de lo que te llevas</p>
+      <p className={`text-sm font-extrabold uppercase tracking-wider ${claro ? "text-noche-3" : "text-estrella"}`}>Un ejemplo real de lo que te preparamos</p>
       <p className={`mt-1 text-lg font-extrabold ${claro ? "text-tinta" : "text-white"}`}>Toca cualquiera y ábrelo.</p>
       <ul className="mt-5 grid grid-cols-2 gap-3">
         {PIEZAS_RESUMEN.map((p, k) => (

@@ -81,7 +81,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No. Trabajamos con tecnología actual, sin plugins ni panel de administración a la vista, que es por donde entran la mayoría de los ataques. Y si algo falla, volvemos a la versión anterior en minutos.",
       },
     ],
-    articulos: ["te-regalamos-tu-web-tu-guia-y-tu-plan", "cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
+    articulos: ["tu-web-tu-guia-y-tu-plan-gratis", "cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
   },
   {
     slug: "seo-google-ia",
@@ -327,7 +327,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "Entra en tu cuota. Contratado por separado, un CRM a medida cuesta en el mercado de 5.000 a 35.000 €.",
       },
     ],
-    articulos: ["que-es-un-crm-y-para-que-sirve", "te-regalamos-tu-web-tu-guia-y-tu-plan", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
+    articulos: ["que-es-un-crm-y-para-que-sirve", "tu-web-tu-guia-y-tu-plan-gratis", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
   },
   {
     slug: "lupa-360",
