@@ -486,7 +486,7 @@ export default function TestIdoneidad() {
               <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Último paso</p>
             </div>
             <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le enviamos tu resultado?</p>
-            <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables, encaje o no.</p>
+            <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana.</p>
             <div className="mt-5"><Muestra oscuro /></div>
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">

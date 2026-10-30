@@ -199,7 +199,7 @@ export default function AvisoSalida() {
               Ahora no
             </button>
           </div>
-          <p className="mt-2 hidden text-sm leading-snug text-gris sm:block [@media(max-height:680px)]:!hidden">Sin llamadas ni reuniones. Encajes o no, te escribimos siempre con el porqué.</p>
+          <p className="mt-2 hidden text-sm leading-snug text-gris sm:block [@media(max-height:680px)]:!hidden">Sin llamadas ni reuniones. Si pasas el test, tu estudio en menos de una semana.</p>
         </div>
       </div>
     </div>

@@ -23,6 +23,70 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
+    slug: "te-regalamos-tu-web-tu-guia-y-tu-plan-si-pasas-el-test",
+    tituloSeo: "Tu web, tu guía y tu plan, gratis",
+    video: "equipo-celebra",
+    apoyo: { video: "mujer-celebra", alt: "Una directiva celebra un buen resultado" },
+    titulo: "Si pasas el test, te regalamos tu web nueva, tu guía y tu plan. Gratis y sin compromiso.",
+    descripcion: "Un día entero de trabajo de nuestro equipo, para tu empresa, hecho en menos de una semana y sin pagar nada: tu web rediseñada, una guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Te enseñamos un ejemplo real y te contamos por qué lo hacemos.",
+    fecha: "2026-10-30",
+    lectura: "6 minutos",
+    categoria: "Estrategia",
+    claves: ["estudio de marketing gratis", "rediseño web gratis", "auditoría de marketing digital gratuita", "plan de marketing gratis para pymes", "test de idoneidad Casiopea 360"],
+    respuesta:
+      "Si tu empresa pasa nuestro test de idoneidad (cinco minutos, tocando), le dedicamos un día entero de trabajo y te enviamos gratis y sin ningún compromiso: tu web nueva ya hecha, una guía de 29 apartados sobre tu negocio, lo que falla hoy con pruebas, tu competencia al detalle, los correos que recibirían tus clientes, tu panel de control y tu CRM. Es tuyo aunque no trabajes nunca con nosotros. Hay un ejemplo real, de un despacho inventado, para que lo veas entero antes de pedirlo.",
+    cuerpo: [
+      { h2: "Lo decimos claro, porque cuesta creerlo" },
+      { p: "Cuando alguien lo lee por primera vez, suele pensar que hay truco. No lo hay. Si tu empresa pasa [el test de idoneidad](/test), nuestro equipo dedica un día entero de trabajo a tu negocio y te envía el resultado. Gratis. Sin compromiso. Sin reunión. Sin que nadie te llame para venderte nada." },
+      { caja: "Si pasas el test, esto es lo que recibes: tu web nueva, tu guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Gratis, sin compromiso, y tuyo aunque no trabajes con nosotros.", t: "En una frase" },
+      { h2: "Qué recibes, cosa por cosa" },
+      { p: "Para que no tengas que imaginarlo, lo hemos hecho entero para un despacho inventado, Fuero Abogados. Cada punto de esta lista lleva a su ejemplo real, que puedes abrir y tocar como si fueras su cliente." },
+      { ol: [
+        "[Tu web, entera y nueva](https://fuero-abogados.vercel.app). No un boceto ni una maqueta: tu web completa, página a página, funcionando en el ordenador y en el móvil.",
+        "[Tu guía de 29 apartados](https://fuero-abogados.vercel.app/guia-fuero). Cómo estás hoy, qué falla y qué haríamos, con fotos y sin palabrería. Se lee en cinco minutos o en una tarde.",
+        "[Lo que falla en tu web de hoy, con pruebas](https://fuero-abogados.vercel.app/guia-fuero#4-lo-que-falla-en-la-web-actual-con-pruebas). Cuánto tarda en cargar, qué nota le pone Google y dónde se te escapan clientes.",
+        "[Tu competencia, sin secretos](https://fuero-abogados.vercel.app/guia-fuero#7-tus-competidores-en-madrid). Quién gana en tu zona, qué anuncios pone y qué promete.",
+        "[Calculadoras y tests para tus clientes](https://fuero-abogados.vercel.app/herramientas). Herramientas que resuelven dudas solas y te traen contactos con nombre y teléfono.",
+        "[Los correos que recibirían tus clientes](https://fuero-abogados.vercel.app/guia-fuero/correos). Desde el minuto uno hasta que te contratan, escritos uno a uno para que los firmes.",
+        "[Tu panel de control](/panel). De dónde llegan tus clientes y qué haríamos hoy, cada día al día y en lenguaje llano.",
+        "[Tu CRM](/crm-ejemplo). Cada contacto con su historia y lo que toca hacer hoy, para que ninguno se pierda.",
+        "[La lupa](/lupa-ejemplo). Ves dónde toca la gente en tu web y dónde se atasca.",
+        "[Los avisos por WhatsApp](/avisos-ejemplo). Confirmación, recordatorio y petición de reseña, solos."
+      ] },
+      { p: "Todo esto, junto, está en una sola página: [un ejemplo real de todo lo que te llevas](/lo-que-consigues)." },
+      { h2: "No es una propuesta: es trabajo hecho" },
+      { p: "Lo normal, cuando pides presupuesto, es recibir un documento con lo que harían. Aquí recibes lo hecho. Tu web ya se puede abrir, tu guía ya se puede leer, tus correos ya están escritos y tu panel ya funciona con tus datos. Son semanas de trabajo de varias personas, y las tienes en tu correo antes de decidir nada, sin haber firmado nada." },
+      { caja: "Si pasas el test, recibes tu estudio completo en menos de una semana. Es nuestro compromiso, por escrito. Lo normal es que lo tengas en tres días.", t: "Plazo máximo: una semana" },
+      { h2: "¿Y por qué regaláis un día de trabajo?" },
+      { p: "Por tres razones, y ninguna es de buen samaritano." },
+      { ul: [
+        "Porque es la mejor forma de demostrar lo que hacemos. Contar que hacemos webs en días y no en meses suena a frase de agencia. Enseñarte tu web ya hecha, no.",
+        "Porque así decides con datos. Ves exactamente qué tendrías, lo tocas, se lo enseñas a quien quieras, y luego hablamos o no. Y te quedas con el estudio igual.",
+        "Porque nos sale a cuenta. Trabajamos sin oficinas ni gastos fijos, y con herramientas que ya tenemos montadas. Un día de trabajo para nosotros es una inversión pequeña; para una empresa que luego se queda, es el principio de años de trabajo juntos."
+      ] },
+      { h2: "¿Y qué pasa si después no quiero seguir?" },
+      { p: "Nada. El estudio es tuyo. La web de ejemplo que te enseñamos es tuya para lo que quieras, y la guía también. No hay letra pequeña, ni permanencia, ni una llamada incómoda. Lo decimos en [Tu control](/tu-control) y lo cumplimos: nada te ata." },
+      { h2: "Por qué hay un test antes" },
+      { p: "No es por darnos importancia. Es una cuestión de tiempo y de recursos: cada estudio son días de trabajo de varias personas, y solo podemos hacer unos pocos a la vez. Hoy tenemos lista de espera. El test nos sirve para dedicar ese tiempo a las empresas en las que más podemos aportar ahora, y nuestro equipo los revisa uno a uno. El test son unas preguntas sobre tu negocio, lo que inviertes hoy y lo que quieres conseguir. Se contesta tocando, sin escribir, en unos cinco minutos. Y al terminar te damos tu nota al momento, encajes o no." },
+      { p: "Si podemos coger tu estudio ahora, en menos de una semana lo tienes en el correo. Si en este momento no podemos, te lo decimos igual, con tu nota, y te avisamos en cuanto haya hueco." },
+      { h2: "Esto es solo el principio" },
+      { p: "El estudio es lo que hacemos antes de empezar. Lo que viene después, si decides seguir, es lo de verdad: tu web publicada, tus anuncios funcionando, tu panel con datos reales y un equipo que se ocupa de todo por una cuota fija. Pero eso ya lo decidirás con tu estudio en la mano, no con nuestra palabra." },
+    ],
+    faq: [
+      { p: "¿De verdad es gratis?", r: "Sí. No pagas nada por el estudio, ni antes ni después. No pedimos tarjeta ni firmas nada." },
+      { p: "¿Me vais a llamar para venderme algo?", r: "No. Trabajamos por escrito. Recibes el estudio por correo y, si quieres hablar, nos escribes tú." },
+      { p: "¿Cuánto tarda?", r: "Menos de una semana desde que pasas el test. Es un compromiso, no una estimación. Lo normal es tenerlo en tres días." },
+      { p: "¿Y si ahora no podéis hacer el mío?", r: "Te escribimos igual, con tu nota y lo que mejoraríamos primero. Hacemos pocos estudios a la vez y hay lista de espera; si no es ahora, te avisamos cuando haya hueco." },
+      { p: "¿Qué tengo que daros para hacerlo?", r: "Solo lo que contestes en el test. El estudio lo hacemos con lo que se ve desde fuera: tu web, tu ficha de Google, tus anuncios y tu competencia." },
+      { p: "¿Puedo ver un ejemplo antes?", r: "Sí: hay uno entero, hecho para un despacho inventado, con la web, la guía, los correos, el panel y el CRM. Está en la página Un ejemplo real." },
+    ],
+    enlaces: [
+      { texto: "Ver un ejemplo real de todo lo que te llevas", href: "/lo-que-consigues" },
+      { texto: "Hacer el test de idoneidad", href: "/test" },
+      { texto: "Cómo funciona el estudio gratuito", href: "/estudio-gratuito" },
+    ],
+  },
+  {
     slug: "ficha-de-google-que-es-y-como-sacarle-partido",
     fuentes: [
       { texto: "Ayuda de Perfil de Empresa en Google: gestionar los propietarios y administradores", href: "https://support.google.com/business/answer/3403100?hl=es" },

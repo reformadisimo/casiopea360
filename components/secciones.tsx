@@ -1791,7 +1791,7 @@ export function SeccionSolicitud() {
           <p className="mt-5 text-lg text-white/80">
             Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
           </p>
-          <p className="mt-4 text-lg text-white/80">Te escribimos siempre: si encajas, para preparar tu estudio; y si no, también, con el porqué.</p>
+          <p className="mt-4 text-lg text-white/80">Te escribimos siempre. Si pasas el test, tienes tu estudio completo en menos de una semana.</p>
           <VerEjemplo className="mt-6" />
           <EstudioDeVerdad />
           <div className="hidden lg:block"><EjemplosTrabajos /></div>
