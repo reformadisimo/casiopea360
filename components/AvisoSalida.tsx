@@ -15,13 +15,13 @@ const CLAVE = "casiopea-salida";
 // Lo que se lleva hoy mismo cualquiera que termine el test, encaje o no.
 const HOY = ["Tu nota, de 0 a 100", "Dónde se te escapan clientes", "Qué arreglaríamos primero"];
 // Lo que recibe gratis quien encaja: el estudio completo.
-const RESUMEN = [
-  "Semáforo de tu situación",
-  "Tu competencia y sus anuncios",
-  "Cómo quedaría tu web",
-  "Tu asistente con IA",
-  "Cuánto ahorrarías, al euro",
-  "Tu plan para 30 días",
+const RESUMEN: [string, string][] = [
+  ["Tu web, entera y nueva", "web"],
+  ["Tu guía de 29 apartados", "guia"],
+  ["Tu competencia, sin secretos", "competencia"],
+  ["Los correos a tus clientes", "correos"],
+  ["Tu panel de control", "panel"],
+  ["Tu CRM a medida", "crm"],
 ];
 
 export default function AvisoSalida() {
@@ -161,12 +161,12 @@ export default function AvisoSalida() {
         <div className="px-6 pb-3 pt-3 [@media(max-height:700px)_and_(max-width:639px)]:hidden sm:px-8 sm:pb-[clamp(0.5rem,1.2dvh,1rem)] sm:pt-[clamp(0.7rem,1.6dvh,1.25rem)]">
           <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Si encajamos, gratis: un día de trabajo solo para ti</p>
           <ul className="mt-1.5 grid gap-x-5 gap-y-1 text-[0.93rem] sm:mt-2 sm:gap-y-[clamp(0.25rem,0.9dvh,0.6rem)] sm:grid-cols-2 sm:text-[0.98rem]">
-            {RESUMEN.map((x, i) => (
-              <li key={x} className="flex items-center gap-3">
+            {RESUMEN.map(([x, id], i) => (
+              <li key={id} className="flex items-center gap-3">
                 <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md text-[0.7rem] font-extrabold text-white" style={{ background: ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309", "#0f766e"][i] }}>
                   {i + 1}
                 </span>
-                <span className="font-bold leading-snug">{x}</span>
+                <Link href={`/lo-que-consigues#${id}`} onClick={() => setAbierto(false)} className="font-bold leading-snug underline decoration-transparent underline-offset-4 hover:decoration-estrella">{x}</Link>
               </li>
             ))}
           </ul>
@@ -183,18 +183,18 @@ export default function AvisoSalida() {
               Ver mi nota en 5 minutos
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </Link>
-            <a href="https://fuero-abogados.vercel.app" target="_blank" rel="noopener" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">
-              Ver un ejemplo
-            </a>
+            <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">
+              Ver lo que consigues
+            </Link>
             <button type="button" onClick={() => setAbierto(false)} className="hidden min-h-11 rounded-full px-3 font-bold text-gris hover:text-tinta sm:inline-block">
               Ahora no
             </button>
           </div>
           {/* Móvil: «ver un ejemplo» y «ahora no» en una fila bajo el botón */}
           <div className="mt-1.5 flex items-center justify-between gap-3 sm:hidden">
-            <a href="https://fuero-abogados.vercel.app" target="_blank" rel="noopener" onClick={() => setAbierto(false)} className="inline-flex min-h-11 items-center font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4">
-              Ver un ejemplo
-            </a>
+            <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="inline-flex min-h-11 items-center font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4">
+              Ver lo que consigues
+            </Link>
             <button type="button" onClick={() => setAbierto(false)} className="min-h-11 shrink-0 px-2 font-bold text-gris">
               Ahora no
             </button>

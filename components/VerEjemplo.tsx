@@ -1,3 +1,4 @@
+import Link from "next/link";
 // «Mira un ejemplo de lo que conseguirías»: acceso directo, en muchas páginas, a la web completa de ejemplo
 // (despacho ficticio Fuero Abogados) y a su guía, su panel y su CRM.
 const FUERO = "https://fuero-abogados.vercel.app";
@@ -7,10 +8,8 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
   const enl = claro ? "text-noche-3 hover:text-noche" : "text-estrella hover:text-estrella-2";
   return (
     <div className={`max-w-xl ${className}`}>
-      <a
-        href={FUERO}
-        target="_blank"
-        rel="noopener"
+      <Link
+        href="/lo-que-consigues"
         className={`group flex items-center gap-4 rounded-[1.4rem] p-3 pr-5 transition-colors ${
           claro ? "bg-white ring-1 ring-linea hover:ring-noche" : "bg-white/10 ring-1 ring-white/20 hover:bg-white/15"
         }`}
@@ -27,16 +26,17 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
           <span className="absolute bottom-2 right-2 h-6 w-7 rounded bg-white/25" />
         </span>
         <span className="min-w-0 flex-1">
-          <span className={`block font-extrabold leading-snug ${claro ? "text-tinta" : "text-white"}`}>Mira un ejemplo de lo que conseguirías</span>
-          <span className={`mt-0.5 block text-sm ${sub}`}>Una web completa, hecha por nosotros, de un despacho inventado</span>
+          <span className={`block font-extrabold leading-snug ${claro ? "text-tinta" : "text-white"}`}>Mira lo que conseguirías, de un vistazo</span>
+          <span className={`mt-0.5 block text-sm ${sub}`}>Tu web nueva, tu guía, tus correos, tu panel y tu CRM: ejemplos de verdad</span>
         </span>
-        <span aria-hidden="true" className={`text-xl font-bold transition-transform group-hover:translate-x-1 ${claro ? "text-noche" : "text-estrella"}`}>↗</span>
-      </a>
+        <span aria-hidden="true" className={`text-xl font-bold transition-transform group-hover:translate-x-1 ${claro ? "text-noche" : "text-estrella"}`}>→</span>
+      </Link>
       <p className={`mt-2 pl-3 text-sm ${sub}`}>
-        Y también su{" "}
-        <a href={`${FUERO}/guia-fuero`} target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>guía</a>,{" "}
-        <a href="/panel" target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>panel de control</a> y{" "}
-        <a href="/crm-ejemplo" target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>CRM</a>.
+        O abre directamente{" "}
+        <a href={FUERO} target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>la web de ejemplo</a>,{" "}
+        <a href={`${FUERO}/guia-fuero`} target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>su guía</a>,{" "}
+        <a href="/panel" target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>el panel</a> o{" "}
+        <a href="/crm-ejemplo" target="_blank" rel="noopener" className={`font-bold underline underline-offset-4 ${enl}`}>el CRM</a>.
       </p>
     </div>
   );
