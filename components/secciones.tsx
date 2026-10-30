@@ -907,7 +907,7 @@ const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
   { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
   { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
-  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres meses no has visto que mejoramos, te vas sin pagar nada." },
+  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada." },
 ];
 
 export const COLOR_SELLO: [string, string][] = [
@@ -994,7 +994,7 @@ export function SeccionMiedoAlCambio() {
 
           <div className="flex flex-col gap-4">
             {[
-              ["Tres meses para demostrarlo", "Si en ese tiempo no has visto que mejoramos, te vas sin pagar nada y te quedas con la web."],
+              ["Tres meses para demostrarlo", "Si en ese tiempo no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web."],
               ["Doce meses y se acabó", "Es la única permanencia. Después, te quedas solo si te compensa."],
               ["Lo tuyo, siempre tuyo", "Tus cuentas y tus contactos, siempre. La web, al cumplir los doce meses, o antes si pagas la parte que falte."],
             ].map(([t, d], i) => (
@@ -1023,7 +1023,7 @@ export function BandaMiedoAlCambio() {
           <Loseta icono="bombilla" i={3} className="sm:mr-1" />
           <span className="flex-1">
             <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">¿Te da miedo cambiar?</span>
-            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses sin pagar nada si no mejoramos.</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Prueba la nueva web al lado de la tuya, sin riesgo, y vete a los tres meses sin pagar nada si no mejoramos los indicadores acordados.</span>
           </span>
           <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Cómo lo hacemos</span>
         </a>

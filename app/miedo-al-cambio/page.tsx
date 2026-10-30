@@ -8,7 +8,7 @@ import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, TarjetaViva } from
 
 export const metadata = meta(
   "Miedo al cambio: prueba la web nueva sin riesgo",
-  "Test A/B entre tu web actual y la nueva, con el reparto de visitas que elijas, salida a los tres meses sin pagar nada si no mejoramos, y tus cuentas siempre tuyas.",
+  "Test A/B entre tu web actual y la nueva, con el reparto de visitas que elijas, salida a los tres meses sin pagar nada si no mejoramos los indicadores acordados, y tus cuentas siempre tuyas.",
   "/miedo-al-cambio",
 );
 
@@ -23,7 +23,7 @@ const PASOS: [string, string, string][] = [
 const PREGUNTAS: { icono: string; p: string; r: string }[] = [
   { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual sigue recibiendo las visitas que tú decidas. Si te da más seguridad, empezamos con un reparto pequeño y lo subimos poco a poco." },
   { icono: "reloj", p: "¿Cuánto dura?", r: "Depende de las visitas que tengas: con mucho tráfico, unos días; con poco, unas semanas. Te lo decimos antes de empezar." },
-  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no has visto que mejoramos, puedes irte sin pagar nada y quedarte con la web." },
+  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "No la imponemos. Lo enseñan los números, y a los tres meses, si no hemos mejorado los indicadores que fijamos contigo al empezar, puedes irte sin pagar nada y con tu web." },
   { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No. Hasta hoy la nueva ha ganado en todos los clientes con los que hemos trabajado, pero eso se comprueba contigo." },
 ];
 
@@ -43,7 +43,7 @@ export default function MiedoAlCambio() {
         ejemplo
         titulo="¿Te da miedo cambiar? Pruébalo sin riesgo."
         clave="sin riesgo"
-        entradilla="Ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus números. Si en tres meses no mejoramos, te vas sin pagar nada."
+        entradilla="Ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus números. Si en tres meses no mejoramos los indicadores que fijamos contigo al empezar, te vas sin pagar nada."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Miedo al cambio" }]}
       />
 

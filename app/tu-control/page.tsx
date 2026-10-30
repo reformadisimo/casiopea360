@@ -168,7 +168,7 @@ export default function TuControl() {
           <div className="flex max-w-2xl items-start gap-4">
             <Loseta icono="mano" i={3} className="mt-1" />
             <p className="text-lg text-gris">
-              ¿Y si quieres irte? A los tres meses, sin pagar nada si no has visto que mejoramos; más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
+              ¿Y si quieres irte? A los tres meses, sin pagar nada si no hemos mejorado los indicadores que fijamos contigo al empezar; más adelante, pagando solo la parte de la web que falte. Tus cuentas y tus contactos te los llevas siempre.
             </p>
           </div>
           <Link prefetch={false} href="/miedo-al-cambio" className={`${BOTON} shrink-0`}>Ver cómo es la salida</Link>

@@ -250,7 +250,7 @@ export const GARANTIAS = [
   },
   {
     titulo: "Tu web, regalada",
-    texto: "Solo pagas la cuota, con doce meses de permanencia. Si a los tres no ves mejora, te vas sin pagar nada y con la web. Más tarde, pagas solo lo que falte de la web. A los doce, sin permanencia.",
+    texto: "Solo pagas la cuota, con doce meses de permanencia. Si a los tres no hemos mejorado los indicadores acordados, te vas sin pagar nada y con tu web. Más tarde, pagas solo lo que falte de la web. A los doce, sin permanencia.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -285,7 +285,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Hay permanencia?",
-    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos conseguido enseñarte que mejoramos, según los indicadores que fijamos contigo al empezar, te vas sin pagar nada y te quedas con la web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Ese importe se reduce poco a poco hasta cero a los doce meses, y lo conoces antes de firmar, en tu propuesta. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
+    r: "Doce meses, porque la web te la regalamos. Tu dominio y tus cuentas están a tu nombre desde el primer día, y la web es tuya al cumplir los doce meses. La salida es siempre clara: si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web. Si prefieres irte más tarde, pagas solo la parte de la web que aún no habías cubierto, y te la llevas. Ese importe se reduce poco a poco hasta cero a los doce meses, y lo conoces antes de firmar, en tu propuesta. Pasados los doce meses no hay ninguna permanencia. No queremos clientes que no quieran estar con nosotros.",
   },
   {
     p: "¿Garantizáis resultados?",
@@ -317,7 +317,7 @@ export const PREGUNTAS = [
   },
   {
     p: "¿Y si lo pruebo y no me convence?",
-    r: "Para eso están los primeros meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas cuotas. Si a los tres meses no ves que mejoramos, te puedes ir sin pagar nada y te quedas con la web. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
+    r: "Para eso están los primeros meses: es la forma de probarlo. En ese tiempo ya tienes tu web nueva, tu CRM, tus calculadoras y todo lo que hayamos puesto en marcha, que por separado costaría muchísimo más que esas cuotas. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te puedes ir sin pagar nada y con tu web. Y si te da miedo el cambio, puedes probar primero con un test A/B: repartimos las visitas entre tu web actual y la nueva (la mitad y la mitad, o el reparto que elijas) y comparas los resultados.",
   },
   {
     p: "¿Cuánto tardáis en hacer una web?",
@@ -542,7 +542,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "A precio fijo.",
     d: "Una sola cuota, la misma para cualquier tamaño de empresa, con todo dentro. Menos de lo que te costaría cada cosa por separado, y sin sorpresas.",
-    pie: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres no ves que mejoramos, te vas sin pagar nada.",
+    pie: "Doce meses de permanencia, y la web es tuya al cumplirlos. Si a los tres no hemos mejorado los indicadores acordados, te vas sin pagar nada.",
   },
   {
     t: "Sin perseguirnos.",

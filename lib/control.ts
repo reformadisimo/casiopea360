@@ -33,8 +33,8 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; largo:
   {
     icono: "calendario",
     titulo: "Nada te ata",
-    corto: "Doce meses de permanencia, porque la web te la regalamos. A los tres puedes irte sin pagar nada si no mejoramos.",
-    largo: "Doce meses de permanencia y ni uno más, porque la web te la regalamos. A los tres, si no mejoramos según los indicadores fijados contigo, te vas sin pagar nada y con la web. Importe y calendario, en la propuesta antes de firmar.",
+    corto: "Doce meses de permanencia, porque la web te la regalamos. A los tres puedes irte sin pagar nada si no mejoramos los indicadores acordados.",
+    largo: "Doce meses de permanencia y ni uno más, porque la web te la regalamos. A los tres, si no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web. Importe y calendario, en la propuesta antes de firmar.",
   },
   {
     icono: "lista",

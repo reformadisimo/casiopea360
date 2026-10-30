@@ -261,7 +261,7 @@ export const ARTICULOS: Articulo[] = [
         "Tu dinero en anuncios lo pagas con tu tarjeta, en tu cuenta, y va entero a los anuncios. Sin comisión sobre la inversión.",
         "Tu web acaba siendo tuya: te la regalamos a cambio de doce meses y, al cumplirlos, queda en una cuenta a tu nombre con una copia completa (textos, fotos, formularios y código). Si te vas antes, pagas solo la parte que falte, y te ayudamos con el traspaso.",
         "Tus contactos y tus clientes son tuyos: te los damos en una hoja de Excel cuando los pidas.",
-        "Nada te ata a escondidas: hay doce meses de permanencia, porque la web te la regalamos, y a los tres meses puedes irte sin pagar nada si no has visto que mejoramos. Pasados los doce meses no hay ninguna.",
+        "Nada te ata a escondidas: hay doce meses de permanencia, porque la web te la regalamos, y a los tres meses puedes irte sin pagar nada si no hemos mejorado los indicadores que fijamos contigo al empezar. Pasados los doce meses no hay ninguna.",
         "Todo queda apuntado en una ficha con tus cuentas: qué es cada una, quién es el propietario y quién tiene acceso.",
       ] },
       { p: "Una precisión, para que no haya sorpresas: [la web que te regalamos](/servicios/diseno-web) pasa a tu nombre al cumplir los doce meses, o antes si pagas la parte que falte, y hasta entonces la alojamos nosotros. Lo que nunca retenemos es tu dominio, tus cuentas ni tus contactos." },
