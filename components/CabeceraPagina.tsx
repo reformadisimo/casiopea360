@@ -4,6 +4,7 @@ import ChipVideo from "@/components/ChipVideo";
 import Subrayado from "@/components/Subrayado";
 import { Loseta } from "@/components/secciones";
 import { Nebulosa, iconoPorTexto } from "@/components/Vida";
+import VerEjemplo from "@/components/VerEjemplo";
 
 // Franja de título de las páginas interiores: texto a la izquierda y un vídeo con personas o luz a la derecha.
 // En el móvil, el vídeo va debajo del texto, en su tarjeta y bien visible.
@@ -17,6 +18,7 @@ export default function CabeceraPagina({
   clave,
   chip,
   icono,
+  ejemplo = false,
 }: {
   titulo: string;
   entradilla?: string;
@@ -27,6 +29,7 @@ export default function CabeceraPagina({
   clave?: string; // palabra del título que va subrayada en oro
   chip?: { grande: string; chico: string };
   icono?: string; // loseta grande junto al título; si no se da, se elige por el título
+  ejemplo?: boolean; // acceso directo «Mira un ejemplo de lo que conseguirías»
 }) {
   const partes = clave && titulo.includes(clave) ? titulo.split(clave) : null;
   const ic = icono ?? iconoPorTexto(titulo, titulo.length);
@@ -70,6 +73,7 @@ export default function CabeceraPagina({
             )}
           </h1>
           {entradilla && <p className="mt-5 max-w-2xl text-lg text-white/80 sm:text-xl">{entradilla}</p>}
+          {ejemplo && <VerEjemplo className="mt-7" />}
         </div>
         {visual && <div className="relative mt-2 lg:mt-0">{visual}</div>}
         {!visual && video && (

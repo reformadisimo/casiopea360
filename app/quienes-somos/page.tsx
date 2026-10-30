@@ -49,6 +49,7 @@ export default function QuienesSomos() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Quiénes somos", ruta: "/quienes-somos" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Más de 22 años haciendo que el teléfono suene."
         clave="suene"
         chip={{ grande: "El mismo día", chico: "Respuesta a cada petición" }}

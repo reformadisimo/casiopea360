@@ -19,6 +19,7 @@ export default function Servicios() {
     <>
       <DatosEstructurados datos={[...schemaServicios(), schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Servicios", ruta: "/servicios" }])]} />
       <CabeceraPagina
+        ejemplo
         titulo="Todo lo digital, con un solo equipo."
         clave="un solo equipo"
         chip={{ grande: "En días", chico: "Tu web, no en meses" }}

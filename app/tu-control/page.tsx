@@ -33,6 +33,7 @@ export default function TuControl() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Tu control", ruta: "/tu-control" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Tus cuentas son tuyas. Tú mandas."
         clave="tuyas"
         entradilla="Tu dominio y tus cuentas, a tu nombre. Que te quedes porque te servimos, no porque no puedas irte. Y no te pedimos tu facturación: te pedimos dos números."

@@ -17,6 +17,7 @@ export default function EstudioGratuito() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Tu estudio gratuito: tu plan completo, hecho a medida."
         clave="a medida"
         chip={{ grande: `${ESTUDIO_TOTAL} apartados`, chico: "Con tu web rediseñada" }}

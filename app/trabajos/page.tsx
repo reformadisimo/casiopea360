@@ -16,6 +16,7 @@ export default function Trabajos() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Trabajos", ruta: "/trabajos" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Trabajos reales, funcionando hoy."
         clave="reales"
         chip={{ grande: "−36 %", chico: "AMS Cerramientos, cada mes" }}

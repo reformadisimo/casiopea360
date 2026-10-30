@@ -3,6 +3,7 @@ import { casoDe } from "@/lib/casos";
 import Image from "next/image";
 import EstudioDeVerdad from "@/components/EstudioDeVerdad";
 import Link from "next/link";
+import VerEjemplo from "@/components/VerEjemplo";
 import { COMPROMISOS } from "@/lib/control";
 import VideoFondo from "@/components/VideoFondo";
 import Cifra from "@/components/Cifra";
@@ -1791,6 +1792,7 @@ export function SeccionSolicitud() {
             Un estudio nos lleva un día de trabajo, así que solo lo hacemos a empresas a las que podemos ayudar. Contesta tocando, sin escribir, y al final te damos tu nota.
           </p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre: si encajas, para preparar tu estudio; y si no, también, con el porqué.</p>
+          <VerEjemplo className="mt-6" />
           <EstudioDeVerdad />
           <div className="hidden lg:block"><EjemplosTrabajos /></div>
         </div>
@@ -1811,6 +1813,7 @@ export function LlamadaFinal() {
             <Loseta icono="cohete" i={4} tam="lg" className="mb-5" />
             <h2 className="text-3xl font-extrabold sm:text-5xl">¿Empezamos por un estudio gratuito?</h2>
             <p className="mt-4 max-w-2xl text-lg text-white/80">Te contamos cómo está hoy tu marketing y qué haríamos. Sin compromiso.</p>
+            <VerEjemplo className="mt-6" />
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/estudio-gratuito" className={BOTON}>Solicitar estudio</Link>

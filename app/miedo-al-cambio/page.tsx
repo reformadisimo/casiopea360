@@ -40,6 +40,7 @@ export default function MiedoAlCambio() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Miedo al cambio", ruta: "/miedo-al-cambio" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="¿Te da miedo cambiar? Pruébalo sin riesgo."
         clave="sin riesgo"
         entradilla="Ponemos la web nueva al lado de la tuya, tú eliges cuántas visitas ve cada una y decides con tus números. Si en tres meses no mejoramos, te vas sin pagar nada."

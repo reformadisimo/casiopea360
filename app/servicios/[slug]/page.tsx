@@ -66,6 +66,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
         ]}
       />
       <CabeceraPagina
+        ejemplo
         titulo={p.titular}
         entradilla={p.entradilla}
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Servicios", href: "/servicios" }, { texto: p.nombre }]}

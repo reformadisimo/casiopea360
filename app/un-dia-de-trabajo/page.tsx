@@ -48,6 +48,7 @@ export default function UnDiaDeTrabajo() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Cómo trabajamos", ruta: "/como-trabajamos" }, { texto: "Un día de trabajo", ruta: "/un-dia-de-trabajo" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Así es un día de trabajo real. Sin cajas negras."
         clave="sin cajas negras"
         entradilla="Lo que hicimos en una mañana al arrancar las campañas de una empresa de reformas: la nuestra. Lo contamos tal cual porque es lo que verás en la tuya."

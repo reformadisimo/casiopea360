@@ -19,6 +19,7 @@ export default function ComoTrabajamos() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Cómo trabajamos", ruta: "/como-trabajamos" }])} />
       <CabeceraPagina
+        ejemplo
         titulo="Pídelo. Lo hacemos. Y sabes cuándo estará listo."
         clave="listo"
         entradilla="Casi todo por correo. Respuesta el mismo día, 48 horas para lo del día a día y fecha cerrada para lo grande. En tu panel, cada petición y cuándo estará lista."

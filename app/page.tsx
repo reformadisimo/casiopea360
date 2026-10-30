@@ -1,4 +1,5 @@
 import Link from "next/link";
+import VerEjemplo from "@/components/VerEjemplo";
 import Constelacion from "@/components/Constelacion";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
@@ -46,6 +47,7 @@ export default function Inicio() {
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
               <Link prefetch={false} href="/panel" className={BOTON_CLARO}>Así lo verás tú</Link>
             </div>
+            <VerEjemplo className="mt-6" />
             <ul className="mt-8 grid grid-cols-2 gap-2 text-[0.8rem] font-bold sm:flex sm:flex-wrap sm:text-sm">
               {([["trofeo", "+22 años en marketing digital"], ["rayo", "Tu web en días, no en meses"], ["euro", "La misma cuota para todos"], ["escudo", "Sin comisiones"]] as [string, string][]).map(([ic, t], k) => (
                 <li key={t} className="flex min-h-9 items-center gap-2 rounded-full bg-white/10 py-1 pl-1.5 pr-3 leading-tight text-white ring-1 ring-white/15 backdrop-blur sm:pr-3.5">
