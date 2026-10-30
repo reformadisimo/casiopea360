@@ -14,6 +14,7 @@ export default function Cookies() {
         </thead>
         <tbody>
           <tr><td>Técnicas</td><td>Que la web funcione y recordar tu elección sobre las cookies</td><td>No</td></tr>
+          <tr><td>Contador propio de visitas (almacenamiento del navegador, sin cookies)</td><td>Contar cuántas personas y visitas recibe la web y de dónde llegan. Solo guarda en tu navegador la fecha de hoy y si ya has abierto la web en esta pestaña; no se envía nada que te identifique</td><td>No</td></tr>
           <tr><td>De medición (Google Analytics)</td><td>Saber cuánta gente entra, de dónde viene y qué páginas funcionan</td><td>Sí</td></tr>
           <tr><td>Mapas de calor (Microsoft Clarity)</td><td>Ver de forma anónima dónde se pulsa y hasta dónde se lee, para mejorar la web</td><td>Sí</td></tr>
         </tbody>
