@@ -70,7 +70,10 @@ export default function Glosario() {
           <p className="mt-5 max-w-3xl text-lg text-gris">
             Busca la que necesites o recorre los temas. Y si estás leyendo cualquier página de esta web, las palabras subrayadas llevan aquí.
           </p>
-          <GlosarioBuscador items={items} familias={FAMILIAS.map((f) => ({ id: f.id, nombre: f.nombre, color: f.color }))} piezas={piezas} />
+          {/* En el índice cada término enseña solo su frase corta, cortada a dos líneas como mucho; el resto está en la ficha. */}
+          <div>
+            <GlosarioBuscador items={items} familias={FAMILIAS.map((f) => ({ id: f.id, nombre: f.nombre, color: f.color }))} piezas={piezas} />
+          </div>
         </div>
       </section>
       <LlamadaFinal />

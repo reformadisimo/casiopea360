@@ -103,7 +103,7 @@ export default function GlosarioBuscador({ items, familias, piezas }: { items: I
                     </span>
                     <span className="mt-3 text-xl font-extrabold leading-snug group-hover:text-[#1d4ed8]">{i.nombre}</span>
                     {i.largo && <span className="text-sm text-gris">{i.largo}</span>}
-                    <span className="mt-2 flex-1 text-[0.97rem] text-gris">{i.corta}</span>
+                    <span className="mt-2 line-clamp-2 flex-1 text-[0.97rem] text-gris">{i.corta}</span>
                     <span className="mt-3 text-sm font-bold text-noche-3 group-hover:underline">Leer la explicación</span>
                   </Link>
                 </li>

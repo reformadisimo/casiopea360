@@ -37,8 +37,10 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Un tipo de campaña de Google que reparte tu presupuesto solo por todos sus canales para conseguir más resultados.",
     def: [
-      "Le das a Google tus textos, imágenes, vídeos y un objetivo (por ejemplo, conseguir llamadas) y su inteligencia artificial decide dónde y a quién mostrarlos: buscador, mapas, YouTube, Gmail o webs.",
-      "Es potente, pero se maneja como una caja cerrada: da poca información de qué funciona. Por eso hay que vigilarla de cerca y darle buenos datos de qué es una venta de verdad.",
+      "Le das a Google tus textos, imágenes, vídeos y un objetivo (por ejemplo, conseguir llamadas).",
+      "Su inteligencia artificial decide dónde y a quién mostrarlos: buscador, mapas, YouTube, Gmail o webs.",
+      "Es potente, pero se maneja como una caja cerrada: da poca información de qué funciona.",
+      "Por eso hay que vigilarla de cerca y darle buenos datos de qué es una venta de verdad.",
     ],
     ejemplo: "Una tienda online la usa para que Google enseñe sus productos en Shopping, YouTube y el buscador con un único presupuesto.",
     rel: ["google-ads", "puja-automatica", "conversion"],
@@ -66,7 +68,8 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Lo que pagas por que tu anuncio se muestre mil veces, haga clic alguien o no.",
     def: [
-      "Es la forma habitual de cobrar en redes sociales y en vídeo, cuando lo que se busca es que te conozcan. «Mil» porque una sola visualización cuesta una fracción de céntimo.",
+      "Es la forma habitual de cobrar en redes sociales y en vídeo, cuando lo que se busca es que te conozcan.",
+      "Se dice «mil» porque una sola visualización cuesta una fracción de céntimo.",
       "Sirve para comparar lo caro o barato que es llegar a cierta gente en cada plataforma.",
     ],
     ejemplo: "Con un CPM de 8 euros, mostrar tu anuncio a 50 000 personas cuesta 400 euros.",
@@ -92,7 +95,7 @@ export const ANUNCIOS: TerminoGlosario[] = [
     largo: "Coste por adquisición",
     formas: ["coste por adquisición", "coste por lead", "CPL", "coste por conversión"],
     familia: "anuncios",
-    corta: "Lo que te cuesta conseguir una venta, una llamada o un contacto con la publicidad. Es la cifra que más importa.",
+    corta: "Lo que te cuesta conseguir una venta, una llamada o un contacto con publicidad. Es la cifra que más importa.",
     def: [
       "Se calcula dividiendo lo que has gastado entre las conversiones que has conseguido. Si gastas 600 euros y entran 20 solicitudes de presupuesto, tu CPA es de 30 euros.",
       "Es la medida honesta de una campaña. Te dice si compensa seguir invirtiendo, siempre que sepas cuánto vale para ti un cliente.",
@@ -136,7 +139,8 @@ export const ANUNCIOS: TerminoGlosario[] = [
     corta: "Que una visita haga lo que tú quieres: llamar, rellenar un formulario, comprar o pedir presupuesto.",
     def: [
       "Tú decides qué cuenta como conversión. Lo normal es lo que se parece más a un cliente: un pedido, una llamada, un formulario enviado, un clic en WhatsApp.",
-      "Sin medir conversiones no puedes saber si lo que haces funciona. Es el dato que se le da a Google y a Meta para que busquen más gente como la que sí contrata.",
+      "Sin medir conversiones no puedes saber si lo que haces funciona.",
+      "Además, es el dato que se le da a Google y a Meta para que busquen más gente como la que sí contrata.",
     ],
     ejemplo: "De 1 000 visitas, 30 piden presupuesto: tienes 30 conversiones y una tasa de conversión del 3 %.",
     rel: ["tasa-de-conversion", "evento", "lead", "cpa"],
@@ -159,9 +163,10 @@ export const ANUNCIOS: TerminoGlosario[] = [
     nombre: "Nivel de calidad",
     formas: ["quality score", "puntuación de calidad"],
     familia: "anuncios",
-    corta: "Una nota de 1 a 10 de Google a tu anuncio y a su página. Cuanto más alta, más barato sale cada clic.",
+    corta: "Google puntúa de 1 a 10 tu anuncio y su página. Cuanto más alta la nota, más barato cada clic.",
     def: [
-      "Google valora tres cosas: si tu anuncio encaja con lo que se busca, si la gente suele hacer clic y si la página a la que llega es útil y rápida.",
+      "Google valora tres cosas. Que tu anuncio encaje con lo que se busca y que la gente suela hacer clic.",
+      "Y que la página a la que llega sea útil y rápida.",
       "Una nota alta te permite pagar menos que un competidor por el mismo lugar. Es una de las razones por las que no basta con tener más presupuesto.",
     ],
     ejemplo: "Un anuncio que dice «reformas de baño» y lleva a una página que habla de reformas de baño puntúa mejor que uno que lleva a la portada general.",
@@ -214,7 +219,8 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Los anuncios de Facebook e Instagram. Los ve la gente según sus intereses, no porque busque algo.",
     def: [
-      "A diferencia de Google, aquí nadie te está buscando: tú interrumpes su rato de ocio con una imagen o un vídeo. Por eso el mensaje tiene que llamar la atención en un segundo.",
+      "A diferencia de Google, aquí nadie te está buscando: tú interrumpes su rato de ocio con una imagen o un vídeo.",
+      "Por eso el mensaje tiene que llamar la atención en un segundo.",
       "Permite segmentar muy fino: edad, zona, intereses, gente parecida a tus clientes. Es muy buena para despertar interés y para volver a hablar con quien ya te conoce.",
     ],
     ejemplo: "Un gimnasio nuevo enseña un vídeo corto de su sala solo a personas de 25 a 50 años a menos de 4 km.",
@@ -255,7 +261,8 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Los anuncios del buscador Bing. Menos gente que Google, pero con menos competencia y clics más baratos.",
     def: [
-      "Bing es el buscador de Microsoft y también alimenta a ChatGPT en muchas búsquedas. Tiene menos usuarios que Google, pero a menudo más maduros y con poder adquisitivo, sobre todo en ordenador y en entorno profesional.",
+      "Bing es el buscador de Microsoft y también alimenta a ChatGPT en muchas búsquedas.",
+      "Tiene menos usuarios que Google, pero a menudo más maduros y con poder adquisitivo, sobre todo en ordenador y en entorno profesional.",
       "Sus herramientas son casi las mismas que Google Ads, y se pueden importar las campañas con pocos cambios.",
     ],
     ejemplo: "Una consultora B2B recibe clics un 30 % más baratos en Bing que en Google con la misma campaña.",
@@ -297,10 +304,11 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Un modelo de agencia que cobra un porcentaje de lo que inviertes en anuncios. Tiene un conflicto de intereses incorporado.",
     def: [
-      "Muchas agencias cobran entre un 10 y un 20 % de tu gasto publicitario. Así, cuanto más gastas, más ganan, aunque no te salga rentable.",
+      "Con este modelo, lo habitual en el sector es cobrar entre un 10 y un 20 % de tu gasto publicitario.",
+      "Así, cuanto más gastas, más se cobra por gestionarlo, aunque a ti no te salga rentable.",
       "En Casiopea cobramos una cuota fija y clara. Lo explicamos con detalle en nuestro artículo sobre este tema.",
     ],
-    ejemplo: "Si inviertes 5 000 euros al mes y la agencia cobra el 15 %, se lleva 750 euros aunque la campaña no traiga clientes.",
+    ejemplo: "Si inviertes 5 000 euros al mes con una comisión del 15 %, pagas 750 euros de gestión aunque la campaña no traiga clientes.",
     rel: ["roas", "cpa", "google-ads"],
   },
   {
@@ -325,7 +333,8 @@ export const ANUNCIOS: TerminoGlosario[] = [
     familia: "anuncios",
     corta: "Enseñar dos versiones de lo mismo a distintas personas para ver cuál funciona mejor.",
     def: [
-      "Se cambia una sola cosa (un titular, un color de botón, una foto) y se reparte el tráfico a partes iguales. Al cabo de un tiempo se mira cuál convirtió más.",
+      "Se cambia una sola cosa (un titular, un color de botón, una foto) y se reparte el tráfico a partes iguales.",
+      "Al cabo de un tiempo se mira cuál convirtió más.",
       "Evita decidir por gustos. Necesita suficientes visitas para que la diferencia no sea casualidad.",
     ],
     ejemplo: "El botón «Pedir estudio gratuito» consigue un 40 % más de clics que «Enviar», y se queda con el primero.",
@@ -336,7 +345,7 @@ export const ANUNCIOS: TerminoGlosario[] = [
     nombre: "embudo de ventas",
     formas: ["embudo", "embudo de conversión", "funnel"],
     familia: "anuncios",
-    corta: "El camino que sigue alguien desde que te descubre hasta que compra. En cada paso se queda por el camino parte de la gente.",
+    corta: "El camino de alguien desde que te descubre hasta que compra. En cada paso se pierde parte de la gente.",
     def: [
       "Se llama embudo porque es ancho arriba (mucha gente que te conoce) y estrecho abajo (pocos que compran). Normalmente: descubrir, interesarse, comparar, decidir.",
       "Sirve para ver en qué paso se pierde más gente y trabajar justo ahí, en vez de gastar más en traer visitas.",
@@ -349,7 +358,7 @@ export const ANUNCIOS: TerminoGlosario[] = [
     nombre: "lead",
     formas: ["leads", "contacto comercial", "oportunidad de venta"],
     familia: "anuncios",
-    corta: "Una persona que ha dejado sus datos porque le interesa lo que vendes. Es un cliente posible, aún no un cliente.",
+    corta: "Alguien que ha dejado sus datos porque le interesa lo que vendes. Un cliente posible, aún no un cliente.",
     def: [
       "Puede ser alguien que rellenó un formulario, llamó, escribió por WhatsApp o descargó una guía. Ha dado un paso hacia ti.",
       "No todos los leads valen lo mismo. Por eso se mide cuántos acaban comprando, no solo cuántos entran.",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { CajaIdea, ChipIcono, TituloVivo, iconoPorTexto } from "@/components/Vida";
 import { notFound } from "next/navigation";
@@ -12,6 +13,35 @@ import { articulosQueMencionan } from "@/lib/glosario-uso";
 import { PAGINAS_SERVICIO } from "@/lib/servicios";
 import { schemaMigas, schemaTermino } from "@/lib/schema";
 import { FAMILIAS, TERMINOS, relacionados, terminoPorSlug } from "@/lib/terminos";
+
+/** Parte un párrafo largo en trozos de frases enteras de unas 30 palabras como mucho, para que la ficha se lea de un vistazo. */
+function trocear(p: string, max = 30): string[] {
+  const frases = p.split(/(?<=[.!?»])\s+(?=[A-ZÁÉÍÓÚÑ¿¡«])/);
+  const trozos: string[] = [];
+  let actual = "";
+  for (const f of frases) {
+    const junto = actual ? `${actual} ${f}` : f;
+    if (actual && junto.split(/\s+/).length > max) {
+      trozos.push(actual);
+      actual = f;
+    } else actual = junto;
+  }
+  if (actual) trozos.push(actual);
+  return trozos;
+}
+
+/** Caja del ejemplo: fondo suave y chip, distinta de la caja amarilla de la frase. */
+function CajaEjemplo({ children }: { children: ReactNode }) {
+  return (
+    <aside className="rounded-[1.6rem] bg-niebla p-5 text-tinta ring-1 ring-linea sm:p-6">
+      <p className="flex items-center gap-3 font-titular text-lg font-extrabold">
+        <ChipIcono icono="tienda" i={1} tam="h-9 w-9" />
+        Un ejemplo
+      </p>
+      <div className="mt-3 text-[1.05rem] leading-relaxed">{children}</div>
+    </aside>
+  );
+}
 
 export function generateStaticParams() {
   return TERMINOS.map((t) => ({ slug: t.slug }));
@@ -63,13 +93,14 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Glosario", href: "/glosario" }, { texto: t.nombre }]}
       />
       <article className="prosa mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-        <CajaIdea t="En pocas palabras">{t.corta}</CajaIdea>
+        <CajaIdea t="En una frase">
+          <p className="text-xl font-bold leading-snug">{t.corta}</p>
+        </CajaIdea>
         <TituloVivo t="Explicado sin tecnicismos" i={0} />
-        {t.def.map((p) => (
+        {t.def.flatMap(trocear).map((p) => (
           <p key={p}>{glosar(p, ctx)}</p>
         ))}
-        <TituloVivo t="Un ejemplo" i={1} />
-        <p>{glosar(t.ejemplo, ctx)}</p>
+        <CajaEjemplo>{glosar(t.ejemplo, ctx)}</CajaEjemplo>
         {servicio && (
           <p>
             Es parte de lo que hacemos en <Link href={`/servicios/${servicio.slug}`}>{servicio.nombre}</Link>.
