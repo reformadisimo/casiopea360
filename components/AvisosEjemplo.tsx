@@ -13,18 +13,18 @@ type AvisoId = "confirmacion" | "recordatorio" | "dueno" | "resena";
 
 type Msg = { aviso: AvisoId; dia: string; hora: string; texto: string; enlace?: string; boton?: string };
 
-const NEGOCIO = "Clínica Ejemplo";
+const NEGOCIO = "Fuero Abogados";
 
 const MENSAJES: Record<Quien, Msg[]> = {
   cliente: [
-    { aviso: "confirmacion", dia: "Lunes", hora: "10:02", texto: `${NEGOCIO}: hemos recibido tu petición de cita. Te llamamos hoy antes de las 14:00. Si prefieres que te escribamos, contesta a este mensaje.` },
-    { aviso: "recordatorio", dia: "Martes", hora: "18:00", texto: `${NEGOCIO}: mañana miércoles tienes cita a las 17:30. ¿Vienes?`, enlace: "ejemplo.es/c/8f3k", boton: "Confirmar o pedir otra hora" },
-    { aviso: "recordatorio", dia: "Miércoles", hora: "15:30", texto: `${NEGOCIO}: te esperamos hoy a las 17:30. Si no puedes venir, avísanos aquí.`, enlace: "ejemplo.es/c/8f3k", boton: "Pedir otra hora" },
-    { aviso: "resena", dia: "Sábado", hora: "11:00", texto: `Gracias por venir a ${NEGOCIO}. Si te ha ido bien, ¿nos dejas tu opinión en Google? Te lleva un minuto.`, enlace: "ejemplo.es/o/2m9x", boton: "Dejar mi opinión" },
+    { aviso: "confirmacion", dia: "Lunes", hora: "10:02", texto: `${NEGOCIO}: hemos recibido tu petición de consulta. Te llamamos hoy antes de las 14:00. Si prefieres que te escribamos, contesta a este mensaje.` },
+    { aviso: "recordatorio", dia: "Martes", hora: "18:00", texto: `${NEGOCIO}: mañana miércoles tienes tu consulta a las 17:30, en Paseo del Fuero 12. Trae tu contrato, tus nóminas y la carta de despido si la tienes. ¿Vienes?`, enlace: "fueroabogados.es/c/8f3k", boton: "Confirmar o pedir otra hora" },
+    { aviso: "recordatorio", dia: "Miércoles", hora: "15:30", texto: `${NEGOCIO}: te esperamos hoy a las 17:30. Si prefieres hacerla por videollamada o no puedes venir, avísanos aquí.`, enlace: "fueroabogados.es/c/8f3k", boton: "Pedir otra hora" },
+    { aviso: "resena", dia: "Sábado", hora: "11:00", texto: `Gracias por confiar en ${NEGOCIO}. Si te hemos ayudado, ¿nos dejas tu opinión en Google? Te lleva un minuto.`, enlace: "fueroabogados.es/o/2m9x", boton: "Dejar mi opinión" },
   ],
   dueno: [
-    { aviso: "dueno", dia: "Lunes", hora: "10:02", texto: "Contacto nuevo: Laura M. ha pedido cita para el miércoles a las 17:30. Teléfono 600 00 00 00. Llámala hoy." },
-    { aviso: "dueno", dia: "Lunes", hora: "12:40", texto: "Contacto nuevo: Pedro R. ha dejado su teléfono desde la página de revisiones. Teléfono 600 00 00 01." },
+    { aviso: "dueno", dia: "Lunes", hora: "10:02", texto: "Contacto nuevo: Laura M. ha pedido consulta por un despido para el miércoles a las 17:30. Teléfono 600 00 00 00. Llámala hoy." },
+    { aviso: "dueno", dia: "Lunes", hora: "12:40", texto: "Contacto nuevo: Pedro R. ha dejado su teléfono desde la calculadora de indemnización. Teléfono 600 00 00 01." },
   ],
 };
 

@@ -4,8 +4,8 @@ import { ESTUDIO_TOTAL } from "@/lib/contenido";
 // «No te lo pierdas»: lo que de verdad se lleva quien encaja, encima del test.
 // No son capturas sueltas: es la lista de lo que entregamos, y donde hay un ejemplo vivo en la web, se puede abrir.
 const PIEZAS: { t: string; d: string; color: string; href?: string; ver?: string }[] = [
-  { t: "Tu guía completa", d: `${ESTUDIO_TOTAL} apartados sobre tu empresa: tu situación, qué falla y qué haríamos`, color: "#1d4ed8" },
-  { t: "Tu web, rediseñada entera", d: "Te enseñamos tu web nueva, página a página, como quedaría", color: "#be185d", href: "/trabajos", ver: "Ver webs que hemos hecho" },
+  { t: "Tu guía completa", d: `${ESTUDIO_TOTAL} apartados sobre tu empresa: tu situación, qué falla y qué haríamos`, color: "#1d4ed8", href: "https://fuero-abogados.vercel.app/guia-fuero", ver: "Ver una guía de ejemplo" },
+  { t: "Tu web, rediseñada entera", d: "Te enseñamos tu web nueva, página a página, como quedaría", color: "#be185d", href: "https://fuero-abogados.vercel.app", ver: "Ver una web de ejemplo completa" },
   { t: "Tu panel de control", d: "Cómo verías cada día de dónde llegan tus clientes y qué haríamos hoy", color: "#047857", href: "/panel", ver: "Probar un panel de ejemplo" },
   { t: "Tu CRM", d: "Tus contactos y su seguimiento, en una herramienta hecha para ti", color: "#6d28d9", href: "/crm-ejemplo", ver: "Probar un CRM de ejemplo" },
   { t: "Tu competencia, sin secretos", d: "Quién gana en tu zona, sus anuncios reales y qué no copiaríamos", color: "#b45309" },
@@ -28,7 +28,7 @@ export default function EstudioDeVerdad() {
               <span className="block font-extrabold">{x.t}</span>
               <span className="block text-sm text-white/75">{x.d}</span>
               {x.href && (
-                <Link href={x.href} target="_blank" className="mt-1 inline-flex min-h-9 items-center text-sm font-bold text-estrella underline underline-offset-4 hover:text-estrella-2">
+                <Link href={x.href} target="_blank" rel="noopener" className="mt-1 inline-flex min-h-9 items-center text-sm font-bold text-estrella underline underline-offset-4 hover:text-estrella-2">
                   {x.ver} →
                 </Link>
               )}

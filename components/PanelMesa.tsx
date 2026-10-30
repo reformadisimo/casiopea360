@@ -222,7 +222,7 @@ export function PanelCompleto(p: PropsCompleto) {
     <div className="pb-28 pt-6">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="sans-ey">Climatización Ejemplo · panel de control</p>
+          <p className="sans-ey">Fuero Abogados · panel de control</p>
           <h1 className="mt-2 text-[42px] leading-[1.1]">Todo lo que pasa, en un sitio</h1>
           <p className="mt-2 flex items-center gap-2 text-[15px] text-gris"><span aria-hidden className="inline-block h-2 w-2 rounded-full bg-emerald-500" />{p.ahora} personas en tu web ahora · actualizado hace {p.segundos} s</p>
         </div>
@@ -347,7 +347,7 @@ export function PanelCompleto(p: PropsCompleto) {
       </section>
 
       <section aria-label="Alertas" className="mt-8 space-y-3">
-        {[["3 presupuestos llevan más de 3 días sin respuesta.", "Llámalos hoy. El correo de recordatorio ya ha salido."], ["La ficha de Google tiene 2 reseñas sin contestar.", "Respóndelas esta semana. Te dejamos el texto redactado en Tus peticiones."]].map(([a, q]) => (
+        {[["3 peticiones de consulta llevan más de 3 días sin respuesta.", "Llámalos hoy. El correo de recordatorio ya ha salido."], ["La ficha de Google tiene 2 reseñas sin contestar.", "Respóndelas esta semana. Te dejamos el texto redactado en Tus peticiones."]].map(([a, q]) => (
           <div key={a} className="rounded-[18px] border p-4" style={{ background: "#fff6e5", borderColor: "#eed9a8" }}>
             <p><b>Alerta:</b> {a}</p>
             <p className="mt-1 text-[15px]"><b>Qué hacer:</b> {q}</p>
@@ -361,7 +361,7 @@ export function PanelCompleto(p: PropsCompleto) {
           <TarjetaCifra icono="camino" color="#d9822b" titulo="Rebote" desc="De cada 100 visitas, cuántas se van sin hacer nada. Cuanto más bajo, mejor." valor="38,2 %" delta={dlt(-6, false)} antes={sinComparar ? undefined : "antes 40,6 %"} nota="Detalle por canal, móvil y página en «La web»" serie={serieDe(2, 40, 14)} />
           <TarjetaCifra icono="persona" color="#1d6b3a" titulo="Contactos únicos" desc="Personas distintas que se ponen en contacto contigo (una persona cuenta una vez al día)." valor={nf(contactos)} delta={dlt(16, true)} antes={antes(contactos, 16)} nota={`${(contactos / rango.dias).toLocaleString("es-ES", { maximumFractionDigits: 1 })} al día`} serie={serieDe(3, 30, 22)} resaltada />
           <TarjetaCifra icono="embudo" color="#7a4fd0" titulo="Visitas que acaban en contacto" desc="De cada 100 visitas a la web, cuántas acaban dejando sus datos." valor={`${porCien.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`} delta={dlt(4, true)} antes={sinComparar ? undefined : "antes 3,6 %"} serie={serieDe(4, 20, 12)} />
-          <TarjetaCifra icono="documento" color="#2f6fd0" titulo="Presupuestos pedidos" desc="Contactos que piden presupuesto de verdad, no solo una duda." valor={nf(presu)} delta={dlt(9, true)} antes={antes(presu, 9)} nota="54 de cada 100 contactos" serie={serieDe(5, 25, 16)} />
+          <TarjetaCifra icono="documento" color="#2f6fd0" titulo="Consultas pedidas" desc="Contactos que piden consulta de verdad, no solo una duda." valor={nf(presu)} delta={dlt(9, true)} antes={antes(presu, 9)} nota="54 de cada 100 contactos" serie={serieDe(5, 25, 16)} />
           <TarjetaCifra icono="megafono" color="#d93f3f" titulo="Inversión en anuncios" desc="Lo que has invertido en Google, Meta y Microsoft. Sin comisión nuestra." valor={eur(inversion)} delta={dlt(5, false)} antes={antes(inversion, 5, " €")} nota="La pagas tú, con tu tarjeta" serie={serieDe(6, 45, 14)} />
           <TarjetaCifra icono="moneda" color="#c79a00" titulo="Coste por contacto" desc="Lo que cuesta cada contacto que traen los anuncios. Cuanto más bajo, mejor." valor="10 €" delta={dlt(-8, false)} antes={sinComparar ? undefined : "antes 11 €"} nota={`${nf(contactos)} contactos · ${eur(inversion)} invertidos`} serie={serieDe(7, 35, 18)} />
           <div className="flex min-h-[250px] flex-col rounded-[22px] border border-dashed p-5" style={{ borderColor: "#9fc0cc", background: "#f6fafb" }}>

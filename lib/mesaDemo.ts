@@ -58,39 +58,39 @@ export function datosDemo(hoy: string) {
   for (const d of dias(desde, hoy).slice(-120)) { const r = semilla(`i${d}`); ig.push([d, Math.round(900 * (0.5 + r())), Math.round(1800 * (0.5 + r())), dias(d, hoy).length <= 30 ? poisson(r, 25) : null]); }
   const redes = {
     actualizado: hoy, ficha: { diario: ficha },
-    instagram: { usuario: "climaejemplo", seguidores: 3200, publicaciones: 180, diario: ig },
-    resenas: [{ fuente: "Google", nota: 4.7, escala: 5, total: 180, fecha: hoy, auto: true }, { fuente: "Habitissimo", nota: 4.5, escala: 5, total: 42, fecha: hoy, auto: false }],
+    instagram: { usuario: "fueroabogados", seguidores: 3200, publicaciones: 180, diario: ig },
+    resenas: [{ fuente: "Google", nota: 4.7, escala: 5, total: 180, fecha: hoy, auto: true }, { fuente: "Trustpilot", nota: 4.5, escala: 5, total: 42, fecha: hoy, auto: false }],
     historial_resenas: [] as [string, string, number, number][],
   };
   return { web, ga, gsc, anuncios: { actualizado: hoy, diario, mensual }, redes, google: true };
 }
 
-const PAGINAS = ["/", "/aire-acondicionado-madrid", "/cuanto-cuesta-instalar-aire", "/calculadora-ahorro", "/aerotermia", "/contacto", "/mantenimiento", "/opiniones", "/blog/cuanto-cuesta-instalar-aire-acondicionado-en-madrid-en-2026", "/instalaciones/chamartin", "/quienes-somos", "/preguntas-frecuentes"];
+const PAGINAS = ["/", "/abogado-laboralista-madrid", "/cuanto-cobra-un-abogado-laboralista", "/calcular-indemnizacion-despido", "/acoso-laboral", "/contacto", "/incapacidad-permanente", "/opiniones", "/blog/cuanto-me-corresponde-de-indemnizacion-por-despido-en-2026", "/abogado-laboralista/chamartin", "/quienes-somos", "/preguntas-frecuentes"];
 export function detalleDemo(desde: string, hasta: string) {
   const r = semilla(`${desde}${hasta}`);
   const n = Math.max(1, dias(desde, hasta).length);
   const paginas = PAGINAS.map((p, i) => { const v = Math.round((n * 260 * 0.9 ** (i * 1.4)) / 3 * (0.8 + 0.4 * r())); return { pagina: p, n: v, movil: Math.round(v * 0.68) }; });
   const clicsPagina = PAGINAS.slice(0, 8).flatMap((p, i) => [{ pagina: p, canal: "whatsapp", n: Math.round(n * 4 * 0.75 ** i * 0.3) }, { pagina: p, canal: "llamar", n: Math.round(n * 1.6 * 0.75 ** i * 0.3) }]);
-  const lupa = PAGINAS.slice(0, 8).map((p, i) => { const v = Math.round(n * 30 * 0.85 ** i); return { pagina: p, visitas: v, movil: Math.round(v * 0.7), pc: Math.round(v * 0.3), scroll_mediano: Math.round(35 + 40 * r()), llegan_al_final_pct: Math.round(8 + 30 * r()), segundos_activos_mediana: Math.round(25 + 70 * r()), se_van_en_menos_de_10s_pct: Math.round(15 + 25 * r()), toques_sin_respuesta: [["foto del salón", Math.round(3 + 10 * r())], ["precio por m²", Math.round(1 + 6 * r())]] as [string, number][] }; });
-  const busq = ["aire acondicionado madrid", "climatizacion ejemplo", "cuanto cuesta instalar aire acondicionado en un piso", "empresa de climatizacion madrid", "aerotermia precio vivienda", "instalacion aire acondicionado chamartin", "precio split 3000 frigorias instalado", "mantenimiento aire acondicionado madrid", "como limpiar los filtros del aire"];
+  const lupa = PAGINAS.slice(0, 8).map((p, i) => { const v = Math.round(n * 30 * 0.85 ** i); return { pagina: p, visitas: v, movil: Math.round(v * 0.7), pc: Math.round(v * 0.3), scroll_mediano: Math.round(35 + 40 * r()), llegan_al_final_pct: Math.round(8 + 30 * r()), segundos_activos_mediana: Math.round(25 + 70 * r()), se_van_en_menos_de_10s_pct: Math.round(15 + 25 * r()), toques_sin_respuesta: [["foto del equipo", Math.round(3 + 10 * r())], ["tabla de indemnizaciones", Math.round(1 + 6 * r())]] as [string, number][] }; });
+  const busq = ["abogado laboralista madrid", "fuero abogados", "calcular indemnizacion despido", "abogado despido madrid", "abogado acoso laboral madrid", "abogado incapacidad permanente madrid", "cuanto cobra un abogado laboralista", "asesoria laboral empresas madrid", "que es el finiquito"];
   const busquedas = busq.map((b, i) => { const im = Math.round(n * (i === 1 ? 55 : 900 * 0.7 ** i)); const ctr = i === 1 ? 32 : 0.6 + 3 * r(); return { busqueda: b, clics: Math.round((im * ctr) / 100), impresiones: im, ctr_pct: Math.round(ctr * 10) / 10, posicion: i === 1 ? 1.1 : Math.round((6 + 14 * r()) * 10) / 10 }; });
-  const gscPag = PAGINAS.slice(0, 8).map((p, i) => ({ pagina: `https://www.climatizacionejemplo.es${p}`, clics: Math.round(n * 19.4 * 0.7 ** i), impresiones: Math.round(n * 4000 * 0.7 ** i), posicion: Math.round((5 + 15 * r()) * 10) / 10 }));
+  const gscPag = PAGINAS.slice(0, 8).map((p, i) => ({ pagina: `https://www.fueroabogados.es${p}`, clics: Math.round(n * 19.4 * 0.7 ** i), impresiones: Math.round(n * 4000 * 0.7 ** i), posicion: Math.round((5 + 15 * r()) * 10) / 10 }));
   const tc = gscPag.reduce((a, x) => a + x.clics, 0), ti = gscPag.reduce((a, x) => a + x.impresiones, 0);
   const entradas = PAGINAS.slice(0, 10).map((p, i) => ({ pagina: p, sesiones: Math.round(n * 40 * 0.8 ** i), interes_pct: Math.round(40 + 30 * r()), clave: Math.round(n * 0.4 * 0.8 ** i) }));
   const orig: [string, number][] = [["Instagram", 0.2], ["Google Ads", 0.3], ["Recomendado", 0.18], ["Meta (anuncio)", 0.12], ["Web (formulario)", 0.1], ["Llamada", 0.1]];
-  const crm = orig.map(([o, p]) => { const leads = Math.max(1, Math.round(n * 2.6 * p * (0.8 + 0.4 * r()))); const visitas = Math.round(leads * (o === "Recomendado" ? 0.7 : 0.38)); const presupuestos = Math.round(visitas * 0.8); const firmados = Math.round(presupuestos * (o === "Recomendado" ? 0.5 : 0.25)); return { origen: o, leads, visitas, presupuestos, firmados, firmado: firmados * Math.round(4200 + 3200 * r()), facturado: Math.round(firmados * 4000 * r()), descartados: Math.round(leads * 0.2), respondidos: leads, horas_resp: leads * (2 + 6 * r()), vencidas: Math.round(r() * 3) }; });
+  const crm = orig.map(([o, p]) => { const leads = Math.max(1, Math.round(n * 2.6 * p * (0.8 + 0.4 * r()))); const visitas = Math.round(leads * (o === "Recomendado" ? 0.7 : 0.38)); const presupuestos = Math.round(visitas * 0.8); const firmados = Math.round(presupuestos * (o === "Recomendado" ? 0.5 : 0.25)); return { origen: o, leads, visitas, presupuestos, firmados, firmado: firmados * Math.round(1800 + 1400 * r()), facturado: Math.round(firmados * 1700 * r()), descartados: Math.round(leads * 0.2), respondidos: leads, horas_resp: leads * (2 + 6 * r()), vencidas: Math.round(r() * 3) }; });
   const fr = (clave: string, ses: number, ip: number, ev: number) => ({ clave, sesiones: Math.round(ses), interes: Math.round(ses * ip), eventos: Math.round(ev), segundos: Math.round(ses * ip * (40 + 50 * r())) });
   const rebote = {
     dispositivo: [fr("mobile", n * 70, 0.48 + 0.08 * r(), n * 0.9), fr("desktop", n * 38, 0.62 + 0.08 * r(), n * 0.8), fr("tablet", n * 3, 0.55, n * 0.05)],
     zona: [fr("Community of Madrid", n * 78, 0.6, n * 1.6), fr("Andalusia", n * 6, 0.35, 0), fr("Catalonia", n * 5, 0.38, 0), fr("Castile-La Mancha", n * 4, 0.5, n * 0.05), fr("Valencian Community", n * 3, 0.36, 0)],
     tipo: [fr("new", n * 85, 0.5, n * 1.1), fr("returning", n * 26, 0.72, n * 0.6)],
     paginas: [
-      fr("/", n * 30, 0.55, n * 0.5), fr("/aire-acondicionado-madrid", n * 16, 0.42, n * 0.12), fr("/blog/como-limpiar-los-filtros-del-aire-acondicionado", n * 14, 0.3, 0),
-      fr("/cuanto-cuesta-instalar-aire", n * 11, 0.66, n * 0.4), fr("/calculadora-ahorro", n * 9, 0.7, n * 0.6), fr("/glosario/frigoria", n * 8, 0.18, 0), fr("/instalaciones/chamartin", n * 6, 0.35, n * 0.02),
-      fr("/contacto", n * 5, 0.8, n * 0.5), fr("/blog/cuanto-cuesta-instalar-aire-acondicionado-en-madrid-en-2026", n * 5, 0.58, n * 0.1), fr("/aerotermia", n * 4, 0.62, n * 0.06),
+      fr("/", n * 30, 0.55, n * 0.5), fr("/abogado-laboralista-madrid", n * 16, 0.42, n * 0.12), fr("/blog/diferencia-entre-despido-improcedente-y-nulo", n * 14, 0.3, 0),
+      fr("/cuanto-cobra-un-abogado-laboralista", n * 11, 0.66, n * 0.4), fr("/calcular-indemnizacion-despido", n * 9, 0.7, n * 0.6), fr("/glosario/finiquito", n * 8, 0.18, 0), fr("/abogado-laboralista/chamartin", n * 6, 0.35, n * 0.02),
+      fr("/contacto", n * 5, 0.8, n * 0.5), fr("/blog/cuanto-me-corresponde-de-indemnizacion-por-despido-en-2026", n * 5, 0.58, n * 0.1), fr("/acoso-laboral", n * 4, 0.62, n * 0.06),
     ],
   };
   const cl = (clave: string, ses: number, rabia: number, muertos: number, vuelven: number, scroll: number) => ({ clave, sesiones: Math.round(ses), rabia_pct: rabia, muertos_pct: muertos, vuelven_pct: vuelven, vaiven_pct: null, scroll, activo: null });
-  const clarity = { dias: Math.min(n, 28), desde: desde, paginas: [cl("/", n * 9, 1.2, 4.8, 21, 58), cl("/aire-acondicionado-madrid", n * 5, 0.8, 3.1, 17, 64), cl("/aerotermia", n * 3, 3.6, 12.4, 26, 49), cl("/cuanto-cuesta-instalar-aire", n * 3, 0.9, 2.2, 19, 71), cl("/calculadora-ahorro", n * 2, 2.1, 5.5, 14, 77), cl("/contacto", n * 2, 0.4, 1.8, 9, 82)], dispositivos: [] };
+  const clarity = { dias: Math.min(n, 28), desde: desde, paginas: [cl("/", n * 9, 1.2, 4.8, 21, 58), cl("/abogado-laboralista-madrid", n * 5, 0.8, 3.1, 17, 64), cl("/acoso-laboral", n * 3, 3.6, 12.4, 26, 49), cl("/cuanto-cobra-un-abogado-laboralista", n * 3, 0.9, 2.2, 19, 71), cl("/calcular-indemnizacion-despido", n * 2, 2.1, 5.5, 14, 77), cl("/contacto", n * 2, 0.4, 1.8, 9, 82)], dispositivos: [] };
   return { rebote, paginas, clicsPagina, lupa, clarity, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
 }

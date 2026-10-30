@@ -126,8 +126,8 @@ export default function PanelSimple(p: Props) {
   return (
     <div className="pb-28 pt-6">
       <header>
-        <p className="sans-ey">Climatización Ejemplo · panel de control</p>
-        <h1 className="mt-2 text-[34px] leading-[1.1] sm:text-[42px]">Cómo va Climatización Ejemplo</h1>
+        <p className="sans-ey">Fuero Abogados · panel de control</p>
+        <h1 className="mt-2 text-[34px] leading-[1.1] sm:text-[42px]">Cómo va Fuero Abogados</h1>
         <p className="mt-2 text-[15px] text-gris">{periodoNombre}{compTxt} · actualizado hoy · {p.ahora} personas en tu web ahora</p>
         <div className="mt-4 flex flex-wrap gap-2 print:hidden">
           <button type="button" onClick={p.leer} aria-pressed={p.leyendo} className={chip} style={{ borderColor: p.leyendo ? "#1a3d47" : BORDE }}>{p.leyendo ? "Parar" : "Oír resumen"}</button>
@@ -221,8 +221,8 @@ export default function PanelSimple(p: Props) {
       <section aria-label="Las cuatro cifras que importan" className="mt-8">
         <h2 className="text-[28px]">Las cuatro cifras que importan</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
-          <Cifra n="persona" c="#1d6b3a" titulo={`${p.contactos} personas se han puesto en contacto`} texto={sube} luz="ok" ayuda="Son las personas que te han escrito, llamado o pedido presupuesto desde tu web, tus anuncios o Google. Lo medimos solos." />
-          <Cifra n="documento" c="#2f6fd0" titulo="54 piden presupuesto de cada 100" texto="Es mejor que en el periodo anterior." luz="ok" ayuda="De todos los que te contactan, estos son los que de verdad quieren un presupuesto y no solo una duda." />
+          <Cifra n="persona" c="#1d6b3a" titulo={`${p.contactos} personas se han puesto en contacto`} texto={sube} luz="ok" ayuda="Son las personas que te han escrito, llamado o pedido consulta desde tu web, tus anuncios o Google. Lo medimos solos." />
+          <Cifra n="documento" c="#2f6fd0" titulo="54 piden consulta de cada 100" texto="Es mejor que en el periodo anterior." luz="ok" ayuda="De todos los que te contactan, estos son los que de verdad quieren una consulta y no solo una duda." />
           <Cifra n="moneda" c="#c79a00" titulo="10 € por contacto anunciado" texto={antes} luz="ok" ayuda="Lo que has invertido en anuncios dividido entre los contactos que han llegado. Cuanto más bajo, mejor." />
           <Cifra n="espejo" c="#d9822b" titulo="Sales en 16 de 18 respuestas de las IA" texto="En 2 preguntas todavía no." luz="atencion" ayuda="Preguntamos cada semana a ChatGPT, Gemini y Claude lo que preguntaría un cliente, y contamos en cuántas respuestas apareces." />
         </div>

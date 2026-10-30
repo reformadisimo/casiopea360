@@ -687,7 +687,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Google no marca un momento concreto, pero la experiencia es clara: el mismo día que terminas el trabajo, o cuando el cliente te dice espontáneamente que está contento, porque el recuerdo está fresco. Lo importante es hacerlo con todos tus clientes y de forma constante, no solo con los que te caen mejor." },
       { h2: "Tres formas de pedirla, con mensajes de ejemplo" },
       { h3: "Por WhatsApp" },
-      { p: "Corto, con tu nombre, una frase amable y un solo enlace. Por ejemplo: «Hola, Marta, soy Luis, de Climatización Ejemplo. Gracias por confiar en nosotros. Si te ha gustado cómo ha quedado, nos ayudas muchísimo con una reseña. Son 30 segundos: [enlace]. Muchas gracias»." },
+      { p: "Corto, con tu nombre, una frase amable y un solo enlace. Por ejemplo: «Hola, Marta, soy Luis, de Fuero Abogados. Gracias por confiar en nosotros. Si te ha gustado cómo hemos llevado tu caso, nos ayudas muchísimo con una reseña. Son 30 segundos: [enlace]. Muchas gracias»." },
       { h3: "Por correo" },
       { p: "Con un asunto sencillo («Una petición breve, si te parece bien»), dos frases, un botón claro que diga «Dejar mi opinión» y, debajo, el enlace por si el botón falla. Conviene añadir tres pasos numerados (pulsa el botón, marca las estrellas, escribe una frase) y una nota: para publicar hace falta tener sesión de Google en el móvil." },
       { h3: "Con una tarjeta y un código QR" },

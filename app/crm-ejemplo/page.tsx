@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   ...meta(
     "CRM de ejemplo",
-    "Así sería tu CRM con Casiopea 360: cada contacto con su ficha, lo que toca hoy, el informe de visita, la instalación y de dónde viene cada cliente. Datos inventados, para que lo toques todo.",
+    "Así sería tu CRM con Casiopea 360: cada contacto con su ficha, lo que toca hoy, el informe de la consulta, el procedimiento y de dónde viene cada cliente. Datos inventados, para que lo toques todo.",
     "/crm-ejemplo",
   ),
   robots: { index: false, follow: true },

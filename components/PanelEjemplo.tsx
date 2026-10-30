@@ -78,7 +78,7 @@ const CONECTADO: [string, string][] = [
   ["Vercel", "Web y copias"],
 ];
 
-// Datos de ejemplo: una empresa inventada de climatización en Madrid.
+// Datos de ejemplo: un despacho inventado de abogados laboralistas en Madrid (Fuero Abogados).
 const CONTACTOS_30 = [4, 3, 6, 5, 2, 1, 7, 6, 5, 8, 6, 3, 2, 7, 9, 6, 10, 8, 4, 3, 9, 11, 8, 12, 10, 5, 4, 11, 13, 10];
 const VISITAS_30 = [210, 180, 260, 240, 120, 110, 290, 280, 250, 330, 310, 150, 130, 340, 370, 320, 400, 350, 190, 160, 410, 440, 380, 470, 430, 220, 180, 460, 500, 450];
 
@@ -95,74 +95,74 @@ const ORIGEN: [string, number, string][] = [
 
 const EMBUDO: [string, number, string][] = [
   ["Visitas a la web", 8640, "Gente que ha entrado este mes"],
-  ["Usan una herramienta", 1210, "Calculadora de precio, test o configurador"],
+  ["Usan una herramienta", 1210, "Calculadora de indemnización, test o simulador"],
   ["Dejan sus datos", 312, "Formulario, WhatsApp, llamada o chat"],
-  ["Piden presupuesto", 168, "Con visita o medidas"],
+  ["Piden consulta", 168, "Con un abogado del despacho o con Álvaro"],
 ];
 
 const LEADS: { nombre: string; tema: string; origen: string; canal: string; cuando: string; estado: "Nuevo" | "Llamado" | "Presupuesto enviado" | "Cliente" }[] = [
-  { nombre: "L. M.", tema: "Aerotermia para un chalet", origen: "Google Ads · campaña Aerotermia", canal: "Formulario", cuando: "Hace 9 min", estado: "Nuevo" },
-  { nombre: "Comunidad Av. Europa 14", tema: "Climatización del portal", origen: "Google sin pagar · artículo de comunidades", canal: "Llamada", cuando: "Hoy, 09:20", estado: "Llamado" },
-  { nombre: "J. R.", tema: "Split en dos dormitorios", origen: "Instagram · reel del verano", canal: "WhatsApp", cuando: "Ayer", estado: "Presupuesto enviado" },
-  { nombre: "Oficinas Grupo Norte", tema: "Mantenimiento anual", origen: "ChatGPT · recomendó la empresa", canal: "Formulario", cuando: "Ayer", estado: "Presupuesto enviado" },
-  { nombre: "A. G.", tema: "Caldera que no arranca", origen: "Ficha de Google · botón de llamar", canal: "Llamada", cuando: "Lunes", estado: "Cliente" },
-  { nombre: "M. T.", tema: "Suelo radiante", origen: "Correo de seguimiento n.º 4", canal: "Formulario", cuando: "Lunes", estado: "Cliente" },
+  { nombre: "L. M.", tema: "Despido tras 9 años", origen: "Google Ads · campaña Despidos", canal: "Formulario", cuando: "Hace 9 min", estado: "Nuevo" },
+  { nombre: "Grupo Hostelero Sur", tema: "Asesoría laboral mensual", origen: "Google sin pagar · artículo para empresas", canal: "Llamada", cuando: "Hoy, 09:20", estado: "Llamado" },
+  { nombre: "J. R.", tema: "Acoso laboral de su jefe", origen: "Instagram · reel sobre acoso", canal: "WhatsApp", cuando: "Ayer", estado: "Presupuesto enviado" },
+  { nombre: "Oficinas Grupo Norte", tema: "Plan de igualdad y protocolo de acoso", origen: "ChatGPT · recomendó el despacho", canal: "Formulario", cuando: "Ayer", estado: "Presupuesto enviado" },
+  { nombre: "A. G.", tema: "Despido estando embarazada", origen: "Ficha de Google · botón de llamar", canal: "Llamada", cuando: "Lunes", estado: "Cliente" },
+  { nombre: "M. T.", tema: "Incapacidad permanente denegada", origen: "Correo de seguimiento n.º 4", canal: "Formulario", cuando: "Lunes", estado: "Cliente" },
 ];
 
 // El recorrido completo de un cliente, paso a paso: lo que permite saber exactamente de dónde viene.
 const RECORRIDO: [string, string, string][] = [
-  ["Lunes 6, 22:14", "Ve un anuncio en Instagram", "Campaña «Aerotermia, ahorra en la factura». Lo registra el píxel de Meta."],
+  ["Lunes 6, 22:14", "Ve un anuncio en Instagram", "Campaña «¿Te han despedido? Tienes 20 días». Lo registra el píxel de Meta."],
   ["Lunes 6, 22:15", "Entra en la web desde el móvil", "Llega con su etiqueta de campaña (UTM): sabemos qué anuncio exacto pulsó."],
-  ["Lunes 6, 22:19", "Usa la calculadora de ahorro", "Lo registra Tag Manager como evento «calculadora usada»."],
+  ["Lunes 6, 22:19", "Usa la calculadora de indemnización", "Lo registra Tag Manager como evento «calculadora usada»."],
   ["Miércoles 8, 10:02", "Vuelve buscando en Google", "Busca la marca. Search Console y Analytics lo unen a su primera visita."],
-  ["Miércoles 8, 10:06", "Pide presupuesto", "Formulario enviado: Analytics, Google Ads y Meta reciben la conversión."],
-  ["Miércoles 8, 10:06", "Recibe la respuesta al momento", "Correo automático de bienvenida y aviso a tu comercial por WhatsApp."],
-  ["Viernes 10, 18:30", "Abre el correo 2 de 5", "«Cómo funciona la aerotermia en tu casa». Lo registra Resend."],
-  ["Martes 14, 12:00", "Firma el presupuesto", "Marcado como cliente: 9.400 €. El anuncio de Instagram se lleva el mérito."],
+  ["Miércoles 8, 10:06", "Pide consulta", "Formulario enviado: Analytics, Google Ads y Meta reciben la conversión."],
+  ["Miércoles 8, 10:06", "Recibe la respuesta al momento", "Correo automático de bienvenida y aviso a recepción por WhatsApp."],
+  ["Viernes 10, 18:30", "Abre el correo 2 de 5", "«Qué hacer en los primeros días tras un despido». Lo registra Resend."],
+  ["Martes 14, 12:00", "Firma la hoja de encargo", "Marcado como cliente: 2.800 €. El anuncio de Instagram se lleva el mérito."],
 ];
 
 const CAMPANAS = [
-  { nombre: "Aerotermia", inversion: 980, clics: 702, contactos: 38, clientes: 9 },
-  { nombre: "Aire acondicionado", inversion: 860, clics: 655, contactos: 31, clientes: 7 },
-  { nombre: "Mantenimiento empresas", inversion: 420, clics: 188, contactos: 12, clientes: 4 },
+  { nombre: "Despidos", inversion: 980, clics: 352, contactos: 38, clientes: 9 },
+  { nombre: "Acoso laboral", inversion: 860, clics: 297, contactos: 31, clientes: 7 },
+  { nombre: "Asesoría a empresas", inversion: 420, clics: 131, contactos: 12, clientes: 4 },
   { nombre: "Marca (tu nombre)", inversion: 90, clics: 240, contactos: 14, clientes: 3 },
 ];
 const META_ADS = { inversion: 640, alcance: 61200, clics: 1480, contactos: 44, clientes: 8 };
 
 const BUSQUEDAS: [string, number, number, number][] = [
-  ["aerotermia madrid", 2400, 4, 9],
-  ["instalación aire acondicionado madrid", 1900, 6, 14],
-  ["empresa climatización madrid", 880, 3, 7],
-  ["precio aerotermia chalet", 720, 2, 5],
-  ["mantenimiento aire acondicionado oficinas", 390, 5, 18],
-  ["suelo radiante precio m2", 1300, 8, 21],
+  ["abogado laboralista madrid", 2400, 4, 9],
+  ["calcular indemnización despido", 6600, 6, 14],
+  ["abogado despido madrid", 880, 3, 7],
+  ["abogado acoso laboral madrid", 390, 2, 5],
+  ["asesoría laboral empresas madrid", 320, 5, 18],
+  ["abogado incapacidad permanente", 1300, 8, 21],
 ];
 
-// Google Trends: interés por "aire acondicionado" en Madrid, últimos 12 meses (0-100).
-const TENDENCIA = [22, 18, 20, 31, 48, 79, 100, 92, 51, 30, 24, 21];
+// Google Trends: interés por "despido" en Madrid, últimos 12 meses (0-100).
+const TENDENCIA = [62, 48, 100, 84, 66, 61, 64, 68, 63, 38, 95, 80];
 const MESES_12 = ["Nov", "Dic", "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct"];
 
 
 const REDES: { red: string; serie: number[]; color: string; extra: string }[] = [
-  { red: "Instagram", serie: [1200, 1260, 1330, 1390, 1470, 1580, 1690, 1810, 1950, 2110, 2260, 2430], color: "#c13584", extra: "Reel más visto: «Así se instala una aerotermia en un día», 48.000 reproducciones" },
-  { red: "LinkedIn", serie: [410, 418, 430, 445, 461, 480, 497, 515, 540, 566, 590, 621], color: "#0a66c2", extra: "2 publicaciones para administradores de fincas este mes" },
+  { red: "Instagram", serie: [1200, 1260, 1330, 1390, 1470, 1580, 1690, 1810, 1950, 2110, 2260, 2430], color: "#c13584", extra: "Reel más visto: «Te han despedido: lo que tienes que hacer en 20 días», 48.000 reproducciones" },
+  { red: "LinkedIn", serie: [410, 418, 430, 445, 461, 480, 497, 515, 540, 566, 590, 621], color: "#0a66c2", extra: "2 publicaciones para responsables de recursos humanos este mes" },
   { red: "Facebook", serie: [880, 884, 891, 899, 905, 914, 922, 931, 941, 950, 962, 975], color: "#1877f2", extra: "61.200 personas alcanzadas con anuncios en Madrid" },
   { red: "TikTok", serie: [0, 0, 40, 120, 260, 410, 600, 820, 1100, 1380, 1700, 2050], color: "#111111", extra: "Cuenta nueva: 2.050 seguidores en 10 semanas" },
 ];
 
 const CORREOS: [string, number][] = [
   ["Hemos recibido tu petición", 81],
-  ["Cómo funciona la aerotermia en tu casa", 63],
-  ["Lo que ahorran nuestros clientes", 58],
-  ["Las ayudas que puedes pedir", 66],
-  ["¿Te preparamos el presupuesto?", 52],
+  ["Qué hacer en los primeros días tras un despido", 63],
+  ["Lo que han conseguido nuestros clientes", 58],
+  ["Cuánto te puede corresponder", 66],
+  ["¿Te reservamos la consulta?", 52],
 ];
 
 const HERRAMIENTAS: [string, number][] = [
-  ["Calculadora de ahorro con aerotermia", 512],
-  ["Configurador de aire acondicionado", 344],
-  ["Test: ¿qué sistema te conviene?", 201],
-  ["Simulador de ayudas", 153],
+  ["Calculadora de indemnización por despido", 512],
+  ["Calculadora de finiquito", 344],
+  ["Test: ¿lo que vivo es acoso laboral?", 201],
+  ["Simulador de incapacidad permanente", 153],
 ];
 
 const ETIQUETAS: { nombre: string; que: string; para: string }[] = [
@@ -178,40 +178,40 @@ const ETIQUETAS: { nombre: string; que: string; para: string }[] = [
 ];
 
 const ACTIVIDAD: [string, string, string][] = [
-  ["Hoy, 10:42", "Web", "Movido arriba el botón de presupuesto en la página de aerotermia: en Clarity vimos que la mitad no llegaba a verlo."],
-  ["Hoy, 09:15", "Anuncios", "Quitada la palabra «aire acondicionado barato»: traía curiosos, no clientes. Ahorro: 120 € al mes."],
+  ["Hoy, 10:42", "Web", "Movido arriba el botón de pedir consulta en la página de despidos: en Clarity vimos que la mitad no llegaba a verlo."],
+  ["Hoy, 09:15", "Anuncios", "Quitada la palabra «abogado gratis»: traía curiosos, no clientes. Ahorro: 120 € al mes."],
   ["Ayer, 18:30", "Reseñas", "Contestadas 4 reseñas nuevas, con tu visto bueno en la de 3 estrellas."],
-  ["Ayer, 12:00", "Blog", "Publicado: «Aerotermia o aire acondicionado: qué te conviene en Madrid»."],
-  ["Ayer, 10:00", "Redes", "Montado y programado el reel de la instalación en Las Rozas."],
+  ["Ayer, 12:00", "Blog", "Publicado: «Despido improcedente o nulo: qué cambia y cuánto puedes cobrar»."],
+  ["Ayer, 10:00", "Redes", "Montado y programado el reel de Álvaro sobre el acoso laboral."],
   ["Lunes, 08:00", "Panel", "Actualizado con los datos de la semana. Ya lo tienes en tu panel, sin esperar a ningún informe."],
-  ["Domingo", "Tendencias", "Google Trends avisa: las búsquedas de aire acondicionado suben desde marzo. Preparamos la campaña de primavera."],
-  ["Viernes", "Medición", "Añadido el evento «configurador terminado» en Tag Manager."],
-  ["Jueves", "IA", "Actualizada la información para las IA con tus nuevas zonas de trabajo."],
+  ["Domingo", "Tendencias", "Google Trends avisa: las búsquedas de «despido» suben al volver de vacaciones. Preparamos la campaña de septiembre."],
+  ["Viernes", "Medición", "Añadido el evento «calculadora terminada» en Tag Manager."],
+  ["Jueves", "IA", "Actualizada la información para las IA con tus servicios para empresas."],
 ];
 
 const EVENTOS: [string, string, string][] = [
-  ["visita", "Nueva visita desde Google", "Lee «¿Cuánto cuesta una aerotermia?»"],
-  ["herramienta", "Alguien usa la calculadora de ahorro", "Chalet de 180 m² en Pozuelo"],
-  ["visita", "Nueva visita desde un anuncio", "Campaña Aerotermia, en el móvil"],
-  ["whatsapp", "Pulsación en WhatsApp", "Desde la página de aire acondicionado"],
-  ["correo", "Correo abierto", "«Las ayudas que puedes pedir»"],
-  ["visita", "Nueva visita desde Instagram", "Reel de la instalación en un día"],
+  ["visita", "Nueva visita desde Google", "Lee «¿Cuánto me corresponde de indemnización?»"],
+  ["herramienta", "Alguien usa la calculadora de indemnización", "8 años en la empresa, 1.900 € al mes"],
+  ["visita", "Nueva visita desde un anuncio", "Campaña Despidos, en el móvil"],
+  ["whatsapp", "Pulsación en WhatsApp", "Desde la página de acoso laboral"],
+  ["correo", "Correo abierto", "«Cuánto te puede corresponder»"],
+  ["visita", "Nueva visita desde Instagram", "Reel sobre el acoso laboral"],
   ["llamada", "Llamada desde la ficha de Google", "Botón de llamar del mapa"],
-  ["chat", "Conversación con el asistente", "Pregunta por el mantenimiento anual"],
-  ["visita", "Nueva visita desde ChatGPT", "Página de empresa"],
-  ["contacto", "Nueva petición de presupuesto", "Formulario · Aerotermia · Google Ads"],
+  ["chat", "Conversación con el asistente", "Pregunta cuánto cuesta la consulta"],
+  ["visita", "Nueva visita desde ChatGPT", "Página del despacho"],
+  ["contacto", "Nueva petición de consulta", "Formulario · Despidos · Google Ads"],
 ];
 
 type Estado = "Recibida" | "En curso" | "Esperando tu aprobación" | "Hecha";
 type Peticion = { id: number; que: string; area: string; pedida: string; prometida: string; estado: Estado; entregada?: string };
 const PETICIONES_INICIALES: Peticion[] = [
-  { id: 1, que: "Banner de la campaña de aerotermia para Instagram", area: "Diseño", pedida: "Hoy, 09:10", prometida: "Mañana, 09:10", estado: "Esperando tu aprobación" },
-  { id: 2, que: "Página nueva: mantenimiento para comunidades", area: "Web", pedida: "Ayer, 17:40", prometida: "Lunes, 17:40", estado: "En curso" },
-  { id: 3, que: "Subir el presupuesto de la campaña de aire acondicionado", area: "Anuncios", pedida: "Ayer, 12:05", prometida: "Hoy, 12:05", estado: "Hecha", entregada: "Ayer, 13:20" },
-  { id: 4, que: "Artículo: ayudas para aerotermia en 2027", area: "Contenido", pedida: "Lunes", prometida: "Miércoles", estado: "Esperando tu aprobación" },
-  { id: 5, que: "Conectar el formulario con el CRM del equipo comercial", area: "Automatización", pedida: "Lunes", prometida: "Viernes 23 (proyecto)", estado: "En curso" },
+  { id: 1, que: "Banner de la campaña de despidos para Instagram", area: "Diseño", pedida: "Hoy, 09:10", prometida: "Mañana, 09:10", estado: "Esperando tu aprobación" },
+  { id: 2, que: "Página nueva: asesoría laboral para pymes", area: "Web", pedida: "Ayer, 17:40", prometida: "Lunes, 17:40", estado: "En curso" },
+  { id: 3, que: "Subir el presupuesto de la campaña de acoso laboral", area: "Anuncios", pedida: "Ayer, 12:05", prometida: "Hoy, 12:05", estado: "Hecha", entregada: "Ayer, 13:20" },
+  { id: 4, que: "Artículo: cómo se calcula la indemnización por despido en 2027", area: "Contenido", pedida: "Lunes", prometida: "Miércoles", estado: "Esperando tu aprobación" },
+  { id: 5, que: "Conectar el formulario con el CRM del despacho", area: "Automatización", pedida: "Lunes", prometida: "Viernes 23 (proyecto)", estado: "En curso" },
   { id: 6, que: "Cambiar el horario de agosto en la ficha de Google", area: "Google", pedida: "Lunes, 10:00", prometida: "Lunes, 18:00", estado: "Hecha", entregada: "Lunes, 10:25" },
-  { id: 7, que: "Nuevo anuncio de radio para la campaña de verano", area: "Radio", pedida: "Viernes", prometida: "Fecha cerrada: 15 de mayo", estado: "En curso" },
+  { id: 7, que: "Nuevo anuncio de radio para la campaña de septiembre", area: "Radio", pedida: "Viernes", prometida: "Fecha cerrada: 20 de agosto", estado: "En curso" },
 ];
 const COLOR_ESTADO: Record<Estado, string> = {
   Recibida: "bg-sky-100 text-sky-800",
@@ -229,13 +229,13 @@ const FASES = ["Nuevo", "Contactado", "Presupuesto enviado", "Negociando", "Clie
 type Fase = (typeof FASES)[number];
 type Ficha = { id: number; nombre: string; tema: string; origen: string; valor: number; fase: Fase; seguimiento: string; canal: "WhatsApp" | "Llamada" | "Correo"; historia: [string, string][] };
 const FICHAS_INICIALES: Ficha[] = [
-  { id: 1, nombre: "L. M.", tema: "Aerotermia para un chalet", origen: "Google Ads · Aerotermia", valor: 9400, fase: "Nuevo", seguimiento: "Hoy, en 5 minutos", canal: "Llamada", historia: [["Hoy, 10:31", "Entra solo desde el formulario de la web"], ["Hoy, 10:29", "Usa la calculadora de ahorro"], ["Hoy, 10:24", "Llega desde un anuncio de Google"]] },
-  { id: 2, nombre: "Comunidad Av. Europa 14", tema: "Climatización del portal", origen: "Google sin pagar", valor: 18600, fase: "Contactado", seguimiento: "Mañana, 10:00", canal: "Correo", historia: [["Ayer, 12:10", "Llamada: quieren visita la semana que viene"], ["Ayer, 09:20", "Llama desde la ficha de Google"]] },
-  { id: 3, nombre: "J. R.", tema: "Split en dos dormitorios", origen: "Instagram · reel", valor: 2900, fase: "Presupuesto enviado", seguimiento: "Hoy, 17:00", canal: "WhatsApp", historia: [["Lunes", "Presupuesto enviado: 2.900 €"], ["Lunes", "Visita hecha"], ["Viernes", "Escribe por WhatsApp desde Instagram"]] },
-  { id: 4, nombre: "Oficinas Grupo Norte", tema: "Mantenimiento anual", origen: "ChatGPT", valor: 7200, fase: "Negociando", seguimiento: "Jueves, 12:00", canal: "Llamada", historia: [["Martes", "Piden ajustar el precio de la segunda sede"], ["Lunes", "Presupuesto enviado: 7.200 €/año"], ["Jueves", "Llegan desde ChatGPT a la página de empresa"]] },
-  { id: 5, nombre: "A. G.", tema: "Caldera que no arranca", origen: "Ficha de Google", valor: 1450, fase: "Cliente", seguimiento: "En 15 días: pedir reseña", canal: "WhatsApp", historia: [["Miércoles", "Firmado: 1.450 €"], ["Lunes", "Llamada desde el mapa de Google"]] },
-  { id: 6, nombre: "M. T.", tema: "Suelo radiante", origen: "Seguimiento n.º 3", valor: 11800, fase: "Cliente", seguimiento: "En 6 meses: revisión", canal: "Correo", historia: [["Martes", "Firmado: 11.800 €"], ["Hace 3 semanas", "Recibe el seguimiento n.º 3 y vuelve a escribir"], ["Hace 5 semanas", "Pide presupuesto y se enfría"]] },
-  { id: 7, nombre: "P. S.", tema: "Aire acondicionado en tienda", origen: "Anuncios de Instagram", valor: 4300, fase: "No sigue", seguimiento: "En marzo: volver a escribir", canal: "WhatsApp", historia: [["Viernes", "No sigue: lo deja para primavera"], ["Lunes", "Presupuesto enviado: 4.300 €"]] },
+  { id: 1, nombre: "L. M.", tema: "Despido tras 9 años", origen: "Google Ads · Despidos", valor: 2800, fase: "Nuevo", seguimiento: "Hoy, en 5 minutos", canal: "Llamada", historia: [["Hoy, 10:31", "Entra solo desde el formulario de la web"], ["Hoy, 10:29", "Usa la calculadora de indemnización"], ["Hoy, 10:24", "Llega desde un anuncio de Google"]] },
+  { id: 2, nombre: "Grupo Hostelero Sur", tema: "Asesoría laboral mensual", origen: "Google sin pagar", valor: 7200, fase: "Contactado", seguimiento: "Mañana, 10:00", canal: "Correo", historia: [["Ayer, 12:10", "Llamada: quieren reunirse con Álvaro la semana que viene"], ["Ayer, 09:20", "Llama desde la ficha de Google"]] },
+  { id: 3, nombre: "J. R.", tema: "Acoso laboral de su jefe", origen: "Instagram · reel", valor: 2400, fase: "Presupuesto enviado", seguimiento: "Hoy, 17:00", canal: "WhatsApp", historia: [["Lunes", "Presupuesto enviado: 2.400 €"], ["Lunes", "Consulta hecha"], ["Viernes", "Escribe por WhatsApp desde Instagram"]] },
+  { id: 4, nombre: "Oficinas Grupo Norte", tema: "Plan de igualdad y protocolo de acoso", origen: "ChatGPT", valor: 4800, fase: "Negociando", seguimiento: "Jueves, 12:00", canal: "Llamada", historia: [["Martes", "Piden ajustar el precio para la segunda sede"], ["Lunes", "Presupuesto enviado: 4.800 €"], ["Jueves", "Llegan desde ChatGPT a la página para empresas"]] },
+  { id: 5, nombre: "A. G.", tema: "Despido estando embarazada", origen: "Ficha de Google", valor: 3200, fase: "Cliente", seguimiento: "Tras el juicio: pedir reseña", canal: "WhatsApp", historia: [["Miércoles", "Firmado: 3.200 €"], ["Lunes", "Llamada desde el mapa de Google"]] },
+  { id: 6, nombre: "M. T.", tema: "Incapacidad permanente denegada", origen: "Seguimiento n.º 3", valor: 2900, fase: "Cliente", seguimiento: "En marzo: juicio señalado", canal: "Correo", historia: [["Martes", "Firmado: 2.900 €"], ["Hace 3 semanas", "Recibe el seguimiento n.º 3 y vuelve a escribir"], ["Hace 5 semanas", "Pide consulta y se enfría"]] },
+  { id: 7, nombre: "P. S.", tema: "Reclamación de horas extra", origen: "Anuncios de Instagram", valor: 1500, fase: "No sigue", seguimiento: "En enero: volver a escribir", canal: "WhatsApp", historia: [["Viernes", "No sigue: prefiere esperar a dejar la empresa"], ["Lunes", "Presupuesto enviado: 1.500 €"]] },
 ];
 const COLOR_FASE: Record<Fase, string> = {
   Nuevo: "bg-sky-100 text-sky-800",
@@ -487,7 +487,7 @@ const ICONO_EVENTO: Record<string, string> = {
 // mejor: "sube" si subir es bueno; "baja" si bajar es bueno.
 const seg = (n: number) => (n >= 60 ? `${Math.floor(n / 60)}:${String(Math.round(n % 60)).padStart(2, "0")} min` : `${Math.round(n)} s`);
 const PARAMETROS: { t: string; serie: number[]; mejor: "sube" | "baja"; f: (n: number) => string; ayuda: string }[] = [
-  { t: "Contactos al mes", serie: [143, 171, 205, 238, 269, 312], mejor: "sube", f: (n) => num(n), ayuda: "Personas que te han escrito, llamado o pedido presupuesto. Es el número que más importa." },
+  { t: "Contactos al mes", serie: [143, 171, 205, 238, 269, 312], mejor: "sube", f: (n) => num(n), ayuda: "Personas que te han escrito, llamado o pedido consulta. Es el número que más importa." },
   { t: "Tiempo que se quedan en tu web", serie: [52, 64, 81, 97, 108, 124], mejor: "sube", f: seg, ayuda: "Cuanto más se quedan, más les interesa lo que ven." },
   { t: "Tasa de rebote", serie: [68, 61, 55, 50, 47, 42], mejor: "baja", f: (n) => `${n} %`, ayuda: "Personas que entran y se van sin hacer nada. Cuanto más baja, mejor." },
   { t: "Visitas que acaban contactando", serie: [1.9, 2.4, 2.9, 3.3, 3.6, 4.1], mejor: "sube", f: (n) => `${n.toString().replace(".", ",")} %`, ayuda: "De cada 100 visitas, cuántas te contactan." },
@@ -596,9 +596,9 @@ export default function PanelEjemplo() {
     contactos: (<>
               <div className="grid gap-4 md:grid-cols-3">
                 {[
-                  ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 54 % pide presupuesto de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
+                  ["¿Llegan buenos contactos?", `${esc(312)} contactos`, "El 54 % pide consulta de verdad. Es mejor que el periodo anterior.", "anuncios", "Ver los anuncios"],
                   ["¿Los convertimos en clientes?", "Preparado para ti", "Se activa cuando marcas quién ha firmado. Nosotros no lo vemos ni te lo pedimos.", "crm", "Ver Lo tuyo"],
-                  ["¿Qué canal trae más contactos?", "Aerotermia en Google", "Trae el 38 % de los contactos con el coste más bajo.", "anuncios", "Ver cada canal"],
+                  ["¿Qué canal trae más contactos?", "Despidos en Google", "Trae el 38 % de los contactos con el coste más bajo.", "anuncios", "Ver cada canal"],
                 ].map(([q, v, t, dest, b]) => (
                   <div key={q} className="rounded-3xl border border-linea bg-white p-5">
                     <p className="text-sm font-bold text-gris">{q}</p>
@@ -609,11 +609,11 @@ export default function PanelEjemplo() {
                 ))}
               </div>
               <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: 3 presupuestos sin respuesta</p><p className="mt-1 text-sm text-gris">Llevan más de 3 días esperando. Qué hacer: llámalos hoy; el correo de recordatorio ya ha salido.</p></div>
+                <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: 3 peticiones de consulta sin respuesta</p><p className="mt-1 text-sm text-gris">Llevan más de 3 días esperando. Qué hacer: llámalos hoy; el correo de recordatorio ya ha salido.</p></div>
                 <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4"><p className="font-extrabold">Alerta: la ficha de Google tiene 2 reseñas sin contestar</p><p className="mt-1 text-sm text-gris">Qué hacer: respóndelas esta semana. Te lo dejamos redactado en Tus peticiones.</p></div>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido presupuesto. Sale solo." />
+                <Cifra titulo="Contactos" valor={esc(312)} cambio={cmb(comparar === "mes" ? 16 : 118)} contra={contraTxt} explicacion="Personas que te han escrito, llamado o pedido consulta. Sale solo." />
                 <Cifra titulo="Coste por contacto" valor={10} formato={eur} cambio={cmb(comparar === "mes" ? -8 : -41)} invertir contra={contraTxt} explicacion="Lo invertido en anuncios dividido entre los contactos que llegan. Cuanto más bajo, mejor." />
                 <Cifra titulo="Visitas a la web" valor={esc(8640)} cambio={cmb(comparar === "mes" ? 9 : 87)} contra={contraTxt} explicacion="Personas distintas que han entrado en tu web." />
                 <Cifra titulo="Contactos por cada 100 visitas" valor={36} formato={(n) => (n / 10).toFixed(1).replace(".", ",")} cambio={cmb(comparar === "mes" ? 6 : 22)} contra={contraTxt} explicacion="De cada 100 personas que entran, cuántas te dejan sus datos." />
@@ -886,9 +886,9 @@ export default function PanelEjemplo() {
                 <Caja titulo="Lo que hemos ajustado este mes" fuente="Nuestro equipo" ayuda="Los anuncios no se montan y se olvidan: se revisan cada día. Esto es lo que hemos cambiado y por qué.">
                   <ul className="space-y-3 text-sm">
                     <li className="rounded-2xl bg-niebla p-3"><b>Quitadas 23 búsquedas</b> que traían curiosos («barato», «gratis», «segunda mano»). Ahorro: 210 € al mes.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de aerotermia: es la que mejor coste por contacto tiene.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Nuevo anuncio en vídeo</b> en Instagram con una instalación real. Ha bajado el coste por contacto un 18 %.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Horario ajustado:</b> los anuncios ya no salen de 1 a 7 de la madrugada, cuando nadie pedía presupuesto.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Subido un 10 %</b> el presupuesto de la campaña de despidos: es la que mejor coste por contacto tiene.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Nuevo anuncio en vídeo</b> en Instagram con Álvaro explicando qué hacer tras un despido. Ha bajado el coste por contacto un 18 %.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Horario ajustado:</b> los anuncios ya no salen de 1 a 7 de la madrugada, cuando nadie pedía consulta.</li>
                   </ul>
                 </Caja>
               </div>
@@ -913,7 +913,7 @@ export default function PanelEjemplo() {
               </Caja>
               <div className="grid gap-5 lg:grid-cols-2">
                 <Caja titulo="Qué se busca en tu sector" fuente="Google Trends" ayuda="Google Trends nos dice cuándo la gente empieza a buscar lo que vendes. Así preparamos las campañas antes que tu competencia, no cuando ya es tarde.">
-                  <p className="text-sm text-gris">Interés por «aire acondicionado» en Madrid, último año</p>
+                  <p className="text-sm text-gris">Interés por «despido» en Madrid, último año</p>
                   <div className="mt-3 flex h-40 items-end gap-1.5">
                     {TENDENCIA.map((v, i) => (
                       <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
@@ -922,7 +922,7 @@ export default function PanelEjemplo() {
                       </div>
                     ))}
                   </div>
-                  <p className="mt-3 rounded-2xl bg-estrella/20 p-3 text-sm">Las búsquedas se disparan en abril. La campaña de primavera empieza el 15 de marzo.</p>
+                  <p className="mt-3 rounded-2xl bg-estrella/20 p-3 text-sm">Las búsquedas se disparan en enero y en septiembre, al volver de vacaciones. La campaña de septiembre empieza el 25 de agosto.</p>
                 </Caja>
                 <Caja titulo="Tu ficha de Google (el mapa)" fuente="Ficha de Google" ayuda="La ficha que sale en Google Maps cuando te buscan cerca. Mucha gente llama directamente desde ahí sin entrar en tu web.">
                   <div className="grid grid-cols-2 gap-3">
@@ -957,7 +957,7 @@ export default function PanelEjemplo() {
     </>),
     redes: (<>
               {REDES.map((r) => (
-                <Caja key={r.red} titulo={r.red} fuente="Últimos 12 meses" ayuda="Cuántas personas te siguen y cómo ha ido creciendo. Lo importante no son los seguidores, sino cuántos acaban pidiendo presupuesto: eso lo ves en la pestaña de Clientes.">
+                <Caja key={r.red} titulo={r.red} fuente="Últimos 12 meses" ayuda="Cuántas personas te siguen y cómo ha ido creciendo. Lo importante no son los seguidores, sino cuántos acaban pidiendo consulta: eso lo ves en la pestaña de Clientes.">
                   <div className="flex items-center gap-3">
                     <Logo nombre={r.red} tam={34} />
                     <p className="text-3xl font-extrabold"><Contador valor={r.serie[r.serie.length - 1]} /></p>
@@ -980,8 +980,8 @@ export default function PanelEjemplo() {
               <div className="grid gap-5 lg:grid-cols-2">
                 <Caja titulo="Lo que vemos en Clarity" fuente="Mapas de calor" ayuda="Clarity graba de forma anónima cómo se mueve la gente por tu web: dónde pulsa, hasta dónde baja y dónde se atasca. Es como mirar por encima del hombro a tus visitantes.">
                   <ul className="space-y-3 text-sm">
-                    <li className="rounded-2xl bg-niebla p-3"><b>El 52 % no llegaba</b> al botón de presupuesto en la página de aerotermia. Lo hemos subido: ya lo ve el 91 %.</li>
-                    <li className="rounded-2xl bg-niebla p-3"><b>Muchos pulsaban la foto</b> del equipo esperando ver más. Hemos añadido una galería de instalaciones.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>El 52 % no llegaba</b> al botón de pedir consulta en la página de despidos. Lo hemos subido: ya lo ve el 91 %.</li>
+                    <li className="rounded-2xl bg-niebla p-3"><b>Muchos pulsaban la foto</b> del equipo esperando ver más. Hemos añadido la ficha de cada abogado.</li>
                     <li className="rounded-2xl bg-niebla p-3"><b>Clics de rabia</b> en el campo del teléfono: el formulario no aceptaba espacios. Arreglado el mismo día.</li>
                   </ul>
                 </Caja>
@@ -1003,7 +1003,7 @@ export default function PanelEjemplo() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Cifra titulo="Contactos este mes" valor={312} cambio={16} explicacion="Todos entran solos en tu CRM." />
                 <Cifra titulo="En juego ahora" valor={fichas.filter((f) => ["Contactado", "Presupuesto enviado", "Negociando"].includes(f.fase)).reduce((a, f) => a + f.valor, 0)} formato={eur} explicacion="Presupuestos abiertos que aún se pueden ganar." />
-                <Cifra titulo="Ganado este mes" valor={fichas.filter((f) => f.fase === "Cliente").reduce((a, f) => a + f.valor, 0) + 298300} formato={eur} cambio={14} explicacion="Presupuestos firmados que vinieron por internet." />
+                <Cifra titulo="Ganado este mes" valor={fichas.filter((f) => f.fase === "Cliente").reduce((a, f) => a + f.valor, 0) + 41900} formato={eur} cambio={14} explicacion="Presupuestos firmados que vinieron por internet." />
                 <Cifra titulo="Cierre de presupuestos" valor={41} formato={(n) => `${n} %`} cambio={6} explicacion="De cada 100 presupuestos enviados, cuántos se firman." />
               </div>
               <Caja quien="tuyo" titulo="Tus contactos, fase a fase" fuente="Se actualiza solo" ayuda="Cada columna es una fase. Pulsa en un contacto para ver su ficha, de dónde vino, todo lo que ha pasado y cuándo toca el siguiente seguimiento. Puedes moverlo de fase con un toque.">
@@ -1113,7 +1113,7 @@ export default function PanelEjemplo() {
                 </ol>
               </Caja>
 
-              <Caja quien="tuyo" titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Todo entra solo en tu CRM (el que ya tengas o uno que te creamos), y tu equipo comercial lo ve igual, en el móvil.">
+              <Caja quien="tuyo" titulo="Últimos contactos" fuente="La web, WhatsApp y llamadas" ayuda="Cada persona que te ha escrito, con lo que quiere, de dónde ha venido y en qué punto está. Todo entra solo en tu CRM (el que ya tengas o uno que te creamos), y tu equipo lo ve igual, en el móvil.">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[640px] text-left text-sm">
                     <thead className="text-gris">
@@ -1146,7 +1146,7 @@ export default function PanelEjemplo() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm text-gris">De media, el <b className="text-tinta">64 %</b> abre los correos. 9 personas de este mes pidieron presupuesto después de un correo.</p>
+                  <p className="mt-4 text-sm text-gris">De media, el <b className="text-tinta">64 %</b> abre los correos. 9 personas de este mes pidieron consulta después de un correo.</p>
                 </Caja>
                 <Caja titulo="Herramientas de tu web" fuente="Tag Manager" ayuda="Las calculadoras y tests de tu web enganchan al visitante y le ayudan a decidir. Aquí ves cuántas veces se ha usado cada una este mes.">
                   <ul className="space-y-3">
@@ -1196,8 +1196,8 @@ export default function PanelEjemplo() {
               </Caja>
               <div className="grid gap-5 lg:grid-cols-3">
                 <Caja titulo="Enlaces etiquetados" fuente="UTM" ayuda="Cada anuncio, correo o publicación lleva un enlace con una etiqueta invisible (UTM). Cuando alguien entra, sabemos de qué anuncio exacto viene.">
-                  <p className="break-all rounded-2xl bg-niebla p-3 font-mono text-xs">tuweb.es/aerotermia?<b>utm_source</b>=instagram&<b>utm_campaign</b>=aerotermia-otono&<b>utm_content</b>=reel-instalacion</p>
-                  <p className="mt-3 text-sm text-gris">Se lee: viene de Instagram, de la campaña de otoño, del reel de la instalación.</p>
+                  <p className="break-all rounded-2xl bg-niebla p-3 font-mono text-xs">tuweb.es/despidos?<b>utm_source</b>=instagram&<b>utm_campaign</b>=despidos-septiembre&<b>utm_content</b>=reel-20-dias</p>
+                  <p className="mt-3 text-sm text-gris">Se lee: viene de Instagram, de la campaña de septiembre, del reel de los 20 días.</p>
                 </Caja>
                 <Caja titulo="Aunque bloqueen cookies" fuente="Conversiones desde el servidor" ayuda="Cada vez más navegadores bloquean las cookies. Por eso enviamos también los contactos directamente desde tu servidor a Google y a Meta, respetando siempre lo que la persona haya aceptado.">
                   <p className="text-4xl font-extrabold text-emerald-700">97 %</p>
@@ -1236,11 +1236,11 @@ export default function PanelEjemplo() {
     { id: "control360", grupo: "web", nombre: "Control 360", corto: "Control 360", linea: "Probamos tu recorrido completo como lo haría un cliente.", conclusion: "Última prueba completa, el lunes: todo correcto.", luz: "ok", icono: "camino", contenido: <Herramientas360 solo="recorrido" /> },
     { id: "web", grupo: "web", nombre: "La web", corto: "La web", linea: "Velocidad, seguridad y lo que ve Clarity.", conclusion: "Tu web va rápida, segura y con copia de cada cambio.", luz: "ok", icono: "globo", contenido: piezas.web },
     { id: "espejo", grupo: "dicen", nombre: "Espejo de la IA", corto: "Espejo IA", linea: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", conclusion: "Sales en 16 de 18 respuestas. En 2 preguntas todavía no.", luz: "atencion", icono: "espejo", contenido: <Herramientas360 solo="espejo" /> },
-    { id: "redes", grupo: "dicen", nombre: "Redes y reseñas", corto: "Redes", linea: "Instagram, LinkedIn, Facebook, TikTok y tus reseñas.", conclusion: "Todas las redes suben. Lo importante: cuántos te piden presupuesto.", luz: "ok", icono: "red", contenido: piezas.redes },
-    { id: "vigia", grupo: "mercado", nombre: "Vigía", corto: "Vigía", linea: "Ves los cambios importantes de tu competencia.", conclusion: "Una empresa de tu zona ha bajado la revisión anual a 79 €.", luz: "ok", icono: "catalejo", contenido: <Herramientas360 solo="vigia" /> },
+    { id: "redes", grupo: "dicen", nombre: "Redes y reseñas", corto: "Redes", linea: "Instagram, LinkedIn, Facebook, TikTok y tus reseñas.", conclusion: "Todas las redes suben. Lo importante: cuántos te piden consulta.", luz: "ok", icono: "red", contenido: piezas.redes },
+    { id: "vigia", grupo: "mercado", nombre: "Vigía", corto: "Vigía", linea: "Ves los cambios importantes de tu competencia.", conclusion: "Un despacho de tu zona anuncia la primera consulta a 100 €.", luz: "ok", icono: "catalejo", contenido: <Herramientas360 solo="vigia" /> },
     { id: "contactos", grupo: "anuncios", nombre: "Contactos que llegan", corto: "Contactos", linea: "Cuánta gente te escribe, por qué canal y desde qué anuncio o página. Sale solo.", conclusion: `${esc(312)} contactos en este periodo, ${comp === "nada" ? "sin comparar" : "un 16 % más que antes"}.`, luz: "ok", icono: "persona", contenido: piezas.contactos },
     { id: "costecontacto", grupo: "anuncios", nombre: "Coste por contacto", corto: "Coste", linea: "Lo invertido en anuncios entre los contactos que llegan, por canal.", conclusion: "Cada contacto te cuesta 10 €, 8 % menos que antes.", luz: "ok", icono: "moneda", contenido: piezas.costeContacto },
-    { id: "campanas", grupo: "anuncios", nombre: "Campañas", corto: "Campañas", linea: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", conclusion: "Aerotermia es la que más contactos trae. Le hemos subido el presupuesto un 10 %.", luz: "ok", icono: "megafono", contenido: piezas.campanas },
+    { id: "campanas", grupo: "anuncios", nombre: "Campañas", corto: "Campañas", linea: "Google Ads, Meta y Microsoft Ads, campaña a campaña.", conclusion: "Despidos es la que más contactos trae. Le hemos subido el presupuesto un 10 %.", luz: "ok", icono: "megafono", contenido: piezas.campanas },
     { id: "google", grupo: "anuncios", nombre: "Google, Bing y mapa", corto: "Google", linea: "Tus puestos, tu ficha de Google y Bing.", conclusion: "Sales en el mapa y en 4 búsquedas clave entre los tres primeros.", luz: "ok", icono: "mapa", contenido: piezas.google },
     { id: "crm", grupo: "tuyo", nombre: "Ventas (CRM)", corto: "Ventas", linea: "Tus contactos, fase a fase. El CRM es tuyo.", conclusion: "Preparado: se actualiza cuando mueves un contacto de fase.", luz: "preparado", icono: "embudo", contenido: piezas.crm },
     { id: "clientes", grupo: "tuyo", nombre: "Contactos que se hacen clientes", corto: "Clientes", linea: "Cuántos acaban firmando y de dónde viene cada uno.", conclusion: "Preparado: se activa cuando marcas quién ha firmado.", luz: "preparado", icono: "camino", contenido: piezas.clientes },
@@ -1301,13 +1301,13 @@ export default function PanelEjemplo() {
       <div className="mx-auto w-full max-w-[1240px] px-4 sm:px-6">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 text-sm print:hidden">
           <Link href="/" className="font-bold underline underline-offset-4">← Casiopea 360</Link>
-          <p className="min-w-0 basis-full rounded-2xl border px-4 py-2 sm:flex-1 sm:basis-0" style={{ background: "#fbf6e6", borderColor: "#eadfb8" }}>Panel de demostración con datos inventados de una empresa de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.</p>
+          <p className="min-w-0 basis-full rounded-2xl border px-4 py-2 sm:flex-1 sm:basis-0" style={{ background: "#fbf6e6", borderColor: "#eadfb8" }}>Panel de demostración con datos inventados de un despacho de ejemplo. Así verás el tuyo, con tus datos reales, en tiempo real y desde el móvil.</p>
         </div>
 
         {!inicio && (
           <header className="mt-4 print:hidden">
-            <p className="sans-ey">Climatización Ejemplo · panel de control</p>
-            <p className="mt-1 flex items-center gap-2 text-[15px] text-gris"><span aria-hidden className="inline-block h-2 w-2 rounded-full bg-emerald-500" />Datos de demostración de una empresa inventada · {ahora} personas en tu web ahora</p>
+            <p className="sans-ey">Fuero Abogados · panel de control</p>
+            <p className="mt-1 flex items-center gap-2 text-[15px] text-gris"><span aria-hidden className="inline-block h-2 w-2 rounded-full bg-emerald-500" />Datos de demostración de un despacho inventado · {ahora} personas en tu web ahora</p>
           </header>
         )}
 
@@ -1415,7 +1415,7 @@ export default function PanelEjemplo() {
                   ))}
                 </div>
                 <label className="sr-only" htmlFor="pedido-panel">Tu mensaje</label>
-                <textarea id="pedido-panel" rows={3} value={pedido} onChange={(e) => setPedido(e.target.value)} placeholder={tipoMsg === "Información para vosotros" ? "Por ejemplo: en noviembre hacemos una promoción de calderas" : "Por ejemplo: quiero ver los contactos por zona de Madrid"} className="w-full rounded-2xl bg-white px-5 py-3 text-tinta focus:outline-none focus:ring-4 focus:ring-estrella/50" />
+                <textarea id="pedido-panel" rows={3} value={pedido} onChange={(e) => setPedido(e.target.value)} placeholder={tipoMsg === "Información para vosotros" ? "Por ejemplo: en enero abrimos un servicio de asesoría para pymes" : "Por ejemplo: quiero ver los contactos por zona de Madrid"} className="w-full rounded-2xl bg-white px-5 py-3 text-tinta focus:outline-none focus:ring-4 focus:ring-estrella/50" />
                 <div className="flex flex-wrap items-center gap-3">
                   <button type="submit" className="rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Enviar por correo</button>
                   <span className="text-xs text-white/60">Es un mensaje para tu equipo de Casiopea. No hace falta que escribas cifras de tu empresa.</span>

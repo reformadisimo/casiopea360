@@ -126,7 +126,7 @@ export function YSi({ base, demo }: { base: CifrasBase; demo?: boolean }) {
       </div>
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <Cifra t="Contactos al mes" v={num(r.total)} color={C.ventas} sub={`hoy, unos ${num(r.totalHoy)} al mes`} />
-        <Cifra t="Piden visita" v={num(r.total * r.pide)} color={C.web} sub={`${pct(r.pide * 100)} de los contactos`} />
+        <Cifra t="Piden consulta" v={num(r.total * r.pide)} color={C.web} sub={`${pct(r.pide * 100)} de los contactos`} />
         <Cifra t="Clientes nuevos" v={num(r.obras)} color={C.camino} sub={`${tasa} de cada 100 firman`} />
         <Cifra t="Facturación" v={eur(r.factura)} color={C.dinero} sub={`a ${eur(ticket)} por cliente`} />
       </div>

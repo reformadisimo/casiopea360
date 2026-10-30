@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { Icono, type IconoVida } from "@/components/ui/vida";
 import { api, campo, etiqueta, eur, fecha, hora, hoyMadrid, Panel } from "./comun";
 
-/* CRM v3 (26-oct, cl·v817): pantalla de inicio "para no perderse", informe de visita,
-   instalación (jefe, fase, partes diarios, ajustes, posventa), mensajes internos, agenda,
-   alarmas del equipo y instalaciones en marcha. */
+/* CRM v3 (26-oct, cl·v817): pantalla de inicio "para no perderse", informe de la consulta,
+   procedimiento (abogado, fase, partes de actuaciones, cambios de honorarios, después del cierre), mensajes internos, agenda,
+   alarmas del equipo y casos en marcha. */
 
 type Persona = { id: number; nombre: string; puesto?: string | null; activo?: boolean };
 export type Informe = {
@@ -26,14 +26,14 @@ export function Inicio({ nombre, esAdmin, pendientes, sinLeer, porEstado, estado
     { id: "hoy", icono: "reloj", titulo: "Lo mío de hoy", texto: "Las llamadas y tareas que te tocan hoy o que se han pasado de fecha.", cifra: pendientes, alerta: pendientes > 0, principal: true },
     { id: "nuevo", icono: "persona", titulo: "Apuntar una llamada o un WhatsApp", texto: "Alguien ha contactado: dale de alta en un minuto con su nombre, teléfono y de dónde viene.", principal: true },
     { id: "todos", icono: "lupa", titulo: "Buscar un cliente", texto: "Por nombre, teléfono, correo o código postal. Ves en qué punto está y todo lo hablado." },
-    { id: "agenda", icono: "calendario", titulo: "Agenda de visitas", texto: "Las visitas de los próximos 14 días, día a día, con hora, dirección y técnico." },
+    { id: "agenda", icono: "calendario", titulo: "Agenda de consultas", texto: "Las consultas de los próximos 14 días, día a día, con hora, cliente y abogado." },
     { id: "mensajes", icono: "chat", titulo: "Mensajes", texto: "Lo que te ha escrito el equipo sobre sus clientes. Contestas desde la ficha del cliente.", cifra: sinLeer, alerta: sinLeer > 0 },
-    { id: "instalaciones", icono: "casco", titulo: "Instalaciones en marcha", texto: "Cada instalación firmada: jefe de instalaciones, fase, avance, horas y partes diarios." },
+    { id: "instalaciones", icono: "casco", titulo: "Casos en marcha", texto: "Cada caso firmado: abogado del procedimiento, fase, avance, horas y partes de actuaciones." },
     ...(esAdmin
       ? ([
           { id: "mesa", icono: "lupa", titulo: "Panel de control", texto: "Las cifras del negocio: web, anuncios, Google y ventas, comparadas con antes. Se abre en otra pestaña." },
           { id: "alarmas", icono: "escudo", titulo: "El equipo y sus alarmas", texto: "Cómo va cada uno este mes (frente a su mes anterior) y quién tiene seguimientos vencidos." },
-          { id: "equipo", icono: "persona", titulo: "Equipo y accesos", texto: "Dar de alta a Marina, técnicos y jefes de instalación. Sergio aprueba cada alta por correo." },
+          { id: "equipo", icono: "persona", titulo: "Equipo y accesos", texto: "Dar de alta a Marina y a los abogados. Álvaro aprueba cada alta por correo." },
           { id: "importar", icono: "documento", titulo: "Subir el CRM antiguo", texto: "Carga el archivo CSV del CRM anterior. Si lo subes dos veces, no duplica." },
         ] as Tarjeta[])
       : []),
@@ -94,8 +94,8 @@ export function Inicio({ nombre, esAdmin, pendientes, sinLeer, porEstado, estado
         </ol>
         <ul className="mt-4 grid gap-1.5 text-[14px] leading-relaxed text-ink/70 sm:grid-cols-2">
           <li><b className="text-ink">Cada paso pone solo la siguiente tarea</b> y su fecha. Cuando la haces, pulsas "Hecho".</li>
-          <li><b className="text-ink">La visita hecha pide el informe</b> del técnico: quién estaba, la casa e impresiones.</li>
-          <li><b className="text-ink">El presupuesto, en 48 horas</b> desde la visita. Si se pasa, salta la alarma.</li>
+          <li><b className="text-ink">La consulta hecha pide el informe</b> del abogado: quién vino, el caso e impresiones.</li>
+          <li><b className="text-ink">La propuesta de honorarios, en 48 horas</b> desde la consulta. Si se pasa, salta la alarma.</li>
           <li><b className="text-ink">Cada mañana a las 8</b> le llega a cada persona un correo con lo suyo de hoy.</li>
         </ul>
       </div>
@@ -103,8 +103,8 @@ export function Inicio({ nombre, esAdmin, pendientes, sinLeer, porEstado, estado
   );
 }
 
-/* ── Informe de la primera visita (lo rellena el técnico) ── */
-const ESTANCIAS = ["Aerotermia", "Aire acondicionado", "Calefacción", "Agua caliente", "Suelo radiante", "Ventilación", "Placas solares", "Mantenimiento"];
+/* ── Informe de la consulta inicial (lo rellena el abogado) ── */
+const ESTANCIAS = ["Despido", "Reclamación de cantidad", "Acoso laboral", "Incapacidad permanente", "Embarazo o maternidad", "Conciliación y jornada", "Cambio de condiciones", "Asesoría a empresa"];
 export function InformeVisita({ valor, cambiar, abierto }: { valor: Informe | null | undefined; cambiar: (i: Informe) => void; abierto: boolean }) {
   const v = valor ?? {};
   const pon = (k: keyof Informe, x: string | string[]) => cambiar({ ...v, [k]: x });
@@ -114,19 +114,19 @@ export function InformeVisita({ valor, cambiar, abierto }: { valor: Informe | nu
   const falta = !String(v.impresiones ?? "").trim();
   return (
     <details open={abierto} className={`rounded-[20px] border-2 bg-white p-4 ${abierto && falta ? "border-[#a3505a]" : "border-line"}`}>
-      <summary className="cursor-pointer text-[16px] font-bold text-ink">Informe de la primera visita {falta ? <span className="ml-1 text-[13px] font-semibold text-[#a3505a]">(falta)</span> : <span className="ml-1 text-[13px] font-semibold text-[#3f6b39]">(hecho)</span>}</summary>
-      <p className="mt-1 text-[13px] text-ink/55">Lo rellena el técnico al salir de la visita. Solo las impresiones son obligatorias; lo demás, cuanto más, mejor.</p>
+      <summary className="cursor-pointer text-[16px] font-bold text-ink">Informe de la consulta inicial {falta ? <span className="ml-1 text-[13px] font-semibold text-[#a3505a]">(falta)</span> : <span className="ml-1 text-[13px] font-semibold text-[#3f6b39]">(hecho)</span>}</summary>
+      <p className="mt-1 text-[13px] text-ink/55">Lo rellena el abogado al terminar la consulta. Solo las impresiones son obligatorias; lo demás, cuanto más, mejor.</p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
-        {txt("presentes", "Quién estaba en la visita", "Ej.: Ana y su marido Luis")}
-        {txt("decide", "Quién decide", "Ej.: los dos; la madre pone el dinero")}
-        {txt("planta", "Planta", "Ej.: 4ª")}
-        <label className="block"><span className={etiqueta}>Ascensor (para subir los equipos)</span>
-          <select className={campo} value={v.ascensor ?? ""} onChange={(e) => pon("ascensor", e.target.value)}><option value="">Elige…</option><option>Sí</option><option>No</option><option>Pequeño</option></select>
+        {txt("presentes", "Quién vino a la consulta", "Ej.: Ana y su marido Luis")}
+        {txt("decide", "Quién decide", "Ej.: ella; lo consulta con su pareja")}
+        {txt("planta", "Empresa", "Ej.: cadena de tiendas, 200 personas")}
+        <label className="block"><span className={etiqueta}>¿Le corre algún plazo?</span>
+          <select className={campo} value={v.ascensor ?? ""} onChange={(e) => pon("ascensor", e.target.value)}><option value="">Elige…</option><option>Sí</option><option>No</option><option>No lo sabe</option></select>
         </label>
-        {txt("anio", "Año aproximado del edificio", "Ej.: 1970")}
-        {txt("banos", "Número de estancias a climatizar", "Ej.: 4")}
+        {txt("anio", "Fecha del despido o de los hechos", "Ej.: 14 de octubre")}
+        {txt("banos", "Años en la empresa", "Ej.: 8")}
       </div>
-      <p className={`${etiqueta} mt-4`}>Qué quieren instalar o cambiar (marca lo que toque)</p>
+      <p className={`${etiqueta} mt-4`}>Qué hay que llevar (marca lo que toque)</p>
       <div className="flex flex-wrap gap-2">
         {ESTANCIAS.map((e) => {
           const on = (v.estancias ?? []).includes(e);
@@ -138,18 +138,18 @@ export function InformeVisita({ valor, cambiar, abierto }: { valor: Informe | nu
         })}
       </div>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <label className="block sm:col-span-2"><span className={etiqueta}>Estado de la casa e instalaciones</span><textarea className={`${campo} min-h-[70px]`} placeholder="Ej.: cuadro eléctrico antiguo, radiadores de hierro, sitio para la unidad exterior en la terraza" value={v.estado_casa ?? ""} onChange={(e) => pon("estado_casa", e.target.value)} /></label>
-        {txt("otros_presupuestos", "¿Tienen otros presupuestos?", "Ej.: sí, dos; uno de 9.000 €")}
-        {txt("decide_cuando", "Cuándo van a decidir", "Ej.: antes de Navidad")}
-        <label className="block sm:col-span-2"><span className={`${etiqueta} ${falta ? "text-[#a3505a]" : ""}`}>Impresiones de la visita (obligatorio)</span>
-          <textarea className={`${campo} min-h-[110px] ${falta ? "border-[#a3505a]" : ""}`} placeholder="Cómo los has visto, qué les preocupa, qué les ha gustado, si hay feeling, qué haría falta para que firmen…" value={v.impresiones ?? ""} onChange={(e) => pon("impresiones", e.target.value)} />
+        <label className="block sm:col-span-2"><span className={etiqueta}>Documentos y situación</span><textarea className={`${campo} min-h-[70px]`} placeholder="Ej.: trae carta de despido, contrato y nóminas; falta la vida laboral" value={v.estado_casa ?? ""} onChange={(e) => pon("estado_casa", e.target.value)} /></label>
+        {txt("otros_presupuestos", "¿Ha consultado a otros despachos?", "Ej.: sí, uno; le pedían 2.500 €")}
+        {txt("decide_cuando", "Cuándo va a decidir", "Ej.: esta semana")}
+        <label className="block sm:col-span-2"><span className={`${etiqueta} ${falta ? "text-[#a3505a]" : ""}`}>Impresiones de la consulta (obligatorio)</span>
+          <textarea className={`${campo} min-h-[110px] ${falta ? "border-[#a3505a]" : ""}`} placeholder="Cómo le has visto, qué le preocupa, qué le ha gustado, si hay confianza, qué haría falta para que firme…" value={v.impresiones ?? ""} onChange={(e) => pon("impresiones", e.target.value)} />
         </label>
       </div>
     </details>
   );
 }
 
-/* ── La instalación: jefe, fase, avance, partes diarios, ajustes y posventa ── */
+/* ── El procedimiento: abogado, fase, avance, partes de actuaciones, cambios de honorarios y después del cierre ── */
 export function SeccionObra({ id, partes, incidencias, recargar }: { id: number; partes: Parte[]; incidencias: Incidencia[]; recargar: () => Promise<void> }) {
   const vacio = { fecha: hoyMadrid(), horas: "", personas: "", equipos: "", hecho: "", incidencias: "" };
   const [p, setP] = useState(vacio);
@@ -171,12 +171,12 @@ export function SeccionObra({ id, partes, incidencias, recargar }: { id: number;
   return (
     <>
       <div className="mt-4 rounded-[16px] bg-cream p-4">
-        <p className="text-[15px] font-bold text-ink">Parte del día <span className="font-normal text-ink/55">(lo rellena el jefe de instalaciones)</span></p>
+        <p className="text-[15px] font-bold text-ink">Parte de actuaciones <span className="font-normal text-ink/55">(lo rellena el abogado del procedimiento)</span></p>
         <div className="mt-2 grid gap-2 sm:grid-cols-3">
           <label className="block"><span className={etiqueta}>Fecha</span><input type="date" className={campo} value={p.fecha} onChange={(e) => setP({ ...p, fecha: e.target.value })} /></label>
           <label className="block"><span className={etiqueta}>Tus horas</span><input inputMode="decimal" className={campo} placeholder="Ej.: 3,5" value={p.horas} onChange={(e) => setP({ ...p, horas: e.target.value })} /></label>
-          <label className="block"><span className={etiqueta}>Personas en instalación</span><input inputMode="numeric" className={campo} placeholder="Ej.: 4" value={p.personas} onChange={(e) => setP({ ...p, personas: e.target.value })} /></label>
-          <label className="block sm:col-span-3"><span className={etiqueta}>Equipos</span><input className={campo} placeholder="Ej.: frigorista, electricista" value={p.equipos} onChange={(e) => setP({ ...p, equipos: e.target.value })} /></label>
+          <label className="block"><span className={etiqueta}>Personas que han trabajado</span><input inputMode="numeric" className={campo} placeholder="Ej.: 2" value={p.personas} onChange={(e) => setP({ ...p, personas: e.target.value })} /></label>
+          <label className="block sm:col-span-3"><span className={etiqueta}>Quién ha intervenido</span><input className={campo} placeholder="Ej.: abogado, paralegal" value={p.equipos} onChange={(e) => setP({ ...p, equipos: e.target.value })} /></label>
           <label className="block sm:col-span-3"><span className={etiqueta}>Qué se ha hecho</span><textarea className={`${campo} min-h-[60px]`} value={p.hecho} onChange={(e) => setP({ ...p, hecho: e.target.value })} /></label>
           <label className="block sm:col-span-3"><span className={etiqueta}>Incidencias (si las hay)</span><textarea className={`${campo} min-h-[50px]`} value={p.incidencias} onChange={(e) => setP({ ...p, incidencias: e.target.value })} /></label>
         </div>
@@ -199,11 +199,11 @@ export function SeccionObra({ id, partes, incidencias, recargar }: { id: number;
       ) : null}
 
       <div className="mt-4 rounded-[16px] bg-cream p-4">
-        <p className="text-[15px] font-bold text-ink">Ajustes documentados y posventa</p>
-        <p className="text-[13px] text-ink/55">Ajuste: lo que cambia el importe de la instalación y por qué. Posventa: algo que avisa el cliente tras la entrega.</p>
+        <p className="text-[15px] font-bold text-ink">Cambios de honorarios y después del cierre</p>
+        <p className="text-[13px] text-ink/55">Cambio de honorarios: lo que cambia el importe del encargo y por qué. Después del cierre: algo que pide el cliente cuando el caso ya está cerrado.</p>
         <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_2fr_1fr]">
-          <select className={campo} value={inc.tipo} onChange={(e) => setInc({ ...inc, tipo: e.target.value })}><option value="ajuste">Ajuste de la instalación</option><option value="posventa">Posventa</option></select>
-          <input className={campo} placeholder={inc.tipo === "ajuste" ? "Ej.: pide un equipo más potente en el salón" : "Ej.: la unidad exterior hace un ruido raro"} value={inc.texto} onChange={(e) => setInc({ ...inc, texto: e.target.value })} />
+          <select className={campo} value={inc.tipo} onChange={(e) => setInc({ ...inc, tipo: e.target.value })}><option value="ajuste">Cambio de honorarios</option><option value="posventa">Después del cierre</option></select>
+          <input className={campo} placeholder={inc.tipo === "ajuste" ? "Ej.: se añade la reclamación de horas extra" : "Ej.: la empresa no ha pagado la indemnización en plazo"} value={inc.texto} onChange={(e) => setInc({ ...inc, texto: e.target.value })} />
           {inc.tipo === "ajuste" ? <input inputMode="decimal" className={campo} placeholder="Importe (€, + o -)" value={inc.importe} onChange={(e) => setInc({ ...inc, importe: e.target.value })} /> : <span />}
         </div>
         <button type="button" onClick={enviarInc} disabled={!inc.texto.trim()} className="mt-2 rounded-full border border-ink px-4 py-2 text-[14px] font-bold text-ink disabled:opacity-40">Apuntar</button>
@@ -212,7 +212,7 @@ export function SeccionObra({ id, partes, incidencias, recargar }: { id: number;
             {incidencias.map((x) => (
               <li key={x.id} className="flex items-start justify-between gap-3 rounded-[12px] border border-line bg-white px-3 py-2 text-[14px]">
                 <span>
-                  <span className="block text-[12px] text-ink/50">{x.tipo === "ajuste" ? "Ajuste" : "Posventa"} · {fecha(x.fecha)} · {x.usuario}{x.importe !== null ? ` · ${eur(x.importe)}` : ""}</span>
+                  <span className="block text-[12px] text-ink/50">{x.tipo === "ajuste" ? "Honorarios" : "Después del cierre"} · {fecha(x.fecha)} · {x.usuario}{x.importe !== null ? ` · ${eur(x.importe)}` : ""}</span>
                   {x.texto}
                 </span>
                 {x.tipo === "posventa" ? (x.resuelta ? <span className="shrink-0 text-[13px] font-bold text-[#3f6b39]">Resuelta {fecha(x.resuelta_fecha)}</span> : <button type="button" onClick={async () => { await api("incidencia", { resolver: x.id }); await recargar(); }} className="shrink-0 rounded-full border border-line px-3 py-1 text-[13px] font-semibold">Marcar resuelta</button>) : null}
@@ -237,7 +237,7 @@ export function EscribirMensaje({ id, personas, yo, hecho }: { id: number; perso
           <option value="">¿A quién?</option>
           {personas.filter((x) => x.id !== yo && x.activo !== false).map((x) => <option key={x.id} value={x.id}>{x.nombre}{x.puesto ? ` (${x.puesto})` : ""}</option>)}
         </select>
-        <textarea className={`${campo} min-h-[48px]`} placeholder="Ej.: ¿Cómo fue la visita? Mándale el presupuesto antes del jueves." value={texto} onChange={(e) => setTexto(e.target.value)} />
+        <textarea className={`${campo} min-h-[48px]`} placeholder="Ej.: ¿Cómo fue la consulta? Mándale la propuesta antes del jueves." value={texto} onChange={(e) => setTexto(e.target.value)} />
       </div>
       <button type="button" disabled={!para || !texto.trim()} onClick={async () => {
         try { await api("mensaje", { para: Number(para), id, texto }); setTexto(""); setMsg("Enviado. Le llega un correo y lo ve en sus mensajes."); hecho(); } catch (e) { setMsg((e as Error).message); }
@@ -254,9 +254,9 @@ export function Agenda({ personas, abrir, cerrar }: { personas: Persona[]; abrir
   const dias = [...new Set((v ?? []).map((x) => x.fecha))];
   const hoy = hoyMadrid();
   return (
-    <Panel titulo="Agenda de visitas" cerrar={cerrar}>
-      <p className="text-[14px] text-ink/65">Las visitas programadas de ayer a dentro de 14 días. Para poner una visita, abre al cliente, márcalo en "Visita programada" y pon fecha, hora y técnico.</p>
-      {v === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !v.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">No hay visitas programadas estos días.</p> : null}
+    <Panel titulo="Agenda de consultas" cerrar={cerrar}>
+      <p className="text-[14px] text-ink/65">Las consultas programadas de ayer a dentro de 14 días. Para poner una consulta, abre al cliente, márcalo en "Consulta programada" y pon fecha, hora y abogado.</p>
+      {v === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !v.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">No hay consultas programadas estos días.</p> : null}
       {dias.map((d) => (
         <div key={d} className="mt-5">
           <p className={`text-[13px] font-bold uppercase tracking-[0.1em] ${d === hoy ? "text-[#a3505a]" : "text-teal-deep"}`}>{d === hoy ? "Hoy · " : ""}{new Date(`${d}T12:00:00`).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })}</p>
@@ -266,9 +266,9 @@ export function Agenda({ personas, abrir, cerrar }: { personas: Persona[]; abrir
                 <button type="button" onClick={() => abrir(x.id)} className="grid w-full grid-cols-[64px_1fr] gap-3 rounded-[16px] border border-line bg-white px-4 py-3 text-left hover:border-ink/40">
                   <span className="font-serif text-[22px] text-ink">{x.hora || "--:--"}</span>
                   <span>
-                    <b className="text-ink">{x.nombre}</b>{x.m2 ? <span className="text-ink/55"> · {x.m2} m²</span> : null}
+                    <b className="text-ink">{x.nombre}</b>{x.m2 ? <span className="text-ink/55"> · {x.m2} años en la empresa</span> : null}
                     <span className="block text-[13px] text-ink/60">{x.donde || "Sin dirección"}{x.telefono ? ` · ${x.telefono}` : ""}</span>
-                    <span className="block text-[13px] font-semibold text-teal-deep">{personas.find((p) => p.id === x.arquitecto_id)?.nombre ?? "Sin técnico asignado"}</span>
+                    <span className="block text-[13px] font-semibold text-teal-deep">{personas.find((p) => p.id === x.arquitecto_id)?.nombre ?? "Sin abogado asignado"}</span>
                   </span>
                 </button>
               </li>
@@ -317,10 +317,10 @@ function ComoVa() {
             <p className="font-bold text-ink">{x.nombre} <span className="font-normal text-ink/50">{x.puesto}</span></p>
             <ul className="mt-1 space-y-0.5 text-ink/75">
               {x.clientes || x.clientes_ant ? <li>{x.clientes} clientes nuevos ({comp(x.clientes, x.clientes_ant)})</li> : null}
-              {x.visitas || x.visitas_ant ? <li>{x.visitas} visitas hechas ({comp(x.visitas, x.visitas_ant)})</li> : null}
-              {x.presupuestos || x.presupuestos_ant ? <li>{x.presupuestos} presupuestos entregados{pct !== null ? `, ${pct} % a tiempo` : ""}</li> : null}
+              {x.visitas || x.visitas_ant ? <li>{x.visitas} consultas hechas ({comp(x.visitas, x.visitas_ant)})</li> : null}
+              {x.presupuestos || x.presupuestos_ant ? <li>{x.presupuestos} propuestas entregadas{pct !== null ? `, ${pct} % a tiempo` : ""}</li> : null}
               {x.firmas || x.firmas_ant ? <li><b className="text-[#3f6b39]">{x.firmas} {x.firmas === 1 ? "firma" : "firmas"}</b> ({comp(x.firmas, x.firmas_ant)})</li> : null}
-              {x.horas ? <li>{String(Math.round(x.horas * 10) / 10).replace(".", ",")} horas en partes de instalación</li> : null}
+              {x.horas ? <li>{String(Math.round(x.horas * 10) / 10).replace(".", ",")} horas en partes de actuaciones</li> : null}
               <li className={x.vencidos ? "font-semibold text-[#a3505a]" : "text-[#3f6b39]"}>{x.vencidos ? `${x.vencidos} de ${x.seguimientos} seguimientos vencidos` : x.seguimientos ? `${x.seguimientos} ${x.seguimientos === 1 ? "seguimiento, al día" : "seguimientos, todos al día"}` : "Sin seguimientos abiertos"}</li>
             </ul>
           </div>
@@ -369,9 +369,9 @@ export function Instalaciones({ personas, abrir, cerrar }: { personas: Persona[]
   useEffect(() => { api("instalaciones", undefined, "GET").then(setD).catch(() => setD({ instalaciones: [], horasMes: [] })); }, []);
   const hoy = hoyMadrid();
   return (
-    <Panel titulo="Instalaciones en marcha" cerrar={cerrar} ancho="max-w-[860px]">
-      <p className="text-[14px] text-ink/65">Las instalaciones firmadas (y las entregadas hace menos de dos meses). Toca una para abrirla: ahí se pone el jefe de instalaciones, la fase, el avance y los partes diarios.</p>
-      {d === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !d.instalaciones.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">Todavía no hay instalaciones firmadas en el CRM.</p> : null}
+    <Panel titulo="Casos en marcha" cerrar={cerrar} ancho="max-w-[860px]">
+      <p className="text-[14px] text-ink/65">Los casos firmados (y los cerrados hace menos de dos meses). Toca uno para abrirlo: ahí se pone el abogado del procedimiento, la fase, el avance y los partes de actuaciones.</p>
+      {d === null ? <p className="mt-4 text-ink/55">Cargando…</p> : !d.instalaciones.length ? <p className="mt-4 rounded-[16px] border border-dashed border-line bg-white p-5 text-center text-ink/60">Todavía no hay casos firmados en el CRM.</p> : null}
       <ul className="mt-4 space-y-2">
         {(d?.instalaciones ?? []).map((o) => {
           const tarde = o.prevista && !o.fin && o.prevista < hoy;
@@ -380,14 +380,14 @@ export function Instalaciones({ personas, abrir, cerrar }: { personas: Persona[]
               <button type="button" onClick={() => abrir(o.id)} className="w-full rounded-[16px] border border-line bg-white px-4 py-3 text-left hover:border-ink/40">
                 <span className="flex flex-wrap items-baseline justify-between gap-2">
                   <b className="text-[16px] text-ink">{o.nombre}{o.poblacion ? <span className="font-normal text-ink/55"> · {o.poblacion}</span> : null}</b>
-                  <span className="text-[13px] font-semibold text-teal-deep">{personas.find((p) => p.id === o.jefe_obra_id)?.nombre ?? "Sin jefe de instalaciones"}</span>
+                  <span className="text-[13px] font-semibold text-teal-deep">{personas.find((p) => p.id === o.jefe_obra_id)?.nombre ?? "Sin abogado del procedimiento"}</span>
                 </span>
                 <span className="mt-2 block h-2 overflow-hidden rounded-full bg-cream"><span className="block h-full rounded-full bg-teal" style={{ width: `${Math.min(100, o.avance ?? 0)}%` }} /></span>
                 <span className="mt-1.5 block text-[13px] text-ink/60">
-                  {o.fin ? `Entregada el ${fecha(o.fin)}` : `${o.fase || "Sin fase"} · ${o.avance ?? 0}%`}
+                  {o.fin ? `Cerrado el ${fecha(o.fin)}` : `${o.fase || "Sin fase"} · ${o.avance ?? 0}%`}
                   {o.prevista && !o.fin ? <span className={tarde ? "font-bold text-[#a3505a]" : ""}> · fin previsto {fecha(o.prevista)}{tarde ? " (con retraso)" : ""}</span> : null}
                   {` · ${String(Math.round(o.horas * 10) / 10).replace(".", ",")} h`}{o.ultimo_parte ? ` · último parte ${fecha(o.ultimo_parte)}` : " · sin partes"}
-                  {o.abiertas ? <span className="font-bold text-[#a3505a]"> · {o.abiertas} posventa abiertas</span> : null}
+                  {o.abiertas ? <span className="font-bold text-[#a3505a]"> · {o.abiertas} pendientes tras el cierre</span> : null}
                 </span>
               </button>
             </li>
@@ -398,7 +398,7 @@ export function Instalaciones({ personas, abrir, cerrar }: { personas: Persona[]
         <div className="mt-8">
           <p className={etiqueta}>Horas de los partes por persona y mes</p>
           <table className="w-full text-[14px]">
-            <thead><tr className="text-left text-ink/50"><th className="py-1 font-semibold">Mes</th><th className="font-semibold">Persona</th><th className="text-right font-semibold">Horas</th><th className="text-right font-semibold">Instalaciones</th></tr></thead>
+            <thead><tr className="text-left text-ink/50"><th className="py-1 font-semibold">Mes</th><th className="font-semibold">Persona</th><th className="text-right font-semibold">Horas</th><th className="text-right font-semibold">Casos</th></tr></thead>
             <tbody>{d.horasMes.map((h, i) => <tr key={i} className="border-t border-line"><td className="py-1.5">{h.mes.split("-").reverse().join("/")}</td><td>{h.quien}</td><td className="text-right">{String(Math.round(h.horas * 10) / 10).replace(".", ",")}</td><td className="text-right">{h.instalaciones}</td></tr>)}</tbody>
           </table>
         </div>
@@ -416,7 +416,7 @@ export function BuzonIdeas({ esAdmin, cerrar }: { esAdmin: boolean; cerrar: () =
   return (
     <Panel titulo="Buzón de ideas" cerrar={cerrar} ancho="max-w-[620px]">
       <p className="text-[15px] leading-relaxed text-ink/75">Cualquier cosa: algo que falta, algo que no se entiende, una idea para trabajar mejor. Le llega por correo a dirección.</p>
-      <textarea className={`${campo} mt-3 min-h-[140px]`} placeholder="Ej.: me vendría bien poder ver las visitas de la semana que viene en el móvil." value={texto} onChange={(e) => setTexto(e.target.value)} />
+      <textarea className={`${campo} mt-3 min-h-[140px]`} placeholder="Ej.: me vendría bien poder ver las consultas de la semana que viene en el móvil." value={texto} onChange={(e) => setTexto(e.target.value)} />
       <button type="button" disabled={!texto.trim()} onClick={async () => { try { await api("idea", { texto }); setTexto(""); setMsg("Enviada. Gracias."); cargar(); } catch (e) { setMsg((e as Error).message); } }} className="mt-3 rounded-full bg-yellow px-6 py-3 text-[15px] font-bold text-ink disabled:opacity-40">Enviar la idea</button>
       {msg ? <span className="ml-3 text-[14px] text-[#3f6b39]">{msg}</span> : null}
       {esAdmin && ideas.length ? (
@@ -459,16 +459,16 @@ export function TuDia({ nombre, abrir, ir, recarga }: { nombre: string; abrir: (
       <h2 className="font-serif text-[26px] italic leading-tight text-ink">Hola, {nombre}. Esto es tu día.</h2>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {d.perfil === "instalación" ? (
-          <Bloque titulo="Tus instalaciones: toca una y apunta el parte de hoy" vacio="No tienes instalaciones en marcha.">
+          <Bloque titulo="Tus casos: toca uno y apunta el parte de hoy" vacio="No tienes casos en marcha.">
             {d.instalaciones.map((o) => linea(o.id, `${o.nombre}${o.poblacion ? ` · ${o.poblacion}` : ""}`, `${o.fase || "sin fase"} · ${o.avance ?? 0}%${o.ultimo_parte === hoyMadrid() ? " · parte hecho" : " · falta el parte"}`, () => abrir(o.id, "f-parte"), o.ultimo_parte !== hoyMadrid()))}
           </Bloque>
         ) : null}
         {d.perfil === "técnico" ? (
           <>
-            <Bloque titulo="Tus próximas visitas" vacio="No tienes visitas esta semana.">
+            <Bloque titulo="Tus próximas consultas" vacio="No tienes consultas esta semana.">
               {d.visitas.map((v) => linea(v.id, v.nombre, `${diaCorto(v.fecha)} ${v.hora}`, () => abrir(v.id)))}
             </Bloque>
-            <Bloque titulo="Presupuestos que tienes que entregar (48 h)" vacio="Ninguno pendiente. Bien." alerta>
+            <Bloque titulo="Propuestas de honorarios que tienes que entregar (48 h)" vacio="Ninguno pendiente. Bien." alerta>
               {d.presupuestos.map((p) => linea(p.id, p.nombre, p.tarde ? "fuera de plazo" : p.fecha ? `antes del ${diaCorto(p.fecha)}` : "", () => abrir(p.id, "f-informe"), p.tarde))}
             </Bloque>
           </>
@@ -482,7 +482,7 @@ export function TuDia({ nombre, abrir, ir, recarga }: { nombre: string; abrir: (
                 return linea(n.id, n.nombre, txt, () => abrir(n.id), min > 30);
               })}
             </Bloque>
-            <Bloque titulo="Visitas de hoy y mañana sin técnico" vacio="Todas las visitas tienen técnico." alerta>
+            <Bloque titulo="Consultas de hoy y mañana sin abogado" vacio="Todas las consultas tienen abogado." alerta>
               {d.sinArquitecto.map((v) => linea(v.id, v.nombre, `${diaCorto(v.fecha)} ${v.hora}`, () => abrir(v.id), true))}
             </Bloque>
           </>
@@ -491,9 +491,9 @@ export function TuDia({ nombre, abrir, ir, recarga }: { nombre: string; abrir: (
           <div className="grid grid-cols-2 gap-3 md:col-span-2 lg:grid-cols-5">
             {([
               ["Seguimientos vencidos", d.vencidas, "alarmas", d.vencidas > 0],
-              ["Presupuestos fuera de plazo", d.fueraPlazo, "estado:visita-hecha", d.fueraPlazo > 0],
+              ["Propuestas fuera de plazo", d.fueraPlazo, "estado:visita-hecha", d.fueraPlazo > 0],
               ["Nuevos sin llamar", d.nuevos, "estado:nuevo", d.nuevos > 0],
-              ["Visitas esta semana", d.visitasSemana, "agenda", false],
+              ["Consultas esta semana", d.visitasSemana, "agenda", false],
               [`Firmas este mes (${eur(d.importeMes)})`, d.firmasMes, "estado:firmado", false],
             ] as [string, number, string, boolean][]).map(([t, n, dest, rojo]) => (
               <button key={t} type="button" onClick={() => (dest.startsWith("estado:") ? ir("estado", dest.slice(7)) : ir(dest))} className={`rounded-[18px] border-2 bg-white p-4 text-left ${rojo ? "border-[#a3505a]" : "border-line hover:border-ink/40"}`}>
@@ -527,7 +527,7 @@ export function Redactor({ id, telefono, email, hecho }: { id: number; telefono:
       const d = telefono.replace(/\D/g, "");
       window.open(`https://wa.me/${d.length === 9 ? `34${d}` : d}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
     } else if (email) {
-      location.href = `mailto:${email}?subject=${encodeURIComponent(asunto || "Tu instalación")}&body=${encodeURIComponent(texto)}`;
+      location.href = `mailto:${email}?subject=${encodeURIComponent(asunto || "Tu caso")}&body=${encodeURIComponent(texto)}`;
     }
     try { await api("enviado", { id, canal, texto }); setMsg("Apuntado en la ficha. Ya tienes el siguiente paso."); setTexto(""); hecho(); }
     catch (e) { setMsg((e as Error).message); }

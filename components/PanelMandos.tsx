@@ -207,25 +207,25 @@ const HERRAMIENTAS: Herramienta[] = [
 ];
 
 const PREGUNTAS_IA: [string, boolean, boolean, boolean][] = [
-  ["¿Qué empresa de climatización me recomiendas en Madrid?", true, true, true],
-  ["Mejor empresa de aerotermia para un chalet en Pozuelo", true, true, false],
-  ["¿Quién instala suelo radiante en Madrid con garantía?", true, false, true],
-  ["Mantenimiento de aire acondicionado para oficinas", false, true, true],
-  ["Empresa de confianza para cambiar la caldera", true, true, true],
-  ["¿Cuánto cuesta una aerotermia y quién la instala?", true, true, true],
+  ["¿Qué abogado laboralista me recomiendas en Madrid?", true, true, true],
+  ["Mejor abogado para un despido improcedente en Madrid", true, true, false],
+  ["Abogado de acoso laboral con buena fama en Madrid", true, false, true],
+  ["Asesoría laboral para empresas en Madrid", false, true, true],
+  ["Abogado de confianza para pedir la incapacidad permanente", true, true, true],
+  ["¿Cuánto cobra un abogado laboralista y a quién llamo?", true, true, true],
 ];
 
 const VIGIA: [string, string, string][] = [
-  ["Hoy", "Precio", "Una empresa de tu zona ha bajado en su web la revisión anual de 89 € a 79 €."],
-  ["Ayer", "Anuncios", "Otra ha lanzado un anuncio nuevo en Google con «aerotermia subvencionada». Lo vemos en la biblioteca pública de anuncios."],
-  ["Lunes", "Google", "La competidora principal ha subido 3 puestos en «aerotermia madrid». Ahora está justo detrás de ti."],
+  ["Hoy", "Precio", "Un despacho de tu zona anuncia en su web la primera consulta a 100 € (antes, 120 €)."],
+  ["Ayer", "Anuncios", "Otro ha lanzado un anuncio nuevo en Google con «primera consulta gratis por despido». Lo vemos en la biblioteca pública de anuncios."],
+  ["Lunes", "Google", "El despacho que más compite contigo ha subido 3 puestos en «abogado laboralista madrid». Ahora está justo detrás de ti."],
   ["Lunes", "Reseñas", "Han recibido 6 reseñas nuevas esta semana, con 4,3 de nota media."],
-  ["Jueves", "Web", "Ha publicado una página nueva: «mantenimiento para comunidades de vecinos»."],
+  ["Jueves", "Web", "Ha publicado una página nueva: «asesoría laboral para pymes»."],
 ];
 
 const SISTEMAS: [string, string, string][] = [
   ["Tu web responde y carga rápido", "Correcto", "Hoy, 06:00"],
-  ["El formulario de presupuesto envía y llega", "Correcto", "Hoy, 06:02"],
+  ["El formulario de consulta envía y llega", "Correcto", "Hoy, 06:02"],
   ["El botón de WhatsApp abre la conversación", "Correcto", "Hoy, 06:03"],
   ["Los anuncios de Google están activos y con presupuesto", "Correcto", "Hoy, 06:05"],
   ["Los anuncios de Instagram y Facebook se muestran", "Correcto", "Hoy, 06:05"],
@@ -236,7 +236,7 @@ const SISTEMAS: [string, string, string][] = [
 
 const RECORRIDO_PASOS: [string, string][] = [
   ["Abre tu web desde un móvil y desde un ordenador", "Correcto"],
-  ["Usa la calculadora de ahorro hasta el final", "Correcto"],
+  ["Usa la calculadora de indemnización hasta el final", "Correcto"],
   ["Rellena el formulario con un contacto de prueba", "Correcto"],
   ["Le llega el aviso al comercial por WhatsApp", "Correcto"],
   ["La ficha entra en el CRM marcada como prueba", "Correcto"],
@@ -327,7 +327,7 @@ export function Herramientas360({ inicial = "lupa", solo }: { inicial?: string; 
             ))}
           </ul>
           <p className="mt-4 rounded-2xl bg-niebla p-3 text-sm text-gris">Miramos solo lo que cualquiera puede ver: su web, los anuncios en las bibliotecas públicas de Google y de Meta, sus reseñas y su posición en Google. Nunca datos privados suyos.</p>
-          <p className="mt-2 rounded-2xl bg-estrella/20 p-3 text-sm"><b>Lo que haríamos:</b> con el precio de la revisión anual, te proponemos mirar si te conviene ajustar la tuya antes de la campaña de primavera. La decisión es tuya.</p>
+          <p className="mt-2 rounded-2xl bg-estrella/20 p-3 text-sm"><b>Lo que haríamos:</b> con el precio de su primera consulta, te proponemos mirar si te conviene explicar mejor lo que incluye la tuya antes de la campaña de septiembre. La decisión es tuya.</p>
         </Bloque>
       )}
 
@@ -740,7 +740,7 @@ export function ResumenesCorreo() {
         <div className="mt-2 space-y-1.5 text-sm text-gris">
           {cont.hoy && <p>Han llegado 312 contactos en este periodo, a 10 € cada uno. Piden un vistazo: Lupa 360 y Espejo de la IA.</p>}
           {cont.toca && <p>Te toca a ti: llamar a 3 contactos con más de 3 días sin respuesta y contestar 2 reseñas.</p>}
-          {cont.contactos && <p>Mejor canal: Aerotermia en Google, con el coste por contacto más bajo.</p>}
+          {cont.contactos && <p>Mejor canal: Despidos en Google, con el coste por contacto más bajo.</p>}
           {cont.hecho && <p>Esta semana hemos hecho 14 tareas, todas entregadas a tiempo.</p>}
           {!cont.hoy && !cont.toca && !cont.contactos && !cont.hecho && <p>Marca algo para que el resumen lleve contenido.</p>}
           <p className="text-tinta">Ver mi panel completo</p>
@@ -763,7 +763,7 @@ export function ResumenesCorreo() {
 // ---------------------------------------------------------------------------------------------
 const PREGUNTAS_PANEL: [string, string][] = [
   ["¿Cómo voy este mes?", "Han llegado 312 contactos, un 16 % más que antes, y cada uno te cuesta 10 €, un 8 % menos. Ahora mismo no hay nada urgente."],
-  ["¿Qué canal me trae más contactos?", "Aerotermia en Google: trae el 38 % de los contactos con el coste por contacto más bajo. Por eso le hemos subido el presupuesto un 10 %."],
+  ["¿Qué canal me trae más contactos?", "Despidos en Google: trae el 38 % de los contactos con el coste por contacto más bajo. Por eso le hemos subido el presupuesto un 10 %."],
   ["¿Qué me toca hacer hoy?", "Llamar a los 3 contactos que llevan más de 3 días sin respuesta. Las 2 reseñas nuevas de Google pueden esperar a esta semana."],
   ["¿Por qué el Espejo de la IA está en naranja?", "Sales en 16 de 18 respuestas de ChatGPT, Gemini y Claude. En 2 preguntas todavía no, y estamos reforzando tu información para esas."],
   ["¿Cuánto me cuesta cada cliente?", "Todavía no lo sé: hace falta que marques quién ha firmado, y es opcional. Si quieres, está en Lo tuyo."],

@@ -14,10 +14,10 @@ export default function DemoCrm() {
       <VolverWeb que="CRM de ejemplo" />
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-[#11343d] px-4 py-2 text-[14px] text-white">
         <p className="min-w-0 flex-1 basis-full sm:basis-0">
-          CRM de ejemplo con <b>datos inventados</b> de una empresa ficticia, Climatización Ejemplo. Puedes tocarlo todo; no se guarda ni se envía nada.
+          CRM de ejemplo con <b>datos inventados</b> de un despacho ficticio, Fuero Abogados. Puedes tocarlo todo; no se guarda ni se envía nada.
         </p>
       </div>
-      <CrmApp usuario={{ id: 1, email: "direccion1@ejemplo.es", nombre: "Lucía", rol: "admin", puesto: "Dirección" }} listas={listas} />
+      <CrmApp usuario={{ id: 1, email: "lucia@fueroabogados.es", nombre: "Lucía", rol: "admin", puesto: "Dirección" }} listas={listas} />
     </div>
   );
 }

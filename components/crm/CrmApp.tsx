@@ -6,7 +6,7 @@ import { api, campo, etiqueta, eur, fecha, hora, hoyMadrid, Panel } from "./comu
 import { Guias, perfilDe, Bienvenida } from "./guias";
 import { Inicio, TuDia, Redactor, BuzonIdeas, InformeVisita, SeccionObra, EscribirMensaje, Agenda, Bandeja, Alarmas, Instalaciones, type Parte, type Incidencia, type Informe } from "./extras";
 
-/* CRM de Climatización Ejemplo (26-oct, cl·v813). Pensado para Marina: dar de alta una llamada en
+/* CRM de Fuero Abogados, despacho ficticio (26-oct, cl·v813). Pensado para Marina: dar de alta una llamada en
    un minuto, mover el estado con un toque y que todo quede apuntado (quién y cuándo). */
 
 type Rol = "admin" | "equipo" | "asignado";
@@ -27,10 +27,10 @@ type Duplicado = { id: number; nombre: string; estado: string; creado: string };
 const TEMPERATURAS = ["Caliente: quiere empezar ya", "Templado: lo está pensando", "Frío: solo mira precios"];
 const INICIOS = ["Ya, cuanto antes", "En 1 a 3 meses", "En 3 a 6 meses", "Más de 6 meses", "No lo sabe"];
 const PREFERENCIAS = ["WhatsApp", "Llamada por la mañana", "Llamada por la tarde", "Correo", "Le da igual"];
-const QUE_REFORMA = ["Toda la casa", "Solo la calefacción", "Solo el aire acondicionado", "Calefacción y aire", "Otra cosa"];
-const LICENCIAS = ["No hace falta", "Permiso de la comunidad: por pedir", "Permiso de la comunidad: pedido", "Permiso de la comunidad: concedido", "Boletín eléctrico: por tramitar", "Boletín eléctrico: tramitado"];
-const ENTREGA = ["Limpieza final", "Revisión con el cliente", "Repasos hechos", "Manuales y garantías entregados", "Puesta en marcha explicada", "Fotos finales hechas", "Acta de entrega firmada"];
-const VIVIENDAS = ["Piso", "Ático", "Bajo", "Dúplex", "Chalet o casa", "Local", "Oficina"];
+const QUE_REFORMA = ["Me han despedido", "Acoso en el trabajo", "Incapacidad permanente", "Embarazo, maternidad o conciliación", "Soy empresa: busco asesoría"];
+const LICENCIAS = ["Papeleta de conciliación: por presentar", "Papeleta de conciliación: presentada", "Conciliación: sin avenencia", "Conciliación: con acuerdo", "Demanda: presentada", "Juicio: señalado"];
+const ENTREGA = ["Sentencia o acuerdo explicado al cliente", "Cobro de la indemnización comprobado", "Plazo de recurso vigilado", "Documentos originales devueltos", "Factura final enviada", "Encuesta de satisfacción enviada", "Expediente cerrado y archivado"];
+const VIVIENDAS = ["Contrato indefinido", "Contrato temporal", "Fijo discontinuo", "Empleada del hogar", "Funcionario o interino", "Autónomo dependiente", "Empresa"];
 /** Tiempo de respuesta en palabras: de la entrada al primer contacto. */
 function respuesta(l: Partial<Lead>) {
   if (!l.primer_contacto || !l.creado) return "";
@@ -72,7 +72,7 @@ function Chip({ estado, listas }: { estado: string; listas: Listas }) {
   return <span className="inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 text-[12px] font-bold" style={{ background: bg, color: fg }}>{listas.estados.find(([k]) => k === estado)?.[1] ?? estado}</span>;
 }
 
-const PUESTOS = ["Técnico", "Técnico de campo", "Comercial de zona", "Jefe de instalaciones", "Recepción", "Dirección", "Administración", "Comercial", "Otro"];
+const PUESTOS = ["Abogado", "Abogada", "Paralegal", "Abogado de procedimientos", "Recepción", "Dirección", "Administración", "Socio director", "Otro"];
 
 export default function CrmApp({ usuario, listas }: { usuario: Usuario; listas: Listas }) {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -128,7 +128,7 @@ export default function CrmApp({ usuario, listas }: { usuario: Usuario; listas: 
       <header className="sticky top-0 z-30 border-b border-line bg-white/95 backdrop-blur">
         <div className="mx-auto grid max-w-[1240px] grid-cols-2 items-center gap-3 px-4 py-3 sm:px-6 lg:grid-cols-[1fr_auto_1fr]">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-teal-deep">Climatización Ejemplo</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-teal-deep">Fuero Abogados</p>
             <button type="button" onClick={() => { setVista("lista"); setFiltro(vacio); setMenu(false); }} className="inline-flex min-h-[44px] items-center font-serif text-[24px] italic leading-none text-ink">CRM</button>
           </div>
           <div className="flex items-center justify-end gap-3 lg:order-3">
@@ -227,13 +227,13 @@ export default function CrmApp({ usuario, listas }: { usuario: Usuario; listas: 
               <button type="button" onClick={() => setAbierto(l.id)} className="grid w-full grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1 rounded-[18px] border border-line bg-white px-4 py-3 text-left transition-colors hover:border-ink/30 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_auto]">
                 <span className="min-w-0">
                   <span className="block truncate text-[16px] font-semibold text-ink">{nombreDe(l)}</span>
-                  <span className="block truncate text-[13px] text-ink/55">{[l.telefono, l.poblacion || l.cp, l.m2 ? `${l.m2} m²` : null].filter(Boolean).join(" · ") || "Sin datos de contacto"}</span>
+                  <span className="block truncate text-[13px] text-ink/55">{[l.telefono, l.poblacion || l.cp, l.m2 ? `${l.m2} años en la empresa` : null].filter(Boolean).join(" · ") || "Sin datos de contacto"}</span>
                 </span>
                 <span className="order-3 col-span-2 flex flex-wrap items-center gap-2 text-[13px] text-ink/60 sm:order-none sm:col-span-1">
                   <span className="rounded-full bg-cream px-2 py-0.5 font-semibold text-ink/70">{l.origen ?? "Sin origen"}</span>
                   {nombreUsuario(l.asignado_a) ? <span>· {nombreUsuario(l.asignado_a)}</span> : null}
                   {l.arquitecto_id && l.arquitecto_id !== l.asignado_a && nombreUsuario(l.arquitecto_id) ? <span>· {nombreUsuario(l.arquitecto_id)}</span> : null}
-                  {l.jefe_obra_id && nombreUsuario(l.jefe_obra_id) ? <span>· instalación: {nombreUsuario(l.jefe_obra_id)}</span> : null}
+                  {l.jefe_obra_id && nombreUsuario(l.jefe_obra_id) ? <span>· procedimiento: {nombreUsuario(l.jefe_obra_id)}</span> : null}
                   {l.temperatura ? <span title={l.temperatura}>· {l.temperatura.split(":")[0]}</span> : null}
                 </span>
                 <span className="order-4 col-span-2 text-[13px] text-ink/55 sm:order-none sm:col-span-1">
@@ -271,8 +271,8 @@ function CabeceraFicha({ l, listas, usuarios }: { l: Lead; listas: Listas; usuar
   const i = camino.findIndex(([k]) => k === l.estado);
   const dias = Math.max(0, Math.round((Date.now() - new Date(l.creado).getTime()) / 86400000));
   const nombre = (n: number | null) => usuarios.find((x) => x.id === n)?.nombre;
-  const quien = [nombre(l.asignado_a), nombre(l.arquitecto_id) ? `téc. ${nombre(l.arquitecto_id)}` : "", nombre(l.jefe_obra_id) ? `instalación: ${nombre(l.jefe_obra_id)}` : ""].filter(Boolean).join(" · ");
-  const indice: [string, string][] = [["f-punto", "Punto"], ...(l.informe || ["visita-hecha", "presupuesto", "firmado"].includes(l.estado) ? [["f-informe", "Informe"] as [string, string]] : []), ...(l.estado === "firmado" ? [["f-instalacion", "Instalación"] as [string, string]] : []), ["f-persona", "Persona"], ["f-casa", "Casa"], ["f-historial", "Historial"]];
+  const quien = [nombre(l.asignado_a), nombre(l.arquitecto_id) ? `abog. ${nombre(l.arquitecto_id)}` : "", nombre(l.jefe_obra_id) ? `procedimiento: ${nombre(l.jefe_obra_id)}` : ""].filter(Boolean).join(" · ");
+  const indice: [string, string][] = [["f-punto", "Punto"], ...(l.informe || ["visita-hecha", "presupuesto", "firmado"].includes(l.estado) ? [["f-informe", "Informe"] as [string, string]] : []), ...(l.estado === "firmado" ? [["f-instalacion", "Procedimiento"] as [string, string]] : []), ["f-persona", "Persona"], ["f-casa", "Asunto"], ["f-historial", "Historial"]];
   return (
     <div className="mb-4">
       <p className="text-[14px] text-ink/70">
@@ -289,7 +289,7 @@ function CabeceraFicha({ l, listas, usuarios }: { l: Lead; listas: Listas; usuar
             </li>
           ))}
         </ol>
-      ) : <p className="mt-2 text-[13px] text-ink/60">{l.estado === "aplazado" ? "Aplazado: quiere instalarlo más adelante." : "Fuera del camino: " + (listas.estados.find(([k]) => k === l.estado)?.[1] ?? l.estado)}</p>}
+      ) : <p className="mt-2 text-[13px] text-ink/60">{l.estado === "aplazado" ? "Aplazado: quiere seguir más adelante." : "Fuera del camino: " + (listas.estados.find(([k]) => k === l.estado)?.[1] ?? l.estado)}</p>}
       {i >= 0 ? <p className="mt-1 text-[12.5px] text-ink/55 sm:hidden">Paso {i + 1} de {camino.length}: {camino[i][1]}</p> : null}
       <nav className="mt-3 flex flex-wrap gap-1.5 text-[13px]">
         <span className="py-1 text-ink/45">Ir a:</span>
@@ -304,7 +304,7 @@ function Plegable({ abierto, children }: { abierto: boolean; children: React.Rea
   if (abierto) return <>{children}</>;
   return (
     <details className="mt-4 rounded-[20px] border border-line bg-white/60 p-4">
-      <summary className="cursor-pointer text-[15px] font-bold text-teal-deep">Más datos (opcional): correo, casa, visita, en qué punto está…</summary>
+      <summary className="cursor-pointer text-[15px] font-bold text-teal-deep">Más datos (opcional): correo, asunto, consulta, en qué punto está…</summary>
       <div className="mt-3">{children}</div>
     </details>
   );
@@ -312,7 +312,7 @@ function Plegable({ abierto, children }: { abierto: boolean; children: React.Rea
 
 function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: number | "nuevo"; ancla?: string; usuario: Usuario; usuarios: Usuario[]; listas: Listas; cerrar: (cambio: boolean) => void }) {
   const nuevo = id === "nuevo";
-  const [l, setL] = useState<Partial<Lead>>(nuevo ? { estado: "nuevo", canal: "Llamada", tipo: "Aerotermia" } : {});
+  const [l, setL] = useState<Partial<Lead>>(nuevo ? { estado: "nuevo", canal: "Llamada", tipo: "Despido" } : {});
   const [orig, setOrig] = useState<Partial<Lead>>({});
   const [notas, setNotas] = useState<Nota[]>([]);
   const [dups, setDups] = useState<Duplicado[]>([]);
@@ -431,12 +431,12 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
           </div>
           <div className="mt-4 rounded-[14px] bg-cream p-3">
             <p className="text-[13px] font-bold text-ink">Preguntas para la llamada <span className="font-normal text-ink/55">(si te lo dice; si no, déjalo)</span></p>
-            <p className="mt-2 text-[13px] text-ink/70">¿Qué quiere climatizar o cambiar?</p>
+            <p className="mt-2 text-[13px] text-ink/70">¿Qué le pasa?</p>
             <div className="mt-1 flex flex-wrap gap-1.5">
               {QUE_REFORMA.map((o) => <button key={o} type="button" onClick={() => pon("que_reforma", l.que_reforma === o ? null : o)} className={`rounded-full border px-3 py-1.5 text-[13.5px] font-semibold ${l.que_reforma === o ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>{o}</button>)}
             </div>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {inp("m2", "¿Cuántos metros tiene la casa?", "number")}
+              {inp("m2", "¿Cuántos años lleva en la empresa?", "number")}
               {inp("cp", "¿Código postal o barrio?")}
               {sel("inicio_deseado", "¿Cuándo quiere empezar?", INICIOS)}
               {sel("preferencia_contacto", "¿Cómo prefiere que le contactemos?", PREFERENCIAS)}
@@ -444,9 +444,9 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
           </div>
           <label className="mt-3 block">
             <span className={etiqueta}>Qué ha pedido</span>
-            <textarea className={`${campo} min-h-[80px]`} placeholder="Ej.: piso de 90 m² en Chamberí, quiere cambiar la caldera por aerotermia antes del invierno" value={nota} onChange={(e) => setNota(e.target.value)} />
+            <textarea className={`${campo} min-h-[80px]`} placeholder="Ej.: le han despedido tras 8 años en una tienda de Chamberí; tiene la carta de despido de hace 5 días" value={nota} onChange={(e) => setNota(e.target.value)} />
           </label>
-          <p className="mt-2 text-[13px] text-ink/55">Pulsa "Dar de alta" abajo. Si tienes más datos (correo, dirección, metros, visita…), ábrelos aquí debajo; si no, no pasa nada.</p>
+          <p className="mt-2 text-[13px] text-ink/55">Pulsa "Dar de alta" abajo. Si tienes más datos (correo, dirección, antigüedad, consulta…), ábrelos aquí debajo; si no, no pasa nada.</p>
         </section>
       ) : null}
 
@@ -466,20 +466,20 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
           })}
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {["visita-programada", "visita-hecha", "presupuesto", "firmado", "perdido"].includes(estado) ? <>{inp("visita_fecha", "Fecha de la visita", "date")}{inp("visita_hora", "Hora de la visita", "time")}
+          {["visita-programada", "visita-hecha", "presupuesto", "firmado", "perdido"].includes(estado) ? <>{inp("visita_fecha", "Fecha de la consulta", "date")}{inp("visita_hora", "Hora de la consulta", "time")}
             <label className="block">
-              <span className={etiqueta}>Técnico que hace la visita</span>
+              <span className={etiqueta}>Abogado que hace la consulta</span>
               <select className={campo} value={l.arquitecto_id ?? ""} onChange={(e) => pon("arquitecto_id", e.target.value ? Number(e.target.value) : null)}>
-                <option value="">Sin técnico</option>
+                <option value="">Sin abogado</option>
                 {usuarios.filter((x) => x.activo !== false).map((x) => <option key={x.id} value={x.id}>{x.nombre}{x.puesto ? ` (${x.puesto})` : ""}</option>)}
               </select>
             </label></> : null}
           {["visita-hecha", "presupuesto"].includes(estado) ? sel("probabilidad", "Probabilidad de que firme", ["10", "25", "50", "75", "90"].map((x) => x), "Elige…") : null}
-          {["presupuesto", "firmado", "perdido"].includes(estado) ? <>{inp("presupuesto_fecha", "Presupuesto entregado el", "date")}{inp("presupuesto_importe", "Importe del presupuesto (€)", "number")}</> : null}
-          {estado === "firmado" ? <>{inp("firmado_fecha", "Firmado el", "date")}{inp("firmado_importe", "Importe firmado (€)", "number")}{inp("facturado_importe", "Facturado hasta hoy (€)", "number")}
+          {["presupuesto", "firmado", "perdido"].includes(estado) ? <>{inp("presupuesto_fecha", "Propuesta entregada el", "date")}{inp("presupuesto_importe", "Honorarios propuestos (€)", "number")}</> : null}
+          {estado === "firmado" ? <>{inp("firmado_fecha", "Encargo firmado el", "date")}{inp("firmado_importe", "Honorarios firmados (€)", "number")}{inp("facturado_importe", "Facturado hasta hoy (€)", "number")}
             <label className="flex items-center gap-2 self-end pb-2 text-[15px] text-ink"><input type="checkbox" checked={Boolean(l.resena_pedida)} onChange={(e) => pon("resena_pedida", e.target.checked)} className="h-5 w-5" /> Reseña y recomendación pedidas</label></> : null}
           {["visita-hecha", "presupuesto"].includes(estado) ? inp("decision_fecha", "Día en que dice que decidirá (si lo ha dicho)", "date") : null}
-          {estado === "aplazado" ? <>{inp("proxima_fecha", "¿Cuándo volvemos a llamar? (si no pones nada, en 2 meses)", "date")}<p className="self-end pb-2 text-[13px] text-ink/55">Aplazado es para quien sí quiere instalarlo, pero más adelante. Si ya no quiere, usa "No firmó".</p></> : null}
+          {estado === "aplazado" ? <>{inp("proxima_fecha", "¿Cuándo volvemos a llamar? (si no pones nada, en 2 meses)", "date")}<p className="self-end pb-2 text-[13px] text-ink/55">Aplazado es para quien sí quiere seguir con el caso, pero más adelante. Si ya no quiere, usa "No firmó".</p></> : null}
           {["perdido", "descartado"].includes(estado) ? sel("motivo", "Motivo", listas.motivos) : null}
         </div>
       </section>
@@ -490,28 +490,28 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
 
       {estado === "firmado" ? (
         <section id="f-instalacion" className="mt-4 scroll-mt-3 rounded-[20px] border border-line bg-white p-4">
-          <p className={etiqueta}>La instalación</p>
+          <p className={etiqueta}>El procedimiento</p>
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className={etiqueta}>Jefe de instalaciones</span>
+              <span className={etiqueta}>Abogado del procedimiento</span>
               <select className={campo} value={l.jefe_obra_id ?? ""} onChange={(e) => pon("jefe_obra_id", e.target.value ? Number(e.target.value) : null)}>
-                <option value="">Sin jefe de instalaciones</option>
+                <option value="">Sin abogado del procedimiento</option>
                 {usuarios.filter((x) => x.activo !== false).map((x) => <option key={x.id} value={x.id}>{x.nombre}{x.puesto ? ` (${x.puesto})` : ""}</option>)}
               </select>
             </label>
             {sel("fase_obra", "Fase en la que está", listas.fases)}
-            {inp("obra_inicio", "Empieza la instalación", "date")}
-            {inp("obra_fin_prevista", "Fin previsto", "date")}
-            {inp("obra_fin", "Fin real (entrega)", "date")}
+            {inp("obra_inicio", "Empieza el procedimiento", "date")}
+            {inp("obra_fin_prevista", "Fin previsto (juicio o acuerdo)", "date")}
+            {inp("obra_fin", "Fin real (cierre)", "date")}
             <label className="block">
               <span className={etiqueta}>Avance: {l.avance ?? 0}%</span>
               <input type="range" min={0} max={100} step={5} className="w-full accent-[#1c8caa]" value={Number(l.avance ?? 0)} onChange={(e) => pon("avance", Number(e.target.value))} />
             </label>
-            {sel("licencia", "Permisos y trámites", LICENCIAS)}
-            {sel("vive_durante_obra", "¿Vive en la casa durante la instalación?", ["Sí", "No", "En parte"])}
+            {sel("licencia", "Trámites", LICENCIAS)}
+            {sel("vive_durante_obra", "¿Sigue trabajando en la empresa?", ["Sí", "No", "De baja"])}
           </div>
           <div className="mt-4 rounded-[14px] bg-cream p-3">
-            <p className="text-[13px] font-bold text-ink">Lista de entrega de la instalación <span className="font-normal text-ink/55">(marca lo que esté hecho)</span></p>
+            <p className="text-[13px] font-bold text-ink">Lista de cierre del caso <span className="font-normal text-ink/55">(marca lo que esté hecho)</span></p>
             <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
               {ENTREGA.map((e) => {
                 const on = Boolean(l.entrega?.[e]);
@@ -520,7 +520,7 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
             </div>
             <p className="mt-1 text-[12px] text-ink/50">{ENTREGA.filter((e) => l.entrega?.[e]).length} de {ENTREGA.length} hechas.</p>
           </div>
-          <p className="mt-1 text-[12px] text-ink/50">Estos datos se guardan con Guardar cambios. El parte del día y los ajustes se guardan con su propio botón.</p>
+          <p className="mt-1 text-[12px] text-ink/50">Estos datos se guardan con Guardar cambios. El parte de actuaciones y los cambios de honorarios se guardan con su propio botón.</p>
           {!nuevo ? <div id="f-parte" className="scroll-mt-3" /> : null}
           {!nuevo ? <SeccionObra id={id as number} partes={partes} incidencias={incidencias} recargar={recargar} /> : null}
         </section>
@@ -542,10 +542,10 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
           {inp("email", "Correo", "email")}
           {sel("temperatura", "Cómo de decidida está", TEMPERATURAS)}
           {sel("inicio_deseado", "Cuándo quiere empezar", INICIOS)}
-          {inp("presupuesto_cliente", "Presupuesto que tiene en mente (€)", "number")}
+          {inp("presupuesto_cliente", "Lo que tiene pensado gastar (€)", "number")}
           {inp("consentimiento", "Permiso para escribirle", "text", "Ej.: dado por teléfono el 26/10")}
           {sel("preferencia_contacto", "Cómo prefiere que le contactemos", PREFERENCIAS)}
-          {sel("que_reforma", "Qué quiere climatizar", QUE_REFORMA)}
+          {sel("que_reforma", "Qué le pasa", QUE_REFORMA)}
           {inp("contacto2_nombre", "Otra persona de contacto", "text", "Ej.: su pareja, Toni")}
           {inp("contacto2_telefono", "Teléfono de esa persona", "tel")}
         </div>
@@ -566,26 +566,26 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
             </label>
           ) : null}
           {!["visita-programada", "visita-hecha", "presupuesto", "firmado", "perdido"].includes(estado) ? <label className="block">
-            <span className={etiqueta}>Técnico de la visita</span>
+            <span className={etiqueta}>Abogado de la consulta</span>
             <select className={campo} value={l.arquitecto_id ?? ""} onChange={(e) => pon("arquitecto_id", e.target.value ? Number(e.target.value) : null)}>
-              <option value="">Sin técnico</option>
+              <option value="">Sin abogado</option>
               {usuarios.filter((x) => x.activo !== false).map((x) => <option key={x.id} value={x.id}>{x.nombre}{x.puesto ? ` (${x.puesto})` : ""}</option>)}
             </select>
           </label> : null}
           {l.origen === "Recomendado" || l.origen === "Recomendados" || l.recomendado_por ? inp("recomendado_por", "Le recomendó", "text", "Nombre del cliente que le habló de nosotros") : null}
-          {inp("ref", "Referencia", "text", "RF26…")}
+          {inp("ref", "Referencia", "text", "FA26…")}
         </div>
       </section>
 
       <section id="f-casa" className="mt-4 scroll-mt-3 rounded-[20px] border border-line bg-white p-4">
-        <p className={etiqueta}>La casa</p>
+        <p className={etiqueta}>El asunto</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {inp("direccion", "Dirección")}
           {inp("poblacion", "Población o barrio")}
           {inp("cp", "Código postal")}
-          {inp("m2", "Metros cuadrados", "number")}
-          {sel("tipo_vivienda", "Tipo de vivienda", VIVIENDAS)}
-          {sel("tipo", "Tipo de instalación", ["Aerotermia", "Instalación parcial", "Instalación local", "Instalación oficina", "Otros"], "Aerotermia")}
+          {inp("m2", "Años en la empresa", "number")}
+          {sel("tipo_vivienda", "Situación laboral", VIVIENDAS)}
+          {sel("tipo", "Tipo de asunto", ["Despido", "Acoso laboral", "Incapacidad permanente", "Mujer y trabajo", "Asesoría a empresas"], "Despido")}
         </div>
         <label className="mt-3 block">
           <span className={etiqueta}>Notas fijas</span>
@@ -631,19 +631,19 @@ function Ficha({ id, ancla = "", usuario, usuarios, listas, cerrar }: { id: numb
 
 function Equipo({ cerrar }: { cerrar: () => void }) {
   const [lista, setLista] = useState<Usuario[]>([]);
-  const [nuevo, setNuevo] = useState({ email: "", nombre: "", rol: "equipo", puesto: "Técnico" });
+  const [nuevo, setNuevo] = useState({ email: "", nombre: "", rol: "equipo", puesto: "Abogado" });
   const [msg, setMsg] = useState("");
   const cargar = () => api("usuarios", undefined, "GET").then((j) => setLista(j.usuarios));
   useEffect(() => { cargar(); }, []);
   return (
     <Panel titulo="Equipo y accesos" cerrar={cerrar} ancho="max-w-[620px]">
-      <p className="text-[14px] text-ink/70">Cada persona entra con su correo y su contraseña. Toda alta nueva (salvo Lucía y Sergio) la aprueba Sergio desde un correo; solo entonces le llega a la persona el enlace para crear su contraseña.</p>
+      <p className="text-[14px] text-ink/70">Cada persona entra con su correo y su contraseña. Toda alta nueva (salvo Lucía y Álvaro) la aprueba Álvaro desde un correo; solo entonces le llega a la persona el enlace para crear su contraseña.</p>
       <ul className="mt-4 space-y-2">
         {lista.map((x) => (
           <li key={x.id} className="flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-line bg-white px-4 py-3">
             <span>
               <b className="text-ink">{x.nombre}</b> <span className="text-[13px] text-ink/55">{x.email}</span>
-              <span className="block text-[12px] text-ink/50">{x.rol === "admin" ? "Administra (ve todo y da accesos)" : x.rol === "equipo" ? "Equipo (ve y edita todos los leads)" : "Solo sus leads asignados"} · {x.puesto ? `${x.puesto} · ` : ""}{x.aprobado === false ? "pendiente de que Sergio lo apruebe" : x.conClave ? "con contraseña" : "sin contraseña todavía"}{x.activo === false ? " · desactivada" : ""}</span>
+              <span className="block text-[12px] text-ink/50">{x.rol === "admin" ? "Administra (ve todo y da accesos)" : x.rol === "equipo" ? "Equipo (ve y edita todos los leads)" : "Solo sus leads asignados"} · {x.puesto ? `${x.puesto} · ` : ""}{x.aprobado === false ? "pendiente de que Álvaro lo apruebe" : x.conClave ? "con contraseña" : "sin contraseña todavía"}{x.activo === false ? " · desactivada" : ""}</span>
             </span>
             <span className="flex gap-2">
               <select className="rounded-full border border-line px-2 py-1 text-[13px]" value={x.rol} onChange={async (e) => { await api("usuario", { ...x, rol: e.target.value }); cargar(); }}>
@@ -667,7 +667,7 @@ function Equipo({ cerrar }: { cerrar: () => void }) {
             <option value="equipo">Equipo</option><option value="asignado">Solo lo asignado</option><option value="admin">Administra</option>
           </select>
         </div>
-        <button type="button" disabled={!nuevo.email || !nuevo.nombre} onClick={async () => { await api("usuario", nuevo); setMsg(`Alta de ${nuevo.nombre} pedida. Sergio recibe un correo para aprobarla; al aprobar, a ${nuevo.email} le llega su enlace.`); setNuevo({ email: "", nombre: "", rol: "equipo", puesto: "Técnico" }); cargar(); }} className="mt-3 rounded-full bg-yellow px-5 py-2.5 text-[14px] font-bold text-ink disabled:opacity-40">Dar de alta (lo aprueba Sergio)</button>
+        <button type="button" disabled={!nuevo.email || !nuevo.nombre} onClick={async () => { await api("usuario", nuevo); setMsg(`Alta de ${nuevo.nombre} pedida. Álvaro recibe un correo para aprobarla; al aprobar, a ${nuevo.email} le llega su enlace.`); setNuevo({ email: "", nombre: "", rol: "equipo", puesto: "Abogado" }); cargar(); }} className="mt-3 rounded-full bg-yellow px-5 py-2.5 text-[14px] font-bold text-ink disabled:opacity-40">Dar de alta (lo aprueba Álvaro)</button>
         {msg ? <p className="mt-2 text-[14px] text-[#3f6b39]">{msg}</p> : null}
       </div>
     </Panel>

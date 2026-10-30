@@ -159,7 +159,7 @@ const peticionesPago = (t: Totales) => Object.entries(t.porCanal).filter(([k]) =
 type Metrica = { id: string; nombre: string; f: (t: Totales) => number; formato: (n: number) => string; menosEsMejor?: boolean; fuente: string; ayuda: string };
 const METRICAS: Metrica[] = [
   { id: "peticiones", nombre: "Peticiones", f: (t) => t.peticiones, formato: num, fuente: "Web", ayuda: "Personas que nos han dejado sus datos en la web." },
-  { id: "visitas", nombre: "Piden visita", f: (t) => t.visitas, formato: num, fuente: "Web", ayuda: "De ellas, las que piden la visita técnica gratis." },
+  { id: "visitas", nombre: "Piden consulta", f: (t) => t.visitas, formato: num, fuente: "Web", ayuda: "De ellas, las que piden la consulta inicial con un abogado." },
   { id: "pulsaciones", nombre: "WhatsApp y llamar", f: (t) => t.whatsapp + t.llamadas, formato: num, fuente: "Web", ayuda: "Veces que pulsan el botón de WhatsApp o de llamar." },
   { id: "inversion", nombre: "Inversión en anuncios", f: (t) => t.ads.coste, formato: eur, fuente: "Anuncios (Google Ads, Meta y ChatGPT)", ayuda: "Lo gastado en Google, Meta y ChatGPT." },
   // Coste por contacto según las propias plataformas: parte del anuncio aterriza en una página propia,
@@ -169,7 +169,7 @@ const METRICAS: Metrica[] = [
   { id: "organico", nombre: "Clics desde Google", f: (t) => t.gsc.clics, formato: num, fuente: "Search Console", ayuda: "Entran desde Google sin anuncio (lo que no se paga)." },
   { id: "rebote", nombre: "Rebote", f: (t) => (t.ga.sesiones ? (1 - t.ga.interes / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, menosEsMejor: true, fuente: "Analytics · sesiones sin interacción", ayuda: "De cada 100 visitas, cuántas se van sin hacer nada (menos de 10 segundos, una sola página y ninguna acción). Cuanto más bajo, mejor." },
   { id: "conversion", nombre: "Visitas que acaban en contacto", f: (t) => (t.ga.sesiones ? (t.peticiones / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, fuente: "Web y Analytics", ayuda: "De cada 100 visitas a la web, cuántas acaban dejando sus datos." },
-  { id: "calculos", nombre: "Calculadora de ahorro", f: (t) => t.calculos, formato: num, fuente: "Web", ayuda: "Personas que calculan cuánto ahorrarían con un equipo nuevo y reciben el informe." },
+  { id: "calculos", nombre: "Calculadora de indemnización", f: (t) => t.calculos, formato: num, fuente: "Web", ayuda: "Personas que calculan cuánto les correspondería por su despido y reciben el resultado." },
 ];
 
 /* ── piezas visuales ── */
@@ -598,7 +598,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           ) : (<>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">Climatización Ejemplo · panel de control</p>
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">Fuero Abogados · panel de control</p>
               <h1 className="mt-1 font-serif text-[clamp(28px,4vw,40px)] font-medium italic leading-tight text-ink">Todo lo que pasa, en un sitio</h1>
               <p className="mt-1 text-[14px] text-ink/60">
                 <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-[#25D366] align-middle" />
@@ -629,7 +629,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           )}
           {/* cl·v922: las cifras completas salen siempre debajo del resumen, sin botón; lo que ya está arriba no se repite */}
           {(() => { const soloCifras = sencillaPosible && vista === "sencilla"; return (<>
-          {!soloCifras && <Ludoteca {...dolorYBien(relojes ?? [], temas ?? [])} contactos={relojes?.[0]?.n} preguntas={juegos(relojes ?? [])} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((t, q) => t + datos.web[q].peticiones, 0); }} demo={datos.clave === "demo"} nombreEmpresa="Climatización Ejemplo" lineas={["Aire acondicionado de piso", "Aire acondicionado de chalet", "Aerotermia", "Mantenimiento", "Local u oficina"]} capacidadTexto="¿Cuántas instalaciones puedes atender al mes?" notaPublico="Casiopea puede montar tu versión B: una web y unas campañas para el cliente de más nivel, sin tocar la de hoy. Tú decides el reparto y nosotros medimos si responde." />}
+          {!soloCifras && <Ludoteca {...dolorYBien(relojes ?? [], temas ?? [])} contactos={relojes?.[0]?.n} preguntas={juegos(relojes ?? [])} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((t, q) => t + datos.web[q].peticiones, 0); }} demo={datos.clave === "demo"} nombreEmpresa="Fuero Abogados" lineas={["Despidos", "Acoso laboral", "Incapacidad permanente", "Mujer y trabajo", "Asesoría a empresas"]} capacidadTexto="¿Cuántos casos nuevos puedes atender al mes?" notaPublico="Casiopea puede montar tu versión B: una web y unas campañas para el cliente de más nivel, sin tocar la de hoy. Tú decides el reparto y nosotros medimos si responde." />}
           {!soloCifras && <GuiaDeUso modo="plegada" />}
           {/* cl·v921: todo plegado en una línea; se abre lo que se quiera y las cifras quedan a un vistazo */}
           <Plegable id="pl-fechas" icono="historia" color={PALETA_ALEGRIA.camino} titulo="Fechas y comparación" pista={`${textoRango(a, b)} · ${compara === "no" ? "sin comparar" : compara === "anio" ? "frente al año pasado" : "frente al periodo anterior"}`}>
@@ -744,10 +744,10 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
                   </button>
                 );
               })}
-              <CifraFija icono="comerciales" nombre="Visitas comerciales" ayuda="Visitas técnicas a casas de clientes, del CRM (clientes que entraron en estas fechas)." v={detalle ? num(crmT.visitas) : errorDetalle ? "-" : "…"} antes={crmA ? num(crmA.visitas) : undefined} a={crmT.visitas} b={crmA?.visitas} />
-              <CifraFija icono="firmados" nombre="Contratos firmados" ayuda="Instalaciones firmadas de los clientes que entraron en estas fechas (CRM)." v={detalle ? num(crmT.firm) : errorDetalle ? "-" : "…"} antes={crmA && crmT.firm ? num(crmA.firm) : undefined} a={crmT.firm} b={crmT.firm ? crmA?.firm : undefined} extra={crmT.leads ? "Una instalación tarda semanas en firmarse: los contactos de estas fechas aún están en marcha" : "Las firmas antiguas llegarán con la base de clientes"} />
+              <CifraFija icono="comerciales" nombre="Consultas hechas" ayuda="Consultas iniciales con un abogado del despacho, del CRM (clientes que entraron en estas fechas)." v={detalle ? num(crmT.visitas) : errorDetalle ? "-" : "…"} antes={crmA ? num(crmA.visitas) : undefined} a={crmT.visitas} b={crmA?.visitas} />
+              <CifraFija icono="firmados" nombre="Encargos firmados" ayuda="Hojas de encargo firmadas por los clientes que entraron en estas fechas (CRM)." v={detalle ? num(crmT.firm) : errorDetalle ? "-" : "…"} antes={crmA && crmT.firm ? num(crmA.firm) : undefined} a={crmT.firm} b={crmT.firm ? crmA?.firm : undefined} extra={crmT.leads ? "Un encargo puede tardar días o semanas en firmarse: los contactos de estas fechas aún están en marcha" : "Las firmas antiguas llegarán con la base de clientes"} />
               {(() => { const m = M("cpl"); const v = m.f(T); return <CifraFija icono="cpl" nombre="Coste por contacto" ayuda={m.ayuda} v={T.ads.conv ? m.formato(v) : T.ads.coste ? "Sin contactos medidos" : "-"} antes={C && C.ads.conv ? m.formato(m.f(C)) : undefined} a={v} b={C ? m.f(C) : undefined} menosEsMejor extra={`${nf1.format(T.ads.conv)} contactos según las plataformas · ${eur(T.ads.coste)} invertidos`} />; })()}
-              <CifraFija icono="margen" nombre="Margen de las instalaciones" ayuda="Margen previsto de las instalaciones captadas." v="Pendiente" extra="Falta apuntar el coste previsto y real de cada instalación" pendiente />
+              <CifraFija icono="margen" nombre="Margen de los casos" ayuda="Margen previsto de los casos captados." v="Pendiente" extra="Falta apuntar las horas previstas y reales de cada caso" pendiente />
             </div>
 
               <PorCanal T={T} C={C} />
@@ -816,17 +816,17 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
               <Embudo pasos={[
                 ["Visitas a la web", T.ga.sesiones, C?.ga.sesiones],
                 ["Dejaron sus datos", T.peticiones, C?.peticiones],
-                ["Solicitaron visita en la web", T.visitas, C?.visitas],
+                ["Pidieron consulta en la web", T.visitas, C?.visitas],
               ]} />
             </Caja>
             <Caja titulo="Recorrido comercial total" fuente="CRM · contactos que entraron en estas fechas por cualquier canal, y hasta dónde han llegado">
               <Embudo pasos={[
                 ["Contactos registrados", crmT.leads, crmA?.leads],
-                ["Visitas realizadas", crmT.visitas, crmA?.visitas],
-                ["Presupuestos entregados", crmT.pres, crmA?.pres],
-                ["Contratos firmados", crmT.firm, undefined],
+                ["Consultas hechas", crmT.visitas, crmA?.visitas],
+                ["Propuestas de honorarios", crmT.pres, crmA?.pres],
+                ["Encargos firmados", crmT.firm, undefined],
               ]} />
-              {!crmT.firm && crmT.leads > 0 && <p className="mt-3 text-[13.5px] leading-relaxed text-ink/70">Todavía no hay firmas de los contactos que entraron en este periodo: hay {num(crmT.visitas)} visitas y {num(crmT.pres)} presupuestos en curso. Una instalación tarda semanas en decidirse; la tasa de cierre se mira con contactos de hace 3 a 6 meses.</p>}
+              {!crmT.firm && crmT.leads > 0 && <p className="mt-3 text-[13.5px] leading-relaxed text-ink/70">Todavía no hay firmas de los contactos que entraron en este periodo: hay {num(crmT.visitas)} consultas y {num(crmT.pres)} propuestas en curso. Un encargo puede tardar semanas en decidirse; la tasa de cierre se mira con contactos de hace 3 a 6 meses.</p>}
               <p className="mt-3 text-[13px] leading-relaxed text-ink/60">Los pasos de la web cuentan solo lo que pasa en la web. Los del CRM incluyen también a quien llega por teléfono, WhatsApp, Instagram o recomendación (por eso pueden ser más). Además, {num(T.whatsapp)} pulsaciones en WhatsApp y {num(T.llamadas)} en llamar: son pulsaciones del botón, no conversaciones; las conversaciones reales las apunta tu equipo en el CRM.</p>
             </Caja>
           </>
@@ -1061,24 +1061,24 @@ function TresPreguntas({ T, C, crm, cargando, largo }: { T: Totales; C: Totales 
   let c2: Resp["color"] = "gris", f2 = cargando ? "Cargando el CRM…" : "Sin datos del CRM en este periodo: se llenará cuando el equipo lo use.";
   if (t.leads >= 5) {
     const tasa = (t.firm / t.leads) * 100;
-    if (t.firm === 0 && largo <= 60) { c2 = "gris"; f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} visitas y ${num(t.pres)} presupuestos. Aún no hay firmas: una instalación tarda semanas en decidirse, la tasa de cierre se mira con 3 a 6 meses.`; }
+    if (t.firm === 0 && largo <= 60) { c2 = "gris"; f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} consultas y ${num(t.pres)} propuestas. Aún no hay firmas: un encargo puede tardar semanas en decidirse, la tasa de cierre se mira con 3 a 6 meses.`; }
     else {
       c2 = t.firm === 0 ? "ambar" : tasa >= 8 ? "verde" : "ambar";
-      f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} visitas, ${num(t.pres)} presupuestos y ${num(t.firm)} instalaciones firmadas.`;
+      f2 = `De ${num(t.leads)} contactos: ${num(t.visitas)} consultas, ${num(t.pres)} propuestas y ${num(t.firm)} encargos firmados.`;
     }
   }
   const pagoPlat: Record<string, string> = { "Google Ads": "google", "Meta (anuncio)": "meta", "ChatGPT Ads": "chatgpt" };
   const porCanal = (crm ?? []).filter((r) => r.firmados > 0).map((r) => ({ ...r, coste: pagoPlat[r.origen] ? (T.ads.porPlat[pagoPlat[r.origen]]?.coste ?? 0) : 0 })).sort((a, b) => b.firmado - a.firmado);
-  let c3: Resp["color"] = "gris", f3 = "Hará falta que el CRM tenga instalaciones firmadas en este periodo.";
+  let c3: Resp["color"] = "gris", f3 = "Hará falta que el CRM tenga encargos firmados en este periodo.";
   if (porCanal.length) {
     const mejor = porCanal[0];
-    const pagos = porCanal.filter((r) => r.coste > 0).map((r) => `${r.origen}: ${eur(r.coste / r.firmados)} por instalación`);
+    const pagos = porCanal.filter((r) => r.coste > 0).map((r) => `${r.origen}: ${eur(r.coste / r.firmados)} por encargo`);
     c3 = "verde";
-    f3 = `${mejor.origen} es el que más cierra: ${num(mejor.firmados)} ${mejor.firmados === 1 ? "instalación" : "instalaciones"}.${pagos.length ? ` En anuncios: ${pagos.join("; ")}.` : ""}`;
+    f3 = `${mejor.origen} es el que más cierra: ${num(mejor.firmados)} ${mejor.firmados === 1 ? "encargo" : "encargos"}.${pagos.length ? ` En anuncios: ${pagos.join("; ")}.` : ""}`;
   }
   const filas: Resp[] = [
-    { pregunta: "¿Nos llegan buenos contactos?", color: c1, frase: f1, dato: `${num(T.peticiones)} contactos · ${num(T.visitas)} piden visita` },
-    { pregunta: "¿Los convertimos en instalaciones?", color: c2, frase: f2, dato: t.leads ? `${num(t.leads ? (t.firm / t.leads) * 100 : 0)} % de contacto a instalación` : "" },
+    { pregunta: "¿Nos llegan buenos contactos?", color: c1, frase: f1, dato: `${num(T.peticiones)} contactos · ${num(T.visitas)} piden consulta` },
+    { pregunta: "¿Los convertimos en clientes?", color: c2, frase: f2, dato: t.leads ? `${num(t.leads ? (t.firm / t.leads) * 100 : 0)} % de contacto a encargo` : "" },
     { pregunta: "¿Qué canal nos hace ganar más?", color: c3, frase: f3, dato: "" },
   ];
   const COL = { verde: ["#ebf1e8", "#3f6b39", "Todo bien"], ambar: ["#f7efe0", "#7c5e27", "Mira esto"], rojo: ["#f8e8ea", "#a3505a", "Importante"], gris: ["#f1efec", "#6b6b6b", "Sin datos aún"] } as const;
@@ -1162,19 +1162,19 @@ function Ventas({ crm, cargando, inversion }: { crm: Detalle["crm"]; cargando: b
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {([
           ["Contactos", num(t.leads), "persona", PALETA_ALEGRIA.ventas],
-          ["Visitas", num(t.visitas), "casa", PALETA_ALEGRIA.web],
-          ["Presupuestos", num(t.presupuestos), "documento", PALETA_ALEGRIA.camino],
-          ["Instalaciones firmadas", num(t.firmados), "check", PALETA_ALEGRIA.mercado],
-          ["Coste en anuncios por instalación firmada", pago ? eur(inversion / pago) : "-", "megafono", PALETA_ALEGRIA.anuncios],
+          ["Consultas", num(t.visitas), "casa", PALETA_ALEGRIA.web],
+          ["Propuestas", num(t.presupuestos), "documento", PALETA_ALEGRIA.camino],
+          ["Encargos firmados", num(t.firmados), "check", PALETA_ALEGRIA.mercado],
+          ["Coste en anuncios por encargo firmado", pago ? eur(inversion / pago) : "-", "megafono", PALETA_ALEGRIA.anuncios],
           ["Tiempo medio hasta la primera llamada", tiempo, "telefono", PALETA_ALEGRIA.aviso],
           ["Seguimientos atrasados", num(resp.v), "campana", resp.v >= 10 ? "#a3505a" : PALETA_ALEGRIA.ia],
         ] as [string, string, string, string][]).map(([k, v, ic, col]) => {
           const ayuda: Record<string, string> = {
             Contactos: "Personas que han entrado en el CRM en estas fechas, por cualquier canal (web, teléfono, WhatsApp, Instagram, recomendación).",
-            Visitas: "De esos contactos, a cuántos se les ha hecho ya la visita técnica en casa.",
-            Presupuestos: "A cuántos se les ha entregado presupuesto.",
-            "Instalaciones firmadas": "Cuántos han firmado contrato. Una instalación tarda semanas en decidirse: los contactos de estas fechas todavía pueden firmar.",
-            "Coste en anuncios por instalación firmada": "Lo invertido en anuncios dividido entre las instalaciones firmadas que vinieron de anuncios. Cuanto más bajo, mejor.",
+            Consultas: "De esos contactos, cuántos han tenido ya la consulta inicial con un abogado.",
+            Propuestas: "A cuántos se les ha entregado la propuesta de honorarios.",
+            "Encargos firmados": "Cuántos han firmado la hoja de encargo. Un encargo puede tardar semanas en decidirse: los contactos de estas fechas todavía pueden firmar.",
+            "Coste en anuncios por encargo firmado": "Lo invertido en anuncios dividido entre los encargos firmados que vinieron de anuncios. Cuanto más bajo, mejor.",
             "Tiempo medio hasta la primera llamada": "Cuánto tardamos, de media, en llamar a un contacto nuevo. Cuanto antes, más probable que firme.",
             "Seguimientos atrasados": "Contactos con la fecha de seguimiento ya pasada en el CRM: alguien tiene que llamarlos.",
           };
@@ -1187,8 +1187,8 @@ function Ventas({ crm, cargando, inversion }: { crm: Detalle["crm"]; cargando: b
           );
         })}
       </div>
-      <Caja titulo="De la petición a la instalación" fuente={cargando ? "Cargando…" : "CRM · contactos que entraron en el periodo y hasta dónde han llegado"}>
-        <Embudo pasos={[["Contactos", t.leads, undefined], ["Visita técnica", t.visitas, undefined], ["Presupuesto entregado", t.presupuestos, undefined], ["Firman la instalación", t.firmados, undefined]]} />
+      <Caja titulo="De la petición al encargo" fuente={cargando ? "Cargando…" : "CRM · contactos que entraron en el periodo y hasta dónde han llegado"}>
+        <Embudo pasos={[["Contactos", t.leads, undefined], ["Consulta inicial", t.visitas, undefined], ["Propuesta de honorarios", t.presupuestos, undefined], ["Firman el encargo", t.firmados, undefined]]} />
       </Caja>
       <Caja titulo="Por origen" fuente="CRM (la libreta de clientes) · toca una columna para ordenar">
         <Tabla
@@ -1198,14 +1198,14 @@ function Ventas({ crm, cargando, inversion }: { crm: Detalle["crm"]; cargando: b
           cols={[
             { k: "origen", t: "Origen", v: (r) => r.origen, f: (r) => <span className="flex items-center font-semibold"><LogoCanal canal={r.origen} />{r.origen}</span> },
             { k: "leads", t: "Contactos", v: (r) => r.leads, num: true },
-            { k: "visitas", t: "Visitas", v: (r) => r.visitas, num: true },
-            { k: "presupuestos", t: "Presupuestos", v: (r) => r.presupuestos, num: true },
+            { k: "visitas", t: "Consultas", v: (r) => r.visitas, num: true },
+            { k: "presupuestos", t: "Propuestas", v: (r) => r.presupuestos, num: true },
             { k: "firmados", t: "Firmadas", v: (r) => r.firmados, num: true },
-            { k: "conv", t: "De contacto a instalación", v: (r) => (r.leads ? r.firmados / r.leads : 0), num: true, f: (r) => (r.leads ? pct((r.firmados / r.leads) * 100) : "-") },
+            { k: "conv", t: "De contacto a encargo", v: (r) => (r.leads ? r.firmados / r.leads : 0), num: true, f: (r) => (r.leads ? pct((r.firmados / r.leads) * 100) : "-") },
           ]}
         />
         <p className="mt-3 text-[12.5px] text-ink/50">Sale del CRM, que rellena tu equipo. Cuantos más estados y firmas apuntados, más fiel es esta pestaña.</p>
-        <p className="mt-2 rounded-[12px] bg-[#fbf6ea] px-3 py-2 text-[13px] text-ink/70">Ojo con los contactos anteriores al 26 de octubre de 2026: vienen del CRM antiguo, que solo apuntaba a quien llegaba a la visita (por eso visitas y contactos casi coinciden). Desde entonces, todo contacto queda apuntado.</p>
+        <p className="mt-2 rounded-[12px] bg-[#fbf6ea] px-3 py-2 text-[13px] text-ink/70">Ojo con los contactos anteriores al 26 de octubre de 2026: vienen del CRM antiguo, que solo apuntaba a quien llegaba a la consulta (por eso consultas y contactos casi coinciden). Desde entonces, todo contacto queda apuntado.</p>
       </Caja>
     </>
   );
@@ -1275,9 +1275,9 @@ function PorCanal({ T, C }: { T: Totales; C: Totales | null }) {
 const INTENCION: Record<string, [string, string]> = { Marca: ["#236278", "#e7f2f5"], Comercial: ["#3f6b39", "#ebf1e8"], Informativa: ["#7c5e27", "#f7efe0"] };
 function intencionDe(q: string): "Marca" | "Comercial" | "Informativa" {
   const t = q.toLowerCase();
-  if (/climatizaci[oó]n ejemplo|clima ?ejemplo/.test(t)) return "Marca";
-  // "madrid" solo no basta: "horario obras madrid" es una duda, no una búsqueda de empresa
-  if (/^(aire acondicionado|climatizaci[oó]n)$/.test(t) || /(empresa|empresas|instalador|instalaci[oó]n|presupuesto|precio|precios|cu[aá]nto cuesta|cuanto vale|coste|aire acondicionado (en )?madrid|aerotermia|bomba de calor|caldera|contratar|calcular|calculadora)/.test(t)) return "Comercial";
+  if (/fuero ?abogados|fueroabogados/.test(t)) return "Marca";
+  // "madrid" solo no basta: "festivos laborales madrid" es una duda, no una búsqueda de despacho
+  if (/^(abogado|abogados|laboralista)$/.test(t) || /(abogad|despacho|laboralista|asesor[ií]a|bufete|presupuesto|precio|precios|honorarios|cu[aá]nto cobra|cu[aá]nto cuesta|coste|reclamar|demandar|contratar|calcular|calculadora)/.test(t)) return "Comercial";
   return "Informativa";
 }
 function Intencion({ busquedas, cargando }: { busquedas: { busqueda: string; clics: number; impresiones: number }[]; cargando: boolean }) {
@@ -1292,9 +1292,9 @@ function Intencion({ busquedas, cargando }: { busquedas: { busqueda: string; cli
             {(["Comercial", "Marca", "Informativa"] as const).map((k) => t[k].clics ? <div key={k} className="flex items-center justify-center text-[12px] font-bold" style={{ width: `${(t[k].clics / total) * 100}%`, background: INTENCION[k][1], color: INTENCION[k][0] }}>{(t[k].clics / total) * 100 >= 12 ? `${k} ${num((t[k].clics / total) * 100)} %` : ""}</div> : null)}
           </div>
           <ul className="mt-3 grid gap-2 text-[14px] sm:grid-cols-3">
-            <li><b style={{ color: INTENCION.Comercial[0] }}>Comercial: {num(t.Comercial.clics)} clics.</b> Buscan empresa, precio o instalación: posibles clientes.</li>
+            <li><b style={{ color: INTENCION.Comercial[0] }}>Comercial: {num(t.Comercial.clics)} clics.</b> Buscan abogado, despacho o precio: posibles clientes.</li>
             <li><b style={{ color: INTENCION.Marca[0] }}>Marca: {num(t.Marca.clics)} clics.</b> Ya nos conocen y nos buscan por el nombre.</li>
-            <li><b style={{ color: INTENCION.Informativa[0] }}>Informativa: {num(t.Informativa.clics)} clics.</b> Dudas de bricolaje o definiciones: rara vez contratan.</li>
+            <li><b style={{ color: INTENCION.Informativa[0] }}>Informativa: {num(t.Informativa.clics)} clics.</b> Dudas sueltas o definiciones: rara vez contratan.</li>
           </ul>
           <p className="mt-2 text-[12.5px] text-ink/50">Google no dice qué búsqueda acabó en contacto, así que esto no atribuye ventas a palabras concretas: solo separa el tipo de visita.</p>
         </>
@@ -1365,7 +1365,7 @@ function BloqueRebote({ T, C, rebote, cargando, conectado }: { T: Totales; C: To
               { k: "seg", t: "Segundos de interacción", v: (x) => x.seg, num: true, f: (x) => (x.seg ? num(x.seg) : "-") },
             ]}
           />
-          <p className="mt-2 text-[12.5px] text-ink/50">Acciones clave: pedir visita, enviar un formulario, pulsar WhatsApp o llamar (los eventos clave de Analytics). Solo cuentan quienes aceptan las cookies de analítica.</p>
+          <p className="mt-2 text-[12.5px] text-ink/50">Acciones clave: pedir consulta, enviar un formulario, pulsar WhatsApp o llamar (los eventos clave de Analytics). Solo cuentan quienes aceptan las cookies de analítica.</p>
         </div>
       </Caja>
     </>
@@ -1486,7 +1486,7 @@ function BloqueRedes({ r, a, b, ca, cb, compara }: { r: Redes | null; a: string;
   const primeraI = id[0]?.[0] ?? "";
   const hayC = (x: { dias: number } | null) => !!x && x.dias > 0;
   const filaF: [string, string, number][] = [
-    ["Te ven en la búsqueda de Google", "Veces que la ficha sale al buscar en Google (por ejemplo «aire acondicionado Madrid»).", 0],
+    ["Te ven en la búsqueda de Google", "Veces que la ficha sale al buscar en Google (por ejemplo «abogado laboralista Madrid»).", 0],
     ["Te ven en Google Maps", "Veces que la ficha sale en el mapa.", 1],
     ["Pulsan «Sitio web»", "Desde la ficha, entran en la web.", 2],
     ["Pulsan «Llamar»", "Llamadas hechas desde la ficha.", 3],
@@ -1527,7 +1527,7 @@ function BloqueRedes({ r, a, b, ca, cb, compara }: { r: Redes | null; a: string;
         <p className="mt-3 text-[13px] leading-relaxed text-ink/60">Es la ficha que sale a la derecha en Google y en el mapa. Las llamadas y «Sitio web» desde aquí son clientes muy calientes: ya nos estaban buscando.</p>
       </Caja>
 
-      <Caja titulo={`Instagram @${r.instagram.usuario ?? "climaejemplo"} (sin anuncios)`} explica={EXPLICA["Instagram (sin anuncios)"]} plegada={`${num(r.instagram.seguidores)} seguidores · alcance, visualizaciones y nuevos seguidores`} fuente={`Instagram · ${num(r.instagram.seguidores)} seguidores y ${num(r.instagram.publicaciones)} publicaciones al ${fechaLarga(r.actualizado)}`}>
+      <Caja titulo={`Instagram @${r.instagram.usuario ?? "fueroabogados"} (sin anuncios)`} explica={EXPLICA["Instagram (sin anuncios)"]} plegada={`${num(r.instagram.seguidores)} seguidores · alcance, visualizaciones y nuevos seguidores`} fuente={`Instagram · ${num(r.instagram.seguidores)} seguidores y ${num(r.instagram.publicaciones)} publicaciones al ${fechaLarga(r.actualizado)}`}>
         <div className="grid gap-3 sm:grid-cols-3">
           <CifraFija nombre="Personas alcanzadas al día" ayuda="Cuentas distintas que ven algo nuestro, de media cada día." v={num(I.alcMedio)} {...(hayC(IC) ? { a: I.alcMedio, b: IC!.alcMedio, antes: num(IC!.alcMedio) } : {})} extra={!sinC && !hayC(IC) ? `Sin datos antes (se guardan desde el ${fechaLarga(primeraI)})` : undefined} />
           <CifraFija nombre="Visualizaciones" ayuda="Veces que se ven nuestros reels, publicaciones e historias." v={num(I.vis)} {...(hayC(IC) ? { a: I.vis, b: IC!.vis, antes: num(IC!.vis) } : {})} />
@@ -1548,8 +1548,8 @@ const abrirParte = (id: string) => window.dispatchEvent(new CustomEvent("mesa-te
 const ACCESOS: Acceso[] = [
   { t: "La lupa", icono: "lupa", color: "#2a6f86", d: "La web con lo que hace la gente encima: dónde tocan, hasta dónde bajan, conclusiones", fondo: "#e2f1f5", borde: "#1c8caa", href: "/lupa-ejemplo" },
   { t: "Control 360", icono: "camino", color: "#7a4fd0", d: "Probamos tu recorrido completo como lo haría un cliente y te avisamos si algo falla", fondo: "#f0e9f7", borde: "#7a4fd0", href: "/servicios/lupa-360" },
-  { t: "Coste por cliente", icono: "moneda", color: "#c79a00", d: "Lo invertido frente a contactos, visitas e instalaciones firmadas", fondo: "#fbf3df", borde: "#b8924a", pestana: "ventas" },
-  { t: "CRM", icono: "persona", color: "#2f6fd0", d: "Contactos, visitas e instalaciones, de cada persona", fondo: "#e7efe6", borde: "#5d7a57", href: "/crm-ejemplo" },
+  { t: "Coste por cliente", icono: "moneda", color: "#c79a00", d: "Lo invertido frente a contactos, consultas y encargos firmados", fondo: "#fbf3df", borde: "#b8924a", pestana: "ventas" },
+  { t: "CRM", icono: "persona", color: "#2f6fd0", d: "Contactos, consultas y casos, de cada persona", fondo: "#e7efe6", borde: "#5d7a57", href: "/crm-ejemplo" },
   { t: "Índice de valor", icono: "estrella", color: "#c79a00", d: "Qué clientes valen más que tu media, sin decirnos cuánto facturas", fondo: "#fbf3df", borde: "#b8924a", href: "/servicios/crm-a-medida" },
   { t: "Avisos y recordatorios", icono: "campana", color: "#25a244", d: "Mensajes al móvil para citas y respuesta al momento (WhatsApp o SMS)", fondo: "#e4f3e6", borde: "#25a244", href: "/avisos-ejemplo" },
   { t: "Espejo de la IA", icono: "espejo", color: "#d9822b", d: "Qué dicen de nosotros ChatGPT, Gemini y Claude", fondo: "#f6eedc", borde: "#b8924a", tema: "dicen" },
@@ -1802,7 +1802,7 @@ function Sencilla({ temas, resumen, tareas, relojes, base, hoy, realEntre, clave
   }, [abreTema]);
   return (
     <div className="pb-6">
-      <Ludoteca {...dolorYBien(relojes, temas)} contactos={relojes[0]?.n} preguntas={juegos(relojes)} base={base} hoy={hoy} realEntre={realEntre} demo={clave === "demo"} nombreEmpresa="Climatización Ejemplo" lineas={["Aire acondicionado de piso", "Aire acondicionado de chalet", "Aerotermia", "Mantenimiento", "Local u oficina"]} capacidadTexto="¿Cuántas instalaciones puedes atender al mes?" notaPublico="Casiopea puede montar tu versión B: una web y unas campañas para el cliente de más nivel, sin tocar la de hoy. Tú decides el reparto y nosotros medimos si responde." />
+      <Ludoteca {...dolorYBien(relojes, temas)} contactos={relojes[0]?.n} preguntas={juegos(relojes)} base={base} hoy={hoy} realEntre={realEntre} demo={clave === "demo"} nombreEmpresa="Fuero Abogados" lineas={["Despidos", "Acoso laboral", "Incapacidad permanente", "Mujer y trabajo", "Asesoría a empresas"]} capacidadTexto="¿Cuántos casos nuevos puedes atender al mes?" notaPublico="Casiopea puede montar tu versión B: una web y unas campañas para el cliente de más nivel, sin tocar la de hoy. Tú decides el reparto y nosotros medimos si responde." />
       <GuiaDeUso modo="plegada" />
       <Conclusion resumen={resumen} hayTarea={tareas.length > 0} />
       {/* cl·v925: apartados en rejilla compacta; el que se abre se despliega debajo. Las cifras completas vienen después, ya abiertas */}
@@ -1847,8 +1847,8 @@ function CabeceraSencilla({ resumen, tareas, abreGuia, cambiarPeriodo, actualiza
   return (
     <div>
       <p className="min-h-[26px] font-serif text-[20px] italic leading-tight text-teal-deep">{saludo}</p>
-      <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">Climatización Ejemplo · panel de control</p>
-      <h1 className="mt-1 font-serif text-[clamp(30px,5vw,42px)] font-medium italic leading-tight text-ink">Cómo va Climatización Ejemplo</h1>
+      <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">Fuero Abogados · panel de control</p>
+      <h1 className="mt-1 font-serif text-[clamp(30px,5vw,42px)] font-medium italic leading-tight text-ink">Cómo va Fuero Abogados</h1>
       <p className="mt-1 text-[15px] text-ink/65">Últimos 28 días, comparado con los 28 anteriores · {alDia ? "actualizado hoy" : actualizado ? `anuncios actualizados el ${fechaEnPalabras(actualizado)}` : "anuncios sin actualizar"}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         <button type="button" onClick={abreGuia} className="min-h-[44px] rounded-full border border-line bg-white px-4 text-[15px] font-semibold text-ink hover:border-ink">Ayuda</button>

@@ -1277,9 +1277,9 @@ export function SeccionTecnologia() {
 /* Valor añadido: CRM a medida incluido. */
 export function SeccionCRM() {
   const columnas: [string, string[]][] = [
-    ["Nuevo", ["Aerotermia · Google Ads", "Reforma · Instagram"]],
-    ["Presupuesto", ["Mantenimiento · ChatGPT"]],
-    ["Cliente", ["Suelo radiante · Seguimiento", "Caldera · Mapa de Google"]],
+    ["Nuevo", ["Despido · Google Ads", "Acoso laboral · Instagram"]],
+    ["Presupuesto", ["Asesoría a empresa · ChatGPT"]],
+    ["Cliente", ["Incapacidad permanente · Seguimiento", "Mujer y trabajo · Mapa de Google"]],
   ];
   return (
     <section id="crm" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">

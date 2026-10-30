@@ -8,18 +8,18 @@ const dia = (n: number) => { const d = new Date(`${hoy()}T12:00:00Z`); d.setUTCD
 const hace = (n: number) => new Date(Date.now() - n * 86400000).toISOString();
 
 const USUARIOS = [
-  { id: 1, email: "direccion1@ejemplo.es", nombre: "Lucía", rol: "admin", puesto: "Dirección", activo: true, aprobado: true, conClave: true },
-  { id: 2, email: "direccion2@ejemplo.es", nombre: "Sergio", rol: "admin", puesto: "Dirección", activo: true, aprobado: true, conClave: true },
-  { id: 3, email: "recepcion@ejemplo.es", nombre: "Marina", rol: "equipo", puesto: "Recepción", activo: true, aprobado: true, conClave: true },
-  { id: 4, email: "arq1@ejemplo.es", nombre: "Daniel Cruz", rol: "asignado", puesto: "Técnico", activo: true, aprobado: true, conClave: true },
-  { id: 5, email: "arq2@ejemplo.es", nombre: "Irene Soto", rol: "asignado", puesto: "Técnico", activo: true, aprobado: true, conClave: true },
-  { id: 6, email: "obra1@ejemplo.es", nombre: "Víctor Mena", rol: "asignado", puesto: "Jefe de instalaciones", activo: true, aprobado: true, conClave: true },
+  { id: 1, email: "lucia@fueroabogados.es", nombre: "Lucía", rol: "admin", puesto: "Dirección", activo: true, aprobado: true, conClave: true },
+  { id: 2, email: "alvaro@fueroabogados.es", nombre: "Álvaro Fuentes", rol: "admin", puesto: "Socio director", activo: true, aprobado: true, conClave: true },
+  { id: 3, email: "recepcion@fueroabogados.es", nombre: "Marina", rol: "equipo", puesto: "Recepción", activo: true, aprobado: true, conClave: true },
+  { id: 4, email: "daniel@fueroabogados.es", nombre: "Daniel Cruz", rol: "asignado", puesto: "Abogado", activo: true, aprobado: true, conClave: true },
+  { id: 5, email: "irene@fueroabogados.es", nombre: "Irene Soto", rol: "asignado", puesto: "Abogada", activo: true, aprobado: true, conClave: true },
+  { id: 6, email: "victor@fueroabogados.es", nombre: "Víctor Mena", rol: "asignado", puesto: "Abogado de procedimientos", activo: true, aprobado: true, conClave: true },
 ];
 
 const base = (o: Fila): Fila => ({
-  ref: null, apellidos: null, email: null, cp: null, direccion: null, poblacion: null, m2: null, tipo: "Aerotermia", canal: "Web", motivo: null,
+  ref: null, apellidos: null, email: null, cp: null, direccion: null, poblacion: null, m2: null, tipo: "Despido", canal: "Web", motivo: null,
   asignado_a: null, arquitecto_id: null, visita_fecha: null, visita_hora: null, presupuesto_fecha: null, presupuesto_importe: null, firmado_fecha: null,
-  firmado_importe: null, facturado_importe: null, notas: null, contacto_id: null, historico_id: null, actualizado: hace(0), tipo_vivienda: "Piso",
+  firmado_importe: null, facturado_importe: null, notas: null, contacto_id: null, historico_id: null, actualizado: hace(0), tipo_vivienda: "Contrato indefinido",
   temperatura: null, inicio_deseado: null, presupuesto_cliente: null, recomendado_por: null, resena_pedida: false, obra_inicio: null, obra_fin: null,
   consentimiento: "Lo pidió por la web (formulario con aceptación)", proxima_accion: null, proxima_fecha: null, primer_contacto: null, paso_seguimiento: 0,
   anonimizado: false, probabilidad: null, jefe_obra_id: null, fase_obra: null, avance: null, obra_fin_prevista: null, informe: null, gclid: null, fbclid: null,
@@ -27,37 +27,37 @@ const base = (o: Fila): Fila => ({
 });
 
 const LEADS: Fila[] = [
-  base({ id: 101, creado: hace(0), nombre: "Elena", apellidos: "Prieto Gil", telefono: "600 000 101", email: "elena@ejemplo.es", cp: "28009", poblacion: "Retiro", m2: 95, origen: "Google Ads", estado: "nuevo", proxima_accion: "Llamar por primera vez", proxima_fecha: dia(0), temperatura: "Caliente: quiere empezar ya" }),
-  base({ id: 102, creado: hace(1), nombre: "Javier", apellidos: "Ruiz", telefono: "600 000 102", cp: "28015", poblacion: "Chamberí", m2: 70, origen: "Calculadora web", estado: "nuevo", proxima_accion: "Segundo intento: llamar y mandar WhatsApp", proxima_fecha: dia(-1), paso_seguimiento: 1 }),
-  base({ id: 103, creado: hace(2), nombre: "Marta", apellidos: "Campos", telefono: "600 000 103", poblacion: "Pozuelo", m2: 140, origen: "Recomendado", recomendado_por: "Cliente: familia Vidal (2023)", canal: "Llamada", estado: "contactado", asignado_a: 3, primer_contacto: hace(2), proxima_accion: "Programar la visita técnica", proxima_fecha: dia(0) }),
-  base({ id: 104, creado: hace(5), nombre: "Lucía", apellidos: "Herrero", telefono: "600 000 104", direccion: "Calle Ejemplo 12, 3º", poblacion: "Salamanca", cp: "28006", m2: 110, origen: "Instagram", canal: "WhatsApp", estado: "visita-programada", asignado_a: 3, arquitecto_id: 4, visita_fecha: dia(1), visita_hora: "10:30", primer_contacto: hace(5), proxima_accion: "Hacer la visita técnica", proxima_fecha: dia(1) }),
-  base({ id: 105, creado: hace(6), nombre: "Carlos", apellidos: "Benítez", telefono: "600 000 105", direccion: "Avenida Ejemplo 4", poblacion: "Arganzuela", m2: 85, origen: "Google (sin pagar)", estado: "visita-programada", arquitecto_id: 5, visita_fecha: dia(2), visita_hora: "17:00", primer_contacto: hace(6), proxima_accion: "Hacer la visita técnica", proxima_fecha: dia(2) }),
-  base({ id: 106, creado: hace(9), nombre: "Nuria", apellidos: "Lozano", telefono: "600 000 106", poblacion: "Chamartín", m2: 120, origen: "Meta (anuncio)", estado: "visita-hecha", arquitecto_id: 4, visita_fecha: dia(-3), visita_hora: "12:00", primer_contacto: hace(9), probabilidad: 75,
-    proxima_accion: "Entregar el presupuesto (plazo: 48 horas)", proxima_fecha: dia(-1),
-    informe: { presentes: "Nuria y su pareja, Toni", decide: "Los dos", planta: "5ª", ascensor: "Sí", anio: "1968", banos: "5", estancias: ["Aerotermia", "Suelo radiante", "Agua caliente"], estado_casa: "Caldera de gasoil de 1998, radiadores de hierro fundido y cuadro eléctrico sin diferencial. Hay sitio para la unidad exterior en la terraza.", otros_presupuestos: "Uno, de otra empresa", decide_cuando: "Antes de que llegue el frío", impresiones: "Muy ilusionados. Les preocupa el gasto del invierno y no quedarse días sin calefacción. Les gustó ver los supuestos a la vista. Si el presupuesto llega rápido, lo deciden." } }),
-  base({ id: 107, creado: hace(16), nombre: "Rafael", apellidos: "Iglesias", telefono: "600 000 107", poblacion: "Las Rozas", m2: 160, origen: "Recomendado", estado: "presupuesto", arquitecto_id: 5, visita_fecha: dia(-12), presupuesto_fecha: dia(-8), presupuesto_importe: 16800, probabilidad: 50, primer_contacto: hace(16),
-    proxima_accion: "Correo de seguimiento del presupuesto", proxima_fecha: dia(-1), paso_seguimiento: 1, informe: { impresiones: "Chalet grande, quieren aerotermia con suelo radiante. Comparan con dos empresas más." } }),
-  base({ id: 108, creado: hace(60), nombre: "Familia", apellidos: "Montero", telefono: "600 000 108", direccion: "Calle Ejemplo 30", poblacion: "Moncloa", m2: 100, origen: "Instagram", estado: "firmado", arquitecto_id: 4, jefe_obra_id: 6, visita_fecha: dia(-55), presupuesto_fecha: dia(-50), presupuesto_importe: 12400,
-    firmado_fecha: dia(-40), firmado_importe: 11900, facturado_importe: 5950, obra_inicio: dia(-20), obra_fin_prevista: dia(70), fase_obra: "Instalación de tuberías", avance: 30, primer_contacto: hace(60),
-    proxima_accion: "Llamar al terminar la instalación: pedir reseña y recomendación", proxima_fecha: dia(70), informe: { impresiones: "Pareja con dos niños. Decisión rápida. Muy claros con lo que querían." } }),
-  base({ id: 109, creado: hace(3), nombre: "Óscar", apellidos: "Peña", telefono: "600 000 109", poblacion: "Getafe", m2: 45, origen: "Llamada", canal: "Llamada", estado: "descartado", motivo: "Trabajo muy pequeño o fuera de lo que hacemos", notas: "Solo quería cambiar un filtro." }),
-  base({ id: 110, creado: hace(25), nombre: "Teresa", apellidos: "Vidal", telefono: "600 000 110", poblacion: "Tetuán", m2: 75, origen: "Web (formulario)", estado: "perdido", motivo: "Precio", arquitecto_id: 5, presupuesto_importe: 7900 }),
+  base({ id: 101, creado: hace(0), nombre: "Elena", apellidos: "Prieto Gil", telefono: "600 000 101", email: "elena@ejemplo.es", cp: "28009", poblacion: "Retiro", m2: 8, origen: "Google Ads", estado: "nuevo", proxima_accion: "Llamar por primera vez", proxima_fecha: dia(0), temperatura: "Caliente: quiere empezar ya", notas: "Despedida ayer de una agencia de viajes. Ha usado la calculadora de indemnización." }),
+  base({ id: 102, creado: hace(1), nombre: "Javier", apellidos: "Ruiz", telefono: "600 000 102", cp: "28015", poblacion: "Chamberí", m2: 4, origen: "Calculadora de indemnización", estado: "nuevo", proxima_accion: "Segundo intento: llamar y mandar WhatsApp", proxima_fecha: dia(-1), paso_seguimiento: 1 }),
+  base({ id: 103, creado: hace(2), nombre: "Marta", apellidos: "Campos", telefono: "600 000 103", poblacion: "Pozuelo", m2: 15, tipo: "Acoso laboral", origen: "Recomendado", recomendado_por: "Cliente: Jorge Vidal (2023)", canal: "Llamada", estado: "contactado", asignado_a: 3, primer_contacto: hace(2), proxima_accion: "Programar la consulta inicial", proxima_fecha: dia(0) }),
+  base({ id: 104, creado: hace(5), nombre: "Lucía", apellidos: "Herrero", telefono: "600 000 104", direccion: "Calle Ejemplo 12, 3º", poblacion: "Salamanca", cp: "28006", m2: 11, tipo: "Mujer y trabajo", origen: "Instagram", canal: "WhatsApp", estado: "visita-programada", asignado_a: 3, arquitecto_id: 2, visita_fecha: dia(1), visita_hora: "10:30", primer_contacto: hace(5), proxima_accion: "Hacer la consulta inicial", proxima_fecha: dia(1), notas: "Consulta con Álvaro (250 € + IVA). Tiene reducción de jornada por cuidado de su hija y ahora la quieren cambiar de puesto." }),
+  base({ id: 105, creado: hace(6), nombre: "Carlos", apellidos: "Benítez", telefono: "600 000 105", direccion: "Avenida Ejemplo 4", poblacion: "Arganzuela", tipo: "Asesoría a empresas", tipo_vivienda: "Empresa", origen: "Google (sin pagar)", estado: "visita-programada", arquitecto_id: 5, visita_fecha: dia(2), visita_hora: "17:00", primer_contacto: hace(6), proxima_accion: "Hacer la consulta inicial", proxima_fecha: dia(2), notas: "Gerente de una empresa de reparto con 25 personas. Quiere asesoría laboral fija. Consulta con abogada del despacho (150 € + IVA)." }),
+  base({ id: 106, creado: hace(9), nombre: "Nuria", apellidos: "Lozano", telefono: "600 000 106", poblacion: "Chamartín", m2: 6, origen: "Meta (anuncio)", estado: "visita-hecha", arquitecto_id: 4, visita_fecha: dia(-3), visita_hora: "12:00", primer_contacto: hace(9), probabilidad: 75,
+    proxima_accion: "Entregar la propuesta de honorarios (plazo: 48 horas)", proxima_fecha: dia(-1),
+    informe: { presentes: "Nuria y su pareja, Toni", decide: "Nuria", planta: "Empresa de logística, unas 40 personas", ascensor: "Sí", anio: "Hace 6 días", banos: "6", estancias: ["Despido", "Embarazo o maternidad"], estado_casa: "Trae la carta de despido disciplinario, el contrato y las últimas nóminas. La despiden tres semanas después de comunicar su embarazo. Le quedan 14 días hábiles para la papeleta de conciliación.", otros_presupuestos: "Uno, de otro despacho", decide_cuando: "Esta semana: le corre el plazo", impresiones: "Muy afectada. Le preocupa quedarse sin paro y lo que cuesta un juicio. Le gustó que le explicáramos los honorarios por escrito. Si la propuesta llega rápido, firma." } }),
+  base({ id: 107, creado: hace(16), nombre: "Rafael", apellidos: "Iglesias", telefono: "600 000 107", poblacion: "Las Rozas", m2: 22, tipo: "Incapacidad permanente", origen: "Recomendado", estado: "presupuesto", arquitecto_id: 5, visita_fecha: dia(-12), presupuesto_fecha: dia(-8), presupuesto_importe: 2900, probabilidad: 50, primer_contacto: hace(16),
+    proxima_accion: "Correo de seguimiento de la propuesta", proxima_fecha: dia(-1), paso_seguimiento: 1, informe: { impresiones: "Lleva un año de baja por una lesión de espalda y le han denegado la incapacidad permanente. Quiere reclamar. Compara con dos despachos más." } }),
+  base({ id: 108, creado: hace(60), nombre: "Andrés", apellidos: "Montero", telefono: "600 000 108", direccion: "Calle Ejemplo 30", poblacion: "Moncloa", m2: 14, origen: "Instagram", estado: "firmado", arquitecto_id: 4, jefe_obra_id: 6, visita_fecha: dia(-55), presupuesto_fecha: dia(-50), presupuesto_importe: 3400,
+    firmado_fecha: dia(-40), firmado_importe: 3200, facturado_importe: 1600, obra_inicio: dia(-20), obra_fin_prevista: dia(70), fase_obra: "Demanda presentada", avance: 45, primer_contacto: hace(60),
+    proxima_accion: "Llamar después del juicio: contarle el resultado y pedir reseña y recomendación", proxima_fecha: dia(70), informe: { impresiones: "Despido disciplinario sin pruebas tras 14 años en la empresa. Muy claro con lo que quería. Decidió rápido." } }),
+  base({ id: 109, creado: hace(3), nombre: "Óscar", apellidos: "Peña", telefono: "600 000 109", poblacion: "Getafe", m2: 3, origen: "Llamada", canal: "Llamada", estado: "descartado", motivo: "Asunto fuera de lo que llevamos", notas: "Era un problema con su comunidad de vecinos, no laboral." }),
+  base({ id: 110, creado: hace(25), nombre: "Teresa", apellidos: "Vidal", telefono: "600 000 110", poblacion: "Tetuán", m2: 9, tipo: "Acoso laboral", origen: "Web (formulario)", estado: "perdido", motivo: "Precio", arquitecto_id: 5, presupuesto_importe: 1800 }),
 ];
 
 const NOTAS: Record<number, Fila[]> = {
-  103: [{ usuario: "Marina", texto: "Le llamo; nos recomienda la familia Vidal. Quiere visita la semana que viene por la tarde.", creado: hace(2) }],
-  106: [{ usuario: "Daniel Cruz", texto: "Informe de la visita: Muy ilusionados…", creado: hace(3) }, { usuario: "Marina", texto: "Estado: Visita programada → Visita hecha", creado: hace(3) }],
-  108: [{ usuario: "Víctor Mena", texto: "Ajuste documentado: piden un equipo más potente para el salón (+420 €)", creado: hace(8) }],
+  103: [{ usuario: "Marina", texto: "La llamo; nos la recomienda Jorge Vidal. Quiere la consulta la semana que viene por la tarde.", creado: hace(2) }],
+  106: [{ usuario: "Daniel Cruz", texto: "Informe de la consulta: Muy afectada…", creado: hace(3) }, { usuario: "Marina", texto: "Estado: Consulta programada → Consulta hecha", creado: hace(3) }],
+  108: [{ usuario: "Víctor Mena", texto: "Cambio de honorarios documentado: se añade la reclamación de horas extra (+450 €)", creado: hace(8) }],
 };
 const PARTES: Record<number, Fila[]> = {
   108: [
-    { id: 1, fecha: dia(-1), horas: 3, personas: 4, equipos: "frigorista, electricista", hecho: "Tendido de tuberías de refrigerante hasta el salón y los dormitorios. Línea eléctrica de la unidad exterior.", incidencias: "", usuario: "Víctor Mena" },
-    { id: 2, fecha: dia(-2), horas: 2.5, personas: 3, equipos: "frigorista", hecho: "Colocación de la bancada de la unidad exterior en la terraza y retirada de la caldera antigua.", incidencias: "El forjado de la terraza está más bajo de lo previsto: avisado el técnico.", usuario: "Víctor Mena" },
+    { id: 1, fecha: dia(-1), horas: 3, personas: 2, equipos: "abogado, paralegal", hecho: "Redacción y presentación de la demanda por despido y reclamación de horas extra en el Juzgado de lo Social de Madrid.", incidencias: "", usuario: "Víctor Mena" },
+    { id: 2, fecha: dia(-2), horas: 2.5, personas: 1, equipos: "abogado", hecho: "Acto de conciliación: sin avenencia. La empresa solo ofrece la indemnización del despido objetivo.", incidencias: "La empresa no aporta el registro de jornada: lo pediremos como prueba en la demanda.", usuario: "Víctor Mena" },
   ],
 };
-const INCIDENCIAS: Record<number, Fila[]> = { 108: [{ id: 1, tipo: "ajuste", fecha: dia(-8), texto: "Piden un equipo más potente para el salón", importe: 420, resuelta: false, resuelta_fecha: null, usuario: "Víctor Mena" }] };
-let MENSAJES: Fila[] = [{ id: 1, lead_id: 106, de: "Sergio", texto: "Daniel, ¿llega hoy el presupuesto de Nuria? Se pasa del plazo.", leido: false, creado: hace(0.1), cliente: "Nuria Lozano" }];
-let IDEAS: Fila[] = [{ usuario: "Marina", texto: "Me vendría bien un botón para mandar por WhatsApp el calendario de revisiones a cada cliente.", creado: hace(1) }];
+const INCIDENCIAS: Record<number, Fila[]> = { 108: [{ id: 1, tipo: "ajuste", fecha: dia(-8), texto: "Se añade la reclamación de horas extra impagadas", importe: 450, resuelta: false, resuelta_fecha: null, usuario: "Víctor Mena" }] };
+let MENSAJES: Fila[] = [{ id: 1, lead_id: 106, de: "Álvaro Fuentes", texto: "Daniel, ¿sale hoy la propuesta de honorarios de Nuria? Se pasa del plazo, y a ella le corre el de la papeleta.", leido: false, creado: hace(0.1), cliente: "Nuria Lozano" }];
+let IDEAS: Fila[] = [{ usuario: "Marina", texto: "Me vendría bien un botón para mandar por WhatsApp la lista de documentos que cada cliente tiene que traer a la consulta.", creado: hace(1) }];
 
 const ok = (o: Fila = {}) => ({ ok: true, ...o });
 const yo = USUARIOS[0];
@@ -94,18 +94,18 @@ export async function apiDemo(accion: string, cuerpo?: unknown, metodo = "POST")
     if (nombre === "ideas") return { ideas: IDEAS };
     if (nombre === "equipo") return { equipo: [
       { id: 3, nombre: "Marina", puesto: "Recepción", clientes: 18, clientes_ant: 15, visitas: 0, visitas_ant: 0, presupuestos: 0, a_tiempo: 0, presupuestos_ant: 0, firmas: 0, firmas_ant: 0, seguimientos: 4, vencidos: 1, horas: 0 },
-      { id: 4, nombre: "Daniel Cruz", puesto: "Técnico", clientes: 6, clientes_ant: 5, visitas: 5, visitas_ant: 4, presupuestos: 4, a_tiempo: 3, presupuestos_ant: 3, firmas: 1, firmas_ant: 1, seguimientos: 5, vencidos: 1, horas: 0 },
-      { id: 5, nombre: "Irene Soto", puesto: "Técnico", clientes: 4, clientes_ant: 6, visitas: 3, visitas_ant: 5, presupuestos: 3, a_tiempo: 3, presupuestos_ant: 4, firmas: 0, firmas_ant: 1, seguimientos: 3, vencidos: 0, horas: 0 },
-      { id: 6, nombre: "Víctor Mena", puesto: "Jefe de instalaciones", clientes: 0, clientes_ant: 0, visitas: 0, visitas_ant: 0, presupuestos: 0, a_tiempo: 0, presupuestos_ant: 0, firmas: 0, firmas_ant: 0, seguimientos: 1, vencidos: 0, horas: 41.5 },
+      { id: 4, nombre: "Daniel Cruz", puesto: "Abogado", clientes: 6, clientes_ant: 5, visitas: 5, visitas_ant: 4, presupuestos: 4, a_tiempo: 3, presupuestos_ant: 3, firmas: 1, firmas_ant: 1, seguimientos: 5, vencidos: 1, horas: 0 },
+      { id: 5, nombre: "Irene Soto", puesto: "Abogada", clientes: 4, clientes_ant: 6, visitas: 3, visitas_ant: 5, presupuestos: 3, a_tiempo: 3, presupuestos_ant: 4, firmas: 0, firmas_ant: 1, seguimientos: 3, vencidos: 0, horas: 0 },
+      { id: 6, nombre: "Víctor Mena", puesto: "Abogado de procedimientos", clientes: 0, clientes_ant: 0, visitas: 0, visitas_ant: 0, presupuestos: 0, a_tiempo: 0, presupuestos_ant: 0, firmas: 0, firmas_ant: 0, seguimientos: 1, vencidos: 0, horas: 41.5 },
     ] };
-    if (nombre === "tudia") return { perfil: "direccion", vencidas: LEADS.filter((x) => x.proxima_fecha && String(x.proxima_fecha) < h).length, fueraPlazo: LEADS.filter((x) => x.estado === "visita-hecha" && String(x.proxima_fecha) < h).length, firmasMes: 1, importeMes: 11900, nuevos: LEADS.filter((x) => x.estado === "nuevo").length, visitasSemana: 2 };
+    if (nombre === "tudia") return { perfil: "direccion", vencidas: LEADS.filter((x) => x.proxima_fecha && String(x.proxima_fecha) < h).length, fueraPlazo: LEADS.filter((x) => x.estado === "visita-hecha" && String(x.proxima_fecha) < h).length, firmasMes: 1, importeMes: 3200, nuevos: LEADS.filter((x) => x.estado === "nuevo").length, visitasSemana: 2 };
     return ok();
   }
   if (nombre === "guardar") {
     const c = (b.cambios ?? {}) as Fila;
     if (c.estado === "visita-hecha" && !String((c.informe as Fila | undefined)?.impresiones ?? "").trim()) {
       const actual = LEADS.find((x) => x.id === Number(b.id));
-      if (!String((actual?.informe as Fila | null)?.impresiones ?? "").trim()) throw new Error("Antes de marcar la visita como hecha, rellena el informe de la visita (las impresiones son obligatorias).");
+      if (!String((actual?.informe as Fila | null)?.impresiones ?? "").trim()) throw new Error("Antes de marcar la consulta como hecha, rellena el informe de la consulta (las impresiones son obligatorias).");
     }
     if (!b.id) { const id = Math.max(...LEADS.map((x) => Number(x.id))) + 1; LEADS.unshift(base({ id, creado: new Date().toISOString(), estado: "nuevo", proxima_accion: "Llamar por primera vez", proxima_fecha: h, ...c })); return ok({ id }); }
     const l = LEADS.find((x) => x.id === Number(b.id));
@@ -122,9 +122,9 @@ export async function apiDemo(accion: string, cuerpo?: unknown, metodo = "POST")
     const l = LEADS.find((x) => x.id === Number(b.id));
     const n = String(l?.nombre ?? "").split(" ")[0];
     const t = b.canal === "correo"
-      ? `Hola, ${n}:\n\nTe escribo para saber si habéis podido mirar el presupuesto con calma. Sé que queréis tenerlo listo antes del frío, así que si queréis os cuento cómo organizaríamos la instalación para que llegue a tiempo.\n\nCuando os venga bien, lo hablamos.\n\nUn abrazo,\nDaniel, de Climatización Ejemplo`
-      : `Hola, ${n}. Soy Daniel, de Climatización Ejemplo. ¿Habéis podido mirar el presupuesto con calma? Si queréis, os cuento cómo organizaríamos la instalación para que llegue a tiempo. Sin ninguna prisa, cuando os venga bien.`;
-    return ok({ texto: Number(b.otra) ? t.replace("Sin ninguna prisa", "Tranquilos") : t, asunto: b.canal === "correo" ? "Vuestro presupuesto" : "" });
+      ? `Hola, ${n}:\n\nTe escribo para saber si has podido mirar con calma la propuesta de honorarios. En un despido hay 20 días hábiles para presentar la papeleta de conciliación, así que, si quieres, te cuento cómo lo organizaríamos para llegar con margen.\n\nCuando te venga bien, lo hablamos.\n\nUn saludo,\nDaniel, de Fuero Abogados`
+      : `Hola, ${n}. Soy Daniel, de Fuero Abogados. ¿Has podido mirar con calma la propuesta de honorarios? Si quieres, te cuento cómo lo organizaríamos para llegar bien de plazo. Sin ninguna prisa, cuando te venga bien.`;
+    return ok({ texto: Number(b.otra) ? t.replace("Sin ninguna prisa", "Sin compromiso") : t, asunto: b.canal === "correo" ? "Tu propuesta de honorarios" : "" });
   }
   if (nombre === "enviado" && b.id) { (NOTAS[Number(b.id)] ??= []).unshift({ usuario: yo.nombre, texto: `Mensaje enviado: ${b.texto}`, creado: new Date().toISOString() }); return ok(); }
   if (nombre === "leido") { MENSAJES = MENSAJES.map((m) => ({ ...m, leido: true })); return ok(); }
