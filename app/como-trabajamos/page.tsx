@@ -1,4 +1,5 @@
 import FranjaVideos from "@/components/FranjaVideos";
+import SigueLeyendo from "@/components/SigueLeyendo";
 import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
@@ -42,6 +43,15 @@ export default function ComoTrabajamos() {
       <SeccionPruebasAB />
       <SeccionParte />
       <SeccionLoFirmamos />
+      <SigueLeyendo
+        enlaces={[
+          { texto: "Tus cuentas son tuyas", href: "/tu-control" },
+          { texto: "Marketing sin reuniones ni llamadas", href: "/blog/marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo" },
+          { texto: "Un día de trabajo real", href: "/un-dia-de-trabajo" },
+          { texto: "Todo lo que hacemos", href: "/servicios" },
+          { texto: "Preguntas frecuentes", href: "/preguntas" },
+        ]}
+      />
       <LlamadaFinal />
     </>
   );

@@ -81,7 +81,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No. Trabajamos con tecnología actual, sin plugins ni panel de administración a la vista, que es por donde entran la mayoría de los ataques. Y si algo falla, volvemos a la versión anterior en minutos.",
       },
     ],
-    articulos: ["cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes"],
+    articulos: ["cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
   },
   {
     slug: "seo-google-ia",
@@ -129,7 +129,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No, y desconfía de quien lo haga. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
       },
     ],
-    articulos: ["como-aparecer-en-chatgpt-y-google"],
+    articulos: ["como-aparecer-en-chatgpt-y-google", "ficha-de-google-que-es-y-como-sacarle-partido", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr"],
   },
   {
     slug: "publicidad-google-ads-redes",
@@ -177,7 +177,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "Bajamos la publicidad en ese momento. Nuestro objetivo es que no des abasto, y si llega, es el mejor problema que se puede tener.",
       },
     ],
-    articulos: ["comision-sobre-inversion-en-anuncios", "cuanto-cuesta-el-marketing-digital-por-separado"],
+    articulos: ["comision-sobre-inversion-en-anuncios", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "cuanto-cuesta-el-marketing-digital-por-separado", "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona"],
   },
   {
     slug: "redes-sociales",
@@ -224,7 +224,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "En las que estén tus clientes: Instagram, Facebook, LinkedIn o TikTok. No hace falta estar en todas.",
       },
     ],
-    articulos: ["cinco-proveedores-de-marketing-y-ningun-responsable"],
+    articulos: ["cinco-proveedores-de-marketing-y-ningun-responsable", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo"],
   },
   {
     slug: "automatizacion-ia",
@@ -272,7 +272,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No. Entra en tu cuota, igual que el resto.",
       },
     ],
-    articulos: ["que-es-un-crm-y-para-que-sirve"],
+    articulos: ["que-es-un-crm-y-para-que-sirve", "como-aparecer-en-chatgpt-y-google", "lo-que-de-verdad-cuesta-el-marketing-digital-reuniones-horas-y-tiempo"],
   },
   {
     slug: "crm-a-medida",
@@ -327,7 +327,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "Entra en tu cuota. Contratado por separado, un CRM a medida cuesta en el mercado de 5.000 a 35.000 €.",
       },
     ],
-    articulos: ["que-es-un-crm-y-para-que-sirve"],
+    articulos: ["que-es-un-crm-y-para-que-sirve", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
   },
   {
     slug: "lupa-360",
@@ -401,7 +401,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No lo prometemos. Lo que sí hace es que dejes de decidir a ciegas y puedas mejorar tu web cada mes con datos de lo que hace la gente de verdad.",
       },
     ],
-    articulos: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa"],
+    articulos: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa", "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
   },
   {
     slug: "avisos-recordatorios",
@@ -478,7 +478,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "Sí. Cada cliente con su propia cuenta, a su nombre, como el resto de tus cuentas en Tu control.",
       },
     ],
-    articulos: [],
+    articulos: ["como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr", "que-es-un-crm-y-para-que-sirve", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo"],
   },
 ];
 

@@ -36,7 +36,10 @@ export default async function Termino({ params }: { params: Promise<{ slug: stri
   if (!t) notFound();
   const fam = FAMILIAS.find((f) => f.id === t.familia);
   const rel = relacionados(t);
-  const servicio = t.servicio ? PAGINAS_SERVICIO.find((s) => s.slug === t.servicio) : undefined;
+  // Si el término no tiene servicio propio, el de su familia (los legales, ninguno)
+  const POR_FAMILIA: Record<string, string> = { buscadores: "seo-google-ia", anuncios: "publicidad-google-ads-redes", medicion: "lupa-360", web: "diseno-web", redes: "redes-sociales", crm: "crm-a-medida", ia: "automatizacion-ia" };
+  const slugServicio = t.servicio ?? POR_FAMILIA[t.familia];
+  const servicio = slugServicio ? PAGINAS_SERVICIO.find((s) => s.slug === slugServicio) : undefined;
   const articulos = articulosQueMencionan(t);
   const usados = new Set<string>();
   const ctx = { usados, excluir: t.slug, max: 2 };

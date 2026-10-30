@@ -405,7 +405,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
                   Ver el caso
                 </Link>
               )}
-              <a
+              {t.url && <a
                 href={t.url}
                 target="_blank"
                 rel="noopener"
@@ -414,7 +414,7 @@ export function SeccionTrabajos({ titulo = true }: { titulo?: boolean }) {
                 }`}
               >
                 {t.enlaceTexto}
-              </a>
+              </a>}
             </div>
           </article>
         ))}
@@ -1504,7 +1504,7 @@ export function SeccionPreguntas({ titulo = true, todas = true, propias, fondo =
           })}
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          {!todas && !propias && (
+          {((!todas && !propias) || propias) && (
             <Link href="/preguntas" className="inline-flex justify-center rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">
               Ver todas las preguntas
             </Link>
@@ -1749,13 +1749,11 @@ export function SeccionEstudio() {
   );
 }
 
-/* «¿Quieres ver ejemplos?»: las cuatro webs que enseñamos por ahora. */
+/* «¿Quieres ver ejemplos?»: las webs que enseñamos por ahora (AMS y Tierno, cuando den el visto bueno). */
 export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
   const lista = [
-    { n: "Reformadísimo", d: "Reformas integrales", url: "https://www.reformadisimo.es" },
-    { n: "AMS Cerramientos", d: "Ventanas y cerramientos", url: "https://ams-cerramientos-ejemplo.vercel.app" },
-    { n: "Tierno Centella", d: "Abogados laboralistas", url: "https://tierno-centella-web.vercel.app" },
-    { n: "Mi Estela", d: "App para iPhone y Android", url: "https://miestela.app" },
+    { n: "Reformadísimo", d: "Reformas integrales", url: "https://www.reformadisimo.es", i: "casa" },
+    { n: "Mi Estela", d: "App para iPhone y Android", url: "https://miestela.app", i: "telefono" },
   ];
   return (
     <div className={`mt-8 rounded-[1.8rem] p-6 ${claro ? "bg-niebla" : "bg-white/[0.07] ring-1 ring-white/15"}`}>
@@ -1765,7 +1763,7 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
         {lista.map((x, k) => (
           <li key={x.n}>
             <a href={x.url} target="_blank" rel="noopener" className={`flex items-center gap-3 rounded-2xl px-4 py-3 font-bold transition-colors ${claro ? "bg-white ring-1 ring-linea hover:ring-noche" : "bg-white/10 hover:bg-white/20"}`}>
-              <ChipIcono icono={["casa", "edificio", "birrete", "telefono"][k]} i={k} tam="h-9 w-9" />
+              <ChipIcono icono={x.i} i={k} tam="h-9 w-9" />
               <span className="flex-1">
                 {x.n}
                 <span className={`block text-xs font-normal ${claro ? "text-gris" : "text-white/70"}`}>{x.d}</span>

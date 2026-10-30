@@ -62,9 +62,11 @@ export default async function PaginaCaso({ params }: { params: Promise<{ slug: s
             {t.logo && (
               <Image src={t.logo.src} alt={`Logotipo de ${c.nombre}`} width={t.logo.ancho} height={t.logo.alto} className={`h-16 w-auto object-contain ${t.logo.ancho === t.logo.alto ? "rounded-2xl" : ""}`} />
             )}
-            <a href={t.url} target="_blank" rel="noopener" className={`${BOTON} min-h-11`}>
-              {t.enlaceTexto}
-            </a>
+            {t.url && (
+              <a href={t.url} target="_blank" rel="noopener" className={`${BOTON} min-h-11`}>
+                {t.enlaceTexto}
+              </a>
+            )}
           </div>
           <ul className={`mt-10 grid gap-5 ${c.datos.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
             {c.datos.map((d, i) => (

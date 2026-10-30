@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SigueLeyendo from "@/components/SigueLeyendo";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import CifrasEquipo from "@/components/CifrasEquipo";
 import ChipVideo from "@/components/ChipVideo";
@@ -190,6 +191,14 @@ export default function QuienesSomos() {
           </div>
         </div>
       </section>
+      <SigueLeyendo
+        enlaces={[
+          { texto: "Cómo trabajamos", href: "/como-trabajamos" },
+          { texto: "Todo lo que hacemos", href: "/servicios" },
+          { texto: "Tus cuentas son tuyas", href: "/tu-control" },
+          { texto: "Por qué contratarnos", href: "/blog/por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo" },
+        ]}
+      />
       <LlamadaFinal />
     </>
   );

@@ -127,7 +127,7 @@ export const TRABAJOS: Trabajo[] = [
     resumen:
       "Nuestra propia empresa, desde 2012 y con más de 1.150 obras. Web con calculadoras de precio, una asistente con inteligencia artificial que atiende por voz y medición completa.",
     url: "https://www.reformadisimo.es",
-    enlaceTexto: "Visitar la web",
+    enlaceTexto: "Ver la web de Reformadísimo",
     publicado: true,
   },
   {
@@ -137,7 +137,7 @@ export const TRABAJOS: Trabajo[] = [
     resumen:
       "De la idea a la App Store y Google Play en unos 120 días, con suscripción de pago. Mapa en tiempo real, avisos de llegada, chat, llamadas, asistente con IA y 17 idiomas.",
     url: "https://miestela.app",
-    enlaceTexto: "Conocer la app",
+    enlaceTexto: "Conocer la app Mi Estela",
     publicado: true,
   },
   {
@@ -146,7 +146,7 @@ export const TRABAJOS: Trabajo[] = [
     sector: "Ventanas y cerramientos",
     resumen:
       "Web con configurador que da el precio al momento, páginas por zona y una velocidad en el móvil que pasó de 56 a 94 sobre 100.",
-    url: "https://ams-cerramientos-ejemplo.vercel.app",
+    url: "", // sin enlace hasta que su dueño dé el visto bueno (antes https://ams-cerramientos-ejemplo.vercel.app),
     enlaceTexto: "Ver la web",
     publicado: true,
   },
@@ -156,7 +156,7 @@ export const TRABAJOS: Trabajo[] = [
     sector: "Despacho de abogados laboralistas",
     resumen:
       "Catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés. La velocidad en el móvil pasó de 49 a 94 sobre 100.",
-    url: "https://tierno-centella-web.vercel.app",
+    url: "", // sin enlace hasta que su dueño dé el visto bueno (antes https://tierno-centella-web.vercel.app),
     enlaceTexto: "Ver la web",
     publicado: true,
   },

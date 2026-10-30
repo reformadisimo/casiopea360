@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import VideoFondo from "@/components/VideoFondo";
 import { notFound } from "next/navigation";
 import CabeceraPagina from "@/components/CabeceraPagina";
@@ -42,13 +42,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+// Enlaces dentro del texto: [texto](/ruta). El resto del texto pasa por el glosario.
+function conEnlaces(s: string, g: ContextoGlosario): ReactNode {
+  const partes = s.split(/(\[[^\]]+\]\([^)\s]+\))/);
+  if (partes.length === 1) return glosar(s, g);
+  return partes.map((x, i) => {
+    const m = /^\[([^\]]+)\]\(([^)\s]+)\)$/.exec(x);
+    if (!m) return <Fragment key={i}>{glosar(x, g)}</Fragment>;
+    return m[2].startsWith("http") ? (
+      <a key={i} href={m[2]} target="_blank" rel="noopener noreferrer">{m[1]}</a>
+    ) : (
+      <Link key={i} href={m[2]}>{m[1]}</Link>
+    );
+  });
+}
+
 function Pinta({ b, g, n }: { b: Bloque; g: ContextoGlosario; n: number }) {
-  if ("caja" in b) return <CajaIdea t={b.t}>{glosar(b.caja, g)}</CajaIdea>;
+  if ("caja" in b) return <CajaIdea t={b.t}>{conEnlaces(b.caja, g)}</CajaIdea>;
   if ("h2" in b) return <TituloVivo t={b.h2} i={n} />;
   if ("h3" in b) return <h3>{b.h3}</h3>;
-  if ("ul" in b) return <ListaViva items={b.ul} render={(x) => glosar(x, g)} />;
-  if ("ol" in b) return <PasosVivos items={b.ol} render={(x) => glosar(x, g)} />;
-  return <p>{glosar(b.p, g)}</p>;
+  if ("ul" in b) return <ListaViva items={b.ul} render={(x) => conEnlaces(x, g)} />;
+  if ("ol" in b) return <PasosVivos items={b.ol} render={(x) => conEnlaces(x, g)} />;
+  return <p>{conEnlaces(b.p, g)}</p>;
 }
 
 export default async function ArticuloBlog({ params }: { params: Promise<{ slug: string }> }) {
@@ -66,7 +81,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
     <>
       <DatosEstructurados
         datos={[
-          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("caja" in b ? b.caja : "p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").split(/\s+/).length }),
+          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("caja" in b ? b.caja : "p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").split(/\s+/).length }),
           ...(a.faq?.length ? [schemaFaqArticulo(a.faq)] : []),
           schemaMigas([
             { texto: "Inicio", ruta: "/" },
@@ -87,7 +102,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
             <ChipIcono icono="estrella" i={4} tam="h-9 w-9" />
             En pocas palabras
           </p>
-          <p className="mt-3">{glosar(a.respuesta, g)}</p>
+          <p className="mt-3">{conEnlaces(a.respuesta, g)}</p>
         </div>
         {titulos.length >= 4 && (
           <nav aria-label="En este artículo" className="rounded-2xl bg-white p-4 ring-1 ring-linea sm:p-5">
