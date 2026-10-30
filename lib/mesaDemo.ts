@@ -28,7 +28,8 @@ export function datosDemo(hoy: string) {
     const peticiones = poisson(r, 2.2 * k);
     const porCanal = reparte(r, peticiones, CANALES_WEB);
     const whatsapp = poisson(r, 4 * k), llamadas = poisson(r, 1.6 * k);
-    web[d] = { peticiones, visitas: Math.min(peticiones, poisson(r, 0.9 * k)), calculos: poisson(r, 1.1 * k), porCanal, whatsapp, llamadas, clicsPorFuente: reparte(r, whatsapp + llamadas, CANALES_WEB), vistas: Math.round(260 * k * (0.8 + 0.4 * r())) };
+    web[d] = { peticiones, visitas: Math.min(peticiones, poisson(r, 0.9 * k)), calculos: poisson(r, 1.1 * k), porCanal, whatsapp, llamadas, clicsPorFuente: reparte(r, whatsapp + llamadas, CANALES_WEB), vistas: Math.round(620 * k * (0.8 + 0.4 * r())) };
+    { const w = web[d] as { vistas: number; entradas?: number; personas?: number }; w.entradas = Math.round(w.vistas / (2.2 + 0.6 * r())); w.personas = Math.round(w.entradas * (0.78 + 0.1 * r())); }
     for (const [canal, p] of CANALES_GA) {
       const s = Math.round(95 * k * p * (0.75 + 0.5 * r()));
       ga.push({ dia: d, canal, sesiones: s, usuarios: Math.round(s * 0.85), interes: Math.round(s * (0.45 + 0.2 * r())), clave: poisson(r, s * 0.02) });
@@ -38,7 +39,7 @@ export function datosDemo(hoy: string) {
     if (d >= hoy.slice(0, 8) + "01" || dias(d, hoy).length <= 60) {
       const fila = (plat: string, camp: string, base: number, cpc: number, conv: number) => { const coste = Math.round(base * k * (0.7 + 0.6 * r()) * 100) / 100; const clics = Math.round(coste / cpc); diario.push([d, plat, camp, coste, clics, clics * (12 + Math.round(r() * 10)), poisson(r, conv * k)]); };
       fila("google", "Búsqueda", 70, 1.9, 0.7); fila("google", "Marca", 12, 0.6, 0.3);
-      fila("meta", "Captación con formulario", 55, 0.35, 0.8); fila("meta", "Remarketing", 18, 0.5, 0.15);
+      fila("meta", "Captación con formulario", 55, 0.9, 0.8); fila("meta", "Remarketing", 18, 1.1, 0.15);
       fila("chatgpt", "Tráfico a la web", 15, 1.2, 0.1);
     }
   }
@@ -93,8 +94,12 @@ export function detalleDemo(desde: string, hasta: string) {
   const cl = (clave: string, ses: number, rabia: number, muertos: number, vuelven: number, scroll: number) => ({ clave, sesiones: Math.round(ses), rabia_pct: rabia, muertos_pct: muertos, vuelven_pct: vuelven, vaiven_pct: null, scroll, activo: null });
   const clarity = { dias: Math.min(n, 28), desde: desde, paginas: [cl("/", n * 9, 1.2, 4.8, 21, 58), cl("/abogado-laboralista-madrid", n * 5, 0.8, 3.1, 17, 64), cl("/acoso-laboral", n * 3, 3.6, 12.4, 26, 49), cl("/cuanto-cobra-un-abogado-laboralista", n * 3, 0.9, 2.2, 19, 71), cl("/calcular-indemnizacion-despido", n * 2, 2.1, 5.5, 14, 77), cl("/contacto", n * 2, 0.4, 1.8, 9, 82)], dispositivos: [] };
   // De dónde vienen todas las visitas (contador propio, sin cookies): datos inventados del despacho de ejemplo
-  const ori: [string, number, number][] = [["Meta / Instagram", 0.36, 0.88], ["Google (búsqueda)", 0.26, 0.62], ["Google Ads", 0.13, 0.71], ["Directo", 0.12, 0.55], ["Otras webs", 0.07, 0.6], ["Asistentes de IA", 0.06, 0.5]];
-  const totalVistas = paginas.reduce((x, p) => x + p.n, 0) * 1.6;
-  const origenes = ori.map(([origen, p, m]) => { const v = Math.round(totalVistas * p * (0.85 + 0.3 * r())); return { origen, n: v, movil: Math.round(v * m) }; }).sort((x, y) => y.n - x.n);
+  // Se reparten los mismos totales del día a día (datosDemo), para que la tabla sume lo que dicen las cifras de arriba.
+  const ori: [string, number, number, number][] = [["Meta / Instagram", 0.3, 0.88, 0.85], ["Google (búsqueda)", 0.28, 0.62, 1.1], ["Google Ads", 0.17, 0.71, 0.95], ["Directo", 0.13, 0.55, 1.05], ["Referidos y otras webs", 0.07, 0.6, 1], ["Asistentes de IA", 0.05, 0.5, 1.2]];
+  const serie = datosDemo(hasta).web as Record<string, { vistas: number; entradas?: number; personas?: number }>;
+  const tot = dias(desde, hasta).reduce((x, d) => { const w = serie[d]; if (w) { x.v += w.vistas; x.e += w.entradas ?? 0; x.u += w.personas ?? 0; } return x; }, { v: 0, e: 0, u: 0 });
+  const pesos = ori.map(([, p]) => p * (0.9 + 0.2 * r())); const sp = pesos.reduce((x, y) => x + y, 0);
+  const pesosE = ori.map(([, , , q], i) => pesos[i] / q); const se = pesosE.reduce((x, y) => x + y, 0);
+  const origenes = ori.map(([origen, , m], i) => { const v = Math.round((tot.v * pesos[i]) / sp); const visitas = Math.round((tot.e * pesosE[i]) / se); return { origen, n: v, movil: Math.round(v * m), visitas, personas: Math.round((tot.u * pesosE[i]) / se) }; }).sort((x, y) => y.n - x.n);
   return { rebote, paginas, clicsPagina, lupa, clarity, origenes, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
 }

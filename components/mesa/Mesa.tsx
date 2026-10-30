@@ -15,7 +15,7 @@ import { Plegable, Apartados, GuiaDeUso, LogoMarca, iconoDeTitulo, Que, QueTexto
    sumar día a día (páginas, búsquedas, mapas de calor) se piden a /api/mesa.
    Solo pintura en las animaciones (opacidad y color): nada se mueve. */
 
-type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number };
+type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas?: number; personas?: number };
 type FilaAds = [string, string, string, number, number, number, number];
 type Ga = { dia: string; canal: string; sesiones: number; usuarios: number; interes: number; clave: number };
 type GaTotal = { dia: string; sesiones: number; usuarios: number; interes: number; clave: number };
@@ -50,9 +50,78 @@ type Detalle = {
   clarity?: { dias: number; desde: string | null; paginas: FilaClarity[]; dispositivos: FilaClarity[] } | null;
   rebote?: { dispositivo: FilaRebote[]; zona: FilaRebote[]; tipo: FilaRebote[]; paginas: FilaRebote[] } | null;
   personas?: number | null;
-  origenes?: { origen: string; n: number; movil: number }[];
+  origenes?: { origen: string; n: number; movil: number; visitas?: number; personas?: number }[];
   crm: { origen: string; leads: number; visitas: number; presupuestos: number; firmados: number; firmado: number; facturado: number; descartados: number; respondidos?: number; horas_resp?: number; vencidas?: number }[];
 };
+
+
+/* «Quién entra de verdad en la web» (mismo panel que la mesa de Reformadísimo, cl·v970-974).
+   Aquí es de ejemplo: personas, visitas y orígenes salen de datos inventados (lib/mesaDemo.ts). */
+function VisitasReales({ T, C, origenes, cargando, b, adsHasta }: { T: Totales; C: Totales | null; origenes: { origen: string; n: number; movil: number; visitas?: number; personas?: number }[]; cargando: boolean; b: string; adsHasta?: string | null }) {
+  const variosDias = T.dias > 1;
+  const cifras: { t: string; v: number; c?: number; nota?: string; fmt?: (n: number) => string; destacada?: boolean }[] = [
+    { t: variosDias ? "Personas distintas (suma de cada día)" : "Personas distintas", v: T.personas, c: C?.personas, nota: variosDias ? "Quien vuelve otro día cuenta otra vez" : undefined, destacada: true },
+    { t: "Visitas", v: T.entradas, c: C?.entradas },
+    { t: "Páginas vistas", v: T.vistas, c: C?.vistas },
+    { t: "Páginas por persona", v: T.personas ? T.vistas / T.personas : NaN, c: C && C.personas ? C.vistas / C.personas : undefined, fmt: (n) => (Number.isFinite(n) ? nf1.format(n) : "-") },
+    { t: "Analytics ve", v: T.ga.sesiones, c: C?.ga.sesiones, nota: "Solo quien acepta cookies" },
+  ];
+  const sinAds = !adsHasta || b > adsHasta;
+  const plat: Record<string, string> = { "Google Ads": "google", "Meta / Instagram": "meta", "ChatGPT Ads": "chatgpt" };
+  const hayAds = Object.keys(T.ads.porPlat).length > 0;
+  return (
+    <section className="rounded-[22px] border-2 p-4 sm:p-5" style={{ borderColor: "#2a6f86", background: "#2a6f8612" }}>
+      <h3 className="font-serif text-[24px] italic leading-tight text-ink">Quién entra de verdad en la web</h3>
+      <p className="mt-1 text-[13.5px] text-ink/65">Contador propio, sin cookies: cuenta también a quien rechaza las cookies. Sin robots.</p>
+      <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-5">
+        {cifras.map((x) => (
+          <div key={x.t} className={`rounded-[18px] border bg-white p-3.5 ${x.destacada ? "col-span-2 border-[#2a6f86] lg:col-span-1" : "border-line"}`}>
+            <p className="text-[11.5px] font-bold uppercase leading-tight tracking-[0.08em] text-ink/55">{x.t}</p>
+            <p className={`mt-1 font-serif leading-none text-ink ${x.destacada ? "text-[36px]" : "text-[28px]"}`}>{(x.fmt ?? num)(x.v)}</p>
+            {x.c !== undefined && Number.isFinite(x.v) && Number.isFinite(x.c) ? <div className="mt-2"><Delta a={x.v} b={x.c} antes={(x.fmt ?? num)(x.c)} compacta /></div> : null}
+            {x.nota ? <p className="mt-1.5 text-[12px] leading-snug text-ink/55">{x.nota}</p> : null}
+          </div>
+        ))}
+      </div>
+      <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.1em] text-ink/55">De dónde vienen</p>
+      {origenes.length === 0 ? (
+        <p className="mt-2 text-[15px] text-ink/60">{cargando ? "Cargando…" : "Sin datos en este periodo."}</p>
+      ) : (
+        <div className="mt-2 overflow-x-auto rounded-[16px] border border-line bg-white">
+          <table className="w-full min-w-[560px] text-left text-[14.5px] text-ink">
+            <thead className="text-[11.5px] uppercase tracking-[0.08em] text-ink/55">
+              <tr>
+                <th className="px-3 py-2.5 font-bold">Origen</th>
+                <th className="px-3 py-2.5 text-right font-bold">Personas</th>
+                <th className="px-3 py-2.5 text-right font-bold">Visitas</th>
+                <th className="px-3 py-2.5 text-right font-bold">Páginas vistas</th>
+                {hayAds && <th className="px-3 py-2.5 text-right font-bold">Clics que cobra el anuncio</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {origenes.map((r) => {
+                const pl = plat[r.origen];
+                const clics = pl ? T.ads.porPlat[pl]?.clics : undefined;
+                return (
+                  <tr key={r.origen} className="border-t border-line">
+                    <td className="px-3 py-2.5 font-semibold"><span className="flex items-center"><LogoCanal canal={r.origen} />{r.origen}</span></td>
+                    <td className="px-3 py-2.5 text-right tabular-nums">{r.personas != null ? num(r.personas) : "-"}</td>
+                    <td className="px-3 py-2.5 text-right tabular-nums">{r.visitas != null ? num(r.visitas) : "-"}</td>
+                    <td className="px-3 py-2.5 text-right tabular-nums">{num(r.n)}</td>
+                    {hayAds && <td className="px-3 py-2.5 text-right tabular-nums">{pl ? (sinAds ? <span className="text-ink/50">llega mañana</span> : clics != null ? num(clics) : "-") : ""}</td>}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p className="mt-3 text-[12.5px] leading-snug text-ink/60">
+        <b className="text-ink/75">Personas:</b> gente distinta cada día (si alguien entra tres veces el mismo día, cuenta una; desde el móvil y el ordenador, dos). <b className="text-ink/75">Visitas:</b> cada vez que alguien abre la web. <b className="text-ink/75">Páginas vistas:</b> todas las páginas que ven. Si un anuncio cobra muchos más clics que visitas llegan, esos clics se pierden por el camino.
+      </p>
+    </section>
+  );
+}
 
 /* ── utilidades de fechas (todo en texto AAAA-MM-DD, sin husos) ── */
 const aD = (s: string) => new Date(`${s}T12:00:00Z`);
@@ -92,7 +161,7 @@ const CANALES_PAGO: Record<string, string> = { "Google Ads": "google", "Meta / I
 /* ── agregados de un periodo ── */
 type Totales = {
   dias: number;
-  peticiones: number; visitas: number; calculos: number; whatsapp: number; llamadas: number; vistas: number;
+  peticiones: number; visitas: number; calculos: number; whatsapp: number; llamadas: number; vistas: number; entradas: number; personas: number;
   porCanal: Record<string, number>; clicsPorFuente: Record<string, number>;
   ads: { coste: number; clics: number; impr: number; conv: number; porPlat: Record<string, { coste: number; clics: number; impr: number; conv: number }>; porCamp: Record<string, { plat: string; coste: number; clics: number; impr: number; conv: number }>; parcial: boolean };
   ga: { sesiones: number; usuarios: number; interes: number; clave: number; porCanal: Record<string, { sesiones: number; interes: number; clave: number }> };
@@ -101,7 +170,7 @@ type Totales = {
 
 function calcula(d: DatosMesa, a: string, b: string, recGsc = 0): Totales {
   const t: Totales = {
-    dias: entre(a, b), peticiones: 0, visitas: 0, calculos: 0, whatsapp: 0, llamadas: 0, vistas: 0, porCanal: {}, clicsPorFuente: {},
+    dias: entre(a, b), peticiones: 0, visitas: 0, calculos: 0, whatsapp: 0, llamadas: 0, vistas: 0, entradas: 0, personas: 0, porCanal: {}, clicsPorFuente: {},
     ads: { coste: 0, clics: 0, impr: 0, conv: 0, porPlat: {}, porCamp: {}, parcial: false },
     ga: { sesiones: 0, usuarios: 0, interes: 0, clave: 0, porCanal: {} },
     gsc: { clics: 0, impresiones: 0, posicion: 0 },
@@ -109,7 +178,7 @@ function calcula(d: DatosMesa, a: string, b: string, recGsc = 0): Totales {
   for (const dia of listaDias(a, b)) {
     const w = d.web[dia];
     if (!w) continue;
-    t.peticiones += w.peticiones; t.visitas += w.visitas; t.calculos += w.calculos; t.whatsapp += w.whatsapp; t.llamadas += w.llamadas; t.vistas += w.vistas;
+    t.peticiones += w.peticiones; t.visitas += w.visitas; t.calculos += w.calculos; t.whatsapp += w.whatsapp; t.llamadas += w.llamadas; t.vistas += w.vistas; t.entradas += w.entradas ?? 0; t.personas += w.personas ?? 0;
     for (const [k, v] of Object.entries(w.porCanal)) t.porCanal[k] = (t.porCanal[k] ?? 0) + v;
     for (const [k, v] of Object.entries(w.clicsPorFuente)) t.clicsPorFuente[k] = (t.clicsPorFuente[k] ?? 0) + v;
   }
@@ -166,7 +235,7 @@ const METRICAS: Metrica[] = [
   // Coste por contacto según las propias plataformas: parte del anuncio aterriza en una página propia,
   // así que la web solo ve una parte de esas peticiones. Cuando los anuncios lleven a la web, se mira también el de la web.
   { id: "cpl", nombre: "Coste por contacto de anuncios", f: (t) => (t.ads.conv ? t.ads.coste / t.ads.conv : NaN), formato: eur, menosEsMejor: true, fuente: "Anuncios · contactos que cuenta cada plataforma", ayuda: "Lo que nos cuesta cada contacto que traen los anuncios. Cuanto más bajo, mejor." },
-  { id: "sesiones", nombre: "Visitas a la web", f: (t) => t.ga.sesiones, formato: num, fuente: "Analytics", ayuda: "Veces que alguien entra en la web según Analytics, que solo cuenta a quien acepta las cookies (más o menos la mitad). Todas las visitas, en «De dónde vienen»." },
+  { id: "sesiones", nombre: "Visitas a la web (Analytics)", f: (t) => t.ga.sesiones, formato: num, fuente: "Analytics", ayuda: "Veces que alguien entra en la web según Analytics, que solo cuenta a quien acepta las cookies (más o menos la mitad)." },
   { id: "organico", nombre: "Clics desde Google", f: (t) => t.gsc.clics, formato: num, fuente: "Search Console", ayuda: "Entran desde Google sin anuncio (lo que no se paga)." },
   { id: "rebote", nombre: "Rebote", f: (t) => (t.ga.sesiones ? (1 - t.ga.interes / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, menosEsMejor: true, fuente: "Analytics · sesiones sin interacción", ayuda: "De cada 100 visitas, cuántas se van sin hacer nada (menos de 10 segundos, una sola página y ninguna acción). Cuanto más bajo, mejor." },
   { id: "conversion", nombre: "Visitas que acaban en contacto", f: (t) => (t.ga.sesiones ? (t.peticiones / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, fuente: "Web y Analytics", ayuda: "De cada 100 visitas a la web, cuántas acaban dejando sus datos." },
@@ -747,6 +816,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
         </p>
         {pestana === "resumen" && (
           <>
+            <VisitasReales T={T} C={C} origenes={detalle?.origenes ?? []} cargando={cargando} b={b} adsHasta={datos.anuncios.actualizado} />
             <TresPreguntas T={T} C={C} crm={detalle?.crm ?? null} cargando={cargando} largo={largo} />
             {!datos.fallos?.length && <Alertas T={T} C={C} datos={datos} largo={largo} b={b} />}
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -933,43 +1003,6 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
                 </div>
               ))}
             </div>
-            <Caja titulo="De dónde vienen (todas las visitas)" fuente={cargando ? "Cargando…" : "Web · contador propio, sin cookies: cuenta también a quien rechaza las cookies"}>
-              {(() => {
-                const filas = detalle?.origenes ?? [];
-                const total = filas.reduce((x, r) => x + r.n, 0);
-                const sinDatosAds = !datos.anuncios.actualizado || b > datos.anuncios.actualizado;
-                const plat: Record<string, string> = { "Google Ads": "google", "Meta / Instagram": "meta", "ChatGPT Ads": "chatgpt" };
-                if (!filas.length) return <p className="text-[15px] text-ink/60">{cargando ? "Cargando…" : "Sin datos en este periodo."}</p>;
-                return (
-                  <div className="overflow-x-auto">
-                    <table className="w-full min-w-[520px] text-left text-[14.5px] text-ink">
-                      <thead className="text-[12px] uppercase tracking-[0.08em] text-ink/55">
-                        <tr>
-                          <th className="py-2 pr-3 font-bold">Origen</th>
-                          <th className="py-2 pr-3 text-right font-bold">Páginas vistas</th>
-                          <th className="py-2 pr-3 text-right font-bold">En móvil</th>
-                          <th className="py-2 text-right font-bold">Clics que cobra el anuncio<span className="block text-[11px] font-semibold normal-case tracking-normal text-ink/45">si sale «-», aún no han llegado los del día</span></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filas.map((r) => {
-                          const pl = plat[r.origen];
-                          const clics = pl ? T.ads.porPlat[pl]?.clics : undefined;
-                          return (
-                            <tr key={r.origen} className="border-t border-line">
-                              <td className="py-2.5 pr-3 font-semibold">{r.origen}</td>
-                              <td className="py-2.5 pr-3 text-right tabular-nums">{num(r.n)}{total ? <span className="ml-1.5 text-[12px] text-ink/50">{pct((r.n / total) * 100)}</span> : null}</td>
-                              <td className="py-2.5 pr-3 text-right tabular-nums">{r.n ? pct((r.movil / r.n) * 100) : "-"}</td>
-                              <td className="py-2.5 text-right tabular-nums">{pl ? (sinDatosAds || clics == null ? "-" : num(clics)) : ""}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                );
-              })()}
-            </Caja>
             <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-2">
               <Caja titulo="Por dónde entran" fuente="Analytics · canal">
                 <Tabla
