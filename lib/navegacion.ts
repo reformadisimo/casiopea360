@@ -32,7 +32,7 @@ export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
     texto: "Cómo trabajamos",
     href: "/como-trabajamos",
     hijos: [
-      { icono: "regalo", texto: "Lo que consigues", href: "/lo-que-consigues", detalle: "Tu web, tu guía, tus correos, tu panel: míralo de un vistazo" },
+      { icono: "regalo", texto: "Un ejemplo real", href: "/lo-que-consigues", detalle: "Tu web, tu guía, tus correos, tu panel y tu CRM, ya hechos para un despacho inventado" },
       { icono: "engranaje", texto: "Un día de trabajo real", href: "/un-dia-de-trabajo", detalle: "Lo que hacemos por dentro, sin cajas negras" },
       { icono: "escudo", texto: "Miedo al cambio", href: "/miedo-al-cambio", detalle: "Pruébalo con tu web al lado, sin riesgo" },
       { icono: "llave", texto: "Tu control", href: "/tu-control", detalle: "Tus cuentas son tuyas y tú mandas" },

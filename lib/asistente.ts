@@ -45,7 +45,7 @@ ${OFICIOS.join(", ")}.
 ${TRABAJOS.filter((t) => t.publicado).map((t) => `- ${t.nombre} (${t.sector}): ${t.resumen}`).join("\n")}
 
 ## Ejemplos que se pueden probar (todos con datos inventados de un despacho ficticio, Fuero Abogados)
-- La página que lo enseña todo de un vistazo, con capturas: /lo-que-consigues (recomiéndala cuando pregunten qué incluye el estudio o qué conseguirían).
+- La página con un ejemplo real de todo lo que se llevan, con capturas: /lo-que-consigues (recomiéndala cuando pregunten qué incluye el estudio o qué conseguirían).
 - Web completa de ejemplo: https://fuero-abogados.vercel.app (así quedaría una web hecha por nosotros: herramientas, guías, asistente, vídeos, versión en inglés).
 - Guía de ejemplo, como la que preparamos en el estudio gratuito: https://fuero-abogados.vercel.app/guia-fuero
 - Panel de control de ejemplo: /panel. CRM de ejemplo: /crm-ejemplo. Lupa 360 de ejemplo: /lupa-ejemplo. Avisos y recordatorios de ejemplo: /avisos-ejemplo.

@@ -17,18 +17,18 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
             Tu web nueva, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Todo hecho.</span>
           </p>
           <p className={`mt-2 text-[0.95rem] ${claro ? "text-gris" : "text-white/75"}`}>
-            {PIEZAS.length} cosas de verdad, listas para usar, por pasar un test de cinco minutos. Y es solo el principio.
+            Lo hemos hecho para un despacho inventado para que lo veas. El tuyo sería igual, con tu negocio. Y es solo el principio.
           </p>
           <Link
             href="/lo-que-consigues"
             className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-estrella px-6 font-extrabold text-tinta shadow-[0_10px_30px_-10px_rgba(255,197,61,0.8)] hover:bg-estrella-2"
           >
-            Verlo todo de un vistazo
+            Ver un ejemplo real
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </Link>
         </div>
         {/* Abanico de capturas: cinco pantallas de verdad, una sobre otra */}
-        <Link href="/lo-que-consigues" aria-label="Ver lo que consigues" className="group relative block h-36 w-full max-w-[34rem] sm:h-40">
+        <Link href="/lo-que-consigues" aria-label="Ver un ejemplo real" className="group relative block h-36 w-full max-w-[34rem] sm:h-40">
           {abanico.map((p, k) => (
             <span
               key={p.id}

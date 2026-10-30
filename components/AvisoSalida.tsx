@@ -184,7 +184,7 @@ export default function AvisoSalida() {
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </Link>
             <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">
-              Ver lo que consigues
+              Ver un ejemplo real
             </Link>
             <button type="button" onClick={() => setAbierto(false)} className="hidden min-h-11 rounded-full px-3 font-bold text-gris hover:text-tinta sm:inline-block">
               Ahora no
@@ -193,7 +193,7 @@ export default function AvisoSalida() {
           {/* Móvil: «ver un ejemplo» y «ahora no» en una fila bajo el botón */}
           <div className="mt-1.5 flex items-center justify-between gap-3 sm:hidden">
             <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="inline-flex min-h-11 items-center font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4">
-              Ver lo que consigues
+              Ver un ejemplo real
             </Link>
             <button type="button" onClick={() => setAbierto(false)} className="min-h-11 shrink-0 px-2 font-bold text-gris">
               Ahora no

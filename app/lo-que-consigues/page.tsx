@@ -6,7 +6,7 @@ import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
-  "Lo que consigues con el estudio gratuito",
+  "Un ejemplo real de lo que te llevas gratis",
   "Tu web nueva, tu guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Mira un ejemplo real de cada cosa antes de pedirlo.",
   "/lo-que-consigues",
 );
@@ -15,12 +15,12 @@ export default function LoQueConsigues() {
   const web = PIEZAS[0];
   return (
     <>
-      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Lo que consigues", ruta: "/lo-que-consigues" }])} />
+      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Un ejemplo real", ruta: "/lo-que-consigues" }])} />
       <CabeceraPagina
-        titulo="Esto es lo que consigues, gratis. Míralo antes de pedirlo."
-        clave="Míralo"
+        titulo="Un ejemplo real de todo lo que te llevas gratis."
+        clave="ejemplo real"
         entradilla="Todo esto te lo enviamos gratis y sin compromiso. Solo tienes que pasar el test de idoneidad. Y es solo el principio de lo que podemos conseguir juntos."
-        migas={[{ texto: "Inicio", href: "/" }, { texto: "Lo que consigues" }]}
+        migas={[{ texto: "Inicio", href: "/" }, { texto: "Un ejemplo real" }]}
         visual={<Ventana src={web.captura} alt="La web de ejemplo, en el ordenador y en el móvil" movil={web.movil} color={web.color} prioridad />}
         icono="regalo"
       />
