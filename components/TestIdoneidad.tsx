@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { leerAtribucion } from "@/lib/atribucion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
@@ -317,7 +318,7 @@ export default function TestIdoneidad() {
       const res = await fetch("/api/solicitud", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), novedades: d.get("novedades") === "si", trampa: d.get("sitio_web") }),
+        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: d.get("novedades") === "si", trampa: d.get("sitio_web"), ...leerAtribucion(), pagina: window.location.pathname }),
       });
       ok = res.ok;
     } catch {}

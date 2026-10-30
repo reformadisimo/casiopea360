@@ -9,6 +9,7 @@ import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
 import Revelado from "@/components/Revelado";
 import MedicionVercel from "@/components/MedicionVercel";
+import ContadorVistas from "@/components/ContadorVistas";
 import Pie from "@/components/Pie";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SITIO } from "@/lib/navegacion";
@@ -72,6 +73,8 @@ export default function RootLayout({
         <Revelado />
         {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
         <MedicionVercel />
+        {/* Contador propio sin cookies: cuenta a todos (solo cuando hay base de datos). */}
+        <ContadorVistas />
       </body>
     </html>
   );
