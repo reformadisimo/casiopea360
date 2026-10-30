@@ -50,6 +50,7 @@ type Detalle = {
   clarity?: { dias: number; desde: string | null; paginas: FilaClarity[]; dispositivos: FilaClarity[] } | null;
   rebote?: { dispositivo: FilaRebote[]; zona: FilaRebote[]; tipo: FilaRebote[]; paginas: FilaRebote[] } | null;
   personas?: number | null;
+  origenes?: { origen: string; n: number; movil: number }[];
   crm: { origen: string; leads: number; visitas: number; presupuestos: number; firmados: number; firmado: number; facturado: number; descartados: number; respondidos?: number; horas_resp?: number; vencidas?: number }[];
 };
 
@@ -165,7 +166,7 @@ const METRICAS: Metrica[] = [
   // Coste por contacto según las propias plataformas: parte del anuncio aterriza en una página propia,
   // así que la web solo ve una parte de esas peticiones. Cuando los anuncios lleven a la web, se mira también el de la web.
   { id: "cpl", nombre: "Coste por contacto de anuncios", f: (t) => (t.ads.conv ? t.ads.coste / t.ads.conv : NaN), formato: eur, menosEsMejor: true, fuente: "Anuncios · contactos que cuenta cada plataforma", ayuda: "Lo que nos cuesta cada contacto que traen los anuncios. Cuanto más bajo, mejor." },
-  { id: "sesiones", nombre: "Visitas a la web", f: (t) => t.ga.sesiones, formato: num, fuente: "Analytics", ayuda: "Veces que alguien entra en la web (Analytics)." },
+  { id: "sesiones", nombre: "Visitas a la web", f: (t) => t.ga.sesiones, formato: num, fuente: "Analytics", ayuda: "Veces que alguien entra en la web según Analytics, que solo cuenta a quien acepta las cookies (más o menos la mitad). Todas las visitas, en «De dónde vienen»." },
   { id: "organico", nombre: "Clics desde Google", f: (t) => t.gsc.clics, formato: num, fuente: "Search Console", ayuda: "Entran desde Google sin anuncio (lo que no se paga)." },
   { id: "rebote", nombre: "Rebote", f: (t) => (t.ga.sesiones ? (1 - t.ga.interes / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, menosEsMejor: true, fuente: "Analytics · sesiones sin interacción", ayuda: "De cada 100 visitas, cuántas se van sin hacer nada (menos de 10 segundos, una sola página y ninguna acción). Cuanto más bajo, mejor." },
   { id: "conversion", nombre: "Visitas que acaban en contacto", f: (t) => (t.ga.sesiones ? (t.peticiones / t.ga.sesiones) * 100 : NaN), formato: (n) => `${nf1.format(n)} %`, fuente: "Web y Analytics", ayuda: "De cada 100 visitas a la web, cuántas acaban dejando sus datos." },
@@ -727,6 +728,17 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
         {errorDetalle && (
           <p className="rounded-[16px] border border-[#e8d9b8] bg-[#fbf6ea] px-4 py-3 text-[15px] leading-snug text-ink">No se han podido cargar las cifras del CRM, la lupa y los rankings de estas fechas. <button type="button" onClick={() => setIntento((n) => n + 1)} className="font-semibold underline underline-offset-2">Volver a intentarlo</button></p>
         )}
+        {/* Fechas a la vista, a un toque (mismo cambio que en la mesa de Reformadísimo, cl·v970) */}
+        <div className="flex flex-wrap items-center gap-2" aria-label="Elegir fechas">
+          {PRESETS.filter(([p]) => ["hoy", "ayer", "7", "28", "mes", "mespasado"].includes(p)).map(([p, t]) => (
+            <button key={p} type="button" onClick={() => elige(p)} aria-pressed={preset === p} className={`min-h-[44px] rounded-full border px-3.5 py-1.5 text-[14px] font-semibold transition-colors ${preset === p ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"}`}>
+              {t}
+            </button>
+          ))}
+          <button type="button" onClick={() => { history.replaceState(null, "", "#pl-fechas"); window.dispatchEvent(new HashChangeEvent("hashchange")); setTimeout(() => document.getElementById("pl-fechas")?.scrollIntoView({ behavior: suave(), block: "start" }), 30); }} className="min-h-[44px] rounded-full border border-dashed border-ink/40 bg-white px-3.5 py-1.5 text-[14px] font-semibold text-ink hover:border-ink">
+            Otras fechas y comparar
+          </button>
+        </div>
         {/* cl·v936: dónde estoy y cómo vuelvo, siempre a la vista */}
         <p className="flex flex-wrap items-center gap-2 text-[14px] text-ink/70">
           <span>Estás viendo: <b className="text-ink">Todas las cifras › {PESTANAS.find(([p]) => p === pestana)?.[1]}</b></span>
@@ -921,6 +933,43 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
                 </div>
               ))}
             </div>
+            <Caja titulo="De dónde vienen (todas las visitas)" fuente={cargando ? "Cargando…" : "Web · contador propio, sin cookies: cuenta también a quien rechaza las cookies"}>
+              {(() => {
+                const filas = detalle?.origenes ?? [];
+                const total = filas.reduce((x, r) => x + r.n, 0);
+                const sinDatosAds = !datos.anuncios.actualizado || b > datos.anuncios.actualizado;
+                const plat: Record<string, string> = { "Google Ads": "google", "Meta / Instagram": "meta", "ChatGPT Ads": "chatgpt" };
+                if (!filas.length) return <p className="text-[15px] text-ink/60">{cargando ? "Cargando…" : "Sin datos en este periodo."}</p>;
+                return (
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[520px] text-left text-[14.5px] text-ink">
+                      <thead className="text-[12px] uppercase tracking-[0.08em] text-ink/55">
+                        <tr>
+                          <th className="py-2 pr-3 font-bold">Origen</th>
+                          <th className="py-2 pr-3 text-right font-bold">Páginas vistas</th>
+                          <th className="py-2 pr-3 text-right font-bold">En móvil</th>
+                          <th className="py-2 text-right font-bold">Clics que cobra el anuncio<span className="block text-[11px] font-semibold normal-case tracking-normal text-ink/45">si sale «-», aún no han llegado los del día</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filas.map((r) => {
+                          const pl = plat[r.origen];
+                          const clics = pl ? T.ads.porPlat[pl]?.clics : undefined;
+                          return (
+                            <tr key={r.origen} className="border-t border-line">
+                              <td className="py-2.5 pr-3 font-semibold">{r.origen}</td>
+                              <td className="py-2.5 pr-3 text-right tabular-nums">{num(r.n)}{total ? <span className="ml-1.5 text-[12px] text-ink/50">{pct((r.n / total) * 100)}</span> : null}</td>
+                              <td className="py-2.5 pr-3 text-right tabular-nums">{r.n ? pct((r.movil / r.n) * 100) : "-"}</td>
+                              <td className="py-2.5 text-right tabular-nums">{pl ? (sinDatosAds || clics == null ? "-" : num(clics)) : ""}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })()}
+            </Caja>
             <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-2">
               <Caja titulo="Por dónde entran" fuente="Analytics · canal">
                 <Tabla

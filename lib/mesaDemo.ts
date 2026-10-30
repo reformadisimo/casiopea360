@@ -92,5 +92,9 @@ export function detalleDemo(desde: string, hasta: string) {
   };
   const cl = (clave: string, ses: number, rabia: number, muertos: number, vuelven: number, scroll: number) => ({ clave, sesiones: Math.round(ses), rabia_pct: rabia, muertos_pct: muertos, vuelven_pct: vuelven, vaiven_pct: null, scroll, activo: null });
   const clarity = { dias: Math.min(n, 28), desde: desde, paginas: [cl("/", n * 9, 1.2, 4.8, 21, 58), cl("/abogado-laboralista-madrid", n * 5, 0.8, 3.1, 17, 64), cl("/acoso-laboral", n * 3, 3.6, 12.4, 26, 49), cl("/cuanto-cobra-un-abogado-laboralista", n * 3, 0.9, 2.2, 19, 71), cl("/calcular-indemnizacion-despido", n * 2, 2.1, 5.5, 14, 77), cl("/contacto", n * 2, 0.4, 1.8, 9, 82)], dispositivos: [] };
-  return { rebote, paginas, clicsPagina, lupa, clarity, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
+  // De dónde vienen todas las visitas (contador propio, sin cookies): datos inventados del despacho de ejemplo
+  const ori: [string, number, number][] = [["Meta / Instagram", 0.36, 0.88], ["Google (búsqueda)", 0.26, 0.62], ["Google Ads", 0.13, 0.71], ["Directo", 0.12, 0.55], ["Otras webs", 0.07, 0.6], ["Asistentes de IA", 0.06, 0.5]];
+  const totalVistas = paginas.reduce((x, p) => x + p.n, 0) * 1.6;
+  const origenes = ori.map(([origen, p, m]) => { const v = Math.round(totalVistas * p * (0.85 + 0.3 * r())); return { origen, n: v, movil: Math.round(v * m) }; }).sort((x, y) => y.n - x.n);
+  return { rebote, paginas, clicsPagina, lupa, clarity, origenes, gsc: { totales: { clics: tc, impresiones: ti, ctr_pct: Math.round((tc / ti) * 1000) / 10, posicion: 12.4 }, busquedas, paginas: gscPag }, entradas, crm };
 }
