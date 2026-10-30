@@ -50,7 +50,7 @@ export default function Blog() {
                 </span>
               </p>
               <h2 className="mt-4 text-3xl font-extrabold group-hover:underline sm:text-4xl">{destacado.titulo}</h2>
-              <p className="mt-4 text-lg text-white/80">{destacado.descripcion}</p>
+              <p className="mt-4 line-clamp-2 text-lg text-white/80">{destacado.descripcion}</p>
               <p className="mt-6 text-sm text-white/60">{fecha(destacado.fecha)}</p>
             </div>
           </Link>
@@ -69,7 +69,7 @@ export default function Blog() {
                     </span>
                   </p>
                   <h2 className="mt-4 text-2xl font-extrabold group-hover:underline">{a.titulo}</h2>
-                  <p className="mt-3 flex-1 text-gris">{a.descripcion}</p>
+                  <p className="mt-3 line-clamp-2 flex-1 text-gris">{a.descripcion}</p>
                 </div>
               </Link>
             ))}
