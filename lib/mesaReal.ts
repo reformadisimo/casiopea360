@@ -26,32 +26,40 @@ export function llaveMesa(): string {
   return c ? createHash("sha256").update(`casiopea-mesa:${c}`).digest("hex").slice(0, 40) : "";
 }
 
+/** Primer día con el contador de Casiopea en marcha (base de datos conectada el 31-oct-2026). */
+const INICIO_VISITAS = "2026-10-31";
 const hoyMadrid = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Madrid" });
 const suma = (s: string, n: number) => { const d = new Date(`${s}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
-type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas: number; personas: number };
+type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas: number; personas: number; segundos: number };
 
 export async function datosReales() {
   await asegurarTablas();
   const q = sql();
   const hoy = hoyMadrid();
   const desde = suma(hoy, -400);
-  const [vistas, sols] = await Promise.all([
+  const [vistas, sols, tiempos] = await Promise.all([
     q`SELECT to_char((creado AT TIME ZONE 'Europe/Madrid')::date, 'YYYY-MM-DD') AS dia, count(*)::int AS n,
              count(*) FILTER (WHERE entrada)::int AS e, count(*) FILTER (WHERE nuevo)::int AS u
       FROM vistas WHERE (creado AT TIME ZONE 'Europe/Madrid')::date >= ${desde}::date GROUP BY 1`,
     q`SELECT to_char((creado AT TIME ZONE 'Europe/Madrid')::date, 'YYYY-MM-DD') AS dia, fuente, count(*)::int AS n
       FROM solicitudes WHERE (creado AT TIME ZONE 'Europe/Madrid')::date >= ${desde}::date GROUP BY 1, 2`,
+    q`SELECT to_char((creado AT TIME ZONE 'Europe/Madrid')::date, 'YYYY-MM-DD') AS dia, sum(segundos)::int AS s
+      FROM tiempos WHERE (creado AT TIME ZONE 'Europe/Madrid')::date >= ${desde}::date GROUP BY 1`,
   ]);
   const web: Record<string, DiaWeb> = {};
-  const dia = (d: string) => (web[d] ??= { peticiones: 0, visitas: 0, calculos: 0, porCanal: {}, whatsapp: 0, llamadas: 0, clicsPorFuente: {}, vistas: 0, entradas: 0, personas: 0 });
+  const dia = (d: string) => (web[d] ??= { peticiones: 0, visitas: 0, calculos: 0, porCanal: {}, whatsapp: 0, llamadas: 0, clicsPorFuente: {}, vistas: 0, entradas: 0, personas: 0, segundos: 0 });
   for (const r of vistas) { const w = dia(String(r.dia)); w.vistas = Number(r.n); w.entradas = Number(r.e); w.personas = Number(r.u); }
+  for (const r of tiempos) dia(String(r.dia)).segundos = Number(r.s ?? 0);
   for (const r of sols) { const w = dia(String(r.dia)); const k = canalMesa(r.fuente); w.peticiones += Number(r.n); w.porCanal[k] = (w.porCanal[k] ?? 0) + Number(r.n); }
   return {
     hoy, web, ga: [], gsc: [],
     anuncios: { actualizado: "", diario: [], mensual: [] },
     redes: null, google: false,
     nombre: "Casiopea 360",
+    inicioVisitas: INICIO_VISITAS,
+    // Mientras no haya ningún día anterior con datos, la mesa arranca en «Hoy» (si no, saldría todo a cero).
+    presetInicial: Object.keys(web).some((d) => d < hoy) ? ("28" as const) : ("hoy" as const),
   };
 }
 
@@ -65,14 +73,18 @@ export async function detalleReal(desde: string, hasta: string, soloCrm = false)
   const crm = Object.entries(crmPor).map(([origen, leads]) => ({ origen, leads, visitas: 0, presupuestos: 0, firmados: 0, firmado: 0, facturado: 0, descartados: 0 }));
   if (soloCrm) return { crm };
 
-  const [pags, ori, pers] = await Promise.all([
+  const [pags, ori, pers, tf] = await Promise.all([
     q`SELECT pagina, count(*)::int AS n, count(*) FILTER (WHERE disp = 'movil')::int AS movil FROM vistas
       WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date
       GROUP BY pagina ORDER BY n DESC LIMIT 30`,
     q`SELECT fuente, disp, count(*)::int AS n, count(*) FILTER (WHERE entrada)::int AS e, count(*) FILTER (WHERE nuevo)::int AS u FROM vistas
       WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente, disp`,
     q`SELECT count(*) FILTER (WHERE nuevo)::int AS u FROM vistas WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date`,
+    q`SELECT fuente, sum(segundos)::int AS s, count(*) FILTER (WHERE rebote)::int AS r FROM tiempos
+      WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente`,
   ]);
+  const seg: Record<string, number> = {}, reb: Record<string, number> = {};
+  for (const r of tf) { const k = canalMesa(r.fuente); seg[k] = (seg[k] ?? 0) + Number(r.s ?? 0); reb[k] = (reb[k] ?? 0) + Number(r.r ?? 0); }
   const o: Record<string, { n: number; movil: number; visitas: number; personas: number }> = {};
   for (const r of ori) {
     const k = canalMesa(r.fuente);
@@ -87,7 +99,7 @@ export async function detalleReal(desde: string, hasta: string, soloCrm = false)
     gsc: null,
     entradas: [],
     personas: Number(pers[0]?.u ?? 0),
-    origenes: Object.entries(o).map(([origen, x]) => ({ origen, ...x })).sort((a, b) => b.n - a.n),
+    origenes: Object.entries(o).map(([origen, x]) => ({ origen, ...x, segundos: seg[origen] ?? 0, rebotes: reb[origen] ?? 0 })).sort((a, b) => b.n - a.n),
     crm,
   };
 }

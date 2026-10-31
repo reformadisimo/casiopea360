@@ -22,6 +22,8 @@ export async function asegurarTablas() {
   await q`ALTER TABLE vistas ADD COLUMN IF NOT EXISTS entrada BOOLEAN`;
   await q`ALTER TABLE vistas ADD COLUMN IF NOT EXISTS nuevo BOOLEAN`;
   await q`CREATE INDEX IF NOT EXISTS vistas_por_fecha ON vistas (creado)`;
+  await q`CREATE TABLE IF NOT EXISTS tiempos (id BIGSERIAL PRIMARY KEY, pagina TEXT NOT NULL, fuente TEXT, disp TEXT, segundos INT NOT NULL, rebote BOOLEAN, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
+  await q`CREATE INDEX IF NOT EXISTS tiempos_por_fecha ON tiempos (creado)`;
   await q`CREATE TABLE IF NOT EXISTS solicitudes (
     id BIGSERIAL PRIMARY KEY,
     creado TIMESTAMPTZ NOT NULL DEFAULT now(),

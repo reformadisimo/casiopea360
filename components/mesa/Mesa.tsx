@@ -15,7 +15,7 @@ import { Plegable, Apartados, GuiaDeUso, LogoMarca, iconoDeTitulo, Que, QueTexto
    sumar día a día (páginas, búsquedas, mapas de calor) se piden a /api/mesa.
    Solo pintura en las animaciones (opacidad y color): nada se mueve. */
 
-type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas?: number; personas?: number };
+type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas?: number; personas?: number; segundos?: number };
 type FilaAds = [string, string, string, number, number, number, number];
 type Ga = { dia: string; canal: string; sesiones: number; usuarios: number; interes: number; clave: number };
 type GaTotal = { dia: string; sesiones: number; usuarios: number; interes: number; clave: number };
@@ -32,6 +32,8 @@ export type DatosMesa = {
   fallos?: string[]; // fuentes que no se han podido leer en esta carga (cl·v904): "web", "analytics", "search console"
   clave: string;
   nombre?: string; // nombre del negocio en la cabecera (por defecto, el del ejemplo)
+  inicioVisitas?: string; // primer día con personas y visitas contadas (mesa real); en el ejemplo no hay
+  presetInicial?: "hoy" | "28"; // la mesa real arranca en «Hoy» mientras no hay días anteriores
 };
 type Redes = {
   actualizado: string;
@@ -51,74 +53,87 @@ type Detalle = {
   clarity?: { dias: number; desde: string | null; paginas: FilaClarity[]; dispositivos: FilaClarity[] } | null;
   rebote?: { dispositivo: FilaRebote[]; zona: FilaRebote[]; tipo: FilaRebote[]; paginas: FilaRebote[] } | null;
   personas?: number | null;
-  origenes?: { origen: string; n: number; movil: number; visitas?: number; personas?: number }[];
+  origenes?: { origen: string; n: number; movil: number; visitas: number; personas: number; segundos?: number; rebotes?: number }[];
   crm: { origen: string; leads: number; visitas: number; presupuestos: number; firmados: number; firmado: number; facturado: number; descartados: number; respondidos?: number; horas_resp?: number; vencidas?: number }[];
 };
 
 
-/* «Quién entra de verdad en la web» (mismo panel que la mesa de Reformadísimo, cl·v970-974).
-   Aquí es de ejemplo: personas, visitas y orígenes salen de datos inventados (lib/mesaDemo.ts). */
-function VisitasReales({ T, C, origenes, cargando, b, adsHasta }: { T: Totales; C: Totales | null; origenes: { origen: string; n: number; movil: number; visitas?: number; personas?: number }[]; cargando: boolean; b: string; adsHasta?: string | null }) {
-  const variosDias = T.dias > 1;
-  const cifras: { t: string; v: number; c?: number; nota?: string; fmt?: (n: number) => string; destacada?: boolean }[] = [
-    { t: variosDias ? "Personas distintas (suma de cada día)" : "Personas distintas", v: T.personas, c: C?.personas, nota: variosDias ? "Quien vuelve otro día cuenta otra vez" : undefined, destacada: true },
-    { t: "Visitas", v: T.entradas, c: C?.entradas },
-    { t: "Páginas vistas", v: T.vistas, c: C?.vistas },
-    { t: "Páginas por persona", v: T.personas ? T.vistas / T.personas : NaN, c: C && C.personas ? C.vistas / C.personas : undefined, fmt: (n) => (Number.isFinite(n) ? nf1.format(n) : "-") },
-    { t: "Analytics ve", v: T.ga.sesiones, c: C?.ga.sesiones, nota: "Solo quien acepta cookies" },
-  ];
-  const sinAds = !adsHasta || b > adsHasta;
-  const plat: Record<string, string> = { "Google Ads": "google", "Meta / Instagram": "meta", "ChatGPT Ads": "chatgpt" };
-  const hayAds = Object.keys(T.ads.porPlat).length > 0;
+/* «Quién entra de verdad en la web»: el mismo panel que la mesa de Reformadísimo (cl·v970-974 y 31-oct, tiempo y rebote propios).
+   Las cifras de arriba salen de la misma consulta que la tabla (en vivo). En el ejemplo, todo inventado y sin fecha de inicio. */
+function VisitasReales({ T: T0, C, origenes, cargando, a, b, adsHasta, inicio }: { T: Totales; C: Totales | null; origenes: Detalle["origenes"] | null; cargando: boolean; a: string; b: string; adsHasta?: string | null; inicio?: string }) {
+  const INICIO_VISITAS = inicio ?? "";
+  let T = T0;
+  const ultimoAds = adsHasta ?? "";
+  const clics = (o: string) => (!ultimoAds || b > ultimoAds ? undefined : o === "Google Ads" ? T.ads.porPlat["google"]?.clics : o === "Meta / Instagram" ? T.ads.porPlat["meta"]?.clics : o === "ChatGPT Ads" ? T.ads.porPlat["chatgpt"]?.clics : undefined);
+  const esAnuncio = (o: string) => o === "Google Ads" || o === "Meta / Instagram" || o === "ChatGPT Ads";
+  const hayAds = Object.keys(T.ads.porPlat).length > 0 || !!ultimoAds;
+  const vivo = (origenes ?? []).reduce((x, r) => ({ personas: x.personas + r.personas, visitas: x.visitas + r.visitas, vistas: x.vistas + r.n, segundos: x.segundos + (r.segundos ?? 0), rebotes: x.rebotes + (r.rebotes ?? 0) }), { personas: 0, visitas: 0, vistas: 0, segundos: 0, rebotes: 0 });
+  if (origenes && origenes.length) T = { ...T, personas: vivo.personas, entradas: vivo.visitas, vistas: vivo.vistas, segundos: vivo.segundos };
+  const sinVisitasAun = !!INICIO_VISITAS && b < INICIO_VISITAS && T.entradas === 0;
+  const sinPersonasAun = !!INICIO_VISITAS && T.personas === 0 && b < INICIO_VISITAS;
+  const varios = a !== b;
+  const fechaIni = INICIO_VISITAS ? fechaLarga(INICIO_VISITAS) : "";
+  const mmss = (s: number) => { const m = Math.floor(s / 60), r = Math.round(s % 60); return m ? `${m} min ${String(r).padStart(2, "0")} s` : `${r} s`; };
+  const filas = (origenes ?? []).filter((r) => r.n > 0);
+  const Cifra = ({ n, t, sub, grande }: { n: string; t: string; sub?: React.ReactNode; grande?: boolean }) => (
+    <div className={`min-w-[120px] flex-1 rounded-[14px] border bg-white px-4 py-3 ${grande ? "border-[#2b6c80]" : "border-line"}`}>
+      <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-ink/55">{t}</p>
+      <p className="mt-1 font-serif text-[34px] leading-none text-ink">{n}</p>
+      {sub ? <div className="mt-1.5 text-[13px] text-ink/60">{sub}</div> : null}
+    </div>
+  );
   return (
-    <section className="rounded-[22px] border-2 p-4 sm:p-5" style={{ borderColor: "#2a6f86", background: "#2a6f8612" }}>
-      <h3 className="font-serif text-[24px] italic leading-tight text-ink">Quién entra de verdad en la web</h3>
-      <p className="mt-1 text-[13.5px] text-ink/65">Contador propio, sin cookies: cuenta también a quien rechaza las cookies. Sin robots.</p>
-      <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-5">
-        {cifras.map((x) => (
-          <div key={x.t} className={`rounded-[18px] border bg-white p-3.5 ${x.destacada ? "col-span-2 border-[#2a6f86] lg:col-span-1" : "border-line"}`}>
-            <p className="text-[11.5px] font-bold uppercase leading-tight tracking-[0.08em] text-ink/55">{x.t}</p>
-            <p className={`mt-1 font-serif leading-none text-ink ${x.destacada ? "text-[36px]" : "text-[28px]"}`}>{(x.fmt ?? num)(x.v)}</p>
-            {x.c !== undefined && Number.isFinite(x.v) && Number.isFinite(x.c) ? <div className="mt-2"><Delta a={x.v} b={x.c} antes={(x.fmt ?? num)(x.c)} compacta /></div> : null}
-            {x.nota ? <p className="mt-1.5 text-[12px] leading-snug text-ink/55">{x.nota}</p> : null}
-          </div>
-        ))}
+    <section className="mb-4 rounded-[20px] border-2 border-[#2b6c80] bg-[#eef5f7] p-4 sm:p-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h3 className="font-serif text-[24px] italic text-ink">Quién entra de verdad en la web</h3>
+        <p className="text-[13px] text-ink/60">Contador propio, sin cookies: cuenta también a quien rechaza las cookies. Sin robots.</p>
       </div>
-      <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.1em] text-ink/55">De dónde vienen</p>
-      {origenes.length === 0 ? (
-        <p className="mt-2 text-[15px] text-ink/60">{cargando ? "Cargando…" : "Sin datos en este periodo."}</p>
-      ) : (
-        <div className="mt-2 overflow-x-auto rounded-[16px] border border-line bg-white">
-          <table className="w-full min-w-[560px] text-left text-[14.5px] text-ink">
-            <thead className="text-[11.5px] uppercase tracking-[0.08em] text-ink/55">
-              <tr>
-                <th className="px-3 py-2.5 font-bold">Origen</th>
-                <th className="px-3 py-2.5 text-right font-bold">Personas</th>
-                <th className="px-3 py-2.5 text-right font-bold">Visitas</th>
-                <th className="px-3 py-2.5 text-right font-bold">Páginas vistas</th>
-                {hayAds && <th className="px-3 py-2.5 text-right font-bold">Clics que cobra el anuncio</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {origenes.map((r) => {
-                const pl = plat[r.origen];
-                const clics = pl ? T.ads.porPlat[pl]?.clics : undefined;
-                return (
-                  <tr key={r.origen} className="border-t border-line">
-                    <td className="px-3 py-2.5 font-semibold"><span className="flex items-center"><LogoCanal canal={r.origen} />{r.origen}</span></td>
-                    <td className="px-3 py-2.5 text-right tabular-nums">{r.personas != null ? num(r.personas) : "-"}</td>
-                    <td className="px-3 py-2.5 text-right tabular-nums">{r.visitas != null ? num(r.visitas) : "-"}</td>
-                    <td className="px-3 py-2.5 text-right tabular-nums">{num(r.n)}</td>
-                    {hayAds && <td className="px-3 py-2.5 text-right tabular-nums">{pl ? (sinAds ? <span className="text-ink/50">llega mañana</span> : clics != null ? num(clics) : "-") : ""}</td>}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <p className="mt-3 text-[12.5px] leading-snug text-ink/60">
-        <b className="text-ink/75">Personas:</b> gente distinta cada día (si alguien entra tres veces el mismo día, cuenta una; desde el móvil y el ordenador, dos). <b className="text-ink/75">Visitas:</b> cada vez que alguien abre la web. <b className="text-ink/75">Páginas vistas:</b> todas las páginas que ven. Si un anuncio cobra muchos más clics que visitas llegan, esos clics se pierden por el camino.
+      <div className="mt-3 flex flex-wrap gap-3">
+        <Cifra grande t={varios ? "Personas distintas (suma de cada día)" : "Personas distintas"} n={sinPersonasAun ? "-" : num(T.personas)} sub={sinPersonasAun ? `Se cuentan desde el ${fechaIni}` : C && C.personas ? <Delta a={T.personas} b={C.personas} antes={num(C.personas)} /> : varios ? "Quien vuelve otro día cuenta otra vez" : null} />
+        <Cifra t="Visitas" n={sinVisitasAun ? "-" : num(T.entradas)} sub={sinVisitasAun ? `Se cuentan desde el ${fechaIni}` : C && C.entradas ? <Delta a={T.entradas} b={C.entradas} antes={num(C.entradas)} /> : null} />
+        <Cifra t="Páginas vistas" n={num(T.vistas)} sub={C && C.vistas ? <Delta a={T.vistas} b={C.vistas} antes={num(C.vistas)} /> : null} />
+        <Cifra t="Tiempo medio por persona" n={T.personas && T.segundos ? mmss(T.segundos / T.personas) : "-"} sub={T.segundos ? (T.entradas ? `${mmss(T.segundos / T.entradas)} por visita` : null) : INICIO_VISITAS ? `Se cuenta desde el ${fechaIni}` : null} />
+        <Cifra t="Rebote" n={T.entradas && vivo.rebotes ? `${nf1.format((vivo.rebotes / T.entradas) * 100)} %` : "-"} sub={vivo.rebotes ? "Se van en menos de 10 s sin ver otra página" : INICIO_VISITAS ? `Se cuenta desde el ${fechaIni}` : null} />
+        <Cifra t="Páginas por persona" n={T.personas ? nf1.format(T.vistas / T.personas) : "-"} />
+        <Cifra t="Analytics ve" n={num(T.ga.sesiones)} sub="Solo quien acepta cookies" />
+      </div>
+      <div className="mt-4 overflow-x-auto rounded-[14px] border border-line bg-white">
+        <table className="w-full min-w-[780px] text-[14.5px]">
+          <thead>
+            <tr className="border-b border-line text-left text-[12px] font-bold uppercase tracking-[0.08em] text-ink/55">
+              <th className="px-3 py-2">De dónde vienen</th>
+              <th className="px-3 py-2 text-right">Personas</th>
+              <th className="px-3 py-2 text-right">Visitas</th>
+              <th className="px-3 py-2 text-right">Páginas vistas</th>
+              <th className="px-3 py-2 text-right">Tiempo por persona</th>
+              <th className="px-3 py-2 text-right">Rebote</th>
+              {hayAds && <th className="px-3 py-2 text-right">Clics que cobra el anuncio</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {cargando && !filas.length ? (
+              <tr><td colSpan={7} className="px-3 py-3 text-ink/50">Cargando…</td></tr>
+            ) : !filas.length ? (
+              <tr><td colSpan={7} className="px-3 py-3 text-ink/50">Sin visitas en estas fechas.</td></tr>
+            ) : filas.map((r) => {
+              const c = clics(r.origen);
+              return (
+                <tr key={r.origen} className="border-b border-line/60 last:border-0">
+                  <td className="px-3 py-2 font-semibold text-ink"><span className="inline-flex items-center"><LogoCanal canal={r.origen} />{r.origen}</span></td>
+                  <td className="px-3 py-2 text-right font-semibold tabular-nums">{sinPersonasAun ? "-" : num(r.personas)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{sinVisitasAun ? "-" : num(r.visitas)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{num(r.n)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{r.personas && r.segundos ? mmss(r.segundos / r.personas) : "-"}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{r.visitas && vivo.rebotes ? `${nf.format(((r.rebotes ?? 0) / r.visitas) * 100)} %` : "-"}</td>
+                  {hayAds && <td className="px-3 py-2 text-right tabular-nums text-ink/70">{esAnuncio(r.origen) ? (c === undefined ? "llega mañana" : num(c)) : ""}</td>}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 text-[12.5px] leading-snug text-ink/55">
+        <b className="text-ink/70">Personas:</b> gente distinta cada día. <b className="text-ink/70">Visitas:</b> cada vez que alguien abre la web. <b className="text-ink/70">Tiempo:</b> el rato con la web a la vista. <b className="text-ink/70">Rebote:</b> de cada 100 visitas, cuántas se van en menos de 10 segundos sin ver otra página.
       </p>
     </section>
   );
@@ -162,7 +177,7 @@ const CANALES_PAGO: Record<string, string> = { "Google Ads": "google", "Meta / I
 /* ── agregados de un periodo ── */
 type Totales = {
   dias: number;
-  peticiones: number; visitas: number; calculos: number; whatsapp: number; llamadas: number; vistas: number; entradas: number; personas: number;
+  peticiones: number; visitas: number; calculos: number; whatsapp: number; llamadas: number; vistas: number; entradas: number; personas: number; segundos: number;
   porCanal: Record<string, number>; clicsPorFuente: Record<string, number>;
   ads: { coste: number; clics: number; impr: number; conv: number; porPlat: Record<string, { coste: number; clics: number; impr: number; conv: number }>; porCamp: Record<string, { plat: string; coste: number; clics: number; impr: number; conv: number }>; parcial: boolean };
   ga: { sesiones: number; usuarios: number; interes: number; clave: number; porCanal: Record<string, { sesiones: number; interes: number; clave: number }> };
@@ -171,7 +186,7 @@ type Totales = {
 
 function calcula(d: DatosMesa, a: string, b: string, recGsc = 0): Totales {
   const t: Totales = {
-    dias: entre(a, b), peticiones: 0, visitas: 0, calculos: 0, whatsapp: 0, llamadas: 0, vistas: 0, entradas: 0, personas: 0, porCanal: {}, clicsPorFuente: {},
+    dias: entre(a, b), peticiones: 0, visitas: 0, calculos: 0, whatsapp: 0, llamadas: 0, vistas: 0, entradas: 0, personas: 0, segundos: 0, porCanal: {}, clicsPorFuente: {},
     ads: { coste: 0, clics: 0, impr: 0, conv: 0, porPlat: {}, porCamp: {}, parcial: false },
     ga: { sesiones: 0, usuarios: 0, interes: 0, clave: 0, porCanal: {} },
     gsc: { clics: 0, impresiones: 0, posicion: 0 },
@@ -179,7 +194,7 @@ function calcula(d: DatosMesa, a: string, b: string, recGsc = 0): Totales {
   for (const dia of listaDias(a, b)) {
     const w = d.web[dia];
     if (!w) continue;
-    t.peticiones += w.peticiones; t.visitas += w.visitas; t.calculos += w.calculos; t.whatsapp += w.whatsapp; t.llamadas += w.llamadas; t.vistas += w.vistas; t.entradas += w.entradas ?? 0; t.personas += w.personas ?? 0;
+    t.peticiones += w.peticiones; t.visitas += w.visitas; t.calculos += w.calculos; t.whatsapp += w.whatsapp; t.llamadas += w.llamadas; t.vistas += w.vistas; t.entradas += w.entradas ?? 0; t.personas += w.personas ?? 0; t.segundos += w.segundos ?? 0;
     for (const [k, v] of Object.entries(w.porCanal)) t.porCanal[k] = (t.porCanal[k] ?? 0) + v;
     for (const [k, v] of Object.entries(w.clicsPorFuente)) t.clicsPorFuente[k] = (t.clicsPorFuente[k] ?? 0) + v;
   }
@@ -533,8 +548,8 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
   const cambiaVista = (v: "sencilla" | "completa") => { setVista(v); try { localStorage.setItem("rd-mesa-vista", v); } catch {} };
   const cierraGuia = () => { setGuia(false); try { localStorage.setItem("rd-mesa-guia-vista", "1"); } catch {} };
   const sencillaPosible = !!temas?.length;
-  const [preset, setPreset] = useState<Preset>("28");
-  const [rango, setRango] = useState<[string, string]>(() => rangoDe("28", datos.hoy));
+  const [preset, setPreset] = useState<Preset>(datos.presetInicial ?? "28");
+  const [rango, setRango] = useState<[string, string]>(() => rangoDe(datos.presetInicial ?? "28", datos.hoy));
   const [compara, setCompara] = useState<Compara>("anterior");
   const [pestana, setPestana] = useState<Pestana>("resumen");
   const [metrica, setMetrica] = useState("peticiones");
@@ -817,7 +832,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
         </p>
         {pestana === "resumen" && (
           <>
-            <VisitasReales T={T} C={C} origenes={detalle?.origenes ?? []} cargando={cargando} b={b} adsHasta={datos.anuncios.actualizado} />
+            <VisitasReales T={T} C={C} origenes={detalle?.origenes ?? null} cargando={cargando} a={a} b={b} adsHasta={datos.anuncios.actualizado} inicio={datos.inicioVisitas} />
             <TresPreguntas T={T} C={C} crm={detalle?.crm ?? null} cargando={cargando} largo={largo} />
             {!datos.fallos?.length && <Alertas T={T} C={C} datos={datos} largo={largo} b={b} />}
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

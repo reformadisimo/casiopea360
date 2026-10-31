@@ -1,22 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { asegurarTablas, hayBaseDeDatos, sql } from "@/lib/db";
+import { ROBOT, superaLimite } from "@/lib/contador";
 
 export const dynamic = "force-dynamic";
 
 /* Páginas vistas — /api/vista. Contador anónimo (components/ContadorVistas.tsx).
    Ni IP guardada, ni cookies, ni datos de la persona. Sin base de datos, no hace nada. */
-
-const ROBOT = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|inspectiontool|preview|python|curl|wget|httpclient|java\/|go-http|node-fetch|axios|phantom|puppeteer|playwright|selenium|facebookexternalhit|mediapartners|adsbot|gptbot|chatgpt-user|oai-searchbot|bytespider|ahrefs|semrush|mj12|dataforseo|yandex|baidu|petal/i;
-
-// Freno por conexión (en memoria de cada instancia): 200 por hora.
-const cuenta = new Map<string, { n: number; desde: number }>();
-function superaLimite(ip: string) {
-  const ahora = Date.now();
-  const x = cuenta.get(ip);
-  if (!x || ahora - x.desde > 3600_000) { cuenta.set(ip, { n: 1, desde: ahora }); if (cuenta.size > 5000) cuenta.clear(); return false; }
-  x.n += 1;
-  return x.n > 200;
-}
 
 const limpio = (v: unknown, n: number) => (typeof v === "string" ? v.replace(/[^\p{L}\p{N}/._:-]/gu, "").slice(0, n) : "");
 
