@@ -728,7 +728,18 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           {!soloCifras && <Ludoteca {...dolorYBien(relojes ?? [], temas ?? [])} contactos={relojes?.[0]?.n} preguntas={juegos(relojes ?? [])} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((t, q) => t + datos.web[q].peticiones, 0); }} demo={datos.clave === "demo"} nombreEmpresa="Fuero Abogados" lineas={["Despidos", "Acoso laboral", "Incapacidad permanente", "Mujer y trabajo", "Asesoría a empresas"]} capacidadTexto="¿Cuántos casos nuevos puedes atender al mes?" notaPublico="Casiopea puede montar tu versión B: una web y unas campañas para el cliente de más nivel, sin tocar la de hoy. Tú decides el reparto y nosotros medimos si responde." />}
           {!soloCifras && <GuiaDeUso modo="plegada" />}
           {/* cl·v921: todo plegado en una línea; se abre lo que se quiera y las cifras quedan a un vistazo */}
-          <Plegable id="pl-fechas" icono="historia" color={PALETA_ALEGRIA.camino} titulo="Fechas y comparación" pista={`${textoRango(a, b)} · ${compara === "no" ? "sin comparar" : compara === "anio" ? "frente al año pasado" : "frente al periodo anterior"}`}>
+          {/* Fechas siempre a la vista y destacadas (31-oct, Ig: «es muy importante, que no haya que abrirlo»). */}
+          <section id="pl-fechas" aria-label="Elegir fechas" className="mt-3 scroll-mt-4 rounded-[20px] border-2 border-[#6d3fd6] bg-[#f4effd] p-4 sm:p-5">
+            <div className="flex flex-wrap items-center gap-3">
+              <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-[14px] bg-[#6d3fd6] text-white shadow-[0_8px_18px_-10px_#6d3fd6]">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M8 14h2M12 14h2M8 17h2" /></svg>
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[12px] font-bold uppercase tracking-[0.14em] text-[#6d3fd6]">¿Qué días quieres ver?</span>
+                <span className="block font-serif text-[26px] italic leading-tight text-ink">{textoRango(a, b)}</span>
+                <span className="block text-[13.5px] text-ink/60">{compara === "no" ? "Sin comparar" : `Comparado con ${compara === "anio" ? "el año pasado" : "el periodo anterior"}: ${textoRango(ca, cb)}`}</span>
+              </span>
+            </div>
           <div className="mt-5 flex flex-wrap items-center gap-2">
             {PRESETS.map(([p, t]) => (
               <button key={p} type="button" onClick={() => elige(p)} className={`min-h-[44px] rounded-full border px-3.5 py-1.5 text-[14px] font-semibold transition-colors ${preset === p ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"}`}>
@@ -770,7 +781,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
             </details>
           </div>
 
-          </Plegable>
+          </section>
           {!soloCifras && (
           <Plegable id="pl-temas" icono="grid" color={PALETA_ALEGRIA.web} titulo="Cómo está cada parte" pista={temas ? temas.map((m) => `${m.titulo}: ${m.estado ?? LUZ[m.luz].t}`).join(" · ") : undefined}>
           {temas && temas.length > 0 && <Temas temas={temas} resumen={resumenHoy} />}
@@ -813,17 +824,6 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
         {errorDetalle && (
           <p className="rounded-[16px] border border-[#e8d9b8] bg-[#fbf6ea] px-4 py-3 text-[15px] leading-snug text-ink">No se han podido cargar las cifras del CRM, la lupa y los rankings de estas fechas. <button type="button" onClick={() => setIntento((n) => n + 1)} className="font-semibold underline underline-offset-2">Volver a intentarlo</button></p>
         )}
-        {/* Fechas a la vista, a un toque (mismo cambio que en la mesa de Reformadísimo, cl·v970) */}
-        <div className="flex flex-wrap items-center gap-2" aria-label="Elegir fechas">
-          {PRESETS.filter(([p]) => ["hoy", "ayer", "7", "28", "mes", "mespasado"].includes(p)).map(([p, t]) => (
-            <button key={p} type="button" onClick={() => elige(p)} aria-pressed={preset === p} className={`min-h-[44px] rounded-full border px-3.5 py-1.5 text-[14px] font-semibold transition-colors ${preset === p ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"}`}>
-              {t}
-            </button>
-          ))}
-          <button type="button" onClick={() => { history.replaceState(null, "", "#pl-fechas"); window.dispatchEvent(new HashChangeEvent("hashchange")); setTimeout(() => document.getElementById("pl-fechas")?.scrollIntoView({ behavior: suave(), block: "start" }), 30); }} className="min-h-[44px] rounded-full border border-dashed border-ink/40 bg-white px-3.5 py-1.5 text-[14px] font-semibold text-ink hover:border-ink">
-            Otras fechas y comparar
-          </button>
-        </div>
         {/* cl·v936: dónde estoy y cómo vuelvo, siempre a la vista */}
         <p className="flex flex-wrap items-center gap-2 text-[14px] text-ink/70">
           <span>Estás viendo: <b className="text-ink">Todas las cifras › {PESTANAS.find(([p]) => p === pestana)?.[1]}</b></span>
