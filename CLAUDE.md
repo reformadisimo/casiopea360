@@ -9,3 +9,4 @@
   - Solicitudes del test: `app/api/solicitud` las guarda SIEMPRE en la tabla `solicitudes` (con fuente y campaña) antes del correo, aunque falte Resend.
   - Mesa real en `/mesa` (`app/mesa/page.tsx`): personas, visitas, páginas, tests, de dónde vienen y tests recibidos, con fechas a un toque. Con clave: `middleware.ts` pide MESA_CLAVE (la pone Ig en Vercel); sin ella no se abre. El repo es público: nada de datos ni claves aquí.
   - Tablas y consultas probadas en un Postgres 16 local. Driver: `@neondatabase/serverless` (`lib/db.ts`).
+- 2026-10-31 (cas·v226) · Base de datos conectada: Neon gratis «casiopea360-db» (Frankfurt), variables con prefijo DATABASE (DATABASE_URL), en Production y Preview. MESA_CLAVE puesta por Ig. Desde este despliegue cuentan las visitas y se guardan los tests.
