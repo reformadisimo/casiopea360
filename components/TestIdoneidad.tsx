@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { leerAtribucion } from "@/lib/atribucion";
+import { apuntarContacto } from "@/components/ContadorVistas";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
@@ -327,6 +328,7 @@ export default function TestIdoneidad() {
     subir();
     if (ok) return setEnvio("enviado");
     if (CONTACTO.whatsapp) {
+      apuntarContacto("contacto_wa");
       window.open(`https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(texto.slice(0, 1800))}`, "_blank", "noopener");
       return setEnvio("enviado");
     }

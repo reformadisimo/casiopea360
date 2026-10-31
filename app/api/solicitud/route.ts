@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { CORREO_BIENVENIDA_ASUNTO, CORREO_BIENVENIDA_HTML } from "@/lib/correoBienvenida";
 import { asegurarTablas, hayBaseDeDatos, sql } from "@/lib/db";
+import { describirOrigen } from "@/lib/origen";
 
 // Recibe las solicitudes del estudio gratuito y las manda por correo con Resend.
 // Se activa sola cuando existen estas variables en Vercel:
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
   const destino = process.env.SOLICITUD_DESTINO;
   const remitente = process.env.SOLICITUD_REMITENTE;
 
-  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string };
+  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string; aterrizaje?: string };
   try {
     datos = await req.json();
   } catch {
@@ -21,7 +22,9 @@ export async function POST(req: Request) {
   }
   // Campo trampa para robots: si viene relleno, se da por buena sin enviar nada.
   if (datos.trampa) return NextResponse.json({ ok: true });
-  const texto = String(datos.texto ?? "").slice(0, 12000);
+  // Siempre con la línea «De dónde viene» (si no hay dato, «sin dato»).
+  const origen = describirOrigen(datos);
+  const texto = `De dónde viene: ${origen}\n\n` + String(datos.texto ?? "").slice(0, 12000);
   const correo = String(datos.correo ?? "").slice(0, 200);
   if (texto.length < 20 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return NextResponse.json({ ok: false }, { status: 400 });
 
@@ -31,9 +34,9 @@ export async function POST(req: Request) {
     try {
       await asegurarTablas();
       const t = (v: unknown, n: number) => String(v ?? "").slice(0, n);
-      await sql()`INSERT INTO solicitudes (nombre, empresa, correo, telefono, encaje, novedades, fuente, campana, pagina, texto, correo_enviado)
+      await sql()`INSERT INTO solicitudes (nombre, empresa, correo, telefono, encaje, novedades, fuente, campana, pagina, aterrizaje, texto, correo_enviado)
         VALUES (${t(datos.nombre, 120)}, ${t(datos.empresa, 160)}, ${correo}, ${t(datos.telefono, 40)}, ${t(datos.encaje, 20)}, ${datos.novedades === true},
-                ${t(datos.fuente, 60) || "directo"}, ${t(datos.campana, 80)}, ${t(datos.pagina, 150)}, ${texto}, ${correoListo})`;
+                ${t(datos.fuente, 60) || "directo"}, ${t(datos.campana, 80)}, ${t(datos.pagina, 150)}, ${t(datos.aterrizaje, 150)}, ${texto}, ${correoListo})`;
     } catch (e) {
       console.error("[solicitud] no guardada en la base de datos:", e);
     }

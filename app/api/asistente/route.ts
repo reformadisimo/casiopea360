@@ -1,4 +1,5 @@
 import { conocimientoAsistente, instruccionesAsistente } from "@/lib/asistente";
+import { describirOrigen } from "@/lib/origen";
 
 // Asistente 24 horas de Casiopea 360, como los de Reformadísimo (Clara) y AMS.
 // Variables de Vercel:
@@ -57,7 +58,7 @@ export async function POST(req: Request) {
         to: [para],
         reply_to: contacto.includes("@") ? contacto : undefined,
         subject: `Te piden contacto desde el asistente: ${nombre || "sin nombre"}`,
-        text: `Alguien ha pedido que le contactemos desde el asistente de la web.\n\nNombre: ${nombre || "(sin nombre)"}\nContacto: ${contacto}\n\nConversación:\n${historial}`,
+        text: `Alguien ha pedido que le contactemos desde el asistente de la web.\n\nNombre: ${nombre || "(sin nombre)"}\nContacto: ${contacto}\nDe dónde viene: ${describirOrigen(b)}\n\nConversación:\n${historial}`,
       }),
     }).catch(() => null);
     return json({ ok: !!r?.ok }, r?.ok ? 200 : 502);

@@ -1,5 +1,6 @@
 "use client";
 
+import { leerAtribucion } from "@/lib/atribucion";
 import { useEffect, useRef, useState } from "react";
 
 // Asistente con IA, abierto día y noche. Responde en directo con lo que sabe de la web
@@ -265,7 +266,7 @@ export default function Asistente() {
     const r = await fetch("/api/asistente", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ accion: "contacto", nombre: f.get("nombre"), contacto: f.get("contacto"), consentimiento: f.get("acepto") === "on", mensajes }),
+      body: JSON.stringify({ accion: "contacto", nombre: f.get("nombre"), contacto: f.get("contacto"), consentimiento: f.get("acepto") === "on", mensajes, ...leerAtribucion() }),
     }).catch(() => null);
     setEstadoContacto(r?.ok ? "ok" : "error");
     if (r?.ok) setFormulario(false);

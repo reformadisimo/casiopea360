@@ -32,6 +32,10 @@ export async function asegurarTablas() {
     texto TEXT, correo_enviado BOOLEAN
   )`;
   await q`CREATE INDEX IF NOT EXISTS solicitudes_por_fecha ON solicitudes (creado)`;
+  await q`ALTER TABLE solicitudes ADD COLUMN IF NOT EXISTS aterrizaje TEXT`;
+  // Pasos de la visita (31-oct): clics en WhatsApp y en llamar, una vez por visita y tipo. Tabla propia, sin reutilizar otra.
+  await q`CREATE TABLE IF NOT EXISTS pasos_visita (id BIGSERIAL PRIMARY KEY, tipo TEXT NOT NULL, pagina TEXT, fuente TEXT, disp TEXT, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
+  await q`CREATE INDEX IF NOT EXISTS pasos_visita_por_fecha ON pasos_visita (creado)`;
   tablasListas = true;
 }
 

@@ -18,10 +18,35 @@ function origen() {
   return { fuente, disp };
 }
 
+/** Apunta un clic en WhatsApp o en llamar, una sola vez por visita y tipo (marcas en sessionStorage). */
+export function apuntarContacto(tipo: "contacto_wa" | "contacto_tel") {
+  try {
+    if (navigator.webdriver) return;
+    const marca = tipo === "contacto_wa" ? "cas-cwa" : "cas-ctel";
+    if (sessionStorage.getItem(marca)) return;
+    sessionStorage.setItem(marca, "1");
+    const { fuente, disp } = origen();
+    navigator.sendBeacon?.("/api/evento", JSON.stringify({ tipo, pagina: window.location.pathname, fuente, disp }));
+  } catch {}
+}
+
 export default function ContadorVistas() {
+  // Clics en WhatsApp y en llamar, en fase de captura, en toda la web (una vez montado).
+  useEffect(() => {
+    const alClic = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+      if (!a) return;
+      const h = a.getAttribute("href") ?? "";
+      if (/^tel:/i.test(h)) apuntarContacto("contacto_tel");
+      else if (/wa\.me|api\.whatsapp|^whatsapp:/i.test(h)) apuntarContacto("contacto_wa");
+    };
+    document.addEventListener("click", alClic, true);
+    return () => document.removeEventListener("click", alClic, true);
+  }, []);
   const ruta = usePathname();
   useEffect(() => {
     if (!ruta || navigator.webdriver || INTERNAS.test(ruta)) return;
+    try { leerAtribucion(); } catch {} // fija el primer toque (origen y página de entrada) nada más llegar
     const t = setTimeout(() => {
       try {
         const { fuente, disp } = origen();

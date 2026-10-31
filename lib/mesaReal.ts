@@ -73,7 +73,7 @@ export async function detalleReal(desde: string, hasta: string, soloCrm = false)
   const crm = Object.entries(crmPor).map(([origen, leads]) => ({ origen, leads, visitas: 0, presupuestos: 0, firmados: 0, firmado: 0, facturado: 0, descartados: 0 }));
   if (soloCrm) return { crm };
 
-  const [pags, ori, pers, tf] = await Promise.all([
+  const [pags, ori, pers, tf, pasos] = await Promise.all([
     q`SELECT pagina, count(*)::int AS n, count(*) FILTER (WHERE disp = 'movil')::int AS movil FROM vistas
       WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date
       GROUP BY pagina ORDER BY n DESC LIMIT 30`,
@@ -82,7 +82,11 @@ export async function detalleReal(desde: string, hasta: string, soloCrm = false)
     q`SELECT count(*) FILTER (WHERE nuevo)::int AS u FROM vistas WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date`,
     q`SELECT fuente, sum(segundos)::int AS s, count(*) FILTER (WHERE rebote)::int AS r FROM tiempos
       WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente`,
+    q`SELECT fuente, count(*)::int AS n FROM pasos_visita WHERE tipo IN ('contacto_wa', 'contacto_tel')
+      AND (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente`,
   ]);
+  const cont: Record<string, number> = {};
+  for (const r of pasos) { const k = canalMesa(r.fuente); cont[k] = (cont[k] ?? 0) + Number(r.n ?? 0); }
   const seg: Record<string, number> = {}, reb: Record<string, number> = {};
   for (const r of tf) { const k = canalMesa(r.fuente); seg[k] = (seg[k] ?? 0) + Number(r.s ?? 0); reb[k] = (reb[k] ?? 0) + Number(r.r ?? 0); }
   const o: Record<string, { n: number; movil: number; visitas: number; personas: number }> = {};
@@ -99,7 +103,7 @@ export async function detalleReal(desde: string, hasta: string, soloCrm = false)
     gsc: null,
     entradas: [],
     personas: Number(pers[0]?.u ?? 0),
-    origenes: Object.entries(o).map(([origen, x]) => ({ origen, ...x, segundos: seg[origen] ?? 0, rebotes: reb[origen] ?? 0 })).sort((a, b) => b.n - a.n),
+    origenes: Object.entries(o).map(([origen, x]) => ({ origen, ...x, segundos: seg[origen] ?? 0, rebotes: reb[origen] ?? 0, contactos: cont[origen] ?? 0 })).sort((a, b) => b.n - a.n),
     crm,
   };
 }
