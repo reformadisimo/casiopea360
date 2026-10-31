@@ -1,0 +1,93 @@
+import { createHash } from "node:crypto";
+import { asegurarTablas, sql } from "@/lib/db";
+
+/* Datos REALES de la mesa de Casiopea (31-oct-2026), con la misma forma que los de la mesa de
+   Reformadísimo (components/mesa/Mesa.tsx). Salen de la base de datos propia:
+   - vistas: contador sin cookies (páginas vistas, visitas, personas, origen, móvil u ordenador)
+   - solicitudes: cada test recibido, con su origen
+   Analytics, Search Console y anuncios se rellenarán cuando existan esas cuentas. */
+
+/** Origen guardado a los nombres de canal que usa la mesa. */
+export function canalMesa(f: string | null | undefined): string {
+  const v = (f ?? "").toLowerCase();
+  if (v === "google-ads") return "Google Ads";
+  if (v === "meta") return "Meta / Instagram";
+  if (v === "chatgpt") return "ChatGPT Ads";
+  if (!v || v === "directo" || /casiopea360/.test(v)) return "Directo o sin dato";
+  if (/google\.|^google$|bing\.|^bing$|duckduckgo|yahoo|ecosia/.test(v)) return "Google (búsqueda)";
+  if (/chatgpt\.com|openai|perplexity|gemini|claude\.ai|copilot/.test(v)) return "Asistentes de IA";
+  if (/instagram|facebook|^fb$|^ig$|tiktok|linkedin|youtube/.test(v)) return "Redes sin pagar";
+  return "Referidos y otras webs";
+}
+
+/** Llave para que la mesa pida sus datos a /api/mesa sin volver a pedir la contraseña. Sale de MESA_CLAVE y no la revela. */
+export function llaveMesa(): string {
+  const c = (process.env.MESA_CLAVE ?? "").trim();
+  return c ? createHash("sha256").update(`casiopea-mesa:${c}`).digest("hex").slice(0, 40) : "";
+}
+
+const hoyMadrid = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Madrid" });
+const suma = (s: string, n: number) => { const d = new Date(`${s}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+
+type DiaWeb = { peticiones: number; visitas: number; calculos: number; porCanal: Record<string, number>; whatsapp: number; llamadas: number; clicsPorFuente: Record<string, number>; vistas: number; entradas: number; personas: number };
+
+export async function datosReales() {
+  await asegurarTablas();
+  const q = sql();
+  const hoy = hoyMadrid();
+  const desde = suma(hoy, -400);
+  const [vistas, sols] = await Promise.all([
+    q`SELECT to_char((creado AT TIME ZONE 'Europe/Madrid')::date, 'YYYY-MM-DD') AS dia, count(*)::int AS n,
+             count(*) FILTER (WHERE entrada)::int AS e, count(*) FILTER (WHERE nuevo)::int AS u
+      FROM vistas WHERE (creado AT TIME ZONE 'Europe/Madrid')::date >= ${desde}::date GROUP BY 1`,
+    q`SELECT to_char((creado AT TIME ZONE 'Europe/Madrid')::date, 'YYYY-MM-DD') AS dia, fuente, count(*)::int AS n
+      FROM solicitudes WHERE (creado AT TIME ZONE 'Europe/Madrid')::date >= ${desde}::date GROUP BY 1, 2`,
+  ]);
+  const web: Record<string, DiaWeb> = {};
+  const dia = (d: string) => (web[d] ??= { peticiones: 0, visitas: 0, calculos: 0, porCanal: {}, whatsapp: 0, llamadas: 0, clicsPorFuente: {}, vistas: 0, entradas: 0, personas: 0 });
+  for (const r of vistas) { const w = dia(String(r.dia)); w.vistas = Number(r.n); w.entradas = Number(r.e); w.personas = Number(r.u); }
+  for (const r of sols) { const w = dia(String(r.dia)); const k = canalMesa(r.fuente); w.peticiones += Number(r.n); w.porCanal[k] = (w.porCanal[k] ?? 0) + Number(r.n); }
+  return {
+    hoy, web, ga: [], gsc: [],
+    anuncios: { actualizado: "", diario: [], mensual: [] },
+    redes: null, google: false,
+    nombre: "Casiopea 360",
+  };
+}
+
+export async function detalleReal(desde: string, hasta: string, soloCrm = false) {
+  await asegurarTablas();
+  const q = sql();
+  const crmFilas = await q`SELECT fuente, count(*)::int AS n FROM solicitudes
+    WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente`;
+  const crmPor: Record<string, number> = {};
+  for (const r of crmFilas) { const k = canalMesa(r.fuente); crmPor[k] = (crmPor[k] ?? 0) + Number(r.n); }
+  const crm = Object.entries(crmPor).map(([origen, leads]) => ({ origen, leads, visitas: 0, presupuestos: 0, firmados: 0, firmado: 0, facturado: 0, descartados: 0 }));
+  if (soloCrm) return { crm };
+
+  const [pags, ori, pers] = await Promise.all([
+    q`SELECT pagina, count(*)::int AS n, count(*) FILTER (WHERE disp = 'movil')::int AS movil FROM vistas
+      WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date
+      GROUP BY pagina ORDER BY n DESC LIMIT 30`,
+    q`SELECT fuente, disp, count(*)::int AS n, count(*) FILTER (WHERE entrada)::int AS e, count(*) FILTER (WHERE nuevo)::int AS u FROM vistas
+      WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date GROUP BY fuente, disp`,
+    q`SELECT count(*) FILTER (WHERE nuevo)::int AS u FROM vistas WHERE (creado AT TIME ZONE 'Europe/Madrid')::date BETWEEN ${desde}::date AND ${hasta}::date`,
+  ]);
+  const o: Record<string, { n: number; movil: number; visitas: number; personas: number }> = {};
+  for (const r of ori) {
+    const k = canalMesa(r.fuente);
+    const x = (o[k] ??= { n: 0, movil: 0, visitas: 0, personas: 0 });
+    x.n += Number(r.n); x.visitas += Number(r.e); x.personas += Number(r.u);
+    if (r.disp === "movil") x.movil += Number(r.n);
+  }
+  return {
+    paginas: pags.map((r) => ({ pagina: String(r.pagina), n: Number(r.n), movil: Number(r.movil) })),
+    clicsPagina: [],
+    lupa: [],
+    gsc: null,
+    entradas: [],
+    personas: Number(pers[0]?.u ?? 0),
+    origenes: Object.entries(o).map(([origen, x]) => ({ origen, ...x })).sort((a, b) => b.n - a.n),
+    crm,
+  };
+}

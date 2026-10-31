@@ -31,6 +31,7 @@ export type DatosMesa = {
   google: boolean;
   fallos?: string[]; // fuentes que no se han podido leer en esta carga (cl·v904): "web", "analytics", "search console"
   clave: string;
+  nombre?: string; // nombre del negocio en la cabecera (por defecto, el del ejemplo)
 };
 type Redes = {
   actualizado: string;
@@ -678,7 +679,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           ) : (<>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">Fuero Abogados · panel de control</p>
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.16em] text-teal-deep">{datos.nombre ?? "Fuero Abogados"} · panel de control</p>
               <h1 className="mt-1 font-serif text-[clamp(28px,4vw,40px)] font-medium italic leading-tight text-ink">Todo lo que pasa, en un sitio</h1>
               <p className="mt-1 text-[14px] text-ink/60">
                 <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-[#25D366] align-middle" />
@@ -695,7 +696,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
             <Ayudas vista={vista} cambiaVista={cambiaVista} abreGuia={() => setGuia(true)} resumen={resumenHoy} tareas={tareas ?? []} />
           ) : (
             <p className="mt-4 rounded-[14px] border border-[#e8d9b8] bg-[#fbf6ea] px-4 py-3 text-[15px] leading-snug text-ink">
-              Ahora mismo no he podido preparar el resumen sencillo (la conclusión del día, las partes y las cifras en frases). Esto es la vista con todas las cifras. Recarga la página dentro de un minuto.
+              {datos.nombre === "Casiopea 360" ? <><b>La vista sencilla</b> (la conclusión del día, las baterías y las cuatro cifras) se enciende cuando conectemos Analytics y los anuncios. De momento, aquí tienes todas las cifras de la web.</> : "Ahora mismo no he podido preparar el resumen sencillo (la conclusión del día, las partes y las cifras en frases). Esto es la vista con todas las cifras. Recarga la página dentro de un minuto."}
             </p>
           )}
           </>)}

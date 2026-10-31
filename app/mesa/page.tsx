@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoCanal } from "@/components/mesa/Alegria";
 import { asegurarTablas, fuenteLegible, hayBaseDeDatos, sql } from "@/lib/db";
+import Mesa from "@/components/mesa/Mesa";
+import VolverWeb from "@/components/VolverWeb";
+import { datosReales, llaveMesa } from "@/lib/mesaReal";
 
 /* MESA DE CASIOPEA 360 (real, 31-oct-2026). Con clave (middleware.ts, MESA_CLAVE), fuera de Google y del mapa del sitio.
    Lee la base de datos propia: el contador sin cookies (tabla vistas) y las solicitudes del test.
@@ -51,7 +54,41 @@ function Cambio({ a, b }: { a: number; b: number }) {
   );
 }
 
-export default async function MesaCasiopea({ searchParams }: { searchParams: Promise<{ p?: string }> }) {
+export default async function MesaCasiopeaPagina({ searchParams }: { searchParams: Promise<{ p?: string }> }) {
+  if (!hayBaseDeDatos()) return <MesaSencilla searchParams={searchParams} />;
+  const d = await datosReales();
+  const hace30 = (() => { const x = new Date(); x.setUTCDate(x.getUTCDate() - 30); return x.toISOString().slice(0, 10); })();
+  const sols = (await sql()`SELECT creado, nombre, empresa, correo, telefono, encaje, fuente, campana, correo_enviado FROM solicitudes
+    WHERE creado >= ${hace30}::date ORDER BY creado DESC LIMIT 100`) as unknown as { creado: string; nombre: string; empresa: string; correo: string; telefono: string; encaje: string; fuente: string; campana: string; correo_enviado: boolean }[];
+  return (
+    <div className="mesa">
+      <VolverWeb que="Mesa de control" />
+      <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 48px 0 0 !important; background: #fff !important; background-image: none !important; }`}</style>
+      <Mesa datos={{ ...(d as unknown as Parameters<typeof Mesa>[0]["datos"]), clave: llaveMesa() }} />
+      <section className="mx-auto max-w-[1180px] px-4 pb-16">
+        <div className="rounded-[22px] border border-line bg-white p-5">
+          <h2 className="font-serif text-[24px] italic text-ink">Tests recibidos · últimos 30 días <span className="text-ink/45">({sols.length})</span></h2>
+          {sols.length === 0 ? <p className="mt-2 text-[15px] text-ink/60">Todavía ninguno.</p> : (
+            <ul className="mt-3 divide-y divide-line">
+              {sols.map((s, i) => (
+                <li key={i} className="grid gap-1 py-3 sm:grid-cols-[9rem_1fr_auto] sm:items-center sm:gap-4">
+                  <span className="text-[13px] text-ink/55">{fechaHora(new Date(s.creado))}</span>
+                  <span>
+                    <b className="text-ink">{s.nombre || "Sin nombre"}</b>{s.empresa ? <span className="text-ink/70"> · {s.empresa}</span> : null}
+                    <span className="block text-[13.5px] text-ink/60"><a className="underline" href={`mailto:${s.correo}`}>{s.correo}</a>{s.telefono ? ` · ${s.telefono}` : ""} · {fuenteLegible(s.fuente)}{s.campana ? ` (${s.campana})` : ""}{s.correo_enviado ? "" : " · no salió por correo"}</span>
+                  </span>
+                  <span className={`justify-self-start rounded-full px-3 py-1 text-[12px] font-bold sm:justify-self-end ${/ALTO/.test(s.encaje ?? "") ? "bg-[#e3f2e8] text-[#1d6b3a]" : /MEDIO/.test(s.encaje ?? "") ? "bg-[#fff1cc] text-[#7a5a00]" : "bg-black/5 text-ink/70"}`}>{s.encaje || "sin etiqueta"}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+async function MesaSencilla({ searchParams }: { searchParams: Promise<{ p?: string }> }) {
   const { p: pq } = await searchParams;
   const per: Periodo = (PERIODOS.find(([k]) => k === pq)?.[0] ?? "28") as Periodo;
   const hoy = hoyMadrid();
