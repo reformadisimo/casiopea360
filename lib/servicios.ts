@@ -185,43 +185,43 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Redes y contenido",
     tituloSeo: "Gestión de redes sociales para empresas",
     descripcionSeo:
-      "Instagram, Facebook, LinkedIn y TikTok con ideas, publicaciones y guiones de reels. Que se vea lo bien que trabajas, dentro de tu cuota de marketing.",
+      "Llevamos tu LinkedIn, Facebook, Instagram y TikTok: publicamos, actualizamos y te damos el contenido. Incluido en tu cuota de marketing.",
     titular: "Que se vea lo bien que trabajas. Sin que tengas que ser influencer.",
     entradilla:
-      "Ideas, publicaciones y guiones para Instagram, Facebook, LinkedIn y TikTok. Te enseñamos a grabar con el móvil y nos ocupamos del montaje.",
+      "Llevamos tu LinkedIn, Facebook, Instagram y TikTok: publicamos, actualizamos y te damos el contenido. Todo incluido en tu cuota.",
     video: "graba-movil",
     videoAlt: "Una mujer graba un vídeo con el móvil en una cafetería",
     video2: "movil-personas",
     videoAlt2: "Dos figuras en 3D conversan sobre un móvil",
     color: "#be185d",
     dolores: [
-      { dolor: "«No tengo tiempo para las redes.»", arreglo: "Te damos ideas y guion. Tú grabas un minuto; el resto, nosotros." },
+      { dolor: "«No tengo tiempo para las redes.»", arreglo: "Lo hacemos todo nosotros. Tú solo sales en algún vídeo." },
       { dolor: "«Publico y no pasa nada.»", arreglo: "Contamos lo que tus clientes quieren ver: tu trabajo, tu equipo, tus resultados." },
       { dolor: "«Mis redes no pegan con mi web ni con mis anuncios.»", arreglo: "Un solo equipo lleva las tres cosas: todo cuenta lo mismo." },
     ],
     como: [
       { paso: "Elegimos qué contar", texto: "Lo que diferencia a tu empresa y lo que tus clientes preguntan." },
-      { paso: "Te damos el guion", texto: "Qué grabar, cómo y en cuánto tiempo. Sin complicaciones." },
-      { paso: "Montamos y publicamos", texto: "Edición, textos y publicación en cada red." },
+      { paso: "Te damos el contenido", texto: "Textos, imágenes e ideas de cada semana. Tú solo lo miras." },
+      { paso: "Publicamos y actualizamos", texto: "En LinkedIn, Facebook, Instagram y TikTok, cada semana." },
       { paso: "Lo reaprovechamos", texto: "Lo que funciona en redes pasa a tus anuncios y a tu web." },
     ],
     plazos: [
       { que: "Un reel montado con tu material", cuando: "Máximo 48 horas" },
       { que: "Publicaciones de la semana", cuando: "Planificadas cada semana" },
-      { que: "Grabación profesional", cuando: "Te ponemos en contacto con la agencia" },
+      { que: "Grabación con equipo", cuando: "La organizamos nosotros; se paga aparte" },
     ],
     preguntas: [
       {
-        p: "¿Tengo que salir yo en los vídeos?",
-        r: "No es obligatorio, aunque las caras de verdad funcionan muy bien. Podemos contarlo con tu trabajo, tu equipo o tus resultados.",
+        p: "¿Qué tengo que hacer yo?",
+        r: "Casi nada: salir en algún vídeo, porque las caras de verdad funcionan muy bien. Lo demás, publicaciones, textos y contenido, lo ponemos nosotros.",
       },
       {
         p: "¿Grabáis vosotros?",
-        r: "No hacemos grabación profesional. Te damos las ideas y el guion, y montamos lo que grabes. Para grabar con equipo, te ponemos en contacto con la agencia con la que trabajamos y le pagas tú directamente.",
+        r: "Sí: si hace falta, te mandamos un equipo de grabación. Lo organizamos nosotros y se paga aparte, sin comisión. Para el día a día basta el móvil: te damos el guion y montamos lo que grabes.",
       },
       {
         p: "¿En qué redes?",
-        r: "En las que estén tus clientes: Instagram, Facebook, LinkedIn o TikTok. No hace falta estar en todas.",
+        r: "LinkedIn, Facebook, Instagram y TikTok, todas incluidas. Te decimos en cuáles están tus clientes y ahí ponemos el foco.",
       },
     ],
     articulos: ["cinco-proveedores-de-marketing-y-ningun-responsable", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo"],

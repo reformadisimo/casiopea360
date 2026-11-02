@@ -23,7 +23,7 @@ export default function Servicios() {
         titulo="Todo lo digital, con un solo equipo."
         clave="un solo equipo"
         chip={{ grande: "En días", chico: "Tu web, no en meses" }}
-        entradilla="Cinco frentes que normalmente llevan cinco empresas distintas. Con nosotros, uno solo, conectado y con un parte cada día."
+        entradilla="Casi nunca falla tu producto: falla que no te ven. Arreglamos los cinco frentes a la vez, con un solo equipo y un parte cada día. Las redes van incluidas en tu cuota."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Servicios" }]}
         video="holograma-redes"
         videoAlt="Iconos de redes sociales flotan sobre un móvil"

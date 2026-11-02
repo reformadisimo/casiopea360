@@ -58,12 +58,12 @@ export const FRENTES: Frente[] = [
   {
     id: "redes",
     nombre: "Redes y contenido",
-    frase: "Que se vea lo bien que trabajas, sin que tengas que ser influencer.",
+    frase: "Llevamos todas tus redes y te damos el contenido. Incluido en tu cuota.",
     servicios: [
-      "Instagram, Facebook, LinkedIn y TikTok",
-      "Ideas, publicaciones y guiones de reels",
-      "Cómo grabar con el móvil y el montaje",
-      "Grabación profesional: te ponemos en contacto con la agencia",
+      "LinkedIn, Facebook, Instagram y TikTok, todo gestionado",
+      "Publicaciones, textos y contenido: te lo damos hecho",
+      "Tú solo sales en algún vídeo; el montaje, nuestro",
+      "Grabación con equipo: la organizamos, se paga aparte",
     ],
   },
   {
@@ -507,11 +507,11 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
   },
   {
     p: "¿Y el vídeo?",
-    corta: "Ponemos las ideas, el guion y el montaje.",
+    corta: "Lo único que te pedimos es que salgas en algún vídeo.",
     puntos: [
-      "Te enseñamos a grabar con el móvil.",
-      "La grabación profesional, con la productora con la que trabajamos.",
-      "Esa parte va aparte y la pagas tú directamente: más transparente.",
+      "Ponemos las ideas, el guion y el montaje.",
+      "Para el día a día, basta el móvil.",
+      "Si hace falta, te mandamos un equipo de grabación: lo organizamos nosotros y se paga aparte, sin comisión.",
     ],
   },
 ];
