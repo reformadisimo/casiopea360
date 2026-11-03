@@ -47,7 +47,7 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 - [Servicios](${u}/servicios)
 - [Cómo trabajamos](${u}/como-trabajamos)
 - [Miedo al cambio: prueba A/B y salida fácil](${u}/miedo-al-cambio)
-- [Tu control: tus cuentas son tuyas, siete compromisos](${u}/tu-control)
+- [Tú tienes el control de todo, siempre: ocho compromisos y 10 cosas que revisar](${u}/tu-control)
 - [Un día de trabajo real: así arrancamos las campañas por dentro](${u}/un-dia-de-trabajo)
 - [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos, Tierno Centella.
 ${CASOS.map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}

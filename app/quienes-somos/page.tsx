@@ -196,7 +196,7 @@ export default function QuienesSomos() {
         enlaces={[
           { texto: "Cómo trabajamos", href: "/como-trabajamos" },
           { texto: "Todo lo que hacemos", href: "/servicios" },
-          { texto: "Tus cuentas son tuyas", href: "/tu-control" },
+          { texto: "Tú tienes el control de todo", href: "/tu-control" },
           { texto: "Por qué contratarnos", href: "/blog/por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo" },
         ]}
       />

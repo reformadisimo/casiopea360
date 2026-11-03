@@ -313,7 +313,7 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
     p: "¿Hay permanencia?",
     corta: "Doce meses, porque la web te la regalamos.",
     puntos: [
-      "Dominio y cuentas, a tu nombre desde el primer día. La web, al cumplir los doce meses.",
+      "Dominio y cuentas, a tu nombre desde el primer día. De la web, copia completa y renovada.",
       "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
       "Más tarde, pagas solo la parte de la web que falte. Baja hasta cero a los doce meses y la conoces antes de firmar.",
       "Pasados los doce meses, ninguna permanencia.",
@@ -550,7 +550,7 @@ export const DOLORES = [
   },
   {
     dolor: "Mi agencia tiene mi web y mis cuentas. Si me voy, lo pierdo todo.",
-    solucion: "Dominio y cuentas a tu nombre desde el primer día. La web, a los doce meses o antes, pagando lo que falte.",
+    solucion: "Dominio y cuentas a tu nombre desde el primer día. De la web, copia completa y renovada con cada cambio.",
   },
   {
     dolor: "Una web nueva tarda meses y cada cambio es otro presupuesto.",

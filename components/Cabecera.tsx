@@ -146,7 +146,7 @@ export default function Cabecera() {
                   )}
                 </li>
               ) : (
-                <li key={m.texto}>
+                <li key={m.texto} className={m.soloAncho ? "hidden 2xl:block" : undefined}>
                   <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3">
                     {m.texto}
                   </Link>

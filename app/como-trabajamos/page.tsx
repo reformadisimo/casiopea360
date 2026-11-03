@@ -3,7 +3,7 @@ import SigueLeyendo from "@/components/SigueLeyendo";
 import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor } from "@/components/secciones";
+import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor, BandaEnlaceControl } from "@/components/secciones";
 import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos, SeccionComoTrabajamos } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -44,9 +44,10 @@ export default function ComoTrabajamos() {
       <SeccionPruebasAB />
       <SeccionParte />
       <SeccionLoFirmamos />
+      <BandaEnlaceControl />
       <SigueLeyendo
         enlaces={[
-          { texto: "Tus cuentas son tuyas", href: "/tu-control" },
+          { texto: "Tú tienes el control de todo", href: "/tu-control" },
           { texto: "Marketing sin reuniones ni llamadas", href: "/blog/marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo" },
           { texto: "Un día de trabajo real", href: "/un-dia-de-trabajo" },
           { texto: "Todo lo que hacemos", href: "/servicios" },

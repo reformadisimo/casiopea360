@@ -10,6 +10,7 @@ import { SeccionSonarEnGrande, SeccionEquipo, SeccionTiempo, SeccionPorQueContra
 import {
   BOTON,
   BOTON_CLARO,
+  BandaControl,
   BandaVideo,
   CintaHerramientas,
   ENVOLTORIO,
@@ -74,6 +75,7 @@ export default function Inicio() {
       <SeccionEquipo />
       <SeccionComoEsPosible />
       <SeccionLoFirmamos />
+      <BandaControl />
       <BandaMiedoAlCambio />
       <SeccionAsiLoVeras />
       <SeccionSonarEnGrande />

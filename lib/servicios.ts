@@ -47,7 +47,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     dolores: [
       { dolor: "«Mi web es vieja y tarda en cargar.»", arreglo: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos." },
       { dolor: "«Cada cambio es un presupuesto y una espera.»", arreglo: "Cambios del día a día en 48 horas máximo, dentro de la cuota." },
-      { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio, cuentas y contactos, siempre a tu nombre. La web, tuya a los doce meses." },
+      { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio, cuentas y contactos, siempre a tu nombre. De la web, copia completa desde el primer mes." },
     ],
     como: [
       { paso: "Miramos lo que tienes", texto: "Qué te trae clientes hoy y qué no, para no perder lo ganado en Google." },
@@ -74,7 +74,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿La web es mía?",
-        r: "El dominio y las cuentas, sí, a tu nombre desde el primer día. La web te la regalamos y es tuya al cumplir los doce meses, o antes si pagas la parte que falte. Si un día te vas, te llevas siempre tus cuentas y tus contactos.",
+        r: "El dominio y las cuentas, sí, a tu nombre desde el primer día. De la web te damos una copia completa desde el primer mes y te la renovamos con cada cambio. La alojamos nosotros doce meses, porque te la regalamos; si te vas antes, pagas solo la parte que falte. Te llevas siempre tus cuentas, tus contactos y tu web.",
       },
       {
         p: "¿Usáis WordPress?",

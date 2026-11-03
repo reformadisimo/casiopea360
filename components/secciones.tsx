@@ -1040,20 +1040,39 @@ export function BandaMiedoAlCambio() {
   );
 }
 
-/* Portada: tus cuentas son tuyas (siete compromisos de control). */
+/* Enlace corto a «Tú tienes el control» para Servicios y Cómo trabajamos (3-nov-2026). */
+export function BandaEnlaceControl() {
+  return (
+    <section className="bg-niebla py-8">
+      <div className={ENVOLTORIO}>
+        <a href="/tu-control" className="group flex flex-col gap-3 rounded-[1.6rem] border-2 border-estrella bg-white p-5 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <Loseta icono="llave" i={1} className="sm:mr-1" />
+          <span className="flex-1">
+            <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">Nuestro principio número uno</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Tú tienes el control de todo. Siempre.</span>
+            <span className="mt-1 block text-gris">Tus cuentas a tu nombre, tu web con copia y tus contactos, tuyos. Te vas cuando quieras.</span>
+          </span>
+          <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Ver los ocho compromisos</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* Portada: tú tienes el control de todo (ocho compromisos). */
 export function BandaControl() {
   return (
     <section className="relative overflow-hidden bg-white py-14 sm:py-20">
       <Nebulosa variante={3} />
       <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
-          <Etiqueta icono="escudo">Tu control</Etiqueta>
-          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tus cuentas son tuyas. Tú mandas.</h2>
+          <Etiqueta icono="escudo">Nuestro principio número uno</Etiqueta>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tú tienes el control de todo. Siempre.</h2>
           <p className="mt-5 text-lg text-gris">
-            <b className="text-tinta">Tu dominio y tus cuentas, a tu nombre.</b> Si te vas, te llevas cuentas y contactos. La web, a los doce meses.
+            <b className="text-tinta">Tus cuentas, a tu nombre y con tu tarjeta.</b> Tu web, con copia completa. Tus contactos, tuyos. Nosotros, invitados.
           </p>
-          <p className="mt-4 text-lg text-gris">Te quedas porque te servimos, no porque no puedas irte.</p>
-          <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver tus siete compromisos</a>
+          <p className="mt-4 text-lg text-gris">Te vas cuando quieras, con todo lo tuyo. Preferimos que te quedes porque quieres.</p>
+          <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver los ocho compromisos</a>
         </div>
         <ol className="grid gap-3">
           {COMPROMISOS.map((c, i) => (

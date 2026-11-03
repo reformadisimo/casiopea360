@@ -2,23 +2,23 @@ import Link from "next/link";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { BOTON, ENVOLTORIO, LlamadaFinal, Loseta } from "@/components/secciones";
-import { COMPROMISOS, FICHA } from "@/lib/control";
+import { CHEQUEO, COMPROMISOS, FICHA } from "@/lib/control";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 import { Bocadillo, CajaIdea, ChipIcono, Etiqueta, Nebulosa, TarjetaViva } from "@/components/Vida";
 
 export const metadata = meta(
-  "Tu control: tus cuentas son tuyas",
-  "Dominio, Google Ads, Analytics, ficha de Google y redes a tu nombre. Tú decides quién entra, tu dinero va entero a los anuncios y tus cuentas y tus contactos son siempre tuyos. No te pedimos tu facturación: te pedimos dos números.",
+  "Tú tienes el control de todo, siempre",
+  "Tus cuentas, a tu nombre y pagadas con tu tarjeta: dominio, correo, Google Ads, Meta, Analytics, ficha de Google y redes. Tu web, con copia completa. Tus contactos, tuyos. Nosotros solo somos invitados y te vas cuando quieras, con todo lo tuyo.",
   "/tu-control",
 );
 
-const PREGUNTAS: [string, string, string][] = [
-  ["globo", "¿A nombre de quién está tu dominio?", "Si no es el tuyo, no puedes decidir dónde vive tu web."],
-  ["llave", "¿Eres administrador de tu cuenta de Google Ads?", "Si solo eres un usuario más, otro puede cerrarla o quedarse con el historial."],
-  ["euro", "¿Quién cobra la comisión sobre tu publicidad?", "Tu dinero de anuncios debería ir entero a los anuncios."],
-  ["pagina", "¿Puedes llevarte tu web?", "Con sus textos, sus fotos, sus formularios y su código."],
-  ["crm", "¿Tienes tus contactos?", "Quién ha pedido información y qué compró es tuyo, no de quien lo guarda."],
+// Lo que pasa muchas veces en el sector, sin nombrar a nadie (3-nov-2026).
+const PROBLEMA: [string, string][] = [
+  ["llave", "No puedes entrar ni en tu propia cuenta de Google Ads."],
+  ["pagina", "Tu web no es tuya, o no tienes copia."],
+  ["grafica", "Tus anuncios y su historial se quedan donde estaban."],
+  ["euro", "Te cobran por devolverte lo que ya era tuyo."],
 ];
 
 const PASOS_TICKET: [string, string, string][] = [
@@ -31,24 +31,46 @@ const PASOS_TICKET: [string, string, string][] = [
 export default function TuControl() {
   return (
     <>
-      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Tu control", ruta: "/tu-control" }])} />
+      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Tú tienes el control", ruta: "/tu-control" }])} />
       <CabeceraPagina
         ejemplo
-        titulo="Tus cuentas son tuyas. Tú mandas."
-        clave="tuyas"
-        entradilla="Tu dominio y tus cuentas, a tu nombre. Te quedas porque te servimos, no porque no puedas irte."
-        migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tu control" }]}
+        titulo="Tú tienes el control de todo. Siempre."
+        clave="Siempre."
+        entradilla="Tus cuentas, tu web y tus contactos son tuyos. Nosotros solo somos invitados, y te vas cuando quieras con todo lo tuyo."
+        migas={[{ texto: "Inicio", href: "/" }, { texto: "Cómo trabajamos", href: "/como-trabajamos" }, { texto: "Tú tienes el control" }]}
       />
+
+      <section className="relative overflow-hidden bg-niebla py-16 sm:py-20">
+        <Nebulosa variante={2} />
+        <div className={`${ENVOLTORIO} relative`}>
+          <Etiqueta icono="bombilla">El problema</Etiqueta>
+          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">«Quise cambiar de proveedor y no podía entrar ni en mis cuentas.»</h2>
+          <p className="mt-5 max-w-3xl text-lg text-gris">
+            <b className="text-tinta">Pasa mucho:</b> las cuentas del negocio se abren a nombre de quien lo lleva. Y el día que quieres irte:
+          </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {PROBLEMA.map(([ic, t], k) => (
+              <li key={t} className="flex items-center gap-4 rounded-[1.4rem] bg-white p-5 ring-1 ring-linea">
+                <ChipIcono icono={ic} i={k} />
+                <span className="min-w-0 text-lg font-extrabold">{t}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 max-w-3xl text-lg text-gris">
+            Por eso muchos negocios no cambian aunque no estén contentos: <b className="text-tinta">por miedo a perderlo todo.</b>
+          </p>
+          <Bocadillo className="mt-5 max-w-3xl">Aquí no trabajamos así. Con nadie.</Bocadillo>
+        </div>
+      </section>
 
       <section className="relative overflow-hidden bg-white py-20 sm:py-24">
         <Nebulosa variante={0} />
         <div className={`${ENVOLTORIO} relative`}>
-          <Etiqueta icono="firma">Siete compromisos</Etiqueta>
-          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Esto es lo que te prometemos. Y solo esto.</h2>
+          <Etiqueta icono="firma">Ocho compromisos</Etiqueta>
+          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Cómo trabajamos nosotros</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">
-            <b className="text-tinta">Muchas veces, la web o el dominio están a nombre de otro.</b> Y eso da miedo al cambiar.
+            <b className="text-tinta">El jefe eres tú.</b> Preferimos clientes que se quedan porque quieren, no porque no pueden irse.
           </p>
-          <Bocadillo className="mt-5 max-w-3xl">Aquí es al revés: el jefe eres tú.</Bocadillo>
           <ol className="mt-12 grid gap-5 md:grid-cols-2">
             {COMPROMISOS.map((c, i) => (
               <TarjetaViva
@@ -78,7 +100,7 @@ export default function TuControl() {
         <Nebulosa variante={1} />
         <div className={`${ENVOLTORIO} relative`}>
           <Etiqueta icono="lista">Un ejemplo</Etiqueta>
-          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Así queda tu ficha de cuentas</h2>
+          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Así queda tu inventario de cuentas</h2>
           <p className="mt-5 max-w-3xl text-lg text-gris">Un ejemplo inventado. La tuya la tienes siempre a mano y al día.</p>
           <div className="mt-10 overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-linea">
             <div className="hidden grid-cols-[1fr_1.1fr_1fr] gap-3 bg-noche px-5 py-4 text-sm font-extrabold text-white sm:grid sm:px-7">
@@ -165,11 +187,11 @@ export default function TuControl() {
         <Nebulosa oscura variante={3} />
         <div className={`${ENVOLTORIO} relative`}>
           <Etiqueta tono="estrella" icono="chat">Compruébalo hoy</Etiqueta>
-          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Cinco preguntas que puedes hacer a quien lleve tu marketing</h2>
+          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">¿Tienes tú el control? Revisa estas 10 cosas</h2>
           <p className="mt-5 max-w-3xl text-lg text-white/80">Sirven con cualquiera, también con nosotros. Si alguna respuesta no te gusta, ya sabes dónde mirar.</p>
           <ol className="mt-10 grid gap-4 md:grid-cols-2">
-            {PREGUNTAS.map(([ic, p, d], i) => (
-              <TarjetaViva key={p} icono={ic} i={i} titulo={p} texto={d} claro chip={`Pregunta ${i + 1}`} />
+            {CHEQUEO.map(([ic, p, d], i) => (
+              <TarjetaViva key={p} icono={ic} i={i} titulo={p} texto={d} claro chip={`${i + 1} de 10`} />
             ))}
           </ol>
           <p className="mt-10 text-lg text-white/85">
@@ -185,12 +207,12 @@ export default function TuControl() {
           <div className="flex max-w-2xl items-start gap-4">
             <Loseta icono="mano" i={3} className="mt-1" />
             <div className="min-w-0 text-lg text-gris">
-              <p className="font-extrabold text-tinta">¿Y si quieres irte?</p>
+              <p className="font-extrabold text-tinta">¿Y si quieres irte? Cuando quieras, sin pedirnos permiso.</p>
               <ul className="mt-2 grid gap-1.5">
                 {[
                   ["A los tres meses:", "sin pagar nada, si no hemos mejorado los indicadores que fijamos contigo al empezar."],
                   ["Más adelante:", "pagando solo la parte de la web que falte."],
-                  ["Siempre:", "te llevas tus cuentas y tus contactos."],
+                  ["Siempre:", "te llevas tus cuentas, tus contactos y la copia de tu web."],
                 ].map(([b, r]) => (
                   <li key={b} className="flex items-start gap-2">
                     <span aria-hidden="true" className="mt-0.5 font-extrabold text-noche-3">✓</span>

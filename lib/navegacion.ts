@@ -26,7 +26,8 @@ export const SERVICIOS_MENU: Enlace[] = [
   { icono: "lista", texto: "Cuánto te costaría por separado", href: "/servicios#costes", detalle: "La tabla, por tamaño de empresa" },
 ];
 
-export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
+// soloAncho: en la barra de escritorio solo se ve en pantallas muy anchas (también está dentro de «Cómo trabajamos»).
+export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean })[] = [
   { texto: "Servicios", href: "/servicios", hijos: SERVICIOS_MENU },
   {
     texto: "Cómo trabajamos",
@@ -35,14 +36,15 @@ export const MENU: (Enlace & { hijos?: Enlace[] })[] = [
       { icono: "regalo", texto: "Un ejemplo real", href: "/lo-que-consigues", detalle: "Tu web, tu guía, tus correos, tu panel y tu CRM, ya hechos para un despacho inventado" },
       { icono: "engranaje", texto: "Un día de trabajo real", href: "/un-dia-de-trabajo", detalle: "Lo que hacemos por dentro, sin cajas negras" },
       { icono: "escudo", texto: "Miedo al cambio", href: "/miedo-al-cambio", detalle: "Pruébalo con tu web al lado, sin riesgo" },
-      { icono: "llave", texto: "Tu control", href: "/tu-control", detalle: "Tus cuentas son tuyas y tú mandas" },
+      { icono: "llave", texto: "Tú tienes el control", href: "/tu-control", detalle: "Tus cuentas, tu web y tus contactos son tuyos" },
       { icono: "lupa", texto: "Lupa 360 de ejemplo", href: "/lupa-ejemplo", detalle: "Lo que hace la gente en tu web, sobre la nuestra" },
       { icono: "chat", texto: "Avisos de ejemplo", href: "/avisos-ejemplo", detalle: "Cómo le llegarían los mensajes a tu cliente" },
       { icono: "crm", texto: "CRM de ejemplo", href: "/crm-ejemplo", detalle: "Cada contacto, lo que toca hoy y de dónde viene" },
       { icono: "calendario", texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
     ],
   },
-  { texto: "Panel", href: "/panel", detalle: "Así verás tus resultados" },
+  { texto: "Tu control", href: "/tu-control", detalle: "Tú tienes el control de todo, siempre" },
+  { texto: "Panel", href: "/panel", detalle: "Así verás tus resultados", soloAncho: true },
   { texto: "Trabajos", href: "/trabajos" },
   { texto: "Nosotros", href: "/quienes-somos" },
   {
