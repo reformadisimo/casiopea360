@@ -25,7 +25,7 @@ const titular = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITIO.url),
   title: {
-    default: "Casiopea 360 · Todo tu marketing digital. Todo. Mejor. En días.",
+    default: "Casiopea 360 · Tu marketing digital, al máximo nivel",
     template: "%s · Casiopea 360",
   },
   description: SITIO.descripcion,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     siteName: SITIO.nombre,
-    title: "Casiopea 360 · Todo tu marketing digital. Todo. Mejor. En días.",
+    title: "Casiopea 360 · Tu marketing digital, al máximo nivel",
     description: SITIO.descripcion,
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Casiopea 360: crece en digital sin ir de proveedor en proveedor" }],
   },

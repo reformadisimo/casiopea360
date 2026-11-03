@@ -11,8 +11,9 @@ export default function Pie() {
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <Logo claro />
-          <p className="mt-4 max-w-xs text-[0.95rem]">
-            Todo tu marketing digital con un solo equipo. Precio fijo, sin comisiones y un parte cada día.
+          <p className="mt-3 font-titular text-lg font-extrabold text-estrella">Tu marketing digital, al máximo nivel.</p>
+          <p className="mt-2 max-w-xs text-[0.95rem]">
+            Un solo equipo para todo. Precio fijo, sin comisiones y un parte cada día.
           </p>
           <Link
             href="/estudio-gratuito"

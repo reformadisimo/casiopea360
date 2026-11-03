@@ -39,7 +39,7 @@ export default function Inicio() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
           <div>
-            <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Todo. Mejor. En días.</Etiqueta>
+            <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Tu marketing digital, al máximo nivel</Etiqueta>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
             <p className="mt-6 max-w-xl text-lg font-extrabold text-white sm:text-xl">Deja de coordinar proveedores. Empieza a crecer.</p>
             <p className="mt-2 max-w-xl text-lg text-white/85 sm:text-xl">

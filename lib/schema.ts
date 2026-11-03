@@ -40,7 +40,7 @@ export function schemaOrganizacion() {
     },
     areaServed: { "@type": "Country", name: "España" },
     knowsLanguage: "es",
-    slogan: "Todo. Mejor. En días. Deja de coordinar proveedores. Empieza a crecer.",
+    slogan: "Tu marketing digital, al máximo nivel.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Servicios de marketing digital 360",
