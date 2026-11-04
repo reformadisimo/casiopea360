@@ -11,6 +11,8 @@ import ChipVideo from "@/components/ChipVideo";
 import Subrayado from "@/components/Subrayado";
 import LogoMarca from "@/components/LogoMarca";
 import AlEntrar from "@/components/AlEntrar";
+import Nitido from "@/components/Nitido";
+import MiniPantalla from "@/components/MiniPantalla";
 import Constelacion from "@/components/Constelacion";
 import AntesDespues from "@/components/AntesDespues";
 import TrasCarga from "@/components/TrasCarga";
@@ -1068,11 +1070,22 @@ export function BandaControl() {
       <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
           <Etiqueta icono="escudo">Nuestro principio número uno</Etiqueta>
-          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tú tienes el control de todo. <span className="tono2">Siempre.</span></h2>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl"><Nitido>Tú tienes el control de todo. <span className="tono2">Siempre.</span></Nitido></h2>
           <p className="mt-5 text-lg text-gris">
             <b className="text-tinta">Tus cuentas, a tu nombre y con tu tarjeta.</b> Tu web, con copia completa. Tus contactos, tuyos. Nosotros, invitados.
           </p>
           <p className="mt-4 text-lg text-gris">Te vas cuando quieras, con todo lo tuyo. Preferimos que te quedes porque quieres.</p>
+          <MiniPantalla
+            className="mt-7 max-w-md"
+            titulo="Tus cuentas, a tu nombre"
+            filas={[
+              { texto: "Dominio de la web", marca: "tuyo" },
+              { texto: "Google Ads y Analytics", marca: "a tu nombre" },
+              { texto: "Meta y Bing", marca: "a tu nombre" },
+              { texto: "Correo de empresa", marca: "tuyo" },
+            ]}
+            pie="Ejemplo de inventario"
+          />
           <a href="/tu-control" className={`${BOTON} mt-8 inline-flex`}>Ver los ocho compromisos</a>
         </div>
         <ol className="grid gap-3">
@@ -1566,6 +1579,18 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
               </div>
               <h3 className="mt-4 text-xl font-extrabold">{x.t}</h3>
               <p className="mt-2 text-gris">{x.d}</p>
+              {i === 0 && (
+                <MiniPantalla
+                  className="mt-4"
+                  titulo="Test de idoneidad"
+                  filas={[
+                    { texto: "A qué te dedicas", marca: "hecho" },
+                    { texto: "Qué tienes hoy", marca: "hecho" },
+                    { texto: "Facturación, por tramos", marca: "o la saltas" },
+                  ]}
+                  pie="Ejemplo, unos 5 minutos"
+                />
+              )}
             </li>
           ))}
         </ol>

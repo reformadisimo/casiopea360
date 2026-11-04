@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChipIcono, Etiqueta, Nebulosa } from "@/components/Vida";
 import { BOTON, ENVOLTORIO } from "@/components/secciones";
+import Nitido from "@/components/Nitido";
 
 /* «El problema casi nunca es tu producto: es que no te ven» (1-nov-2026, Ig).
    Lo que vemos al entrar en una empresa a la que no le va bien, y cómo lo arreglamos.
@@ -19,7 +20,7 @@ export default function SeccionVisibilidad() {
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta icono="ojo">Lo que vemos casi siempre</Etiqueta>
         <h2 id="visibilidad" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">
-          Tu producto es bueno. <span className="text-noche-3">El problema es que no te ven.</span>
+          <Nitido>Tu producto es bueno. <span className="text-noche-3">El problema es que no te ven.</span></Nitido>
         </h2>
         <p className="mt-4 max-w-3xl text-lg text-gris">
           <b className="text-tinta">En las empresas a las que no les va bien, casi nunca falla el producto ni el servicio.</b> Falla la visibilidad, y suele ser por esto:

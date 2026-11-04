@@ -5,6 +5,7 @@ import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
 import SeccionVisibilidad from "@/components/SeccionVisibilidad";
+import TarjetaEncargadoPortada from "@/components/TarjetaEncargadoPortada";
 import { ChipIcono, Etiqueta } from "@/components/Vida";
 import { SeccionSonarEnGrande, SeccionEquipo, SeccionEncargado, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import {
@@ -63,6 +64,7 @@ export default function Inicio() {
           <div className="mx-auto w-full max-w-xl px-2">
             <Constelacion />
             <p className="mt-4 text-center text-[0.95rem] text-white/65">Cinco frentes, un solo equipo.</p>
+            <TarjetaEncargadoPortada />
           </div>
         </div>
       </section>

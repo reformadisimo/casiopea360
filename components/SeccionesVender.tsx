@@ -1,3 +1,4 @@
+import Nitido from "@/components/Nitido";
 import Link from "next/link";
 import AlEntrar from "@/components/AlEntrar";
 import { BOTON, BOTON_CLARO, ENVOLTORIO, Loseta } from "@/components/secciones";
@@ -276,7 +277,7 @@ export function SeccionEncargado() {
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1fr]`}>
         <div>
           <Etiqueta icono="sonrisa">Tu encargado de proyecto</Etiqueta>
-          <h2 id="encargado" className="mt-5 text-3xl font-extrabold sm:text-5xl">Una sola persona. <span className="tono2">Siempre la misma.</span></h2>
+          <h2 id="encargado" className="mt-5 text-3xl font-extrabold sm:text-5xl"><Nitido>Una sola persona. <span className="tono2">Siempre la misma.</span></Nitido></h2>
           <p className="mt-5 text-lg text-gris">
             <b className="text-tinta">Al empezar, te asignamos un encargado de proyecto.</b> Es la única persona que te escribe y a quien escribes tú.
           </p>

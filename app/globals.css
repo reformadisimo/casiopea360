@@ -524,3 +524,7 @@ html[data-texto="3"] header { zoom: 0.667; }
 .portada [data-etq]:has(+ h2) > span:last-child::before{content:"(" counter(seccion, decimal-leading-zero) ") · ";opacity:.7;font-variant-numeric:tabular-nums}
 .tono2{color:#8a93ad}
 .text-white .tono2,.bg-noche .tono2{color:rgb(255 255 255 / .55)}
+/* Titulares que pasan de borrosos a nítidos al llegar a pantalla (componente Nitido) */
+.nitido{transition:filter .9s ease,opacity .9s ease,transform .9s ease}
+.nitido-pre{filter:blur(14px);opacity:0;transform:translateY(10px)}
+.nitido-pre.nitido-ya{filter:none;opacity:1;transform:none}
