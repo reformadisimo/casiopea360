@@ -39,7 +39,7 @@ export default function Inicio() {
           <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/80 via-noche/25 to-transparent" />
-        <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]`}>
+        <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start`}>
           <div>
             <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Tu marketing digital, al máximo nivel</Etiqueta>
             <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
@@ -61,7 +61,7 @@ export default function Inicio() {
               ))}
             </ul>
           </div>
-          <div className="mx-auto w-full max-w-xl px-2">
+          <div className="mx-auto w-full max-w-xl px-2 lg:sticky lg:top-28 lg:pt-16">
             <Constelacion />
             <p className="mt-4 text-center text-[0.95rem] text-white/65">Cinco frentes, un solo equipo.</p>
             <TarjetaEncargadoPortada />
