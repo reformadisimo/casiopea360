@@ -160,6 +160,40 @@ export default function Cabecera() {
                 </li>
               ),
             )}
+            {/* Solo en la pastilla flotante: lo que no cabe en ella, en un desplegable. */}
+            {pastilla && (
+              <li
+                className="relative hidden xl:block"
+                onPointerEnter={(e) => e.pointerType === "mouse" && abrir("Más")}
+                onPointerLeave={(e) => e.pointerType === "mouse" && cerrarLuego()}
+              >
+                <button
+                  type="button"
+                  aria-expanded={abierto === "Más"}
+                  aria-haspopup="true"
+                  onClick={() => setAbierto(abierto === "Más" ? null : "Más")}
+                  className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
+                >
+                  Más
+                  <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${abierto === "Más" ? "rotate-180" : ""}`}>
+                    <path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {abierto === "Más" && (
+                  <div className="absolute right-0 top-full w-56 pt-2">
+                    <ul className="overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)]">
+                      {MENU.filter((m) => !m.pastilla && !m.soloAncho).map((m) => (
+                        <li key={m.href + m.texto}>
+                          <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="block rounded-xl px-3 py-2.5 font-bold hover:bg-niebla">
+                            {m.texto}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            )}
           </ul>
         </nav>
 
