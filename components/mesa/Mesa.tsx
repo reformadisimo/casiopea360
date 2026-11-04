@@ -53,7 +53,7 @@ type Detalle = {
   clarity?: { dias: number; desde: string | null; paginas: FilaClarity[]; dispositivos: FilaClarity[] } | null;
   rebote?: { dispositivo: FilaRebote[]; zona: FilaRebote[]; tipo: FilaRebote[]; paginas: FilaRebote[] } | null;
   personas?: number | null;
-  origenes?: { origen: string; n: number; movil: number; visitas: number; personas: number; segundos?: number; rebotes?: number; contactos?: number }[];
+  origenes?: { origen: string; n: number; movil: number; visitas: number; personas: number; segundos?: number; rebotes?: number; contactos?: number; llamadas?: number }[];
   crm: { origen: string; leads: number; visitas: number; presupuestos: number; firmados: number; firmado: number; facturado: number; descartados: number; respondidos?: number; horas_resp?: number; vencidas?: number }[];
 };
 
@@ -110,15 +110,16 @@ function VisitasReales({ T: T0, C, origenes, cargando, a, b, adsHasta, inicio }:
               <th className="px-3 py-2 text-right">Páginas vistas</th>
               <th className="px-3 py-2 text-right">Tiempo por persona</th>
               <th className="px-3 py-2 text-right">Rebote</th>
-              <th className="px-3 py-2 text-right">WhatsApp y llamadas</th>
+              <th className="px-3 py-2 text-right">Pulsan WhatsApp</th>
+              <th className="px-3 py-2 text-right">Pulsan llamar</th>
               {hayAds && <th className="px-3 py-2 text-right">Clics que cobra el anuncio</th>}
             </tr>
           </thead>
           <tbody>
             {cargando && !filas.length ? (
-              <tr><td colSpan={8} className="px-3 py-3 text-ink/50">Cargando…</td></tr>
+              <tr><td colSpan={9} className="px-3 py-3 text-ink/50">Cargando…</td></tr>
             ) : !filas.length ? (
-              <tr><td colSpan={8} className="px-3 py-3 text-ink/50">Sin visitas en estas fechas.</td></tr>
+              <tr><td colSpan={9} className="px-3 py-3 text-ink/50">Sin visitas en estas fechas.</td></tr>
             ) : filas.map((r) => {
               const c = clics(r.origen);
               return (
@@ -130,6 +131,7 @@ function VisitasReales({ T: T0, C, origenes, cargando, a, b, adsHasta, inicio }:
                   <td className="px-3 py-2 text-right tabular-nums">{r.personas && r.segundos ? mmss(r.segundos / r.personas) : "-"}</td>
                   <td className="px-3 py-2 text-right tabular-nums">{r.visitas && vivo.rebotes ? `${nf.format(((r.rebotes ?? 0) / r.visitas) * 100)} %` : "-"}</td>
                   <td className="px-3 py-2 text-right tabular-nums">{sinClicsAun ? "-" : num(r.contactos ?? 0)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{sinClicsAun ? "-" : num(r.llamadas ?? 0)}</td>
                   {hayAds && <td className="px-3 py-2 text-right tabular-nums text-ink/70">{esAnuncio(r.origen) ? (c === undefined ? "llega mañana" : num(c)) : ""}</td>}
                 </tr>
               );
@@ -138,7 +140,7 @@ function VisitasReales({ T: T0, C, origenes, cargando, a, b, adsHasta, inicio }:
         </table>
       </div>
       <p className="mt-2 text-[12.5px] leading-snug text-ink/55">
-        <b className="text-ink/70">Personas:</b> gente distinta cada día. <b className="text-ink/70">Visitas:</b> cada vez que alguien abre la web. <b className="text-ink/70">Tiempo:</b> el rato con la web a la vista. <b className="text-ink/70">Rebote:</b> de cada 100 visitas, cuántas se van en menos de 10 segundos sin ver otra página. <b className="text-ink/70">WhatsApp y llamadas:</b> visitas que pulsan el botón de WhatsApp o un teléfono (una vez por visita){INICIO_CLICS ? "; se cuentan desde el 31 de octubre" : ""}.
+        <b className="text-ink/70">Personas:</b> gente distinta cada día. <b className="text-ink/70">Visitas:</b> cada vez que alguien abre la web. <b className="text-ink/70">Tiempo:</b> el rato con la web a la vista. <b className="text-ink/70">Rebote:</b> de cada 100 visitas, cuántas se van en menos de 10 segundos sin ver otra página. <b className="text-ink/70">Pulsan WhatsApp y Pulsan llamar:</b> visitas que pulsan el botón de WhatsApp o un teléfono, cada uno por separado (una vez por visita){INICIO_CLICS ? "; se cuentan desde el 31 de octubre" : ""}.
       </p>
     </section>
   );
@@ -1852,7 +1854,7 @@ function Pregunta({ clave }: { clave: string }) {
     if (!t || cargando) return;
     setCargando(true); setError("");
     if (clave === "demo") {
-      setR((x) => [{ q: t, a: "Esto es una demostración: aquí Claude te contestaría en dos o tres frases con los datos reales de tu mesa. Por ejemplo: «La campaña que mejor funciona es Google Búsqueda: 20 contactos a 70 € cada uno.»" }, ...x].slice(0, 5));
+      setR((x) => [{ q: t, a: "Esto es una demostración: aquí te contestaríamos en dos o tres frases con los datos reales de tu mesa. Por ejemplo: «La campaña que mejor funciona es Google Búsqueda: 20 contactos a 70 € cada uno.»" }, ...x].slice(0, 5));
       setQ(""); setCargando(false); return;
     }
     try {
