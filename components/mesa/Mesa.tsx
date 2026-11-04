@@ -1668,7 +1668,7 @@ const ACCESOS: Acceso[] = [
   { t: "CRM", icono: "persona", color: "#2f6fd0", d: "Contactos, consultas y casos, de cada persona", fondo: "#e7efe6", borde: "#5d7a57", href: "/crm-ejemplo" },
   { t: "Índice de valor", icono: "estrella", color: "#c79a00", d: "Qué clientes valen más que tu media, sin decirnos cuánto facturas", fondo: "#fbf3df", borde: "#b8924a", href: "/servicios/crm-a-medida" },
   { t: "Avisos y recordatorios", icono: "campana", color: "#25a244", d: "Mensajes al móvil para citas y respuesta al momento (WhatsApp o SMS)", fondo: "#e4f3e6", borde: "#25a244", href: "/avisos-ejemplo" },
-  { t: "Espejo de la IA", icono: "espejo", color: "#d9822b", d: "Qué dicen de nosotros ChatGPT, Gemini y Claude", fondo: "#f6eedc", borde: "#b8924a", tema: "dicen" },
+  { t: "Espejo de la IA", icono: "espejo", color: "#d9822b", d: "Qué dicen de nosotros ChatGPT, Claude, Gemini y Perplexity", fondo: "#f6eedc", borde: "#b8924a", tema: "dicen" },
   { t: "Vigía de la competencia", icono: "catalejo", color: "#1d6b3a", d: "Sus webs, reseñas y puestos en Google, cada semana", fondo: "#e8efe5", borde: "#5d7a57", tema: "mercado" },
 ];
 

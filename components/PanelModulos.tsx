@@ -276,7 +276,7 @@ const EXPLICA: Record<string, [string, string, string]> = {
   sistemas: ["Una comprobación diaria de que tu web, tus formularios y tus anuncios funcionan.", "Si algo falla, lo arreglamos antes de que lo notes.", "Nada."],
   control360: ["Una prueba como la haría un cliente: entra, usa la calculadora y rellena el formulario.", "La hacemos cada lunes y marcamos los contactos de prueba para que no cuenten.", "Nada."],
   web: ["Lo rápida y segura que es tu web, y qué hace la gente dentro.", "Medimos, cuidamos la seguridad y guardamos copia de cada cambio.", "Nada."],
-  espejo: ["Lo que responden ChatGPT, Gemini y Claude cuando un cliente pregunta por lo tuyo.", "Preguntamos cada semana y reforzamos tu información donde no sales.", "Nada."],
+  espejo: ["Lo que responden ChatGPT, Claude, Gemini y Perplexity cuando un cliente pregunta por lo tuyo.", "Preguntamos cada semana y reforzamos tu información donde no sales.", "Nada."],
   redes: ["Cuánta gente te sigue, cuántos te piden presupuesto desde ahí y tus reseñas.", "Publicamos, diseñamos y seguimos los resultados.", "Contestar reseñas, si quieres hacerlo tú. Si no, nos lo pides."],
   vigia: ["Lo que hace tu competencia y cualquiera puede ver: precios, anuncios, reseñas y posiciones.", "Te avisamos de lo importante y te proponemos qué hacer.", "Decidir si ajustas algo. La decisión es tuya."],
   contactos: ["Las personas que te escriben, llaman o piden presupuesto, y por dónde llegan.", "Lo medimos todo solos, sin que tengas que apuntar nada.", "Atenderlos cuanto antes: cuanto antes se llama, más se convierte. Una confirmación automática por WhatsApp o SMS también es contestar al momento."],

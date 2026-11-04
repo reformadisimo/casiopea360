@@ -167,7 +167,7 @@ const TAREAS: { t: string; d: string; donde: string; id: string }[] = [
 const HERRAMIENTAS_LISTA: [string, string, string][] = [
   ["La lupa", "La web con lo que hace la gente encima: dónde tocan y hasta dónde bajan", "lupa"],
   ["Control 360", "Probamos tu recorrido completo como lo haría un cliente", "control360"],
-  ["Espejo de la IA", "Qué dicen de ti ChatGPT, Gemini y Claude", "espejo"],
+  ["Espejo de la IA", "Qué dicen de ti ChatGPT, Claude, Gemini y Perplexity", "espejo"],
   ["Vigía de la competencia", "Sus webs, reseñas y puestos en Google, cada semana", "vigia"],
   ["Índice de valor", "Qué clientes valen más que tu media, sin decirnos cuánto facturas", "indice"],
   ["Avisos y recordatorios", "Mensajes al móvil para citas y respuesta al momento", "avisos"],

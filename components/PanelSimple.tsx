@@ -212,7 +212,7 @@ export default function PanelSimple(p: Props) {
       <section aria-label="De dónde salen los datos" className="mt-8">
         <p className="sans-ey">Conectado con</p>
         <ul className="mt-2 flex flex-wrap gap-2">
-          {["Google Analytics", "Google Ads", "Meta", "Ficha de Google", "Search Console", "WhatsApp", "Instagram", "TikTok", "ChatGPT", "Gemini", "Claude"].map((n) => (
+          {["Google Analytics", "Google Ads", "Meta", "Ficha de Google", "Search Console", "WhatsApp", "Instagram", "TikTok", "ChatGPT", "Gemini", "Claude", "Perplexity"].map((n) => (
             <li key={n} className="flex items-center gap-2 rounded-full border bg-white py-1.5 pl-2 pr-3.5 text-[14px] font-semibold" style={{ borderColor: BORDE }}><LogoMarca nombre={n} tam={24} />{n}</li>
           ))}
         </ul>
@@ -224,7 +224,7 @@ export default function PanelSimple(p: Props) {
           <Cifra n="persona" c="#1d6b3a" titulo={`${p.contactos} personas se han puesto en contacto`} texto={sube} luz="ok" ayuda="Son las personas que te han escrito, llamado o pedido consulta desde tu web, tus anuncios o Google. Lo medimos solos." />
           <Cifra n="documento" c="#2f6fd0" titulo="54 piden consulta de cada 100" texto="Es mejor que en el periodo anterior." luz="ok" ayuda="De todos los que te contactan, estos son los que de verdad quieren una consulta y no solo una duda." />
           <Cifra n="moneda" c="#c79a00" titulo="10 € por contacto anunciado" texto={antes} luz="ok" ayuda="Lo que has invertido en anuncios dividido entre los contactos que han llegado. Cuanto más bajo, mejor." />
-          <Cifra n="espejo" c="#d9822b" titulo="Sales en 16 de 18 respuestas de las IA" texto="En 2 preguntas todavía no." luz="atencion" ayuda="Preguntamos cada semana a ChatGPT, Gemini y Claude lo que preguntaría un cliente, y contamos en cuántas respuestas apareces." />
+          <Cifra n="espejo" c="#d9822b" titulo="Sales en 16 de 18 respuestas de las IA" texto="En 2 preguntas todavía no." luz="atencion" ayuda="Preguntamos cada semana a ChatGPT, Claude, Gemini y Perplexity lo que preguntaría un cliente, y contamos en cuántas respuestas apareces." />
         </div>
       </section>
 

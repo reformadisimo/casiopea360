@@ -20,7 +20,7 @@ export const temasDemo: Modulo[] = [
     conclusion: "Google 4,7 con 180 reseñas. Las IAs te nombran en 16 de 18 respuestas.",
     filas: [
       { t: "Google", v: "4,7 de 5 · 180 opiniones" },
-      { t: "Espejo de la IA", v: "Sales en 16 de 18 respuestas de ChatGPT, Gemini y Claude", luz: "verde" },
+      { t: "Espejo de la IA", v: "Sales en 16 de 18 respuestas de ChatGPT, Claude, Gemini y Perplexity", luz: "verde" },
       { t: "Para mirar", v: "En 2 preguntas todavía no sales: «asesoría laboral para empresas» y «abogado de acoso laboral con buena fama».", luz: "ambar" },
       { t: "Ficha de Google: veces que sale", v: "2.100 (+8 % frente a antes)" },
     ], enlaces: [] },

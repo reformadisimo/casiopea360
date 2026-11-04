@@ -24,6 +24,7 @@ const LOGO: Record<string, string> = {
   ChatGPT: "openai.svg",
   Gemini: "googlegemini.svg",
   Claude: "claude.svg",
+  Perplexity: "perplexity.svg",
   "App Store": "apple.svg",
   "Google Play": "googleplay.svg",
   "Google Chrome": "googlechrome.svg",

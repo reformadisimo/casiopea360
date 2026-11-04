@@ -74,6 +74,7 @@ const HERRAMIENTAS = [
   "ChatGPT",
   "Gemini",
   "Claude",
+  "Perplexity",
   "Vercel",
   "Semrush",
   "Clarity",

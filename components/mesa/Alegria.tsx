@@ -70,7 +70,7 @@ const LOGO: Record<string, string> = {
   "Google Ads": "google-ads-icono.png", "Ficha de Google": "google-business-profile-icono.png", "Google Maps": "googlemaps.svg", Meta: "meta.svg",
   Facebook: "facebook.png", Instagram: "instagram.jpg", LinkedIn: "linkedin.svg", TikTok: "tiktok.png", YouTube: "youtube.svg", WhatsApp: "whatsapp-business.jpg",
   Gmail: "gmail.svg", Resend: "resend.svg", Semrush: "semrush.svg", PageSpeed: "pagespeedinsights.svg", Vercel: "vercel.svg", ChatGPT: "openai.svg",
-  Gemini: "googlegemini.svg", Claude: "claude.svg",
+  Gemini: "googlegemini.svg", Claude: "claude.svg", Perplexity: "perplexity.svg",
 };
 export function LogoMarca({ nombre, tam = 24 }: { nombre: string; tam?: number }) {
   const f = LOGO[nombre];
@@ -192,7 +192,7 @@ export function LogoCanal({ canal }: { canal: string }) {
   if (typeof x === "string") return <span aria-hidden="true" className="mr-2 inline-grid h-[26px] w-[26px] shrink-0 place-items-center rounded-[8px] border border-line bg-white align-middle"><LogoMarca nombre={x} tam={18} /></span>;
   return <span className="mr-2 inline-block align-middle"><Loseta n={x[0]} color={x[1]} tam={26} /></span>;
 }
-const MARCAS_FILA = /^(Google Ads|Ficha de Google|Instagram|Google|Meta|WhatsApp|ChatGPT|Gemini|Claude|Semrush)\b/;
+const MARCAS_FILA = /^(Google Ads|Ficha de Google|Instagram|Google|Meta|WhatsApp|ChatGPT|Gemini|Claude|Perplexity|Semrush)\b/;
 /** Logo al principio de una fila de detalle si empieza por el nombre de una plataforma. */
 export function LogoFila({ texto }: { texto: string }) {
   const m = texto.match(MARCAS_FILA);
@@ -532,6 +532,7 @@ export const GLOSARIO: Record<string, string> = {
   "ChatGPT": "Comprobamos si ChatGPT nos recomienda cuando alguien le pregunta por un abogado laboralista en Madrid. Y sus anuncios, cuando los hay.",
   "Gemini": "La IA de Google. Comprobamos si nos recomienda.",
   "Claude": "Otra IA. Comprobamos si nos recomienda.",
+  "Perplexity": "Otra IA, que busca en internet y cita sus fuentes. Comprobamos si nos recomienda.",
   "Supermetrics": "El puente que cada mañana trae los datos de Google Ads, Meta, la ficha de Google e Instagram a esta mesa.",
   "Lupa 360": "La lupa de Casiopea: mira cómo se mueve la gente por la web (sin saber quién es) y avisa de dónde se atasca.",
   "CRM": "La libreta de clientes: cada contacto, su consulta, su propuesta de honorarios y si firmó.",

@@ -774,7 +774,7 @@ export const ARTICULOS: Articulo[] = [
         ],
       },
       { h2: "Cómo medirlo" },
-      { p: "Se puede hacer cada mes: preguntar a ChatGPT, Gemini y Claude lo mismo que preguntaría un cliente («¿qué empresa de X me recomiendas en Madrid?») y apuntar quién sale." },
+      { p: "Se puede hacer cada mes: preguntar a ChatGPT, Claude, Gemini y Perplexity lo mismo que preguntaría un cliente («¿qué empresa de X me recomiendas en Madrid?») y apuntar quién sale." },
       { p: "Hay herramientas que lo hacen a diario. Así sabes si vas avanzando." },
       {
         p: "En nuestro estudio gratuito incluimos esta prueba: te decimos si las IA te recomiendan hoy y qué haríamos para mejorarlo. Es parte de nuestro [trabajo en Google y las IA](/servicios/seo-google-ia).",

@@ -200,7 +200,7 @@ type Herramienta = { id: string; nombre: string; frase: string; estado: Estado; 
 
 const HERRAMIENTAS: Herramienta[] = [
   { id: "lupa", nombre: "Lupa 360", frase: "Ves lo que hace la gente en tu web.", estado: "Disponible", nota: "Se activa en tu web con el permiso de cookies de cada visitante. Aquí, datos de ejemplo.", color: "#c2410c" },
-  { id: "espejo", nombre: "Espejo de la IA", frase: "Ves qué dicen de ti ChatGPT, Gemini y Claude.", estado: "Próximamente", nota: "Cada semana, las mismas preguntas que haría un cliente.", color: "#7c3aed" },
+  { id: "espejo", nombre: "Espejo de la IA", frase: "Ves qué dicen de ti ChatGPT, Claude, Gemini y Perplexity.", estado: "Próximamente", nota: "Cada semana, las mismas preguntas que haría un cliente.", color: "#7c3aed" },
   { id: "vigia", nombre: "Vigía", frase: "Ves los cambios importantes de tu competencia.", estado: "Próximamente", nota: "Solo con información pública: su web, sus anuncios y sus reseñas.", color: "#0f766e" },
   { id: "sistemas", nombre: "Sistemas", frase: "Comprobamos cada día que tu web, tus formularios y tus anuncios funcionan.", estado: "Próximamente", nota: "Cada día, a primera hora y de forma automática.", color: "#1d4ed8" },
   { id: "recorrido", nombre: "Control 360", frase: "Probamos tu recorrido completo como lo haría un cliente.", estado: "Próximamente", nota: "De punta a punta, cada semana. Los contactos de prueba van marcados y no cuentan.", color: "#be123c" },
@@ -295,7 +295,7 @@ export function Herramientas360({ inicial = "lupa", solo }: { inicial?: string; 
       )}
 
       {abierta === "espejo" && (
-        <Bloque titulo="Espejo de la IA · qué dicen de ti" fuente="ChatGPT, Gemini y Claude" quien="nosotros">
+        <Bloque titulo="Espejo de la IA · qué dicen de ti" fuente="ChatGPT, Claude, Gemini y Perplexity" quien="nosotros">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[34rem] text-left text-sm">
               <thead><tr className="text-xs text-gris"><th className="pb-2 pr-3 font-bold">Pregunta de un cliente</th><th className="pb-2 pr-3 font-bold">ChatGPT</th><th className="pb-2 pr-3 font-bold">Gemini</th><th className="pb-2 font-bold">Claude</th></tr></thead>
@@ -765,7 +765,7 @@ const PREGUNTAS_PANEL: [string, string][] = [
   ["¿Cómo voy este mes?", "Han llegado 312 contactos, un 16 % más que antes, y cada uno te cuesta 10 €, un 8 % menos. Ahora mismo no hay nada urgente."],
   ["¿Qué canal me trae más contactos?", "Despidos en Google: trae el 38 % de los contactos con el coste por contacto más bajo. Por eso le hemos subido el presupuesto un 10 %."],
   ["¿Qué me toca hacer hoy?", "Llamar a los 3 contactos que llevan más de 3 días sin respuesta. Las 2 reseñas nuevas de Google pueden esperar a esta semana."],
-  ["¿Por qué el Espejo de la IA está en naranja?", "Sales en 16 de 18 respuestas de ChatGPT, Gemini y Claude. En 2 preguntas todavía no, y estamos reforzando tu información para esas."],
+  ["¿Por qué el Espejo de la IA está en naranja?", "Sales en 16 de 18 respuestas de ChatGPT, Claude, Gemini y Perplexity. En 2 preguntas todavía no, y estamos reforzando tu información para esas."],
   ["¿Cuánto me cuesta cada cliente?", "Todavía no lo sé: hace falta que marques quién ha firmado, y es opcional. Si quieres, está en Lo tuyo."],
 ];
 
