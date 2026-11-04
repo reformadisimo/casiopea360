@@ -28,11 +28,13 @@ export const SERVICIOS_MENU: Enlace[] = [
 ];
 
 // soloAncho: en la barra de escritorio solo se ve en pantallas muy anchas (también está dentro de «Cómo trabajamos»).
-export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean })[] = [
-  { texto: "Servicios", href: "/servicios", hijos: SERVICIOS_MENU },
+// pastilla: lo que se queda en la pastilla flotante que sale al bajar (en escritorio).
+export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean; pastilla?: boolean })[] = [
+  { texto: "Servicios", href: "/servicios", hijos: SERVICIOS_MENU, pastilla: true },
   {
     texto: "Cómo trabajamos",
     href: "/como-trabajamos",
+    pastilla: true,
     hijos: [
       { icono: "regalo", texto: "Un ejemplo real", href: "/lo-que-consigues", detalle: "Tu web, tu guía, tus correos, tu panel y tu CRM, ya hechos para un despacho inventado" },
       { icono: "engranaje", texto: "Un día de trabajo real", href: "/un-dia-de-trabajo", detalle: "Lo que hacemos por dentro, sin cajas negras" },
@@ -44,9 +46,9 @@ export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean })[] = [
       { icono: "calendario", texto: "Panel de ejemplo", href: "/panel", detalle: "Así verás tus resultados en tiempo real" },
     ],
   },
-  { texto: "Tu control", href: "/tu-control", detalle: "Tú tienes el control de todo, siempre" },
+  { texto: "Tu control", href: "/tu-control", detalle: "Tú tienes el control de todo, siempre", pastilla: true },
   { texto: "Panel", href: "/panel", detalle: "Así verás tus resultados", soloAncho: true },
-  { texto: "Trabajos", href: "/trabajos" },
+  { texto: "Trabajos", href: "/trabajos", pastilla: true },
   { texto: "Nosotros", href: "/quienes-somos" },
   {
     texto: "Haz el test",

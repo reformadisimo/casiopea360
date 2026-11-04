@@ -60,6 +60,9 @@ export default function Cabecera() {
     };
   }, [movil]);
 
+  // En escritorio, al bajar, la barra se recoge en una pastilla flotante centrada con lo principal.
+  const pastilla = solida && !movil;
+
   const cerrarTodo = () => {
     setAbierto(null);
     setMovil(false);
@@ -69,18 +72,22 @@ export default function Cabecera() {
     <header
       className={`fixed inset-x-0 top-0 z-40 overflow-x-clip transition-colors duration-300 ${
         solida || movil ? "bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
-      }`}
+      } ${pastilla ? "xl:pointer-events-none xl:bg-transparent xl:shadow-none xl:backdrop-blur-none" : ""}`}
     >
-      <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        {/* El azul exacto de la loseta del logo nace detrás de él y se funde hacia la noche: la loseta desaparece y resalta la W. */}
-        <span
-          aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 -left-[100vw] -z-10 w-[calc(100vw+300px)] bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-240px),rgba(36,64,255,0)_100%)] sm:w-[calc(100vw+520px)] sm:bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-450px),rgba(36,64,255,0)_100%)] ${
-            solida || movil ? "" : "[mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
-          }`}
-        />
+      <div
+        className={`relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 transition-[margin,padding,border-radius] duration-300 sm:px-6 ${
+          pastilla ? "xl:pointer-events-auto xl:mt-3 xl:w-fit xl:max-w-none xl:gap-5 xl:rounded-full xl:bg-noche/95 xl:px-4 xl:py-2 xl:shadow-[0_18px_40px_-16px_rgba(14,26,61,0.6)] xl:ring-1 xl:ring-white/15 xl:backdrop-blur" : ""
+        }`}
+      >
+        {/* Con la barra sólida, el azul exacto de la loseta del logo nace detrás de él y se funde hacia la noche. Sobre la portada (que ahora es una tarjeta) no hace falta: el logo lleva su propio brillo. */}
+        {(solida || movil) && (
+          <span
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-0 -left-[100vw] -z-10 w-[calc(100vw+300px)] bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-240px),rgba(36,64,255,0)_100%)] sm:w-[calc(100vw+520px)] sm:bg-[linear-gradient(90deg,#2440ff_0%,#2440ff_calc(100%-450px),rgba(36,64,255,0)_100%)] ${pastilla ? "xl:hidden" : ""}`}
+          />
+        )}
         <Link prefetch={false} href="/" title="Ir al inicio" onClick={cerrarTodo} className="relative mr-1 shrink-0 sm:mr-3">
-          <Logo claro fundido />
+          <Logo claro fundido={solida || movil} />
         </Link>
 
         <nav ref={navRef} aria-label="Principal" className="hidden xl:block">
@@ -89,7 +96,7 @@ export default function Cabecera() {
               m.hijos ? (
                 <li
                   key={m.texto}
-                  className="relative"
+                  className={`relative ${pastilla && !m.pastilla ? "xl:hidden" : ""}`}
                   // Solo el ratón abre al pasar por encima; en pantallas táctiles (iPad) manda el toque.
                   onPointerEnter={(e) => e.pointerType === "mouse" && abrir(m.texto)}
                   onPointerLeave={(e) => e.pointerType === "mouse" && cerrarLuego()}
@@ -146,7 +153,7 @@ export default function Cabecera() {
                   )}
                 </li>
               ) : (
-                <li key={m.texto} className={m.soloAncho ? "hidden 2xl:block" : undefined}>
+                <li key={m.texto} className={`${m.soloAncho ? "hidden 2xl:block" : ""} ${pastilla && !m.pastilla ? "xl:hidden" : ""}`}>
                   <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3">
                     {m.texto}
                   </Link>

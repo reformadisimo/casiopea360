@@ -56,11 +56,11 @@ export default function CifrasEquipo({ claro = false }: { claro?: boolean }) {
     <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {CIFRAS_EQUIPO.map((c) => (
         <div key={c.texto} className={`rounded-[1.6rem] p-6 ${claro ? "border border-linea bg-white" : "border border-white/15 bg-white/[0.06] backdrop-blur-sm"}`}>
-          <p className={`text-5xl font-extrabold leading-none ${claro ? "text-noche" : "text-estrella"}`}>
+          <p className={`text-5xl font-extrabold leading-none tracking-[-0.03em] ${claro ? "text-noche" : "text-estrella"}`}>
             <Cuenta valor={c.valor} activo={activo} />
             {c.despues}
           </p>
-          <p className={`mt-3 ${claro ? "text-gris" : "text-white/80"}`}>{c.texto}</p>
+          <p className={`mt-3 text-sm ${claro ? "text-gris" : "text-white/80"}`}>{c.texto}</p>
         </div>
       ))}
     </div>
