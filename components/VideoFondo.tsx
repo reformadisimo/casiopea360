@@ -35,14 +35,18 @@ export default function VideoFondo({
   className = "",
   alt,
   prioridad = false,
+  hd = false,
 }: {
   nombre: string;
   className?: string;
   alt: string;
   prioridad?: boolean;
+  // Si existe «<nombre>-hd.mp4» (Full HD), se usa en pantallas grandes y con buena conexión; en móvil, la versión ligera.
+  hd?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [cargar, setCargar] = useState(false);
+  const [usarHd, setUsarHd] = useState(false);
   // Las fotos que no son de la cabecera esperan a que la página termine de cargar,
   // para que lo primero que se descargue sea lo que se ve al abrir.
   const [foto, setFoto] = useState(prioridad);
@@ -91,6 +95,13 @@ export default function VideoFondo({
           if (visible) {
             listo.then(() => {
               if (cancelado || !visible) return;
+              if (hd) {
+                try {
+                  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+                  const lenta = !!c && (c.saveData === true || /(^|-)2g$|3g/.test(c.effectiveType ?? ""));
+                  setUsarHd(window.matchMedia("(min-width: 1024px)").matches && !lenta);
+                } catch {}
+              }
               setCargar(true);
               arrancar(v);
             });
@@ -106,7 +117,7 @@ export default function VideoFondo({
       cancelado = true;
       io.disconnect();
     };
-  }, [prioridad]);
+  }, [prioridad, hd]);
 
   // Al añadir la fuente del vídeo, se carga y arranca.
   useEffect(() => {
@@ -143,7 +154,7 @@ export default function VideoFondo({
         preload="none"
         aria-label={alt}
       >
-        {cargar && <source src={`/video/${nombre}.mp4`} type="video/mp4" />}
+        {cargar && <source src={`/video/${nombre}${usarHd ? "-hd" : ""}.mp4`} type="video/mp4" />}
       </video>
     </div>
   );
