@@ -516,6 +516,10 @@ html[data-texto="3"] header { zoom: 0.667; }
 /* Portada al estilo de Ícaro (4-nov-2026): secciones numeradas «(01) ·» en la etiqueta que va justo encima de cada titular,
    y titulares en dos tonos (la segunda frase, más suave). */
 .portada{counter-reset:seccion}
+/* Portada y secciones como tarjetas redondeadas sobre un gris azulado (idea de Ícaro) */
+.portada{background:#e3e8f4;padding:.5rem;display:flex;flex-direction:column;gap:.5rem}
+.portada > section{border-radius:1.75rem;overflow:clip;position:relative;isolation:isolate}
+@media (min-width:640px){.portada{padding:.75rem;gap:.75rem}.portada > section{border-radius:2.5rem}}
 .portada [data-etq]:has(+ h2){counter-increment:seccion}
 .portada [data-etq]:has(+ h2) > span:last-child::before{content:"(" counter(seccion, decimal-leading-zero) ") · ";opacity:.7;font-variant-numeric:tabular-nums}
 .tono2{color:#8a93ad}
