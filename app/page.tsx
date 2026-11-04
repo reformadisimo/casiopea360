@@ -6,7 +6,7 @@ import Subrayado from "@/components/Subrayado";
 import SeccionAsiLoVeras from "@/components/SeccionAsiLoVeras";
 import SeccionVisibilidad from "@/components/SeccionVisibilidad";
 import { ChipIcono, Etiqueta } from "@/components/Vida";
-import { SeccionSonarEnGrande, SeccionEquipo, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
+import { SeccionSonarEnGrande, SeccionEquipo, SeccionEncargado, SeccionTiempo, SeccionPorQueContratarnos } from "@/components/SeccionesVender";
 import {
   BOTON,
   BOTON_CLARO,
@@ -73,6 +73,7 @@ export default function Inicio() {
       <SeccionTiempo />
       <SeccionPorQueContratarnos />
       <SeccionEquipo />
+      <SeccionEncargado />
       <SeccionComoEsPosible />
       <SeccionLoFirmamos />
       <BandaControl />

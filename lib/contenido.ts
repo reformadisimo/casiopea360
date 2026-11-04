@@ -425,6 +425,11 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
     puntos: ["La velocidad de la web: el primer día.", "La ficha de Google y las reseñas: semanas.", "Google y las IA: entre 3 y 6 meses."],
   },
   {
+    p: "¿Con quién voy a hablar?",
+    corta: "Con una sola persona: tu encargado de proyecto, que te asignamos al empezar.",
+    puntos: ["No te escriben el director, el de SEO, la diseñadora ni el informático. Solo él.", "Detrás están los especialistas que haga falta, y los coordina él."],
+  },
+  {
     p: "¿Qué tengo que hacer yo?",
     corta: "Lo mínimo. Del resto nos ocupamos nosotros.",
     puntos: ["Quince minutos para darnos los accesos.", "Unas fotos de tus trabajos.", "Tu visto bueno a lo que salga en tu nombre."],

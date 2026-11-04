@@ -1042,7 +1042,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "¿De verdad no hay reuniones ni llamadas?", r: "No las hay por defecto. Trabajamos por correo y WhatsApp. Si una llamada es imprescindible, o la prefieres tú, se hace. Casi nunca hace falta." },
       { p: "¿Cuánto tiempo me llevará al principio?", r: "Depende de tu negocio: reunir los accesos, los datos y las fotos. Te decimos qué necesitamos desde el principio, para que lo hagas de una vez." },
       { p: "¿Funciona para cualquier tipo de negocio?", r: "Funciona especialmente bien en negocios donde el dueño es quien trabaja y no tiene tiempo para coordinar proveedores: oficios, despachos, comercios, clínicas y empresas de servicios." },
-      { p: "¿Quién es mi contacto?", r: "Una sola persona que coordina todo y a quien escribes por correo o WhatsApp, aunque detrás haya varios especialistas." },
+      { p: "¿Quién es mi contacto?", r: "Tu encargado de proyecto: una sola persona que te asignamos al empezar, que coordina todo y a quien escribes por correo o WhatsApp, aunque detrás haya varios especialistas." },
     ],
     enlaces: [
       { texto: "Cómo trabajamos", href: "/como-trabajamos" },
@@ -1078,6 +1078,7 @@ export const ARTICULOS: Articulo[] = [
       { h2: "Razón 2: un solo contacto para todo" },
       { p: "[Web, Google, anuncios, redes, CRM, automatizaciones e inteligencia artificial](/servicios), con una sola persona que coordina todo." },
       { p: "Detrás hay una red de especialistas que seleccionamos desde 2004, autónomos que cobran por proyecto. Tú hablas con uno." },
+      { p: "Al empezar te asignamos un encargado de proyecto, y es el único que te escribe. No te llegan correos del director, del de SEO, de la diseñadora ni del informático." },
       { h2: "Razón 3: rápido" },
       { p: "Una web nueva la tenemos en unos días; lo habitual en el sector son tres, cuatro o cinco meses." },
       { p: "Y las mejoras (landings, pruebas A/B, cambios) se hacen en horas o en pocos días, sin presupuestos nuevos cada vez." },

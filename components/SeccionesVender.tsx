@@ -43,7 +43,7 @@ export function SeccionSonarEnGrande() {
 export function SeccionComoTrabajamos() {
   const pasos = ["Investigamos", "Probamos", "Medimos", "Corregimos", "Volvemos a probar"];
   const tarjetas: [string, string, string][] = [
-    ["sonrisa", "Una red de especialistas, sin oficinas que pagar", "Una persona lleva tu proyecto. Detrás, colaboradores de años que entran cuando hacen falta."],
+    ["sonrisa", "Un encargado de proyecto, y una red detrás", "Al empezar te asignamos una persona, y solo te escribe ella. Detrás, colaboradores de años."],
     ["bombilla", "Una curva de aprendizaje muy pequeña", "El panel te lleva de la mano y cada cosa rara tiene su «?». En pocos días te mueves solo."],
     ["lupa", "Y los errores, a la vista", "Ninguna herramienta está libre de errores. Los buscamos cada día y, si ves uno, nos lo dices con un toque y lo arreglamos."],
   ];
@@ -185,7 +185,7 @@ export function SeccionTiempo() {
 export function SeccionPorQueContratarnos() {
   const razones: [string, string, string][] = [
     ["reloj", "Tu tiempo vuelve a tu trabajo", "Sin reuniones ni llamadas innecesarias. Correo y WhatsApp, breve y rápido."],
-    ["sonrisa", "Un solo contacto para todo", "Web, Google, anuncios, redes, CRM e IA. Una persona coordina a la red de especialistas."],
+    ["sonrisa", "Un solo contacto para todo", "Web, Google, anuncios, redes, CRM e IA. Tu encargado de proyecto lo coordina y es el único que te escribe."],
     ["rayo", "Rápido", "Tu web en unos días, no en meses. Las mejoras, en horas o pocos días, sin presupuestos nuevos."],
     ["grafica", "Todos tus datos, al momento", "Un panel que se entiende a la primera y un CRM que dice de dónde viene cada cliente."],
     ["escudo", "Todo es tuyo", "Dominio, cuentas, ficha de Google y contactos, a tu nombre. No te pedimos tu facturación."],
@@ -230,7 +230,7 @@ export function SeccionEquipo() {
     ["trofeo", "22 años seleccionando", "Desde 2004, probando y quedándonos con los que cumplen: en calidad, en plazos y en trato."],
     ["euro", "Autónomos, por proyecto", "Cobran por cada proyecto. Sin gasto fijo de personal: no pagas a nadie parado."],
     ["calendario", "Plazos cerrados", "Cada encargo sale con su fecha desde el principio, y se cumple o se te cuenta por qué."],
-    ["sonrisa", "Un solo contacto", "Hablas con una persona, que coordina a los especialistas que haga falta."],
+    ["sonrisa", "Un encargado para tu proyecto", "Al empezar te asignamos una persona. Solo te escribe ella, y coordina a los especialistas."],
   ];
   return (
     <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="equipo-detras">
@@ -253,6 +253,52 @@ export function SeccionEquipo() {
           ))}
         </ul>
         <Bocadillo claro className="mt-8 max-w-3xl">Por eso el precio es tan bueno: sin oficinas ni plantilla parada, todo va a trabajo hecho.</Bocadillo>
+      </div>
+    </section>
+  );
+}
+
+/** Tu encargado de proyecto (4-nov-2026, Ig): al empezar se asigna una persona y es la única que escribe al cliente.
+    Nada de correos del director, del de SEO, de la diseñadora o del informático. Así no mareamos al cliente. */
+export function SeccionEncargado() {
+  const muchos = ["Correo del director", "Correo del de SEO", "Correo de la diseñadora", "Correo del informático", "Correo del de anuncios"];
+  return (
+    <section className="relative overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="encargado">
+      <Nebulosa variante={1} />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1fr]`}>
+        <div>
+          <Etiqueta icono="sonrisa">Tu encargado de proyecto</Etiqueta>
+          <h2 id="encargado" className="mt-5 text-3xl font-extrabold sm:text-5xl">Una sola persona. Siempre la misma.</h2>
+          <p className="mt-5 text-lg text-gris">
+            <b className="text-tinta">Al empezar, te asignamos un encargado de proyecto.</b> Es la única persona que te escribe y a quien escribes tú.
+          </p>
+          <p className="mt-4 text-lg text-gris">Detrás están los especialistas que haga falta. Los coordina él, no tú.</p>
+          <Bocadillo className="mt-6 max-w-xl">Así no te mareamos. En nuestra experiencia, todo es mucho más fácil.</Bocadillo>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-[1.6rem] bg-niebla p-5">
+            <p className="text-sm font-extrabold uppercase tracking-wide text-gris">Lo que no te va a pasar</p>
+            <ul className="mt-4 grid gap-2">
+              {muchos.map((m) => (
+                <li key={m} className="flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 text-gris ring-1 ring-linea">
+                  <span aria-hidden="true" className="font-extrabold text-rose-600">✕</span>
+                  <span className="min-w-0 line-through decoration-rose-400">{m}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col rounded-[1.6rem] bg-noche p-5 text-white">
+            <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Con nosotros</p>
+            <div className="mt-4 flex items-center gap-3 rounded-xl bg-white px-3 py-3 text-tinta">
+              <Loseta icono="sonrisa" i={2} />
+              <span className="min-w-0">
+                <b className="block leading-snug">Tu encargado de proyecto</b>
+                <span className="text-sm text-gris">Uno. Para todo.</span>
+              </span>
+            </div>
+            <p className="mt-4 text-white/85">Web, Google, anuncios, redes y CRM: te lo cuenta todo la misma persona, por correo o WhatsApp.</p>
+          </div>
+        </div>
       </div>
     </section>
   );
