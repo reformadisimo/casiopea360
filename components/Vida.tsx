@@ -58,7 +58,7 @@ export function Etiqueta({ children, tono = "morado", icono, i = 0, className = 
   const ic = icono ?? iconoPorTexto(texto, i);
   const cajaIcono = tono === "morado" ? "bg-white/15 text-estrella-2" : tono === "cristal" ? "bg-estrella/20 text-estrella" : tono === "estrella" ? "bg-tinta/10 text-tinta" : "bg-black/5 text-current";
   return (
-    <p className={`inline-flex items-center gap-2 rounded-full py-1 pl-1.5 pr-4 text-sm font-bold ${TONOS_ETIQUETA[tono] ?? TONOS_ETIQUETA.morado} ${className}`}>
+    <p data-etq="" className={`inline-flex items-center gap-2 rounded-full py-1 pl-1.5 pr-4 text-sm font-bold ${TONOS_ETIQUETA[tono] ?? TONOS_ETIQUETA.morado} ${className}`}>
       <span aria-hidden="true" className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg ${cajaIcono} ${i % 2 ? "rotate-6" : "-rotate-6"}`}>
         <Svg className="h-4 w-4" grosor={2.4}>{ICONO_SVG[ic] ?? ICONO_SVG.estrella}</Svg>
       </span>

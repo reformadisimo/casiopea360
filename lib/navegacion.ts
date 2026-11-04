@@ -24,6 +24,7 @@ export const SERVICIOS_MENU: Enlace[] = [
   { icono: "cohete", texto: "Apps y lo que se te ocurra", href: "/servicios#lo-que-sea", detalle: "Si te conviene, lo hacemos" },
   { icono: "radio", texto: "Radio y fuera de internet", href: "/servicios#fuera", detalle: "Campañas que empujan lo digital" },
   { icono: "lista", texto: "Cuánto te costaría por separado", href: "/servicios#costes", detalle: "La tabla, por tamaño de empresa" },
+  { icono: "grafica", texto: "Calculadora de anuncios", href: "/calculadora", detalle: "Cuánto te puede dejar lo que inviertes" },
 ];
 
 // soloAncho: en la barra de escritorio solo se ve en pantallas muy anchas (también está dentro de «Cómo trabajamos»).

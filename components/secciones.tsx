@@ -1068,7 +1068,7 @@ export function BandaControl() {
       <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]`}>
         <div>
           <Etiqueta icono="escudo">Nuestro principio número uno</Etiqueta>
-          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tú tienes el control de todo. Siempre.</h2>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Tú tienes el control de todo. <span className="tono2">Siempre.</span></h2>
           <p className="mt-5 text-lg text-gris">
             <b className="text-tinta">Tus cuentas, a tu nombre y con tu tarjeta.</b> Tu web, con copia completa. Tus contactos, tuyos. Nosotros, invitados.
           </p>
@@ -1223,7 +1223,7 @@ export function SeccionVeinteProveedores() {
       <div className={`${ENVOLTORIO} relative`}>
         <div className="max-w-4xl">
           <Etiqueta tono="rosa" icono="engranaje">El lío de siempre</Etiqueta>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">¿Sientes que, en tu marketing, cada proveedor va a lo suyo? Y tú, en medio, coordinándolos a todos.</h2>
+          <h2 className="mt-5 text-4xl font-extrabold sm:text-6xl">¿Sientes que, en tu marketing, cada proveedor va a lo suyo? <span className="tono2">Y tú, en medio, coordinándolos a todos.</span></h2>
           <p className="mt-5 text-lg text-gris sm:text-xl">
             Un proveedor y una factura para cada cosa. <b className="text-tinta">Ninguno habla con los demás</b>, y cuando algo falla, nadie responde.
           </p>

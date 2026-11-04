@@ -30,7 +30,7 @@ import {
 
 export default function Inicio() {
   return (
-    <>
+    <div className="portada">
 
       {/* Héroe: la constelación */}
       <section className="relative overflow-hidden bg-noche pb-20 pt-32 text-white sm:pb-28 sm:pt-40">
@@ -89,6 +89,6 @@ export default function Inicio() {
       <SeccionEmpezamos />
       <SeccionEstudioResumen />
       <SeccionSolicitud />
-    </>
+    </div>
   );
 }

@@ -208,6 +208,21 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
       </section>
 
       {p.slug === "seo-google-ia" && <SeccionLoQueNo />}
+      {p.slug === "publicidad-google-ads-redes" && (
+        <section className="bg-niebla py-8">
+          <div className={ENVOLTORIO}>
+            <Link href="/calculadora" className="group flex flex-col gap-3 rounded-[1.6rem] border-2 border-estrella bg-white p-5 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+              <Loseta icono="grafica" i={2} />
+              <span className="flex-1">
+                <span className="block text-sm font-extrabold uppercase tracking-wide text-amber-800">Calculadora</span>
+                <span className="mt-1 block text-xl font-extrabold sm:text-2xl">¿Cuánto te puede dejar lo que inviertes en anuncios?</span>
+                <span className="mt-1 block text-gris">Mueve tus números y mira el resultado al momento. No sale nada de tu navegador.</span>
+              </span>
+              <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4">Abrir la calculadora</span>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Preguntas */}
       <SeccionPreguntas propias={p.preguntas} fondo="bg-white" />

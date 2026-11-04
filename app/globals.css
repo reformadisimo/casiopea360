@@ -385,7 +385,7 @@ main > section:not([class*="bg-"]) [class*="rounded-"].bg-white:hover {
 .etiqueta { background: linear-gradient(90deg, #5b21b6, #1228be); color: #ffd978; box-shadow: 0 8px 20px -12px rgba(91, 33, 182, 0.7); }
 
 /* Animaciones en pausa hasta que el bloque entra en pantalla (ver AlEntrar) */
-.en-pausa .trazo, .en-pausa .estrella-punto, .en-pausa .estrella-rotulo { animation-play-state: paused; }
+.en-pausa .trazo, .en-pausa .estrella-punto, .en-pausa .estrella-rotulo, .en-pausa .aviso-entra { animation-play-state: paused; }
 
 /* Glosario: términos enlazados con su definición al pasar el ratón */
 .gl { position: relative; display: inline; }
@@ -502,3 +502,21 @@ html[data-texto="3"] header { zoom: 0.667; }
 .prosa ol:not(.lv) > li { position: relative; padding-left: 2.4em; counter-increment: paso; }
 .prosa ol:not(.lv) > li::before { content: counter(paso); position: absolute; left: 0; top: 0.1em; width: 1.6em; height: 1.6em; border-radius: 999px; background: #ffc53d; color: #141c33; font-weight: 800; font-size: 0.9em; display: grid; place-items: center; }
 .prosa ol:not(.lv) > li + li, .prosa ul:not(.lv) > li + li { margin-top: 0.6em; }
+
+/* Calculadora de inversión (4-nov-2026): barra amarilla de Casiopea y tirador grande, fácil de mover con el dedo. */
+.calc-barra{appearance:none;-webkit-appearance:none;height:8px;border-radius:999px;background:var(--color-niebla);outline-offset:6px;cursor:pointer}
+.calc-barra::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:999px;background:var(--color-estrella);border:3px solid var(--color-noche);box-shadow:0 2px 6px rgb(0 0 0 / .25)}
+.calc-barra::-moz-range-thumb{width:24px;height:24px;border-radius:999px;background:var(--color-estrella);border:3px solid var(--color-noche)}
+
+/* Avisos que entran uno detrás de otro (sección del encargado, 4-nov-2026). */
+@keyframes aviso-entra{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.aviso-entra{opacity:0;animation:aviso-entra .5s ease-out forwards}
+@media (prefers-reduced-motion:reduce){.aviso-entra{opacity:1;animation:none}}
+
+/* Portada al estilo de Ícaro (4-nov-2026): secciones numeradas «(01) ·» en la etiqueta que va justo encima de cada titular,
+   y titulares en dos tonos (la segunda frase, más suave). */
+.portada{counter-reset:seccion}
+.portada [data-etq]:has(+ h2){counter-increment:seccion}
+.portada [data-etq]:has(+ h2) > span:last-child::before{content:"(" counter(seccion, decimal-leading-zero) ") · ";opacity:.7;font-variant-numeric:tabular-nums}
+.tono2{color:#8a93ad}
+.text-white .tono2,.bg-noche .tono2{color:rgb(255 255 255 / .55)}

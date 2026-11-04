@@ -1,6 +1,7 @@
 import Link from "next/link";
+import AlEntrar from "@/components/AlEntrar";
 import { BOTON, BOTON_CLARO, ENVOLTORIO, Loseta } from "@/components/secciones";
-import { Bocadillo, Etiqueta, ListaViva, Nebulosa, PasosVivos, TarjetaViva } from "@/components/Vida";
+import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, PasosVivos, TarjetaViva } from "@/components/Vida";
 
 /* Secciones de la portada que "venden" Casiopea: el mensaje es que el cliente manda hasta dónde quiere llegar y nosotros le acompañamos
    con datos al momento. Tono: alegre, cercano, tuteo. Nada de promesas de resultado ("podemos", "probamos", "medimos"), sin porcentajes
@@ -18,7 +19,7 @@ export function SeccionSonarEnGrande() {
       <Nebulosa oscura variante={1} />
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta tono="cristal" icono="fiesta">Soñar en grande</Etiqueta>
-        <h2 id="sonar-en-grande" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Hasta donde tú quieras llegar. Y más.</h2>
+        <h2 id="sonar-en-grande" className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Hasta donde tú quieras llegar. <span className="tono2">Y más.</span></h2>
         <p className="mt-5 max-w-3xl text-lg text-white/85">
           ¿Por qué no ir a por clientes que gastan más? Web y campañas para ese público, medido con una prueba A/B. <b className="text-white">Sin perder al cliente de hoy: tú eliges el reparto.</b>
         </p>
@@ -196,7 +197,7 @@ export function SeccionPorQueContratarnos() {
       <Nebulosa variante={1} />
       <div className={`${ENVOLTORIO} relative`}>
         <Etiqueta icono="trofeo">¿Por qué contratarnos?</Etiqueta>
-        <h2 id="por-que" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Con nosotros no pierdes tiempo. Lo que ganas son datos y trabajo hecho.</h2>
+        <h2 id="por-que" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Con nosotros no pierdes tiempo. <span className="tono2">Lo que ganas son datos y trabajo hecho.</span></h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
           Lo que más oímos: «esto me lleva muchísimo tiempo». <b className="text-tinta">Todo está pensado para quitártelo de encima.</b> No prometemos cifras: medimos cada euro.
         </p>
@@ -260,6 +261,13 @@ export function SeccionEquipo() {
 
 /** Tu encargado de proyecto (4-nov-2026, Ig): al empezar se asigna una persona y es la única que escribe al cliente.
     Nada de correos del director, del de SEO, de la diseñadora o del informático. Así no mareamos al cliente. */
+// Avisos de ejemplo que van entrando (idea de Ícaro, 4-nov-2026): [icono, de quién, cuándo, texto].
+const AVISOS_EN_MARCHA: [string, string, string, string][] = [
+  ["crm", "Tu CRM", "ahora", "Nuevo contacto. Viene de Google."],
+  ["lista", "Tu encargado", "hoy", "Tu parte de hoy: 3 cosas hechas y comprobadas."],
+  ["chat", "WhatsApp", "11:30", "Recordatorio enviado a tu cliente para su cita."],
+];
+
 export function SeccionEncargado() {
   const muchos = ["Correo del director", "Correo del de SEO", "Correo de la diseñadora", "Correo del informático", "Correo del de anuncios"];
   return (
@@ -268,7 +276,7 @@ export function SeccionEncargado() {
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1fr]`}>
         <div>
           <Etiqueta icono="sonrisa">Tu encargado de proyecto</Etiqueta>
-          <h2 id="encargado" className="mt-5 text-3xl font-extrabold sm:text-5xl">Una sola persona. Siempre la misma.</h2>
+          <h2 id="encargado" className="mt-5 text-3xl font-extrabold sm:text-5xl">Una sola persona. <span className="tono2">Siempre la misma.</span></h2>
           <p className="mt-5 text-lg text-gris">
             <b className="text-tinta">Al empezar, te asignamos un encargado de proyecto.</b> Es la única persona que te escribe y a quien escribes tú.
           </p>
@@ -296,6 +304,20 @@ export function SeccionEncargado() {
                 <span className="text-sm text-gris">Uno. Para todo.</span>
               </span>
             </div>
+            <p className="mt-3 text-sm font-extrabold uppercase tracking-wide text-estrella">Tu cuenta, en marcha</p>
+            <AlEntrar>
+            <ul className="mt-2 grid gap-2" aria-label="Ejemplo de avisos que te llegan">
+              {AVISOS_EN_MARCHA.map(([ic, de, cuando, texto], k) => (
+                <li key={texto} className="aviso-entra flex items-center gap-3 rounded-xl bg-white/95 px-3 py-2.5 text-tinta" style={{ animationDelay: `${0.4 + k * 0.7}s` }}>
+                  <ChipIcono icono={ic} i={k + 3} tam="h-8 w-8" />
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-baseline justify-between gap-2 text-[0.72rem] font-extrabold uppercase tracking-wide text-gris"><span>{de}</span><span className="font-bold normal-case">{cuando}</span></span>
+                    <span className="block text-[0.92rem] font-semibold leading-snug">{texto}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            </AlEntrar>
             <p className="mt-4 text-white/85">Web, Google, anuncios, redes y CRM: te lo cuenta todo la misma persona, por correo o WhatsApp.</p>
           </div>
         </div>
