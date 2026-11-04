@@ -16,7 +16,7 @@ export default function SeccionAsiLoVeras() {
           <p className="mt-5 text-lg text-gris">
             <b className="text-tinta">Todos tus datos al momento</b>, en un panel que se entiende y que puedes tocar. En diez segundos sabes si todo va bien, qué mirar hoy y qué hacer. Funciona en el móvil y le preguntas con tus palabras.
           </p>
-          <ListaViva items={["Mueve y mira qué pasaría.", "Dinos tu meta y te decimos si es sueño u objetivo.", "Ponnos a prueba cada semana."]} className="mt-5 font-bold [&>li]:bg-white" />
+          <ListaViva items={["Mueve y mira qué pasaría.", "Dinos tu meta y te decimos si es sueño u objetivo.", "Cada cifra dice de dónde sale. Si falta un dato, verás un guion, nunca un cero.", "Ponnos a prueba cada semana."]} className="mt-5 font-bold [&>li]:bg-white" />
           <Bocadillo className="mt-5"><b>Ninguna herramienta está libre de errores.</b> Los buscamos cada día y, si ves uno, nos lo dices con un toque y lo arreglamos.</Bocadillo>
           <Link href="/panel" className={`${BOTON} mt-8 inline-flex`}>Abrir el panel de ejemplo</Link>
           <p className="mt-3 text-sm text-gris">Datos inventados de una empresa ficticia. No se envía nada.</p>

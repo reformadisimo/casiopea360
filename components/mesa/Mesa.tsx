@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities -- fichero copiado tal cual de la mesa de Reformadísimo; no se reescribe para que siga siendo idéntico */ /* Cambios de Casiopea sobre el original: textos de marca y sin importes en euros de ventas (Casiopea nunca presume de facturación). */
 "use client";
-import type { Modulo, Reloj, Tarea, Resumen } from "@/lib/mesaTipos";
+import type { Modulo, Reloj, Tarea, Resumen, Hecho } from "@/lib/mesaTipos";
 import { LUZ, TEMAS_RESUMEN, primeraFrase, frasesDe, fechaEnPalabras, type Luz } from "@/lib/mesaTextos";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Ludoteca } from "@/components/mesa/Suenos";
@@ -541,7 +541,7 @@ function VerMas({ corto, children, className = "text-[13px] text-ink/60" }: { co
   );
 }
 
-export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }: { datos: DatosMesa; temas?: Modulo[]; resumenHoy?: Resumen; tareas?: Tarea[]; relojes?: Reloj[]; base?: CifrasBase }) {
+export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base, hechos }: { datos: DatosMesa; temas?: Modulo[]; resumenHoy?: Resumen; tareas?: Tarea[]; relojes?: Reloj[]; base?: CifrasBase; hechos?: Hecho[] }) {
   /* Vista sencilla o completa (27-oct, cl·v890; Ig: "que lo entienda quien no sabe nada"). Se recuerda en este navegador. */
   const [vista, setVista] = useState<"sencilla" | "completa">("sencilla");
   const [guia, setGuia] = useState(false);
@@ -728,7 +728,7 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           <Resumenes clave={datos.clave} />
           </Plegable>
           {sencillaPosible && vista === "sencilla" && (
-            <Sencilla temas={temas!} resumen={resumenHoy} tareas={tareas ?? []} relojes={relojes ?? []} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((s, q) => s + datos.web[q].peticiones, 0); }} clave={datos.clave} irCompleta={() => cambiaVista("completa")} herramientas={<Accesos sinId demo={datos.clave === "demo"} irA={(p) => { cambiaVista("completa"); setPestana(p); setTimeout(() => document.querySelector('[role="tablist"]')?.scrollIntoView({ behavior: suave(), block: "start" }), 80); }} />} />
+            <Sencilla temas={temas!} resumen={resumenHoy} tareas={tareas ?? []} hechos={hechos ?? []} relojes={relojes ?? []} base={base} hoy={datos.hoy} realEntre={(x, y) => { const ds = listaDias(x, y); if (ds.some((q) => !datos.web[q])) return null; return ds.reduce((s, q) => s + datos.web[q].peticiones, 0); }} clave={datos.clave} irCompleta={() => cambiaVista("completa")} herramientas={<Accesos sinId demo={datos.clave === "demo"} irA={(p) => { cambiaVista("completa"); setPestana(p); setTimeout(() => document.querySelector('[role="tablist"]')?.scrollIntoView({ behavior: suave(), block: "start" }), 80); }} />} />
           )}
           {/* cl·v922: las cifras completas salen siempre debajo del resumen, sin botón; lo que ya está arriba no se repite */}
           {(() => { const soloCifras = sencillaPosible && vista === "sencilla"; return (<>
@@ -797,6 +797,11 @@ export default function Mesa({ datos, temas, resumenHoy, tareas, relojes, base }
           {!soloCifras && tareas && tareas.length > 0 && (
           <Plegable id="pl-hoy" icono="check" color={PALETA_ALEGRIA.dinero} titulo="Lo más importante hoy" pista={tareas[0]?.texto}>
           {tareas && tareas.length > 0 && <QueHagoHoy tareas={tareas} />}
+          </Plegable>
+          )}
+          {!soloCifras && hechos && hechos.length > 0 && (
+          <Plegable id="pl-hecho" icono="check" color={PALETA_ALEGRIA.camino} titulo="Hecho y comprobado" pista={hechos[0].texto}>
+          <HechoComprobado hechos={hechos} />
           </Plegable>
           )}
           {!soloCifras && (
@@ -1810,6 +1815,39 @@ function useHechas() {
   return { hechas, marca };
 }
 
+/* Por qué va primero (4-nov-2026): cuánto ayuda, cuánto cuesta y si el dato está comprobado. En llano, sin puntuaciones. */
+function PorQuePrimero({ t }: { t: Tarea }) {
+  if (!t.ayuda && !t.esfuerzo && t.comprobado === undefined) return null;
+  const chip = "inline-flex items-center rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold";
+  return (
+    <span className="mt-1.5 flex flex-wrap gap-1.5">
+      {t.ayuda && <span className={`${chip} bg-[#e7f4ec] text-[#1d6a42]`}>Ayuda: {t.ayuda}</span>}
+      {t.esfuerzo && <span className={`${chip} bg-[#eef1f4] text-ink/70`}>Esfuerzo: {t.esfuerzo}</span>}
+      {t.comprobado !== undefined && <span className={`${chip} ${t.comprobado ? "bg-[#e6eefb] text-[#1f4f9a]" : "bg-[#fbf3df] text-[#7a5a00]"}`}>{t.comprobado ? "Dato comprobado" : "Dato por comprobar"}</span>}
+    </span>
+  );
+}
+
+/* Hecho y comprobado (4-nov-2026): lo que ya está hecho y cómo lo hemos comprobado. Nada se da por hecho sin prueba. */
+function HechoComprobado({ hechos }: { hechos: Hecho[] }) {
+  return (
+    <section className="mt-3 rounded-[20px] border border-line bg-white px-5 py-4">
+      <p className="text-[14px] text-ink/60">Lo último que hemos hecho y cómo lo hemos comprobado. Nada cuenta como hecho sin su prueba.</p>
+      <ol className="mt-3 space-y-3">
+        {hechos.map((h) => (
+          <li key={h.fecha + h.texto} className="flex items-start gap-3">
+            <span className="mt-0.5 shrink-0"><Loseta n="check" color="#2f9a62" tam={30} /></span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[15.5px] font-semibold leading-snug text-ink">{h.texto} <span className="font-normal text-ink/45">· {h.fecha}</span></span>
+              <span className="block text-[14px] leading-snug text-ink/65">{h.prueba}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function QueHagoHoy({ tareas }: { tareas: Tarea[] }) {
   const { hechas, marca } = useHechas();
   const [todas, setTodas] = useState(false); // cl·v919: plegado, solo la primera; "Ver las N más" abre el resto
@@ -1827,6 +1865,7 @@ function QueHagoHoy({ tareas }: { tareas: Tarea[] }) {
                 <span className="min-w-0 flex-1">
                   <span className={`block text-[16px] font-semibold leading-snug ${ok ? "text-ink/45 line-through" : "text-ink"}`}>{t.texto}</span>
                   <span className="block text-[14px] leading-snug text-ink/65">{t.porque}{t.donde ? <span className="text-ink/45"> · Está en «{t.donde}»</span> : null}</span>
+                  <PorQuePrimero t={t} />
                 </span>
                 <button type="button" onClick={() => marca(t.id)} className={`min-h-[44px] shrink-0 rounded-full border px-3 py-1.5 text-[14px] font-semibold ${ok ? "border-[#2f9a62] bg-[#e7f4ec] text-[#1d6a42]" : "border-line text-ink/70 hover:border-ink"}`}>{ok ? "Revisado" : "Ya lo he revisado"}</button>
               </li>
@@ -1906,7 +1945,7 @@ function Pregunta({ clave }: { clave: string }) {
   );
 }
 
-function Sencilla({ temas, resumen, tareas, relojes, base, hoy, realEntre, clave, irCompleta, herramientas }: { temas: Modulo[]; resumen?: Resumen; tareas: Tarea[]; relojes: Reloj[]; base?: CifrasBase; hoy: string; realEntre: (a: string, b: string) => number | null; clave: string; irCompleta: () => void; herramientas: React.ReactNode }) {
+function Sencilla({ temas, resumen, tareas, hechos, relojes, base, hoy, realEntre, clave, irCompleta, herramientas }: { temas: Modulo[]; resumen?: Resumen; tareas: Tarea[]; hechos: Hecho[]; relojes: Reloj[]; base?: CifrasBase; hoy: string; realEntre: (a: string, b: string) => number | null; clave: string; irCompleta: () => void; herramientas: React.ReactNode }) {
   const [abierto, setAbierto] = useState<string | null>(null);
   const abreTema = useCallback((id: string) => { setAbierto(id); history.replaceState(null, "", "#pl-temas"); window.dispatchEvent(new HashChangeEvent("hashchange")); setTimeout(() => document.getElementById(`tema-${id}`)?.scrollIntoView({ behavior: suave(), block: "start" }), 120); }, []);
   useEffect(() => {
@@ -1924,11 +1963,12 @@ function Sencilla({ temas, resumen, tareas, relojes, base, hoy, realEntre, clave
       {/* cl·v925: apartados en rejilla compacta; el que se abre se despliega debajo. Las cifras completas vienen después, ya abiertas */}
       <Apartados items={[
         { id: "pl-hoy", icono: "check", color: PALETA_ALEGRIA.dinero, titulo: "Lo primero que haría hoy", pista: tareas[0]?.texto ?? "Nada pendiente", nodo: <TareaPrincipal tareas={tareas} temas={temas} abreTema={abreTema} /> },
+        ...(hechos.length > 0 ? [{ id: "pl-hecho", icono: "check", color: PALETA_ALEGRIA.camino, titulo: "Hecho y comprobado", pista: hechos[0].texto, nodo: <HechoComprobado hechos={hechos} /> }] : []),
         { id: "pl-temas", icono: "grid", color: PALETA_ALEGRIA.web, titulo: "Cómo está cada parte", pista: temas.map((m) => `${m.titulo}: ${m.estado ?? LUZ[m.luz].t}`).join(" · "), nodo: <EstadoLista temas={temas} abierto={abierto} setAbierto={setAbierto} /> },
         ...(relojes.length > 0 ? [{ id: "pl-cifras", icono: "moneda", color: PALETA_ALEGRIA.camino, titulo: "Las cuatro cifras que importan", pista: relojes.map((r) => r.frase ?? r.t).join(" · "), nodo: <CifrasFrase relojes={relojes} /> }] : []),
         { id: "pl-pregunta", icono: "chat", color: PALETA_ALEGRIA.ia, titulo: "Pregunta lo que quieras", pista: "Escribe o dicta", nodo: <Pregunta clave={clave} /> },
         { id: "pl-mas", icono: "ajustes", color: PALETA_ALEGRIA.ventas, titulo: "Más herramientas", pista: "Correo, CRM, lupa, plan", nodo: <MasHerramientas clave={clave} herramientas={herramientas} /> },
-        { id: "pl-conectado", icono: "red", color: PALETA_ALEGRIA.mercado, titulo: "Conectado con", pista: "Analytics, Ads, Meta, WhatsApp…", nodo: <FranjaConectado nombres={["Google Analytics", "Search Console", "Google Ads", "Meta", "Ficha de Google", "Instagram", "WhatsApp", "Semrush", "ChatGPT", "Gemini", "Claude"]} /> },
+        { id: "pl-conectado", icono: "red", color: PALETA_ALEGRIA.mercado, titulo: "Conectado con", pista: "Analytics, Ads, Meta, WhatsApp…", nodo: <FranjaConectado nombres={["Google Analytics", "Search Console", "Google Ads", "Meta", "Ficha de Google", "Instagram", "WhatsApp", "Semrush", "ChatGPT", "Gemini", "Claude", "Perplexity"]} /> },
       ]} />
       <p id="mesa-cifras-todas" className="mt-5 scroll-mt-4 font-serif text-[22px] italic text-ink">Todas las cifras</p>
     </div>
@@ -2007,6 +2047,7 @@ function TareaPrincipal({ tareas, temas, abreTema }: { tareas: Tarea[]; temas: M
       <div className={grande ? "" : "border-t border-line pt-3"}>
         <p className={`${grande ? "text-[19px]" : "text-[16px]"} font-semibold leading-snug ${ok ? "text-ink/45 line-through" : "text-ink"}`}>{t.texto}</p>
         <p className="mt-1 text-[15px] leading-snug text-ink/70">{t.porque}</p>
+        <PorQuePrimero t={t} />
         <div className="mt-3 flex flex-wrap gap-2">
           {tema && <button type="button" onClick={() => abreTema(tema.id)} className="min-h-[44px] rounded-full bg-yellow px-5 text-[15px] font-semibold text-ink">{t.boton ?? `Abrir ${tema.titulo}`}</button>}
           <button type="button" onClick={() => marca(t.id)} className={`min-h-[44px] rounded-full border px-5 text-[15px] font-semibold ${ok ? "border-[#2f9a62] bg-[#e7f4ec] text-[#1d6a42]" : "border-line text-ink hover:border-ink"}`}>{ok ? "Revisado" : "Ya lo he revisado"}</button>

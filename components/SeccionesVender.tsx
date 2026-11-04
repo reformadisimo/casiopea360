@@ -303,3 +303,27 @@ export function SeccionEncargado() {
     </section>
   );
 }
+
+/** Lo que no hacemos (4-nov-2026). Cuatro negaciones claras que dan confianza. Sin prometer resultados. */
+export function SeccionLoQueNo() {
+  const no: [string, string, string][] = [
+    ["trofeo", "No prometemos el primer puesto", "Ni en Google ni en las IA: nadie puede. Prometemos método y constancia, medidos con los indicadores que fijamos contigo."],
+    ["firma", "No publicamos nada importante sin tu visto bueno", "Campañas nuevas, cambios grandes en la web, respuestas a reseñas y todo lo que cueste dinero: antes, contigo."],
+    ["grafica", "No inventamos datos", "Cada cifra dice de dónde sale. Si falta un dato, verás un guion, nunca un cero ni un número puesto a ojo."],
+    ["prensa", "No te llenamos de informes técnicos", "Te contamos qué hemos hecho, cómo lo hemos comprobado y qué toca ahora. En llano."],
+  ];
+  return (
+    <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="lo-que-no">
+      <Nebulosa variante={3} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="escudo">Para que no haya sorpresas</Etiqueta>
+        <h2 id="lo-que-no" className="mt-5 max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Lo que no hacemos</h2>
+        <ul className="mt-8 grid gap-4 md:grid-cols-2">
+          {no.map(([ic, t, d], i) => (
+            <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

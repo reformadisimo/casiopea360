@@ -4,7 +4,7 @@ import GloboDiferido from "@/components/GloboDiferido";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionLoFirmamos, SeccionMetodo, SeccionParte, SeccionEmpezamos, SeccionPuntosDolor, BandaEnlaceControl } from "@/components/secciones";
-import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos, SeccionComoTrabajamos, SeccionEncargado } from "@/components/SeccionesVender";
+import { SeccionPruebasAB, SeccionTiempo, SeccionPorQueContratarnos, SeccionComoTrabajamos, SeccionEncargado, SeccionLoQueNo } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -45,6 +45,7 @@ export default function ComoTrabajamos() {
       <SeccionPruebasAB />
       <SeccionParte />
       <SeccionLoFirmamos />
+      <SeccionLoQueNo />
       <BandaEnlaceControl />
       <SigueLeyendo
         enlaces={[

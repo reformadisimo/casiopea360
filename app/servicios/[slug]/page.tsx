@@ -13,6 +13,7 @@ import { PAGINAS_SERVICIO, incluyeDe, paginaServicio } from "@/lib/servicios";
 import { schemaMigas } from "@/lib/schema";
 import { SITIO } from "@/lib/navegacion";
 import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, iconoPorTexto } from "@/components/Vida";
+import { SeccionLoQueNo } from "@/components/SeccionesVender";
 
 export function generateStaticParams() {
   return PAGINAS_SERVICIO.map((p) => ({ slug: p.slug }));
@@ -205,6 +206,8 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
           </div>
         </div>
       </section>
+
+      {p.slug === "seo-google-ia" && <SeccionLoQueNo />}
 
       {/* Preguntas */}
       <SeccionPreguntas propias={p.preguntas} fondo="bg-white" />

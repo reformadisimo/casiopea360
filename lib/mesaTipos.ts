@@ -12,7 +12,13 @@ export type Modulo = {
   enlaces: { t: string; href: string }[];
 };
 export type Reloj = { n?: number; icono?: string; color?: string; t: string; v: string; sub: string; lleno: number; luz: Luz; ayuda?: string; frase?: string; detalle?: string };
-export type Tarea = { id: string; texto: string; porque: string; donde?: string; ir?: string; titular?: string; boton?: string };
+export type Tarea = {
+  id: string; texto: string; porque: string; donde?: string; ir?: string; titular?: string; boton?: string;
+  // 4-nov-2026: por qué va primero, en llano. Cuánto ayuda, cuánto cuesta hacerlo y si el dato está comprobado.
+  ayuda?: "mucho" | "algo" | "poco"; esfuerzo?: "poco" | "medio" | "mucho"; comprobado?: boolean;
+};
+/** Lo que ya está hecho y cómo se ha comprobado (historial del panel). */
+export type Hecho = { fecha: string; texto: string; prueba: string };
 export type Resumen = { titulo: string; texto: string; puntos?: string[] };
 /** Cifras base de 28 días para los juegos de "Aquí mandas tú" (cl·v916); la forma completa está en components/mesa/Suenos.tsx. */
 export type { CifrasBase } from "@/components/mesa/Suenos";

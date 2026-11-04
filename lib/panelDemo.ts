@@ -1,4 +1,4 @@
-import type { Modulo, Reloj, Tarea, Resumen, CifrasBase } from "@/lib/mesaTipos";
+import type { Modulo, Reloj, Tarea, Resumen, CifrasBase, Hecho } from "@/lib/mesaTipos";
 
 /* Panel de EJEMPLO de Casiopea 360 (27-oct-2026): mismas piezas que la mesa de control de Reformadísimo
    (luces, qué hago hoy, relojes), con datos INVENTADOS de un despacho ficticio de abogados laboralistas, "Fuero Abogados".
@@ -56,9 +56,17 @@ export const temasDemo: Modulo[] = [
 export const resumenDemo: Resumen = { titulo: "Hay dos cosas que requieren atención", texto: "3 contactos llevan más de 3 días sin respuesta. «Meta · Remarketing»: 608 € y solo 1 contacto." };
 
 export const tareasDemo: Tarea[] = [
-  { id: "d1", texto: "Llama a los 3 contactos que llevan más de 3 días sin respuesta", porque: "Cuanto antes se llama, más se convierte. Están en tu CRM.", donde: "Ventas", ir: "tuyo", boton: "Ver quiénes son" },
-  { id: "d2", texto: "Revisa la campaña «Meta · Remarketing»", porque: "Ha gastado 608 € en 28 días y solo ha traído 1 contacto. Mira primero si se está midiendo bien, antes de tocar nada.", donde: "Anuncios", ir: "anuncios", boton: "Ver qué anuncio es" },
-  { id: "d3", texto: "Mejora la portada", porque: "En la portada la mitad de la gente no pasa del 25 % de la página.", donde: "La web", ir: "web", boton: "Ver con la lupa" },
+  { id: "d1", texto: "Llama a los 3 contactos que llevan más de 3 días sin respuesta", porque: "Cuanto antes se llama, más se convierte. Están en tu CRM.", donde: "Ventas", ir: "tuyo", boton: "Ver quiénes son", ayuda: "mucho", esfuerzo: "poco", comprobado: true },
+  { id: "d2", texto: "Revisa la campaña «Meta · Remarketing»", porque: "Ha gastado 608 € en 28 días y solo ha traído 1 contacto. Mira primero si se está midiendo bien, antes de tocar nada.", donde: "Anuncios", ir: "anuncios", boton: "Ver qué anuncio es", ayuda: "mucho", esfuerzo: "poco", comprobado: false },
+  { id: "d3", texto: "Mejora la portada", porque: "En la portada la mitad de la gente no pasa del 25 % de la página.", donde: "La web", ir: "web", boton: "Ver con la lupa", ayuda: "algo", esfuerzo: "medio", comprobado: true },
+];
+
+/** Historial de ejemplo: lo hecho y cómo se comprobó (inventado). */
+export const hechosDemo: Hecho[] = [
+  { fecha: "28 oct", texto: "Corregidas 14 direcciones antiguas que daban error", prueba: "Comprobado: las 14 abren bien y Google ya no las marca." },
+  { fecha: "27 oct", texto: "Respondidas las 6 reseñas nuevas de la ficha de Google", prueba: "Con tu visto bueno. Ya se ven publicadas." },
+  { fecha: "24 oct", texto: "Página nueva para los anuncios de acoso laboral", prueba: "Medido: carga en 1,1 segundos en el móvil y cada envío llega al CRM." },
+  { fecha: "22 oct", texto: "El botón de WhatsApp ya se cuenta en la mesa", prueba: "Probado con un clic de prueba: aparece en «Quién entra de verdad»." },
 ];
 
 /** Cifras base de ejemplo para "Tus sueños y tus cuentas": 28 días, todo inventado. */
