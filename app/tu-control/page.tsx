@@ -21,6 +21,13 @@ const PROBLEMA: [string, string][] = [
   ["euro", "Te cobran por devolverte lo que ya era tuyo."],
 ];
 
+// Nuestra regla (Ig, 5-nov-2026): nunca tenemos el control, ni damos de alta las cuentas; guiamos.
+const REGLA: [string, string, string][] = [
+  ["llave", "No damos de alta tus cuentas", "Las abres tú, con tu correo y tu tarjeta. Nosotros no las abrimos a nuestro nombre ni a medias."],
+  ["mano", "Te guiamos paso a paso", "Es más fácil de lo que parece. Te decimos qué abrir, dónde y en qué orden, y lo revisamos contigo."],
+  ["escudo", "Si quieres que las lleve otro, no es con nosotros", "Si prefieres que seamos nosotros los dueños de tus cuentas, no podemos trabajar juntos. Es una condición, no una preferencia."],
+];
+
 const PASOS_TICKET: [string, string, string][] = [
   ["euro", "Tu ticket medio, una vez", "Lo pones a ojo en tu panel y se guarda en tu dispositivo. Solo lo vemos si nos lo das."],
   ["firma", "Marcas quién firma", "Y, si quieres, lo que facturó. O sin cifra: más pequeño, normal, más grande o mucho más grande."],
@@ -60,6 +67,31 @@ export default function TuControl() {
             Por eso muchos negocios no cambian aunque no estén contentos: <b className="text-tinta">por miedo a perderlo todo.</b>
           </p>
           <Bocadillo className="mt-5 max-w-3xl">Aquí no trabajamos así. Con nadie.</Bocadillo>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-noche py-20 text-white sm:py-24">
+        <Nebulosa oscura variante={1} />
+        <div className={`${ENVOLTORIO} relative`}>
+          <Etiqueta tono="estrella" icono="escudo">Nuestra regla</Etiqueta>
+          <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Nunca tendremos el control de tus cuentas.</h2>
+          <p className="mt-5 max-w-3xl text-lg text-white/85">
+            <b className="text-white">No es una oferta: es una condición para trabajar contigo.</b> Solo trabajamos con quien quiere tener el control de todo, y no aceptamos clientes que prefieran que las cuentas las tengamos nosotros.
+          </p>
+          <ol className="mt-10 grid gap-4 md:grid-cols-3">
+            {REGLA.map(([ic, t, d], i) => (
+              <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} claro chip={`${i + 1} de 3`} />
+            ))}
+          </ol>
+          <div className="mt-8 rounded-[1.8rem] border-2 border-estrella bg-estrella/15 p-6 sm:p-8">
+            <h3 className="text-2xl font-extrabold sm:text-3xl">Al principio da algo de pereza. Y merece la pena.</h3>
+            <p className="mt-3 max-w-3xl text-lg text-white/85">
+              Abrir y ordenar tus cuentas lleva desde media hora hasta uno o dos días, según cuántas tengas. Te acompañamos en cada paso. Es muy poco comparado con el día en que quieras cambiar de proveedor y tengas que pedir permiso, o casi perdón, para entrar en lo que es tuyo.
+            </p>
+            <p className="mt-3 max-w-3xl text-lg text-white/85">
+              Vale para todo: cuentas de anuncios, redes, correo, web, y también para cada artículo del blog y cada página que publiquemos. Todo queda en tus manos.
+            </p>
+          </div>
         </div>
       </section>
 
