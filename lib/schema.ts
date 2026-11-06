@@ -29,6 +29,13 @@ export function schemaOrganizacion() {
     image: url("/video/constelaciones.jpg"),
     email: EMPRESA.correo,
     telephone: EMPRESA.telefono,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "atención al cliente",
+      email: EMPRESA.correo,
+      telephone: EMPRESA.telefono,
+      availableLanguage: "es",
+    },
     legalName: EMPRESA.razonSocial,
     taxID: EMPRESA.cif,
     address: {

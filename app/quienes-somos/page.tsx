@@ -17,7 +17,7 @@ import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, TarjetaViva } from
 
 export const metadata = meta(
   "Quiénes somos",
-  "Profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo, mejor y en días.",
+  "Profesionales con más de 22 años de experiencia en marketing digital. Lo hacemos todo con un solo equipo: web, Google y las IA, anuncios, redes y CRM.",
   "/quienes-somos",
 );
 

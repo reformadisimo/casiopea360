@@ -7,7 +7,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Trabajos reales",
-  "Webs, apps y marketing funcionando hoy: Reformadísimo, Mi Estela, AMS Cerramientos y Tierno Centella.",
+  "Webs, apps y marketing funcionando hoy: casos de Reformadísimo, Mi Estela, AMS Cerramientos y Tierno Centella, con lo que hicimos y cómo lo medimos.",
   "/trabajos",
 );
 

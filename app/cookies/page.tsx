@@ -1,7 +1,7 @@
 import PaginaLegal from "@/components/PaginaLegal";
 import { meta } from "@/lib/meta";
 
-export const metadata = meta("Política de cookies", "Qué cookies usa la web de Casiopea 360 y cómo puedes aceptarlas o rechazarlas.", "/cookies");
+export const metadata = meta("Política de cookies", "Política de cookies de Casiopea 360: qué cookies usa la web, para qué sirve cada una y cómo puedes aceptarlas, rechazarlas o cambiar tu elección.", "/cookies");
 
 export default function Cookies() {
   return (

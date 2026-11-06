@@ -21,7 +21,7 @@ export const CASOS: Caso[] = [
     nombre: "Reformadísimo",
     titular: "Una empresa de reformas que vende con calculadoras y una asistente que habla.",
     descripcionSeo:
-      "Caso Reformadísimo: web con calculadoras de precio, asistente con inteligencia artificial que atiende por voz y medición completa. Desde 2012 y más de 1.150 obras.",
+      "Caso Reformadísimo: web con calculadoras de precio, asistente con IA que atiende por voz y medición completa. Desde 2012 y más de 1.150 obras.",
     video: "arquitecto-mesa",
     videoAlt: "Un arquitecto trabaja en su mesa",
     color: "#c2410c",
@@ -45,7 +45,7 @@ export const CASOS: Caso[] = [
     nombre: "Mi Estela",
     titular: "De una idea a una app en las dos tiendas, cobrando suscripciones, en unos 120 días.",
     descripcionSeo:
-      "Caso Mi Estela: app familiar para iPhone y Android publicada en App Store y Google Play en unos 120 días, con suscripción, mapa en tiempo real, chat, llamadas, asistente con IA y 17 idiomas.",
+      "Caso Mi Estela: app familiar para iPhone y Android publicada en unos 120 días, con mapa en tiempo real, chat, llamadas, asistente con IA y 17 idiomas.",
     video: "movil-personas",
     videoAlt: "Personas en holograma conversando sobre un móvil",
     color: "#7c3aed",
@@ -70,7 +70,7 @@ export const CASOS: Caso[] = [
     nombre: "AMS Cerramientos",
     titular: "Una web de ventanas que da el precio al momento y vuela en el móvil.",
     descripcionSeo:
-      "Caso AMS Cerramientos: web con configurador que da el precio al momento, páginas por zona y una velocidad en el móvil que pasó de 56 a 94 sobre 100 en PageSpeed.",
+      "Caso AMS Cerramientos: web con configurador que da el precio al momento, páginas por zona y velocidad móvil de 56 a 94 sobre 100 en PageSpeed.",
     video: "taller-hombre",
     videoAlt: "Un hombre trabaja en su taller",
     color: "#1f6feb",
@@ -93,7 +93,7 @@ export const CASOS: Caso[] = [
     nombre: "Tierno Centella",
     titular: "Un despacho de abogados que atrae clientes ayudando gratis.",
     descripcionSeo:
-      "Caso Tierno Centella: catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés para un despacho laboralista. Velocidad en el móvil de 49 a 94 sobre 100.",
+      "Caso Tierno Centella: catorce herramientas gratuitas, 47 guías, asistente con IA y versión en inglés para un despacho laboralista. Móvil: de 49 a 94.",
     video: "despacho",
     videoAlt: "Una reunión distendida en un despacho",
     color: "#0f766e",

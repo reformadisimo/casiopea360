@@ -9,7 +9,7 @@ import { Nebulosa } from "@/components/Vida";
 
 export const metadata = meta(
   "Calculadora: cuánto te puede dejar tu inversión en anuncios",
-  "Mueve tus números (lo que inviertes, lo que cuesta cada contacto, cuántos son buenos, cuántos cierras y lo que deja cada cliente) y mira cuánto entra al mes. Todo se queda en tu navegador.",
+  "Calcula cuánto te puede dejar tu inversión en anuncios: contactos, clientes y coste por cliente con tus números. Todo se queda en tu navegador.",
   "/calculadora",
 );
 

@@ -8,7 +8,7 @@ import { ESTUDIO_TOTAL } from "@/lib/contenido";
 
 export const metadata = meta(
   "Estudio gratuito de tu marketing digital",
-  "Tu plan completo de marketing digital, gratis y a medida: situación, competencia, propuesta de rediseño de tu web, anuncios, CRM y asistente con IA. Empieza por el test de idoneidad.",
+  "Tu plan de marketing digital gratis y a medida: situación, competencia, web rediseñada, anuncios, CRM y asistente con IA. Empieza con el test.",
   "/estudio-gratuito",
 );
 

@@ -1,3 +1,4 @@
+import { tituloCorto } from "@/lib/meta";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = paginaServicio(slug);
   if (!p) return {};
   return {
-    title: p.tituloSeo,
+    title: tituloCorto(p.tituloSeo),
     description: p.descripcionSeo,
     alternates: { canonical: `/servicios/${p.slug}` },
     openGraph: { title: `${p.tituloSeo} · Casiopea 360`, description: p.descripcionSeo, url: `/servicios/${p.slug}`, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },

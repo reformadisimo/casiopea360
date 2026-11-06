@@ -8,7 +8,7 @@ import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, TarjetaViva } from
 
 export const metadata = meta(
   "Miedo al cambio: prueba la web nueva sin riesgo",
-  "Test A/B entre tu web actual y la nueva, con el reparto de visitas que elijas, salida a los tres meses sin pagar nada si no mejoramos los indicadores acordados, y tus cuentas siempre tuyas.",
+  "Prueba la web nueva sin riesgo: test A/B con tu web actual, salida a los tres meses sin pagar si no mejoramos lo acordado, y tus cuentas siempre tuyas.",
   "/miedo-al-cambio",
 );
 

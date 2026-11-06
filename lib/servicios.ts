@@ -35,7 +35,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Web y apps",
     tituloSeo: "Diseño de páginas web a medida, rápidas y tuyas",
     descripcionSeo:
-      "Web a medida en unos días, con calculadoras y asistente con IA, 100 en PageSpeed como objetivo, y tuya al cumplir los doce meses. Incluida en tu cuota de marketing.",
+      "Web a medida en unos días, con calculadoras y asistente con IA, y tuya a los doce meses. Incluida en tu cuota, con 100 en PageSpeed como objetivo.",
     titular: "Tu web, en días. Rápida, bonita y a tu nombre.",
     entradilla:
       "En unos días, normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
@@ -89,7 +89,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Google y las IA",
     tituloSeo: "SEO en Google y visibilidad en ChatGPT y las IA",
     descripcionSeo:
-      "Que te encuentre quien te busca: SEO, ficha de Google, reseñas y visibilidad en ChatGPT y las demás IA. Sin permanencias eternas ni informes que no se entienden.",
+      "Que te encuentre quien te busca: SEO, ficha de Google, reseñas y visibilidad en ChatGPT y las IA. Sin informes que no se entienden.",
     titular: "Que te encuentre quien te está buscando. También en ChatGPT.",
     entradilla:
       "Ficha de Google al día, reseñas contestadas, artículos útiles y una web que las IA entienden. Mismo equipo que tus anuncios.",
@@ -104,13 +104,18 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { dolor: "«ChatGPT recomienda a mi competencia.»", arreglo: "Trabajamos tu web y tus menciones para que las IA te conozcan y te recomienden." },
     ],
     como: [
-      { paso: "Vemos dónde estás", texto: "Qué buscan tus clientes, dónde sales tú y dónde sale tu competencia, también en las IA." },
-      { paso: "Arreglamos la base", texto: "Ficha de Google, Bing y Apple Maps, y una web rápida que Google entiende sin esfuerzo." },
-      { paso: "Creamos contenido útil", texto: "Artículos que responden a lo que te preguntan. Los escribimos nosotros; tú solo los revisas." },
-      { paso: "Lo medimos cada semana", texto: "Qué búsquedas te traen clientes, no solo visitas." },
+      { paso: "Diagnóstico con datos, hecho por nosotros", texto: "Con Search Console vemos qué busca la gente y si dos páginas tuyas compiten por la misma búsqueda (eso se llama canibalización). Rastreamos tu web entera, miramos qué páginas cita ya Copilot y qué enlaces o direcciones viejas dan error." },
+      { paso: "Un plan ordenado por impacto", texto: "Cada arreglo con su porqué y una respuesta clara: sí, no o decides tú. Lo que una IA ya cita de tu web no se toca." },
+      { paso: "Arreglamos la base", texto: "Títulos y descripciones, redirecciones, datos estructurados (etiquetas ocultas que le explican a Google qué es cada página), enlaces entre tus páginas y velocidad. Y tu ficha de Google, Bing y Apple Maps." },
+      { paso: "Contenido útil", texto: "Artículos que responden a lo que te preguntan. Los escribimos nosotros; tú solo los revisas." },
+      { paso: "Tu panel, sin pedirte nada", texto: "Una tarjeta de SEO con lo que solo tienes que mirar: páginas que suben, búsquedas, clics, qué cita Copilot y errores nuevos." },
+      { paso: "Puntos de control con fecha", texto: "A los 7, 14 y 28 días revisamos qué ha cambiado. Si un título nuevo baja los clics, lo devolvemos al anterior." },
     ],
     plazos: [
       { que: "Ficha de Google al día", cuando: "Desde la primera semana" },
+      { que: "Revisamos indexación y errores nuevos", cuando: "A los 7 días" },
+      { que: "Revisamos si la página elegida sube y la otra deja de salir", cuando: "A los 14 días" },
+      { que: "Medimos clics y porcentaje de clics por página en Search Console", cuando: "A los 28 días" },
       { que: "Notarlo en la ficha de Google", cuando: "Semanas" },
       { que: "Notarlo en Google y en las IA", cuando: "De 3 a 6 meses" },
       { que: "Un artículo nuevo", cuando: "Máximo 48 horas" },
@@ -121,12 +126,24 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "La ficha de Google se nota en semanas. Posicionar la web en Google y en las IA lleva de 3 a 6 meses, y te enseñamos el avance cada semana en tu panel.",
       },
       {
+        p: "¿Qué es una canibalización?",
+        r: "Cuando dos páginas de tu web compiten por la misma búsqueda y Google no sabe cuál enseñar. Lo arreglamos dejando una y llevando la otra a ella con una redirección, que es un aviso para que quien llegue a la vieja vaya a la buena.",
+      },
+      {
+        p: "¿Algo de esto cuesta aparte?",
+        r: "Solo lo que genera un coste por uso, como herramientas de pago para estudiar enlaces y competencia, o inteligencia artificial para redactar. Te decimos antes cuánto sería, lo explicamos y lo decides tú. Nada se activa sin tu visto bueno.",
+      },
+      {
+        p: "¿Cómo sé que ha funcionado?",
+        r: "Lo medimos en Search Console a 28 días, con clics y porcentaje de clics por página. No prometemos posición: si un cambio empeora los datos, lo revertimos y te lo contamos.",
+      },
+      {
         p: "¿Se puede salir en ChatGPT?",
         r: "Sí, aunque nadie puede prometerlo con fecha. Las IA recomiendan a quien tiene una web clara, contenido útil y menciones en otros sitios. En eso trabajamos.",
       },
       {
         p: "¿Me garantizáis el primer puesto?",
-        r: "No. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles. Hasta hoy, los resultados han llegado en todas las empresas con las que hemos trabajado.",
+        r: "No. Te garantizamos por escrito plazos, transparencia cada día y objetivos medibles.",
       },
     ],
     articulos: ["como-aparecer-en-chatgpt-y-google", "ficha-de-google-que-es-y-como-sacarle-partido", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr"],
@@ -232,7 +249,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Automatización e IA",
     tituloSeo: "Asistente con IA, WhatsApp y automatización para empresas",
     descripcionSeo:
-      "Asistente con inteligencia artificial en tu web, también por voz; WhatsApp de empresa, correos automáticos y un panel con cada conversación. Contactos que no se pierden.",
+      "Asistente con IA en tu web, también por voz; WhatsApp de empresa, correos automáticos y un panel con cada conversación. Contactos que no se pierden.",
     titular: "Contactos que no se pierden, aunque estés en plena faena.",
     entradilla:
       "Un asistente con IA que atiende tu web a cualquier hora, también por voz. Y correos y WhatsApp que salen solos.",
@@ -279,7 +296,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Tu CRM a medida",
     tituloSeo: "CRM a medida para empresas, sin licencias por usuario",
     descripcionSeo:
-      "Tu propio CRM hecho a medida: cada contacto entra solo con su origen, fases con un toque y seguimiento automático. Sin licencias por usuario. Con tu CRM a medida, si lo quieres.",
+      "Tu propio CRM a medida: cada contacto entra solo con su origen, fases con un toque y seguimiento automático. Sin licencias por usuario, si lo quieres.",
     titular: "Tu propio CRM, hecho a medida. Sin licencias por usuario.",
     entradilla:
       "Sabe de dónde viene cada cliente, en qué punto está y a quién llamar hoy. ¿Ya tienes uno? Lo conectamos.",
@@ -334,7 +351,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Lupa 360",
     tituloSeo: "Lupa 360: mapa de calor propio para mejorar tu web cada mes",
     descripcionSeo:
-      "Ve lo que hace la gente en tu web: dónde toca, dónde se para y dónde se va. Mapa de calor propio, con conclusiones claras y sin guardar nada de lo que escriben. Para mejorar tu web cada mes, sin adivinar.",
+      "Ve lo que hace la gente en tu web: dónde toca, dónde se para y dónde se va. Mapa de calor propio con conclusiones claras, sin guardar lo que escriben.",
     titular: "Tu web deja de ser una apuesta. Se mejora cada mes con datos.",
     entradilla:
       "Ves dónde toca la gente en tu web, dónde se para y dónde se va. Cambiamos, medimos y repetimos.",
@@ -408,7 +425,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Avisos y recordatorios",
     tituloSeo: "Avisos y recordatorios por WhatsApp o SMS para tus citas",
     descripcionSeo:
-      "Mensajes automáticos al móvil para que tus clientes no se olviden de la cita y sepan al momento que les has recibido. Por WhatsApp y, si lo prefieres, por SMS. Incluido en tu cuota: solo pagas los mensajes.",
+      "Mensajes automáticos al móvil para que tus clientes no olviden la cita y sepan que les has recibido. Por WhatsApp o SMS; pagas solo los mensajes.",
     titular: "Menos plantones y respuesta al momento, sin que tengas que acordarte.",
     entradilla:
       "Mensajes automáticos para que no olviden la cita y sepan que les has recibido. Por WhatsApp o SMS. Lo montamos nosotros.",

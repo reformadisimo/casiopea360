@@ -9,6 +9,7 @@ import { LlamadaFinal } from "@/components/secciones";
 import { ARTICULOS, articuloPorSlug, type Bloque } from "@/lib/blog";
 import { schemaArticulo, schemaFaqArticulo, schemaMigas } from "@/lib/schema";
 import { CajaIdea, ChipIcono, ListaViva, PasosVivos, PreguntaViva, TituloVivo, idDe } from "@/components/ArticuloVisual";
+import { tituloCorto } from "@/lib/meta";
 import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const a = articuloPorSlug(slug);
   if (!a) return {};
   return {
-    title: a.tituloSeo ?? a.titulo,
+    title: tituloCorto(a.tituloSeo ?? a.titulo),
     description: a.descripcion,
     alternates: { canonical: `/blog/${a.slug}` },
     keywords: a.claves,

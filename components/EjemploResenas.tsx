@@ -100,7 +100,7 @@ function EnLaWeb() {
       <div className="px-5 py-6 text-center" aria-hidden="true">
         <Estrellas tam={26} />
         <p className="mt-1 text-[13px] font-bold text-tinta">4,7 sobre 5 · 180 opiniones en Google</p>
-        <h4 className="mt-3 text-[22px] font-extrabold leading-tight text-tinta">¿Te ha gustado cómo llevamos tu caso?</h4>
+        <h3 className="mt-3 text-[22px] font-extrabold leading-tight text-tinta">¿Te ha gustado cómo llevamos tu caso?</h3>
         <p className="mx-auto mt-2 max-w-xs text-[14px] text-gris">Si es así, recomiéndanos. Una opinión tuya en Google ayuda a otras personas en tu situación a encontrarnos, y a nosotros nos hace mucha ilusión.</p>
         <span className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full px-6 text-[15px] font-extrabold text-tinta" style={{ background: "#ffc53d" }}>Dejar mi opinión en Google</span>
         <p className="mt-2 text-[12px] text-gris">Te lleva un minuto. Solo tienes que escribir dos líneas.</p>

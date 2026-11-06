@@ -7,12 +7,17 @@ import { EMPRESA } from "@/lib/schema";
 import { TERMINOS } from "@/lib/terminos";
 
 
+// Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
+export const ACTUALIZADO = "2026-11-06";
+
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
   const u = SITIO.url;
   const texto = `# Casiopea 360
 
 > ${SITIO.descripcion}
+
+Última actualización: ${ACTUALIZADO}.
 
 Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España). Un solo equipo lleva todo el marketing digital de todo tipo de empresas: dominio y alojamiento, web y apps, Google y visibilidad en las IA, anuncios, redes sociales, automatizaciones e informes. También gestiona campañas de radio y anuncios en prensa, CRM y apps. Lo que no hace en casa (grabación de vídeo profesional, locución, espacio en medios) lo hace con productoras y agencias asociadas, a las que el cliente paga directamente.
 
@@ -33,6 +38,15 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 - Doce meses de permanencia, porque la web va regalada y pasa a ser del cliente al cumplirlos; si a los tres meses no hemos mejorado los indicadores acordados al empezar (medidos en el panel, no por impresión) se va sin pagar nada y se queda con la web; si se va entre los tres y los doce meses, paga solo la parte de la web que falte; después no hay permanencia. Para quien teme el cambio: test A/B entre su web actual y la nueva, con el reparto de visitas que elija (50, 60 o 70 %).
 - Las menos reuniones posibles: casi todo por escrito y un panel para ver el trabajo.
 - Estudio gratuito previo, preparado a medida, uno a uno, si vemos que podemos ayudar. La guía se descarga en PDF; la web de ejemplo, los correos, el panel y el CRM se ven en un enlace privado durante un mes y luego se retira el acceso si no hay contrato. Nada del estudio es del cliente salvo su guía en PDF.
+
+## Lo que NO hacemos
+- No prometemos el primer puesto en Google ni que una IA recomiende al cliente: nadie puede garantizarlo.
+- No garantizamos resultados ni cifras de clientes; solo plazos y objetivos medibles que acordamos al empezar.
+- Nunca tenemos el control de las cuentas del cliente: no las damos de alta a nuestro nombre ni trabajamos con quien prefiera que sean nuestras. Las abre el cliente, con nuestra guía.
+- No pedimos contraseñas ni la facturación del cliente para trabajar.
+- No cobramos comisión sobre lo que el cliente invierte en anuncios.
+- No hacemos nada importante sin el visto bueno del cliente, ni inventamos datos: si falta un dato, se muestra un guion, nunca un cero.
+- No enviamos informes técnicos que no se entiendan: lo ve todo en su panel, en lenguaje llano.
 
 ## Por qué cuesta menos
 ${POR_QUE_BARATO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}

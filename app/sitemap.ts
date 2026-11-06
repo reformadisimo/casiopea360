@@ -7,7 +7,6 @@ import { TRABAJOS } from "@/lib/contenido";
 import { TERMINOS } from "@/lib/terminos";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const hoy = new Date();
   const fijas = [
     ["/", 1],
     ["/servicios", 0.9],
@@ -29,10 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/cookies", 0.2],
   ] as const;
   return [
-    ...fijas.map(([ruta, prioridad]) => ({ url: `${SITIO.url}${ruta}`, lastModified: hoy, priority: prioridad })),
-    ...PAGINAS_SERVICIO.map((p) => ({ url: `${SITIO.url}/servicios/${p.slug}`, lastModified: hoy, priority: 0.85 })),
-    ...CASOS.filter((c) => TRABAJOS.find((t) => t.nombre === c.nombre)?.publicado).map((c) => ({ url: `${SITIO.url}/trabajos/${c.slug}`, lastModified: hoy, priority: 0.7 })),
-    ...TERMINOS.map((t) => ({ url: `${SITIO.url}/glosario/${t.slug}`, lastModified: hoy, priority: 0.5 })),
+    ...fijas.map(([ruta, prioridad]) => ({ url: `${SITIO.url}${ruta}`, priority: prioridad })),
+    ...PAGINAS_SERVICIO.map((p) => ({ url: `${SITIO.url}/servicios/${p.slug}`, priority: 0.85 })),
+    ...CASOS.filter((c) => TRABAJOS.find((t) => t.nombre === c.nombre)?.publicado).map((c) => ({ url: `${SITIO.url}/trabajos/${c.slug}`, priority: 0.7 })),
+    ...TERMINOS.map((t) => ({ url: `${SITIO.url}/glosario/${t.slug}`, priority: 0.5 })),
     ...ARTICULOS.map((a) => ({ url: `${SITIO.url}/blog/${a.slug}`, lastModified: new Date(a.fecha), priority: 0.6 })),
   ];
 }

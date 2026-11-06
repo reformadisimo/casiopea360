@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { tituloCorto } from "@/lib/meta";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { CajaIdea, ChipIcono, TituloVivo, iconoPorTexto } from "@/components/Vida";
@@ -51,12 +52,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const t = terminoPorSlug(slug);
   if (!t) return {};
-  const titulo = `${t.nombre.replace(/\s*\(.*\)\s*$/, "")}: qué es, significado y ejemplo`;
+  const nombreCorto = t.nombre.replace(/\s*\(.*\)\s*$/, "");
+  const titulo = `${nombreCorto}: qué es y ejemplo`;
+  // Descripción de 120 a 155 caracteres: la definición corta y, si falta, una coletilla.
+  const extras = [" Definición sin jerga, con un ejemplo y los términos relacionados, en el glosario de Casiopea 360.", " Con un ejemplo y los términos relacionados, en el glosario de Casiopea 360.", " Con un ejemplo y los términos relacionados.", " Con ejemplo."];
+  const descripcion = [...extras.map((e) => t.corta + e), t.corta].find((d) => d.length >= 120 && d.length <= 155) ?? t.corta;
   return {
-    title: titulo,
-    description: t.corta,
+    title: tituloCorto(titulo),
+    description: descripcion,
     alternates: { canonical: `/glosario/${t.slug}` },
-    openGraph: { type: "article", title: `${titulo} · Casiopea 360`, description: t.corta, url: `/glosario/${t.slug}`, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
+    openGraph: { type: "article", title: `${titulo} · Casiopea 360`, description: descripcion, url: `/glosario/${t.slug}`, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
   };
 }
 

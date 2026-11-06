@@ -10,7 +10,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Blog de marketing digital",
-  "Artículos claros sobre webs que traen clientes, Google, anuncios, redes y cómo aparecer en las IA. Sin jerga.",
+  "Artículos claros sobre webs que traen clientes, Google, anuncios, redes y cómo aparecer en las IA, escritos sin jerga para quien lleva una empresa.",
   "/blog",
 );
 

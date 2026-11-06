@@ -2,7 +2,7 @@ import PaginaLegal from "@/components/PaginaLegal";
 import { EMPRESA } from "@/lib/schema";
 import { meta } from "@/lib/meta";
 
-export const metadata = meta("Política de privacidad", "Qué datos tratamos en Casiopea 360, para qué, durante cuánto tiempo y cuáles son tus derechos.", "/privacidad");
+export const metadata = meta("Política de privacidad", "Política de privacidad de Casiopea 360: qué datos tratamos, para qué, durante cuánto tiempo, con quién se comparten y cuáles son tus derechos.", "/privacidad");
 
 export default function Privacidad() {
   return (

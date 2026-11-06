@@ -9,7 +9,7 @@ import { Bocadillo, CajaIdea, ChipIcono, Etiqueta, Nebulosa, TarjetaViva } from 
 
 export const metadata = meta(
   "Tú tienes el control de todo, siempre",
-  "Tus cuentas, a tu nombre y pagadas con tu tarjeta: dominio, correo, Google Ads, Meta, Analytics, ficha de Google y redes. Tu web, con copia completa. Tus contactos, tuyos. Nosotros solo somos invitados y te vas cuando quieras, con todo lo tuyo.",
+  "Tus cuentas, a tu nombre y con tu tarjeta; tu web con copia completa y tus contactos, tuyos. Nosotros solo somos invitados y nunca tenemos el control.",
   "/tu-control",
 );
 

@@ -10,7 +10,7 @@ import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, TarjetaViva } from
 
 export const metadata = meta(
   "Un día de trabajo real: así arrancamos tus campañas",
-  "Lo que hacemos por dentro cuando ponemos en marcha el marketing de una empresa: qué revisamos, qué corregimos, cómo se mide y qué se enciende solo con tu visto bueno.",
+  "Lo que hacemos por dentro al poner en marcha el marketing de una empresa: qué revisamos, qué corregimos, cómo se mide y qué se enciende con tu visto bueno.",
   "/un-dia-de-trabajo",
 );
 

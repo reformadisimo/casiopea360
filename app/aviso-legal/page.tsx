@@ -2,7 +2,7 @@ import PaginaLegal from "@/components/PaginaLegal";
 import { EMPRESA } from "@/lib/schema";
 import { meta } from "@/lib/meta";
 
-export const metadata = meta("Aviso legal", "Datos del titular de la web de Casiopea 360 y condiciones de uso.", "/aviso-legal");
+export const metadata = meta("Aviso legal", "Aviso legal de Casiopea 360: datos del titular de la web, AYR Galic Consultants, S.L., condiciones de uso y datos de contacto de la empresa.", "/aviso-legal");
 
 export default function AvisoLegal() {
   return (
