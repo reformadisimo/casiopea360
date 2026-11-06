@@ -4,11 +4,15 @@ import { LlamadaFinal, SeccionSolicitud } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
-export const metadata = meta(
-  "Test de idoneidad: tu nota de marketing digital",
-  "Unos 5 minutos, una pregunta cada vez y sin escribir: tu nota, dónde se te escapan clientes y, si podemos ayudarte, tu estudio gratuito.",
-  "/test",
-);
+// Es la herramienta, no una página que compita en Google: la que se posiciona por «estudio gratuito» es /estudio-gratuito.
+export const metadata = {
+  ...meta(
+    "Test de idoneidad: tu nota de marketing digital",
+    "Unos 5 minutos, una pregunta cada vez y sin escribir: tu nota, dónde se te escapan clientes y, si podemos ayudarte, tu estudio gratuito.",
+    "/test",
+  ),
+  robots: { index: false, follow: true },
+};
 
 export default function Test() {
   return (

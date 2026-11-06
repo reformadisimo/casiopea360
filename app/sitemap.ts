@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/servicios", 0.9],
     ["/estudio-gratuito", 0.9],
     ["/lo-que-consigues", 0.9],
-    ["/test", 0.8],
     ["/como-trabajamos", 0.8],
     ["/miedo-al-cambio", 0.7],
     ["/tu-control", 0.7],

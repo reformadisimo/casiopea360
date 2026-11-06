@@ -81,7 +81,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No. Trabajamos con tecnología actual, sin plugins ni panel de administración a la vista, que es por donde entran la mayoría de los ataques. Y si algo falla, volvemos a la versión anterior en minutos.",
       },
     ],
-    articulos: ["tu-web-tu-guia-y-tu-plan-gratis", "cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
+    articulos: ["cuanto-se-tarda-en-hacer-una-web", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
   },
   {
     slug: "seo-google-ia",
@@ -241,7 +241,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "LinkedIn, Facebook, Instagram y TikTok, todas incluidas. Te decimos en cuáles están tus clientes y ahí ponemos el foco.",
       },
     ],
-    articulos: ["cinco-proveedores-de-marketing-y-ningun-responsable", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo"],
+    articulos: ["cuantos-proveedores-necesita-una-web-que-trae-clientes", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo"],
   },
   {
     slug: "automatizacion-ia",
@@ -289,7 +289,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "No. Entra en tu cuota, igual que el resto.",
       },
     ],
-    articulos: ["que-es-un-crm-y-para-que-sirve", "como-aparecer-en-chatgpt-y-google", "lo-que-de-verdad-cuesta-el-marketing-digital-reuniones-horas-y-tiempo"],
+    articulos: ["que-es-un-crm-y-para-que-sirve", "como-aparecer-en-chatgpt-y-google", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo"],
   },
   {
     slug: "crm-a-medida",
@@ -344,7 +344,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
         r: "Entra en tu cuota. Contratado por separado, un CRM a medida cuesta en el mercado de 5.000 a 35.000 €.",
       },
     ],
-    articulos: ["que-es-un-crm-y-para-que-sirve", "tu-web-tu-guia-y-tu-plan-gratis", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
+    articulos: ["que-es-un-crm-y-para-que-sirve", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
   },
   {
     slug: "lupa-360",

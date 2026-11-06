@@ -2,6 +2,7 @@ import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SeccionEstudio, SeccionSolicitud, SeccionEmpezamos } from "@/components/secciones";
+import SeccionDudasEstudio from "@/components/SeccionDudasEstudio";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 import { ESTUDIO_TOTAL } from "@/lib/contenido";
@@ -37,6 +38,7 @@ export default function EstudioGratuito() {
           { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },
         ]}
       />
+      <SeccionDudasEstudio />
       <SeccionSolicitud />
     </>
   );
