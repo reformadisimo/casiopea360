@@ -1,4 +1,4 @@
-// Marca: la constelación de Casiopea (la W) dibujada como un gráfico que sube y acaba en una estrella dorada,
+// Marca: la constelación de Casiopea (la W) dibujada como un gráfico que sube y acaba en el orbe de Estela (azul, con centro blanco, halo y ondas; sin estrella),
 // sobre su loseta azul, y el nombre en una sola palabra gruesa: casiopea360, con el 360 en oro.
 export default function Logo({ claro = false, fundido = false, chico = false }: { claro?: boolean; fundido?: boolean; chico?: boolean }) {
   const color = claro ? "#ffffff" : "#0e1a3d";
