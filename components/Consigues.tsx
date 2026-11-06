@@ -1,3 +1,4 @@
+import { srcSetCaptura } from "@/lib/captura";
 import Link from "next/link";
 import { ChipIcono, Etiqueta, Nebulosa } from "@/components/Vida";
 import { BOTON, BOTON_CLARO, ENVOLTORIO } from "@/components/secciones";
@@ -16,7 +17,7 @@ export function Ventana({ src, alt, movil, color, prioridad = false }: { src: st
           <span className="ml-3 h-4 flex-1 rounded-md bg-white ring-1 ring-black/5" />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} width={1400} height={875} loading={prioridad ? "eager" : "lazy"} decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
+        <img src={src} {...srcSetCaptura(src)} alt={alt} width={1400} height={875} loading={prioridad ? "eager" : "lazy"} decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
       </div>
       {movil && (
         <div className="absolute -bottom-6 -right-3 w-[27%] overflow-hidden rounded-[1.2rem] border-[5px] border-tinta bg-tinta shadow-[0_24px_40px_-20px_rgba(0,0,0,0.7)] sm:-right-6">
@@ -115,7 +116,7 @@ export function ConsiguesGaleria({ claro = false }: { claro?: boolean }) {
             >
               <span className="relative block">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.captura} alt="" width={700} height={438} loading="lazy" decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
+                <img src={p.captura} {...srcSetCaptura(p.captura)} alt="" width={700} height={438} loading="lazy" decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
                 <span aria-hidden="true" className="absolute left-2 top-2 grid h-7 w-7 place-items-center rounded-lg text-sm font-extrabold text-white shadow" style={{ background: p.color }}>{p.n}</span>
               </span>
               <span className="block p-3">

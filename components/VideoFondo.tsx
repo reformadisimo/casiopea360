@@ -139,8 +139,8 @@ export default function VideoFondo({
         alt=""
         aria-hidden="true"
         loading={prioridad ? "eager" : "lazy"}
-          // La foto de cabecera es decoración: se pide pronto pero sin quitar ancho de banda al texto.
-        fetchPriority={prioridad ? "low" : "auto"}
+          // La foto de portada es lo más grande que se ve al cargar (LCP) y pesa unos 40 KB: se pide con prioridad alta.
+        fetchPriority={prioridad ? "high" : "auto"}
         decoding="async"
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
         />

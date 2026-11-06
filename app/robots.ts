@@ -5,7 +5,7 @@ import { SITIO } from "@/lib/navegacion";
 export default function robots(): MetadataRoute.Robots {
   if (!SITIO.indexable) return { rules: [{ userAgent: "*", disallow: "/" }] };
   return {
-    rules: [{ userAgent: "*", allow: "/" }],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/mesa", "/api/"] }],
     sitemap: `${SITIO.url}/sitemap.xml`,
   };
 }

@@ -1,3 +1,4 @@
+import { srcSetCaptura } from "@/lib/captura";
 import Link from "next/link";
 import { PIEZAS, PIEZAS_RESUMEN } from "@/lib/consigues";
 
@@ -48,7 +49,7 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
                 <span className="h-1.5 w-1.5 rounded-full bg-[#ff5f57]" /><span className="h-1.5 w-1.5 rounded-full bg-[#febc2e]" /><span className="h-1.5 w-1.5 rounded-full bg-[#28c840]" />
               </span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.captura} alt="" width={700} height={438} loading="lazy" decoding="async" className="block aspect-[16/11] w-full object-cover object-top" />
+              <img src={p.captura} {...srcSetCaptura(p.captura)} alt="" width={700} height={438} loading="lazy" decoding="async" className="block aspect-[16/11] w-full object-cover object-top" />
               <span className="block truncate px-2 py-1 text-center text-[0.72rem] font-extrabold text-white" style={{ background: p.color }}>{p.corto}</span>
             </span>
           ))}

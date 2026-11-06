@@ -1,3 +1,4 @@
+import { srcSetCaptura } from "@/lib/captura";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { ConsiguesCompleto } from "@/components/Consigues";
@@ -28,7 +29,7 @@ export default function LoQueConsigues() {
               <li key={p.id} className={k % 2 ? "translate-y-4" : ""}>
                 <a href={`#${p.id}`} className="block overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-20px_rgba(14,26,61,0.6)] ring-1 ring-black/10 transition-transform hover:-translate-y-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.captura} alt={`${p.titulo}: captura del ejemplo`} width={700} height={438} loading={k < 2 ? "eager" : "lazy"} decoding="async" className="block aspect-[16/11] w-full object-cover object-top" />
+                  <img src={p.captura} {...srcSetCaptura(p.captura)} alt={`${p.titulo}: captura del ejemplo`} width={700} height={438} loading={k < 2 ? "eager" : "lazy"} decoding="async" className="block aspect-[16/11] w-full object-cover object-top" />
                   <span className="block px-3 py-2 text-center text-sm font-extrabold text-white" style={{ background: p.color }}>{p.corto}</span>
                 </a>
               </li>
