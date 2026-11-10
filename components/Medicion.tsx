@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 // Medición con permiso: Tag Manager (con Google Analytics, Google Ads, el píxel de Meta y el resto dentro)
 // y Microsoft Clarity. Solo se cargan si el visitante acepta. Mientras no haya códigos en Vercel
 // (NEXT_PUBLIC_GTM_ID y NEXT_PUBLIC_CLARITY_ID), aceptar no carga nada: el aviso queda listo para el día que se pongan.
-const GTM = process.env.NEXT_PUBLIC_GTM_ID;
+// Contenedor de Google Analytics 4 de Casiopea (propiedad «Casiopea 360 web»). Es un identificador público.
+const GTM = process.env.NEXT_PUBLIC_GTM_ID || "GTM-WLGG32W4";
 const CLARITY = process.env.NEXT_PUBLIC_CLARITY_ID;
 const CLAVE = "casiopea-cookies";
 
