@@ -396,7 +396,7 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
     corta: "Unos días, no meses.",
     puntos: [
       "Según el trabajo que tengamos: 48 horas, tres días o una semana.",
-      "Lo normal es no pasar de una semana, aunque no lo garantizamos por escrito.",
+      "Lo normal es no pasar de una semana, y el plazo concreto de tu web te lo damos por escrito antes de empezar.",
       "Y nuestra intención es que sea mejor que la de quien te cobra 25.000 €.",
     ],
   },

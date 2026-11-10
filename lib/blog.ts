@@ -410,7 +410,7 @@ export const ARTICULOS: Articulo[] = [
       ] },
       { p: "La tecnología de hoy, incluida la inteligencia artificial, nos quita el trabajo repetitivo y nos deja el que hay que pensar." },
       { p: "Según el volumen de trabajo que tengamos, puede estar en 48 horas, en tres días o en una semana. Lo normal es no pasar de una semana." },
-      { p: "No lo garantizamos por escrito: es lo habitual, no una promesa." },
+      { p: "El plazo concreto de tu web te lo damos por escrito antes de empezar." },
       { h2: "¿Más rápido es peor?" },
       { p: "No necesariamente. Lo que hace buena una web no depende de cuántos meses tarde:" },
       { ul: [
