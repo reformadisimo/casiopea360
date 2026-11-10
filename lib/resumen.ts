@@ -1,7 +1,7 @@
 import { PAGINAS_SERVICIO } from "@/lib/servicios";
 import { CASOS } from "@/lib/casos";
 import { SITIO } from "@/lib/navegacion";
-import { PREGUNTAS, TAMBIEN_INCLUIDO, POR_QUE_BARATO } from "@/lib/contenido";
+import { PREGUNTAS, TAMBIEN_INCLUIDO, POR_QUE_BARATO, TRABAJOS } from "@/lib/contenido";
 import { ARTICULOS } from "@/lib/blog";
 import { EMPRESA } from "@/lib/schema";
 import { TERMINOS } from "@/lib/terminos";
@@ -64,8 +64,8 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 - [Miedo al cambio: prueba A/B y salida fácil](${u}/miedo-al-cambio)
 - [Tú tienes el control de todo, siempre: ocho compromisos y 10 cosas que revisar](${u}/tu-control)
 - [Un día de trabajo real: así arrancamos las campañas por dentro](${u}/un-dia-de-trabajo)
-- [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos, Tierno Centella.
-${CASOS.map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}
+- [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos.
+${CASOS.filter((c) => TRABAJOS.find((t) => t.nombre === c.nombre)?.publicado).map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}
 - [Test de idoneidad](${u}/test): unos 5 minutos, nota de marketing y paso para el estudio gratuito
 - [Estudio gratuito](${u}/estudio-gratuito)
 - [Preguntas frecuentes](${u}/preguntas)

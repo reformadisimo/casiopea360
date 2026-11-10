@@ -168,7 +168,7 @@ export const TRABAJOS: Trabajo[] = [
       "14 herramientas gratuitas, 47 guías y asistente con IA. Velocidad en el móvil: de 49 a 94 sobre 100.",
     url: "", // sin enlace hasta que su dueño dé el visto bueno (antes https://tierno-centella-web.vercel.app),
     enlaceTexto: "Ver la web",
-    publicado: true,
+    publicado: false, // oculto (10-nov, Ig): todavía no trabajamos con ellos
   },
   {
     // PENDIENTE: web por hacer. Texto provisional hasta que exista.
