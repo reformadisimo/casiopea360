@@ -5,8 +5,8 @@ export const SITIO = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.casiopea360.es",
   descripcion:
     "Crece en digital sin ir de proveedor en proveedor: web en días, SEO, anuncios, redes, CRM e IA con un solo equipo. Una cuota fija para cualquier empresa.",
-  // Mientras la web sea provisional, no se deja indexar. El día del lanzamiento: true.
-  indexable: false,
+  // Abierta a Google desde el 10 nov 2026 (cas·v250).
+  indexable: true,
 };
 
 export type Enlace = { texto: string; href: string; detalle?: string; icono?: string };

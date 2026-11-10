@@ -48,6 +48,11 @@ export function schemaOrganizacion() {
     areaServed: { "@type": "Country", name: "España" },
     knowsLanguage: "es",
     slogan: "Tu marketing digital, al máximo nivel.",
+    sameAs: [
+      "https://www.linkedin.com/company/casiopea360",
+      "https://www.facebook.com/profile.php?id=61596047848304",
+      "https://www.instagram.com/casiopea360.es",
+    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Servicios de marketing digital 360",

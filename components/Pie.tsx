@@ -21,7 +21,12 @@ export default function Pie() {
           >
             Solicita tu estudio gratuito
           </Link>
-          <p className="mt-5 text-[0.95rem]">
+          <p className="mt-5 flex flex-wrap gap-x-4 text-[0.95rem]">
+            <a href="https://www.linkedin.com/company/casiopea360" target="_blank" rel="noopener me" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61596047848304" target="_blank" rel="noopener me" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">Facebook</a>
+            <a href="https://www.instagram.com/casiopea360.es" target="_blank" rel="noopener me" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">Instagram</a>
+          </p>
+          <p className="mt-2 text-[0.95rem]">
             Escríbenos:{" "}
             <a href={`mailto:${CONTACTO.correo}`} className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
               {CONTACTO.correo}
