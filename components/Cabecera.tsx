@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import AjustesLectura from "@/components/AjustesLectura";
+import RedesIconos from "@/components/RedesIconos";
 import { ICONO_SVG } from "@/components/secciones";
 import { MENU } from "@/lib/navegacion";
 
@@ -198,6 +199,8 @@ export default function Cabecera() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Redes: solo desde 1800 px (antes no caben) y nunca en la pastilla flotante. En el móvil van al final del menú. */}
+          {!pastilla && <RedesIconos className="hidden min-[1800px]:flex" />}
           <AjustesLectura />
           <Link prefetch={false}
             href="/estudio-gratuito"
@@ -249,6 +252,8 @@ export default function Cabecera() {
               </li>
             ))}
           </ul>
+          <p className="mt-6 px-3 text-sm font-bold text-white/70">Síguenos</p>
+          <RedesIconos className="mt-1 flex px-1" />
         </nav>
       )}
     </header>
