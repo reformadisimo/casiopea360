@@ -76,7 +76,7 @@ export default function Cabecera() {
       } ${pastilla ? "xl:pointer-events-none xl:bg-transparent xl:shadow-none xl:backdrop-blur-none" : ""}`}
     >
       <div
-        className={`relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 transition-[margin,padding,border-radius] duration-300 sm:px-6 ${
+        className={`relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 2xl:max-w-[1500px] transition-[margin,padding,border-radius] duration-300 sm:px-6 ${
           pastilla ? "xl:pointer-events-auto xl:mt-3 xl:w-fit xl:max-w-none xl:gap-5 xl:rounded-full xl:bg-noche/95 xl:px-4 xl:py-2 xl:shadow-[0_18px_40px_-16px_rgba(14,26,61,0.6)] xl:ring-1 xl:ring-white/15 xl:backdrop-blur" : ""
         }`}
       >
@@ -199,8 +199,8 @@ export default function Cabecera() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Redes: solo desde 1800 px (antes no caben) y nunca en la pastilla flotante. En el móvil van al final del menú. */}
-          {!pastilla && <RedesIconos className="hidden min-[1800px]:flex" />}
+          {/* Redes: solo desde 1536 px (2xl), donde la barra se ensancha para que quepan y también en la pastilla flotante. En el móvil van al final del menú. */}
+          <RedesIconos className="hidden 2xl:flex" />
           <AjustesLectura />
           <Link prefetch={false}
             href="/estudio-gratuito"

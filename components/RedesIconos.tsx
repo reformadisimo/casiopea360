@@ -40,7 +40,7 @@ export default function RedesIconos({ className = "" }: { className?: string }) 
             rel="noopener me"
             aria-label={`Casiopea 360 en ${r.nombre}`}
             title={`Casiopea 360 en ${r.nombre}`}
-            className="grid h-11 w-11 place-items-center rounded-full text-white/80 hover:bg-white/10 hover:text-estrella"
+            className="grid h-11 w-11 place-items-center rounded-full text-white hover:bg-white/10 hover:text-estrella 2xl:h-9 2xl:w-9"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               {r.dibujo}
