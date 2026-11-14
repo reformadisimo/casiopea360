@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import AjustesLectura from "@/components/AjustesLectura";
@@ -13,6 +14,7 @@ import { MENU } from "@/lib/navegacion";
 const COLORES_MENU = ["#1d4ed8", "#0f766e", "#b45309", "#be185d", "#6d28d9", "#0369a1", "#047857", "#c2410c", "#7c3aed", "#1e40af"];
 
 export default function Cabecera() {
+  const router = useRouter();
   const [solida, setSolida] = useState(false);
   const [abierto, setAbierto] = useState<string | null>(null);
   const [movil, setMovil] = useState(false);
@@ -71,7 +73,7 @@ export default function Cabecera() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 overflow-x-clip transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 ${abierto || movil ? "z-[55]" : "z-40"} overflow-x-clip transition-colors duration-300 ${
         solida || movil ? "bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
       } ${pastilla ? "xl:pointer-events-none xl:bg-transparent xl:shadow-none xl:backdrop-blur-none" : ""}`}
     >
@@ -110,8 +112,12 @@ export default function Cabecera() {
                       puntero.current = e.pointerType;
                     }}
                     onClick={(e) => {
-                      // Con ratón el menú ya está abierto por pasar por encima: el clic no debe cerrarlo.
-                      if (e.detail > 0 && puntero.current === "mouse") return abrir(m.texto);
+                      // Con ratón el menú ya está abierto por pasar por encima: el clic lleva a la página de ese apartado.
+                      if (e.detail > 0 && puntero.current === "mouse") {
+                        cerrarTodo();
+                        router.push(m.href);
+                        return;
+                      }
                       // Toque o teclado: abre y cierra.
                       setAbierto(abierto === m.texto ? null : m.texto);
                     }}
@@ -124,7 +130,7 @@ export default function Cabecera() {
                   </button>
                   {abierto === m.texto && (
                     <div className={`absolute top-full pt-2 ${m.hijos.length > 5 ? "left-0 w-[42rem]" : "left-1/2 w-80 -translate-x-1/2"}`}>
-                      <ul className={`overflow-hidden rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)] ${m.hijos.length > 5 ? "grid grid-cols-2" : ""}`}>
+                      <ul className={`max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain rounded-2xl bg-white p-2 text-tinta shadow-[0_24px_48px_-16px_rgba(14,26,61,0.45)] ${m.hijos.length > 5 ? "grid grid-cols-2" : ""}`}>
                         <li className="col-span-2 mb-1">
                           <Link prefetch={false} href={m.href} onClick={cerrarTodo} className="group flex items-center gap-3 rounded-xl bg-[linear-gradient(90deg,#1228be,#0e1a3d)] px-4 py-3 text-white">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -172,7 +178,14 @@ export default function Cabecera() {
                   type="button"
                   aria-expanded={abierto === "Más"}
                   aria-haspopup="true"
-                  onClick={() => setAbierto(abierto === "Más" ? null : "Más")}
+                  onPointerDown={(e) => {
+                    puntero.current = e.pointerType;
+                  }}
+                  onClick={(e) => {
+                    // Con ratón ya está abierto por pasar por encima: el clic no debe cerrarlo.
+                    if (e.detail > 0 && puntero.current === "mouse") return abrir("Más");
+                    setAbierto(abierto === "Más" ? null : "Más");
+                  }}
                   className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
                 >
                   Más

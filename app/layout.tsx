@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Versionante from "@/components/Versionante";
+import AnclaFirme from "@/components/AnclaFirme";
 import Medicion from "@/components/Medicion";
 import AsistenteDiferido from "@/components/AsistenteDiferido";
 import GlosarioTactil from "@/components/GlosarioTactil";
@@ -67,6 +68,7 @@ export default function RootLayout({
         <main id="contenido">{children}</main>
         <Pie />
         <Versionante />
+        <AnclaFirme />
         <Medicion />
         <AsistenteDiferido />
         <GlosarioTactil />

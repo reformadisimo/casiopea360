@@ -16,6 +16,7 @@ export default function Pagina() {
   return (
     <>
       <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 0 !important; background: #fff !important; background-image: none !important; }`}</style>
+      <h1 className="sr-only">CRM de ejemplo</h1>
       <DemoCrm />
     </>
   );
