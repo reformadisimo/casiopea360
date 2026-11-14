@@ -8,7 +8,7 @@ import { TERMINOS } from "@/lib/terminos";
 
 
 // Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
-export const ACTUALIZADO = "2026-11-06";
+export const ACTUALIZADO = "2026-11-14";
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
@@ -25,6 +25,7 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 - Profesionales con más de 22 años de experiencia en marketing digital.
 - Han llevado campañas de presupuestos pequeños y grandes.
 - Experiencia en webs, apps, SEO, anuncios, redes, automatización y CRM.
+- Más que marketing: antes de llevar el marketing de otros han dirigido empresas propias (clínicas de cirugía y medicina estética, un despacho de abogados y una empresa de reformas). Por eso miran el negocio y no solo el anuncio, y dan su opinión sobre qué servicio empujar o qué probar primero; la decisión es siempre del cliente. Es experiencia, no una garantía.
 - Lo que suelen encontrar: empresas con buen producto y mal de visibilidad (web antigua, mal posicionada, anuncios mal configurados, redes abandonadas). Lo arreglan todo a la vez.
 - Redes sociales incluidas en la cuota: LinkedIn, Facebook, Instagram y TikTok, gestionadas y actualizadas, con el contenido hecho. El cliente solo sale en algún vídeo; la grabación con equipo se organiza y se paga aparte.
 

@@ -9,7 +9,7 @@ import FranjaVideos from "@/components/FranjaVideos";
 import LogoMarca from "@/components/LogoMarca";
 import VideoFondo from "@/components/VideoFondo";
 import { BOTON, ENVOLTORIO, LlamadaFinal, SeccionPorQueBarato, SeccionTecnologia, SeccionNombre, SeccionVentaja, Loseta } from "@/components/secciones";
-import { SeccionEquipo } from "@/components/SeccionesVender";
+import { SeccionEquipo, SeccionEmpresarios } from "@/components/SeccionesVender";
 import { CREEMOS } from "@/lib/contenido";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
@@ -86,6 +86,7 @@ export default function QuienesSomos() {
         </div>
       </section>
 
+      <SeccionEmpresarios />
       <SeccionEquipo />
 
       <SeccionVentaja />

@@ -260,6 +260,42 @@ export function SeccionEquipo() {
   );
 }
 
+/** Más que marketing (14-nov-2026, Ig): quien lleva tu marketing ha dirigido empresas propias en varios sectores,
+    así que opina del negocio y no solo del anuncio. Sin cifras, sin nombres y sin llamarlo consultoría: opinamos, decides tú. */
+export function SeccionEmpresarios() {
+  const sectores = ["Clínicas de cirugía y medicina estética", "Despacho de abogados", "Empresa de reformas"];
+  const claves: [string, string, string][] = [
+    ["sonrisa", "Hablamos tu idioma", "Hemos tenido empresas propias, con sus equipos, sus clientes y sus meses malos. Sabemos lo que cuesta conseguir cada cliente."],
+    ["grafica", "Miramos el negocio, no solo el anuncio", "Si vemos que una línea te deja más que otra, o que pierdes clientes por algo que no es marketing, te lo decimos."],
+    ["firma", "Opinamos, y decides tú", "Qué servicio empujar, qué probar primero, qué zona abrir. Es nuestra experiencia, no una garantía."],
+  ];
+  return (
+    <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="empresarios">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="trofeo">Más que marketing</Etiqueta>
+        <h2 id="empresarios" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">
+          Antes de llevar tu marketing, <span className="tono2">hemos llevado empresas.</span>
+        </h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Somos gente de empresa: sabemos de lo que hablas cuando hablas de tu negocio.
+        </p>
+        <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">Sectores en los que hemos dirigido empresas propias</p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {sectores.map((x) => (
+            <li key={x} className="rounded-full bg-white px-4 py-2 font-bold text-tinta ring-1 ring-linea">{x}</li>
+          ))}
+        </ul>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {claves.map(([ic, t, d], i) => (
+            <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 /** Tu encargado de proyecto (4-nov-2026, Ig): al empezar se asigna una persona y es la única que escribe al cliente.
     Nada de correos del director, del de SEO, de la diseñadora o del informático. Así no mareamos al cliente. */
 // Avisos de ejemplo que van entrando (idea de Ícaro, 4-nov-2026): [icono, de quién, cuándo, texto].
