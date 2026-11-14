@@ -121,7 +121,7 @@ export default function Cabecera() {
                       // Toque o teclado: abre y cierra.
                       setAbierto(abierto === m.texto ? null : m.texto);
                     }}
-                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
+                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-2 hover:text-white 2xl:px-2.5"
                   >
                     {m.texto}
                     <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${abierto === m.texto ? "rotate-180" : ""}`}>
@@ -161,7 +161,7 @@ export default function Cabecera() {
                 </li>
               ) : (
                 <li key={m.texto} className={`${m.soloAncho ? "hidden 2xl:block" : ""} ${pastilla && !m.pastilla ? "xl:hidden" : ""}`}>
-                  <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3">
+                  <Link prefetch={false} href={m.href} className="block whitespace-nowrap rounded-full px-2 py-2 hover:text-white 2xl:px-2.5">
                     {m.texto}
                   </Link>
                 </li>
@@ -186,7 +186,7 @@ export default function Cabecera() {
                     if (e.detail > 0 && puntero.current === "mouse") return abrir("Más");
                     setAbierto(abierto === "Más" ? null : "Más");
                   }}
-                  className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 hover:text-white 2xl:px-3"
+                  className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-2 hover:text-white 2xl:px-2.5"
                 >
                   Más
                   <svg aria-hidden="true" viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${abierto === "Más" ? "rotate-180" : ""}`}>
@@ -218,7 +218,7 @@ export default function Cabecera() {
           <Link prefetch={false}
             href="/estudio-gratuito"
             onClick={cerrarTodo}
-            className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm"
+            className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm xl:px-4 2xl:px-5"
           >
             Estudio<span className="max-[460px]:hidden"> gratuito</span>
           </Link>

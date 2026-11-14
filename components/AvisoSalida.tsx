@@ -54,7 +54,7 @@ export default function AvisoSalida() {
     let ultimaT = performance.now();
 
     const puede = () => {
-      if (Date.now() - inicio < 12000) return false; // nada de saltar nada más llegar
+      if (Date.now() - inicio < 30000) return false; // nada de saltar nada más llegar
       const aviso = document.querySelector<HTMLElement>("[data-aviso-cookies]");
       if (aviso && aviso.offsetParent !== null) return false;
       if (document.querySelector("[role=dialog][aria-modal=true]")) return false;
