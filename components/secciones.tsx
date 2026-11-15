@@ -1062,6 +1062,25 @@ export function BandaEnlaceControl() {
   );
 }
 
+/* Enlace a la ayuda en remoto (15-nov-2026): si te atascas, nos conectamos contigo. */
+export function BandaEnlaceRemoto() {
+  return (
+    <section className="bg-niebla pb-8">
+      <div className={ENVOLTORIO}>
+        <a href="/ayuda-en-remoto" className="group flex flex-col gap-3 rounded-[1.6rem] border-2 border-[#1d4ed8]/30 bg-white p-5 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <Loseta icono="mano" i={2} className="sm:mr-1" />
+          <span className="flex-1">
+            <span className="block text-sm font-extrabold uppercase tracking-wide text-noche-3">Te ayudamos en remoto</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">¿Te atascas abriendo cuentas? Las abrimos contigo, en una tarde.</span>
+            <span className="mt-1 block text-gris">Nos conectamos a tu ordenador, contigo delante. Las contraseñas y la tarjeta las tecleas tú.</span>
+          </span>
+          <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Ver cómo es la sesión</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 /* Portada: tú tienes el control de todo (ocho compromisos). */
 export function BandaControl() {
   return (

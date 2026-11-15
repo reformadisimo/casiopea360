@@ -8,7 +8,7 @@ import { TERMINOS } from "@/lib/terminos";
 
 
 // Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
-export const ACTUALIZADO = "2026-11-14";
+export const ACTUALIZADO = "2026-11-15";
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
@@ -64,6 +64,7 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 - [Cómo trabajamos](${u}/como-trabajamos)
 - [Miedo al cambio: prueba A/B y salida fácil](${u}/miedo-al-cambio)
 - [Tú tienes el control de todo, siempre: ocho compromisos y 10 cosas que revisar](${u}/tu-control)
+- [Te ayudamos en remoto: si el cliente se atasca abriendo sus cuentas, nos conectamos a su ordenador con él delante y quedan abiertas a su nombre; contraseñas, tarjeta y códigos los teclea él](${u}/ayuda-en-remoto)
 - [Un día de trabajo real: así arrancamos las campañas por dentro](${u}/un-dia-de-trabajo)
 - [Trabajos](${u}/trabajos): Reformadísimo (reformas integrales, Madrid), Mi Estela (app familiar para iPhone y Android), AMS Cerramientos.
 ${CASOS.filter((c) => TRABAJOS.find((t) => t.nombre === c.nombre)?.publicado).map((c) => `- [Caso ${c.nombre}](${u}/trabajos/${c.slug}): ${c.descripcionSeo}`).join("\n")}

@@ -40,6 +40,7 @@ export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean; pastilla?:
       { icono: "engranaje", texto: "Un día de trabajo real", href: "/un-dia-de-trabajo", detalle: "Lo que hacemos por dentro, sin cajas negras" },
       { icono: "escudo", texto: "Miedo al cambio", href: "/miedo-al-cambio", detalle: "Pruébalo con tu web al lado, sin riesgo" },
       { icono: "llave", texto: "Tú tienes el control", href: "/tu-control", detalle: "Tus cuentas, tu web y tus contactos son tuyos" },
+      { icono: "mano", texto: "Te ayudamos en remoto", href: "/ayuda-en-remoto", detalle: "Si te atascas, nos conectamos contigo y lo dejamos hecho" },
       { icono: "lupa", texto: "Lupa 360 de ejemplo", href: "/lupa-ejemplo", detalle: "Lo que hace la gente en tu web, sobre la nuestra" },
       { icono: "chat", texto: "Avisos de ejemplo", href: "/avisos-ejemplo", detalle: "Cómo le llegarían los mensajes a tu cliente" },
       { icono: "crm", texto: "CRM de ejemplo", href: "/crm-ejemplo", detalle: "Cada contacto, lo que toca hoy y de dónde viene" },

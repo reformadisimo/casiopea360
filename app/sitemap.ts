@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/como-trabajamos", 0.8],
     ["/miedo-al-cambio", 0.7],
     ["/tu-control", 0.7],
+    ["/ayuda-en-remoto", 0.7],
     ["/calculadora", 0.6],
     ["/panel", 0.6],
     ["/un-dia-de-trabajo", 0.7],

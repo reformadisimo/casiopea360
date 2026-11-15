@@ -21,10 +21,10 @@ const PROBLEMA: [string, string][] = [
   ["euro", "Te cobran por devolverte lo que ya era tuyo."],
 ];
 
-// Nuestra regla (Ig, 5-nov-2026): nunca tenemos el control, ni damos de alta las cuentas; guiamos.
+// Nuestra regla (Ig, 5-nov-2026): nunca tenemos el control. Desde el 15-nov: las cuentas se abren CONTIGO (sesión en remoto), nunca por ti ni a nuestro nombre.
 const REGLA: [string, string, string][] = [
-  ["llave", "No damos de alta tus cuentas", "Las abres tú, con tu correo y tu tarjeta. Nosotros no las abrimos a nuestro nombre ni a medias."],
-  ["mano", "Te guiamos paso a paso", "Es más fácil de lo que parece. Te decimos qué abrir, dónde y en qué orden, y lo revisamos contigo."],
+  ["llave", "Tus cuentas nacen a tu nombre", "Con tu correo y tu tarjeta. No las abrimos a nuestro nombre, ni a medias, ni sin ti."],
+  ["mano", "Las abrimos contigo", "Te damos los pasos en orden. Y si te atascas, nos conectamos a tu ordenador, contigo delante, y quedan abiertas en una tarde."],
   ["escudo", "Si quieres que las lleve otro, no es con nosotros", "Si prefieres que seamos nosotros los dueños de tus cuentas, no podemos trabajar juntos. Es una condición, no una preferencia."],
 ];
 
@@ -86,7 +86,7 @@ export default function TuControl() {
           <div className="mt-8 rounded-[1.8rem] border-2 border-estrella bg-estrella/15 p-6 sm:p-8">
             <h3 className="text-2xl font-extrabold sm:text-3xl">Al principio da algo de pereza. Y merece la pena.</h3>
             <p className="mt-3 max-w-3xl text-lg text-white/85">
-              Abrir y ordenar tus cuentas lleva desde media hora hasta uno o dos días, según cuántas tengas. Te acompañamos en cada paso. Es muy poco comparado con el día en que quieras cambiar de proveedor y tengas que pedir permiso, o casi perdón, para entrar en lo que es tuyo.
+              Abrir y ordenar tus cuentas lleva desde media hora hasta uno o dos días, según cuántas tengas. Te acompañamos en cada paso, y si quieres <a href="/ayuda-en-remoto" className="font-bold text-white underline decoration-estrella decoration-2 underline-offset-4">las abrimos contigo en una sola sesión en remoto</a>: tú tecleas las contraseñas y la tarjeta, nosotros el resto. Es muy poco comparado con el día en que quieras cambiar de proveedor y tengas que pedir permiso, o casi perdón, para entrar en lo que es tuyo.
             </p>
             <p className="mt-3 max-w-3xl text-lg text-white/85">
               Vale para todo: cuentas de anuncios, redes, correo, web, y también para cada artículo del blog y cada página que publiquemos. Todo queda en tus manos.

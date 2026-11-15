@@ -519,6 +519,26 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
       "Si hace falta, te mandamos un equipo de grabación: lo organizamos nosotros y se paga aparte, sin comisión.",
     ],
   },
+  {
+    p: "¿Y si no sé abrir las cuentas, o me atasco?",
+    corta: "Las abrimos contigo: nos conectamos a tu ordenador, tú delante, y quedan abiertas a tu nombre.",
+    puntos: [
+      "Una sola sesión, de 60 a 90 minutos.",
+      "Las contraseñas, la tarjeta y los códigos del móvil los tecleas tú.",
+      "Al terminar nos invitas a cada cuenta y cortas la conexión.",
+      "Y si prefieres hacerlo tú, te damos los pasos en orden.",
+    ],
+  },
+  {
+    p: "¿Es seguro dejaros entrar en mi ordenador?",
+    corta: "Entramos solo ese rato, contigo delante y viendo todo lo que hacemos.",
+    puntos: [
+      "Con un código de un solo uso que generas tú.",
+      "Puedes cortar la conexión en cualquier momento.",
+      "No abrimos tu banco, tu correo personal ni tus archivos.",
+      "Nunca te llamamos por sorpresa para pedirte acceso: la cita se queda por correo.",
+    ],
+  },
 ];
 export const PREGUNTAS: Pregunta[] = PREGUNTAS_BASE.map((q) => ({ ...q, r: [q.corta, ...(q.puntos ?? [])].join(" ") }));
 
