@@ -183,6 +183,44 @@ export function SeccionTiempo() {
   );
 }
 
+/** Portada (15-nov-2026): si te atascas, nos conectamos y lo dejamos hecho. Siempre «contigo», nunca «por ti»; sin precio. */
+export function SeccionAtascos() {
+  const dolores: [string, string, string][] = [
+    ["llave", "«Me pide un código y no sé cuál»", "Abrir las cuentas de Google, la ficha o las redes. Son muchas y cada una pide una cosa."],
+    ["reloj", "«Lo dejo para mañana»", "Y pasan semanas. No es dejadez: tienes un negocio que atender."],
+    ["ojo", "«No sé qué me está pidiendo Google»", "Un aviso, una verificación que no pasa, un acceso que no sabes dar."],
+  ];
+  return (
+    <section className="relative overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="atascos">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="mano">Te ayudamos en remoto</Etiqueta>
+        <h2 id="atascos" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">¿Te atascas? Lo resolvemos contigo.</h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          <b className="text-tinta">Lo que a ti te da dolor de cabeza, para nosotros es el día a día.</b> No nos quedamos esperando: primero te guiamos por escrito y, si no sale, nos conectamos a tu ordenador contigo delante, y seguimos avanzando.
+        </p>
+        <ol className="mt-10 grid gap-4 md:grid-cols-3">
+          {dolores.map(([ic, t, d], i) => (
+            <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} />
+          ))}
+        </ol>
+        <div className="mt-8 grid gap-4 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <div className="rounded-[1.6rem] bg-estrella/15 p-6 ring-1 ring-estrella/40">
+            <p className="flex items-center gap-3 text-lg font-extrabold"><Loseta icono="mano" i={2} /> Cómo lo arreglamos</p>
+            <ul className="mt-3 grid gap-1.5 text-lg">
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-emerald-600">✓</span>Primero, una captura y te decimos qué tocar. Sin llamadas ni videollamadas.</li>
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-emerald-600">✓</span>Si no sale, nos conectamos. Cuentas a tu nombre; contraseñas y tarjeta las tecleas tú.</li>
+              <li className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold text-emerald-600">✓</span><span><b>Tú delante, viéndolo todo.</b> Cortas la conexión cuando quieras.</span></li>
+            </ul>
+            <a href="/ayuda-en-remoto" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-noche px-6 font-bold text-white transition-colors hover:bg-[#1d4ed8]">Ver cómo te ayudamos</a>
+          </div>
+          <Bocadillo>No somos de frenarnos. Si algo te cuesta, lo hacemos juntos y a otra cosa.</Bocadillo>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /** "¿Por qué contratarnos?": el mensaje central de Casiopea. Sin promesas de cifras, sin precios publicados. */
 export function SeccionPorQueContratarnos() {
   const razones: [string, string, string][] = [

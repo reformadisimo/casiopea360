@@ -2,7 +2,7 @@ import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { BandaCompromisos,
-  SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionVelocidad, SeccionTecnologia, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios, BandaEnlaceControl } from "@/components/secciones";
+  SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionVelocidad, SeccionTecnologia, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios, BandaEnlaceControl, BandaEnlaceRemoto } from "@/components/secciones";
 import { SeccionFichaGoogle, SeccionPruebasAB } from "@/components/SeccionesVender";
 import EjemploResenas from "@/components/EjemploResenas";
 import { meta } from "@/lib/meta";
@@ -56,6 +56,7 @@ export default function Servicios() {
       <SeccionFueraInternet />
       <SeccionOficios />
       <BandaEnlaceControl />
+      <BandaEnlaceRemoto />
       <LlamadaFinal />
     </>
   );

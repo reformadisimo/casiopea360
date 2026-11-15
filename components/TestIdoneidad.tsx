@@ -10,6 +10,7 @@ import Logo from "@/components/Logo";
 import VideoFondo from "@/components/VideoFondo";
 import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 import Image from "next/image";
+import BotonDictado from "@/components/BotonDictado";
 import { CONTACTO } from "@/lib/contenido";
 
 // Muestra de la guía que recibirá (despacho ficticio, difuminada).
@@ -212,6 +213,7 @@ export default function TestIdoneidad() {
   const [envio, setEnvio] = useState<"" | "enviando" | "enviado" | "sin-canal" | "error">("");
   const espera = useRef<ReturnType<typeof setTimeout> | null>(null);
   const caja = useRef<HTMLDivElement>(null);
+  const masRef = useRef<HTMLTextAreaElement>(null);
 
   const tramo = TRAMOS[ti];
   const preguntasVistas = conExtra ? TRAMOS : BASE;
@@ -519,7 +521,8 @@ export default function TestIdoneidad() {
             </label>
             <label className="text-sm font-bold sm:col-span-2">
               ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
-              <textarea name="mas" rows={2} maxLength={1000} className={campo} />
+              <textarea name="mas" ref={masRef} rows={2} maxLength={1000} className={campo} />
+              <BotonDictado destino={masRef} className="mt-2 font-normal" />
             </label>
             <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-2xl bg-niebla px-4 py-3 text-sm sm:col-span-2">
               <input name="imagenes" type="checkbox" value="si" required className="mt-0.5 h-5 w-5 shrink-0 accent-[#2440ff]" />
