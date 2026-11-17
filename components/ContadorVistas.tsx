@@ -18,8 +18,19 @@ function origen() {
   return { fuente, disp };
 }
 
+/** Avisa a Tag Manager (dataLayer) de un evento sin datos personales. Si el visitante no aceptó las cookies,
+    Tag Manager no está cargado y esto no hace nada: la medición completa es la del contador propio. */
+export function avisarGTM(evento: string, extra: Record<string, string> = {}) {
+  try {
+    const w = window as unknown as { dataLayer?: unknown[] };
+    if (!w.dataLayer) return;
+    w.dataLayer.push({ event: evento, pagina: window.location.pathname, fuente: leerAtribucion().fuente, ...extra });
+  } catch {}
+}
+
 /** Apunta un clic en WhatsApp o en llamar, una sola vez por visita y tipo (marcas en sessionStorage). */
 export function apuntarContacto(tipo: "contacto_wa" | "contacto_tel") {
+  avisarGTM(tipo === "contacto_wa" ? "whatsapp_click" : "llamada_click");
   try {
     if (navigator.webdriver) return;
     const marca = tipo === "contacto_wa" ? "cas-cwa" : "cas-ctel";
