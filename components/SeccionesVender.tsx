@@ -452,6 +452,115 @@ export function SeccionLoQueNo() {
   );
 }
 
+/** Ahorro (18-nov-2026, Ig): lo que cuesta hoy contratarlo por separado, con las cifras de mercado que da Ig, sin IVA y como orientación.
+    Los totales se calculan aquí, no se escriben a mano. */
+const AHORRO_MES: { que: string; quien: string; min: number; max?: number }[] = [
+  { que: "SEO (posicionamiento en Google)", quien: "Agencia o consultor SEO", min: 900, max: 1200 },
+  { que: "Gestión de Google Ads (SEM)", quien: "Especialista en anuncios", min: 1500, max: 2000 },
+  { que: "Instagram y redes", quien: "Community manager", min: 600 },
+  { que: "Diseño, cambios en la web y landings", quien: "Diseñador o estudio", min: 1000 },
+];
+const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
+  { que: "Una web nueva (desde)", quien: "Agencia web", min: 3000 },
+  { que: "Un CRM (desde)", quien: "Consultora o programador", min: 3000 },
+];
+const CUOTA_NUM = 1800;
+const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
+const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
+
+export function SeccionAhorro() {
+  const mesMin = AHORRO_MES.reduce((a, f) => a + f.min, 0);
+  const mesMax = AHORRO_MES.reduce((a, f) => a + (f.max ?? f.min), 0);
+  const unaVez = AHORRO_UNA_VEZ.reduce((a, f) => a + f.min, 0);
+  const anioMin = mesMin * 12 + unaVez;
+  const anioMax = mesMax * 12 + unaVez;
+  const anioCuota = CUOTA_NUM * 12;
+  const dolor: [string, string][] = [
+    ["Cuatro o cinco proveedores", "Uno para el SEO, otro para los anuncios, otro para las redes, otro para el diseño. Cada uno con su factura y su reunión."],
+    ["Nadie mira el conjunto", "El del anuncio no sabe qué cambia el de la web, y el de las redes no sabe qué dice el del SEO. Tú haces de director de orquesta."],
+    ["Pagas por cada cambio", "Una landing nueva, un ajuste, otro presupuesto. Y la espera de cada uno."],
+  ];
+  return (
+    <section id="ahorro" className="relative scroll-mt-24 overflow-hidden bg-niebla py-16 sm:py-24" aria-labelledby="ahorro-titulo">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="euro">Lo que pagas hoy</Etiqueta>
+        <h2 id="ahorro-titulo" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">Por separado, es muchísimo dinero. <span className="tono2">Y cada uno hace solo su parte.</span></h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          Lo normal es que te hagan el SEO, o los anuncios, o el diseño, o las redes. <b className="text-tinta">Nosotros llevamos todo a la vez, con un solo equipo</b>, y por eso lo que se arregla en un frente mejora los demás.
+        </p>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {dolor.map(([t, d], i) => (
+            <TarjetaViva key={t} icono={["sonrisa", "lupa", "euro"][i]} i={i} titulo={t} texto={d} />
+          ))}
+        </ul>
+
+        <div className="mt-10 overflow-hidden rounded-[2rem] bg-white shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm sm:text-base">
+              <caption className="sr-only">Lo que cuesta contratar cada servicio por separado</caption>
+              <thead>
+                <tr className="bg-noche text-sm text-white">
+                  <th scope="col" className="px-3 py-3 font-bold sm:px-5">Si lo contratas por separado</th>
+                  <th scope="col" className="hidden px-5 py-3 font-bold sm:table-cell">A quién</th>
+                  <th scope="col" className="px-3 py-3 text-right font-bold sm:px-5">Cuánto</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-linea">
+                {AHORRO_MES.map((f) => (
+                  <tr key={f.que}>
+                    <th scope="row" className="px-3 py-3 font-bold text-tinta sm:px-5">{f.que}<span className="block text-xs font-normal text-gris sm:hidden">{f.quien}</span></th>
+                    <td className="hidden px-5 py-3 text-gris sm:table-cell">{f.quien}</td>
+                    <td className="px-3 py-3 text-right font-extrabold text-tinta sm:whitespace-nowrap sm:px-5">{rango(f.min, f.max)}<span className="block text-xs font-normal text-gris">al mes</span></td>
+                  </tr>
+                ))}
+                <tr className="bg-niebla">
+                  <th scope="row" className="px-3 py-3 font-extrabold text-tinta sm:px-5">Cada mes, por separado</th>
+                  <td className="hidden sm:table-cell" />
+                  <td className="px-3 py-3 text-right text-base font-extrabold text-tinta sm:whitespace-nowrap sm:px-5 sm:text-lg">{rango(mesMin, mesMax)}</td>
+                </tr>
+                {AHORRO_UNA_VEZ.map((f) => (
+                  <tr key={f.que}>
+                    <th scope="row" className="px-3 py-3 font-bold text-tinta sm:px-5">{f.que}<span className="block text-xs font-normal text-gris sm:hidden">{f.quien}</span></th>
+                    <td className="hidden px-5 py-3 text-gris sm:table-cell">{f.quien}</td>
+                    <td className="px-3 py-3 text-right font-extrabold text-tinta sm:whitespace-nowrap sm:px-5">{euros(f.min)}<span className="block text-xs font-normal text-gris">una vez</span></td>
+                  </tr>
+                ))}
+                <tr className="bg-estrella text-tinta">
+                  <th scope="row" className="px-3 py-4 text-base font-extrabold sm:px-5 sm:text-lg">Con Casiopea 360, todo eso y más</th>
+                  <td className="hidden sm:table-cell" />
+                  <td className="px-3 py-4 text-right text-lg font-extrabold sm:whitespace-nowrap sm:px-5 sm:text-xl">{euros(CUOTA_NUM)}<span className="block text-xs font-bold">al mes</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="rounded-[1.6rem] bg-white p-6 ring-1 ring-black/5">
+            <p className="text-sm font-bold text-gris">Cada mes</p>
+            <p className="mt-1 text-3xl font-extrabold text-tinta">{euros(mesMin - CUOTA_NUM)} a {euros(mesMax - CUOTA_NUM)}</p>
+            <p className="mt-1 text-gris">menos que contratando solo esas cuatro cosas.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-white p-6 ring-1 ring-black/5">
+            <p className="text-sm font-bold text-gris">El primer año, con la web y el CRM</p>
+            <p className="mt-1 text-3xl font-extrabold text-tinta">{euros(anioMin)} a {euros(anioMax)}</p>
+            <p className="mt-1 text-gris">por separado, frente a {euros(anioCuota)} con nosotros.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-noche p-6 text-white">
+            <p className="text-sm font-bold text-white/70">Ahorro del primer año</p>
+            <p className="mt-1 text-3xl font-extrabold text-estrella">{euros(anioMin - anioCuota)} a {euros(anioMax - anioCuota)}</p>
+            <p className="mt-1 text-white/80">y con todo lo demás de la cuota, que aquí ni hemos contado.</p>
+          </div>
+        </div>
+        <p className="mt-6 max-w-3xl text-sm text-gris">
+          Precios orientativos de mercado en España, 2026, sin IVA: dependen del proveedor y del tamaño de tu empresa. No contamos la inversión en anuncios, que es tuya en ambos casos, ni las licencias, el asistente con IA, las reseñas, los vídeos o la vigilancia de tu competencia, que también van dentro. <Link href="/servicios#costes" className="font-bold text-tinta underline underline-offset-4">Calcúlalo con lo que necesitas tú</Link>.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /** Precio (18-nov-2026, Ig): una sola cuota, 1.800 € + IVA al mes, sin permanencia. Va con todo lo que incluye.
     Sin garantías de resultados; la postura sobre los anuncios (IA o los propios dueños y trabajadores, sin actores) también va aquí. */
 export const PRECIO_CUOTA = "1.800 €";
@@ -465,6 +574,8 @@ export function SeccionPrecio() {
     ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
   ];
   return (
+    <>
+    <SeccionAhorro />
     <section id="precio" className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="precio-titulo">
       <Nebulosa oscura variante={1} />
       <div className={`${ENVOLTORIO} relative`}>
@@ -497,5 +608,6 @@ export function SeccionPrecio() {
         <Bocadillo claro className="mt-6 max-w-3xl">Es una experiencia, no una garantía: lo medimos contigo cada semana y te vas cuando quieras.</Bocadillo>
       </div>
     </section>
+    </>
   );
 }
