@@ -536,21 +536,24 @@ export function SeccionAhorro() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <h3 className="mt-12 text-2xl font-extrabold text-tinta sm:text-3xl">La cuenta del primer año</h3>
+        <div className="mt-5 grid items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
           <div className="rounded-[1.6rem] bg-white p-6 ring-1 ring-black/5">
-            <p className="text-sm font-bold text-gris">Cada mes</p>
-            <p className="mt-1 text-3xl font-extrabold text-tinta">{euros(mesMin - CUOTA_NUM)} a {euros(mesMax - CUOTA_NUM)}</p>
-            <p className="mt-1 text-gris">menos que contratando solo esas cuatro cosas.</p>
+            <p className="text-base font-bold text-tinta">Por separado</p>
+            <p className="mt-2 text-3xl font-extrabold text-tinta sm:text-4xl">{euros(anioMin)} a {euros(anioMax)}</p>
+            <p className="mt-2 text-gris">Los cuatro servicios de cada mes, más la web y el CRM.</p>
           </div>
-          <div className="rounded-[1.6rem] bg-white p-6 ring-1 ring-black/5">
-            <p className="text-sm font-bold text-gris">El primer año, con la web y el CRM</p>
-            <p className="mt-1 text-3xl font-extrabold text-tinta">{euros(anioMin)} a {euros(anioMax)}</p>
-            <p className="mt-1 text-gris">por separado, frente a {euros(anioCuota)} con nosotros.</p>
+          <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">−</p>
+          <div className="rounded-[1.6rem] bg-estrella p-6 text-tinta">
+            <p className="text-base font-bold">Con Casiopea 360</p>
+            <p className="mt-2 text-3xl font-extrabold sm:text-4xl">{euros(anioCuota)}</p>
+            <p className="mt-2">Doce cuotas de {euros(CUOTA_NUM)}, con todo dentro.</p>
           </div>
+          <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">=</p>
           <div className="rounded-[1.6rem] bg-noche p-6 text-white">
-            <p className="text-sm font-bold text-white/70">Ahorro del primer año</p>
-            <p className="mt-1 text-3xl font-extrabold text-estrella">{euros(anioMin - anioCuota)} a {euros(anioMax - anioCuota)}</p>
-            <p className="mt-1 text-white/80">y con todo lo demás de la cuota, que aquí ni hemos contado.</p>
+            <p className="text-base font-bold text-white/80">Te ahorras</p>
+            <p className="mt-2 text-3xl font-extrabold text-estrella sm:text-4xl">{euros(anioMin - anioCuota)} a {euros(anioMax - anioCuota)}</p>
+            <p className="mt-2 text-white/85">Cada mes, entre {euros(mesMin - CUOTA_NUM)} y {euros(mesMax - CUOTA_NUM)} menos. Y todavía hay más dentro de la cuota.</p>
           </div>
         </div>
         <p className="mt-6 max-w-3xl text-sm text-gris">
