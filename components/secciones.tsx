@@ -1879,10 +1879,12 @@ export function SeccionSolicitud() {
           </p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
           <VerEjemplo className="mt-6" />
-          <EstudioDeVerdad />
-          <div className="hidden lg:block"><EjemplosTrabajos /></div>
         </div>
         <DiagnosticoDiferido />
+      </div>
+      <div className={`${ENVOLTORIO} relative mt-14 grid items-start gap-10 lg:grid-cols-2`}>
+        <EstudioDeVerdad />
+        <EjemplosTrabajos />
       </div>
     </section>
   );
