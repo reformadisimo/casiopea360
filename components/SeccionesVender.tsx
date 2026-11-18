@@ -460,14 +460,15 @@ const AHORRO_MES: { que: string; quien: string; min: number; max?: number }[] = 
   { que: "Gestión de Google Ads (SEM)", quien: "Especialista en anuncios", min: 1500, max: 2000 },
   { que: "Instagram y redes", quien: "Community manager", min: 600 },
   { que: "Diseño, cambios en la web y landings", quien: "Diseñador o estudio", min: 1000 },
+  { que: "Asesoramiento de negocio", quien: "Asesor o consultor de empresas", min: 1200 },
 ];
 const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
   { que: "Una web nueva (desde)", quien: "Agencia web", min: 3000 },
   { que: "Un CRM (desde)", quien: "Consultora o programador", min: 3000 },
 ];
 const CUOTA_NUM = 1800;
-const COLORES_AHORRO = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4"];
-const NOMBRE_CORTO: Record<string, string> = { "SEO (posicionamiento en Google)": "SEO", "Gestión de Google Ads (SEM)": "Google Ads", "Instagram y redes": "Instagram y redes", "Diseño, cambios en la web y landings": "Diseño y cambios", "Una web nueva (desde)": "Web nueva", "Un CRM (desde)": "CRM" };
+const COLORES_AHORRO = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#64748b"];
+const NOMBRE_CORTO: Record<string, string> = { "SEO (posicionamiento en Google)": "SEO", "Gestión de Google Ads (SEM)": "Google Ads", "Instagram y redes": "Instagram y redes", "Diseño, cambios en la web y landings": "Diseño y cambios", "Una web nueva (desde)": "Web nueva", "Un CRM (desde)": "CRM", "Asesoramiento de negocio": "Asesoramiento" };
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
   ...AHORRO_UNA_VEZ.map((f) => ({ ...f, mensual: false })),
@@ -563,6 +564,7 @@ export function SeccionPrecio() {
     ["pagina", "Web, SEO y visibilidad en las IA", "Tu web nueva en días, mantenida por nosotros, y tu empresa trabajada para salir en Google y cuando alguien pregunta a una IA."],
     ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok llevados por nosotros, reseñas contestadas y una sola persona que te escribe."],
     ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
+    ["escudo", "Un punto de vista de empresarios", "Hemos montado y llevado negocios, y sabemos qué funciona y qué no. Si lo quieres, te damos nuestra opinión sobre tu negocio, sin coste aparte. Decides tú."],
   ];
   return (
     <>
@@ -587,7 +589,7 @@ export function SeccionPrecio() {
             </p>
             <a href="/estudio-gratuito" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-noche px-6 font-bold text-white transition-colors hover:bg-[#1d4ed8]">Pide tu estudio gratuito</a>
           </div>
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid gap-4 sm:grid-cols-2 sm:[&>li:last-child]:col-span-2">
             {valor.map(([ic, t, d], i) => (
               <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} claro />
             ))}
