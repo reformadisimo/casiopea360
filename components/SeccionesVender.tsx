@@ -1,4 +1,5 @@
 import Nitido from "@/components/Nitido";
+import GraficoAhorro, { type FilaAhorro } from "@/components/GraficoAhorro";
 import Link from "next/link";
 import AlEntrar from "@/components/AlEntrar";
 import { BOTON, BOTON_CLARO, ENVOLTORIO, Loseta } from "@/components/secciones";
@@ -465,6 +466,11 @@ const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
   { que: "Un CRM (desde)", quien: "Consultora o programador", min: 3000 },
 ];
 const CUOTA_NUM = 1800;
+const COLORES_AHORRO = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4"];
+const FILAS_GRAFICO: FilaAhorro[] = [
+  ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
+  ...AHORRO_UNA_VEZ.map((f) => ({ ...f, mensual: false })),
+].map((f, i) => ({ id: `f${i}`, que: f.que.replace(" (desde)", "").replace("Una web nueva", "Web nueva").replace("Un CRM", "CRM").replace("Gestión de Google Ads (SEM)", "Google Ads").replace("SEO (posicionamiento en Google)", "SEO").replace("Diseño, cambios en la web y landings", "Diseño y cambios"), min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length] }));
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
 const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
 
@@ -536,26 +542,7 @@ export function SeccionAhorro() {
           </div>
         </div>
 
-        <h3 className="mt-12 text-2xl font-extrabold text-tinta sm:text-3xl">La cuenta del primer año</h3>
-        <div className="mt-5 grid items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
-          <div className="rounded-[1.6rem] bg-white p-6 ring-1 ring-black/5">
-            <p className="text-base font-bold text-tinta">Por separado</p>
-            <p className="mt-2 text-3xl font-extrabold text-tinta sm:text-4xl">{euros(anioMin)} a {euros(anioMax)}</p>
-            <p className="mt-2 text-gris">Los cuatro servicios de cada mes, más la web y el CRM.</p>
-          </div>
-          <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">−</p>
-          <div className="rounded-[1.6rem] bg-estrella p-6 text-tinta">
-            <p className="text-base font-bold">Con Casiopea 360</p>
-            <p className="mt-2 text-3xl font-extrabold sm:text-4xl">{euros(anioCuota)}</p>
-            <p className="mt-2">Doce cuotas de {euros(CUOTA_NUM)}, con todo dentro.</p>
-          </div>
-          <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">=</p>
-          <div className="rounded-[1.6rem] bg-noche p-6 text-white">
-            <p className="text-base font-bold text-white/80">Te ahorras</p>
-            <p className="mt-2 text-3xl font-extrabold text-estrella sm:text-4xl">{euros(anioMin - anioCuota)} a {euros(anioMax - anioCuota)}</p>
-            <p className="mt-2 text-white/85">Cada mes, entre {euros(mesMin - CUOTA_NUM)} y {euros(mesMax - CUOTA_NUM)} menos. Y todavía hay más dentro de la cuota.</p>
-          </div>
-        </div>
+        <GraficoAhorro filas={FILAS_GRAFICO} cuota={CUOTA_NUM} />
         <p className="mt-6 max-w-3xl text-sm text-gris">
           Precios orientativos de mercado en España, 2026, sin IVA: dependen del proveedor y del tamaño de tu empresa. No contamos la inversión en anuncios, que es tuya en ambos casos, ni las licencias, el asistente con IA, las reseñas, los vídeos o la vigilancia de tu competencia, que también van dentro. <Link href="/servicios#costes" className="font-bold text-tinta underline underline-offset-4">Calcúlalo con lo que necesitas tú</Link>.
         </p>
