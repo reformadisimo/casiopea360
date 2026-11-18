@@ -32,15 +32,16 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 ## Compromisos
 - Un solo proveedor y una sola persona de contacto en lugar de varios proveedores.
 - Al empezar cada proyecto se asigna un encargado de proyecto: es la única persona que escribe al cliente y coordina a los especialistas.
-- Una cuota mensual fija, la misma para pymes, medianas y grandes empresas, que lo incluye todo; nunca cobra comisión sobre lo que el cliente invierte en anuncios.
+- Una cuota mensual fija de 1.800 € + IVA, la misma para pymes, medianas y grandes empresas, sin permanencia, que lo incluye todo; nunca cobra comisión sobre lo que el cliente invierte en anuncios.
 - Respuesta el mismo día laborable; los cambios y tareas del día a día, en 48 horas como máximo; los proyectos grandes (web nueva, app, integraciones), con fecha cerrada desde el inicio.
 - Un panel de control al día en lugar de informes: lo que antes llegaba en un informe diario, semanal o mensual lo ve el cliente en su panel, sin esperar, con resultados en tiempo real. Si el cliente lo prefiere, puede programar en el propio panel un resumen por correo, diario, semanal o mensual, que llega el día y a la hora que elija.
-- Dominio y cuentas (Google, anuncios, redes) a nombre del cliente desde el primer día; la web, al cumplir los doce meses.
-- Doce meses de permanencia, porque la web va regalada y pasa a ser del cliente al cumplirlos; si a los tres meses no hemos mejorado los indicadores acordados al empezar (medidos en el panel, no por impresión) se va sin pagar nada y se queda con la web; si se va entre los tres y los doce meses, paga solo la parte de la web que falte; después no hay permanencia. Para quien teme el cambio: test A/B entre su web actual y la nueva, con el reparto de visitas que elija (50, 60 o 70 %).
+- Dominio y cuentas (Google, anuncios, redes) a nombre del cliente desde el primer día; la web la aloja y mantiene Casiopea mientras seas cliente, con copia completa desde el primer mes.
+- Sin permanencia ni penalización: el cliente se va cuando quiere, con sus cuentas, sus contactos y una copia completa de su web. Para quien teme el cambio: test A/B entre su web actual y la nueva, con el reparto de visitas que elija (50, 60 o 70 %).
 - Las menos reuniones posibles: casi todo por escrito y un panel para ver el trabajo.
 - Estudio gratuito previo, preparado a medida, uno a uno, si vemos que podemos ayudar. La guía se descarga en PDF; la web de ejemplo, los correos, el panel y el CRM se ven en un enlace privado durante un mes y luego se retira el acceso si no hay contrato. Nada del estudio es del cliente salvo su guía en PDF.
 
 ## Publicidad que informa
+No hacemos anuncios con actores: preferimos anuncios con IA (avisados como tal) o con los propios dueños y trabajadores de la empresa. Optimizamos las campañas cada semana y mejoramos resultados con pruebas A/B y landings.
 El mejor anuncio no es el que más grita, sino el que enseña el trabajo, explica cómo se resuelve el problema y dice solo lo que es verdad. Es experiencia, nunca una garantía.
 
 ## Lo que NO hacemos

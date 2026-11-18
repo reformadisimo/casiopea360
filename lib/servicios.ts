@@ -35,7 +35,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Web y apps",
     tituloSeo: "Diseño de páginas web a medida, rápidas y tuyas",
     descripcionSeo:
-      "Web a medida en unos días, con calculadoras y asistente con IA, y tuya a los doce meses. Incluida en tu cuota, con 100 en PageSpeed como objetivo.",
+      "Web a medida en unos días, con calculadoras y asistente con IA, mantenida por nosotros mientras seas cliente. Incluida en tu cuota, con 100 en PageSpeed como objetivo.",
     titular: "Tu web, en días. Rápida, bonita y a tu nombre.",
     entradilla:
       "En unos días, normalmente menos de una semana. Con calculadoras, asistente con IA y una velocidad que tu competencia no tiene.",
@@ -45,7 +45,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     videoAlt2: "Un profesional dibuja a mano sobre una mesa de diseño",
     color: "#1f6feb",
     dolores: [
-      { dolor: "«Mi web es vieja y tarda en cargar.»", arreglo: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos." },
+      { dolor: "«Mi web es vieja y tarda en cargar.»", arreglo: "Te hacemos una nueva, rápida en el móvil, incluida en la cuota." },
       { dolor: "«Cada cambio es un presupuesto y una espera.»", arreglo: "Cambios del día a día en 48 horas máximo, dentro de la cuota." },
       { dolor: "«Mi web es de mi agencia, no mía.»", arreglo: "Dominio, cuentas y contactos, siempre a tu nombre. De la web, copia completa desde el primer mes." },
     ],
@@ -74,7 +74,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿La web es mía?",
-        r: "El dominio y las cuentas, sí, a tu nombre desde el primer día. De la web te damos una copia completa desde el primer mes y te la renovamos con cada cambio. La alojamos nosotros doce meses, porque te la regalamos; si te vas antes, pagas solo la parte que falte. Te llevas siempre tus cuentas, tus contactos y tu web.",
+        r: "El dominio y las cuentas, sí, a tu nombre desde el primer día. De la web te damos una copia completa desde el primer mes y te la renovamos con cada cambio. La alojamos y mantenemos nosotros mientras seas cliente, sin permanencia. Si te vas, te llevas siempre tus cuentas, tus contactos y la copia completa de tu web.",
       },
       {
         p: "¿Usáis WordPress?",

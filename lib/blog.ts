@@ -329,7 +329,7 @@ export const ARTICULOS: Articulo[] = [
         "Te damos un inventario de todo lo que tienes, dónde está y quién entra.",
         "Te puedes ir con cualquier otro proveedor cuando quieras, con todo lo tuyo y sin pedirnos permiso.",
       ] },
-      { p: "Una precisión, para que no haya sorpresas: [la web te la regalamos](/servicios/diseno-web) a cambio de doce meses y la alojamos nosotros ese tiempo. Si te vas antes, pagas solo la parte que falte." },
+      { p: "Una precisión, para que no haya sorpresas: [la web va incluida en la cuota](/servicios/diseno-web): la alojamos y mantenemos nosotros mientras seas cliente, sin permanencia. Si te vas, te llevas una copia completa." },
       { p: "Preferimos clientes contentos que se quedan porque quieren, no porque no pueden irse." },
       { h2: "¿Lo miramos juntos?" },
       { p: "Si quieres una mano, el [estudio gratuito](/estudio-gratuito) empieza justo por ahí: cómo está hoy tu marketing y de quién es cada cosa. Sin compromiso y sin pedirte ninguna contraseña." },

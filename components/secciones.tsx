@@ -906,11 +906,11 @@ export function SeccionPorQueBarato() {
 /* Lo que firmamos: seriedad de gran agencia, por escrito. */
 const SELLOS: { t: string; d: string; icono: string }[] = [
   { icono: "firma", t: "Plazos por escrito", d: "Respuesta el mismo día, 48 horas para el día a día y fecha cerrada para lo grande." },
-  { icono: "llave", t: "Tus cuentas, a tu nombre", d: "Dominio y cuentas de Google y de anuncios, desde el primer día. La web, tuya a los doce meses." },
+  { icono: "llave", t: "Tus cuentas, a tu nombre", d: "Dominio y cuentas de Google y de anuncios, desde el primer día. La web, mantenida por nosotros mientras seas cliente." },
   { icono: "euro", t: "Cero comisiones", d: "Inviertas lo que inviertas en anuncios, nunca nos llevamos un porcentaje." },
   { icono: "escudo", t: "Tus datos, protegidos", d: "Confidencialidad y protección de datos como manda la ley. Lo tuyo no sale de aquí." },
   { icono: "sonrisa", t: "Nada sin tu visto bueno", d: "Ni un anuncio, ni una respuesta a una reseña, ni un artículo sale sin que lo veas." },
-  { icono: "calendario", t: "Salida fácil", d: "Doce meses de permanencia. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web." },
+  { icono: "calendario", t: "Salida fácil", d: "Sin permanencia ni penalización. Te vas cuando quieras, con todo lo tuyo." },
 ];
 
 export const COLOR_SELLO: [string, string][] = [
@@ -997,9 +997,9 @@ export function SeccionMiedoAlCambio() {
 
           <div className="flex flex-col gap-4">
             {[
-              ["Tres meses para demostrarlo", "Si en ese tiempo no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web."],
-              ["Doce meses y se acabó", "Es la única permanencia. Después, te quedas solo si te compensa."],
-              ["Lo tuyo, siempre tuyo", "Tus cuentas y tus contactos, siempre. La web, al cumplir los doce meses, o antes si pagas la parte que falte."],
+              ["Sin permanencia", "Ni permanencia ni penalización: te quedas solo si te compensa."],
+              ["Te vas cuando quieras", "Sin pedirnos permiso y sin pagar nada por irte."],
+              ["Lo tuyo, siempre tuyo", "Tus cuentas y tus contactos, siempre. De la web, una copia completa renovada con cada cambio."],
             ].map(([t, d], i) => (
               <div key={t} className="flex gap-4 rounded-[1.6rem] border border-linea bg-white p-5">
                 <Loseta icono={["calendario", "firma", "llave"][i]} i={i} />

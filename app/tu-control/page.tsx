@@ -242,8 +242,8 @@ export default function TuControl() {
               <p className="font-extrabold text-tinta">¿Y si quieres irte? Cuando quieras, sin pedirnos permiso.</p>
               <ul className="mt-2 grid gap-1.5">
                 {[
-                  ["A los tres meses:", "sin pagar nada, si no hemos mejorado los indicadores que fijamos contigo al empezar."],
-                  ["Más adelante:", "pagando solo la parte de la web que falte."],
+                  ["Sin permanencia:", "ni penalización ni pago de salida."],
+                  ["La web:", "la alojamos y mantenemos mientras seas cliente."],
                   ["Siempre:", "te llevas tus cuentas, tus contactos y la copia de tu web."],
                 ].map(([b, r]) => (
                   <li key={b} className="flex items-start gap-2">

@@ -3,6 +3,7 @@ import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { SeccionEstudio, SeccionSolicitud, SeccionEmpezamos } from "@/components/secciones";
 import SeccionDudasEstudio from "@/components/SeccionDudasEstudio";
+import { SeccionPrecio } from "@/components/SeccionesVender";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 import { ESTUDIO_TOTAL } from "@/lib/contenido";
@@ -39,6 +40,7 @@ export default function EstudioGratuito() {
         ]}
       />
       <SeccionDudasEstudio />
+      <SeccionPrecio />
       <SeccionSolicitud />
     </>
   );

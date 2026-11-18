@@ -246,11 +246,11 @@ export const INFORMES = [
 export const GARANTIAS = [
   {
     titulo: "Tus cuentas, a tu nombre",
-    texto: "Dominio y cuentas, tuyos desde el primer día. La web, a los doce meses. Si te vas, te llevas cuentas y contactos.",
+    texto: "Dominio y cuentas, tuyos desde el primer día. La web la alojamos y mantenemos mientras seas cliente. Si te vas, te llevas cuentas, contactos y una copia completa.",
   },
   {
-    titulo: "Tu web, regalada",
-    texto: "Doce meses de permanencia. Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+    titulo: "Sin permanencia",
+    texto: "Ni permanencia ni penalización. Te quedas mientras te compense y, si te vas, te llevas todo lo tuyo.",
   },
   {
     titulo: "Nada sale sin tu visto bueno",
@@ -302,21 +302,21 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
   },
   {
     p: "¿Cuánto cuesta?",
-    corta: "Una cuota mensual fija, la misma para cualquier tamaño de empresa, con todo dentro.",
+    corta: "1.800 € + IVA al mes, la misma cuota para cualquier tamaño de empresa, con todo dentro y sin permanencia.",
     puntos: [
-      "Web, CRM, Google, anuncios, redes, automatizaciones y cada cambio que pidas.",
-      "Te la contamos en el estudio gratuito, con lo que haríamos por tu negocio.",
+      "Web, SEO, anuncios, redes, CRM, asistente con IA, automatizaciones y cada cambio que pidas.",
+      "Aparte solo va lo que pagas a otros: tu inversión en anuncios (sin comisión nuestra), la grabación profesional y los medios.",
       "Por separado costaría bastante más: lo tienes calculado en la tabla de servicios.",
     ],
   },
   {
     p: "¿Hay permanencia?",
-    corta: "Doce meses, porque la web te la regalamos.",
+    corta: "No. Ninguna permanencia ni penalización.",
     puntos: [
       "Dominio y cuentas, a tu nombre desde el primer día. De la web, copia completa y renovada.",
-      "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
-      "Más tarde, pagas solo la parte de la web que falte. Baja hasta cero a los doce meses y la conoces antes de firmar.",
-      "Pasados los doce meses, ninguna permanencia.",
+      "Te vas cuando quieras, sin pedirnos permiso y sin pagar nada por irte.",
+      "Te llevas tus cuentas, tus contactos y una copia completa de tu web, que se renueva con cada cambio.",
+      "La web la alojamos y mantenemos nosotros mientras seas cliente: es parte de la cuota.",
     ],
   },
   {
@@ -387,7 +387,7 @@ const PREGUNTAS_BASE: Omit<Pregunta, "r">[] = [
     corta: "Para eso están los primeros meses.",
     puntos: [
       "Ya tienes tu web nueva, tu CRM y todo lo que hayamos puesto en marcha.",
-      "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+      "No hay permanencia: si no te convence, te vas cuando quieras y con todo lo tuyo.",
       "Si te da miedo el cambio, prueba antes con un test A/B: tu web actual y la nueva, con el reparto que elijas.",
     ],
   },
@@ -546,7 +546,7 @@ export const PREGUNTAS: Pregunta[] = PREGUNTAS_BASE.map((q) => ({ ...q, r: [q.co
 export const DOLORES = [
   {
     dolor: "Mi web es vieja y tarda en cargar.",
-    solucion: "Te hacemos una nueva, rápida en el móvil. Y te la regalamos.",
+    solucion: "Te hacemos una nueva, rápida en el móvil, incluida en la cuota.",
   },
   {
     dolor: "Me busco en Google y no salgo.",
@@ -707,7 +707,7 @@ export const PROMESAS: { t: string; d: string; pie: string }[] = [
   {
     t: "A precio fijo.",
     d: "Una sola cuota, la misma para cualquier empresa, con todo dentro. Menos que cada cosa por separado.",
-    pie: "Si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web.",
+    pie: "Sin permanencia: te quedas mientras te compense y te vas con todo lo tuyo.",
   },
   {
     t: "Sin perseguirnos.",

@@ -8,7 +8,7 @@ import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, TarjetaViva } from
 
 export const metadata = meta(
   "Miedo al cambio: prueba la web nueva sin riesgo",
-  "Prueba la web nueva sin riesgo: test A/B con tu web actual, salida a los tres meses sin pagar si no mejoramos lo acordado, y tus cuentas siempre tuyas.",
+  "Prueba la web nueva sin riesgo: test A/B con tu web actual, sin permanencia y con tus cuentas siempre tuyas.",
   "/miedo-al-cambio",
 );
 
@@ -23,14 +23,14 @@ const PASOS: [string, string, string][] = [
 const PREGUNTAS: { icono: string; p: string; r: string }[] = [
   { icono: "ojo", p: "¿Pierdo visitas durante la prueba?", r: "Tu web actual recibe las visitas que tú decidas. Si quieres, empezamos con poco y subimos poco a poco." },
   { icono: "reloj", p: "¿Cuánto dura?", r: "Con muchas visitas, unos días; con pocas, unas semanas. Te lo decimos antes de empezar." },
-  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "Deciden los números. Y si a los tres meses no hemos mejorado los indicadores que fijamos contigo al empezar, te vas sin pagar nada y con tu web." },
+  { icono: "escudo", p: "¿Y si la nueva no mejora?", r: "Deciden los números. Y como no hay permanencia, si no te convence te vas cuando quieras, con todo lo tuyo." },
   { icono: "firma", p: "¿Me prometéis que va a ganar?", r: "No. Hasta hoy ha ganado en todos nuestros clientes, pero eso se comprueba contigo." },
 ];
 
 const PANEL = [
   "Comparas con el mes pasado o con el día que empezamos.",
   "Con la prueba A/B, ves lado a lado la web actual y la nueva.",
-  "Si a los tres meses no mejoran los indicadores fijados contigo, te vas sin pagar nada.",
+  "Si no mejoran los indicadores fijados contigo, te vas cuando quieras: no hay permanencia.",
 ];
 
 const EVOLUCION = [16, 21, 29, 33, 38, 41];
@@ -89,7 +89,7 @@ export default function MiedoAlCambio() {
             <div className="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-gris sm:gap-4">
               {["Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6"].map((m) => <span key={m}>{m}</span>)}
             </div>
-            <p className="mt-4 text-sm text-gris">En amarillo, los tres meses para demostrarlo. En azul, lo que viene después.</p>
+            <p className="mt-4 text-sm text-gris">En amarillo, los primeros meses, cuando tú decides si te compensa. En azul, lo que viene después.</p>
           </div>
         </div>
       </section>

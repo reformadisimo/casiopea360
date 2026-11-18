@@ -35,7 +35,7 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; puntos
     puntos: [
       "Copia completa desde el primer mes: textos, fotos, formularios y código.",
       "Te la renovamos cada vez que cambiamos algo.",
-      "La alojamos nosotros doce meses. Después, en una cuenta tuya.",
+      "La alojamos y mantenemos nosotros mientras seas cliente. Si te vas, te llevas la copia completa.",
     ],
   },
   {
@@ -72,8 +72,8 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; puntos
     puntos: [
       "Con cualquier otro proveedor, sin pedirnos permiso ni dar explicaciones.",
       "Te llevas cuentas, contactos y la copia de tu web.",
-      "La web te la regalamos a cambio de doce meses: si te vas antes, pagas solo la parte que falte.",
-      "A los tres meses, sin pagar nada si no hemos mejorado los indicadores que fijamos contigo al empezar.",
+      "Sin permanencia ni penalización: no pagas nada por irte.",
+      "La web la alojamos y mantenemos nosotros mientras seas cliente; al irte, copia completa.",
     ],
   },
 ];
@@ -81,7 +81,7 @@ export const COMPROMISOS: { icono: string; titulo: string; corto: string; puntos
 // Ejemplo hipotético de ficha de cuentas. Cada fila: [cuenta, cómo debe quedar, quién tiene acceso, icono del chip].
 export const FICHA: [string, string, string, string][] = [
   ["Dominio (la dirección de tu web)", "A tu nombre, con tu correo y tu tarjeta", "Tú, propietario. Casiopea, invitada.", "globo"],
-  ["Web", "Copia completa en tus manos, renovada con cada cambio", "Casiopea la aloja doce meses. Después, en una cuenta tuya.", "pagina"],
+  ["Web", "Copia completa en tus manos, renovada con cada cambio", "Casiopea la aloja y mantiene mientras seas cliente. Si te vas, te llevas la copia.", "pagina"],
   ["Correo de tu empresa", "A tu nombre, pagado con tu tarjeta", "Tú, propietario. Casiopea, solo si la invitas.", "chat"],
   ["Google Ads y Bing", "Cuentas tuyas, pagadas con tu tarjeta", "Tú, administrador. Casiopea, usuaria invitada.", "diana"],
   ["Google Analytics", "Cuenta tuya", "Tú, propietario. Casiopea, invitada.", "grafica"],

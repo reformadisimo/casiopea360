@@ -451,3 +451,51 @@ export function SeccionLoQueNo() {
     </section>
   );
 }
+
+/** Precio (18-nov-2026, Ig): una sola cuota, 1.800 € + IVA al mes, sin permanencia. Va con todo lo que incluye.
+    Sin garantías de resultados; la postura sobre los anuncios (IA o los propios dueños y trabajadores, sin actores) también va aquí. */
+export const PRECIO_CUOTA = "1.800 €";
+export function SeccionPrecio() {
+  const valor: [string, string, string][] = [
+    ["grafica", "Optimizamos tus campañas cada semana", "Miramos qué anuncio, qué palabra y qué página traen contactos de verdad, quitamos lo que gasta sin traer y subimos lo que funciona. Lo ves en tu panel."],
+    ["lupa", "Mejoramos tus resultados, con pruebas", "Pruebas A/B en anuncios y en la web, landings para cada campaña y cada ciudad. Lo que funciona se queda; lo que no, fuera."],
+    ["video", "Anuncios con IA o contigo mismo", "Sin actores. Hacemos anuncios y vídeos con IA, o con los dueños y los trabajadores de tu empresa, que son quienes de verdad conocen el trabajo. Los que lleven IA, avisados como tal."],
+    ["pagina", "Web, SEO y visibilidad en las IA", "Tu web nueva en días, mantenida por nosotros, y tu empresa trabajada para salir en Google y cuando alguien pregunta a una IA."],
+    ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok llevados por nosotros, reseñas contestadas y una sola persona que te escribe."],
+    ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
+  ];
+  return (
+    <section id="precio" className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="precio-titulo">
+      <Nebulosa oscura variante={1} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta tono="cristal" icono="euro">Lo que cuesta</Etiqueta>
+        <h2 id="precio-titulo" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">Una sola cuota. <span className="tono2">Con todo dentro.</span></h2>
+        <div className="mt-10 grid items-start gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="rounded-[2rem] bg-estrella p-7 text-tinta sm:p-9 lg:sticky lg:top-28">
+            <p className="text-sm font-extrabold uppercase tracking-wide opacity-70">Cuota mensual</p>
+            <p className="mt-2 text-5xl font-extrabold sm:text-6xl">{PRECIO_CUOTA}<span className="text-2xl sm:text-3xl"> + IVA</span></p>
+            <p className="mt-1 text-lg font-bold">al mes, la misma para cualquier tamaño de empresa.</p>
+            <ul className="mt-6 grid gap-2.5 text-base font-semibold">
+              {["Sin permanencia ni penalización", "Sin comisión sobre tus anuncios", "Un solo encargado, un solo equipo", "Tus cuentas y tus contactos, siempre tuyos"].map((x) => (
+                <li key={x} className="flex items-start gap-2"><span aria-hidden="true" className="font-extrabold">✓</span><span>{x}</span></li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm">
+              Aparte, solo lo que pagas a otros: tu inversión en anuncios (directa a Google y Meta), la grabación con equipo profesional y los medios. Te lo proponemos con su precio y nada se compra sin tu visto bueno.
+            </p>
+            <a href="/estudio-gratuito" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-noche px-6 font-bold text-white transition-colors hover:bg-[#1d4ed8]">Pide tu estudio gratuito</a>
+          </div>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {valor.map(([ic, t, d], i) => (
+              <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} claro />
+            ))}
+          </ul>
+        </div>
+        <p className="mt-8 max-w-3xl text-lg text-white/85">
+          Y todavía más dentro: reservas, reseñas, presupuestos con firma, tienda online, web en varios idiomas, tu marca y la vigilancia de tu competencia. <Link href="/servicios#incluido" className="font-bold text-white underline underline-offset-4">Ver todo lo que entra</Link>. Por separado, esto cuesta bastante más: <Link href="/servicios#costes" className="font-bold text-white underline underline-offset-4">míralo con tus números</Link>.
+        </p>
+        <Bocadillo claro className="mt-6 max-w-3xl">Es una experiencia, no una garantía: lo medimos contigo cada semana y te vas cuando quieras.</Bocadillo>
+      </div>
+    </section>
+  );
+}

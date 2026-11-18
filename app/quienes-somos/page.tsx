@@ -35,7 +35,7 @@ const COMO: [string, string, string][] = [
   ["reloj", "Rápidos", "Respuesta el mismo día y lo del día a día en 48 horas. Lo grande, con fecha."],
   ["sonrisa", "Sinceros", "Te decimos lo que no te conviene, aunque podamos cobrártelo."],
   ["calendario", "Sin perseguirnos", "Sin reuniones innecesarias y casi todo por escrito. Tu tiempo es para tu negocio."],
-  ["llave", "Tuyo", "El dominio y las cuentas, a tu nombre desde el primer día. La web, a los doce meses."],
+  ["llave", "Tuyo", "El dominio y las cuentas, a tu nombre desde el primer día. La web, con copia completa para ti."],
 ];
 
 const SUFRIMOS = [
