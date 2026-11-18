@@ -14,7 +14,7 @@ import { PAGINAS_SERVICIO, incluyeDe, paginaServicio } from "@/lib/servicios";
 import { schemaMigas } from "@/lib/schema";
 import { SITIO } from "@/lib/navegacion";
 import { Bocadillo, ChipIcono, Etiqueta, ListaViva, Nebulosa, iconoPorTexto } from "@/components/Vida";
-import { SeccionLoQueNo } from "@/components/SeccionesVender";
+import { SeccionLoQueNo, SeccionAnuncioInforma } from "@/components/SeccionesVender";
 
 export function generateStaticParams() {
   return PAGINAS_SERVICIO.map((p) => ({ slug: p.slug }));
@@ -209,6 +209,7 @@ export default async function PaginaDeServicio({ params }: { params: Promise<{ s
       </section>
 
       {p.slug === "seo-google-ia" && <SeccionLoQueNo />}
+      {p.slug === "publicidad-google-ads-redes" && <SeccionAnuncioInforma />}
       {p.slug === "publicidad-google-ads-redes" && (
         <section className="bg-niebla py-8">
           <div className={ENVOLTORIO}>

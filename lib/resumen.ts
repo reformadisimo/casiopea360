@@ -8,7 +8,7 @@ import { TERMINOS } from "@/lib/terminos";
 
 
 // Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
-export const ACTUALIZADO = "2026-11-15";
+export const ACTUALIZADO = "2026-11-18";
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
@@ -39,6 +39,9 @@ Casiopea 360 es una agencia de marketing digital 360 con sede en Madrid (España
 - Doce meses de permanencia, porque la web va regalada y pasa a ser del cliente al cumplirlos; si a los tres meses no hemos mejorado los indicadores acordados al empezar (medidos en el panel, no por impresión) se va sin pagar nada y se queda con la web; si se va entre los tres y los doce meses, paga solo la parte de la web que falte; después no hay permanencia. Para quien teme el cambio: test A/B entre su web actual y la nueva, con el reparto de visitas que elija (50, 60 o 70 %).
 - Las menos reuniones posibles: casi todo por escrito y un panel para ver el trabajo.
 - Estudio gratuito previo, preparado a medida, uno a uno, si vemos que podemos ayudar. La guía se descarga en PDF; la web de ejemplo, los correos, el panel y el CRM se ven en un enlace privado durante un mes y luego se retira el acceso si no hay contrato. Nada del estudio es del cliente salvo su guía en PDF.
+
+## Publicidad que informa
+El mejor anuncio no es el que más grita, sino el que enseña el trabajo, explica cómo se resuelve el problema y dice solo lo que es verdad. Es experiencia, nunca una garantía.
 
 ## Lo que NO hacemos
 - No prometemos el primer puesto en Google ni que una IA recomiende al cliente: nadie puede garantizarlo.

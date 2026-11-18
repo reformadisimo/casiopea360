@@ -401,6 +401,33 @@ export function SeccionEncargado() {
   );
 }
 
+/** Publicidad que informa (18-nov-2026, Ig): el mejor anuncio muestra el trabajo y da soluciones. Sin nombrar a nadie, sin garantías. */
+export function SeccionAnuncioInforma() {
+  const claves: [string, string, string][] = [
+    ["ojo", "Enseña el trabajo", "Una cocina terminada, un salón, una web que carga rápido. Que la persona lo vea antes de llamar."],
+    ["bombilla", "Explica cómo se resuelve", "Si tu problema tiene arreglo, el anuncio cuenta cómo. Sin trucos ni palabras gritadas."],
+    ["escudo", "Dice lo que es verdad", "Nada de cifras mágicas ni promesas que luego no se cumplen. La confianza se gana una vez."],
+  ];
+  return (
+    <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="anuncio-informa">
+      <Nebulosa variante={2} />
+      <div className={`${ENVOLTORIO} relative`}>
+        <Etiqueta icono="prensa">Publicidad que informa</Etiqueta>
+        <h2 id="anuncio-informa" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">El mejor anuncio no es el que más grita. <span className="tono2">Es el que informa.</span></h2>
+        <p className="mt-5 max-w-3xl text-lg text-gris">
+          <b className="text-tinta">Gritar llama la atención un momento. Informar hace que vuelvas a confiar.</b> Es lo que hemos visto funcionar en la práctica: cuando el anuncio enseña el trabajo y resuelve una duda, la persona llama sabiendo lo que quiere.
+        </p>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {claves.map(([ic, t, d], i) => (
+            <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} />
+          ))}
+        </ul>
+        <Bocadillo>Tu competencia puede gritar más. Tú puedes explicarte mejor.</Bocadillo>
+      </div>
+    </section>
+  );
+}
+
 /** Lo que no hacemos (4-nov-2026). Cuatro negaciones claras que dan confianza. Sin prometer resultados. */
 export function SeccionLoQueNo() {
   const no: [string, string, string][] = [
