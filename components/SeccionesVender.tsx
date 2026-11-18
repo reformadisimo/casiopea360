@@ -515,44 +515,67 @@ export function SeccionAhorro() {
           ))}
         </ul>
 
-        <div className="mt-10 overflow-hidden rounded-[2rem] bg-white shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm sm:text-base">
-              <caption className="sr-only">Lo que cuesta contratar cada servicio por separado</caption>
-              <thead>
-                <tr className="bg-noche text-sm text-white">
-                  <th scope="col" className="px-3 py-3 font-bold sm:px-5">Si lo contratas por separado</th>
-                  <th scope="col" className="hidden px-5 py-3 font-bold sm:table-cell">A quién</th>
-                  <th scope="col" className="px-3 py-3 text-right font-bold sm:px-5">Cuánto</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-linea">
-                {AHORRO_MES.map((f) => (
-                  <tr key={f.que}>
-                    <th scope="row" className="px-3 py-3 font-bold text-tinta sm:px-5">{f.que}<span className="block text-xs font-normal text-gris sm:hidden">{f.quien}</span></th>
-                    <td className="hidden px-5 py-3 text-gris sm:table-cell">{f.quien}</td>
-                    <td className="px-3 py-3 text-right font-extrabold text-tinta sm:whitespace-nowrap sm:px-5">{rango(f.min, f.max)}<span className="block text-xs font-normal text-gris">al mes</span></td>
-                  </tr>
-                ))}
-                <tr className="bg-niebla">
-                  <th scope="row" className="px-3 py-3 font-extrabold text-tinta sm:px-5">Cada mes, por separado</th>
-                  <td className="hidden sm:table-cell" />
-                  <td className="px-3 py-3 text-right text-base font-extrabold text-tinta sm:whitespace-nowrap sm:px-5 sm:text-lg">{rango(mesMin, mesMax)}</td>
-                </tr>
-                {AHORRO_UNA_VEZ.map((f) => (
-                  <tr key={f.que}>
-                    <th scope="row" className="px-3 py-3 font-bold text-tinta sm:px-5">{f.que}<span className="block text-xs font-normal text-gris sm:hidden">{f.quien}</span></th>
-                    <td className="hidden px-5 py-3 text-gris sm:table-cell">{f.quien}</td>
-                    <td className="px-3 py-3 text-right font-extrabold text-tinta sm:whitespace-nowrap sm:px-5">{euros(f.min)}<span className="block text-xs font-normal text-gris">una vez</span></td>
-                  </tr>
-                ))}
-                <tr className="bg-estrella text-tinta">
-                  <th scope="row" className="px-3 py-4 text-base font-extrabold sm:px-5 sm:text-lg">Con Casiopea 360, todo eso y más</th>
-                  <td className="hidden sm:table-cell" />
-                  <td className="px-3 py-4 text-right text-lg font-extrabold sm:whitespace-nowrap sm:px-5 sm:text-xl">{euros(CUOTA_NUM)}<span className="block text-xs font-bold">al mes</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <div className="mt-10 rounded-[2rem] bg-white p-4 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 sm:p-8">
+          <h3 className="text-2xl font-extrabold text-tinta sm:text-3xl">Lo que pagarías hoy, servicio a servicio</h3>
+          <p className="mt-1 text-gris">Precios de mercado orientativos, sin IVA. La barra clara es lo que sube el precio entre un proveedor barato y uno caro.</p>
+
+          <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">1 · Cada mes</p>
+          <ul className="mt-3 grid gap-3">
+            {AHORRO_MES.map((f, i) => (
+              <li key={f.que} className="rounded-2xl bg-niebla p-3 sm:p-4" style={{ borderLeft: `6px solid ${COLORES_AHORRO[i]}` }}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <div>
+                    <p className="font-extrabold text-tinta">{f.que}</p>
+                    <p className="text-sm text-gris">{f.quien}</p>
+                  </div>
+                  <p className="text-right text-lg font-extrabold text-tinta sm:text-xl">{rango(f.min, f.max)} <span className="text-sm font-bold text-gris">al mes</span></p>
+                </div>
+                <div className="mt-2 flex h-2.5 overflow-hidden rounded-full bg-white" aria-hidden="true">
+                  <div style={{ width: `${(f.min / 2000) * 100}%`, background: COLORES_AHORRO[i] }} />
+                  {f.max ? <div style={{ width: `${((f.max - f.min) / 2000) * 100}%`, background: COLORES_AHORRO[i], opacity: 0.35 }} /> : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 rounded-2xl bg-noche px-4 py-3 text-white sm:px-5">
+            <p className="font-extrabold">Suma de lo que pagas cada mes</p>
+            <p className="text-xl font-extrabold text-estrella sm:text-2xl">{rango(mesMin, mesMax)} <span className="text-sm font-bold text-white/80">al mes</span></p>
+          </div>
+
+          <p className="mt-8 text-sm font-extrabold uppercase tracking-wide text-gris">2 · Una sola vez</p>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            {AHORRO_UNA_VEZ.map((f, i) => (
+              <li key={f.que} className="rounded-2xl bg-niebla p-3 sm:p-4" style={{ borderLeft: `6px solid ${COLORES_AHORRO[AHORRO_MES.length + i]}` }}>
+                <p className="font-extrabold text-tinta">{f.que}</p>
+                <p className="text-sm text-gris">{f.quien}</p>
+                <p className="mt-1 text-lg font-extrabold text-tinta sm:text-xl">{euros(f.min)} <span className="text-sm font-bold text-gris">una vez</span></p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 rounded-2xl bg-noche px-4 py-3 text-white sm:px-5">
+            <p className="font-extrabold">Suma de lo que pagas una vez</p>
+            <p className="text-xl font-extrabold text-estrella sm:text-2xl">{euros(unaVez)}</p>
+          </div>
+
+          <p className="mt-8 text-sm font-extrabold uppercase tracking-wide text-gris">3 · La cuenta del primer año</p>
+          <div className="mt-3 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
+            <div className="rounded-2xl bg-niebla p-4">
+              <p className="text-sm font-bold text-gris">Por separado</p>
+              <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-tinta sm:text-2xl">{rango(anioMin, anioMax)}</p>
+              <p className="mt-2 text-xs text-gris">12 meses de lo de cada mes ({rango(mesMin * 12, mesMax * 12)}) más lo de una sola vez ({euros(unaVez)}).</p>
+            </div>
+            <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">−</p>
+            <div className="rounded-2xl bg-estrella p-4 text-tinta">
+              <p className="text-sm font-bold">Con Casiopea 360</p>
+              <p className="mt-1 text-xl font-extrabold sm:text-2xl">{euros(anioCuota)}</p>
+              <p className="mt-2 text-xs font-semibold">12 cuotas de {euros(CUOTA_NUM)}, con todo dentro.</p>
+            </div>
+            <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">=</p>
+            <div className="rounded-2xl bg-noche p-4 text-white">
+              <p className="text-sm font-bold text-white/80">Te ahorras</p>
+              <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-estrella sm:text-2xl">{rango(anioMin - anioCuota, anioMax - anioCuota)}</p>
+              <p className="mt-2 text-xs text-white/85">Cada mes, entre {euros(mesMin - CUOTA_NUM)} y {euros(mesMax - CUOTA_NUM)} menos.</p>
+            </div>
           </div>
         </div>
 
