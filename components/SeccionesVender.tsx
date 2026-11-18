@@ -472,10 +472,19 @@ const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
 const CUOTA_NUM = 1800;
 const COLORES_AHORRO = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4", "#64748b"];
 const NOMBRE_CORTO: Record<string, string> = { "SEO (posicionamiento en Google)": "SEO", "Gestión de Google Ads (SEM)": "Google Ads", "Instagram y redes": "Instagram y redes", "Diseño, cambios en la web y landings": "Diseño y cambios", "Una web nueva (desde)": "Web nueva", "Un CRM (desde)": "CRM", "Asesoramiento de negocio": "Asesoramiento" };
+const DESC_AHORRO: Record<string, string> = {
+  "SEO": "Que tu empresa salga en Google cuando alguien busca lo que haces: arreglar la web, contestar lo que la gente pregunta y ganar posiciones con el tiempo. Hay que mantenerlo cada mes.",
+  "Google Ads": "Los anuncios que salen arriba en Google cuando alguien busca tu servicio. Alguien tiene que montarlos, vigilarlos cada semana y quitar lo que gasta sin traer clientes. No incluye lo que gastas en anuncios, que es tuyo en ambos casos.",
+  "Instagram y redes": "Publicar, contestar y mantener vivas tus redes (LinkedIn, Facebook, Instagram y TikTok), con contenido hecho a medida de tu empresa.",
+  "Diseño y cambios": "Cambios en tu web, páginas para cada campaña (landings), banners y piezas gráficas. Cada cambio, a tiempo y sin pedir otro presupuesto.",
+  "Web nueva": "Una web nueva, rápida y pensada para traer clientes, no solo para estar. Se paga una vez; después hay que alojarla y mantenerla.",
+  "CRM": "El programa donde guardas tus contactos, ves de dónde viene cada cliente y no se te escapa ninguno, con avisos y seguimiento. Se paga una vez y alguien tiene que mantenerlo.",
+  "Asesoramiento": "Un punto de vista de empresa: estrategia de negocio, planes de marketing y de presupuestos, y orientación en fiscal, contabilidad y temas laborales. Si te sientes perdido, te decimos a qué profesional acudir. Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. No sustituimos a tu gestor ni a tu abogado.",
+};
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
   ...AHORRO_UNA_VEZ.map((f) => ({ ...f, mensual: false })),
-].map((f, i) => ({ id: `f${i}`, que: NOMBRE_CORTO[f.que] ?? f.que, quien: f.quien, min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length] }));
+].map((f, i) => ({ id: `f${i}`, que: NOMBRE_CORTO[f.que] ?? f.que, quien: f.quien, min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length], desc: DESC_AHORRO[NOMBRE_CORTO[f.que] ?? f.que] }));
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
 const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
 

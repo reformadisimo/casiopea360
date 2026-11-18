@@ -4,7 +4,7 @@ import { useState, type ReactElement } from "react";
 /* Ahorro con botones (18-nov-2026, Ig): la persona marca lo que contrataría por separado y se ve, en el primer año,
    lo que pagaría frente a la cuota de Casiopea, que lleva TODO. Lo que no marca sale como «y además te llevas». Cifra baja de
    cada rango; web y CRM se pagan una sola vez. Todo en el navegador, no se guarda nada. */
-export type FilaAhorro = { id: string; que: string; quien: string; min: number; max?: number; mensual: boolean; color: string };
+export type FilaAhorro = { id: string; que: string; quien: string; min: number; max?: number; mensual: boolean; color: string; desc?: string };
 
 const MESES = 12;
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
@@ -21,7 +21,10 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
   const tope = Math.max(todo, nuestra);
   const mas = suma - nuestra;
   const extra = sinMarcar.reduce((a, f) => a + total(f), 0);
-  const alternar = (id: string) => setSel((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  const [foco, setFoco] = useState<string>(() => filas[0]?.id ?? "");
+  const alternar = (id: string) => { setFoco(id); setSel((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id])); };
+  const f0 = filas.find((f) => f.id === foco);
+  const precio0 = f0 ? `${f0.max ? `${euros(f0.min)} a ${euros(f0.max)}` : f0.mensual ? euros(f0.min) : `desde ${euros(f0.min)}`}${f0.mensual ? " al mes" : ", una sola vez"}` : "";
 
   return (
     <div className="mt-12 rounded-[2rem] bg-white p-5 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 sm:p-8">
@@ -44,6 +47,14 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
           );
         })}
       </ul>
+
+      {f0 && (
+        <div className="mt-4 rounded-2xl bg-niebla p-4 sm:p-5" aria-live="polite" style={{ borderLeft: `6px solid ${f0.color}` }}>
+          <p className="text-lg font-extrabold text-tinta">{f0.que}</p>
+          {f0.desc && <p className="mt-1 text-tinta/90">{f0.desc}</p>}
+          <p className="mt-2 text-sm font-bold text-tinta">Por separado ({f0.quien.toLowerCase()}): <span className="rounded-full bg-white px-2 py-0.5">{precio0}</span> <span className="ml-1 text-gris">Con Casiopea 360: incluido.</span></p>
+        </div>
+      )}
 
       {/* Por separado */}
       <div className="mt-6 rounded-[1.4rem] bg-niebla p-4 sm:p-5">
