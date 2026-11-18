@@ -307,6 +307,9 @@ export function SeccionEmpresarios() {
     ["sonrisa", "Hablamos tu idioma", "Hemos tenido empresas propias, con sus equipos, sus clientes y sus meses malos. Sabemos lo que cuesta conseguir cada cliente."],
     ["grafica", "Miramos el negocio, no solo el anuncio", "Si vemos que una línea te deja más que otra, o que pierdes clientes por algo que no es marketing, te lo decimos."],
     ["firma", "Opinamos, y decides tú", "Qué servicio empujar, qué probar primero, qué zona abrir. Es nuestra experiencia, no una garantía."],
+    ["escudo", "Estrategia, presupuestos y números", "Plan de negocio y de marketing, presupuestos, y también lo que rodea a una empresa: fiscal, contabilidad y temas laborales. Te orientamos en todo."],
+    ["lupa", "Y si te pierdes, te llevamos al profesional", "Cuando algo necesita a un especialista (un asesor fiscal, un abogado laboralista), te decimos cuál y para qué. No sustituimos a tu gestor ni a tu abogado."],
+    ["sonrisa", "Va dentro de la cuota", "Este asesoramiento de negocio no se cobra aparte: lo pagarías aparte a 1.200 € al mes."],
   ];
   return (
     <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="empresarios">
@@ -317,7 +320,7 @@ export function SeccionEmpresarios() {
           Antes de llevar tu marketing, <span className="tono2">hemos llevado empresas.</span>
         </h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Somos gente de empresa: sabemos de lo que hablas cuando hablas de tu negocio.
+          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. Sabemos de lo que hablas cuando hablas de tu negocio.
         </p>
         <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">Sectores en los que hemos dirigido empresas propias</p>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -460,7 +463,7 @@ const AHORRO_MES: { que: string; quien: string; min: number; max?: number }[] = 
   { que: "Gestión de Google Ads (SEM)", quien: "Especialista en anuncios", min: 1500, max: 2000 },
   { que: "Instagram y redes", quien: "Community manager", min: 600 },
   { que: "Diseño, cambios en la web y landings", quien: "Diseñador o estudio", min: 1000 },
-  { que: "Asesoramiento de negocio", quien: "Asesor o consultor de empresas", min: 1200 },
+  { que: "Asesoramiento de negocio", quien: "Asesor de empresas, con experiencia de dirección", min: 1200 },
 ];
 const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
   { que: "Una web nueva (desde)", quien: "Agencia web", min: 3000 },
@@ -564,7 +567,7 @@ export function SeccionPrecio() {
     ["pagina", "Web, SEO y visibilidad en las IA", "Tu web nueva en días, mantenida por nosotros, y tu empresa trabajada para salir en Google y cuando alguien pregunta a una IA."],
     ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok llevados por nosotros, reseñas contestadas y una sola persona que te escribe."],
     ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
-    ["escudo", "Un punto de vista de empresarios", "Hemos montado y llevado negocios, y sabemos qué funciona y qué no. Si lo quieres, te damos nuestra opinión sobre tu negocio, sin coste aparte. Decides tú."],
+    ["escudo", "Un punto de vista de empresarios", "Hemos sido socios y administradores de empresas de más de 8 millones de facturación y más de 120 empleados. Te asesoramos en estrategia, presupuestos y números, y si te pierdes, te llevamos al profesional adecuado. Sin coste aparte."],
   ];
   return (
     <>
