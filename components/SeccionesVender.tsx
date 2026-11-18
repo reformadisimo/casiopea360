@@ -309,7 +309,7 @@ export function SeccionEmpresarios() {
     ["firma", "Opinamos, y decides tú", "Qué servicio empujar, qué probar primero, qué zona abrir. Es nuestra experiencia, no una garantía."],
     ["escudo", "Estrategia, presupuestos y números", "Plan de negocio y de marketing, presupuestos, y también lo que rodea a una empresa: fiscal, contabilidad y temas laborales. Te orientamos en todo."],
     ["lupa", "Y si te pierdes, te llevamos al profesional", "Cuando algo necesita a un especialista (un asesor fiscal, un abogado laboralista), te decimos cuál y para qué. No sustituimos a tu gestor ni a tu abogado."],
-    ["sonrisa", "Va dentro de la cuota", "Este asesoramiento de negocio no se cobra aparte: lo pagarías aparte a 1.200 € al mes."],
+    ["sonrisa", "Va dentro de la cuota", "Este asesoramiento de negocio no se cobra aparte: por separado, un asesor estratégico te costaría unos 400 € al mes."],
   ];
   return (
     <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="empresarios">
@@ -463,7 +463,7 @@ const AHORRO_MES: { que: string; quien: string; min: number; max?: number }[] = 
   { que: "Gestión de Google Ads (SEM)", quien: "Especialista en anuncios", min: 1500, max: 2000 },
   { que: "Instagram y redes", quien: "Community manager", min: 600 },
   { que: "Diseño, cambios en la web y landings", quien: "Diseñador o estudio", min: 1000 },
-  { que: "Asesoramiento de negocio", quien: "Asesor de empresas, con experiencia de dirección", min: 1200 },
+  { que: "Asesoramiento de negocio", quien: "Asesor estratégico de empresas", min: 400 },
 ];
 const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
   { que: "Una web nueva (desde)", quien: "Agencia web", min: 3000 },
@@ -479,7 +479,7 @@ const DESC_AHORRO: Record<string, string> = {
   "Diseño y cambios": "Cambios en tu web, páginas para cada campaña (landings), banners y piezas gráficas. Cada cambio, a tiempo y sin pedir otro presupuesto.",
   "Web nueva": "Una web nueva, rápida y pensada para traer clientes, no solo para estar. Se paga una vez; después hay que alojarla y mantenerla.",
   "CRM": "El programa donde guardas tus contactos, ves de dónde viene cada cliente y no se te escapa ninguno, con avisos y seguimiento. Se paga una vez y alguien tiene que mantenerlo.",
-  "Asesoramiento": "Un punto de vista de empresa: estrategia de negocio, planes de marketing y de presupuestos, y orientación en fiscal, contabilidad y temas laborales. Si te sientes perdido, te decimos a qué profesional acudir. Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. No sustituimos a tu gestor ni a tu abogado.",
+  "Asesoramiento": "Un punto de vista estratégico de empresa: estrategia de negocio, planes de marketing y de presupuestos. En fiscal, contabilidad y temas laborales te orientamos y, si te sientes perdido, te decimos a qué profesional acudir; no llevamos tu contabilidad ni tus impuestos. Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. No sustituimos a tu gestor ni a tu abogado.",
 };
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
