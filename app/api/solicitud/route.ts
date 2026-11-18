@@ -51,7 +51,12 @@ export async function POST(req: Request) {
     });
 
   const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test de idoneidad: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto });
-  if (!aviso.ok) return NextResponse.json({ ok: false }, { status: 502 });
+  if (!aviso.ok) {
+    // Motivo en los registros de Vercel (estado y mensaje de Resend; nunca la clave).
+    const detalle = await aviso.text().catch(() => "");
+    console.error("[solicitud] Resend rechazó el aviso:", aviso.status, detalle.slice(0, 300), "| clave de", clave.length, "caracteres");
+    return NextResponse.json({ ok: false, motivo: "resend", codigo: aviso.status }, { status: 502 });
+  }
 
   // Acuse de recibo al solicitante, con el correo de bienvenida de la serie. Siempre contestamos, encaje o no.
   const nombrePila = String(datos.nombre ?? "").trim().split(/\s+/)[0]?.slice(0, 40) || "";
