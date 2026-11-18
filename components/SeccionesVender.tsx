@@ -467,10 +467,11 @@ const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
 ];
 const CUOTA_NUM = 1800;
 const COLORES_AHORRO = ["#1f6feb", "#e8457a", "#0f9d58", "#f59e0b", "#7c3aed", "#0ea5a4"];
+const NOMBRE_CORTO: Record<string, string> = { "SEO (posicionamiento en Google)": "SEO", "Gestión de Google Ads (SEM)": "Google Ads", "Instagram y redes": "Instagram y redes", "Diseño, cambios en la web y landings": "Diseño y cambios", "Una web nueva (desde)": "Web nueva", "Un CRM (desde)": "CRM" };
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
   ...AHORRO_UNA_VEZ.map((f) => ({ ...f, mensual: false })),
-].map((f, i) => ({ id: `f${i}`, que: f.que.replace(" (desde)", "").replace("Una web nueva", "Web nueva").replace("Un CRM", "CRM").replace("Gestión de Google Ads (SEM)", "Google Ads").replace("SEO (posicionamiento en Google)", "SEO").replace("Diseño, cambios en la web y landings", "Diseño y cambios"), min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length] }));
+].map((f, i) => ({ id: `f${i}`, que: NOMBRE_CORTO[f.que] ?? f.que, quien: f.quien, min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length] }));
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
 const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
 
