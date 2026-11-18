@@ -20,6 +20,7 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
   const todo = filas.reduce((a, f) => a + total(f), 0);
   const tope = Math.max(todo, nuestra);
   const mas = suma - nuestra;
+  const extra = sinMarcar.reduce((a, f) => a + total(f), 0);
   const alternar = (id: string) => setSel((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
 
   return (
@@ -62,13 +63,38 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
       {/* Casiopea */}
       <div className="mt-4 rounded-[1.4rem] bg-estrella p-4 text-tinta sm:p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-          <p className="font-extrabold">Con Casiopea 360, todo dentro</p>
+          <p className="font-extrabold">Con Casiopea 360 pagas esto, y tienes todo dentro</p>
           <p className="text-2xl font-extrabold sm:text-3xl">{euros(nuestra)}</p>
         </div>
-        <div className="mt-3 flex h-9 overflow-hidden rounded-lg bg-white/60" style={{ width: `${(nuestra / tope) * 100}%` }}>
-          {filas.map((f) => (<div key={f.id} style={{ width: `${100 / filas.length}%`, background: f.color, opacity: sel.includes(f.id) ? 1 : 0.55 }} />))}
-        </div>
-        <p className="mt-2 text-sm font-semibold">12 cuotas de {euros(cuota)}. Un equipo, una factura.</p>
+        <p className="mt-1 text-sm font-semibold">12 cuotas de {euros(cuota)}. Un equipo, una factura.</p>
+
+        {marcadas.length > 0 && (
+          <div className="mt-4">
+            <p className="text-xs font-extrabold uppercase tracking-wide">Lo que has marcado, incluido</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {marcadas.map((f) => (
+                <li key={f.id} className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold">
+                  <span aria-hidden="true" className="h-3 w-3 rounded-sm" style={{ background: f.color }} />✓ {f.que}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {sinMarcar.length > 0 && (
+          <div className="mt-4 rounded-2xl bg-noche p-4 text-white">
+            <p className="text-lg font-extrabold text-estrella">Y además, sin pagar nada más:</p>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {sinMarcar.map((f) => (
+                <li key={f.id} className="flex items-center justify-between gap-3 rounded-xl bg-white/10 px-3 py-2 text-sm">
+                  <span className="inline-flex items-center gap-2 font-bold"><span aria-hidden="true" className="h-3 w-3 rounded-sm" style={{ background: f.color }} />+ {f.que}</span>
+                  <span className="whitespace-nowrap text-white/80">{euros(total(f))}{f.mensual ? " al año" : " una vez"}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 font-extrabold">Por separado, eso serían <span className="text-estrella">{euros(extra)} más</span>. Con Casiopea 360, 0 € más.</p>
+          </div>
+        )}
       </div>
 
       {/* Lectura */}
@@ -76,15 +102,13 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
         {marcadas.length === 0 ? (
           <p className="text-xl font-extrabold">Marca algo arriba y lo comparamos.</p>
         ) : mas > 0 ? (
-          <>
-            <p className="text-2xl font-extrabold sm:text-3xl">Solo con {lista(marcadas.map((f) => f.que))} ya pagas <span className="text-estrella">{euros(mas)} más</span>.</p>
-            {sinMarcar.length > 0 && <p className="mt-2 text-white/90">Y te pierdes lo que Casiopea 360 sí incluye: <b className="text-estrella">{lista(sinMarcar.map((f) => f.que))}</b>.</p>}
-          </>
+          <p className="text-2xl font-extrabold sm:text-3xl">
+            Solo con {lista(marcadas.map((f) => f.que))} pagas <span className="text-estrella">{euros(mas)} más</span> que con Casiopea 360{sinMarcar.length > 0 ? ", y encima no tienes todo lo demás." : "."}
+          </p>
         ) : (
-          <>
-            <p className="text-xl font-extrabold sm:text-2xl">Con solo {lista(marcadas.map((f) => f.que))} por separado pagas {euros(suma)}: {mas === 0 ? "lo mismo" : `${euros(-mas)} menos`} que la cuota.</p>
-            <p className="mt-2 text-white/90">Con Casiopea 360 además te llevas: <b className="text-estrella">{lista(sinMarcar.map((f) => f.que))}</b>.</p>
-          </>
+          <p className="text-xl font-extrabold sm:text-2xl">
+            Por separado, {lista(marcadas.map((f) => f.que))} te cuestan {euros(suma)}{mas === 0 ? ", lo mismo que la cuota" : `, ${euros(-mas)} menos que la cuota`}{sinMarcar.length > 0 ? <>. Pero con Casiopea 360 <span className="text-estrella">además tienes {lista(sinMarcar.map((f) => f.que))}</span>.</> : "."}
+          </p>
         )}
       </div>
       <p className="mt-3 text-xs text-gris">
