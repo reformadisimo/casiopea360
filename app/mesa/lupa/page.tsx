@@ -26,6 +26,7 @@ export default async function LupaPagina({ searchParams }: { searchParams: Promi
         <p className="mt-2 max-w-2xl text-white/75">Dónde hace clic la gente y hasta dónde baja, página por página. Sin cookies y sin guardar nada de la persona: solo posiciones.</p>
         <nav className="mt-5 flex flex-wrap gap-2" aria-label="Secciones de la mesa">
           <Link href="/mesa" prefetch={false} className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/10">Mesa</Link>
+          <Link href="/mesa/crm" prefetch={false} className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/10">CRM</Link>
           {DIAS.map(([k, t]) => (
             <Link key={k} href={`/mesa/lupa?d=${k}${sq.pagina ? `&pagina=${encodeURIComponent(sq.pagina)}` : ""}${sq.disp ? `&disp=${sq.disp}` : ""}`} prefetch={false} aria-current={k === dias ? "page" : undefined}
               className={`inline-flex min-h-[44px] items-center rounded-full border px-4 text-[14px] font-semibold ${k === dias ? "border-estrella bg-estrella text-tinta" : "border-white/25 bg-white/5 text-white hover:bg-white/10"}`}>{t}</Link>
