@@ -1868,19 +1868,24 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
 /* Solicitud con test de idoneidad. */
 export function SeccionSolicitud() {
   return (
-    <section id="solicitud" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
+    <section id="solicitud" className="relative scroll-mt-20 overflow-hidden bg-noche py-12 text-white sm:py-28">
       <Nebulosa oscura variante={3} />
-      <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
+      <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
           <Etiqueta tono="estrella">Una pregunta cada vez</Etiqueta>
-          <h2 className="mt-5 text-4xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
+          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
           <p className="mt-5 text-lg text-white/80">
             <b className="text-white">Un estudio nos lleva un día de trabajo:</b> lo hacemos si podemos ayudarte. Contesta tocando y al final tienes tu nota.
           </p>
-          <p className="mt-4 text-lg text-white/80">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
-          <VerEjemplo className="mt-6" />
+          <p className="mt-4 hidden text-lg text-white/80 lg:block">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
+          <VerEjemplo className="mt-6 hidden lg:block" />
         </div>
         <DiagnosticoDiferido />
+        {/* En móvil, el test va justo tras el título; la explicación y el ejemplo, después. */}
+        <div className="lg:hidden">
+          <p className="text-lg text-white/80">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
+          <VerEjemplo className="mt-6" />
+        </div>
       </div>
       <div className={`${ENVOLTORIO} relative mt-14 grid items-start gap-10 lg:grid-cols-2`}>
         <EstudioDeVerdad />

@@ -64,7 +64,7 @@ const TRAMOS: Tramo[] = [
   {
     id: "primero",
     titulo: "Tu empresa",
-    intro: "Tres toques y tus datos. Un minuto.",
+    intro: "Tres toques y tus datos.",
     dato: "Todo lo que contestes es para preparar tu estudio. No lo compartimos con nadie.",
     video: "despacho",
     color: "from-[#24387a] to-[#0e1a3d]",
@@ -464,7 +464,7 @@ export default function TestIdoneidad() {
                 ? "¡Casi! Dinos a quién escribirle"
                 : enAmpliacion
                   ? `¡Llevas ${hechasA} de ${totalA} para tu nota! Te quedan ${Math.max(totalA - hechasA, 0)}`
-                  : "Tres toques y tus datos. Un minuto"
+                  : "Tres toques y tus datos"
             }
           />
         </div>
@@ -559,7 +559,7 @@ export default function TestIdoneidad() {
         <div className="entra overflow-hidden rounded-[2rem] bg-noche p-7 text-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.7)] sm:p-10">
           <p className="text-sm font-bold text-estrella">¡Ya está lo importante!</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">¿Afinamos tu nota?</p>
-          <p className="mt-3 max-w-xl text-white/85">Diez toques más sobre tu web, Google y tus anuncios. Un minuto. Es opcional: si prefieres, terminamos ya.</p>
+          <p className="mt-3 max-w-xl text-white/85">Diez toques más sobre tu web, Google y tus anuncios. Es opcional: si prefieres, terminamos ya.</p>
           <div className="mt-6 max-w-xl"><Muestra oscuro /></div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setConExtra(true); setTi(TRAMOS.length - 1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
