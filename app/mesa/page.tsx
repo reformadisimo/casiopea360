@@ -63,6 +63,9 @@ export default async function MesaCasiopeaPagina({ searchParams }: { searchParam
   return (
     <div className="mesa">
       <VolverWeb que="Mesa de control" />
+      <nav aria-label="Secciones de la mesa" className="mx-auto flex max-w-[1180px] flex-wrap gap-2 px-4 pt-3">
+        <Link href="/mesa/lupa" prefetch={false} className="inline-flex min-h-[40px] items-center rounded-full border border-line bg-white px-4 text-[14px] font-bold text-ink hover:bg-black/5">Lupa: dónde hacen clic</Link>
+      </nav>
       <style>{`body > *:not(main):not([data-versionante]) { display: none !important; } main#contenido { padding: 48px 0 0 !important; background: #fff !important; background-image: none !important; }`}</style>
       <Mesa datos={{ ...(d as unknown as Parameters<typeof Mesa>[0]["datos"]), clave: llaveMesa() }} />
       <section className="mx-auto max-w-[1180px] px-4 pb-16">

@@ -12,6 +12,11 @@ import { leerAtribucion } from "@/lib/atribucion";
 
 const INTERNAS = /^\/(panel|panel-antiguo|mesa|crm|crm-ejemplo|lupa-ejemplo|avisos-ejemplo)/;
 
+/** La lupa de la mesa enseña la web dentro de un marco: ahí no se cuenta nada. */
+function enMarco() {
+  try { return window.top !== window.self; } catch { return true; }
+}
+
 function origen() {
   const { fuente } = leerAtribucion();
   const disp = window.matchMedia("(pointer: coarse)").matches ? "movil" : "pc";
@@ -44,6 +49,7 @@ export function apuntarContacto(tipo: "contacto_wa" | "contacto_tel") {
 export default function ContadorVistas() {
   // Clics en WhatsApp y en llamar, en fase de captura, en toda la web (una vez montado).
   useEffect(() => {
+    if (enMarco()) return;
     const alClic = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!a) return;
@@ -56,7 +62,7 @@ export default function ContadorVistas() {
   }, []);
   const ruta = usePathname();
   useEffect(() => {
-    if (!ruta || navigator.webdriver || INTERNAS.test(ruta)) return;
+    if (!ruta || navigator.webdriver || enMarco() || INTERNAS.test(ruta)) return;
     try { leerAtribucion(); } catch {} // fija el primer toque (origen y página de entrada) nada más llegar
     const t = setTimeout(() => {
       try {
@@ -104,6 +110,54 @@ export default function ContadorVistas() {
       document.removeEventListener("visibilitychange", alCambiar);
       window.removeEventListener("pagehide", alSalir);
       mandar(false); // cambio de página dentro de la web: no es rebote
+    };
+  }, [ruta]);
+  // Lupa propia: dónde se hace clic y hasta dónde se baja. Solo posiciones; se manda con la página a la vista.
+  useEffect(() => {
+    if (!ruta || navigator.webdriver || enMarco() || INTERNAS.test(ruta)) return;
+    const clics: [number, number, number][] = [];
+    let prof = 0;
+    let profEnviada = false;
+    let espera = 0;
+    const alto = () => Math.max(document.documentElement.scrollHeight, document.body?.scrollHeight ?? 0);
+    const medirProf = () => {
+      espera = 0;
+      const h = alto();
+      if (h > 0) prof = Math.max(prof, Math.min(100, Math.round(((window.scrollY + window.innerHeight) / h) * 100)));
+    };
+    const alScroll = () => { if (!espera) espera = requestAnimationFrame(medirProf); };
+    const alClic = (e: MouseEvent) => {
+      if (!e.isTrusted || clics.length >= 40) return;
+      const ancho = document.documentElement.scrollWidth || window.innerWidth;
+      const x = Math.max(0, Math.min(1000, Math.round((e.pageX / ancho) * 1000)));
+      const el = e.target as Element | null;
+      const activo = el?.closest?.("a[href],button,input,select,textarea,summary,label,[role=button],[role=link]") ? 1 : 0;
+      clics.push([x, Math.round(e.pageY), activo]);
+    };
+    const mandar = (saliendo: boolean) => {
+      medirProf();
+      const mandarProf = saliendo && !profEnviada && prof > 0;
+      if (!clics.length && !mandarProf) return;
+      try {
+        const { disp } = origen();
+        const cuerpo: Record<string, unknown> = { pagina: ruta, disp, h: alto(), clics: clics.splice(0) };
+        if (mandarProf) { cuerpo.prof = prof; profEnviada = true; }
+        navigator.sendBeacon?.("/api/lupa", JSON.stringify(cuerpo));
+      } catch {}
+    };
+    const alCambiar = () => { if (document.visibilityState !== "visible") mandar(true); };
+    const alSalir = () => mandar(true);
+    medirProf();
+    window.addEventListener("scroll", alScroll, { passive: true });
+    document.addEventListener("click", alClic, true);
+    document.addEventListener("visibilitychange", alCambiar);
+    window.addEventListener("pagehide", alSalir);
+    return () => {
+      window.removeEventListener("scroll", alScroll);
+      document.removeEventListener("click", alClic, true);
+      document.removeEventListener("visibilitychange", alCambiar);
+      window.removeEventListener("pagehide", alSalir);
+      mandar(true); // cambio de página dentro de la web
     };
   }, [ruta]);
   return null;

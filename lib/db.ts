@@ -36,6 +36,12 @@ export async function asegurarTablas() {
   // Pasos de la visita (31-oct): clics en WhatsApp y en llamar, una vez por visita y tipo. Tabla propia, sin reutilizar otra.
   await q`CREATE TABLE IF NOT EXISTS pasos_visita (id BIGSERIAL PRIMARY KEY, tipo TEXT NOT NULL, pagina TEXT, fuente TEXT, disp TEXT, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
   await q`CREATE INDEX IF NOT EXISTS pasos_visita_por_fecha ON pasos_visita (creado)`;
+  // Lupa propia (19-nov): dónde se hace clic y hasta dónde se baja. Solo posiciones, sin IP ni cookies ni nada de la persona.
+  // x = posición a lo ancho en milésimas (0-1000), y = píxeles desde arriba de la página, h = alto de la página.
+  await q`CREATE TABLE IF NOT EXISTS lupa_clics (id BIGSERIAL PRIMARY KEY, pagina TEXT NOT NULL, disp TEXT, x INT NOT NULL, y INT NOT NULL, h INT, activo BOOLEAN, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
+  await q`CREATE INDEX IF NOT EXISTS lupa_clics_por_pagina ON lupa_clics (pagina, creado)`;
+  await q`CREATE TABLE IF NOT EXISTS lupa_scroll (id BIGSERIAL PRIMARY KEY, pagina TEXT NOT NULL, disp TEXT, prof INT NOT NULL, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
+  await q`CREATE INDEX IF NOT EXISTS lupa_scroll_por_pagina ON lupa_scroll (pagina, creado)`;
   tablasListas = true;
 }
 

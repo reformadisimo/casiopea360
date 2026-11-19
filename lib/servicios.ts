@@ -351,7 +351,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     nombre: "Lupa 360",
     tituloSeo: "Lupa 360: mapa de calor propio para mejorar tu web cada mes",
     descripcionSeo:
-      "Ve lo que hace la gente en tu web: dónde toca, dónde se para y dónde se va. Mapa de calor propio con conclusiones claras, sin guardar lo que escriben.",
+      "Ve lo que hace la gente en tu web: dónde toca, dónde no pasa nada y hasta dónde baja. Mapa de calor propio, sin cookies y sin guardar lo que escriben.",
     titular: "Tu web deja de ser una apuesta. Se mejora cada mes con datos.",
     entradilla:
       "Ves dónde toca la gente en tu web, dónde se para y dónde se va. Cambiamos, medimos y repetimos.",
@@ -366,16 +366,15 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       { dolor: "«La gente toca algo y no pasa nada.»", arreglo: "Los toques en vano salen marcados en rojo, y lo arreglamos en horas." },
     ],
     incluye: [
-      "Mapa de calor de tu web, hecho por nosotros, sin herramientas de terceros",
-      "Conclusiones claras arriba del todo: qué pasa y qué conviene hacer, sin jerga",
+      "Mapa de calor de tu web, hecho por nosotros: se guarda en nuestra propia base de datos y no usa cookies",
       "Dónde tocan, dónde tocan y no pasa nada y hasta dónde bajan, sobre tu web real",
-      "Filtros por periodo, móvil u ordenador, versión de la web y de dónde vienen",
-      "Cuánta confianza dan los datos: pistas, tendencias o datos firmes, según las visitas",
-      "Solo con permiso de cookies, sin guardar nunca lo que escriben ni datos personales",
+      "Filtros por periodo (7, 28 o 90 días), por página y por móvil u ordenador",
+      "La raya de hasta dónde llega la mitad de las personas, marcada sobre la página",
+      "Sin cookies: se guarda solo la posición de cada toque, nunca lo que escriben, ni la IP ni datos personales",
       "Los datos son tuyos, a tu nombre, y se borran solos a los 90 días",
     ],
     como: [
-      { paso: "Miramos", texto: "Vemos qué hace la gente en cada página, con las conclusiones de la Lupa 360." },
+      { paso: "Miramos", texto: "Vemos qué hace la gente en cada página, con el mapa de calor de la Lupa 360." },
       { paso: "Cambiamos una cosa", texto: "Una sola, para saber qué ha servido: un botón, un titular, un orden." },
       { paso: "Medimos otra vez", texto: "Comparamos antes y después, con el mismo tipo de visitas." },
       { paso: "Y vuelta a empezar", texto: "Cada mes, la web un poco mejor. Con datos, no con suposiciones." },
@@ -388,7 +387,7 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
     ],
     demo: {
       titulo: "Pruébala tú mismo, sobre nuestra web.",
-      texto: "Una demostración con datos inventados: filtros, conclusiones, mapa de calor y toques en vano, sobre la propia web de Casiopea.",
+      texto: "Una demostración con datos inventados de cómo se ve, sobre la propia web de Casiopea. El mapa de calor, los toques en vano y la bajada ya funcionan de verdad; las conclusiones automáticas de la demo, todavía no.",
       enlace: "Abrir la Lupa 360 de ejemplo →",
       href: "/lupa-ejemplo",
     },
@@ -399,15 +398,15 @@ export const PAGINAS_SERVICIO: PaginaServicio[] = [
       },
       {
         p: "¿Guardáis lo que escribe la gente?",
-        r: "Nunca. Solo guardamos qué ha tocado, no lo que escribe. No hay datos personales y todo se borra solo a los 90 días.",
+        r: "Nunca. Solo guardamos dónde ha tocado, no lo que escribe. No guardamos IP ni datos personales y todo se borra solo a los 90 días.",
       },
       {
         p: "¿Funciona con cualquier visitante?",
-        r: "Solo con quienes aceptan las cookies de analítica. Si alguien las rechaza, no se registra nada de esa visita.",
+        r: "Con cualquiera: no usa cookies y solo guarda posiciones de toques y hasta dónde se baja, así que cuenta también a quien rechaza las cookies de analítica.",
       },
       {
         p: "¿Cuántas visitas hacen falta?",
-        r: "Con menos de 100 visitas son pistas, no certezas, y la herramienta te lo dice. Con más de 100 hay tendencias y a partir de unas 1.000, datos firmes.",
+        r: "Con menos de 100 visitas son pistas, no certezas, y te lo decimos al enseñarte los datos. Con más de 100 hay tendencias y a partir de unas 1.000, datos firmes.",
       },
       {
         p: "¿Los datos son míos?",
