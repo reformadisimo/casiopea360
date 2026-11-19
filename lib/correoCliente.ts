@@ -14,6 +14,9 @@ export type Correo = {
   animo?: string; // una frase de ánimo con lo que ya ha hecho
   cajas: CajaCorreo[]; // como mucho 3
   aviso?: { titular: string; texto: string; enlace?: { texto: string; href: string } };
+  cabecera?: boolean; // banda azul con el logo arriba (opcional)
+  video?: { titulo: string; texto: string; imagen: string; href: string }; // imagen con botón de play que enlaza al vídeo (en un correo no se reproduce)
+  muestras?: { titulo: string; texto: string; href: string; items: { imagen: string; pie: string }[] }; // tira de capturas de ejemplo
   cierre?: string; // remitir a la guía, despedida breve
   firma: string; // «El equipo de Casiopea 360» o el nombre del encargado
   pie?: string; // por qué recibe el correo
@@ -43,15 +46,39 @@ export function correoCliente(c: Correo): string {
 <p style="margin:0;${FUENTE};font-size:15px;line-height:1.5;color:${C.tinta}">${fmt(c.aviso.texto)}${c.aviso.enlace ? ` <a href="${c.aviso.enlace.href}" style="color:${C.azul};font-weight:bold">${esc(c.aviso.enlace.texto)}</a>` : ""}</p>
 </td></tr></table>`
     : "";
+  const cabecera = c.cabecera
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1d2f78;border-radius:16px 16px 0 0"><tr><td align="center" style="padding:18px 22px"><a href="https://www.casiopea360.es" style="text-decoration:none"><img src="https://www.casiopea360.es/marca/icono-512.png" width="40" height="40" alt="" style="vertical-align:middle;border:0;border-radius:10px"><span style="${FUENTE};font-size:22px;font-weight:bold;color:#ffffff;vertical-align:middle;margin-left:10px">casiopea<span style="color:#ffc53d">360</span></span></a></td></tr></table>`
+    : "";
+  const video = c.video
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 18px"><tr><td>
+<p style="margin:0 0 4px;${FUENTE};font-size:16px;font-weight:bold;color:${C.azul}">${fmt(c.video.titulo)}</p>
+<p style="margin:0 0 10px;${FUENTE};font-size:15px;line-height:1.5;color:${C.tinta}">${fmt(c.video.texto)}</p>
+<a href="${c.video.href}"><img src="${c.video.imagen}" width="516" alt="Pulsa para ver el vídeo" style="display:block;width:100%;max-width:516px;height:auto;border:0;border-radius:12px"></a>
+</td></tr></table>`
+    : "";
+  const muestras = c.muestras
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 18px"><tr><td>
+<p style="margin:0 0 4px;${FUENTE};font-size:16px;font-weight:bold;color:${C.azul}">${fmt(c.muestras.titulo)}</p>
+<p style="margin:0 0 10px;${FUENTE};font-size:15px;line-height:1.5;color:${C.tinta}">${fmt(c.muestras.texto)}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${c.muestras.items
+        .map(
+          (m) => `<td width="33%" valign="top" style="padding:0 4px"><a href="${c.muestras!.href}" style="text-decoration:none"><img src="${m.imagen}" width="160" alt="${esc(m.pie)}" style="display:block;width:100%;height:auto;border:1px solid ${C.linea};border-radius:8px"><span style="display:block;margin-top:5px;${FUENTE};font-size:13px;color:${C.gris};text-align:center">${esc(m.pie)}</span></a></td>`,
+        )
+        .join("")}</tr></table>
+</td></tr></table>`
+    : "";
   return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${esc(c.titulo)}</title></head>
 <body style="margin:0;padding:0;background-color:${C.fondo}">
 <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${C.fondo}">${esc(c.preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${C.fondo}"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:${C.tarjeta};border-radius:16px"><tr><td style="padding:26px 22px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px"><tr><td>${cabecera}</td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:${C.tarjeta};border-radius:${c.cabecera ? "0 0 16px 16px" : "16px"}"><tr><td style="padding:26px 22px">
 ${p(`<b>${fmt(c.saludo)}</b>`)}
 ${c.primero ? p(fmt(c.primero)) : ""}
 ${c.animo ? p(fmt(c.animo)) : ""}
 ${cajas}
+${video}
+${muestras}
 ${aviso}
 ${c.cierre ? p(fmt(c.cierre)) : ""}
 ${p(`Un abrazo fuerte,<br><b>${esc(c.firma)}</b>`, "margin-bottom:0")}
