@@ -74,7 +74,10 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
   const fecha = new Date(a.fecha + "T12:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
   // Cada término se enlaza al glosario una sola vez por artículo
   const g: ContextoGlosario = { usados: new Set<string>(), max: 3 };
-  const otros = ARTICULOS.filter((x) => x.slug !== a.slug);
+  // «Sigue leyendo»: primero los relacionados que se han elegido a mano, y detrás el resto en su orden.
+  const resto = ARTICULOS.filter((x) => x.slug !== a.slug);
+  const elegidos = (a.relacionados ?? []).map((sl) => resto.find((x) => x.slug === sl)).filter((x): x is (typeof resto)[number] => !!x);
+  const otros = [...elegidos, ...resto.filter((x) => !elegidos.includes(x))];
   // El vídeo de apoyo va justo antes del segundo subtítulo
   const titulos = a.cuerpo.map((b, i) => ("h2" in b ? i : -1)).filter((i) => i >= 0);
   const mitad = titulos[1] ?? Math.floor(a.cuerpo.length / 2);
@@ -188,6 +191,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
             </li>
           ))}
         </ul>
+        <p className="mt-6 text-center"><Link href="/blog" className="font-bold text-tinta underline underline-offset-2">Ver todos los artículos del blog</Link></p>
       </section>
       <LlamadaFinal />
     </>

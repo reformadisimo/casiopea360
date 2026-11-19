@@ -14,6 +14,8 @@ export type Articulo = {
   cuerpo: Bloque[];
   // Enlaces opcionales a páginas de la web (servicio, demostración), al final del artículo.
   enlaces?: { texto: string; href: string }[];
+  // Artículos que se enseñan en «Sigue leyendo», en este orden (el resto de artículos va detrás).
+  relacionados?: string[];
   // SEO y confianza (opcionales): palabras clave, preguntas frecuentes (con datos estructurados) y fuentes externas citadas.
   tituloSeo?: string; // título corto para la pestaña y Google (unos 45 caracteres); el titular largo queda en la página
   claves?: string[];
@@ -24,6 +26,7 @@ export type Articulo = {
 export const ARTICULOS: Articulo[] = [
   {
     slug: "abrir-las-cuentas-de-tu-empresa-sin-atascarte",
+    relacionados: ["ficha-de-google-que-es-y-como-sacarle-partido", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr"],
     tituloSeo: "Abrir las cuentas de tu empresa sin atascarte",
     video: "mano-pantalla",
     apoyo: { video: "llamada-sonrisa", alt: "Una persona sonríe al teléfono" },
@@ -91,11 +94,18 @@ export const ARTICULOS: Articulo[] = [
       { texto: "Te ayudamos en remoto", href: "/ayuda-en-remoto" },
       { texto: "Tú tienes el control de todo", href: "/tu-control" },
       { texto: "Cómo trabajamos", href: "/como-trabajamos" },
+      { texto: "Cómo cuidamos Google y las IA", href: "/servicios/seo-google-ia" },
+      { texto: "Cómo llevamos los anuncios en Google y redes", href: "/servicios/publicidad-google-ads-redes" },
       { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
+    ],
+    fuentes: [
+      { texto: "Ayuda de Google Ads: niveles de acceso a la cuenta (invitar a otra persona)", href: "https://support.google.com/google-ads/answer/9978556?hl=es" },
+      { texto: "INCIBE: asegura tus cuentas con la autenticación de doble factor", href: "https://www.incibe.es/empresas/blog/asegura-tus-cuentas-usuario-autenticacion-doble-factor" },
     ],
   },
   {
     slug: "ficha-de-google-que-es-y-como-sacarle-partido",
+    relacionados: ["como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr", "como-aparecer-en-chatgpt-y-google", "abrir-las-cuentas-de-tu-empresa-sin-atascarte"],
     fuentes: [
       { texto: "Ayuda de Perfil de Empresa en Google: gestionar los propietarios y administradores", href: "https://support.google.com/business/answer/3403100?hl=es" },
       { texto: "Ayuda de Perfil de Empresa en Google: consejos para mejorar el posicionamiento local", href: "https://support.google.com/business/answer/7091?hl=es" },
@@ -156,6 +166,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa",
+    relacionados: ["prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona"],
     fuentes: [
       { texto: "Ayuda de Google: acerca de Search Console", href: "https://support.google.com/webmasters/answer/9128668?hl=es" },
       { texto: "AEPD: por qué son importantes las cookies para la protección de datos", href: "https://www.aepd.es/preguntas-frecuentes/17-internet-y-redes-sociales/FAQ-1707-importancia-de-las-cookies-en-la-proteccion-de-datos" },
@@ -252,6 +263,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "si-tu-web-no-esta-a-tu-nombre-no-es-tuya",
+    relacionados: ["abrir-las-cuentas-de-tu-empresa-sin-atascarte", "comision-sobre-inversion-en-anuncios", "cuantos-proveedores-necesita-una-web-que-trae-clientes"],
     fuentes: [
       { texto: "Ayuda de Google Ads: niveles de acceso a tu cuenta", href: "https://support.google.com/google-ads/answer/9978556?hl=es" },
       { texto: "Ayuda de Search Console: gestionar propietarios, usuarios y permisos", href: "https://support.google.com/webmasters/answer/7687615?hl=es" },
@@ -338,6 +350,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona",
+    relacionados: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "cuantos-proveedores-necesita-una-web-que-trae-clientes"],
     video: "lapiz-medicion",
     apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos los resultados en un portátil" },
     tituloSeo: "Por qué un director de marketing no ve lo que falla",
@@ -389,6 +402,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "cuanto-cuesta-el-marketing-digital-por-separado",
+    relacionados: ["por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "comision-sobre-inversion-en-anuncios", "cuanto-se-tarda-en-hacer-una-web"],
     video: "lapiz-medicion",
     apoyo: { video: "papeles", alt: "Facturas y papeles acumulados en una mesa" },
     tituloSeo: "Cuánto cuesta el marketing digital por separado",
@@ -446,9 +460,14 @@ export const ARTICULOS: Articulo[] = [
       { ul: ["Lo que te costaría por separado.", "Cuántos proveedores tendrías.", "Cuántas facturas al mes."] },
       { p: "Con Casiopea 360, todo eso va dentro de una sola cuota fija, la misma para cualquier tamaño de empresa." },
     ],
+    enlaces: [
+      { texto: "Calcula lo que te costaría por separado", href: "/servicios#costes" },
+      { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
+    ],
   },
   {
     slug: "cuanto-se-tarda-en-hacer-una-web",
+    relacionados: ["cuanto-cuesta-el-marketing-digital-por-separado", "que-es-un-crm-y-para-que-sirve", "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion"],
     fuentes: [
       { texto: "Google Search Central: las Core Web Vitals y los resultados de búsqueda", href: "https://developers.google.com/search/docs/appearance/core-web-vitals?hl=es" },
     ],
@@ -492,9 +511,14 @@ export const ARTICULOS: Articulo[] = [
       ] },
       { p: "Nuestra intención es que la tuya esté a la altura de una web de 25.000 €, que la tengas en días y que vaya dentro de tu cuota." },
     ],
+    enlaces: [
+      { texto: "Un día de trabajo real", href: "/un-dia-de-trabajo" },
+      { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
+    ],
   },
   {
     slug: "que-es-un-crm-y-para-que-sirve",
+    relacionados: ["dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion", "cuantos-proveedores-necesita-una-web-que-trae-clientes", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo"],
     video: "neon-llamada",
     apoyo: { video: "llamada-sonrisa", alt: "Una persona sonríe al teléfono" },
     titulo: "Qué es un CRM y por qué tu empresa pierde clientes sin él",
@@ -523,6 +547,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "cuantos-proveedores-necesita-una-web-que-trae-clientes",
+    relacionados: ["por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "cuanto-cuesta-el-marketing-digital-por-separado"],
     fuentes: [
       { texto: "Google Search Central: guía de SEO para principiantes", href: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=es" },
       { texto: "AEPD: por qué son importantes las cookies para la protección de datos", href: "https://www.aepd.es/preguntas-frecuentes/17-internet-y-redes-sociales/FAQ-1707-importancia-de-las-cookies-en-la-proteccion-de-datos" },
@@ -599,6 +624,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "comision-sobre-inversion-en-anuncios",
+    relacionados: ["cuanto-cuesta-el-marketing-digital-por-separado", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion"],
     video: "madrid-noche",
     apoyo: { video: "llamada-sonrisa", alt: "Un empresario sonríe al ver sus resultados en el móvil" },
     tituloSeo: "¿Te cobran un porcentaje de lo que inviertes en anuncios?",
@@ -649,9 +675,14 @@ export const ARTICULOS: Articulo[] = [
       { p: "Así llevamos [los anuncios en Google y en redes](/servicios/publicidad-google-ads-redes) en Casiopea 360: nunca cobramos un porcentaje de lo que inviertes, sean mil euros o un millón." },
       { p: "Si quieres saber cuánto pagas hoy entre comisiones y proveedores, haz nuestro test de idoneidad: son unos cinco minutos y te da tu nota al momento." },
     ],
+    enlaces: [
+      { texto: "Calculadora: cuántos clientes te puede traer tu inversión", href: "/calculadora" },
+      { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
+    ],
   },
   {
     slug: "como-aparecer-en-chatgpt-y-google",
+    relacionados: ["ficha-de-google-que-es-y-como-sacarle-partido", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr", "como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa"],
     fuentes: [
       { texto: "Google Search Central: crear contenido útil, fiable y centrado en las personas", href: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=es" },
       { texto: "Google Search Central: introducción a los datos estructurados", href: "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data?hl=es" },
@@ -705,6 +736,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "dos-numeros-para-mejorar-tus-anuncios-sin-pedirte-la-facturacion",
+    relacionados: ["comision-sobre-inversion-en-anuncios", "que-es-un-crm-y-para-que-sirve", "como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa"],
     tituloSeo: "Dos números para ajustar tus anuncios",
     video: "brujula",
     apoyo: { video: "holograma-redes", alt: "Una mano sostiene un móvil con notificaciones de nuevos contactos" },
@@ -764,6 +796,7 @@ export const ARTICULOS: Articulo[] = [
     fuentes: [{ texto: "IEB School: qué es el coste límite de adquisición de clientes", href: "https://www.iebschool.com/blog/que-es-el-coste-limite-de-adquisicion-de-clientes" }],
     enlaces: [
       { texto: "Tu control: qué te pedimos y qué no", href: "/tu-control#una-cifra" },
+      { texto: "Calculadora: cuántos clientes te puede traer tu inversión", href: "/calculadora" },
       { texto: "Un CRM de ejemplo", href: "/crm-ejemplo" },
       { texto: "Un panel de ejemplo", href: "/panel" },
       { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
@@ -771,6 +804,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "prueba-ab-en-tu-web-por-que-dos-versiones-ensenan-mas-que-una-opinion",
+    relacionados: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa", "cuanto-se-tarda-en-hacer-una-web", "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona"],
     tituloSeo: "Prueba A/B en tu web: qué es y cómo hacerla",
     video: "fibra-luz",
     apoyo: { video: "gafas-rojas", alt: "Un equipo revisa datos juntos delante de varios ordenadores" },
@@ -833,6 +867,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr",
+    relacionados: ["ficha-de-google-que-es-y-como-sacarle-partido", "como-aparecer-en-chatgpt-y-google", "abrir-las-cuentas-de-tu-empresa-sin-atascarte"],
     tituloSeo: "Cómo pedir reseñas en Google (con ejemplos)",
     video: "movil-corazones",
     apoyo: { video: "mujer-movil", alt: "Una mujer mira su móvil en la calle" },
@@ -913,6 +948,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo",
+    relacionados: ["cuantos-proveedores-necesita-una-web-que-trae-clientes", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "abrir-las-cuentas-de-tu-empresa-sin-atascarte"],
     tituloSeo: "Marketing sin reuniones ni llamadas",
     video: "taller-hombre",
     apoyo: { video: "equipo-riendo", alt: "Una mujer sonríe en una mesa de trabajo" },
@@ -967,12 +1003,14 @@ export const ARTICULOS: Articulo[] = [
     enlaces: [
       { texto: "Cómo trabajamos", href: "/como-trabajamos" },
       { texto: "Un día de trabajo real", href: "/un-dia-de-trabajo" },
+      { texto: "Cómo automatizamos lo repetido", href: "/servicios/automatizacion-ia" },
       { texto: "Preguntas frecuentes", href: "/preguntas" },
       { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
     ],
   },
   {
     slug: "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo",
+    relacionados: ["cuantos-proveedores-necesita-una-web-que-trae-clientes", "marketing-sin-reuniones-ni-llamadas-asi-te-quitamos-el-menor-tiempo", "cuanto-cuesta-el-marketing-digital-por-separado"],
     tituloSeo: "Seis razones para contratar Casiopea",
     video: "selfie-equipo",
     apoyo: { video: "hombre-sonriendo", alt: "Un profesional sonríe en una oficina luminosa" },
@@ -1029,6 +1067,8 @@ export const ARTICULOS: Articulo[] = [
       { texto: "Cómo trabajamos", href: "/como-trabajamos" },
       { texto: "Cuánto costaría por separado", href: "/servicios#costes" },
       { texto: "Así lo verás tú: panel de ejemplo", href: "/panel" },
+      { texto: "Quiénes somos", href: "/quienes-somos" },
+      { texto: "Trabajos hechos", href: "/trabajos" },
       { texto: "Preguntas frecuentes", href: "/preguntas" },
       { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
     ],
