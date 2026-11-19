@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CONTACTO } from "@/lib/contenido";
-import VideoAlClic from "@/components/VideoAlClic";
+import VideoHero from "@/components/VideoHero";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
 import { Nebulosa, Etiqueta } from "@/components/Vida";
 import { ENVOLTORIO } from "@/components/secciones";
+
+// Vídeo largo (2:24) en YouTube, el que se abre con «Ver el vídeo completo».
+const ID_VIDEO_LARGO = "vDNia2X3YpY";
 
 const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
@@ -38,11 +41,7 @@ export function HeroLanding() {
             <li>Sin permanencia</li>
           </ul>
         </div>
-        <VideoAlClic
-          id="vDNia2X3YpY"
-          titulo="Casiopea 360: tu marketing digital, al máximo nivel"
-          etiqueta="Vídeo generado con inteligencia artificial."
-        />
+        <VideoHero idCompleto={ID_VIDEO_LARGO} titulo="Casiopea 360: tu marketing digital, al máximo nivel" />
       </div>
     </section>
   );
