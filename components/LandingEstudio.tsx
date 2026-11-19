@@ -28,10 +28,10 @@ export function HeroLanding() {
             ¿Tu web no te trae <Subrayado>clientes</Subrayado>?
           </h1>
           <p className="mt-5 max-w-xl text-xl text-white/85">
-            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz un test de 5 minutos y, si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>, sin compromiso: qué falla, qué haríamos y cuánto costaría. Sin darnos ningún acceso.
+            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz el test y, si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>, sin compromiso: qué falla, qué haríamos y cuánto costaría. Sin darnos ningún acceso.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link href="#solicitud" className={BOTON}>Haz el test (5 minutos)</Link>
+            <Link href="#solicitud" className={BOTON}>Haz el test</Link>
             <span className="text-sm text-white/80">Gratis y sin compromiso. Te escribimos siempre; sin llamadas comerciales.</span>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
@@ -178,7 +178,7 @@ export function SeccionEjemplos() {
           </div>
         </div>
         <div className="mt-10 text-center">
-          <Link href="#solicitud" className={BOTON}>Haz el test (5 minutos)</Link>
+          <Link href="#solicitud" className={BOTON}>Haz el test</Link>
           <p className="mt-3 text-sm text-tinta/60">Gratis y sin compromiso.</p>
         </div>
       </div>

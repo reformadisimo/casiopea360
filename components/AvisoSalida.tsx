@@ -140,7 +140,7 @@ export default function AvisoSalida() {
             ¿Qué nota tiene tu marketing?
           </p>
           <p id="salida-texto" className="relative mt-2.5 text-[clamp(0.88rem,2dvh,0.97rem)] leading-snug text-white/85 sm:mt-3 sm:text-[clamp(0.9rem,2.1dvh,1.02rem)]">
-            En cinco minutos lo sabes, tocando, sin escribir. Y si podemos ayudarte, te preparamos gratis tu plan completo.
+            Lo sabes tocando, sin escribir. Y si podemos ayudarte, te preparamos gratis tu plan completo.
           </p>
         </div>
 
@@ -180,7 +180,7 @@ export default function AvisoSalida() {
               onClick={() => setAbierto(false)}
               className="late inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-full bg-estrella px-7 py-3 text-lg font-extrabold text-tinta hover:bg-estrella-2"
             >
-              Ver mi nota en 5 minutos
+              Ver mi nota
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </Link>
             <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">

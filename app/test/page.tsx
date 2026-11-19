@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 export const metadata = {
   ...meta(
     "Test de idoneidad: tu nota de marketing digital",
-    "Unos 5 minutos, una pregunta cada vez y sin escribir: tu nota, dónde se te escapan clientes y, si podemos ayudarte, tu estudio gratuito.",
+    "Una pregunta cada vez y sin escribir: tu nota, dónde se te escapan clientes y, si podemos ayudarte, tu estudio gratuito.",
     "/test",
   ),
   robots: { index: false, follow: true },
@@ -21,7 +21,7 @@ export default function Test() {
       <CabeceraPagina
         titulo="¿Cómo está tu marketing digital?"
         clave="marketing digital"
-        chip={{ grande: "5 minutos", chico: "Tocando, sin escribir" }}
+        chip={{ grande: "Tocando", chico: "Sin escribir" }}
         entradilla="Te damos tu nota y dónde se te escapan clientes. Y si podemos ayudarte, te preparamos gratis tu estudio completo."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
         video="movil-sonrisa"

@@ -90,7 +90,7 @@ export function ConsiguesCompleto() {
             Lo que has visto es de un despacho inventado, Fuero Abogados. <b className="text-white">El tuyo, con tu negocio, tu competencia y tus clientes.</b>
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/test" className={BOTON}>Hacer el test de idoneidad (5 min)</Link>
+            <Link href="/test" className={BOTON}>Hacer el test de idoneidad</Link>
             <Link href="/estudio-gratuito" className={BOTON_CLARO}>Cómo funciona el estudio</Link>
           </div>
         </div>
