@@ -89,13 +89,13 @@ export function Opcion({ letra, texto, color, activa, onClick }: { letra: string
     >
       <span
         aria-hidden="true"
-        className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-base font-extrabold transition-transform group-hover:rotate-[-6deg] group-hover:scale-110"
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-base font-extrabold transition-transform group-hover:rotate-[-6deg] group-hover:scale-110"
         style={activa ? { background: "rgba(255,255,255,0.25)", color: "#fff" } : { background: color + "1a", color }}
       >
         {activa ? (
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
         ) : (
-          letra
+          <span className="h-5 w-5 rounded-full border-[3px] border-current opacity-60" />
         )}
       </span>
       <span>{texto}</span>

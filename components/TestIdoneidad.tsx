@@ -456,7 +456,7 @@ export default function TestIdoneidad() {
       <Confeti disparo={confeti} />
 
       {fase !== "fin" && fase !== "capturado" && (
-        <div className="mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea">
+        <div className={`mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea ${fase === "preguntas" || fase === "datos" ? "hidden sm:block" : ""}`}>
           <BarraEstrella
             avance={fase === "datos" ? 0.9 : enAmpliacion ? hechasA / Math.max(totalA, 1) : Math.min(hechas / 4, 0.7)}
             texto={
@@ -475,7 +475,10 @@ export default function TestIdoneidad() {
         const letras = "ABCDEFG";
         return (
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
-            <div className="relative overflow-hidden px-6 py-6 text-white sm:px-9 sm:py-7">
+            <div className="bg-noche px-5 py-3 text-sm font-extrabold text-white sm:hidden">
+              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Cuéntanos de tu empresa" : tramo.titulo}
+            </div>
+            <div className="relative hidden overflow-hidden px-6 py-6 text-white sm:block sm:px-9 sm:py-7">
               <div aria-hidden="true" className="absolute inset-0">
                 <VideoFondo key={tramo.id} nombre={tramo.video} alt="" />
               </div>
@@ -504,7 +507,7 @@ export default function TestIdoneidad() {
 
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
               {qi === 0 && (
-                <p className="aparece mb-5 flex items-start gap-2.5 rounded-2xl bg-estrella/25 px-4 py-3 text-sm font-bold">
+                <p className="aparece mb-5 hidden items-start gap-2.5 sm:flex rounded-2xl bg-estrella/25 px-4 py-3 text-sm font-bold">
                   <span aria-hidden="true" className="text-lg leading-none">★</span>
                   <span>{tramo.dato}</span>
                 </p>
@@ -522,9 +525,9 @@ export default function TestIdoneidad() {
                       <LogoMarca nombre={q.logo} tam={28} />
                     </span>
                   ) : (
-                    <span className="flota grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-noche text-lg font-extrabold text-estrella shadow-md sm:h-14 sm:w-14">{hechas + (resp[q.id] === undefined ? 1 : 0)}</span>
+                    <span className="flota hidden h-12 w-12 shrink-0 place-items-center rounded-2xl bg-noche text-lg font-extrabold text-estrella shadow-md sm:grid sm:h-14 sm:w-14">{hechas + (resp[q.id] === undefined ? 1 : 0)}</span>
                   )}
-                  <span className="pt-1">{q.p}</span>
+                  <span className="pt-1 text-2xl leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
                 <div className="mt-6 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
                   {q.o.map((o, j) => (
@@ -596,13 +599,14 @@ export default function TestIdoneidad() {
       {fase === "datos" && (
         <form onSubmit={enviar} onBlurCapture={(e) => { const t = e.target as unknown as HTMLInputElement; if (!t.name || t.name === "sitio_web") return; paso("campo", t.name, t.type === "checkbox" ? (t.checked ? "ok" : "vacio") : t.value.trim() ? "ok" : "vacio"); }} onInvalidCapture={(e) => paso("invalido", (e.target as unknown as HTMLInputElement).name)} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
           <div className="bg-noche px-6 py-6 text-white sm:px-9">
-            <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="mb-4 hidden items-center justify-between gap-4 sm:flex">
               <Logo claro fundido chico />
               <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Casi está</p>
             </div>
             <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le escribimos?</p>
-            <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana. Después, si quieres, te damos tu nota.</p>
-            <div className="mt-5"><Muestra oscuro /></div>
+            <p className="mt-1 text-white/85 sm:hidden">Te contestamos en 48 horas laborables.</p>
+            <p className="mt-1 hidden text-white/85 sm:block">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana. Después, si quieres, te damos tu nota.</p>
+            <div className="mt-5 hidden sm:block"><Muestra oscuro /></div>
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
             <label className="text-sm font-bold">

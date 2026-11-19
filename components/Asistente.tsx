@@ -65,6 +65,8 @@ export default function Asistente() {
       visto = sessionStorage.getItem("casiopea-burbuja") === "1";
     } catch {}
     if (visto) return;
+    // En las páginas del test la burbuja tapa los campos: no saluda.
+    if (/^\/(estudio-gratuito|test)(\/|$)/.test(window.location.pathname)) return;
     // Si el aviso de cookies sigue en pantalla, espera a que lo cierren para no taparlo.
     let t: ReturnType<typeof setTimeout>;
     const intentar = () => {
