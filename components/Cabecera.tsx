@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { BarraLanding } from "@/components/LandingEstudio";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import AjustesLectura from "@/components/AjustesLectura";
@@ -15,6 +16,7 @@ const COLORES_MENU = ["#1d4ed8", "#0f766e", "#b45309", "#be185d", "#6d28d9", "#0
 
 export default function Cabecera() {
   const router = useRouter();
+  const ruta = usePathname();
   const [solida, setSolida] = useState(false);
   const [abierto, setAbierto] = useState<string | null>(null);
   const [movil, setMovil] = useState(false);
@@ -70,6 +72,8 @@ export default function Cabecera() {
     setAbierto(null);
     setMovil(false);
   };
+
+  if (ruta === "/estudio-gratuito") return <BarraLanding />;
 
   return (
     <header

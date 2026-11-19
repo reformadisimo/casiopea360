@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { CONTACTO } from "@/lib/contenido";
 import VideoAlClic from "@/components/VideoAlClic";
 import VideoFondo from "@/components/VideoFondo";
 import Subrayado from "@/components/Subrayado";
@@ -26,8 +28,8 @@ export function HeroLanding() {
             Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz un test de 5 minutos y, si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>, sin compromiso: qué falla, qué haríamos y cuánto costaría. Sin darnos ningún acceso.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link href="#solicitud" className={BOTON}>Haz el test gratis (5 minutos)</Link>
-            <span className="text-sm text-white/70">Te escribimos siempre. Sin llamadas comerciales.</span>
+            <Link href="#solicitud" className={BOTON}>Haz el test (5 minutos)</Link>
+            <span className="text-sm text-white/80">Gratis y sin compromiso. Te escribimos siempre; sin llamadas comerciales.</span>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
             <li>Una sola persona te atiende</li>
@@ -111,7 +113,7 @@ const PASOS: [string, string][] = [
   ["1. Haz el test", "Cinco minutos, tocando respuestas. Sin darnos accesos ni contraseñas."],
   ["2. Te escribimos en 48 horas laborables", "Te decimos si podemos ayudarte. Si ahora no, te lo decimos igual y te explicamos por qué."],
   ["3. Recibes tu estudio", "Si podemos ayudarte, es gratis: tu situación, tu competencia, tu web rediseñada y tu plan. En menos de una semana."],
-  ["4. Decides tú", "Sin compromiso. Si no sigues, el estudio es tuyo igualmente."],
+  ["4. Decides tú", "Sin compromiso. Si no sigues, tienes un mes para mirarlo con calma y enseñárselo a quien quieras."],
 ];
 
 export function SeccionPasos() {
@@ -131,5 +133,62 @@ export function SeccionPasos() {
         <p className="mt-6 text-sm text-tinta/60">Cada empresa es distinta: contamos tu experiencia, no prometemos resultados concretos.</p>
       </div>
     </section>
+  );
+}
+
+export function SeccionEjemplos() {
+  return (
+    <section className="bg-niebla py-16 sm:py-24">
+      <div className={ENVOLTORIO}>
+        <Etiqueta>Trabajo hecho</Etiqueta>
+        <h2 className="mt-4 max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Mira lo que hacemos, no lo que prometemos.</h2>
+        <div className="mt-10 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+          <a href="https://www.reformadisimo.es" target="_blank" rel="noopener" className="group overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-tinta/10">
+            <Image src="/antes-despues/reformadisimo-despues.webp" alt="Portada de la web de Reformadísimo" width={1280} height={585} className="h-auto w-full" sizes="(min-width: 1024px) 700px, 100vw" />
+            <div className="p-6">
+              <h3 className="text-xl font-extrabold text-tinta">Reformadísimo · web</h3>
+              <p className="mt-1 text-tinta/75">Reformas integrales en Madrid. Calculadoras de precio y asistente con IA por voz.</p>
+              <span className="mt-3 inline-block text-sm font-bold text-noche-3 group-hover:underline">Ver la web →</span>
+            </div>
+          </a>
+          <div className="grid gap-5">
+            <a href="https://miestela.app" target="_blank" rel="noopener" className="group flex items-center gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-tinta/10">
+              <Image src="/logos/mi-estela.png" alt="Mi Estela" width={96} height={96} className="h-24 w-24 shrink-0 rounded-2xl" />
+              <div>
+                <h3 className="text-xl font-extrabold text-tinta">Mi Estela · app</h3>
+                <p className="mt-1 text-sm text-tinta/75">App familiar para iPhone y Android: de la idea a las dos tiendas en unos 120 días.</p>
+                <span className="mt-2 inline-block text-sm font-bold text-noche-3 group-hover:underline">Conocer la app →</span>
+              </div>
+            </a>
+            <div className="flex items-center gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-tinta/10">
+              <Image src="/logos/ams.png" alt="AMS Cerramientos" width={144} height={48} className="h-12 w-auto shrink-0" />
+              <div>
+                <h3 className="text-xl font-extrabold text-tinta">AMS · web</h3>
+                <p className="mt-1 text-sm text-tinta/75">Ventanas y cerramientos: configurador con precio al momento y páginas por zona.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 text-center">
+          <Link href="#solicitud" className={BOTON}>Haz el test (5 minutos)</Link>
+          <p className="mt-3 text-sm text-tinta/60">Gratis y sin compromiso.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Barra mínima de esta landing: sin menú, solo logo, WhatsApp y el botón al test.
+export function BarraLanding() {
+  return (
+    <div className="fixed inset-x-0 top-0 z-40 bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Link href="/" aria-label="Casiopea 360" className="shrink-0 text-lg font-extrabold text-white">Casiopea 360</Link>
+        <div className="flex items-center gap-3">
+          <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
+          <Link href="#solicitud" className="rounded-full bg-estrella px-5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2">Haz el test</Link>
+        </div>
+      </div>
+    </div>
   );
 }
