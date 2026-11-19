@@ -528,3 +528,8 @@ html[data-texto="3"] header { zoom: 0.667; }
 .nitido{transition:filter .9s ease,opacity .9s ease,transform .9s ease}
 .nitido-pre{filter:blur(14px);opacity:0;transform:translateY(10px)}
 .nitido-pre.nitido-ya{filter:none;opacity:1;transform:none}
+
+/* Móvil: sitio para que la barra fija de abajo (WhatsApp, Chat, Haz el test) no tape el final de la página */
+@media (max-width: 639px) {
+  body { padding-bottom: 4.75rem; }
+}
