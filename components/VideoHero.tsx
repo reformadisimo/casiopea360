@@ -11,11 +11,31 @@ export default function VideoHero({ idCompleto, titulo }: { idCompleto: string; 
   const [sonido, setSonido] = useState(false);
   const [completo, setCompleto] = useState(false);
   const [ahorro, setAhorro] = useState(false);
+  const [arrancar, setArrancar] = useState(false);
 
+  // El vídeo (3,6 MB) no se pide hasta que la página ha cargado y pasan unos segundos, y solo con buena
+  // conexión: así no compite con el test. Antes de eso se ve el cartel (foto). Con ahorro de datos, nunca solo.
   useEffect(() => {
-    const c = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (c?.saveData || reducir) setAhorro(true);
+    if (c?.saveData || reducir) {
+      setAhorro(true);
+      return;
+    }
+    if (c?.effectiveType && c.effectiveType !== "4g") {
+      setAhorro(true);
+      return;
+    }
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const lanzar = () => {
+      t = setTimeout(() => setArrancar(true), 3000);
+    };
+    if (document.readyState === "complete") lanzar();
+    else window.addEventListener("load", lanzar, { once: true });
+    return () => {
+      window.removeEventListener("load", lanzar);
+      if (t) clearTimeout(t);
+    };
   }, []);
 
   if (completo) {
@@ -57,11 +77,11 @@ export default function VideoHero({ idCompleto, titulo }: { idCompleto: string; 
       <div className="pointer-events-none absolute -inset-3 rounded-[2.4rem] bg-estrella/20 blur-2xl" aria-hidden="true" />
       <div className="relative aspect-video overflow-hidden rounded-[1.6rem] bg-noche ring-1 ring-white/20">
         <video
-          key={sonido ? "con-sonido" : "mudo"}
+          key={sonido ? "con-sonido" : arrancar ? "mudo" : "cartel"}
           ref={ref}
           className="absolute inset-0 h-full w-full object-cover"
           poster="/video/anuncio-corto-poster.webp"
-          autoPlay={!ahorro || sonido}
+          autoPlay={arrancar || sonido}
           muted={!sonido}
           loop={!sonido}
           playsInline
@@ -70,7 +90,7 @@ export default function VideoHero({ idCompleto, titulo }: { idCompleto: string; 
           aria-label={titulo}
           onEnded={() => sonido && quitarSonido()}
         >
-          <source src={sonido ? "/video/anuncio-corto.mp4" : "/video/anuncio-corto-mudo.mp4"} type="video/mp4" />
+          {(sonido || arrancar) && <source src={sonido ? "/video/anuncio-corto.mp4" : "/video/anuncio-corto-mudo.mp4"} type="video/mp4" />}
         </video>
         {!sonido && (
           <button
@@ -81,7 +101,7 @@ export default function VideoHero({ idCompleto, titulo }: { idCompleto: string; 
             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z" fill="currentColor" />
             </svg>
-            {ahorro ? "Ver con sonido" : "Activar sonido"}
+            {ahorro || !arrancar ? "Ver con sonido" : "Activar sonido"}
           </button>
         )}
       </div>
