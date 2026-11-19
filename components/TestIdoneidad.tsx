@@ -12,6 +12,7 @@ import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/compon
 import Image from "next/image";
 import BotonDictado from "@/components/BotonDictado";
 import { CONTACTO } from "@/lib/contenido";
+import { FACTURACION, SECTORES, URGE } from "@/lib/testOrden";
 
 // Muestra de la guía que recibirá (despacho ficticio, difuminada).
 const MUESTRA = [
@@ -52,7 +53,6 @@ const SN = (si: string, medias: string, no: string): Opc[] => [
   { t: no, v: 0 },
 ];
 
-const FACTURACION = ["Menos de 1 millón", "De 1 a 4 millones", "De 4 a 10 millones", "Más de 10 millones", "Prefiero no decirlo"];
 const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1.500 a 3.000 € al mes", "De 3.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes", "No lo sé"];
 const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes"];
 const CAMBIAR = ["Lo antes posible", "En los próximos tres meses", "Más adelante", "No tengo prisa, solo estoy mirando"];
@@ -62,17 +62,30 @@ const DECIDE = ["Yo", "Lo decido con mi socio o la dirección", "Lo propongo y d
 
 const TRAMOS: Tramo[] = [
   {
-    id: "empresa",
+    id: "primero",
     titulo: "Tu empresa",
-    intro: "Para conocerte un poco. Cinco toques y listo.",
+    intro: "Tres toques y tus datos. Un minuto.",
     dato: "Todo lo que contestes es para preparar tu estudio. No lo compartimos con nadie.",
     video: "despacho",
     color: "from-[#24387a] to-[#0e1a3d]",
     logos: ["Google Maps", "Google", "LinkedIn"],
     puntua: false,
     preguntas: [
-      { id: "sector", p: "¿A qué se dedica tu empresa?", o: T("Servicios a particulares", "Servicios a empresas", "Tienda o comercio", "Industria o fabricación", "Salud o bienestar", "Otra") },
+      { id: "sector", p: "¿A qué se dedica tu empresa?", o: T(...SECTORES) },
       { id: "facturacion", p: "¿Cuánto factura al año, más o menos?", o: T(...FACTURACION) },
+      { id: "urge", p: "¿Qué es lo que más te urge?", o: T(...URGE) },
+    ],
+  },
+  {
+    id: "empresa",
+    titulo: "Tu empresa",
+    intro: "Para conocerte un poco. Tres toques más.",
+    dato: "Todo lo que contestes es para preparar tu estudio. No lo compartimos con nadie.",
+    video: "despacho",
+    color: "from-[#24387a] to-[#0e1a3d]",
+    logos: ["Google Maps", "Google", "LinkedIn"],
+    puntua: false,
+    preguntas: [
       { id: "empleados", p: "¿Cuántas personas trabajan en ella?", o: T("Menos de 10", "De 10 a 50", "De 50 a 250", "Más de 250") },
       { id: "zona", p: "¿Dónde están tus clientes?", o: T("En mi ciudad o provincia", "En toda España", "También fuera de España", "Solo vendo por internet"), logo: "Google Maps" },
       { id: "valor", p: "¿Cuánto vale de media un cliente para ti?", o: T("Menos de 300 €", "De 300 € a 3.000 €", "De 3.000 € a 30.000 €", "Más de 30.000 €") },
@@ -128,7 +141,6 @@ const TRAMOS: Tramo[] = [
     logos: ["Google", "ChatGPT", "Gemini"],
     puntua: false,
     preguntas: [
-      { id: "urge", p: "¿Qué es lo que más te urge?", o: T("Más clientes", "Una web nueva", "Dejar de coordinar proveedores", "Medir lo que funciona", "Pagar menos por lo mismo") },
       { id: "cambiar", p: "¿Cuándo quieres cambiar?", o: T(...CAMBIAR) },
       { id: "convence", p: "Si el estudio te convence, ¿qué harías?", o: T(...CONVENCE) },
       { id: "decide", p: "¿Quién decide la contratación?", o: T(...DECIDE) },
@@ -161,6 +173,7 @@ const TRAMOS: Tramo[] = [
 ];
 
 const BASE = TRAMOS.filter((t) => !t.extra);
+const IDX_BUSCAS = TRAMOS.findIndex((t) => t.id === "buscas");
 const REACCION = [
   { t: "Aquí se te escapan clientes", tono: "mal" as const },
   { t: "Mejorable, pero tiene arreglo", tono: "medio" as const },
@@ -205,7 +218,21 @@ export default function TestIdoneidad() {
   const [resp, setResp] = useState<Record<string, number>>({});
   const [ti, setTi] = useState(0); // tramo actual (índice en TRAMOS); "datos" y "fin" van aparte
   const [qi, setQi] = useState(0);
-  const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "fin">("preguntas");
+  const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "capturado" | "fin">("preguntas");
+  const [conNota, setConNota] = useState(false); // true cuando ha contestado el resto y enseñamos su nota
+  const datosRef = useRef<{ correo: string; nombre: string } | null>(null);
+  // Recorrido anónimo (sin cookies ni datos personales): una pantalla vista, una respuesta, un campo vacío. Ver /mesa/test.
+  const sesion = useRef("");
+  const vistas = useRef(new Set<string>());
+  const pantallaActual = useRef("sector");
+  const paso = (tipo: string, p: string, valor = "") => {
+    try {
+      if (!sesion.current) sesion.current = ((typeof crypto !== "undefined" && crypto.randomUUID?.()) || `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`).replace(/-/g, "");
+      const { fuente } = leerAtribucion();
+      const disp = window.matchMedia("(pointer: coarse)").matches ? "movil" : "pc";
+      navigator.sendBeacon?.("/api/test-paso", JSON.stringify({ tipo, sesion: sesion.current, paso: p, valor, fuente, disp }));
+    } catch {}
+  };
   const [conExtra, setConExtra] = useState(false);
   const [reaccion, setReaccion] = useState<{ t: string; tono: "bien" | "medio" | "mal" | "neutro" } | null>(null);
   const [confeti, setConfeti] = useState(0);
@@ -220,6 +247,9 @@ export default function TestIdoneidad() {
   const total = preguntasVistas.reduce((a, t) => a + t.preguntas.length, 0);
   const hechas = Object.keys(resp).filter((k) => preguntasVistas.some((t) => t.preguntas.some((q) => q.id === k))).length;
 
+  const enAmpliacion = fase === "elegir" || (fase === "preguntas" && ti >= 1);
+  const totalA = total - TRAMOS[0].preguntas.length;
+  const hechasA = Math.max(hechas - TRAMOS[0].preguntas.length, 0);
   const subir = () => requestAnimationFrame(() => caja.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
   const celebrar = (texto: string) => {
     setFiesta(texto);
@@ -230,12 +260,15 @@ export default function TestIdoneidad() {
   const finTramo = () => {
     setQi(0);
     setReaccion(null);
-    if (tramo.id === "buscas") {
+    if (tramo.id === "primero") {
+      celebrar("¡Casi!");
+      setFase("datos");
+    } else if (tramo.id === "buscas") {
       celebrar("¡Lo tienes!");
       setFase("elegir");
     } else if (tramo.extra) {
       celebrar("¡Nota afinada!");
-      setFase("datos");
+      terminarAmpliacion();
     } else {
       celebrar(ANIMO[ti % ANIMO.length]);
       setTi(ti + 1);
@@ -251,30 +284,29 @@ export default function TestIdoneidad() {
     if (espera.current) clearTimeout(espera.current);
     setReaccion(null);
     if (fase === "datos") {
-      setFase(conExtra ? "preguntas" : "elegir");
-      if (conExtra) {
-        setTi(TRAMOS.length - 1);
-        setQi(TRAMOS[TRAMOS.length - 1].preguntas.length - 1);
-      }
+      setFase("preguntas");
+      setTi(0);
+      setQi(TRAMOS[0].preguntas.length - 1);
       return;
     }
     if (fase === "elegir") {
       setFase("preguntas");
-      setTi(3);
-      setQi(TRAMOS[3].preguntas.length - 1);
+      setTi(IDX_BUSCAS);
+      setQi(TRAMOS[IDX_BUSCAS].preguntas.length - 1);
       return;
     }
     if (qi > 0) return setQi(qi - 1);
+    if (ti === 1) return setFase("capturado");
     if (ti > 0) {
-      const previo = tramo.extra ? 3 : ti - 1;
       if (tramo.extra) return setFase("elegir");
-      setTi(previo);
-      setQi(TRAMOS[previo].preguntas.length - 1);
+      setTi(ti - 1);
+      setQi(TRAMOS[ti - 1].preguntas.length - 1);
     }
   };
   const elegir = (q: Preg, j: number) => {
     if (espera.current) clearTimeout(espera.current);
     setResp((r) => ({ ...r, [q.id]: j }));
+    paso("respuesta", q.id, String(j));
     if (tramo.puntua && q.peso) {
       const x = REACCION[q.o[j].v];
       setReaccion({ t: x.t, tono: x.tono });
@@ -304,17 +336,18 @@ export default function TestIdoneidad() {
       .map((t) => `— ${t.titulo} —\n` + t.preguntas.map((q) => `${q.p} ${resp[q.id] !== undefined ? q.o[resp[q.id]].t : "(sin contestar)"}`).join("\n"))
       .join("\n\n");
 
+  // Primer envío: tres toques y los datos. Se guarda y avisa al momento; la nota llega después, si la persona quiere.
   async function enviar(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const d = new FormData(e.currentTarget);
-    const encaje = etiquetaEncaje(resp);
+    const encaje = "PRIMER CONTACTO";
+    datosRef.current = { correo: String(d.get("correo") ?? ""), nombre: String(d.get("nombre") ?? "") };
+    const primeras = TRAMOS[0].preguntas.map((q) => `${q.p} ${resp[q.id] !== undefined ? q.o[resp[q.id]].t : "(sin contestar)"}`).join("\n");
     const texto =
-      `Test de idoneidad completado.\n` +
+      `Test de idoneidad: PRIMER CONTACTO (datos y tres respuestas; si luego contesta el resto, llegará otro aviso con su nota).\n` +
       `Nombre y cargo: ${d.get("nombre")}\nEmpresa: ${d.get("empresa")}\nWeb: ${d.get("web") || "-"}\nDónde: ${d.get("ciudad")}\n` +
-      `Teléfono: ${d.get("telefono")}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\nQuiere novedades por correo: ${d.get("novedades") === "si" ? "sí" : "no"}\nAutoriza el uso privado de textos e imágenes de su web para el estudio: ${d.get("imagenes") === "si" ? "sí" : "no"}\n\n` +
-      `Nota: ${r.nota}/100 (${r.areas.map((a) => `${a.titulo} ${a.nota}`).join(", ")})\n\n` +
-      respuestaTexto() +
-      (r.fallos.length ? `\n\nFallos principales:\n- ${r.fallos.slice(0, 8).map((q) => q.fallo).join("\n- ")}` : "");
+      `Teléfono: ${d.get("telefono") || "-"}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\nQuiere novedades por correo: ${d.get("novedades") === "si" ? "sí" : "no"}\nAutoriza el uso privado de textos e imágenes de su web para preparar el estudio: ${d.get("imagenes") === "si" ? "sí" : "no"}\n\n` +
+      primeras;
     setEnvio("enviando");
     let ok = false;
     try {
@@ -325,10 +358,16 @@ export default function TestIdoneidad() {
       });
       ok = res.ok;
     } catch {}
-    setFase("fin");
     setConfeti(Date.now());
     subir();
-    if (ok) { avisarGTM("test_enviado"); return setEnvio("enviado"); }
+    if (ok) {
+      paso("envio", "datos", "ok");
+      avisarGTM("test_enviado");
+      setEnvio("enviado");
+      return setFase("capturado");
+    }
+    paso("envio", "datos", "error");
+    setFase("fin");
     if (CONTACTO.whatsapp) {
       apuntarContacto("contacto_wa");
       window.open(`https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(texto.slice(0, 1800))}`, "_blank", "noopener");
@@ -340,6 +379,53 @@ export default function TestIdoneidad() {
     }
     setEnvio("sin-canal");
   }
+
+  // Segundo envío (opcional): las respuestas de después y la nota. Se añade a la misma solicitud y avisa con el encaje de verdad.
+  async function terminarAmpliacion() {
+    setConNota(true);
+    setFase("fin");
+    setConfeti(Date.now());
+    subir();
+    const c = datosRef.current;
+    if (!c) return;
+    const encaje = etiquetaEncaje(resp);
+    const texto =
+      `AMPLIACIÓN del test (esta persona ya había enviado sus datos).\n` +
+      `Nota: ${r.nota}/100 (${r.areas.map((a) => `${a.titulo} ${a.nota}`).join(", ")})\n\n` +
+      respuestaTexto() +
+      (r.fallos.length ? `\n\nFallos principales:\n- ${r.fallos.slice(0, 8).map((q) => q.fallo).join("\n- ")}` : "");
+    try {
+      const res = await fetch("/api/solicitud", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ampliacion: true, texto: `[${encaje}]\n\n${texto}`, encaje, correo: c.correo, nombre: c.nombre, ...leerAtribucion(), pagina: window.location.pathname }),
+      });
+      paso("ampliado", "fin", res.ok ? "ok" : "error");
+    } catch {
+      paso("ampliado", "fin", "error");
+    }
+  }
+
+  // Pantalla que se está viendo, para apuntar cada una una vez y la última a la que llegó cada persona.
+  const pantalla = fase === "preguntas" ? (tramo.preguntas[qi] ?? tramo.preguntas[0]).id : fase;
+  useEffect(() => {
+    pantallaActual.current = pantalla;
+    if (vistas.current.has(pantalla)) return;
+    vistas.current.add(pantalla);
+    paso("vista", pantalla);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pantalla]);
+  useEffect(() => {
+    const salida = new Set<string>();
+    const al = () => {
+      if (document.visibilityState !== "hidden" || salida.has(pantallaActual.current)) return;
+      salida.add(pantallaActual.current);
+      paso("salida", pantallaActual.current);
+    };
+    document.addEventListener("visibilitychange", al);
+    return () => document.removeEventListener("visibilitychange", al);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => () => {
     if (espera.current) clearTimeout(espera.current);
@@ -369,11 +455,17 @@ export default function TestIdoneidad() {
         )}
       <Confeti disparo={confeti} />
 
-      {fase !== "fin" && (
+      {fase !== "fin" && fase !== "capturado" && (
         <div className="mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea">
           <BarraEstrella
-            avance={fase === "datos" ? 0.97 : hechas / total}
-            texto={fase === "datos" ? "¡Último paso! Dinos a quién enviárselo" : hechas === 0 ? "Unos 5 minutos. La estrella te acompaña hasta la meta" : `¡Llevas ${hechas} de ${total}! Te quedan ${Math.max(total - hechas, 0)}`}
+            avance={fase === "datos" ? 0.9 : enAmpliacion ? hechasA / Math.max(totalA, 1) : Math.min(hechas / 4, 0.7)}
+            texto={
+              fase === "datos"
+                ? "¡Casi! Dinos a quién escribirle"
+                : enAmpliacion
+                  ? `¡Llevas ${hechasA} de ${totalA} para tu nota! Te quedan ${Math.max(totalA - hechasA, 0)}`
+                  : "Tres toques y tus datos. Un minuto"
+            }
           />
         </div>
       )}
@@ -392,7 +484,7 @@ export default function TestIdoneidad() {
               <div className="relative z-10 mb-4 flex items-center justify-between gap-4">
                 <Logo claro fundido chico />
                 <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">
-                  {tramo.extra ? "Opcional" : `Parte ${ti + 1} de ${BASE.length}`}
+                  {tramo.extra ? "Opcional" : ti === 0 ? "Primero lo importante" : `Tu nota · ${ti} de ${BASE.length - 1}`}
                 </p>
               </div>
               <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
@@ -453,7 +545,7 @@ export default function TestIdoneidad() {
                   </button>
                 )}
                 {tramo.extra && (
-                  <button type="button" onClick={() => { setFase("datos"); subir(); }} className="ml-auto rounded-full border border-linea px-5 py-2.5 text-sm font-bold text-gris hover:border-noche hover:text-tinta">
+                  <button type="button" onClick={() => terminarAmpliacion()} className="ml-auto rounded-full border border-linea px-5 py-2.5 text-sm font-bold text-gris hover:border-noche hover:text-tinta">
                     Terminar aquí
                   </button>
                 )}
@@ -473,7 +565,7 @@ export default function TestIdoneidad() {
             <button type="button" onClick={() => { setConExtra(true); setTi(TRAMOS.length - 1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
               Sí, afinar mi nota
             </button>
-            <button type="button" onClick={() => { setFase("datos"); subir(); }} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
+            <button type="button" onClick={() => terminarAmpliacion()} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
               Terminar ya
             </button>
           </div>
@@ -483,15 +575,33 @@ export default function TestIdoneidad() {
         </div>
       )}
 
+      {fase === "capturado" && (
+        <div className="entra overflow-hidden rounded-[2rem] bg-noche p-7 text-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.7)] sm:p-10">
+          <p className="text-sm font-bold text-estrella">¡Recibido!</p>
+          <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Te escribimos en 48 horas laborables.</p>
+          <p className="mt-3 max-w-xl text-white/85">
+            Si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son {totalA} toques más, sin escribir, y nos ayudan a preparar mejor tu estudio.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <button type="button" onClick={() => { setTi(1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
+              Sí, quiero mi nota
+            </button>
+            <button type="button" onClick={() => { setFase("fin"); subir(); }} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
+              No, gracias
+            </button>
+          </div>
+        </div>
+      )}
+
       {fase === "datos" && (
-        <form onSubmit={enviar} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
+        <form onSubmit={enviar} onBlurCapture={(e) => { const t = e.target as unknown as HTMLInputElement; if (!t.name || t.name === "sitio_web") return; paso("campo", t.name, t.type === "checkbox" ? (t.checked ? "ok" : "vacio") : t.value.trim() ? "ok" : "vacio"); }} onInvalidCapture={(e) => paso("invalido", (e.target as unknown as HTMLInputElement).name)} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
           <div className="bg-noche px-6 py-6 text-white sm:px-9">
             <div className="mb-4 flex items-center justify-between gap-4">
               <Logo claro fundido chico />
-              <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Último paso</p>
+              <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Casi está</p>
             </div>
-            <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le enviamos tu resultado?</p>
-            <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana.</p>
+            <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le escribimos?</p>
+            <p className="mt-1 text-white/85">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana. Después, si quieres, te damos tu nota.</p>
             <div className="mt-5"><Muestra oscuro /></div>
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
@@ -504,8 +614,8 @@ export default function TestIdoneidad() {
               <input name="empresa" required autoComplete="organization" className={campo} />
             </label>
             <label className="text-sm font-bold">
-              Teléfono
-              <input name="telefono" required type="tel" autoComplete="tel" className={campo} />
+              Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
+              <input name="telefono" type="tel" autoComplete="tel" className={campo} />
             </label>
             <label className="text-sm font-bold">
               Correo
@@ -545,7 +655,7 @@ export default function TestIdoneidad() {
                 Atrás
               </button>
               <button type="submit" disabled={envio === "enviando"} className="flex-1 rounded-full bg-estrella px-7 py-4 text-lg font-extrabold text-tinta hover:bg-estrella-2 disabled:opacity-60 sm:flex-none">
-                {envio === "enviando" ? "Enviando…" : "Ver mi resultado"}
+                {envio === "enviando" ? "Enviando…" : "Enviar mis datos"}
               </button>
             </div>
             <p className="text-xs text-gris sm:col-span-2">
@@ -557,6 +667,7 @@ export default function TestIdoneidad() {
 
       {fase === "fin" && (
         <div className="space-y-5" aria-live="polite">
+          {conNota && (<>
           <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
             <div className="relative overflow-hidden rounded-[2rem] bg-noche p-7 text-white sm:p-9">
               {[[8, 12], [82, 8], [90, 40], [70, 70], [12, 75], [45, 6]].map(([x, y], i) => (
@@ -602,6 +713,8 @@ export default function TestIdoneidad() {
               </ul>
             </div>
           )}
+
+          </>)}
 
           <div className="rounded-[2rem] bg-estrella p-7 sm:p-9">
             {envio === "enviado" && (

@@ -46,6 +46,10 @@ export async function asegurarTablas() {
   await q`CREATE INDEX IF NOT EXISTS lupa_clics_por_pagina ON lupa_clics (pagina, creado)`;
   await q`CREATE TABLE IF NOT EXISTS lupa_scroll (id BIGSERIAL PRIMARY KEY, pagina TEXT NOT NULL, disp TEXT, prof INT NOT NULL, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
   await q`CREATE INDEX IF NOT EXISTS lupa_scroll_por_pagina ON lupa_scroll (pagina, creado)`;
+  // Recorrido del test (19-nov): en qué pantalla entra, responde, se para o se va. Sin IP, sin cookies y sin lo que escribe la persona.
+  // `sesion` es un número al azar de esa visita (no se guarda en el navegador), para contar personas distintas por pantalla.
+  await q`CREATE TABLE IF NOT EXISTS test_pasos (id BIGSERIAL PRIMARY KEY, sesion TEXT NOT NULL, tipo TEXT NOT NULL, paso TEXT, valor TEXT, fuente TEXT, disp TEXT, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
+  await q`CREATE INDEX IF NOT EXISTS test_pasos_por_fecha ON test_pasos (creado)`;
   tablasListas = true;
 }
 

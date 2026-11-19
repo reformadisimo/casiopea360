@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const destino = process.env.SOLICITUD_DESTINO;
   const remitente = process.env.SOLICITUD_REMITENTE;
 
-  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string; aterrizaje?: string };
+  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string; aterrizaje?: string; ampliacion?: boolean };
   try {
     datos = await req.json();
   } catch {
@@ -27,6 +27,31 @@ export async function POST(req: Request) {
   const texto = `De dónde viene: ${origen}\n\n` + String(datos.texto ?? "").slice(0, 12000);
   const correo = String(datos.correo ?? "").slice(0, 200);
   if (texto.length < 20 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return NextResponse.json({ ok: false }, { status: 400 });
+
+  // Ampliación del test (19-nov): la persona ya envió sus datos y ahora ha contestado el resto. Se añade a su misma solicitud
+  // (la más reciente con ese correo en las últimas 12 horas) y avisa con el encaje de verdad. No repite el correo de bienvenida.
+  if (datos.ampliacion === true) {
+    if (hayBaseDeDatos()) {
+      try {
+        await asegurarTablas();
+        await sql()`UPDATE solicitudes SET encaje = ${String(datos.encaje ?? "").slice(0, 20)}, texto = COALESCE(texto, '') || ${"\n\n--- AMPLIACIÓN ---\n" + texto}, actualizado = now()
+          WHERE id = (SELECT id FROM solicitudes WHERE correo = ${correo} AND creado > now() - interval '12 hours' ORDER BY creado DESC LIMIT 1)`;
+      } catch (e) {
+        console.error("[solicitud] ampliación no guardada:", e);
+      }
+    }
+    if (!clave || !destino || !remitente) return NextResponse.json({ ok: false, configurado: false }, { status: 503 });
+    const av = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test AMPLIADO con su nota: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto }),
+    });
+    if (!av.ok) {
+      console.error("[solicitud] Resend rechazó el aviso de ampliación:", av.status, (await av.text().catch(() => "")).slice(0, 300));
+      return NextResponse.json({ ok: false, motivo: "resend", codigo: av.status }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true });
+  }
 
   // Se guarda SIEMPRE en la base de datos (si existe), antes del correo: así ninguna solicitud se pierde.
   const correoListo = Boolean(clave && destino && remitente);

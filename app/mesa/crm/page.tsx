@@ -26,6 +26,7 @@ export default async function CrmPagina() {
           <nav className="mt-5 flex flex-wrap gap-2" aria-label="Secciones de la mesa">
             <Link href="/mesa" prefetch={false} className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/10">Mesa</Link>
             <Link href="/mesa/lupa" prefetch={false} className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/10">Lupa</Link>
+            <Link href="/mesa/test" prefetch={false} className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/10">Recorrido del test</Link>
             <a href="/mesa/crm/exportar" className="inline-flex min-h-[44px] items-center rounded-full bg-estrella px-4 text-[14px] font-bold text-tinta hover:bg-estrella-2">Descargar en Excel</a>
           </nav>
         </div>
