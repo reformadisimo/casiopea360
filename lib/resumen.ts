@@ -8,7 +8,7 @@ import { TERMINOS } from "@/lib/terminos";
 
 
 // Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
-export const ACTUALIZADO = "2026-11-18";
+export const ACTUALIZADO = "2026-11-19";
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
