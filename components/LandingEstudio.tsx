@@ -8,7 +8,7 @@ import { Nebulosa, Etiqueta } from "@/components/Vida";
 import { ENVOLTORIO } from "@/components/secciones";
 
 // Vídeo largo (2:24) en YouTube, el que se abre con «Ver el vídeo completo».
-const ID_VIDEO_LARGO = "vDNia2X3YpY";
+const ID_VIDEO_LARGO = "SviXZNrk9FU";
 
 const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
