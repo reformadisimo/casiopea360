@@ -18,12 +18,12 @@ export function HeroLanding() {
       <Nebulosa oscura variante={2} />
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
-          <Etiqueta tono="estrella">Estudio gratuito · Sin compromiso</Etiqueta>
+          <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
           <h1 className="mt-5 text-4xl font-extrabold sm:text-6xl">
             ¿Tu web no te trae <Subrayado>clientes</Subrayado>?
           </h1>
           <p className="mt-5 max-w-xl text-xl text-white/85">
-            Haz un test de 5 minutos. Si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>: qué falla, qué haríamos y cuánto costaría. Sin compromiso y sin darnos ningún acceso.
+            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz un test de 5 minutos y, si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>, sin compromiso: qué falla, qué haríamos y cuánto costaría. Sin darnos ningún acceso.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <Link href="#solicitud" className={BOTON}>Haz el test gratis (5 minutos)</Link>
