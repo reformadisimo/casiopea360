@@ -1,12 +1,10 @@
-import FranjaVideos from "@/components/FranjaVideos";
-import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { SeccionEstudio, SeccionSolicitud, SeccionEmpezamos } from "@/components/secciones";
+import { SeccionEstudio, SeccionSolicitud } from "@/components/secciones";
 import SeccionDudasEstudio from "@/components/SeccionDudasEstudio";
 import { SeccionPrecio } from "@/components/SeccionesVender";
+import { HeroLanding, SeccionDolores, SeccionVentajas, SeccionPasos } from "@/components/LandingEstudio";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
-import { ESTUDIO_TOTAL } from "@/lib/contenido";
 
 export const metadata = meta(
   "Estudio gratuito de tu marketing digital",
@@ -18,27 +16,11 @@ export default function EstudioGratuito() {
   return (
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
-      <CabeceraPagina
-        ejemplo
-        titulo="Tu estudio gratuito: tu plan completo, hecho a medida."
-        clave="a medida"
-        chip={{ grande: `${ESTUDIO_TOTAL} apartados`, chico: "Con tu web rediseñada" }}
-        entradilla="Tu situación, tu competencia, tu web rediseñada y tu plan. Empieza por el test: unos cinco minutos."
-        migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
-        video="hombre-sonriendo"
-        videoAlt="Un empresario sonríe satisfecho"
-      />
-      <SeccionEmpezamos />
+      <HeroLanding />
+      <SeccionDolores />
+      <SeccionVentajas />
+      <SeccionPasos />
       <SeccionEstudio />
-      <FranjaVideos
-        frase="Miramos tu negocio con telescopio."
-        detalle="Tu web, tu ficha de Google, tus anuncios, tu competencia y lo que dicen de ti las IA. Antes de proponerte nada."
-        clips={[
-          { nombre: "telescopios", alt: "Telescopios bajo un cielo estrellado" },
-          { nombre: "arquitecto-mesa", alt: "Un profesional trabaja en su mesa con luz natural" },
-          { nombre: "movil-sonrisa", alt: "Una mujer sonríe mirando su móvil en la ciudad" },
-        ]}
-      />
       <SeccionDudasEstudio />
       <SeccionPrecio />
       <SeccionSolicitud />
