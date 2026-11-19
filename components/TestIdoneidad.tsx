@@ -456,7 +456,7 @@ export default function TestIdoneidad() {
       <Confeti disparo={confeti} />
 
       {fase !== "fin" && fase !== "capturado" && (
-        <div className={`mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea ${fase === "preguntas" || fase === "datos" ? "hidden sm:block" : ""}`}>
+        <div className={`mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea ${fase === "preguntas" || fase === "datos" || fase === "elegir" ? "hidden sm:block" : ""}`}>
           <BarraEstrella
             avance={fase === "datos" ? 0.9 : enAmpliacion ? hechasA / Math.max(totalA, 1) : Math.min(hechas / 4, 0.7)}
             texto={
@@ -563,7 +563,7 @@ export default function TestIdoneidad() {
           <p className="text-sm font-bold text-estrella">¡Ya está lo importante!</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">¿Afinamos tu nota?</p>
           <p className="mt-3 max-w-xl text-white/85">Diez toques más sobre tu web, Google y tus anuncios. Es opcional: si prefieres, terminamos ya.</p>
-          <div className="mt-6 max-w-xl"><Muestra oscuro /></div>
+          <div className="mt-6 hidden max-w-xl sm:block"><Muestra oscuro /></div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setConExtra(true); setTi(TRAMOS.length - 1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
               Sí, afinar mi nota
@@ -583,7 +583,7 @@ export default function TestIdoneidad() {
           <p className="text-sm font-bold text-estrella">¡Recibido!</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Te escribimos en 48 horas laborables.</p>
           <p className="mt-3 max-w-xl text-white/85">
-            Si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son {totalA} toques más, sin escribir, y nos ayudan a preparar mejor tu estudio.
+            Si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son unos toques más, sin escribir, y nos ayudan a preparar mejor tu estudio.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setTi(1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">

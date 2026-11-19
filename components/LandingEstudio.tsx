@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import Image from "next/image";
 import { CONTACTO } from "@/lib/contenido";
 import VideoHero from "@/components/VideoHero";
@@ -191,7 +192,7 @@ export function BarraLanding() {
   return (
     <div className="fixed inset-x-0 top-0 z-40 bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" aria-label="Casiopea 360" className="shrink-0 text-lg font-extrabold text-white">Casiopea 360</Link>
+        <Link href="/" aria-label="Casiopea 360" className="shrink-0"><Logo claro fundido chico /></Link>
         <div className="flex items-center gap-3">
           <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
           <Link href="#solicitud" className="rounded-full bg-estrella px-5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2">Haz el test</Link>
