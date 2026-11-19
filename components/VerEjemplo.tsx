@@ -15,7 +15,7 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
             <span aria-hidden="true">★</span> Si podemos ayudarte, esto es lo que recibes
           </p>
           <p className={`mt-3 text-2xl font-extrabold leading-tight sm:text-3xl ${claro ? "text-tinta" : "text-white"}`}>
-            Tu web nueva, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Gratis y sin ningún compromiso.</span>
+            Tu estudio, gratis: tu web rediseñada de muestra, tu guía, tus correos, tu panel y tu CRM. <span className="text-estrella">Sin ningún compromiso.</span>
           </p>
           <ul className={`mt-3 grid gap-1.5 text-[0.95rem] ${claro ? "text-gris" : "text-white/80"}`}>
             {[

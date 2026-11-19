@@ -36,10 +36,18 @@ export function HeroLanding() {
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
             <li>Una sola persona te atiende</li>
-            <li>Cuentas a tu nombre</li>
+            <li>Tus cuentas, a tu nombre y bajo tu control</li>
             <li>Anuncios sin comisión</li>
             <li>Sin permanencia</li>
           </ul>
+          <p className="mt-5 max-w-xl text-sm text-white/85">
+            Una cuota fija, la misma para cualquier tamaño.{" "}
+            <Link href="#ahorro" className="font-bold text-estrella underline underline-offset-4">Mira qué incluye y cuánto pagarías por separado</Link>.
+          </p>
+          <p className="mt-2 max-w-xl text-sm text-white/85">
+            Mira lo que hemos hecho:{" "}
+            <Link href="#ejemplos" className="font-bold text-estrella underline underline-offset-4">AMS Cerramientos, Reformadísimo y Mi Estela</Link>.
+          </p>
         </div>
         <VideoHero idCompleto={ID_VIDEO_LARGO} titulo="Casiopea 360: tu marketing digital, al máximo nivel" />
       </div>
@@ -137,7 +145,7 @@ export function SeccionPasos() {
 
 export function SeccionEjemplos() {
   return (
-    <section className="bg-niebla py-16 sm:py-24">
+    <section id="ejemplos" className="scroll-mt-24 bg-niebla py-16 sm:py-24">
       <div className={ENVOLTORIO}>
         <Etiqueta>Trabajo hecho</Etiqueta>
         <h2 className="mt-4 max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Mira lo que hacemos, no lo que prometemos.</h2>
