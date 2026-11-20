@@ -55,6 +55,8 @@ function Tic() {
 // La prueba: la nota real de esta página en PageSpeed (medida el 20-nov-2026). Solo vale mientras la página no cambie: si se toca, volver a medir.
 const NOTAS_HERO: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Prácticas recomendadas"], ["100", "SEO"]];
 
+const PSI_URL = "https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile";
+
 export function HeroLanding() {
   return (
     <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-24">
@@ -67,16 +69,17 @@ export function HeroLanding() {
           <Etiqueta tono="estrella">Predicamos con el ejemplo</Etiqueta>
           <p className="mt-3 text-sm font-bold text-white/75">Agencia de marketing digital en Madrid</p>
           <h1 className="mt-3 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
-            Cuatro 100 en nuestra web. Descubre qué mejorar en tu <Subrayado>marketing</Subrayado>.
+            Esta web saca 100 en todo. Si la tuya no, estás perdiendo <Subrayado>clientes</Subrayado>.
           </h1>
-          <p className="mt-4 max-w-xl text-base text-white/85 sm:text-lg">
-            <b className="text-white">Pide tu estudio gratuito.</b> Revisamos tu web, cómo te encuentran y cómo se anuncia tu competencia.
-          </p>
-          <p className="mt-3 max-w-xl text-base text-white/85 sm:text-lg">Te enseñamos qué cambiaríamos, cómo podría quedar y cuánto costaría.</p>
-          <p className="mt-3 max-w-xl text-base font-bold text-estrella sm:text-lg">Ese listón lo aplicamos a tu web, tus campañas y tu CRM: lo medimos todo y lo mejoramos cada día, con IA.</p>
-          <div className="mt-6">
+          <ol className="mt-5 max-w-xl space-y-3 text-base text-white/90 sm:text-lg">
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">1</span><span><b className="text-white">Compruébalo tú.</b> Esta página saca 100, 100, 100 y 100 en Google PageSpeed. <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-estrella underline decoration-estrella underline-offset-4">Míralo aquí</a>.</span></li>
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">2</span><span><b className="text-white">Si tu web no llega, pierdes gente.</b> Si tarda o se ve mal en el móvil, se van. Y a ti no te lo cuentan.</span></li>
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">3</span><span><b className="text-white">Nosotros sabemos cómo arreglarlo.</b> Ese listón lo llevamos a tu SEO, tus anuncios y tu CRM, midiéndolo cada día con IA.</span></li>
+          </ol>
+                    <div className="mt-6">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
-            <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
+            <p className="mt-3 text-sm font-bold text-estrella">Te decimos qué nota saca tu web y qué te hace perder clientes.</p>
+            <p className="mt-1 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
           <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
             Son tres toques y tus datos. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, tu estudio llega en menos de una semana.
@@ -86,7 +89,8 @@ export function HeroLanding() {
         <figure>
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
             <div className="bg-noche-2 px-5 py-4 sm:px-6">
-              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Esta página, medida con PageSpeed Insights</p>
+              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Compruébalo: esta página, medida con PageSpeed Insights</p>
+              <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm font-bold text-white underline decoration-estrella underline-offset-4">Medirla yo mismo, en directo</a>
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-3">
                 <div className="flex gap-3">
                   {NOTAS_HERO.map(([n, t]) => (
