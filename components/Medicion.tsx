@@ -72,9 +72,9 @@ export default function Medicion() {
         </Script>
       )}
       {visible && (
-        <div data-aviso-cookies role="dialog" aria-live="polite" aria-label="Aviso de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-3xl bg-white p-5 text-tinta shadow-[0_24px_60px_-12px_rgba(14,26,61,0.45)] ring-1 ring-linea sm:p-6">
-          <p className="font-extrabold">¿Nos dejas medir cómo se usa la web?</p>
-          <p className="mt-1 text-sm text-gris">
+        <div data-aviso-cookies role="dialog" aria-live="polite" aria-label="Aviso de cookies" className="fixed inset-x-2 bottom-2 z-50 mx-auto max-w-3xl rounded-2xl bg-white p-3.5 text-tinta shadow-[0_24px_60px_-12px_rgba(14,26,61,0.45)] ring-1 ring-linea sm:inset-x-3 sm:bottom-3 sm:rounded-3xl sm:p-6">
+          <p className="text-[0.95rem] font-extrabold sm:text-base">¿Nos dejas medir cómo se usa la web?</p>
+          <p className="mt-1 text-xs text-gris sm:text-sm">
             Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity) solo si aceptas. Nos sirven para saber qué funciona y mejorar la web. <Link prefetch={false} href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.
           </p>
           {detalle && (
@@ -83,11 +83,11 @@ export default function Medicion() {
               <li><b>Medición y mapas de calor:</b> solo si pulsas «Aceptar».</li>
             </ul>
           )}
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button type="button" onClick={() => decidir("aceptadas")} className="rounded-full bg-noche px-5 py-2.5 text-sm font-bold text-white hover:bg-noche-2">Aceptar</button>
-            <button type="button" onClick={() => decidir("rechazadas")} className="rounded-full bg-noche px-5 py-2.5 text-sm font-bold text-white hover:bg-noche-2">Rechazar</button>
+          <div className="mt-3 flex flex-wrap gap-2 sm:mt-4">
+            <button type="button" onClick={() => decidir("aceptadas")} className="rounded-full bg-noche px-5 py-2 text-sm font-bold text-white hover:bg-noche-2 sm:py-2.5">Aceptar</button>
+            <button type="button" onClick={() => decidir("rechazadas")} className="rounded-full bg-noche px-5 py-2 text-sm font-bold text-white hover:bg-noche-2 sm:py-2.5">Rechazar</button>
             {!detalle && (
-              <button type="button" onClick={() => setDetalle(true)} className="rounded-full border border-linea px-5 py-2.5 text-sm font-bold hover:border-noche">Configurar</button>
+              <button type="button" onClick={() => setDetalle(true)} className="rounded-full border border-linea px-5 py-2 text-sm font-bold hover:border-noche sm:py-2.5">Configurar</button>
             )}
           </div>
         </div>

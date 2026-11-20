@@ -414,7 +414,7 @@ export default function TestIdoneidad() {
         return (
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
             <div className="bg-noche px-5 py-3 text-sm font-extrabold text-white sm:hidden">
-              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Pide tu estudio gratuito" : tramo.titulo}
+              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Tres preguntas y tus datos" : tramo.titulo}
             </div>
             <div className="hidden items-center justify-between gap-4 px-9 pt-7 sm:flex">
               <Logo chico />
