@@ -328,3 +328,22 @@ export function BarraLanding() {
     </div>
   );
 }
+
+/* Franja de confianza justo bajo la portada (20-nov-2026): trabajos reales, con enlace a «Trabajo hecho». Sin cifras ni testimonios. */
+export function FranjaConfianza() {
+  return (
+    <section aria-label="Trabajos hechos" className="bg-white py-6 sm:py-7">
+      <div className={`${ENVOLTORIO} flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-10`}>
+        <p className="text-center text-sm font-bold text-tinta/65 sm:text-left">Webs y herramientas que ya funcionan:</p>
+        <Link href="#ejemplos" className="flex items-center gap-8 sm:gap-10" aria-label="Ver el trabajo hecho para Reformadísimo, AMS Cerramientos y Mi Estela">
+          <Image src="/logos/reformadisimo.png" alt="Reformadísimo" width={687} height={187} className="h-7 w-auto sm:h-8" />
+          <Image src="/logos/ams.png" alt="AMS Cerramientos" width={640} height={214} className="h-7 w-auto sm:h-9" />
+          <span className="flex items-center gap-2 text-base font-extrabold text-tinta">
+            <Image src="/logos/mi-estela.png" alt="" width={240} height={240} className="h-7 w-7 rounded-lg sm:h-8 sm:w-8" />
+            Mi Estela
+          </span>
+        </Link>
+      </div>
+    </section>
+  );
+}
