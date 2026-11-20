@@ -73,6 +73,7 @@ export function HeroLanding() {
             <b className="text-white">Pide tu estudio gratuito.</b> Revisamos tu web, cómo te encuentran y cómo se anuncia tu competencia.
           </p>
           <p className="mt-3 max-w-xl text-base text-white/85 sm:text-lg">Te enseñamos qué cambiaríamos, cómo podría quedar y cuánto costaría.</p>
+          <p className="mt-3 max-w-xl text-base font-bold text-estrella sm:text-lg">Ese listón lo aplicamos a tu web, tus campañas y tu CRM: lo medimos todo y lo mejoramos cada día, con IA.</p>
           <div className="mt-6">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
             <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
@@ -106,6 +107,52 @@ export function HeroLanding() {
             <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirla tú</a>: las notas varían un poco en cada medición. Mide la página, no los resultados de tus anuncios.
           </figcaption>
         </figure>
+      </div>
+    </section>
+  );
+}
+
+const FRENTES_DIA: [string, string][] = [
+  ["Tus landings", "Cada día aprenden a convertir mejor. No esperamos tres semanas para cambiar un titular: probamos, medimos y cambiamos."],
+  ["Tus campañas de anuncios", "Cada día enseñamos a tus campañas a convertir mejor: qué búsquedas, qué anuncio, qué página."],
+  ["Tu SEO", "Cada día lo afinamos para que traiga más visitas orgánicas, también desde las respuestas de la IA."],
+  ["Tu chat", "Cada día le enseñamos a responder mejor, con lo que de verdad preguntan tus clientes."],
+  ["Tu CRM y tus contactos", "Cada contacto medido, de dónde viene y qué pasa con él, hasta que es cliente."],
+  ["Tu cuenta de resultados", "Todo junto en un panel, con el dato y de dónde sale. Si falta un dato, un guion, nunca un cero."],
+];
+
+// La idea de fondo: los cuatro 100 son el listón que se aplica a todo lo del cliente, y se mejora cada día con IA a la vista.
+export function SeccionCadaDia() {
+  return (
+    <section id="cada-dia" className="scroll-mt-24 bg-noche py-14 text-white sm:py-20">
+      <div className={ENVOLTORIO}>
+        <div className="mx-auto max-w-5xl">
+          <Etiqueta tono="estrella">Cómo trabajamos</Etiqueta>
+          <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">Lo medimos todo. Lo mejoramos <Subrayado>cada día</Subrayado>. Con IA, y a la vista.</h2>
+          <p className="mt-4 max-w-3xl text-lg text-white/85">Esos cuatro 100 no son un adorno: son el listón que nos ponemos en todo lo que hacemos para ti. Y no los conseguimos un día para olvidarnos: cada día medimos, detectamos qué falla, lo probamos y lo mejoramos.</p>
+          <ol className="mt-6 flex flex-wrap items-center gap-2 text-sm font-extrabold">
+            {["Medimos", "Detectamos", "Probamos", "Comprobamos", "Repetimos mañana"].map((t, i) => (
+              <li key={t} className="flex items-center gap-2">
+                {i > 0 && <span aria-hidden className="text-estrella">→</span>}
+                <span className="rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20">{t}</span>
+              </li>
+            ))}
+          </ol>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FRENTES_DIA.map(([t, d]) => (
+              <li key={t} className="rounded-3xl bg-white/5 p-5 ring-1 ring-white/15">
+                <b className="block text-xl font-extrabold leading-tight text-estrella">{t}</b>
+                <span className="mt-2 block text-white/85">{d}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 rounded-3xl bg-white p-6 text-tinta sm:p-8">
+            <b className="block text-2xl font-extrabold leading-tight">Con IA, y sin esconderlo.</b>
+            <p className="mt-2 text-tinta/80">Estamos conectados a herramientas de IA para medir, detectar y probar a diario, a una velocidad que a mano no se alcanza. Las personas del equipo revisan y deciden, y nada importante sale sin tu visto bueno.</p>
+            <p className="mt-3 text-sm text-tinta/75">Es nuestro objetivo para ti, no una garantía: los resultados dependen de tu negocio, y los cuatro 100 miden esta página, no tus ventas.</p>
+            <Link href="#solicitud" className={`${BOTON} mt-5 w-full py-4 text-lg sm:w-auto sm:px-9`}>Quiero mi estudio gratuito</Link>
+          </div>
+        </div>
       </div>
     </section>
   );
