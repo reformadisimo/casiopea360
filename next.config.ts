@@ -9,8 +9,14 @@ const seguridad = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
 ];
 
+// Archivos de /public: una semana en el navegador y otra de margen mientras se renuevan.
+// Sin esto Vercel los sirve con max-age=0 y el navegador los pregunta de nuevo en cada visita.
+const cacheEstaticos = [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=604800" }];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Las imágenes ya optimizadas se guardan una semana (por defecto, solo un minuto).
+  images: { minimumCacheTTL: 604800 },
   // El CSS va dentro del HTML: una petición menos que bloquee el primer pintado.
   // experimental: { inlineCss: true }, (desactivado: duplicaba el CSS dentro de la página)
   async redirects() {
@@ -24,7 +30,11 @@ const nextConfig: NextConfig = {
     ];
   },
   async headers() {
-    return [{ source: "/:path*", headers: seguridad }];
+    return [
+      { source: "/:path*", headers: seguridad },
+      { source: "/:dir(marca|logos|ejemplo|antes-despues|correo|panel|fonts|video)/:path*", headers: cacheEstaticos },
+      { source: "/og.jpg", headers: cacheEstaticos },
+    ];
   },
 };
 
