@@ -450,7 +450,7 @@ export default function TestIdoneidad() {
               )}
               <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
                 <span className="shrink-0">{etiquetaPaso}</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
                   <div className="h-full rounded-full bg-estrella transition-[width] duration-500" style={{ width: `${avancePaso * 100}%` }} />
                 </div>
               </div>
@@ -564,7 +564,7 @@ export default function TestIdoneidad() {
             </div>
             <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
               <span className="shrink-0">Último paso</span>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={100}>
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={100}>
                 <div className="h-full w-full rounded-full bg-estrella" />
               </div>
             </div>
