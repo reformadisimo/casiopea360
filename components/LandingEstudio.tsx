@@ -85,26 +85,40 @@ export function HeroLanding() {
 
         <figure>
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
-            <div className="flex items-center gap-2 border-b border-tinta/10 bg-niebla px-4 py-2.5 text-xs font-bold text-tinta/70">
-              <span aria-hidden className="flex gap-1"><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /></span>
-              pagespeed.web.dev · casiopea360.es/estudio-gratuito
-            </div>
-            <p className="px-5 pt-5 text-lg font-extrabold leading-tight sm:px-6 sm:text-xl">Esta página, medida con PageSpeed Insights.</p>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-5 p-5 sm:grid-cols-4 sm:p-6">
-              {NOTAS_HERO.map(([n, t]) => (
-                <div key={t} className="text-center">
-                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-[5px] border-emerald-500 bg-emerald-50 text-xl font-extrabold text-emerald-700 sm:h-[4.5rem] sm:w-[4.5rem]">{n}</div>
-                  <p className="mt-2 text-xs font-bold leading-tight text-tinta/75">{t}</p>
+            <div className="bg-noche-2 px-5 py-4 sm:px-6">
+              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Esta página, medida con PageSpeed Insights</p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-3">
+                <div className="flex gap-3">
+                  {NOTAS_HERO.map(([n, t]) => (
+                    <div key={t} className="text-center">
+                      <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border-[4px] border-emerald-400 bg-emerald-400/10 text-base font-extrabold text-emerald-300 sm:h-14 sm:w-14">{n}</div>
+                      <p className="mt-1 text-[0.65rem] font-bold leading-tight text-white/80">{t === "Prácticas recomendadas" ? "Prácticas" : t}</p>
+                    </div>
+                  ))}
                 </div>
+                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3 py-1.5 text-sm font-extrabold text-emerald-200"><span aria-hidden className="h-2.5 w-2.5 rounded-full bg-emerald-400" />3/3 en navegación para IA</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-3 border-b border-tinta/10 px-5 py-3 sm:px-6">
+              <p className="text-sm font-extrabold">Y esto es lo que te llevas: tu estudio gratuito</p>
+              <span className="rounded-full bg-tinta/10 px-3 py-1 text-xs font-bold">Ejemplo</span>
+            </div>
+            <ol className="divide-y divide-tinta/10">
+              {MUESTRA.map(([src, t, d, alt], i) => (
+                <li key={t} className="flex items-center gap-4 p-3.5 sm:gap-5 sm:p-4">
+                  <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 144px, 104px" className="h-auto w-24 rounded-xl ring-1 ring-tinta/15 sm:w-36" />
+                  <div>
+                    <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
+                    <b className="block text-lg font-extrabold leading-tight">{t}</b>
+                    <span className="mt-0.5 block text-sm text-tinta/70">{d}</span>
+                  </div>
+                </li>
               ))}
-            </div>
-            <div className="border-t border-tinta/10 px-5 py-4 sm:px-6">
-              <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-extrabold text-emerald-800"><span aria-hidden className="h-2.5 w-2.5 rounded-full bg-emerald-500" />3/3 en navegación para IA</p>
-            </div>
+            </ol>
           </div>
-          <figcaption className="mt-3 text-sm text-white/75">
-            Medición real de esta misma página, el 20 de noviembre de 2026, en móvil y en ordenador. Puedes{" "}
-            <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirla tú</a>: las notas varían un poco en cada medición. Mide la página, no los resultados de tus anuncios.
+          <figcaption className="mt-3 text-xs text-white/75">
+            Notas reales de esta misma página, medidas el 20 de noviembre de 2026 en móvil y en ordenador; puedes{" "}
+            <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirlas tú</a>. Miden la página, no los resultados de tus anuncios. Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.
           </figcaption>
         </figure>
       </div>

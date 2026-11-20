@@ -18,7 +18,6 @@ export default function EstudioGratuito() {
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
       <HeroLanding />
       <SeccionCadaDia />
-      <SeccionMuestras />
       <FranjaConfianza />
       <SeccionDolores />
       <SeccionIncluye />
