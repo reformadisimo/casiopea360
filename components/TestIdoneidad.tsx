@@ -219,6 +219,11 @@ export default function TestIdoneidad() {
   const [ti, setTi] = useState(0); // tramo actual (índice en TRAMOS); "datos" y "fin" van aparte
   const [qi, setQi] = useState(0);
   const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "capturado" | "fin">("preguntas");
+  const [novedadesOk, setNovedadesOk] = useState(false);
+  const pedirNovedades = () => {
+    setNovedadesOk(true);
+    fetch("/api/solicitud", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ soloNovedades: true, correo: datosRef.current?.correo, nombre: datosRef.current?.nombre }) }).catch(() => undefined);
+  };
   const [conNota, setConNota] = useState(false); // true cuando ha contestado el resto y enseñamos su nota
   const datosRef = useRef<{ correo: string; nombre: string } | null>(null);
   // Recorrido anónimo (sin cookies ni datos personales): una pantalla vista, una respuesta, un campo vacío. Ver /mesa/test.
@@ -346,7 +351,7 @@ export default function TestIdoneidad() {
     const texto =
       `Test de idoneidad: PRIMER CONTACTO (datos y tres respuestas; si luego contesta el resto, llegará otro aviso con su nota).\n` +
       `Nombre y cargo: ${d.get("nombre")}\nEmpresa: ${d.get("empresa")}\nWeb: ${d.get("web") || "-"}\nDónde: ${d.get("ciudad")}\n` +
-      `Teléfono: ${d.get("telefono") || "-"}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\nQuiere novedades por correo: ${d.get("novedades") === "si" ? "sí" : "no"}\nAutoriza el uso privado de textos e imágenes de su web para preparar el estudio: ${d.get("imagenes") === "si" ? "sí" : "no"}\n\n` +
+      `Teléfono: ${d.get("telefono") || "-"}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\n\n` +
       primeras;
     setEnvio("enviando");
     let ok = false;
@@ -354,7 +359,7 @@ export default function TestIdoneidad() {
       const res = await fetch("/api/solicitud", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: d.get("novedades") === "si", trampa: d.get("sitio_web"), ...leerAtribucion(), pagina: window.location.pathname }),
+        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: false, trampa: d.get("sitio_web"), ...leerAtribucion(), pagina: window.location.pathname }),
       });
       ok = res.ok;
     } catch {}
@@ -593,6 +598,15 @@ export default function TestIdoneidad() {
               No, gracias
             </button>
           </div>
+          <div className="mt-6 border-t border-white/15 pt-4 text-sm text-white/75">
+            {novedadesOk ? (
+              <p>Hecho: te escribiremos con unos pocos consejos. Te das de baja con un clic desde cualquier correo.</p>
+            ) : (
+              <button type="button" onClick={pedirNovedades} className="text-left underline underline-offset-4 hover:text-white">
+                Además, quiero recibir unos pocos consejos por correo (me doy de baja con un clic).
+              </button>
+            )}
+          </div>
         </div>
       )}
 
@@ -638,18 +652,6 @@ export default function TestIdoneidad() {
               <textarea name="mas" ref={masRef} rows={2} maxLength={1000} className={campo} />
               <BotonDictado destino={masRef} className="mt-2 font-normal" />
             </label>
-            <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-2xl bg-niebla px-4 py-3 text-sm sm:col-span-2">
-              <input name="imagenes" type="checkbox" value="si" required className="mt-0.5 h-5 w-5 shrink-0 accent-[#2440ff]" />
-              <span>
-                <b>Si preparáis mi estudio, os autorizo a usar los textos, fotos y logotipo de mi web y de mis perfiles públicos solo para hacerlo.</b> Todo se ve en un enlace privado, que no aparece en Google, y no se publica nada sin mi permiso.
-              </span>
-            </label>
-            <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-2xl bg-niebla px-4 py-3 text-sm sm:col-span-2">
-              <input name="novedades" type="checkbox" value="si" className="mt-0.5 h-5 w-5 shrink-0 accent-[#2440ff]" />
-              <span>
-                <b>Quiero recibir ideas y novedades de Casiopea 360 por correo.</b> Unos pocos correos en tres semanas. Me doy de baja con un clic cuando quiera.
-              </span>
-            </label>
             <label className="hidden" aria-hidden="true">
               No rellenes esto
               <input name="sitio_web" tabIndex={-1} autoComplete="off" />
@@ -663,7 +665,7 @@ export default function TestIdoneidad() {
               </button>
             </div>
             <p className="text-xs text-gris sm:col-span-2">
-              Usamos tus datos para responderte y preparar tu estudio y, solo si marcas la casilla, para enviarte ideas y novedades. Más información en nuestra <Link href="/privacidad" className="underline">política de privacidad</Link>.
+              Usamos tus datos y lo público de tu web y de tus perfiles solo para preparar tu estudio y escribirte sobre él. Lo ves en un enlace privado que no aparece en Google. Más información en nuestra <Link href="/privacidad" className="underline">política de privacidad</Link>.
             </p>
           </div>
         </form>

@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const destino = process.env.SOLICITUD_DESTINO;
   const remitente = process.env.SOLICITUD_REMITENTE;
 
-  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string; aterrizaje?: string; ampliacion?: boolean };
+  let datos: { texto?: string; correo?: string; nombre?: string; empresa?: string; telefono?: string; novedades?: boolean; trampa?: string; encaje?: string; fuente?: string; campana?: string; pagina?: string; aterrizaje?: string; ampliacion?: boolean; soloNovedades?: boolean };
   try {
     datos = await req.json();
   } catch {
@@ -22,6 +22,26 @@ export async function POST(req: Request) {
   }
   // Campo trampa para robots: si viene relleno, se da por buena sin enviar nada.
   if (datos.trampa) return NextResponse.json({ ok: true });
+  // Quien, ya enviado el test, pulsa «quiero recibir consejos»: consentimiento expreso y posterior. Activa la serie.
+  if (datos.soloNovedades === true) {
+    const correoN = String(datos.correo ?? "").slice(0, 200);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correoN) || !clave) return NextResponse.json({ ok: false }, { status: 400 });
+    if (hayBaseDeDatos()) {
+      try {
+        await asegurarTablas();
+        await sql()`UPDATE solicitudes SET novedades = true, actualizado = now()
+          WHERE id = (SELECT id FROM solicitudes WHERE correo = ${correoN} AND creado > now() - interval '12 hours' ORDER BY creado DESC LIMIT 1)`;
+      } catch (e) {
+        console.error("[solicitud] novedades no guardadas:", e);
+      }
+    }
+    const apiN = (ruta: string, cuerpo: Record<string, unknown>) =>
+      fetch(`https://api.resend.com${ruta}`, { method: "POST", headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" }, body: JSON.stringify(cuerpo) }).catch(() => null);
+    const pila = String(datos.nombre ?? "").trim().split(/\s+/)[0]?.slice(0, 40) || undefined;
+    await apiN("/contacts", { email: correoN, first_name: pila, unsubscribed: false, properties: { estado_casiopea: "activo" } });
+    await apiN("/events/send", { event: "casiopea.test_novedades", email: correoN, payload: {} });
+    return NextResponse.json({ ok: true });
+  }
   // Siempre con la línea «De dónde viene» (si no hay dato, «sin dato»).
   const origen = describirOrigen(datos);
   const texto = `De dónde viene: ${origen}\n\n` + String(datos.texto ?? "").slice(0, 12000);
