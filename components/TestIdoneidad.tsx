@@ -583,15 +583,24 @@ export default function TestIdoneidad() {
 
       {fase === "datos" && (
         <form onSubmit={enviar} onBlurCapture={(e) => { const t = e.target as unknown as HTMLInputElement; if (!t.name || t.name === "sitio_web") return; paso("campo", t.name, t.type === "checkbox" ? (t.checked ? "ok" : "vacio") : t.value.trim() ? "ok" : "vacio"); }} onInvalidCapture={(e) => paso("invalido", (e.target as unknown as HTMLInputElement).name)} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
-          <div className="bg-noche px-6 py-6 text-white sm:px-9">
-            <div className="mb-4 hidden items-center justify-between gap-4 sm:flex">
-              <Logo claro fundido chico />
-              <p className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">Casi está</p>
+          <div className="px-5 pt-5 sm:px-9 sm:pt-7">
+            <div className="mb-5 hidden items-center justify-between gap-4 sm:flex">
+              <Logo chico />
+              <p className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">Sin compromiso · sin pedirte accesos</p>
             </div>
-            <p className="mt-1 text-2xl font-extrabold sm:text-3xl">¿A quién le escribimos?</p>
-            <p className="mt-1 text-white/85 sm:hidden">Te contestamos en 48 horas laborables.</p>
-            <p className="mt-1 hidden text-white/85 sm:block">Lo revisamos uno a uno y te contestamos en 48 horas laborables. Si cogemos tu estudio ahora, lo tienes en menos de una semana. Después, si quieres, te damos tu nota.</p>
-            <div className="mt-5 hidden sm:block"><Muestra oscuro /></div>
+            <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
+              <span className="shrink-0">Último paso</span>
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={100}>
+                <div className="h-full w-full rounded-full bg-estrella" />
+              </div>
+            </div>
+            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">¿A quién le escribimos?</p>
+            <p className="mt-1 text-gris">Te contestamos por correo en 48 horas laborables. Si podemos ayudarte, tu estudio llega en menos de una semana.</p>
+            <ul className="mt-4 hidden flex-wrap gap-x-6 gap-y-2 text-sm font-bold sm:flex">
+              {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>{t}</li>
+              ))}
+            </ul>
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
             <label className="text-sm font-bold">
