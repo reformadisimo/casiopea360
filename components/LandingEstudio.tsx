@@ -69,17 +69,17 @@ export function HeroLanding() {
           <Etiqueta tono="estrella">Predicamos con el ejemplo</Etiqueta>
           <p className="mt-3 text-sm font-bold text-white/75">Agencia de marketing digital en Madrid</p>
           <h1 className="mt-3 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
-            Esta web saca 100. Si tu marketing no, estás perdiendo <Subrayado>clientes</Subrayado>.
+            Esta web saca 100 en Google PageSpeed. Si tu marketing no, estás perdiendo <Subrayado>clientes</Subrayado>.
           </h1>
           <ol className="mt-5 max-w-xl space-y-3 text-base text-white/90 sm:text-lg">
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">1</span><span><b className="text-white">Así de exigentes somos.</b> Esta página saca 100, 100, 100 y 100 en Google PageSpeed. Compruébalo tú: <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-estrella underline decoration-estrella underline-offset-4">Míralo aquí</a>.</span></li>
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">2</span><span><b className="text-white">Lo mismo falla en el resto.</b> Una web que no convence, anuncios que gastan sin traer contactos, Google y las IA que no te nombran, contactos que se enfrían sin seguimiento. En cada punto pierdes clientes, y nadie te lo cuenta.</span></li>
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">3</span><span><b className="text-white">Nosotros lo arreglamos todo a la vez.</b> Web, SEO, anuncios, redes y CRM, con ese mismo listón, midiéndolo y mejorándolo cada día con IA.</span></li>
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">1</span><span><b className="text-white">Así de exigentes somos.</b> Cuatro 100 en Google PageSpeed (móvil). Compruébalo tú: <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-estrella underline decoration-estrella underline-offset-4">Míralo aquí</a>.</span></li>
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">2</span><span><b className="text-white">Lo mismo falla en el resto.</b> Una web que no convence, anuncios que no traen contactos, consultas que se enfrían sin seguimiento.</span></li>
+            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">3</span><span><b className="text-white">Lo coordinamos todo.</b> Web, SEO, anuncios y CRM con un solo equipo y una sola persona que te atiende.</span></li>
           </ol>
                     <div className="mt-6">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
-            <p className="mt-3 text-sm font-bold text-estrella">Te decimos qué falla en tu web, tus anuncios y tu Google, y qué cambiaríamos.</p>
-            <p className="mt-1 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
+            <p className="mt-3 text-sm font-bold text-estrella">¿Pagas web, anuncios y redes y no sabes si te traen clientes? Te hacemos un estudio gratis: qué falla, qué cambiaríamos primero y cuánto costaría.</p>
+            <p className="mt-1 text-sm font-semibold text-white/85">Tres preguntas y tus datos. Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
           <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
             Son tres toques y tus datos. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, tu estudio llega en menos de una semana.
