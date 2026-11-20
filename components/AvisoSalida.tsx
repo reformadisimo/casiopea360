@@ -13,15 +13,15 @@ import { useEffect, useRef, useState } from "react";
 // Una sola vez por visita; nunca en el estudio gratuito ni encima del aviso de cookies.
 const CLAVE = "casiopea-salida";
 // Lo que se lleva hoy mismo cualquiera que termine el test, encaje o no.
-const HOY = ["Tu nota, de 0 a 100", "Dónde se te escapan clientes", "Qué arreglaríamos primero"];
+const HOY = ["Qué mejorar en tu web", "Cómo podría quedar", "Qué haríamos primero"];
 // Lo que recibe gratis quien encaja: el estudio completo.
 const RESUMEN: [string, string][] = [
-  ["Tu web, entera y nueva", "web"],
-  ["Tu guía de más de 25 apartados", "guia"],
-  ["Tu competencia, sin secretos", "competencia"],
-  ["Los correos a tus clientes", "correos"],
-  ["Tu panel de control", "panel"],
-  ["Tu CRM a medida", "crm"],
+  ["Tu web a examen, con test de velocidad", "web"],
+  ["Una propuesta de tu web, rediseñada", "web"],
+  ["Cómo se anuncia tu competencia", "competencia"],
+  ["Borradores de tus anuncios", "competencia"],
+  ["Tu plan de 30 días, con costes", "guia"],
+  ["Correos de seguimiento y CRM de ejemplo", "correos"],
 ];
 
 export default function AvisoSalida() {
@@ -137,16 +137,16 @@ export default function AvisoSalida() {
           </div>
           <p className="relative mt-2.5 text-[0.8rem] font-bold uppercase tracking-wider text-estrella sm:mt-3 sm:text-sm">Antes de irte</p>
           <p id="salida-titulo" className="relative mt-1 max-w-[10ch] font-titular text-[clamp(1.5rem,3.9dvh,1.9rem)] font-extrabold leading-[1.02] sm:max-w-[11ch] sm:text-[clamp(1.7rem,4.4dvh,2.6rem)]">
-            ¿Qué nota tiene tu marketing?
+            ¿Te faltan clientes?
           </p>
           <p id="salida-texto" className="relative mt-2.5 text-[clamp(0.88rem,2dvh,0.97rem)] leading-snug text-white/85 sm:mt-3 sm:text-[clamp(0.9rem,2.1dvh,1.02rem)]">
-            Lo sabes tocando, sin escribir. Y si podemos ayudarte, te preparamos gratis tu plan completo.
+            Descubre qué cambiaríamos en tu web y tus anuncios. Solo el estudio es gratuito.
           </p>
         </div>
 
         {/* Lo que se lleva hoy, seguro */}
         <div className="border-b border-linea bg-[#fff8e1] px-6 py-3 sm:px-8 sm:py-[clamp(0.6rem,1.4dvh,1rem)]">
-          <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#8a5d00] sm:text-xs">Hoy mismo, al terminar el test</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#8a5d00] sm:text-xs">Tu estudio gratuito incluye</p>
           <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[0.95rem] sm:gap-x-5 sm:text-base">
             {HOY.map((x) => (
               <li key={x} className="flex items-center gap-2 font-bold">
@@ -159,10 +159,10 @@ export default function AvisoSalida() {
 
         {/* Lo que recibe quien encaja. En móviles bajitos se oculta: lo importante (la nota de hoy y el botón) tiene que verse sin desplazarse */}
         <div className="px-6 pb-3 pt-3 [@media(max-height:700px)_and_(max-width:639px)]:hidden sm:px-8 sm:pb-[clamp(0.5rem,1.2dvh,1rem)] sm:pt-[clamp(0.7rem,1.6dvh,1.25rem)]">
-          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Si podemos ayudarte, gratis: un día de trabajo solo para ti</p>
+          <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-gris sm:text-xs">Y además, según tu caso</p>
           <ul className="mt-1.5 grid gap-x-5 gap-y-1 text-[0.93rem] sm:mt-2 sm:gap-y-[clamp(0.25rem,0.9dvh,0.6rem)] sm:grid-cols-2 sm:text-[0.98rem]">
             {RESUMEN.map(([x, id], i) => (
-              <li key={id} className="flex items-center gap-3">
+              <li key={x} className="flex items-center gap-3">
                 <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md text-[0.7rem] font-extrabold text-white" style={{ background: ["#1d4ed8", "#6d28d9", "#be185d", "#047857", "#b45309", "#0f766e"][i] }}>
                   {i + 1}
                 </span>
@@ -180,7 +180,7 @@ export default function AvisoSalida() {
               onClick={() => setAbierto(false)}
               className="late inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-full bg-estrella px-7 py-3 text-lg font-extrabold text-tinta hover:bg-estrella-2"
             >
-              Ver mi nota
+              Quiero mi estudio gratuito
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </Link>
             <Link href="/lo-que-consigues" onClick={() => setAbierto(false)} className="hidden min-h-11 items-center rounded-full px-4 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 hover:text-tinta sm:inline-flex">
@@ -199,7 +199,7 @@ export default function AvisoSalida() {
               Ahora no
             </button>
           </div>
-          <p className="mt-2 hidden text-sm leading-snug text-gris sm:block [@media(max-height:680px)]:!hidden">Sin llamadas ni reuniones. Y si podemos ayudarte, tu estudio en menos de una semana.</p>
+          <p className="mt-2 hidden text-sm leading-snug text-gris sm:block [@media(max-height:680px)]:!hidden">Sin llamadas comerciales ni accesos. Te respondemos por escrito en 48 horas laborables.</p>
         </div>
       </div>
     </div>

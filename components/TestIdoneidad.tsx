@@ -516,7 +516,7 @@ export default function TestIdoneidad() {
 
       {fase === "capturado" && (
         <div className="entra overflow-hidden rounded-[2rem] bg-noche p-7 text-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.7)] sm:p-10">
-          <p className="text-sm font-bold text-estrella">¡Recibido!</p>
+          <p className="text-sm font-bold text-estrella">Solicitud recibida</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Tu solicitud ya está enviada.</p>
           <p className="mt-3 max-w-xl text-white/85">Te escribimos por correo en 48 horas laborables.</p>
           <p className="mt-5 max-w-xl text-white/85">
