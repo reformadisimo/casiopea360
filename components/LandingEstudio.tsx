@@ -14,76 +14,158 @@ const ID_VIDEO_LARGO = "SviXZNrk9FU";
 const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 
-// Lo que recibe quien hace el test (mismo contenido que «tu estudio» de /estudio-gratuito y la barra de /test).
-const ICONOS: Record<string, string> = {
-  web: "M3 5h18v12H3zM8 21h8M12 17v4",
-  competencia: "M3 17l5-6 4 4 8-9M15 6h5v5",
-  anuncios: "M4 6h16v10H9l-5 4zM8 10h8M8 13h5",
-  diseno: "M4 4h16v16H4zM4 9h16M9 9v11",
-  guia: "M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7",
-  crm: "M4 5h16v14H4zM4 10h16M10 10v9",
-};
-const LO_QUE_TE_LLEVAS: [keyof typeof ICONOS, string, string][] = [
-  ["web", "Cómo está tu web", "Qué falla, incluida la velocidad: es donde más clientes se pierden."],
-  ["competencia", "Cómo se anuncia tu competencia", "Qué hacen en Google y en redes, y dónde les ganas tú."],
-  ["anuncios", "Cómo quedarían tus anuncios", "Ejemplos de anuncios pensados para tu empresa, para que los veas."],
-  ["diseno", "Tu web rediseñada de muestra", "La ves antes de decidir nada."],
-  ["guia", "Tu guía con el plan", "Qué haríamos primero y cuánto costaría."],
-  ["crm", "Tu CRM y tu panel de ejemplo", "Cómo llevarías tus contactos y tus cifras."],
+// Portada: tres entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
+const MUESTRA: [string, string, string, string][] = [
+  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Qué falla hoy, velocidad en el móvil incluida.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/web-portada-700.webp", "Tu web rediseñada", "La ves hecha antes de decidir nada.", "Captura del estudio de ejemplo: la web rediseñada"],
+  ["/ejemplo/guia-700.webp", "Tu plan de 30 días", "Qué haríamos primero y en qué orden.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
+
+// Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
+const INCLUYE: [string, string][] = [
+  ["Tu web a examen", "Velocidad en el móvil, fallos y qué mejorar."],
+  ["Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
+  ["Tu competencia", "Cómo se anuncia en Google y en redes."],
+  ["Tu web rediseñada", "Rediseño completo de muestra, para que lo veas."],
+  ["Tus nuevos anuncios", "Ejemplos de lo que anunciaríamos para ti."],
+  ["Tu CRM y tu panel de ejemplo", "Cómo llevarías tus contactos y tus cifras."],
+  ["Tu plan de 30 días", "Qué haríamos primero y en qué orden."],
+  ["Cuánto costaría", "Con una cuota fija y por separado, para que compares."],
+];
+const ADEMAS: string[] = [
+  "Tu ficha de Google y tus reseñas, repasadas",
+  "Una muestra de asistente con IA para tu web",
+  "Ideas de contenido para tres meses",
+  "Cómo cambiar de web sin perder lo que ya tienes en Google",
+  "Qué cuentas hacen falta, siempre a tu nombre",
+  "Cómo trabajaríamos contigo, por escrito y sin reuniones",
+];
+
+function Tic() {
+  return (
+    <span aria-hidden className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+    </span>
+  );
+}
 
 export function HeroLanding() {
   return (
-    <section className="relative overflow-hidden bg-noche pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
+    <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-32">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/85 via-noche/35 to-transparent" />
-      <Nebulosa oscura variante={2} />
-      <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]`}>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/95 via-noche/70 to-noche/30" />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14`}>
         <div>
           <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
-          <h1 className="mt-5 text-4xl font-extrabold sm:text-6xl">
-            ¿Tu web no te trae <Subrayado>clientes</Subrayado>?
+          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:mt-5 sm:text-6xl">
+            Descubre qué falla en tu marketing y qué haríamos para <Subrayado>mejorarlo</Subrayado>.
           </h1>
-          <p className="mt-5 max-w-xl text-xl text-white/85">
-            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz el test, son tres toques, y si podemos ayudarte te preparamos <b className="text-white">tu estudio</b>. Sin darnos ningún acceso.
+          <p className="mt-4 max-w-xl text-base text-white/85 sm:mt-5 sm:text-xl">
+            Pide un <b className="text-white">estudio gratuito</b> de tu negocio. Revisamos tu web, miramos cómo se anuncia tu competencia y te enseñamos tu web rediseñada y tus anuncios, con un plan y lo que costaría.
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link href="#solicitud" className={BOTON}>Haz el test y recibe tu estudio</Link>
-            <span className="text-sm text-white/80">Gratis y sin compromiso. Te escribimos siempre; sin llamadas comerciales.</span>
+          <div className="mt-5 sm:mt-7">
+            <Link href="#solicitud" className={`${BOTON} w-full px-9 py-4 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
+            <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
-          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
+          <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
+            Son tres toques y tus datos. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, tu estudio llega en menos de una semana.
+          </p>
+        </div>
+
+        <div>
+          <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
+            <div className="flex items-center justify-between gap-3 bg-noche-2 px-6 py-4">
+              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Tu estudio gratuito</p>
+              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white">Ejemplo</span>
+            </div>
+            <ol className="divide-y divide-tinta/10">
+              {MUESTRA.map(([src, t, d, alt], i) => (
+                <li key={t} className="flex items-center gap-4 p-4 sm:gap-5 sm:p-5">
+                  <Image src={src} alt={alt} width={700} height={438} sizes="(min-width: 640px) 176px, 112px" className="h-auto w-28 shrink-0 rounded-xl ring-1 ring-tinta/15 sm:w-44" />
+                  <div>
+                    <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
+                    <b className="block text-lg font-extrabold leading-tight sm:text-xl">{t}</b>
+                    <span className="mt-1 block text-sm text-tinta/70">{d}</span>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <p className="mt-3 text-center text-xs text-white/70">Páginas de un estudio de ejemplo, de un despacho inventado. El tuyo se prepara con tu empresa.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SeccionIncluye() {
+  return (
+    <section id="incluye" className="scroll-mt-24 bg-niebla py-14 sm:py-20">
+      <div className={ENVOLTORIO}>
+        <div className="mx-auto max-w-5xl rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-tinta/10 sm:p-10">
+          <Etiqueta>Esto es lo que incluye tu estudio gratuito</Etiqueta>
+          <h2 className="mt-4 text-3xl font-extrabold text-tinta sm:text-4xl">Descubre qué falla, cómo podría quedar y qué haríamos primero.</h2>
+          <p className="mt-3 text-lg text-tinta/75">Un estudio preparado para tu empresa, con análisis, ejemplos que se ven y un plan.</p>
+          <ul className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            {INCLUYE.map(([t, d]) => (
+              <li key={t} className="flex items-start gap-3.5">
+                <Tic />
+                <span>
+                  <b className="block text-xl font-extrabold leading-tight text-tinta">{t}</b>
+                  <span className="mt-1 block text-tinta/70">{d}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <details className="group mt-8 border-t border-tinta/10 pt-6">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-extrabold text-tinta [&::-webkit-details-marker]:hidden">
+              Y además, todo esto
+              <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+            </summary>
+            <ul className="mt-5 grid gap-x-10 gap-y-3 text-tinta/80 sm:grid-cols-2">
+              {ADEMAS.map((t) => (
+                <li key={t} className="flex items-start gap-2.5"><span aria-hidden className="mt-2 h-2 w-2 shrink-0 rounded-full bg-estrella" />{t}</li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-tinta/60">Según tu caso: no todas las empresas necesitan lo mismo.</p>
+          </details>
+          <div className="mt-8 rounded-2xl bg-niebla p-5">
+            <b className="block text-lg font-extrabold text-tinta">Sin compromiso y sin pedirte accesos.</b>
+            <p className="mt-1 text-tinta/75">Se hace con el test y con lo que es público de tu web. Lo que depende de tus cifras va como estimación, y te lo decimos.</p>
+          </div>
+          <Link href="#solicitud" className={`${BOTON} mt-6 w-full py-4 text-lg`}>Quiero mi estudio gratuito</Link>
+          <p className="mt-4 text-center text-sm text-tinta/70">
+            Una cuota fija, la misma para cualquier tamaño:{" "}
+            <Link href="#ahorro" className="font-bold text-noche-3 underline underline-offset-4">mira qué incluye y cuánto pagarías por separado</Link>.{" "}
+            Y mira{" "}
+            <Link href="#ejemplos" className="font-bold text-noche-3 underline underline-offset-4">lo que ya hemos hecho</Link>.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// El vídeo del presentador, que antes iba en la portada: ahora la portada enseña el estudio.
+export function SeccionVideo() {
+  return (
+    <section className="relative overflow-hidden bg-noche py-16 text-white sm:py-24">
+      <Nebulosa oscura variante={2} />
+      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]`}>
+        <div>
+          <Etiqueta tono="estrella">En 41 segundos</Etiqueta>
+          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Un solo equipo para todo tu marketing.</h2>
+          <ul className="mt-6 space-y-2.5 text-lg font-semibold text-white/85">
             <li>Una sola persona te atiende</li>
             <li>Tus cuentas, a tu nombre y bajo tu control</li>
             <li>Anuncios sin comisión</li>
             <li>Sin permanencia</li>
           </ul>
+          <Link href="#solicitud" className={`${BOTON} mt-8`}>Quiero mi estudio gratuito</Link>
         </div>
         <VideoHero idCompleto={ID_VIDEO_LARGO} titulo="Casiopea 360: tu marketing digital, al máximo nivel" />
-      </div>
-
-      <div className={`${ENVOLTORIO} relative mt-12 sm:mt-16`}>
-        <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Lo que te llevas con el test, gratis y sin compromiso</p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {LO_QUE_TE_LLEVAS.map(([ic, t, d]) => (
-            <li key={t} className="flex items-start gap-4 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-              <span aria-hidden className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-estrella text-tinta">
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={ICONOS[ic]} /></svg>
-              </span>
-              <span>
-                <b className="block text-lg font-extrabold leading-tight text-white">{t}</b>
-                <span className="mt-1 block text-[0.95rem] text-white/80">{d}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-sm text-white/85">
-          Y si contestas unos toques más, tu nota de marketing digital. Una cuota fija, la misma para cualquier tamaño:{" "}
-          <Link href="#ahorro" className="font-bold text-estrella underline underline-offset-4">mira qué incluye y cuánto pagarías por separado</Link>.{" "}
-          Mira lo que hemos hecho:{" "}
-          <Link href="#ejemplos" className="font-bold text-estrella underline underline-offset-4">AMS Cerramientos, Reformadísimo y Mi Estela</Link>.
-        </p>
       </div>
     </section>
   );
@@ -143,7 +225,7 @@ export function SeccionVentajas() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Link href="#solicitud" className={BOTON}>Quiero mi estudio gratis</Link>
+          <Link href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</Link>
         </div>
       </div>
     </section>
@@ -151,7 +233,7 @@ export function SeccionVentajas() {
 }
 
 const PASOS: [string, string][] = [
-  ["1. Haz el test", "Cinco minutos, tocando respuestas. Sin darnos accesos ni contraseñas."],
+  ["1. Haz el test", "Tres toques y tus datos. Sin darnos accesos ni contraseñas."],
   ["2. Te escribimos en 48 horas laborables", "Te decimos si podemos ayudarte. Si ahora no, te lo decimos igual y te explicamos por qué."],
   ["3. Recibes tu estudio", "Si podemos ayudarte, es gratis: tu situación, tu competencia, tu web rediseñada y tu plan. En menos de una semana."],
   ["4. Decides tú", "Sin compromiso. Si no sigues, tienes un mes para mirarlo con calma y enseñárselo a quien quieras."],
@@ -212,7 +294,7 @@ export function SeccionEjemplos() {
           </div>
         </div>
         <div className="mt-10 text-center">
-          <Link href="#solicitud" className={BOTON}>Haz el test</Link>
+          <Link href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</Link>
           <p className="mt-3 text-sm text-tinta/60">Gratis y sin compromiso.</p>
         </div>
       </div>
