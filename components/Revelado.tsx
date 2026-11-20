@@ -59,6 +59,9 @@ export default function Revelado() {
       if (!main) return;
       const primera = main.querySelector(":scope > section, :scope > div");
       const alto = window.innerHeight;
+      // Primero se leen TODAS las posiciones (una sola maquetación) y después se escribe:
+      // mezclar lecturas y escrituras obligaba a recalcular la página por cada elemento.
+      const candidatos: HTMLElement[] = [];
       main.querySelectorAll<HTMLElement>(OBJETIVOS).forEach((el) => {
         if (marcados.has(el)) return;
         marcados.add(el);
@@ -67,10 +70,14 @@ export default function Revelado() {
         // En el móvil el carrusel entra entero; en el PC, tarjeta a tarjeta.
         if (movil && el.parentElement?.classList.contains("carrusel")) return;
         if (!movil && el.classList.contains("carrusel") && el.classList.contains("grid")) return;
+        candidatos.push(el);
+      });
+      const arriba = candidatos.map((el) => el.getBoundingClientRect().top);
+      candidatos.forEach((el, i) => {
         // Nada de efectos dentro de algo que ya se revela (evita dobles saltos).
         if (el.parentElement?.closest(".rv")) return;
         // Lo que ya se ve al cargar no se toca.
-        if (el.getBoundingClientRect().top < alto * 0.95) return;
+        if (arriba[i] < alto * 0.95) return;
         el.classList.add("rv");
         pendientes.push(el);
       });
