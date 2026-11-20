@@ -16,23 +16,24 @@ const BOTON =
 
 // Portada: tres entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
 const MUESTRA: [string, string, string, string][] = [
-  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Qué falla hoy, velocidad en el móvil incluida.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Test de velocidad en el móvil y qué falla hoy.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
   ["/ejemplo/web-portada-700.webp", "Tu web rediseñada", "La ves hecha antes de decidir nada.", "Captura del estudio de ejemplo: la web rediseñada"],
   ["/ejemplo/guia-700.webp", "Tu plan de 30 días", "Qué haríamos primero y en qué orden.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
 const INCLUYE: [string, string][] = [
-  ["Tu web a examen", "Velocidad en el móvil, fallos y qué mejorar."],
+  ["Tu web a examen", "Test de velocidad en el móvil, fallos y qué mejorar."],
   ["Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
   ["Tu competencia", "Cómo se anuncia en Google y en redes."],
   ["Tu web rediseñada", "Rediseño completo de muestra, para que lo veas."],
   ["Tus nuevos anuncios", "Ejemplos de lo que anunciaríamos para ti."],
-  ["Tu CRM y tu panel de ejemplo", "Cómo llevarías tus contactos y tus cifras."],
+  ["Tus correos de seguimiento", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
   ["Tu plan de 30 días", "Qué haríamos primero y en qué orden."],
   ["Cuánto costaría", "Con una cuota fija y por separado, para que compares."],
 ];
 const ADEMAS: string[] = [
+  "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
   "Tu ficha de Google y tus reseñas, repasadas",
   "Una muestra de asistente con IA para tu web",
   "Ideas de contenido para tres meses",
