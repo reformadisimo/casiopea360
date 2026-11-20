@@ -319,7 +319,7 @@ export function BarraLanding() {
   return (
     <div className="fixed inset-x-0 top-0 z-40 bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" aria-label="Casiopea 360" className="shrink-0"><Logo claro fundido chico /></Link>
+        <Link href="/" aria-label="casiopea360, inicio" className="shrink-0"><Logo claro fundido chico /></Link>
         <div className="flex items-center gap-3">
           <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
           <BotonBarraTest />

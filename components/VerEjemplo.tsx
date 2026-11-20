@@ -38,7 +38,8 @@ export default function VerEjemplo({ claro = false, className = "" }: { claro?: 
           </Link>
         </div>
         {/* Abanico de capturas: cinco pantallas de verdad, una sobre otra */}
-        <Link href="/lo-que-consigues" aria-label="Ver un ejemplo real" className="group relative block h-36 w-full max-w-[34rem] sm:h-40">
+        <Link href="/lo-que-consigues" className="group relative block h-36 w-full max-w-[34rem] sm:h-40">
+          <span className="sr-only">Ver un ejemplo real: </span>
           {abanico.map((p, k) => (
             <span
               key={p.id}
