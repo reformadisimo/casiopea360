@@ -24,14 +24,14 @@ const MUESTRA: [string, string, string, string][] = [
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
 const INCLUYE: [string, string][] = [
-  ["Tu web a examen", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
-  ["Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
-  ["Tu competencia", "Cómo se anuncia en Google y en redes."],
-  ["Tu web rediseñada", "Rediseño completo de muestra, para que lo veas."],
-  ["Tus nuevos anuncios", "Ejemplos de lo que anunciaríamos para ti."],
-  ["Tus correos de seguimiento", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
-  ["Tu plan de 30 días", "Qué cambiaríamos primero y por qué, en orden."],
-  ["Cuánto costaría", "Compara la cuota fija con el coste por separado antes de decidir."],
+  ["Entiende qué mejorar en tu web", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
+  ["Mira cómo te encuentran en Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
+  ["Mira cómo se anuncian otros negocios de tu zona", "Cómo se anuncia en Google y en redes."],
+  ["Ve una propuesta antes de decidir", "Rediseño completo de muestra, para que lo veas."],
+  ["Ve cómo podrían ser tus anuncios", "Ejemplos de lo que anunciaríamos para ti."],
+  ["Sigue a cada contacto hasta que es cliente", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
+  ["Ten claro por dónde empezar", "Qué cambiaríamos primero y por qué, en orden."],
+  ["Conoce el coste antes de decidir", "Compara la cuota fija con el coste por separado antes de decidir."],
 ];
 const ADEMAS: string[] = [
   "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
@@ -53,7 +53,7 @@ function Tic() {
 
 export function HeroLanding() {
   return (
-    <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-32">
+    <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
@@ -61,14 +61,19 @@ export function HeroLanding() {
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14`}>
         <div>
           <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
-          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:mt-5 sm:text-6xl">
+          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:mt-5 sm:text-5xl lg:text-[3rem]">
             Descubre qué falla en tu marketing y qué haríamos para <Subrayado>mejorarlo</Subrayado>.
           </h1>
-          <p className="mt-4 max-w-xl text-base text-white/85 sm:mt-5 sm:text-xl">
-            ¿Tu web apenas te trae consultas, o pagas anuncios sin tener claro qué te aportan? Pide tu <b className="text-white">estudio gratuito</b>: revisamos tu web, miramos cómo se anuncia tu competencia y te mostramos qué cambiaríamos, con ejemplos, un plan y sus costes.
+          <p className="mt-4 max-w-xl text-base text-white/85 sm:mt-4 sm:text-lg">
+            ¿Tu web apenas te trae consultas, o pagas anuncios sin tener claro qué te aportan? Pide tu <b className="text-white">estudio gratuito</b>:
           </p>
-          <div className="mt-5 sm:mt-7">
-            <Link href="#solicitud" className={`${BOTON} w-full px-9 py-4 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
+          <ul className="mt-3 max-w-xl space-y-1.5 text-base text-white sm:text-[1.05rem]">
+            {[["Qué mejorar en tu web.", "Velocidad en móvil y fallos."], ["Cómo podría quedar.", "Web y anuncios de ejemplo."], ["Qué haríamos primero.", "Plan de 30 días con costes."]].map(([a, b]) => (
+              <li key={a} className="flex items-start gap-3"><span aria-hidden className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" /><span><b>{a}</b> <span className="text-white/80">{b}</span></span></li>
+            ))}
+          </ul>
+          <div className="mt-5 sm:mt-5">
+            <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
             <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
           <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
@@ -136,6 +141,8 @@ export function SeccionIncluye() {
           <div className="mt-8 rounded-2xl bg-niebla p-5">
             <b className="block text-lg font-extrabold text-tinta">Sin compromiso y sin pedirte accesos.</b>
             <p className="mt-1 text-tinta/75">Se hace con el test y con lo que es público de tu web. Lo que depende de tus cifras va como estimación, y te lo decimos.</p>
+            <b className="mt-4 block text-lg font-extrabold text-tinta">¿Por qué preparáis este estudio gratis?</b>
+            <p className="mt-1 text-tinta/75">Para que puedas valorar cómo trabajaríamos en tu empresa antes de contratar. Pedirlo no te compromete a nada.</p>
             <b className="mt-4 block text-lg font-extrabold text-tinta">¿Para quién es?</b>
             <p className="mt-1 text-tinta/75">Para empresas que ya tienen clientes y ya invierten en marketing (agencia, anuncios, SEO, redactores…), y quieren que rinda más. Contestamos a todo el mundo en 48 horas laborables; si vemos que no podemos ayudarte, te lo decimos y no preparamos el estudio.</p>
           </div>

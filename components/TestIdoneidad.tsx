@@ -445,7 +445,7 @@ export default function TestIdoneidad() {
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
               {ti === 0 && (
                 <p className="mb-4 text-[0.95rem] leading-snug text-gris">
-                  <b className="text-tinta">Descubre qué puede estar fallando, mira cómo podría quedar tu web y conoce qué haríamos primero y cuánto costaría.</b> Sin llamadas comerciales ni accesos.
+                  <b className="text-tinta">Tu estudio gratuito: propuestas para tu web, tus anuncios y un plan con costes.</b> Sin llamadas comerciales ni accesos.
                 </p>
               )}
               <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
