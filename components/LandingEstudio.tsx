@@ -160,6 +160,49 @@ export function SeccionIncluye() {
   );
 }
 
+// La prueba: la nota real de esta página en PageSpeed (medida el 20-nov-2026). Solo vale mientras la página no cambie: si se toca, volver a medir.
+const NOTAS_PS: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Prácticas recomendadas"], ["100", "SEO"]];
+export function SeccionPruebaVelocidad() {
+  return (
+    <section id="velocidad" className="scroll-mt-24 bg-niebla pb-14 sm:pb-20">
+      <div className={ENVOLTORIO}>
+        <div className="mx-auto grid max-w-5xl items-center gap-8 rounded-[2rem] bg-noche p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <Etiqueta tono="estrella">Lo medimos primero en la nuestra</Etiqueta>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">¿Tu web saca estos resultados?</h2>
+            <p className="mt-3 text-lg text-white/85">Si va lenta, falla en el móvil o las IA no la entienden, hay clientes que no llegan a contactarte.</p>
+            <p className="mt-3 text-white/75">En tu estudio la medimos igual y te enseñamos qué cambiar primero.</p>
+            <a href="#solicitud" className={`${BOTON} mt-6 w-full py-4 text-lg sm:w-auto sm:px-8`}>Quiero mi estudio gratuito</a>
+          </div>
+          <figure>
+            <div className="overflow-hidden rounded-2xl bg-white text-tinta shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
+              <div className="flex items-center gap-2 border-b border-tinta/10 bg-niebla px-4 py-2.5 text-xs font-bold text-tinta/70">
+                <span aria-hidden className="flex gap-1"><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /></span>
+                pagespeed.web.dev · casiopea360.es/estudio-gratuito
+              </div>
+              <div className="grid grid-cols-2 gap-x-3 gap-y-5 p-5 sm:grid-cols-4 sm:p-6">
+                {NOTAS_PS.map(([n, t]) => (
+                  <div key={t} className="text-center">
+                    <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-[5px] border-emerald-500 bg-emerald-50 text-xl font-extrabold text-emerald-700 sm:h-[4.5rem] sm:w-[4.5rem]">{n}</div>
+                    <p className="mt-2 text-xs font-bold leading-tight text-tinta/75">{t}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-tinta/10 px-5 py-4 sm:px-6">
+                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-extrabold text-emerald-800"><span aria-hidden className="h-2.5 w-2.5 rounded-full bg-emerald-500" />3/3 en navegación para IA</p>
+              </div>
+            </div>
+            <figcaption className="mt-3 text-sm text-white/70">
+              Medición real de esta misma página, el 20 de noviembre de 2026, en móvil y en ordenador. Puedes{" "}
+              <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirla tú</a>: las notas varían un poco en cada medición.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // El vídeo del presentador, que antes iba en la portada: ahora la portada enseña el estudio.
 export function SeccionVideo() {
   return (
