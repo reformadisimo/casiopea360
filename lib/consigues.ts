@@ -35,7 +35,7 @@ export const PIEZAS: Pieza[] = [
   {
     id: "guia",
     n: 2,
-    titulo: "Tu guía: 29 apartados sobre tu empresa",
+    titulo: "Tu guía: más de 25 apartados sobre tu empresa",
     corto: "Tu guía",
     frase: "Cómo estás hoy, qué falla y qué haríamos, con fotos y sin palabrería.",
     detalle: "Cada apartado, una foto y una frase; el detalle, si lo quieres. Cinco minutos o una tarde. Te la quedas en PDF.",

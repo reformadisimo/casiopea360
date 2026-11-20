@@ -8,7 +8,7 @@ import { schemaMigas } from "@/lib/schema";
 
 export const metadata = meta(
   "Un ejemplo real de lo que te preparamos gratis",
-  "Tu web nueva, tu guía de 29 apartados, los correos a tus clientes, tu panel y tu CRM. Mira un ejemplo real de cada cosa antes de pedirlo.",
+  "Tu web nueva, tu guía de más de 25 apartados, los correos a tus clientes, tu panel y tu CRM. Mira un ejemplo real de cada cosa antes de pedirlo.",
   "/lo-que-consigues",
 );
 

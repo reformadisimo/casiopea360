@@ -32,7 +32,7 @@ function Muestra({ oscuro = false }: { oscuro?: boolean }) {
           </li>
         ))}
       </ul>
-      <p className={`mt-2 text-xs ${oscuro ? "text-white/60" : "text-gris"}`}>Guía de ejemplo de un despacho ficticio. La tuya, con tus datos y 29 apartados.</p>
+      <p className={`mt-2 text-xs ${oscuro ? "text-white/60" : "text-gris"}`}>Guía de ejemplo de un despacho ficticio. La tuya, con tus datos y más de 25 apartados.</p>
     </div>
   );
 }
@@ -56,7 +56,6 @@ const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1
 const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes"];
 const CAMBIAR = ["Lo antes posible", "En los próximos tres meses", "Más adelante", "No tengo prisa, solo estoy mirando"];
 const CONVENCE = ["Empezaríamos en cuanto podáis", "Lo hablaría con mi socio o la dirección", "Lo compararía con otras propuestas", "Solo quiero ver ideas"];
-const REUNION = ["Sí, esta misma semana", "Sí, en las próximas semanas", "Prefiero que me lo enviéis por correo"];
 const DECIDE = ["Yo", "Lo decido con mi socio o la dirección", "Lo propongo y decide otra persona"];
 
 const TRAMOS: Tramo[] = [
@@ -76,21 +75,6 @@ const TRAMOS: Tramo[] = [
     ],
   },
   {
-    id: "empresa",
-    titulo: "Tu empresa",
-    intro: "Para conocerte un poco. Tres toques más.",
-    dato: "Todo lo que contestes es para preparar tu estudio. No lo compartimos con nadie.",
-    video: "despacho",
-    color: "from-[#24387a] to-[#0e1a3d]",
-    logos: ["Google Maps", "Google", "LinkedIn"],
-    puntua: false,
-    preguntas: [
-      { id: "empleados", p: "¿Cuántas personas trabajan en ella?", o: T("Menos de 10", "De 10 a 50", "De 50 a 250", "Más de 250") },
-      { id: "zona", p: "¿Dónde están tus clientes?", o: T("En mi ciudad o provincia", "En toda España", "También fuera de España", "Solo vendo por internet"), logo: "Google Maps" },
-      { id: "valor", p: "¿Cuánto vale de media un cliente para ti?", o: T("Menos de 300 €", "De 300 € a 3.000 €", "De 3.000 € a 30.000 €", "Más de 30.000 €") },
-    ],
-  },
-  {
     id: "ventas",
     titulo: "Cómo atiendes y vendes",
     intro: "Lo que pasa cuando alguien te escribe. Aquí se escapan más clientes de los que crees.",
@@ -101,13 +85,8 @@ const TRAMOS: Tramo[] = [
     puntua: true,
     preguntas: [
       { id: "t1", p: "Cuando llega un contacto, ¿cuánto tardáis en responder?", o: [{ t: "Minutos", v: 3 }, { t: "Unas horas", v: 2 }, { t: "Un día o más", v: 0 }, { t: "Depende de quién lo vea", v: 0 }], fallo: "Tardas en responder: el cliente que espera suele contratar al primero que contesta.", arreglo: "Respuesta inmediata y aviso al momento a quien debe atender.", peso: 3, logo: "WhatsApp" },
-      { id: "t2", p: "¿Y si os escriben de noche o en fin de semana?", o: SN("Responde un asistente o un mensaje automático", "Contestamos al día siguiente", "Se pierde"), fallo: "Fuera de horario nadie atiende, y es cuando más gente busca.", arreglo: "Asistente con inteligencia artificial que atiende las 24 horas.", peso: 2, logo: "Claude" },
       { id: "t3", p: "Si alguien pide presupuesto y no contesta, ¿le hacéis seguimiento?", o: SN("Sí, automático", "A mano, cuando nos acordamos", "No"), fallo: "Los presupuestos sin respuesta se quedan ahí: sin seguimiento, se pierden ventas hechas.", arreglo: "Seguimientos por correo y WhatsApp que salen solos.", peso: 3, logo: "Gmail" },
-      { id: "t4", p: "¿Dónde guardáis los contactos de clientes?", o: SN("En un programa de clientes (CRM)", "En una hoja de cálculo", "En el correo y en la cabeza"), fallo: "Tus contactos están desperdigados: nadie sabe en qué punto está cada cliente.", arreglo: "Tu CRM a medida, con cada contacto y su historial.", peso: 2 },
       { id: "v1", p: "De cada 10 personas que piden presupuesto, ¿cuántas acaban comprando?", o: [{ t: "Más de 4", v: 3 }, { t: "Entre 2 y 4", v: 2 }, { t: "Menos de 2", v: 0 }, { t: "No lo sé", v: 0 }], fallo: "No sabes cuántos presupuestos cierras, o cierras pocos: ahí hay ventas que se escapan.", arreglo: "Medir el cierre de cada presupuesto y mejorar lo que hace que se caigan.", peso: 3 },
-      { id: "v2", p: "¿Cuánto tardáis en enviar un presupuesto?", o: [{ t: "El mismo día", v: 3 }, { t: "Dos o tres días", v: 2 }, { t: "Una semana o más", v: 0 }], fallo: "Tardáis en enviar presupuestos: quien llega antes, suele ganar.", arreglo: "Calculadoras para que el cliente tenga una cifra orientativa al momento.", peso: 2 },
-      { id: "v3", p: "¿Sabes qué canal te trae los clientes que más facturan?", o: SN("Sí", "Me hago una idea", "No"), fallo: "No sabes qué canal trae los mejores clientes: inviertes a ciegas.", arreglo: "Saber de dónde viene cada cliente y cuánto factura.", peso: 3, logo: "Google Analytics" },
-      { id: "v4", p: "¿Quien vende recibe al momento cada contacto nuevo?", o: SN("Sí, con aviso al móvil", "Lo mira cuando puede", "No hay un sistema"), fallo: "Los contactos nuevos no llegan al momento a quien vende: se enfrían.", arreglo: "Aviso instantáneo con todo lo que el cliente ha hecho en tu web.", peso: 2 },
     ],
   },
   {
@@ -121,10 +100,7 @@ const TRAMOS: Tramo[] = [
     puntua: true,
     preguntas: [
       { id: "c3", p: "¿Cuántos proveedores distintos llevan tu marketing digital?", o: [{ t: "Uno solo", v: 3 }, { t: "Dos o tres", v: 1 }, { t: "Cuatro o más", v: 0 }, { t: "Lo hacemos en casa como podemos", v: 0 }], fallo: "Tienes varios proveedores y nadie mira el conjunto: tú haces de coordinador.", arreglo: "Un solo equipo para todo, con una sola persona de contacto.", peso: 3 },
-      { id: "c4", p: "¿Cuántas horas a la semana dedicas a reuniones, llamadas y correos con ellos?", o: [{ t: "Menos de una", v: 3 }, { t: "Entre 2 y 4", v: 1 }, { t: "Entre 5 y 8", v: 0 }, { t: "Más de 8", v: 0 }], fallo: "Pierdes muchas horas coordinando proveedores, horas que no dedicas a tu negocio.", arreglo: "Todo por escrito con un solo equipo: sin reuniones salvo que tú las quieras.", peso: 2 },
-      { id: "c5", p: "Cuando les pides algo, ¿cuánto tardan de media?", o: SN("Menos de 48 horas", "Una semana", "Más, o depende"), fallo: "Lo que pides tarda semanas: las oportunidades no esperan.", arreglo: "Respuesta el mismo día y 48 horas para lo del día a día.", peso: 2 },
       { id: "w5", p: "¿Tu dominio, tu web y los accesos están a tu nombre?", o: SN("Sí, todo", "Una parte", "No lo sé"), fallo: "Tu web no es del todo tuya: si cambias de proveedor puedes perderla.", arreglo: "Dominio y cuentas a tu nombre desde el primer día.", peso: 2 },
-      { id: "a4", p: "¿La cuenta de anuncios está a tu nombre y la pagas tú?", o: [{ t: "Sí", v: 3 }, { t: "Es de la agencia", v: 0 }, { t: "No lo sé", v: 0 }, { t: "No hago anuncios", v: 1 }], fallo: "La cuenta de anuncios no es tuya: el historial y los datos se van con la agencia.", arreglo: "Cuenta de anuncios a tu nombre, pagada con tu tarjeta.", peso: 2, logo: "Google Ads" },
       { id: "marketing", p: "¿Cuánto pagas al mes en marketing, sin contar anuncios? (agencias, proveedores, herramientas)", o: T(...MARKETING) },
       { id: "inversion", p: "¿Y cuánto inviertes al mes en anuncios?", o: T(...INVERSION), logo: "Meta" },
       { id: "comision", p: "¿Te cobran comisión sobre lo que inviertes en anuncios?", o: [{ t: "No", v: 3 }, { t: "Sí, un porcentaje", v: 0 }, { t: "No lo sé", v: 1 }, { t: "No hago anuncios", v: 3 }], fallo: "Pagas comisión sobre tus anuncios: cuanto más inviertes, más pagas a la agencia.", arreglo: "Cuota fija: cero comisiones sobre lo que inviertas.", peso: 2 },
@@ -143,30 +119,6 @@ const TRAMOS: Tramo[] = [
       { id: "cambiar", p: "¿Cuándo quieres cambiar?", o: T(...CAMBIAR) },
       { id: "convence", p: "Si el estudio te convence, ¿qué harías?", o: T(...CONVENCE) },
       { id: "decide", p: "¿Quién decide la contratación?", o: T(...DECIDE) },
-      { id: "reunion", p: "¿Nos dedicarías 30 minutos para presentártelo?", o: T(...REUNION) },
-    ],
-  },
-  {
-    id: "afinar",
-    titulo: "Afina tu nota",
-    intro: "Opcional: diez toques más sobre tu web, Google y tus anuncios.",
-    dato: "Solo el 48 % de las webs aprueba en el móvil la velocidad que pide Google (HTTP Archive, 2025).",
-    video: "ojo-pantallas",
-    color: "from-[#1a73e8] to-[#188038]",
-    logos: ["Google", "PageSpeed", "ChatGPT"],
-    puntua: true,
-    extra: true,
-    preguntas: [
-      { id: "w1", p: "¿Cuándo se hizo o se renovó tu web?", o: [{ t: "Hace menos de 2 años", v: 3 }, { t: "Hace 2 a 4 años", v: 2 }, { t: "Hace más de 4 años", v: 0 }, { t: "No tengo web", v: 0 }], fallo: "Tu web se ha quedado vieja: el cliente lo nota en dos segundos.", arreglo: "Web nueva, rápida y pensada para pedir presupuesto.", peso: 3, logo: "Google Chrome" },
-      { id: "w2", p: "¿Cuánto tarda en abrirse en el móvil?", o: [{ t: "Al instante", v: 3 }, { t: "Un par de segundos", v: 2 }, { t: "Se hace larga", v: 0 }, { t: "No lo sé", v: 1 }], fallo: "Una web lenta en el móvil pierde a muchas visitas antes de que vean nada.", arreglo: "Una web que cargue al momento en cualquier móvil.", peso: 3, logo: "PageSpeed" },
-      { id: "w3", p: "¿Se puede pedir presupuesto o cita desde tu web en menos de un minuto?", o: SN("Sí, el botón está siempre a la vista", "Hay formulario, pero hay que buscarlo", "Solo hay un teléfono o un correo"), fallo: "Pedirte presupuesto cuesta demasiado: el que duda se va a otra web.", arreglo: "Botones de presupuesto y WhatsApp siempre a la vista.", peso: 3 },
-      { id: "g1", p: "Si buscas en Google lo que haces más tu ciudad, ¿dónde sales?", o: [{ t: "Entre los tres primeros", v: 3 }, { t: "En la primera página", v: 2 }, { t: "Más abajo", v: 0 }, { t: "No lo he mirado", v: 0 }], fallo: "No sales arriba en Google cuando te buscan: esos clientes llaman a otro.", arreglo: "Posicionamiento local y de contenidos para subir en Google.", peso: 3, logo: "Google" },
-      { id: "g2", p: "¿Cómo está tu ficha de Google, la del mapa?", o: SN("Completa, con fotos y al día", "Existe, pero nadie la cuida", "No tengo o no lo sé"), fallo: "Tu ficha de Google está descuidada, y es lo primero que ve quien te busca cerca.", arreglo: "Ficha de Google completa y con publicaciones cada semana.", peso: 3, logo: "Ficha de Google" },
-      { id: "g3", p: "¿Cuántas reseñas tienes en Google?", o: [{ t: "Más de 100, con buena nota", v: 3 }, { t: "Entre 20 y 100", v: 2 }, { t: "Menos de 20", v: 0 }, { t: "No lo sé", v: 0 }], fallo: "Tienes pocas reseñas: tu competencia con más estrellas se lleva la confianza.", arreglo: "Petición automática de reseñas a tus clientes contentos.", peso: 3, logo: "Ficha de Google" },
-      { id: "g4", p: "¿Contestas las reseñas, también las malas?", o: SN("Todas", "Algunas", "Ninguna"), fallo: "Las reseñas sin respuesta restan confianza.", arreglo: "Respuesta a todas las reseñas, con tu visto bueno.", peso: 2, logo: "Ficha de Google" },
-      { id: "g5", p: "Si preguntas a ChatGPT por una empresa como la tuya en tu ciudad, ¿te nombra?", o: [{ t: "Sí", v: 3 }, { t: "No", v: 0 }, { t: "No lo he probado", v: 0 }], fallo: "Las IA no te recomiendan: para quien pregunta a ChatGPT, no existes.", arreglo: "Preparar tu web para que las IA te encuentren y te citen.", peso: 2, logo: "ChatGPT" },
-      { id: "a2", p: "¿Sabes cuánto te cuesta cada cliente que llega por anuncios?", o: SN("Sí, al euro", "Más o menos", "No"), fallo: "No sabes lo que te cuesta cada cliente: no sabes si tus anuncios ganan o pierden dinero.", arreglo: "Medir el coste de cada contacto y de cada cliente, cada día.", peso: 3, logo: "Google Analytics" },
-      { id: "m3", p: "¿Está claro en tu web por qué elegirte a ti y no a otro?", o: SN("Sí, en la primera pantalla", "Hay que buscarlo", "No"), fallo: "Tu web no explica por qué elegirte: pareces uno más.", arreglo: "Mensaje claro en la primera pantalla: qué haces y por qué tú.", peso: 3 },
     ],
   },
 ];
@@ -202,12 +154,11 @@ function etiquetaEncaje(r: Record<string, number>) {
   if (t("cambiar") === CAMBIAR[3] || t("convence") === CONVENCE[3]) return "SOLO CURIOSEA";
   let p = [3, 2, 0][CAMBIAR.indexOf(t("cambiar"))] ?? 0;
   p += [3, 2, 0][CONVENCE.indexOf(t("convence"))] ?? 0;
-  p += [2, 1, 0][REUNION.indexOf(t("reunion"))] ?? 0;
   p += [2, 1, 0][DECIDE.indexOf(t("decide"))] ?? 0;
   p += [0, 1, 2, 3, 3, 3, 0][MARKETING.indexOf(t("marketing"))] ?? 0;
   if (t("inversion") && t("inversion") !== INVERSION[0]) p += 1;
   if (t("facturacion") && t("facturacion") !== FACTURACION[0]) p += 1;
-  return p >= 10 ? "ENCAJE ALTO" : p >= 6 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
+  return p >= 9 ? "ENCAJE ALTO" : p >= 5 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
 }
 
 const campo =
@@ -269,7 +220,7 @@ export default function TestIdoneidad() {
       setFase("datos");
     } else if (tramo.id === "buscas") {
       celebrar("¡Lo tienes!");
-      setFase("elegir");
+      terminarAmpliacion();
     } else if (tramo.extra) {
       celebrar("¡Nota afinada!");
       terminarAmpliacion();

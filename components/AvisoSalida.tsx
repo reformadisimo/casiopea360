@@ -17,7 +17,7 @@ const HOY = ["Tu nota, de 0 a 100", "Dónde se te escapan clientes", "Qué arreg
 // Lo que recibe gratis quien encaja: el estudio completo.
 const RESUMEN: [string, string][] = [
   ["Tu web, entera y nueva", "web"],
-  ["Tu guía de 29 apartados", "guia"],
+  ["Tu guía de más de 25 apartados", "guia"],
   ["Tu competencia, sin secretos", "competencia"],
   ["Los correos a tus clientes", "correos"],
   ["Tu panel de control", "panel"],
