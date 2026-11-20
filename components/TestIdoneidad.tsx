@@ -598,14 +598,27 @@ export default function TestIdoneidad() {
               No, gracias
             </button>
           </div>
-          <div className="mt-6 border-t border-white/15 pt-4 text-sm text-white/75">
-            {novedadesOk ? (
-              <p>Hecho: te escribiremos con unos pocos consejos. Te das de baja con un clic desde cualquier correo.</p>
-            ) : (
-              <button type="button" onClick={pedirNovedades} className="text-left underline underline-offset-4 hover:text-white">
-                Además, quiero recibir unos pocos consejos por correo (me doy de baja con un clic).
-              </button>
-            )}
+          <div className="mt-6 border-t border-white/15 pt-5">
+            <label className={`flex cursor-pointer items-start gap-3 rounded-2xl border-2 p-4 transition ${novedadesOk ? "border-estrella bg-white/10" : "border-white/30 hover:border-white/60"}`}>
+              <input
+                type="checkbox"
+                name="novedades"
+                checked={novedadesOk}
+                disabled={novedadesOk}
+                onChange={(e) => { if (e.target.checked) pedirNovedades(); }}
+                className="peer sr-only"
+              />
+              <span aria-hidden className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 border-white/70 bg-white/5 text-transparent peer-checked:border-estrella peer-checked:bg-estrella peer-checked:text-tinta peer-focus-visible:ring-2 peer-focus-visible:ring-white">
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
+              </span>
+              <span className="text-[0.95rem] leading-snug text-white/90">
+                {novedadesOk ? (
+                  <><b className="text-white">Hecho.</b> Te escribiremos con unos pocos consejos. Te das de baja con un clic desde cualquier correo.</>
+                ) : (
+                  <><b className="text-white">Quiero recibir unos pocos consejos por correo.</b> Marca la casilla si te interesa; te das de baja con un clic desde cualquier correo.</>
+                )}
+              </span>
+            </label>
           </div>
         </div>
       )}

@@ -24,7 +24,7 @@ export default function Privacidad() {
         <li><strong>Enviarte el estudio y, si lo pides, un presupuesto.</strong> Misma base legal.</li>
         <li><strong>Estudiar tu test de idoneidad, contestarte y, si podemos ayudarte, preparar tu estudio gratuito.</strong> Base legal: tu solicitud (medidas precontractuales).</li>
         <li><strong>Usar los textos, fotos y logotipo públicos de tu web y de tus perfiles para preparar tu estudio y la web de ejemplo</strong> que nos has pedido al enviar el test. Se usan únicamente para tu estudio, se enseñan en un enlace privado que no se indexa en buscadores y no se publican sin tu permiso. Si no seguimos trabajando juntos, retiramos el acceso al cabo de un mes. Base legal: aplicar medidas precontractuales a petición tuya. Puedes oponerte escribiéndonos.</li>
-        <li><strong>Mandarte de vez en cuando correos con consejos o novedades</strong>, solo si lo pides expresamente después de enviar el test (botón «quiero recibir unos pocos consejos»). Puedes darte de baja en cualquier momento desde el propio correo.</li>
+        <li><strong>Mandarte de vez en cuando correos con consejos o novedades</strong>, solo si lo pides expresamente después de enviar el test (casilla «quiero recibir unos pocos consejos», que viene sin marcar). Puedes darte de baja en cualquier momento desde el propio correo.</li>
         <li><strong>Medir cómo se usa la web para mejorarla</strong>, solo con tu consentimiento de cookies.</li>
       </ul>
       <h2>Durante cuánto tiempo</h2>
