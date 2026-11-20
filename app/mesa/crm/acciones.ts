@@ -22,3 +22,15 @@ export async function guardarNota(datos: FormData) {
   await sql()`UPDATE solicitudes SET notas = ${notas}, actualizado = now() WHERE id = ${id}`;
   revalidatePath("/mesa/crm");
 }
+
+/* «Encaje sí/no» (20-nov-2026): decisión de una persona tras mirar la empresa. A = gasta más de 4.000 € al mes; B = entre 2.000 y 4.000 o «no lo sé» con web real; C = el resto. */
+const ENCAJES = ["A", "B", "C", "no"];
+export async function guardarEncaje(datos: FormData) {
+  const id = Number(datos.get("id"));
+  const ok = String(datos.get("encaje_ok") ?? "");
+  const motivo = String(datos.get("motivo") ?? "").slice(0, 300);
+  if (!hayBaseDeDatos() || !Number.isInteger(id) || !ENCAJES.includes(ok)) return;
+  await asegurarTablas();
+  await sql()`UPDATE solicitudes SET encaje_ok = ${ok}, motivo_descarte = ${motivo}, actualizado = now() WHERE id = ${id}`;
+  revalidatePath("/mesa/crm");
+}

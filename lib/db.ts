@@ -50,6 +50,10 @@ export async function asegurarTablas() {
   // `sesion` es un número al azar de esa visita (no se guarda en el navegador), para contar personas distintas por pantalla.
   await q`CREATE TABLE IF NOT EXISTS test_pasos (id BIGSERIAL PRIMARY KEY, sesion TEXT NOT NULL, tipo TEXT NOT NULL, paso TEXT, valor TEXT, fuente TEXT, disp TEXT, creado TIMESTAMPTZ NOT NULL DEFAULT now())`;
   await q`CREATE INDEX IF NOT EXISTS test_pasos_por_fecha ON test_pasos (creado)`;
+  await q`ALTER TABLE test_pasos ADD COLUMN IF NOT EXISTS variante TEXT`;
+  await q`ALTER TABLE solicitudes ADD COLUMN IF NOT EXISTS variante TEXT`;
+  await q`ALTER TABLE solicitudes ADD COLUMN IF NOT EXISTS encaje_ok TEXT`;
+  await q`ALTER TABLE solicitudes ADD COLUMN IF NOT EXISTS motivo_descarte TEXT`;
   tablasListas = true;
 }
 

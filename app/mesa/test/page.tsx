@@ -10,7 +10,7 @@ import { CAMPOS_DATOS, GASTO, PANTALLAS, SECTORES, URGE } from "@/lib/testOrden"
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Recorrido del test · Casiopea 360", robots: { index: false, follow: false } };
 
-type Fila = { sesion: string; tipo: string; paso: string; valor: string; fuente: string; disp: string; creado: string };
+type Fila = { sesion: string; tipo: string; paso: string; valor: string; fuente: string; disp: string; creado: string; variante: string | null };
 const PERIODOS: Record<string, { texto: string; dias: number }> = { hoy: { texto: "Hoy", dias: 1 }, "7": { texto: "7 días", dias: 7 }, "28": { texto: "28 días", dias: 28 } };
 const pct = (a: number, b: number) => (b ? `${Math.round((a / b) * 100)} %` : "-");
 const nav = "inline-flex min-h-[44px] items-center rounded-full border border-white/25 bg-white/5 px-4 text-[14px] font-semibold text-white hover:bg-white/15";
@@ -50,7 +50,7 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
   if (!hayBaseDeDatos()) return envoltorio(<div className="rounded-3xl bg-white p-6 ring-1 ring-linea"><h2 className="text-2xl font-extrabold text-tinta">Falta conectar la base de datos</h2></div>);
   await asegurarTablas();
   const desde = new Date(Date.now() - PERIODOS[per].dias * 86400_000).toISOString();
-  const filas = ((await sql()`SELECT sesion, tipo, paso, valor, fuente, disp, creado FROM test_pasos WHERE creado >= ${desde} ORDER BY creado ASC LIMIT 40000`) as unknown as Fila[]).filter((f) => {
+  const filas = ((await sql()`SELECT sesion, tipo, paso, valor, fuente, disp, creado, variante FROM test_pasos WHERE creado >= ${desde} ORDER BY creado ASC LIMIT 40000`) as unknown as Fila[]).filter((f) => {
     if (fuenteF === "ads" && f.fuente !== "google-ads") return false;
     if (fuenteF === "otras" && f.fuente === "google-ads") return false;
     if (dispF && f.disp !== dispF) return false;
@@ -64,6 +64,14 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
   const fallosEnvio = personas("envio", "datos", "error");
   const ampliaron = personas("ampliado", "fin", "ok");
   const vieronDatos = personas("vista", "datos");
+  const visibles = personas("vista", "visible");
+  // Formulario A (empresa y ciudad obligatorias) frente a B («empresa o web», ciudad opcional): solo cuenta quien llegó a ver los datos.
+  const porVar = (v: string) => {
+    const f = filas.filter((x) => (x.variante ?? "A") === v);
+    const set = (tipo: string, paso: string, valor?: string) => new Set(f.filter((x) => x.tipo === tipo && x.paso === paso && (valor === undefined || x.valor === valor)).map((x) => x.sesion)).size;
+    return { v, empiezan: set("vista", "sector"), datos: set("vista", "datos"), envian: set("envio", "datos", "ok") };
+  };
+  const variantes = [porVar("A"), porVar("B")];
 
   // Última pantalla vista de quien no envió: dónde se queda cada persona.
   const enviaronSet = new Set(filas.filter((f) => f.tipo === "envio" && f.valor === "ok").map((f) => f.sesion));
@@ -159,6 +167,29 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
                 <p className="mt-1 text-[13px] text-tinta/65">{a}</p>
               </div>
             ))}
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold text-tinta">Prueba del formulario: A frente a B</h2>
+            <p className="mb-3 mt-1 text-[14px] text-tinta/70">A pide empresa y ciudad. B pide «empresa o web» y deja la ciudad opcional. Se reparte al azar por visita. Con poco tráfico una diferencia pequeña no se puede distinguir del azar: no decidas hasta tener al menos 100 personas que lleguen a los datos en cada una (unas dos semanas). «Ven la tarjeta» cuenta solo a quien tuvo la mitad de la tarjeta en pantalla: {visibles} en total.</p>
+            <div className="overflow-x-auto rounded-3xl bg-white ring-1 ring-linea">
+              <table className="w-full min-w-[520px] text-left text-[14px]">
+                <thead className="bg-niebla text-[12px] uppercase tracking-wide text-tinta/60">
+                  <tr><th className="px-4 py-3">Formulario</th><th className="px-3 py-3 text-right">Empiezan</th><th className="px-3 py-3 text-right">Llegan a los datos</th><th className="px-3 py-3 text-right">Envían</th><th className="px-3 py-3 text-right">Envían / llegan</th></tr>
+                </thead>
+                <tbody>
+                  {variantes.map((x) => (
+                    <tr key={x.v} className="border-t border-linea">
+                      <td className="px-4 py-2.5 font-bold text-tinta">{x.v}</td>
+                      <td className="px-3 py-2.5 text-right">{x.empiezan}</td>
+                      <td className="px-3 py-2.5 text-right">{x.datos}</td>
+                      <td className="px-3 py-2.5 text-right font-bold">{x.envian}</td>
+                      <td className="px-3 py-2.5 text-right text-tinta/70">{pct(x.envian, x.datos)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section>

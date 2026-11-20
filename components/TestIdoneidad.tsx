@@ -176,12 +176,22 @@ export default function TestIdoneidad() {
   const sesion = useRef("");
   const vistas = useRef(new Set<string>());
   const pantallaActual = useRef("urge");
+  // Variante del formulario de datos (A: empresa y ciudad obligatorias; B: «empresa o web» y ciudad opcional). Se reparte al azar por visita y se recuerda en la pestaña.
+  const [variante, setVariante] = useState<"A" | "B">("A");
+  const varRef = useRef<"A" | "B">("A");
+  useEffect(() => {
+    let v: "A" | "B" | null = null;
+    try { const g = sessionStorage.getItem("cas-var-form"); if (g === "A" || g === "B") v = g; } catch {}
+    if (!v) { v = Math.random() < 0.5 ? "A" : "B"; try { sessionStorage.setItem("cas-var-form", v); } catch {} }
+    varRef.current = v;
+    setVariante(v);
+  }, []);
   const paso = (tipo: string, p: string, valor = "") => {
     try {
       if (!sesion.current) sesion.current = ((typeof crypto !== "undefined" && crypto.randomUUID?.()) || `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`).replace(/-/g, "");
       const { fuente } = leerAtribucion();
       const disp = window.matchMedia("(pointer: coarse)").matches ? "movil" : "pc";
-      navigator.sendBeacon?.("/api/test-paso", JSON.stringify({ tipo, sesion: sesion.current, paso: p, valor, fuente, disp }));
+      navigator.sendBeacon?.("/api/test-paso", JSON.stringify({ tipo, sesion: sesion.current, paso: p, valor, fuente, disp, variante: varRef.current }));
     } catch {}
   };
   const [conExtra, setConExtra] = useState(false);
@@ -304,7 +314,7 @@ export default function TestIdoneidad() {
       const res = await fetch("/api/solicitud", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: false, trampa: d.get("sitio_web"), ...leerAtribucion(), pagina: window.location.pathname }),
+        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: false, trampa: d.get("sitio_web"), variante: varRef.current, ...leerAtribucion(), pagina: window.location.pathname }),
       });
       ok = res.ok;
     } catch {}
@@ -365,6 +375,17 @@ export default function TestIdoneidad() {
     paso("vista", pantalla);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pantalla]);
+  // «Inicio visible»: solo cuenta cuando al menos la mitad de la tarjeta se ve en pantalla (la «vista» de arriba se dispara al montar).
+  useEffect(() => {
+    const el = caja.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver((es) => {
+      if (es.some((x) => x.isIntersecting && x.intersectionRatio >= 0.5)) { paso("vista", "visible"); io.disconnect(); }
+    }, { threshold: [0.5] });
+    io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const salida = new Set<string>();
     const al = () => {
@@ -565,12 +586,12 @@ export default function TestIdoneidad() {
               <input name="correo" required type="email" autoComplete="email" className={campo} />
             </label>
             <label className="text-sm font-bold">
-              Empresa
+              {variante === "B" ? "Tu empresa o su web" : "Empresa"}
               <input name="empresa" required autoComplete="organization" className={campo} />
             </label>
             <label className="text-sm font-bold">
-              Dónde estáis
-              <input name="ciudad" required placeholder="Ciudad o provincia" className={campo} />
+              Dónde estáis{variante === "B" && <span className="font-normal text-gris"> (opcional)</span>}
+              <input name="ciudad" required={variante !== "B"} placeholder="Ciudad o provincia" className={campo} />
             </label>
             <label className="text-sm font-bold">
               Vuestra web <span className="font-normal text-gris">(si tenéis; nos ayuda a preparar tu revisión)</span>

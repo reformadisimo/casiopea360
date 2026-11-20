@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { asegurarTablas, fuenteLegible, hayBaseDeDatos, sql } from "@/lib/db";
 import { ESTADOS } from "@/lib/crm";
-import { cambiarEstado, guardarNota } from "./acciones";
+import { cambiarEstado, guardarEncaje, guardarNota } from "./acciones";
 
 /* CRM DE CASIOPEA 360 (19-nov-2026). Con clave (middleware.ts), fuera de Google.
    Cada test recibido es una tarjeta que se mueve por el camino: nuevo, contactado, estudio enviado, cliente, descartado.
@@ -11,7 +11,7 @@ import { cambiarEstado, guardarNota } from "./acciones";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "CRM de Casiopea 360", robots: { index: false, follow: false } };
 
-type Fila = { id: number; creado: string; estado: string; nombre: string; empresa: string; correo: string; telefono: string; encaje: string; fuente: string; campana: string; aterrizaje: string; notas: string | null; texto: string };
+type Fila = { id: number; creado: string; estado: string; nombre: string; empresa: string; correo: string; telefono: string; encaje: string; fuente: string; campana: string; aterrizaje: string; notas: string | null; texto: string; variante: string | null; encaje_ok: string | null; motivo_descarte: string | null };
 const fechaHora = (d: Date) => d.toLocaleString("es-ES", { timeZone: "Europe/Madrid", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 
 export default async function CrmPagina() {
@@ -39,7 +39,7 @@ export default async function CrmPagina() {
     return envoltorio(<div className="rounded-3xl bg-white p-6 ring-1 ring-linea"><h2 className="text-2xl font-extrabold text-tinta">Falta conectar la base de datos</h2><p className="mt-2 text-gris">Sin ella no hay dónde guardar los tests.</p></div>);
   }
   await asegurarTablas();
-  const filas = (await sql()`SELECT id, creado, estado, nombre, empresa, correo, telefono, encaje, fuente, campana, aterrizaje, notas, texto FROM solicitudes ORDER BY creado DESC LIMIT 500`) as unknown as Fila[];
+  const filas = (await sql()`SELECT id, creado, estado, nombre, empresa, correo, telefono, encaje, fuente, campana, aterrizaje, notas, texto, variante, encaje_ok, motivo_descarte FROM solicitudes ORDER BY creado DESC LIMIT 500`) as unknown as Fila[];
   if (!filas.length) {
     return envoltorio(<div className="rounded-3xl bg-white p-6 ring-1 ring-linea"><h2 className="text-2xl font-extrabold text-tinta">Todavía no ha llegado ningún test</h2><p className="mt-2 text-gris">Cuando alguien rellene el test de la web aparecerá aquí, en «Nuevos».</p></div>);
   }
@@ -63,7 +63,7 @@ export default async function CrmPagina() {
                   <p className="mt-1 break-words text-[13px] text-tinta/60">
                     <a className="underline" href={`mailto:${f.correo}`}>{f.correo}</a>{f.telefono ? ` · ${f.telefono}` : ""}
                   </p>
-                  <p className="mt-1 text-[12px] text-tinta/50">{fechaHora(new Date(f.creado))} · {fuenteLegible(f.fuente)}{f.campana ? ` (${f.campana})` : ""}{f.aterrizaje ? ` · entró por ${f.aterrizaje}` : ""}</p>
+                  <p className="mt-1 text-[12px] text-tinta/50">{fechaHora(new Date(f.creado))} · {fuenteLegible(f.fuente)}{f.campana ? ` (${f.campana})` : ""}{f.aterrizaje ? ` · entró por ${f.aterrizaje}` : ""}{f.variante ? ` · formulario ${f.variante}` : ""}</p>
                   {f.texto ? (
                     <details className="mt-2 text-[13px] text-tinta/75">
                       <summary className="cursor-pointer font-semibold text-noche-3">Lo que contó en el test</summary>
@@ -76,6 +76,18 @@ export default async function CrmPagina() {
                       {ESTADOS.map((x) => <option key={x.clave} value={x.clave}>{x.nombre}</option>)}
                     </select>
                     <button type="submit" className="rounded-lg bg-noche px-3 py-1.5 text-sm font-bold text-white hover:bg-noche-3">Mover</button>
+                  </form>
+                  <form action={guardarEncaje} className="mt-2 flex flex-wrap gap-2">
+                    <input type="hidden" name="id" value={f.id} />
+                    <select name="encaje_ok" defaultValue={f.encaje_ok ?? ""} required aria-label="Encaje real" className="min-w-0 flex-1 rounded-lg border border-black/15 bg-white px-2 py-1.5 text-sm">
+                      <option value="" disabled>Encaje real: sin valorar</option>
+                      <option value="A">A · gasta más de 4.000 €</option>
+                      <option value="B">B · 2.000 a 4.000 € o con web real</option>
+                      <option value="C">C · poco encaje</option>
+                      <option value="no">No encaja</option>
+                    </select>
+                    <input name="motivo" defaultValue={f.motivo_descarte ?? ""} maxLength={300} placeholder="Motivo (si no encaja)" className="min-w-0 flex-1 rounded-lg border border-black/15 px-2 py-1.5 text-sm" />
+                    <button type="submit" className="rounded-lg border border-black/15 bg-white px-3 py-1 text-[13px] font-semibold text-tinta hover:bg-niebla">Guardar encaje</button>
                   </form>
                   <form action={guardarNota} className="mt-2">
                     <input type="hidden" name="id" value={f.id} />
