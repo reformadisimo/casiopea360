@@ -1192,7 +1192,7 @@ export function SeccionIncluidoCompacta() {
 
 /* Velocidad: el compromiso, con esta web como prueba. */
 export function SeccionVelocidad() {
-  const notas: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Buenas prácticas"]];
+  const notas: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Buenas prácticas"], ["100", "SEO"]];
   return (
     <section id="velocidad" className="relative scroll-mt-24 overflow-hidden bg-noche py-20 text-white sm:py-28">
       <div aria-hidden="true" className="absolute inset-0 opacity-70"><VideoFondo nombre="fibra-luz" alt="" /></div>
@@ -1207,7 +1207,7 @@ export function SeccionVelocidad() {
           <ul className="mt-8 space-y-3 text-lg">
             {[
               "Tu web cargada en 2 segundos como máximo. Lo ideal, menos de medio segundo.",
-              "100, 100, 100 en PageSpeed Insights, la herramienta de Google.",
+              "100 en PageSpeed Insights, la herramienta de Google, y 3 de 3 en navegación para IA.",
               "Quizá no a la primera, pero siempre muy cerca de lo óptimo.",
             ].map((t, k) => (
               <li key={t} className="flex gap-3">
@@ -1220,8 +1220,8 @@ export function SeccionVelocidad() {
         </div>
         <div className="rounded-[2rem] bg-white/[0.07] p-7 ring-1 ring-white/15 backdrop-blur-sm sm:p-9">
           <p className="text-sm font-bold text-estrella">Predicamos con el ejemplo</p>
-          <p className="mt-2 text-2xl font-extrabold">Esta misma web, medida en PageSpeed Insights</p>
-          <div className="mt-7 grid grid-cols-3 gap-4">
+          <p className="mt-2 text-2xl font-extrabold">Nuestra página del estudio gratuito, medida en PageSpeed Insights</p>
+          <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {notas.map(([n, t]) => (
               <div key={t} className="text-center">
                 <div className="mx-auto grid h-24 w-24 place-items-center rounded-full sm:h-28 sm:w-28" style={{ background: "conic-gradient(#10b981 360deg, transparent 0)" }}>
@@ -1233,7 +1233,9 @@ export function SeccionVelocidad() {
               </div>
             ))}
           </div>
-          <p className="mt-7 text-white/75">Y en ordenador, lo principal carga en unas seis décimas de segundo. Si quieres, mide tu web ahora en PageSpeed y compárala.</p>
+          <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-4 py-2 text-sm font-extrabold text-emerald-300 ring-1 ring-emerald-400/40"><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-emerald-400" />3/3 en navegación agéntica: las IA pueden leer y usar la página</p>
+          <p className="mt-4 text-sm text-white/70">Medido el 20 de noviembre de 2026, en móvil y en ordenador, en <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">pagespeed.web.dev</a>. Puedes repetirlo cuando quieras: las notas varían un poco en cada medición.</p>
+          <p className="mt-4 text-white/75">Si quieres, mide tu web ahora en PageSpeed y compárala.</p>
           <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-estrella px-6 py-3 font-bold text-tinta hover:bg-estrella-2">Medir mi web en PageSpeed</a>
         </div>
       </div>
