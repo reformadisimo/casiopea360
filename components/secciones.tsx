@@ -1890,16 +1890,7 @@ export function SeccionSolicitud({ soloTest = false }: { soloTest?: boolean } = 
           <VerEjemplo className="mt-6" />
         </div>
       </div>
-      {soloTest ? (
-        <div className={`${ENVOLTORIO} relative mt-14`}>
-          <div className="rounded-[1.6rem] bg-white/5 p-6 ring-1 ring-white/15 sm:p-10">
-            <Etiqueta tono="estrella">Predicamos con el ejemplo</Etiqueta>
-            <h2 className="mt-4 text-2xl font-extrabold sm:text-4xl">Cuatro 100 en nuestra web. Descubre qué mejorar en tu marketing.</h2>
-            <p className="mt-4 max-w-3xl text-lg text-white/80">Revisamos tu web, cómo te encuentran y cómo se anuncia tu competencia. Te enseñamos qué cambiaríamos, cómo podría quedar y cuánto costaría.</p>
-            <p className="mt-4 text-white/70">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
-          </div>
-        </div>
-      ) : (
+      {soloTest ? null : (
         <div className={`${ENVOLTORIO} relative mt-14 grid items-start gap-10 lg:grid-cols-2`}>
           <EstudioDeVerdad />
           <EjemplosTrabajos />

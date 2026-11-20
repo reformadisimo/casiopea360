@@ -28,6 +28,7 @@ import {
   SeccionSolicitud,
   SeccionTrabajos,
 } from "@/components/secciones";
+import { SeccionCadaDia } from "@/components/LandingEstudio";
 
 export default function Inicio() {
   return (
@@ -70,6 +71,7 @@ export default function Inicio() {
       </section>
 
       <CintaHerramientas />
+      <SeccionCadaDia fuera />
       <SeccionVisibilidad />
       <SeccionVeinteProveedores />
       <SeccionTiempo />

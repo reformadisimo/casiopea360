@@ -1,6 +1,7 @@
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
 import { LlamadaFinal, SeccionSolicitud } from "@/components/secciones";
+import { SeccionCadaDia } from "@/components/LandingEstudio";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -27,6 +28,7 @@ export default function Test() {
         videoAlt="Una mujer sonríe mirando su móvil en la ciudad"
       />
       <SeccionSolicitud soloTest />
+      <SeccionCadaDia fuera />
       <LlamadaFinal />
     </>
   );

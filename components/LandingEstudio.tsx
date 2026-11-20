@@ -122,14 +122,20 @@ const FRENTES_DIA: [string, string][] = [
 ];
 
 // La idea de fondo: los cuatro 100 son el listón que se aplica a todo lo del cliente, y se mejora cada día con IA a la vista.
-export function SeccionCadaDia() {
+export function SeccionCadaDia({ fuera = false }: { fuera?: boolean } = {}) {
   return (
-    <section id="cada-dia" className="scroll-mt-24 bg-noche py-14 text-white sm:py-20">
+    <section id={fuera ? undefined : "cada-dia"} className="scroll-mt-24 bg-noche py-14 text-white sm:py-20">
       <div className={ENVOLTORIO}>
         <div className="mx-auto max-w-5xl">
           <Etiqueta tono="estrella">Cómo trabajamos</Etiqueta>
           <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">Lo medimos todo. Lo mejoramos <Subrayado>cada día</Subrayado>. Con IA, y a la vista.</h2>
-          <p className="mt-4 max-w-3xl text-lg text-white/85">Esos cuatro 100 no son un adorno: son el listón que nos ponemos en todo lo que hacemos para ti. Y no los conseguimos un día para olvidarnos: cada día medimos, detectamos qué falla, lo probamos y lo mejoramos.</p>
+          <p className="mt-4 max-w-3xl text-lg text-white/85">{fuera ? "Cuatro 100 en PageSpeed y 3/3 en navegación para IA en nuestra página del estudio: ese es el listón que nos ponemos en todo lo que hacemos para ti." : "Esos cuatro 100 no son un adorno: son el listón que nos ponemos en todo lo que hacemos para ti."} Y no los conseguimos un día para olvidarnos: cada día medimos, detectamos qué falla, lo probamos y lo mejoramos.</p>
+          {fuera && (
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <span aria-hidden className="flex gap-2">{NOTAS_HERO.map(([n, t]) => <span key={t} className="grid h-14 w-14 place-items-center rounded-full border-4 border-emerald-400 bg-emerald-400/10 text-base font-extrabold text-emerald-300">{n}</span>)}</span>
+              <Link href="/estudio-gratuito" className="font-bold text-white underline decoration-estrella underline-offset-4">Míralo medido en la página del estudio</Link>
+            </div>
+          )}
           <ol className="mt-6 flex flex-wrap items-center gap-2 text-sm font-extrabold">
             {["Medimos", "Detectamos", "Probamos", "Comprobamos", "Repetimos mañana"].map((t, i) => (
               <li key={t} className="flex items-center gap-2">
