@@ -15,12 +15,21 @@ const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 
 // Lo que recibe quien hace el test (mismo contenido que «tu estudio» de /estudio-gratuito y la barra de /test).
-const LO_QUE_TE_LLEVAS: [string, string][] = [
-  ["Cómo está tu web:", "qué falla, incluida la velocidad, que es donde más clientes se pierden."],
-  ["Tu web rediseñada de muestra,", "para que la veas antes de decidir nada."],
-  ["Tu guía:", "qué haríamos primero y cuánto costaría."],
-  ["Tu CRM y tu panel de ejemplo,", "para ver cómo llevarías tus contactos y tus cifras."],
-  ["Tu nota de marketing digital,", "si te apetece contestar unos toques más."],
+const ICONOS: Record<string, string> = {
+  web: "M3 5h18v12H3zM8 21h8M12 17v4",
+  competencia: "M3 17l5-6 4 4 8-9M15 6h5v5",
+  anuncios: "M4 6h16v10H9l-5 4zM8 10h8M8 13h5",
+  diseno: "M4 4h16v16H4zM4 9h16M9 9v11",
+  guia: "M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7",
+  crm: "M4 5h16v14H4zM4 10h16M10 10v9",
+};
+const LO_QUE_TE_LLEVAS: [keyof typeof ICONOS, string, string][] = [
+  ["web", "Cómo está tu web", "Qué falla, incluida la velocidad: es donde más clientes se pierden."],
+  ["competencia", "Cómo se anuncia tu competencia", "Qué hacen en Google y en redes, y dónde les ganas tú."],
+  ["anuncios", "Cómo quedarían tus anuncios", "Ejemplos de anuncios pensados para tu empresa, para que los veas."],
+  ["diseno", "Tu web rediseñada de muestra", "La ves antes de decidir nada."],
+  ["guia", "Tu guía con el plan", "Qué haríamos primero y cuánto costaría."],
+  ["crm", "Tu CRM y tu panel de ejemplo", "Cómo llevarías tus contactos y tus cifras."],
 ];
 
 export function HeroLanding() {
@@ -31,7 +40,7 @@ export function HeroLanding() {
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/85 via-noche/35 to-transparent" />
       <Nebulosa oscura variante={2} />
-      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]`}>
+      <div className={`${ENVOLTORIO} relative grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]`}>
         <div>
           <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
           <h1 className="mt-5 text-4xl font-extrabold sm:text-6xl">
@@ -40,22 +49,9 @@ export function HeroLanding() {
           <p className="mt-5 max-w-xl text-xl text-white/85">
             Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz el test, son tres toques, y si podemos ayudarte te preparamos <b className="text-white">tu estudio</b>. Sin darnos ningún acceso.
           </p>
-          <div className="mt-6 max-w-xl rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-            <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Lo que te llevas con el test, gratis y sin compromiso</p>
-            <ul className="mt-3 grid gap-2.5 text-[0.95rem] text-white/90">
-              {LO_QUE_TE_LLEVAS.map(([t, d]) => (
-                <li key={t} className="flex items-start gap-3">
-                  <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-estrella text-tinta">
-                    <svg viewBox="0 0 20 20" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
-                  </span>
-                  <span><b className="text-white">{t}</b> {d}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <Link href="#solicitud" className={BOTON}>Haz el test y recibe tu estudio</Link>
-            <span className="text-sm text-white/80">Te escribimos siempre; sin llamadas comerciales.</span>
+            <span className="text-sm text-white/80">Gratis y sin compromiso. Te escribimos siempre; sin llamadas comerciales.</span>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
             <li>Una sola persona te atiende</li>
@@ -63,16 +59,31 @@ export function HeroLanding() {
             <li>Anuncios sin comisión</li>
             <li>Sin permanencia</li>
           </ul>
-          <p className="mt-5 max-w-xl text-sm text-white/85">
-            Una cuota fija, la misma para cualquier tamaño.{" "}
-            <Link href="#ahorro" className="font-bold text-estrella underline underline-offset-4">Mira qué incluye y cuánto pagarías por separado</Link>.
-          </p>
-          <p className="mt-2 max-w-xl text-sm text-white/85">
-            Mira lo que hemos hecho:{" "}
-            <Link href="#ejemplos" className="font-bold text-estrella underline underline-offset-4">AMS Cerramientos, Reformadísimo y Mi Estela</Link>.
-          </p>
         </div>
         <VideoHero idCompleto={ID_VIDEO_LARGO} titulo="Casiopea 360: tu marketing digital, al máximo nivel" />
+      </div>
+
+      <div className={`${ENVOLTORIO} relative mt-12 sm:mt-16`}>
+        <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Lo que te llevas con el test, gratis y sin compromiso</p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {LO_QUE_TE_LLEVAS.map(([ic, t, d]) => (
+            <li key={t} className="flex items-start gap-4 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
+              <span aria-hidden className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-estrella text-tinta">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={ICONOS[ic]} /></svg>
+              </span>
+              <span>
+                <b className="block text-lg font-extrabold leading-tight text-white">{t}</b>
+                <span className="mt-1 block text-[0.95rem] text-white/80">{d}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-white/85">
+          Y si contestas unos toques más, tu nota de marketing digital. Una cuota fija, la misma para cualquier tamaño:{" "}
+          <Link href="#ahorro" className="font-bold text-estrella underline underline-offset-4">mira qué incluye y cuánto pagarías por separado</Link>.{" "}
+          Mira lo que hemos hecho:{" "}
+          <Link href="#ejemplos" className="font-bold text-estrella underline underline-offset-4">AMS Cerramientos, Reformadísimo y Mi Estela</Link>.
+        </p>
       </div>
     </section>
   );
