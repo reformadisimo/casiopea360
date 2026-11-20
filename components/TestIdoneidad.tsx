@@ -7,8 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import LogoMarca from "@/components/LogoMarca";
 import Logo from "@/components/Logo";
-import VideoFondo from "@/components/VideoFondo";
-import { BarraEstrella, COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
+import { COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 import Image from "next/image";
 import BotonDictado from "@/components/BotonDictado";
 import { CONTACTO } from "@/lib/contenido";
@@ -460,77 +459,35 @@ export default function TestIdoneidad() {
         )}
       <Confeti disparo={confeti} />
 
-      {fase !== "fin" && fase !== "capturado" && (
-        <div className={`mb-5 rounded-2xl bg-white/95 p-4 shadow-sm ring-1 ring-linea ${fase === "preguntas" || fase === "datos" || fase === "elegir" ? "hidden sm:block" : ""}`}>
-          <BarraEstrella
-            avance={fase === "datos" ? 0.9 : enAmpliacion ? hechasA / Math.max(totalA, 1) : Math.min(hechas / 4, 0.7)}
-            texto={
-              fase === "datos"
-                ? "¡Casi! Dinos a quién escribirle"
-                : enAmpliacion
-                  ? `¡Llevas ${hechasA} de ${totalA} para tu nota! Te quedan ${Math.max(totalA - hechasA, 0)}`
-                  : "Tres toques y tus datos"
-            }
-          />
-        </div>
-      )}
-
       {fase === "preguntas" && tramo && (() => {
         const q = tramo.preguntas[qi] ?? tramo.preguntas[0];
         const letras = "ABCDEFG";
+        const enNota = ti >= 1;
+        const etiquetaPaso = !enNota ? `Paso ${qi + 1} de ${tramo.preguntas.length}` : `Tu nota · pregunta ${Math.min(hechasA + (resp[q.id] === undefined ? 1 : 0), totalA)} de ${totalA}`;
+        const avancePaso = !enNota ? (qi + (resp[q.id] === undefined ? 0 : 1)) / tramo.preguntas.length : Math.min(hechasA / Math.max(totalA, 1), 1);
         return (
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
             <div className="bg-noche px-5 py-3 text-sm font-extrabold text-white sm:hidden">
               {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Cuéntanos de tu empresa" : tramo.titulo}
             </div>
-            <div className="relative hidden overflow-hidden px-6 py-6 text-white sm:block sm:px-9 sm:py-7">
-              <div aria-hidden="true" className="absolute inset-0">
-                <VideoFondo key={tramo.id} nombre={tramo.video} alt="" />
-              </div>
-              <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-br opacity-[0.8] ${tramo.color}`} />
-              {/* Arriba, la marca: dentro del test los únicos logos eran los de Google y compañía; que se vea de quién es */}
-              <div className="relative z-10 mb-4 flex items-center justify-between gap-4">
-                <Logo claro fundido chico />
-                <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide backdrop-blur">
-                  {tramo.extra ? "Opcional" : ti === 0 ? "Primero lo importante" : `Tu nota · ${ti} de ${BASE.length - 1}`}
-                </p>
-              </div>
-              <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
-                <div className="max-w-xl">
-                  <p className="text-2xl font-extrabold sm:text-3xl">{tramo.titulo}</p>
-                  <p className="mt-1 text-white/90">{tramo.intro}</p>
-                </div>
-                <div aria-hidden="true" className="hidden gap-2 sm:flex">
-                  {tramo.logos.map((l, i) => (
-                    <span key={l} className="flota grid h-12 w-12 place-items-center rounded-2xl bg-white shadow-lg" style={{ animationDelay: `${i * 0.35}s` }}>
-                      <LogoMarca nombre={l} tam={26} />
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <div className="hidden items-center justify-between gap-4 px-9 pt-7 sm:flex">
+              <Logo chico />
+              <p className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">Sin compromiso · sin pedirte accesos</p>
             </div>
 
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
-              {qi === 0 && (
-                <p className="aparece mb-5 hidden items-start gap-2.5 sm:flex rounded-2xl bg-estrella/25 px-4 py-3 text-sm font-bold">
-                  <span aria-hidden="true" className="text-lg leading-none">★</span>
-                  <span>{tramo.dato}</span>
-                </p>
-              )}
-              <div className="flex items-center gap-1.5" aria-hidden="true">
-                {tramo.preguntas.map((x, i) => (
-                  <span key={x.id} className={`h-2.5 rounded-full transition-all ${i === qi ? "w-8 bg-estrella" : resp[x.id] !== undefined ? "w-2.5 bg-noche" : "w-2.5 bg-linea"}`} />
-                ))}
-                <span className="ml-2 text-sm font-bold text-gris">{qi + 1} de {tramo.preguntas.length}</span>
+              <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
+                <span className="shrink-0">{etiquetaPaso}</span>
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
+                  <div className="h-full rounded-full bg-estrella transition-[width] duration-500" style={{ width: `${avancePaso * 100}%` }} />
+                </div>
               </div>
               <fieldset key={q.id} className="entra mt-5">
                 <legend className="flex items-start gap-3 text-xl font-extrabold sm:text-3xl">
-                  {q.logo ? (
+                  {q.logo && (
                     <span className="flota grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white shadow-md ring-1 ring-linea sm:h-14 sm:w-14">
                       <LogoMarca nombre={q.logo} tam={28} />
                     </span>
-                  ) : (
-                    <span className="flota hidden h-12 w-12 shrink-0 place-items-center rounded-2xl bg-noche text-lg font-extrabold text-estrella shadow-md sm:grid sm:h-14 sm:w-14">{hechas + (resp[q.id] === undefined ? 1 : 0)}</span>
                   )}
                   <span className="pt-1 text-2xl leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
@@ -540,6 +497,7 @@ export default function TestIdoneidad() {
                   ))}
                 </div>
               </fieldset>
+              {qi === 0 && <p className="mt-4 hidden text-sm text-gris sm:block">{tramo.dato}</p>}
               <div className={reaccion ? "mt-5" : "mt-2"}>{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
               <div className="mt-3 flex flex-wrap items-center gap-3">
                 {(ti > 0 || qi > 0) && (
