@@ -14,6 +14,15 @@ const ID_VIDEO_LARGO = "SviXZNrk9FU";
 const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 
+// Lo que recibe quien hace el test (mismo contenido que «tu estudio» de /estudio-gratuito y la barra de /test).
+const LO_QUE_TE_LLEVAS: [string, string][] = [
+  ["Cómo está tu web:", "qué falla, incluida la velocidad, que es donde más clientes se pierden."],
+  ["Tu web rediseñada de muestra,", "para que la veas antes de decidir nada."],
+  ["Tu guía:", "qué haríamos primero y cuánto costaría."],
+  ["Tu CRM y tu panel de ejemplo,", "para ver cómo llevarías tus contactos y tus cifras."],
+  ["Tu nota de marketing digital,", "si te apetece contestar unos toques más."],
+];
+
 export function HeroLanding() {
   return (
     <section className="relative overflow-hidden bg-noche pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
@@ -29,11 +38,24 @@ export function HeroLanding() {
             ¿Tu web no te trae <Subrayado>clientes</Subrayado>?
           </h1>
           <p className="mt-5 max-w-xl text-xl text-white/85">
-            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz el test y, si podemos ayudarte, te preparamos <b className="text-white">tu estudio gratis</b>, sin compromiso: qué falla, qué haríamos y cuánto costaría. Sin darnos ningún acceso.
+            Somos una agencia de marketing digital en Madrid: web, SEO, anuncios y redes con un solo equipo. Haz el test, son tres toques, y si podemos ayudarte te preparamos <b className="text-white">tu estudio</b>. Sin darnos ningún acceso.
           </p>
+          <div className="mt-6 max-w-xl rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
+            <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Lo que te llevas con el test, gratis y sin compromiso</p>
+            <ul className="mt-3 grid gap-2.5 text-[0.95rem] text-white/90">
+              {LO_QUE_TE_LLEVAS.map(([t, d]) => (
+                <li key={t} className="flex items-start gap-3">
+                  <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-estrella text-tinta">
+                    <svg viewBox="0 0 20 20" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
+                  </span>
+                  <span><b className="text-white">{t}</b> {d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link href="#solicitud" className={BOTON}>Haz el test</Link>
-            <span className="text-sm text-white/80">Gratis y sin compromiso. Te escribimos siempre; sin llamadas comerciales.</span>
+            <Link href="#solicitud" className={BOTON}>Haz el test y recibe tu estudio</Link>
+            <span className="text-sm text-white/80">Te escribimos siempre; sin llamadas comerciales.</span>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/85">
             <li>Una sola persona te atiende</li>
