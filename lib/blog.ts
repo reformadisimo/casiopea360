@@ -673,7 +673,7 @@ export const ARTICULOS: Articulo[] = [
         ],
       },
       { p: "Así llevamos [los anuncios en Google y en redes](/servicios/publicidad-google-ads-redes) en Casiopea 360: nunca cobramos un porcentaje de lo que inviertes, sean mil euros o un millón." },
-      { p: "Si quieres saber cuánto pagas hoy entre comisiones y proveedores, haz nuestro test de idoneidad: son unos cinco minutos y te da tu nota al momento." },
+      { p: "Si quieres saber cuánto pagas hoy entre comisiones y proveedores, haz nuestro test de idoneidad: tocando, sin escribir, y te da tu nota al momento." },
     ],
     enlaces: [
       { texto: "Calculadora: cuántos clientes te puede traer tu inversión", href: "/calculadora" },

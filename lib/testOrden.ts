@@ -3,13 +3,13 @@
 
 export const SECTORES = ["Servicios a particulares", "Servicios a empresas", "Tienda o comercio", "Industria o fabricación", "Salud o bienestar", "Otra"];
 export const FACTURACION = ["Menos de 1 millón", "De 1 a 4 millones", "De 4 a 10 millones", "Más de 10 millones", "Prefiero no decirlo"];
-export const URGE = ["Más clientes", "Una web nueva", "Dejar de coordinar proveedores", "Medir lo que funciona", "Pagar menos por lo mismo"];
+export const URGE = ["Me llegan pocas consultas", "No sé qué me aportan los anuncios", "Mi web necesita mejorar", "Coordino demasiados proveedores", "No tengo claro si pago de más"];
 
 /** Pantallas en el orden en que se ven. El primer tramo son tres toques y los datos; lo demás llega después de enviar. */
 export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" | "despues" | "afinar" | "fin" }[] = [
+  { id: "urge", texto: "¿Qué te gustaría mejorar primero?", fase: "primero" },
   { id: "sector", texto: "¿A qué se dedica tu empresa?", fase: "primero" },
   { id: "facturacion", texto: "¿Cuánto factura al año?", fase: "primero" },
-  { id: "urge", texto: "¿Qué es lo que más te urge?", fase: "primero" },
   { id: "datos", texto: "Pantalla de datos (nombre, empresa, correo…)", fase: "datos" },
   { id: "capturado", texto: "«¡Recibido!» y oferta de afinar la nota", fase: "datos" },
   { id: "t1", texto: "¿Cuánto tardáis en responder a un contacto?", fase: "despues" },
@@ -27,9 +27,9 @@ export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" |
 ];
 
 export const CAMPOS_DATOS: { id: string; texto: string; obligatorio: boolean }[] = [
-  { id: "nombre", texto: "Nombre y cargo", obligatorio: true },
-  { id: "empresa", texto: "Empresa", obligatorio: true },
+  { id: "nombre", texto: "Tu nombre", obligatorio: true },
   { id: "correo", texto: "Correo", obligatorio: true },
+  { id: "empresa", texto: "Empresa", obligatorio: true },
   { id: "ciudad", texto: "Dónde estáis", obligatorio: true },
   { id: "telefono", texto: "Teléfono", obligatorio: false },
   { id: "web", texto: "Vuestra web", obligatorio: false },

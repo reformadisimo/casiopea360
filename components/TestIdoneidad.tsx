@@ -42,7 +42,7 @@ function Muestra({ oscuro = false }: { oscuro?: boolean }) {
 // Sirve a la vez para dar al cliente su nota y para que sepamos si encaja (etiqueta interna en el correo).
 
 type Opc = { t: string; v: number }; // v: 0 a 3 puntos (solo cuenta en tramos que puntúan)
-type Preg = { id: string; p: string; o: Opc[]; fallo?: string; arreglo?: string; peso?: number; logo?: string };
+type Preg = { id: string; p: string; ayuda?: string; o: Opc[]; fallo?: string; arreglo?: string; peso?: number; logo?: string };
 type Tramo = { id: string; titulo: string; intro: string; dato: string; video: string; color: string; logos: string[]; puntua: boolean; preguntas: Preg[]; extra?: boolean };
 
 const T = (...xs: string[]): Opc[] => xs.map((t) => ({ t, v: 0 }));
@@ -62,16 +62,16 @@ const TRAMOS: Tramo[] = [
   {
     id: "primero",
     titulo: "Tu empresa",
-    intro: "Tres toques y tus datos.",
+    intro: "Tres preguntas y tus datos de contacto.",
     dato: "Todo lo que contestes es para preparar tu estudio. No lo compartimos con nadie.",
     video: "despacho",
     color: "from-[#24387a] to-[#0e1a3d]",
     logos: ["Google Maps", "Google", "LinkedIn"],
     puntua: false,
     preguntas: [
-      { id: "sector", p: "¿A qué se dedica tu empresa?", o: T(...SECTORES) },
-      { id: "facturacion", p: "¿Cuánto factura al año, más o menos?", o: T(...FACTURACION) },
-      { id: "urge", p: "¿Qué es lo que más te urge?", o: T(...URGE) },
+      { id: "urge", p: "¿Qué te gustaría mejorar primero?", ayuda: "Elige lo que más te preocupa ahora.", o: T(...URGE) },
+      { id: "sector", p: "¿A qué se dedica tu empresa?", ayuda: "Elige la opción que mejor describa tu actividad principal.", o: T(...SECTORES) },
+      { id: "facturacion", p: "¿Cuánto factura al año, más o menos?", ayuda: "Nos ayuda a saber con quién hablamos. Si prefieres no decirlo, no pasa nada.", o: T(...FACTURACION) },
     ],
   },
   {
@@ -110,7 +110,7 @@ const TRAMOS: Tramo[] = [
     id: "buscas",
     titulo: "Lo que buscas",
     intro: "La última parte. Así sabemos cómo ayudarte mejor.",
-    dato: "Preparar un estudio nos lleva un día entero de trabajo. Por eso lo hacemos solo a empresas a las que podemos ayudar de verdad.",
+    dato: "Con esto afinamos el estudio: lo que te propondremos primero y cómo lo plantearíamos.",
     video: "equipo-celebra",
     color: "from-[#7c3aed] to-[#0e1a3d]",
     logos: ["Google", "ChatGPT", "Gemini"],
@@ -161,6 +161,8 @@ function etiquetaEncaje(r: Record<string, number>) {
   return p >= 9 ? "ENCAJE ALTO" : p >= 5 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
 }
 
+const NOTA_PREGUNTAS = TRAMOS.filter((t) => !t.extra && t.id !== "primero").reduce((a, t) => a + t.preguntas.length, 0);
+
 const campo =
   "mt-1.5 w-full rounded-xl border-2 border-linea bg-white px-4 py-3 text-base text-tinta placeholder:text-gris/70 focus:border-noche focus:outline-none";
 
@@ -179,7 +181,7 @@ export default function TestIdoneidad() {
   // Recorrido anónimo (sin cookies ni datos personales): una pantalla vista, una respuesta, un campo vacío. Ver /mesa/test.
   const sesion = useRef("");
   const vistas = useRef(new Set<string>());
-  const pantallaActual = useRef("sector");
+  const pantallaActual = useRef("urge");
   const paso = (tipo: string, p: string, valor = "") => {
     try {
       if (!sesion.current) sesion.current = ((typeof crypto !== "undefined" && crypto.randomUUID?.()) || `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`).replace(/-/g, "");
@@ -216,7 +218,6 @@ export default function TestIdoneidad() {
     setQi(0);
     setReaccion(null);
     if (tramo.id === "primero") {
-      celebrar("¡Casi!");
       setFase("datos");
     } else if (tramo.id === "buscas") {
       celebrar("¡Lo tienes!");
@@ -313,9 +314,9 @@ export default function TestIdoneidad() {
       });
       ok = res.ok;
     } catch {}
-    setConfeti(Date.now());
     subir();
     if (ok) {
+      setConfeti(Date.now());
       paso("envio", "datos", "ok");
       avisarGTM("test_enviado");
       setEnvio("enviado");
@@ -414,12 +415,12 @@ export default function TestIdoneidad() {
         const q = tramo.preguntas[qi] ?? tramo.preguntas[0];
         const letras = "ABCDEFG";
         const enNota = ti >= 1;
-        const etiquetaPaso = !enNota ? `Paso ${qi + 1} de ${tramo.preguntas.length}` : `Tu nota · pregunta ${Math.min(hechasA + (resp[q.id] === undefined ? 1 : 0), totalA)} de ${totalA}`;
+        const etiquetaPaso = !enNota ? `Pregunta ${qi + 1} de ${tramo.preguntas.length}` : `Tu nota · pregunta ${Math.min(hechasA + (resp[q.id] === undefined ? 1 : 0), totalA)} de ${totalA}`;
         const avancePaso = !enNota ? (qi + (resp[q.id] === undefined ? 0 : 1)) / tramo.preguntas.length : Math.min(hechasA / Math.max(totalA, 1), 1);
         return (
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
             <div className="bg-noche px-5 py-3 text-sm font-extrabold text-white sm:hidden">
-              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Cuéntanos de tu empresa" : tramo.titulo}
+              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Pide tu estudio gratuito" : tramo.titulo}
             </div>
             <div className="hidden items-center justify-between gap-4 px-9 pt-7 sm:flex">
               <Logo chico />
@@ -427,6 +428,11 @@ export default function TestIdoneidad() {
             </div>
 
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
+              {ti === 0 && (
+                <p className="mb-4 text-[0.95rem] leading-snug text-gris">
+                  <b className="text-tinta">Descubre qué puede estar fallando, mira cómo podría quedar tu web y conoce qué haríamos primero y cuánto costaría.</b> Sin llamadas comerciales ni accesos.
+                </p>
+              )}
               <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
                 <span className="shrink-0">{etiquetaPaso}</span>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
@@ -442,7 +448,8 @@ export default function TestIdoneidad() {
                   )}
                   <span className="pt-1 text-2xl leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
-                <div className="mt-6 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+                {q.ayuda && <p className="mt-2 text-[0.95rem] font-normal text-gris">{q.ayuda}</p>}
+                <div className="mt-5 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
                   {q.o.map((o, j) => (
                     <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} />
                   ))}
@@ -495,13 +502,14 @@ export default function TestIdoneidad() {
       {fase === "capturado" && (
         <div className="entra overflow-hidden rounded-[2rem] bg-noche p-7 text-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.7)] sm:p-10">
           <p className="text-sm font-bold text-estrella">¡Recibido!</p>
-          <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Te escribimos en 48 horas laborables.</p>
-          <p className="mt-3 max-w-xl text-white/85">
-            Si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son unos toques más, sin escribir, y nos ayudan a preparar mejor tu estudio.
+          <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Tu solicitud ya está enviada.</p>
+          <p className="mt-3 max-w-xl text-white/85">Te escribimos por correo en 48 horas laborables.</p>
+          <p className="mt-5 max-w-xl text-white/85">
+            <b className="text-white">Opcional:</b> si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son {NOTA_PREGUNTAS} preguntas más, sin escribir, y nos ayudan a preparar mejor tu estudio.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setTi(1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
-              Sí, quiero mi nota
+              {`Sí, quiero mi nota (${NOTA_PREGUNTAS} preguntas)`}
             </button>
             <button type="button" onClick={() => { setFase("fin"); subir(); }} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
               No, gracias
@@ -545,8 +553,8 @@ export default function TestIdoneidad() {
                 <div className="h-full w-full rounded-full bg-estrella" />
               </div>
             </div>
-            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">¿A quién le escribimos?</p>
-            <p className="mt-1 text-gris">Te contestamos por correo en 48 horas laborables. Si podemos ayudarte, tu estudio llega en menos de una semana.</p>
+            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">¿A qué correo te respondemos?</p>
+            <p className="mt-1 text-gris">Revisamos tus respuestas y te contestamos por escrito en 48 horas laborables. Si podemos ayudarte, preparamos tu estudio en menos de una semana.</p>
             <ul className="mt-4 hidden flex-wrap gap-x-6 gap-y-2 text-sm font-bold sm:flex">
               {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
                 <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>{t}</li>
@@ -555,28 +563,28 @@ export default function TestIdoneidad() {
           </div>
           <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
             <label className="text-sm font-bold">
-              Tu nombre y cargo
-              <input name="nombre" required autoComplete="name" placeholder="Ej.: Ana López, directora" className={campo} />
-            </label>
-            <label className="text-sm font-bold">
-              Empresa
-              <input name="empresa" required autoComplete="organization" className={campo} />
-            </label>
-            <label className="text-sm font-bold">
-              Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
-              <input name="telefono" type="tel" autoComplete="tel" className={campo} />
+              Tu nombre
+              <input name="nombre" required autoComplete="name" placeholder="Ej.: Ana López" className={campo} />
             </label>
             <label className="text-sm font-bold">
               Correo
               <input name="correo" required type="email" autoComplete="email" className={campo} />
             </label>
             <label className="text-sm font-bold">
-              Vuestra web <span className="font-normal text-gris">(si tenéis)</span>
-              <input name="web" className={campo} />
+              Empresa
+              <input name="empresa" required autoComplete="organization" className={campo} />
             </label>
             <label className="text-sm font-bold">
               Dónde estáis
               <input name="ciudad" required placeholder="Ciudad o provincia" className={campo} />
+            </label>
+            <label className="text-sm font-bold">
+              Vuestra web <span className="font-normal text-gris">(si tenéis; nos ayuda a preparar tu revisión)</span>
+              <input name="web" className={campo} />
+            </label>
+            <label className="text-sm font-bold">
+              Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
+              <input name="telefono" type="tel" autoComplete="tel" className={campo} />
             </label>
             <label className="text-sm font-bold sm:col-span-2">
               ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
@@ -592,7 +600,7 @@ export default function TestIdoneidad() {
                 Atrás
               </button>
               <button type="submit" disabled={envio === "enviando"} className="flex-1 rounded-full bg-estrella px-7 py-4 text-lg font-extrabold text-tinta hover:bg-estrella-2 disabled:opacity-60 sm:flex-none">
-                {envio === "enviando" ? "Enviando…" : "Enviar mis datos"}
+                {envio === "enviando" ? "Enviando…" : "Solicitar mi estudio gratuito"}
               </button>
             </div>
             <p className="text-xs text-gris sm:col-span-2">

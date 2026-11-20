@@ -1873,17 +1873,17 @@ export function SeccionSolicitud() {
       <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
           <div className="hidden sm:block"><Etiqueta tono="estrella">Una pregunta cada vez</Etiqueta></div>
-          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Haz tu test de idoneidad.</h2>
+          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">Pide tu estudio gratuito.</h2>
           <p className="mt-5 hidden text-lg text-white/80 sm:block">
-            <b className="text-white">Un estudio nos lleva un día de trabajo:</b> lo hacemos si podemos ayudarte. Contesta tocando y al final tienes tu nota.
+            <b className="text-white">Si vemos que podemos ayudarte,</b> preparamos el estudio para que puedas valorar cómo trabajaríamos antes de contratar. Después decides tú, sin compromiso.
           </p>
-          <p className="mt-4 hidden text-lg text-white/80 lg:block">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
+          <p className="mt-4 hidden text-lg text-white/80 lg:block">Te escribimos siempre, en 48 horas laborables. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
           <VerEjemplo className="mt-6 hidden lg:block" />
         </div>
         <DiagnosticoDiferido />
         {/* En móvil, el test va justo tras el título; la explicación y el ejemplo, después. */}
         <div className="lg:hidden">
-          <p className="text-lg text-white/80 sm:hidden"><b className="text-white">Un estudio nos lleva un día de trabajo:</b> lo hacemos si podemos ayudarte.</p>
+          <p className="text-lg text-white/80 sm:hidden"><b className="text-white">Si vemos que podemos ayudarte,</b> preparamos el estudio para que puedas valorar cómo trabajaríamos antes de contratar. Después decides tú, sin compromiso.</p>
           <p className="mt-4 text-lg text-white/80">Te escribimos siempre. Y si podemos ayudarte, tienes tu estudio completo en menos de una semana.</p>
           <VerEjemplo className="mt-6" />
         </div>

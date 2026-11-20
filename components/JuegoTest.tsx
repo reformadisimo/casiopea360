@@ -82,15 +82,13 @@ export function Opcion({ letra, texto, color, activa, onClick }: { letra: string
       type="button"
       aria-pressed={activa}
       onClick={onClick}
-      style={activa ? { background: color, borderColor: color } : { borderColor: "transparent" }}
       className={`group flex w-full items-center gap-4 rounded-2xl border-2 px-4 py-4 text-left text-[1.05rem] font-bold shadow-[0_6px_18px_-10px_rgba(14,26,61,0.35)] transition-all sm:px-5 ${
-        activa ? "salta text-white" : "bg-white text-tinta hover:-translate-y-1 hover:shadow-[0_14px_28px_-14px_rgba(14,26,61,0.45)]"
+        activa ? "border-noche bg-noche text-white" : "border-transparent bg-white text-tinta hover:-translate-y-1 hover:shadow-[0_14px_28px_-14px_rgba(14,26,61,0.45)]"
       }`}
     >
       <span
         aria-hidden="true"
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-base font-extrabold transition-transform group-hover:rotate-[-6deg] group-hover:scale-110"
-        style={activa ? { background: "rgba(255,255,255,0.25)", color: "#fff" } : { background: color + "1a", color }}
+        className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-base font-extrabold ${activa ? "bg-white/25 text-white" : "bg-noche/10 text-noche"}`}
       >
         {activa ? (
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>

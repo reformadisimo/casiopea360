@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CONTACTO } from "@/lib/contenido";
 import VideoHero from "@/components/VideoHero";
 import VideoFondo from "@/components/VideoFondo";
+import BotonBarraTest from "@/components/BotonBarraTest";
 import Subrayado from "@/components/Subrayado";
 import { Nebulosa, Etiqueta } from "@/components/Vida";
 import { ENVOLTORIO } from "@/components/secciones";
@@ -311,7 +312,7 @@ export function BarraLanding() {
         <Link href="/" aria-label="Casiopea 360" className="shrink-0"><Logo claro fundido chico /></Link>
         <div className="flex items-center gap-3">
           <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
-          <Link href="#solicitud" className="rounded-full bg-estrella px-5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2">Haz el test</Link>
+          <BotonBarraTest />
         </div>
       </div>
     </div>
