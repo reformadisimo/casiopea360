@@ -9,7 +9,8 @@ import { useEffect, useState } from "react";
 // (NEXT_PUBLIC_GTM_ID y NEXT_PUBLIC_CLARITY_ID), aceptar no carga nada: el aviso queda listo para el día que se pongan.
 // Contenedor de Google Analytics 4 de Casiopea (propiedad «Casiopea 360 web»). Es un identificador público.
 const GTM = process.env.NEXT_PUBLIC_GTM_ID || "GTM-T7XCVW44";
-const CLARITY = process.env.NEXT_PUBLIC_CLARITY_ID;
+// Proyecto de Clarity de Casiopea (identificador público). Sigue cargándose SOLO si el visitante acepta las cookies.
+const CLARITY = process.env.NEXT_PUBLIC_CLARITY_ID || "zg5ngcgsqr";
 const CLAVE = "casiopea-cookies";
 
 type Eleccion = "aceptadas" | "rechazadas" | null;
