@@ -535,3 +535,6 @@ html[data-texto="3"] header { zoom: 0.667; }
 @media (max-width: 639px) {
   body { padding-bottom: 4.75rem; }
 }
+
+/* Número decorativo de los pasos: va en pseudoelemento para que no cuente como texto (es solo adorno). */
+.num-paso::before{content:attr(data-n)}

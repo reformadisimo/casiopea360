@@ -1596,7 +1596,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
             <li key={x.t} className="group inclina relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-linea">
               <div className="flex items-center justify-between">
                 <Loseta icono={["lista", "lupa", "pagina", "video"][i]} i={i} />
-                <span aria-hidden="true" className="font-titular text-4xl font-extrabold" style={{ color: colores[i], opacity: 0.35 }}>0{i + 1}</span>
+                <span aria-hidden="true" className="num-paso font-titular text-4xl font-extrabold" data-n={`0${i + 1}`} style={{ color: colores[i], opacity: 0.35 }} />
               </div>
               <h3 className="mt-4 text-xl font-extrabold">{x.t}</h3>
               <p className="mt-2 text-gris">{x.d}</p>

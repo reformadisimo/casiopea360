@@ -52,6 +52,9 @@ function Tic() {
   );
 }
 
+// La prueba: la nota real de esta página en PageSpeed (medida el 20-nov-2026). Solo vale mientras la página no cambie: si se toca, volver a medir.
+const NOTAS_HERO: [string, string][] = [["100", "Rendimiento"], ["100", "Accesibilidad"], ["100", "Prácticas recomendadas"], ["100", "SEO"]];
+
 export function HeroLanding() {
   return (
     <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-24">
@@ -61,19 +64,16 @@ export function HeroLanding() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/95 via-noche/70 to-noche/30" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14`}>
         <div>
-          <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
-          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:mt-5 sm:text-5xl lg:text-[3rem]">
-            Descubre qué falla en tu marketing y qué haríamos para <Subrayado>mejorarlo</Subrayado>.
+          <Etiqueta tono="estrella">Predicamos con el ejemplo</Etiqueta>
+          <p className="mt-3 text-sm font-bold text-white/75">Agencia de marketing digital en Madrid</p>
+          <h1 className="mt-3 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
+            Cuatro 100 en nuestra web. Descubre qué mejorar en tu <Subrayado>marketing</Subrayado>.
           </h1>
-          <p className="mt-4 max-w-xl text-base text-white/85 sm:mt-4 sm:text-lg">
-            ¿Tu web apenas te trae consultas, o pagas anuncios sin tener claro qué te aportan? Pide tu <b className="text-white">estudio gratuito</b>:
+          <p className="mt-4 max-w-xl text-base text-white/85 sm:text-lg">
+            <b className="text-white">Pide tu estudio gratuito.</b> Revisamos tu web, cómo te encuentran y cómo se anuncia tu competencia.
           </p>
-          <ul className="mt-3 max-w-xl space-y-1.5 text-base text-white sm:text-[1.05rem]">
-            {[["Qué mejorar en tu web.", "Velocidad en móvil y fallos."], ["Cómo podría quedar.", "Web y anuncios de ejemplo."], ["Qué haríamos primero.", "Plan de 30 días con costes."]].map(([a, b]) => (
-              <li key={a} className="flex items-start gap-3"><span aria-hidden className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" /><span><b>{a}</b> <span className="text-white/80">{b}</span></span></li>
-            ))}
-          </ul>
-          <div className="mt-5 sm:mt-5">
+          <p className="mt-3 max-w-xl text-base text-white/85 sm:text-lg">Te enseñamos qué cambiaríamos, cómo podría quedar y cuánto costaría.</p>
+          <div className="mt-6">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
             <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
@@ -82,26 +82,56 @@ export function HeroLanding() {
           </p>
         </div>
 
-        <div>
+        <figure>
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
-            <div className="flex items-center justify-between gap-3 bg-noche-2 px-6 py-4">
-              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Tu estudio gratuito</p>
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white">Ejemplo</span>
+            <div className="flex items-center gap-2 border-b border-tinta/10 bg-niebla px-4 py-2.5 text-xs font-bold text-tinta/70">
+              <span aria-hidden className="flex gap-1"><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /><i className="h-2.5 w-2.5 rounded-full bg-tinta/20" /></span>
+              pagespeed.web.dev · casiopea360.es/estudio-gratuito
             </div>
-            <ol className="divide-y divide-tinta/10">
-              {MUESTRA.map(([src, t, d, alt], i) => (
-                <li key={t} className="flex items-center gap-4 p-4 sm:gap-5 sm:p-5">
-                  <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 176px, 112px" className="h-auto w-28 rounded-xl ring-1 ring-tinta/15 sm:w-44" />
-                  <div>
-                    <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
-                    <b className="block text-lg font-extrabold leading-tight sm:text-xl">{t}</b>
-                    <span className="mt-1 block text-sm text-tinta/70">{d}</span>
-                  </div>
-                </li>
+            <p className="px-5 pt-5 text-lg font-extrabold leading-tight sm:px-6 sm:text-xl">Esta página, medida con PageSpeed Insights.</p>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-5 p-5 sm:grid-cols-4 sm:p-6">
+              {NOTAS_HERO.map(([n, t]) => (
+                <div key={t} className="text-center">
+                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-[5px] border-emerald-500 bg-emerald-50 text-xl font-extrabold text-emerald-700 sm:h-[4.5rem] sm:w-[4.5rem]">{n}</div>
+                  <p className="mt-2 text-xs font-bold leading-tight text-tinta/75">{t}</p>
+                </div>
               ))}
-            </ol>
+            </div>
+            <div className="border-t border-tinta/10 px-5 py-4 sm:px-6">
+              <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-extrabold text-emerald-800"><span aria-hidden className="h-2.5 w-2.5 rounded-full bg-emerald-500" />3/3 en navegación para IA</p>
+            </div>
           </div>
-          <p className="mt-3 text-center text-xs text-white/70">Páginas de un estudio de ejemplo, de un despacho inventado. El tuyo se prepara con tu empresa.</p>
+          <figcaption className="mt-3 text-sm text-white/75">
+            Medición real de esta misma página, el 20 de noviembre de 2026, en móvil y en ordenador. Puedes{" "}
+            <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirla tú</a>: las notas varían un poco en cada medición. Mide la página, no los resultados de tus anuncios.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+// Justo después de la prueba: lo que verá el visitante en SU negocio.
+export function SeccionMuestras() {
+  return (
+    <section id="muestras" className="scroll-mt-24 bg-niebla py-14 sm:py-20">
+      <div className={ENVOLTORIO}>
+        <div className="mx-auto max-w-5xl">
+          <Etiqueta>Ahora, tu negocio</Etiqueta>
+          <h2 className="mt-4 text-3xl font-extrabold text-tinta sm:text-4xl">Aplicamos esa misma exigencia a tu web, tus anuncios y el resto de tu marketing.</h2>
+          <p className="mt-3 text-lg text-tinta/75">Empezamos enseñándote qué mejoraríamos y por qué. Así se ve un estudio:</p>
+          <ol className="mt-8 grid gap-5 md:grid-cols-3">
+            {MUESTRA.map(([src, t, d, alt], i) => (
+              <li key={t} className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-tinta/10 sm:p-5">
+                <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 768px) 320px, 90vw" className="h-auto w-full rounded-xl ring-1 ring-tinta/15" />
+                <span className="mt-4 block text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
+                <b className="block text-xl font-extrabold leading-tight text-tinta">{t}</b>
+                <span className="mt-1 block text-tinta/70">{d}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 text-sm text-tinta/60">Páginas de un estudio de ejemplo, de un despacho inventado. El tuyo se prepara con tu empresa.</p>
+          <Link href="#solicitud" className={`${BOTON} mt-6 w-full py-4 text-lg sm:w-auto sm:px-9`}>Quiero mi estudio gratuito</Link>
         </div>
       </div>
     </section>
