@@ -4,14 +4,13 @@ import { LlamadaFinal, SeccionSolicitud } from "@/components/secciones";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
-// Es la herramienta, no una página que compita en Google: la que se posiciona por «estudio gratuito» es /estudio-gratuito.
+// Herramienta indexable con texto propio (la que se posiciona por «estudio gratuito» es /estudio-gratuito; aquí no se repite su contenido).
 export const metadata = {
   ...meta(
-    "Test de idoneidad: tu nota de marketing digital",
-    "Una pregunta cada vez y sin escribir: tu nota, dónde se te escapan clientes y, si podemos ayudarte, tu estudio gratuito.",
+    "Test de marketing digital para empresas: tu nota",
+    "Responde tres preguntas tocando, sin escribir, y descubre dónde se te escapan clientes en tu web, tus anuncios y tu posicionamiento en Google.",
     "/test",
   ),
-  robots: { index: false, follow: true },
 };
 
 export default function Test() {
@@ -22,12 +21,12 @@ export default function Test() {
         titulo="¿Cómo está tu marketing digital?"
         clave="marketing digital"
         chip={{ grande: "Tocando", chico: "Sin escribir" }}
-        entradilla="Te damos tu nota y dónde se te escapan clientes. Y si podemos ayudarte, te preparamos gratis tu estudio completo."
+        entradilla="Tres toques y tus datos: te decimos dónde se te escapan clientes en tu web, tus anuncios y Google."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
         video="movil-sonrisa"
         videoAlt="Una mujer sonríe mirando su móvil en la ciudad"
       />
-      <SeccionSolicitud />
+      <SeccionSolicitud soloTest />
       <LlamadaFinal />
     </>
   );
