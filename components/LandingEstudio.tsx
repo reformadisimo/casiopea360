@@ -16,21 +16,21 @@ const BOTON =
 
 // Portada: tres entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
 const MUESTRA: [string, string, string, string][] = [
-  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Test de velocidad en el móvil y qué falla hoy.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
-  ["/ejemplo/web-portada-700.webp", "Tu web rediseñada", "La ves hecha antes de decidir nada.", "Captura del estudio de ejemplo: la web rediseñada"],
-  ["/ejemplo/guia-700.webp", "Tu plan de 30 días", "Qué haríamos primero y en qué orden.", "Captura del estudio de ejemplo: la guía con el plan"],
+  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Revisamos la velocidad y los fallos que pueden impedir que te contacten.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/web-portada-700.webp", "Tu web rediseñada", "Mira cómo podría quedar antes de decidir si contratas.", "Captura del estudio de ejemplo: la web rediseñada"],
+  ["/ejemplo/guia-700.webp", "Tu plan de 30 días", "Ten claro qué cambiaríamos primero y por qué.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
 const INCLUYE: [string, string][] = [
-  ["Tu web a examen", "Test de velocidad en el móvil, fallos y qué mejorar."],
+  ["Tu web a examen", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
   ["Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
   ["Tu competencia", "Cómo se anuncia en Google y en redes."],
   ["Tu web rediseñada", "Rediseño completo de muestra, para que lo veas."],
   ["Tus nuevos anuncios", "Ejemplos de lo que anunciaríamos para ti."],
   ["Tus correos de seguimiento", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
-  ["Tu plan de 30 días", "Qué haríamos primero y en qué orden."],
-  ["Cuánto costaría", "Con una cuota fija y por separado, para que compares."],
+  ["Tu plan de 30 días", "Qué cambiaríamos primero y por qué, en orden."],
+  ["Cuánto costaría", "Compara la cuota fija con el coste por separado antes de decidir."],
 ];
 const ADEMAS: string[] = [
   "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
@@ -64,7 +64,7 @@ export function HeroLanding() {
             Descubre qué falla en tu marketing y qué haríamos para <Subrayado>mejorarlo</Subrayado>.
           </h1>
           <p className="mt-4 max-w-xl text-base text-white/85 sm:mt-5 sm:text-xl">
-            Pide un <b className="text-white">estudio gratuito</b> de tu negocio. Revisamos tu web, miramos cómo se anuncia tu competencia y te enseñamos tu web rediseñada y tus anuncios, con un plan y lo que costaría.
+            ¿Tu web apenas te trae consultas, o pagas anuncios sin tener claro qué te aportan? Pide tu <b className="text-white">estudio gratuito</b>: revisamos tu web, miramos cómo se anuncia tu competencia y te mostramos qué cambiaríamos, con ejemplos, un plan y sus costes.
           </p>
           <div className="mt-5 sm:mt-7">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-4 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
