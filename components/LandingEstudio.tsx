@@ -137,7 +137,7 @@ export function SeccionIncluye() {
             <b className="block text-lg font-extrabold text-tinta">Sin compromiso y sin pedirte accesos.</b>
             <p className="mt-1 text-tinta/75">Se hace con el test y con lo que es público de tu web. Lo que depende de tus cifras va como estimación, y te lo decimos.</p>
             <b className="mt-4 block text-lg font-extrabold text-tinta">¿Para quién es?</b>
-            <p className="mt-1 text-tinta/75">Para empresas que ya tienen clientes y quieren más. Si vemos que no podemos ayudarte, te lo decimos en 48 horas laborables.</p>
+            <p className="mt-1 text-tinta/75">Para empresas que ya tienen clientes y ya invierten en marketing (agencia, anuncios, SEO, redactores…), y quieren que rinda más. Contestamos a todo el mundo en 48 horas laborables; si vemos que no podemos ayudarte, te lo decimos y no preparamos el estudio.</p>
           </div>
           <Link href="#solicitud" className={`${BOTON} mt-6 w-full py-4 text-lg`}>Quiero mi estudio gratuito</Link>
           <p className="mt-4 text-center text-sm text-tinta/70">
