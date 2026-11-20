@@ -1644,7 +1644,7 @@ export function SeccionEstudioResumen() {
       </ul>
       <MuestraEstudio />
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
+        <a href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</a>
         <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
       </div>
     </section>
@@ -1830,7 +1830,7 @@ export function SeccionEstudio() {
           Una guía viva, que se actualiza mientras la comentamos.
           <span className="mt-2 block text-estrella">En una consultora, es un proyecto de pago. Si podemos ayudarte, es gratis.</span>
         </p>
-        <a href="#solicitud" className={BOTON}>Hacer el test de idoneidad</a>
+        <a href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</a>
       </div>
     </section>
   );
