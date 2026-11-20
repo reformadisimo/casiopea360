@@ -11,7 +11,7 @@ import { COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest"
 import Image from "next/image";
 import BotonDictado from "@/components/BotonDictado";
 import { CONTACTO } from "@/lib/contenido";
-import { FACTURACION, SECTORES, URGE } from "@/lib/testOrden";
+import { GASTO, SECTORES, URGE } from "@/lib/testOrden";
 
 // Muestra de la guía que recibirá (despacho ficticio, difuminada).
 const MUESTRA = [
@@ -52,8 +52,6 @@ const SN = (si: string, medias: string, no: string): Opc[] => [
   { t: no, v: 0 },
 ];
 
-const MARKETING = ["Menos de 500 € al mes", "De 500 a 1.500 € al mes", "De 1.500 a 3.000 € al mes", "De 3.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes", "No lo sé"];
-const INVERSION = ["Nada", "Menos de 1.000 € al mes", "De 1.000 a 5.000 € al mes", "De 5.000 a 10.000 € al mes", "Más de 10.000 € al mes"];
 const CAMBIAR = ["Lo antes posible", "En los próximos tres meses", "Más adelante", "No tengo prisa, solo estoy mirando"];
 const CONVENCE = ["Empezaríamos en cuanto podáis", "Lo hablaría con mi socio o la dirección", "Lo compararía con otras propuestas", "Solo quiero ver ideas"];
 const DECIDE = ["Yo", "Lo decido con mi socio o la dirección", "Lo propongo y decide otra persona"];
@@ -71,7 +69,7 @@ const TRAMOS: Tramo[] = [
     preguntas: [
       { id: "urge", p: "¿Qué te gustaría mejorar primero?", ayuda: "Elige lo que más te preocupa ahora.", o: T(...URGE) },
       { id: "sector", p: "¿A qué se dedica tu empresa?", ayuda: "Elige la opción que mejor describa tu actividad principal.", o: T(...SECTORES) },
-      { id: "facturacion", p: "¿Cuánto factura al año, más o menos?", ayuda: "Nos ayuda a saber con quién hablamos. Si prefieres no decirlo, no pasa nada.", o: T(...FACTURACION) },
+      { id: "gasto", p: "¿Cuánto gastas al mes en marketing, en total?", ayuda: "Agencias, herramientas y anuncios, todo junto. Con una cifra aproximada nos vale.", o: T(...GASTO) },
     ],
   },
   {
@@ -101,8 +99,6 @@ const TRAMOS: Tramo[] = [
     preguntas: [
       { id: "c3", p: "¿Cuántos proveedores distintos llevan tu marketing digital?", o: [{ t: "Uno solo", v: 3 }, { t: "Dos o tres", v: 1 }, { t: "Cuatro o más", v: 0 }, { t: "Lo hacemos en casa como podemos", v: 0 }], fallo: "Tienes varios proveedores y nadie mira el conjunto: tú haces de coordinador.", arreglo: "Un solo equipo para todo, con una sola persona de contacto.", peso: 3 },
       { id: "w5", p: "¿Tu dominio, tu web y los accesos están a tu nombre?", o: SN("Sí, todo", "Una parte", "No lo sé"), fallo: "Tu web no es del todo tuya: si cambias de proveedor puedes perderla.", arreglo: "Dominio y cuentas a tu nombre desde el primer día.", peso: 2 },
-      { id: "marketing", p: "¿Cuánto pagas al mes en marketing, sin contar anuncios? (agencias, proveedores, herramientas)", o: T(...MARKETING) },
-      { id: "inversion", p: "¿Y cuánto inviertes al mes en anuncios?", o: T(...INVERSION), logo: "Meta" },
       { id: "comision", p: "¿Te cobran comisión sobre lo que inviertes en anuncios?", o: [{ t: "No", v: 3 }, { t: "Sí, un porcentaje", v: 0 }, { t: "No lo sé", v: 1 }, { t: "No hago anuncios", v: 3 }], fallo: "Pagas comisión sobre tus anuncios: cuanto más inviertes, más pagas a la agencia.", arreglo: "Cuota fija: cero comisiones sobre lo que inviertas.", peso: 2 },
     ],
   },
@@ -133,7 +129,7 @@ const REACCION = [
 ];
 const ANOTADO: Record<string, string> = {
   sector: "Anotado: hablaremos de tu sector",
-  facturacion: "Anotado. Queda entre nosotros",
+  gasto: "Anotado. Con esto vemos cuánto podrías ahorrar",
   zona: "Perfecto, lo tendremos en cuenta",
   valor: "Así sabremos lo que vale cada cliente que te traigamos",
   marketing: "Anotado: con esto calculamos tu ahorro",
@@ -155,9 +151,7 @@ function etiquetaEncaje(r: Record<string, number>) {
   let p = [3, 2, 0][CAMBIAR.indexOf(t("cambiar"))] ?? 0;
   p += [3, 2, 0][CONVENCE.indexOf(t("convence"))] ?? 0;
   p += [2, 1, 0][DECIDE.indexOf(t("decide"))] ?? 0;
-  p += [0, 1, 2, 3, 3, 3, 0][MARKETING.indexOf(t("marketing"))] ?? 0;
-  if (t("inversion") && t("inversion") !== INVERSION[0]) p += 1;
-  if (t("facturacion") && t("facturacion") !== FACTURACION[0]) p += 1;
+  p += [0, 1, 2, 5, 0][GASTO.indexOf(t("gasto"))] ?? 0;
   return p >= 9 ? "ENCAJE ALTO" : p >= 5 ? "ENCAJE MEDIO" : "ENCAJE BAJO";
 }
 

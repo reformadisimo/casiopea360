@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { asegurarTablas, hayBaseDeDatos, sql } from "@/lib/db";
-import { CAMPOS_DATOS, FACTURACION, PANTALLAS, SECTORES, URGE } from "@/lib/testOrden";
+import { CAMPOS_DATOS, GASTO, PANTALLAS, SECTORES, URGE } from "@/lib/testOrden";
 
 /* RECORRIDO DEL TEST (19-nov-2026). Con clave (middleware.ts), fuera de Google.
    Dónde entra la gente, dónde se para, qué campos deja vacíos y en cuáles falla. Todo sale de la tabla `test_pasos`
@@ -198,7 +198,7 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
           <section>
             <h2 className="text-2xl font-extrabold text-tinta">3 · Lo que contestan en los tres toques</h2>
             <div className="mt-3 grid gap-4 lg:grid-cols-3">
-              {[["¿A qué se dedica?", "sector", SECTORES], ["¿Cuánto factura?", "facturacion", FACTURACION], ["¿Qué les urge?", "urge", URGE]].map(([t, id, textos]) => (
+              {[["¿A qué se dedica?", "sector", SECTORES], ["¿Cuánto gastan en marketing?", "gasto", GASTO], ["¿Qué les urge?", "urge", URGE]].map(([t, id, textos]) => (
                 <div key={id as string} className="rounded-3xl bg-white p-5 ring-1 ring-linea">
                   <p className="font-extrabold text-tinta">{t as string}</p>
                   {distribucion(id as string, textos as string[])}
