@@ -54,6 +54,14 @@ export default function Revelado() {
     window.addEventListener("resize", alDesplazar, { passive: true });
 
     const marcados = new WeakSet<Element>();
+    // Los destellos (.brilla) solo se animan mientras se ven: cada uno es una capa propia.
+    const vistos = new WeakSet<Element>();
+    const ojo = new IntersectionObserver((es) => {
+      es.forEach((e) => e.target.classList.toggle("brilla-on", e.isIntersecting));
+    }, { rootMargin: "80px" });
+    const vigilarDestellos = () => {
+      document.querySelectorAll(".brilla").forEach((el) => { if (!vistos.has(el)) { vistos.add(el); ojo.observe(el); } });
+    };
     const montar = () => {
       const main = document.querySelector("main");
       if (!main) return;
@@ -83,6 +91,7 @@ export default function Revelado() {
       });
       // Lo marcado en una segunda pasada puede quedar arriba: se reordena por posición en la página.
       pendientes.sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+      vigilarDestellos();
       alDesplazar();
     };
 
@@ -95,6 +104,7 @@ export default function Revelado() {
       clearTimeout(t1);
       clearTimeout(t2);
       cancelAnimationFrame(marco);
+      ojo.disconnect();
       window.removeEventListener("scroll", alDesplazar);
       window.removeEventListener("resize", alDesplazar);
       document.querySelectorAll(".rv").forEach((el) => el.classList.remove("rv", "rv-in"));
