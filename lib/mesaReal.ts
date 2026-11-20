@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { asegurarTablas, sql } from "@/lib/db";
+import { anunciosMeta } from "@/lib/anunciosMeta";
 
 /* Datos REALES de la mesa de Casiopea (31-oct-2026), con la misma forma que los de la mesa de
    Reformadísimo (components/mesa/Mesa.tsx). Salen de la base de datos propia:
@@ -52,9 +53,10 @@ export async function datosReales() {
   for (const r of vistas) { const w = dia(String(r.dia)); w.vistas = Number(r.n); w.entradas = Number(r.e); w.personas = Number(r.u); }
   for (const r of tiempos) dia(String(r.dia)).segundos = Number(r.s ?? 0);
   for (const r of sols) { const w = dia(String(r.dia)); const k = canalMesa(r.fuente); w.peticiones += Number(r.n); w.porCanal[k] = (w.porCanal[k] ?? 0) + Number(r.n); }
+  const meta = await anunciosMeta();
   return {
     hoy, web, ga: [], gsc: [],
-    anuncios: { actualizado: "", diario: [], mensual: [] },
+    anuncios: { actualizado: meta.actualizado, diario: meta.filas, mensual: [] },
     redes: null, google: false,
     nombre: "Casiopea 360",
     inicioVisitas: INICIO_VISITAS,
