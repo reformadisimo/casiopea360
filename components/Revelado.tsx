@@ -29,6 +29,8 @@ export default function Revelado() {
   useEffect(() => {
     const html = document.documentElement;
     if (html.hasAttribute("data-sin-movimiento")) return;
+    // La landing de los anuncios sale entera desde el principio: medir cientos de elementos al cargar le costaba unos 450 ms de bloqueo.
+    if (ruta?.startsWith("/estudio-gratuito")) return;
     const movil = window.matchMedia("(max-width: 639px)").matches;
 
     // Lista de pendientes en orden de la página. Al desplazarse se mira solo el primero:
