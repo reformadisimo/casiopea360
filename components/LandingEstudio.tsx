@@ -1,3 +1,4 @@
+import { ImagenAmpliable } from "@/components/ImagenAmpliable";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import Image from "next/image";
@@ -90,7 +91,7 @@ export function HeroLanding() {
             <ol className="divide-y divide-tinta/10">
               {MUESTRA.map(([src, t, d, alt], i) => (
                 <li key={t} className="flex items-center gap-4 p-4 sm:gap-5 sm:p-5">
-                  <Image src={src} alt={alt} width={700} height={438} sizes="(min-width: 640px) 176px, 112px" className="h-auto w-28 shrink-0 rounded-xl ring-1 ring-tinta/15 sm:w-44" />
+                  <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 176px, 112px" className="h-auto w-28 rounded-xl ring-1 ring-tinta/15 sm:w-44" />
                   <div>
                     <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
                     <b className="block text-lg font-extrabold leading-tight sm:text-xl">{t}</b>
