@@ -18,6 +18,8 @@ export default function Cabecera() {
   const router = useRouter();
   const ruta = usePathname();
   const [solida, setSolida] = useState(false);
+  // En escritorio la pastilla se esconde al bajar y vuelve al subir, para no tapar el contenido.
+  const [oculta, setOculta] = useState(false);
   const [abierto, setAbierto] = useState<string | null>(null);
   const [movil, setMovil] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -34,7 +36,14 @@ export default function Cabecera() {
   };
 
   useEffect(() => {
-    const alBajar = () => setSolida(window.scrollY > 40);
+    let ultimo = window.scrollY;
+    const alBajar = () => {
+      const y = window.scrollY;
+      setSolida(y > 40);
+      if (y > ultimo + 6 && y > 400) setOculta(true);
+      else if (y < ultimo - 6 || y < 200) setOculta(false);
+      ultimo = y;
+    };
     alBajar();
     window.addEventListener("scroll", alBajar, { passive: true });
     return () => window.removeEventListener("scroll", alBajar);
@@ -77,9 +86,9 @@ export default function Cabecera() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 ${abierto || movil ? "z-[55]" : "z-40"} overflow-x-clip transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 ${abierto || movil ? "z-[55]" : "z-40"} overflow-x-clip transition-[background-color,transform] duration-300 ${
         solida || movil ? "bg-noche/[0.97] shadow-[0_1px_0_rgba(255,255,255,0.08)] backdrop-blur" : "bg-transparent"
-      } ${pastilla ? "xl:pointer-events-none xl:bg-transparent xl:shadow-none xl:backdrop-blur-none" : ""}`}
+      } ${pastilla ? "xl:pointer-events-none xl:bg-transparent xl:shadow-none xl:backdrop-blur-none" : ""} ${pastilla && oculta && !abierto ? "xl:-translate-y-[130%]" : ""}`}
     >
       <div
         className={`relative mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 2xl:max-w-[1500px] transition-[margin,padding,border-radius] duration-300 sm:px-6 ${
