@@ -1,7 +1,7 @@
 import FranjaVideos from "@/components/FranjaVideos";
 import CabeceraPagina from "@/components/CabeceraPagina";
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { BandaCompromisos,
+import { BandaCompromisos, BandaEnlaceLista,
   SeccionEspecialistas, SeccionFueraInternet, SeccionLoQueSea, SeccionTambienIncluido, SeccionPorQueBarato, SeccionVelocidad, SeccionTecnologia, SeccionCRM, SeccionCostes, LlamadaFinal, SeccionFrentes, SeccionOficios, BandaEnlaceControl, BandaEnlaceRemoto } from "@/components/secciones";
 import { SeccionFichaGoogle, SeccionPruebasAB, SeccionPrecio } from "@/components/SeccionesVender";
 import EjemploResenas from "@/components/EjemploResenas";
@@ -29,6 +29,7 @@ export default function Servicios() {
         videoAlt="Iconos de redes sociales flotan sobre un móvil"
       />
       <SeccionFrentes completa />
+      <BandaEnlaceLista />
       <FranjaVideos
         tipo="mosaico"
         frase="Todo conectado. Todo a la vez."

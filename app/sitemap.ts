@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const fijas = [
     ["/", 1],
     ["/servicios", 0.9],
+    ["/todos-los-servicios", 0.8],
     ["/estudio-gratuito", 0.9],
     ["/test", 0.6],
     ["/lo-que-consigues", 0.9],

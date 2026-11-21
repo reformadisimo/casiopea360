@@ -1081,6 +1081,25 @@ export function BandaEnlaceRemoto() {
   );
 }
 
+/* /servicios: enlace a la lista completa de servicios. */
+export function BandaEnlaceLista() {
+  return (
+    <section className="bg-white py-8">
+      <div className={ENVOLTORIO}>
+        <a href="/todos-los-servicios" className="group flex flex-col gap-3 rounded-[1.6rem] border-2 border-[#1d4ed8]/30 bg-niebla p-5 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-center sm:gap-5">
+          <Loseta icono="lista" i={1} className="sm:mr-1" />
+          <span className="flex-1">
+            <span className="block text-sm font-extrabold uppercase tracking-wide text-noche-3">La lista completa</span>
+            <span className="mt-1 block text-xl font-extrabold sm:text-2xl">Ficha de Google, reseñas, anuncios locales, web, redes, CRM… todo en una sola página.</span>
+            <span className="mt-1 block text-gris">Lo que hacemos, sin letra pequeña, y que vamos ampliando con lo que nos piden.</span>
+          </span>
+          <span className="shrink-0 font-bold text-noche-3 underline decoration-estrella decoration-2 underline-offset-4 group-hover:text-[#1d4ed8]">Ver todos los servicios</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 /* Portada: tú tienes el control de todo (ocho compromisos). */
 export function BandaControl() {
   return (

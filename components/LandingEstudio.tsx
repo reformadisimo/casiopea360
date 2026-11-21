@@ -26,17 +26,17 @@ const MUESTRA: [string, string, string, string][] = [
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
 const INCLUYE: [string, string][] = [
   ["Entiende qué mejorar en tu web", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
-  ["Mira cómo te encuentran en Google y las IA", "Cómo te encuentran y si las IA te recomiendan."],
-  ["Mira cómo se anuncian otros negocios de tu zona", "Cómo se anuncia en Google y en redes."],
+  ["Mira cómo te encuentran en Google y las IA", "Cómo te encuentran, cómo está tu ficha de Google y tus reseñas, y si las IA te recomiendan."],
+  ["Mira cómo se anuncian otros negocios de tu zona", "Cómo se anuncia en Google, en Maps y en redes."],
   ["Ve una propuesta antes de decidir", "Rediseño completo de muestra, para que lo veas."],
-  ["Ve cómo podrían ser tus anuncios", "Ejemplos de lo que anunciaríamos para ti."],
+  ["Ve cómo podrían ser tus anuncios", "Ejemplos de lo que anunciaríamos para ti, también anuncios locales para quien busca cerca."],
   ["Sigue a cada contacto hasta que es cliente", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
   ["Ten claro por dónde empezar", "Qué cambiaríamos primero y por qué, en orden."],
   ["Conoce el coste antes de decidir", "Compara la cuota fija con el coste por separado antes de decidir."],
 ];
 const ADEMAS: string[] = [
   "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
-  "Tu ficha de Google y tus reseñas, repasadas",
+  "Tu ficha de Google y tus reseñas, repasadas, y qué hacer con las falsas",
   "Una muestra de asistente con IA para tu web",
   "Ideas de contenido para tres meses",
   "Cómo cambiar de web sin perder lo que ya tienes en Google",
@@ -72,7 +72,7 @@ export function HeroLanding() {
           </h1>
           <p className="mt-4 max-w-xl text-lg text-white/90">Un solo equipo coordina tu marketing y el seguimiento de tus contactos. Una persona te guía y te mantiene al día.</p>
           <ul className="mt-4 flex max-w-xl flex-wrap gap-2 text-sm font-extrabold">
-            {["Web", "SEO y Google", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
+            {["Web", "SEO y Google", "Ficha y reseñas", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
               <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/25">{t}</li>
             ))}
           </ul>

@@ -3,7 +3,7 @@
 
 export const SECTORES = ["Servicios a particulares", "Servicios a empresas", "Tienda o comercio", "Industria o fabricación", "Salud o bienestar", "Otra"];
 export const GASTO = ["Menos de 1.000 € al mes", "De 1.000 a 2.000 € al mes", "De 2.000 a 4.000 € al mes", "Más de 4.000 € al mes", "No lo sé o prefiero no decirlo"];
-export const URGE = ["Me llegan pocas consultas", "No sé qué me aportan los anuncios", "Mi web necesita mejorar", "Coordino demasiados proveedores", "No tengo claro si pago de más"];
+export const URGE = ["Me llegan pocas consultas", "No sé qué me aportan los anuncios", "Mi web necesita mejorar", "Mi ficha de Google y mis reseñas", "Quiero que me encuentren los de mi zona", "Coordino demasiados proveedores", "No tengo claro si pago de más"];
 
 /** Pantallas en el orden en que se ven. El primer tramo son tres toques y los datos; lo demás llega después de enviar. */
 export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" | "despues" | "afinar" | "fin" }[] = [

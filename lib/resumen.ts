@@ -8,7 +8,7 @@ import { TERMINOS } from "@/lib/terminos";
 
 
 // Fecha de la última revisión del contenido que resumen las IA: se cambia cuando cambie de verdad.
-export const ACTUALIZADO = "2026-11-19";
+export const ACTUALIZADO = "2026-11-21";
 
 // Resumen de la web en texto plano: lo usan llms.txt y el asistente.
 export function resumenWeb() {
@@ -65,6 +65,7 @@ ${TAMBIEN_INCLUIDO.map((x) => `- ${x.t}: ${x.d}`).join("\n")}
 ## Páginas
 - [Inicio](${u}/)
 - [Servicios](${u}/servicios)
+- [Todos los servicios, en una lista](${u}/todos-los-servicios): ficha de Google, reseñas (pedirlas, contestarlas y denunciar las falsas a Google, que decide), anuncios locales, SEO, web, redes, CRM e IA
 - [Cómo trabajamos](${u}/como-trabajamos)
 - [Miedo al cambio: prueba A/B y salida fácil](${u}/miedo-al-cambio)
 - [Tú tienes el control de todo, siempre: ocho compromisos y 10 cosas que revisar](${u}/tu-control)

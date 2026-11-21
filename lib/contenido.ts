@@ -36,6 +36,7 @@ export const FRENTES: Frente[] = [
     servicios: [
       "Ficha de Google al día, con fotos y publicaciones",
       "Respuesta a todas las reseñas, con tu visto bueno",
+      "Reseñas falsas: las denunciamos a Google con pruebas (lo decide Google)",
       "Campaña para pedir reseñas a clientes reales",
       "Que Google entienda tu web y te enseñe a quien te busca cerca",
       "Artículos que atraen clientes: los escribimos nosotros, tú solo los revisas",
@@ -50,6 +51,7 @@ export const FRENTES: Frente[] = [
     servicios: [
       "Revisamos en qué se va hoy tu dinero en anuncios",
       "Anuncios en Google que llevan a páginas hechas para que te contacten",
+      "Anuncios locales: para quien busca cerca, por ciudad, barrio o radio",
       "Anuncios en Instagram, Facebook y TikTok, con el tope de gasto que tú decidas",
       "Anuncios en Bing, donde casi nadie compite y el clic suele salir más barato",
       "Cada semana miramos qué funciona y quitamos lo que no",

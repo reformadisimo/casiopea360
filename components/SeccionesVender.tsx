@@ -84,6 +84,8 @@ export function SeccionFichaGoogle() {
     "Publicamos novedades y trabajos terminados, y subimos fotos nuevas.",
     "Servicios, horario y categorías al día, y contestamos las preguntas de tus clientes.",
     "Te damos una tarjeta con código QR para que tus clientes dejen su reseña fácil.",
+    "Si te dejan una reseña falsa, reunimos las pruebas y la denunciamos a Google. Quitarla lo decide Google, no podemos asegurarlo.",
+    "Anuncios locales para quien busca cerca de ti, en Google y en Maps.",
   ];
   return (
     <section className="relative overflow-hidden bg-niebla py-14 sm:py-20" aria-labelledby="ficha-google">

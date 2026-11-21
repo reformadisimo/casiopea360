@@ -12,6 +12,7 @@ export const SITIO = {
 export type Enlace = { texto: string; href: string; detalle?: string; icono?: string };
 
 export const SERVICIOS_MENU: Enlace[] = [
+  { icono: "lista", texto: "Todos los servicios", href: "/todos-los-servicios", detalle: "La lista completa, de la ficha de Google a los anuncios locales" },
   { icono: "pagina", texto: "Web y apps", href: "/servicios/diseno-web", detalle: "Tu escaparate y tu app, rápidos y tuyos" },
   { icono: "lupa", texto: "Google y las IA", href: "/servicios/seo-google-ia", detalle: "Que te encuentre quien te busca" },
   { icono: "euro", texto: "Anuncios", href: "/servicios/publicidad-google-ads-redes", detalle: "Cada euro vigilado, sin comisiones" },
