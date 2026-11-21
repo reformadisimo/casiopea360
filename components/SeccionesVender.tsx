@@ -322,7 +322,7 @@ export function SeccionEmpresarios() {
           Antes de llevar tu marketing, <span className="tono2">hemos llevado empresas.</span>
         </h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. Sabemos de lo que hablas cuando hablas de tu negocio.
+          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Nuestro equipo ha sido socio, accionista y administrador de grandes empresas, de muchos millones de facturación y de más de 100 empleados, durante muchos años y en distintos sectores. Sabemos de lo que hablas cuando hablas de tu negocio.
         </p>
         <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">Sectores en los que hemos dirigido empresas propias</p>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -440,6 +440,7 @@ export function SeccionLoQueNo() {
     ["trofeo", "No prometemos el primer puesto", "Ni en Google ni en las IA: nadie puede. Prometemos método y constancia, medidos con los indicadores que fijamos contigo."],
     ["firma", "No publicamos nada importante sin tu visto bueno", "Campañas nuevas, cambios grandes en la web, respuestas a reseñas y todo lo que cueste dinero: antes, contigo."],
     ["grafica", "No inventamos datos", "Cada cifra dice de dónde sale. Si falta un dato, verás un guion, nunca un cero ni un número puesto a ojo."],
+    ["escudo", "No escondemos nuestros errores", "Si nos equivocamos, te lo decimos y lo arreglamos. Y aprendemos cada día de ti y de todos los clientes: por eso a todos les ofrecemos la misma visión 360."],
     ["prensa", "No te llenamos de informes técnicos", "Te contamos qué hemos hecho, cómo lo hemos comprobado y qué toca ahora. En llano."],
   ];
   return (
@@ -481,7 +482,7 @@ const DESC_AHORRO: Record<string, string> = {
   "Diseño y cambios": "Cambios en tu web, páginas para cada campaña (landings), banners y piezas gráficas. Cada cambio, a tiempo y sin pedir otro presupuesto.",
   "Web nueva": "Una web nueva, rápida y pensada para traer clientes, no solo para estar. Se paga una vez; después hay que alojarla y mantenerla.",
   "CRM": "El programa donde guardas tus contactos, ves de dónde viene cada cliente y no se te escapa ninguno, con avisos y seguimiento. Se paga una vez y alguien tiene que mantenerlo.",
-  "Asesoramiento": "Un punto de vista estratégico de empresa: estrategia de negocio, planes de marketing y de presupuestos. En fiscal, contabilidad y temas laborales te orientamos y, si te sientes perdido, te decimos a qué profesional acudir; no llevamos tu contabilidad ni tus impuestos. Nuestro equipo ha sido socio, accionista y administrador de empresas de más de 8 millones de euros de facturación y más de 120 empleados, durante muchos años y en distintos sectores. No sustituimos a tu gestor ni a tu abogado.",
+  "Asesoramiento": "Un punto de vista estratégico de empresa: estrategia de negocio, planes de marketing y de presupuestos. En fiscal, contabilidad y temas laborales te orientamos y, si te sientes perdido, te decimos a qué profesional acudir; no llevamos tu contabilidad ni tus impuestos. Nuestro equipo ha sido socio, accionista y administrador de grandes empresas, de muchos millones de facturación y de más de 100 empleados, durante muchos años y en distintos sectores. No sustituimos a tu gestor ni a tu abogado.",
 };
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
@@ -601,7 +602,7 @@ export function SeccionPrecio() {
     ["pagina", "Web, SEO y visibilidad en las IA", "Tu web nueva en días, mantenida por nosotros, y tu empresa trabajada para salir en Google y cuando alguien pregunta a una IA."],
     ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok llevados por nosotros, reseñas contestadas y una sola persona que te escribe."],
     ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
-    ["escudo", "Un punto de vista de empresarios", "Hemos sido socios y administradores de empresas de más de 8 millones de facturación y más de 120 empleados. Te asesoramos en estrategia, presupuestos y números, y si te pierdes, te llevamos al profesional adecuado. Sin coste aparte."],
+    ["escudo", "Un punto de vista de empresarios", "Hemos sido socios y administradores de grandes empresas, de muchos millones de facturación y de más de 100 empleados. Te asesoramos en estrategia, presupuestos y números, y si te pierdes, te llevamos al profesional adecuado. Sin coste aparte."],
   ];
   return (
     <>

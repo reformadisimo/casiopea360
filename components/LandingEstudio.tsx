@@ -28,7 +28,7 @@ const INCLUYE: [string, string][] = [
   ["Entiende qué mejorar en tu web", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
   ["Mira cómo te encuentran en Google y las IA", "Cómo te encuentran, cómo está tu ficha de Google y tus reseñas, y si las IA te recomiendan."],
   ["Mira cómo se anuncian otros negocios de tu zona", "Cómo se anuncia en Google, en Maps y en redes."],
-  ["Ve una propuesta antes de decidir", "Rediseño completo de muestra, para que lo veas."],
+  ["Ve una propuesta antes de decidir", "Rediseño completo de muestra, pensado para tu cliente y no solo para ti."],
   ["Ve cómo podrían ser tus anuncios", "Ejemplos de lo que anunciaríamos para ti, también anuncios locales para quien busca cerca."],
   ["Sigue a cada contacto hasta que es cliente", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
   ["Ten claro por dónde empezar", "Qué cambiaríamos primero y por qué, en orden."],

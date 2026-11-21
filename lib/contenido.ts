@@ -21,7 +21,8 @@ export const FRENTES: Frente[] = [
     frase: "Tu escaparate, abierto día y noche, y tu app en las tiendas.",
     servicios: [
       "Tu dominio, tu correo y dónde vive tu web: nos ocupamos de todo",
-      "Web hecha a tu medida, que carga rápido en el móvil",
+      "Web hecha a tu medida y a la de tu cliente, que carga rápido en el móvil",
+      "Mapas de calor y lupa: vemos dónde se atasca tu cliente y lo quitamos",
       "Rediseño de tu logo e imagen, si lo necesitas",
       "Calculadoras para que tus clientes vean precios al momento",
       "Apps para iPhone y Android, publicadas y cobrando",
