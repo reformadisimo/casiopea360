@@ -466,6 +466,9 @@ const AHORRO_MES: { que: string; quien: string; min: number; max?: number }[] = 
   { que: "Gestión de Google Ads (SEM)", quien: "Especialista en anuncios", min: 1500, max: 2000 },
   { que: "Instagram y redes", quien: "Community manager", min: 600 },
   { que: "Diseño, cambios en la web y landings", quien: "Diseñador o estudio", min: 1000 },
+];
+/** Extra que va DENTRO de la cuota pero no entra en la suma de arriba (22-nov-2026, Ig: la comparación de la web = la del anuncio, 4.000 a 4.800 € al mes). */
+const AHORRO_EXTRA: { que: string; quien: string; min: number }[] = [
   { que: "Asesoramiento de negocio", quien: "Asesor estratégico de empresas", min: 400 },
 ];
 const AHORRO_UNA_VEZ: { que: string; quien: string; min: number }[] = [
@@ -487,6 +490,7 @@ const DESC_AHORRO: Record<string, string> = {
 const FILAS_GRAFICO: FilaAhorro[] = [
   ...AHORRO_MES.map((f) => ({ ...f, mensual: true })),
   ...AHORRO_UNA_VEZ.map((f) => ({ ...f, mensual: false })),
+  ...AHORRO_EXTRA.map((f) => ({ ...f, mensual: true })),
 ].map((f, i) => ({ id: `f${i}`, que: NOMBRE_CORTO[f.que] ?? f.que, quien: f.quien, min: f.min, max: (f as { max?: number }).max, mensual: f.mensual, color: COLORES_AHORRO[i % COLORES_AHORRO.length], desc: DESC_AHORRO[NOMBRE_CORTO[f.que] ?? f.que] }));
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
 const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
@@ -544,6 +548,9 @@ export function SeccionAhorro() {
             <p className="font-extrabold">Suma de lo que pagas cada mes</p>
             <p className="text-xl font-extrabold text-estrella sm:text-2xl">{rango(mesMin, mesMax)} <span className="text-sm font-bold text-white/80">al mes</span></p>
           </div>
+          <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm text-gris ring-1 ring-black/10">
+            <b className="text-tinta">Y además, dentro de la cuota y sin sumarlo arriba:</b> asesoramiento de negocio (estrategia, planes de marketing y de presupuestos), que por separado costaría unos {euros(AHORRO_EXTRA[0].min)} al mes.
+          </p>
 
           <p className="mt-8 text-sm font-extrabold uppercase tracking-wide text-gris">2 · Una sola vez</p>
           <ul className="mt-3 grid gap-3 sm:grid-cols-2">
