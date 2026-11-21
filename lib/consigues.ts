@@ -131,7 +131,7 @@ export const PIEZAS: Pieza[] = [
     titulo: "La lupa: ves lo que hace la gente en tu web",
     corto: "Tu lupa",
     frase: "Dónde tocan, dónde se atascan y hasta dónde bajan. Sin adivinar.",
-    detalle: "Mapas de calor de cada página, con conclusiones en una frase. Nos dicen qué cambiar la semana siguiente.",
+    detalle: "Mapas de calor de cada página. Los miramos nosotros y decidimos qué cambiar la semana siguiente.",
     captura: "/ejemplo/lupa.webp",
     href: "/lupa-ejemplo",
     ver: "Probar la lupa de ejemplo",

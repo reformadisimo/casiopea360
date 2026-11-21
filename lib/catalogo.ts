@@ -78,6 +78,7 @@ export const CATALOGO: GrupoCatalogo[] = [
     servicios: [
       { t: "Dominio, correo y alojamiento", d: "Nos ocupamos de que tu web esté siempre en marcha, con tu dominio y tu correo." },
       { t: "Web a tu medida, rápida en el móvil", d: "En unos días, normalmente menos de una semana. La velocidad se mide y se mejora." },
+      { t: "Una web hecha a la medida de tu cliente", d: "No solo a la tuya: la diseñamos pensando en quien te va a contratar y la mejoramos con lo que vemos que hace en ella, para que convierta lo mejor posible. Lo planteamos como mejora continua, nunca como garantía." },
       { t: "Cambiar de web sin perder Google", d: "Redirecciones y revisión de lo que ya funciona, para no empezar de cero." },
       { t: "Calculadoras y presupuestos con firma", d: "Tus clientes ven un precio al momento y lo aceptan y firman desde el móvil." },
       { t: "Configuradores de producto", d: "Tu cliente elige medidas, materiales y extras y ve el precio al momento, como un configurador de ventanas, de cocinas o de lo que vendas. Ya sabemos hacerlos y va dentro de la cuota." },
@@ -116,7 +117,7 @@ export const CATALOGO: GrupoCatalogo[] = [
       { t: "WhatsApp de empresa", d: "Con respuestas ya preparadas y avisos al móvil para citas y recordatorios." },
       { t: "Tu CRM a medida", d: "Sabes de dónde viene cada cliente, qué toca hoy y qué se ha enfriado." },
       { t: "Panel de resultados", d: "Visitas, contactos, gasto y coste por contacto, siempre con la fuente. Si falta un dato, un guion, nunca un cero." },
-      { t: "Lupa 360", d: "Dónde hace clic y hasta dónde baja la gente en tu web, sin cookies." },
+      { t: "Lupa y mapas de calor: dónde se atasca tu cliente", d: "Vemos dónde hace clic la gente en tu web, dónde toca sin que pase nada y hasta dónde baja. Con nuestra Lupa 360, sin cookies, y con herramientas de grabación y mapas de calor cuando el visitante las acepta. Sirve para encontrar los puntos de fricción y quitarlos.", enlace: { texto: "Ver la lupa de ejemplo", href: "/lupa-ejemplo" } },
       { t: "Encuestas y recomendaciones", d: "Tras cada trabajo, una encuesta que avisa a tiempo del descontento y pide la reseña al contento; y un programa para que te recomienden." },
     ],
   },

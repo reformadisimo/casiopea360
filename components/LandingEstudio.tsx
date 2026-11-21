@@ -37,6 +37,7 @@ const INCLUYE: [string, string][] = [
 const ADEMAS: string[] = [
   "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
   "Tu ficha de Google y tus reseñas, repasadas, y qué hacer con las falsas",
+  "Cómo mediríamos dónde se atasca tu cliente en tu web (lupa y mapas de calor) para mejorarla cada mes",
   "Una muestra de asistente con IA para tu web",
   "Ideas de contenido para tres meses",
   "Cómo cambiar de web sin perder lo que ya tienes en Google",

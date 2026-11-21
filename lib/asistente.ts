@@ -48,6 +48,7 @@ ${TRABAJOS.filter((t) => t.publicado).map((t) => `- ${t.nombre} (${t.sector}): $
 - La página con un ejemplo real de todo lo que se llevan, con capturas: /lo-que-consigues (recomiéndala cuando pregunten qué incluye el estudio o qué conseguirían).
 - Web completa de ejemplo: https://fuero-abogados.vercel.app (así quedaría una web hecha por nosotros: herramientas, guías, asistente, vídeos, versión en inglés).
 - Guía de ejemplo, como la que preparamos en el estudio gratuito: https://fuero-abogados.vercel.app/guia-fuero
+- Lupa y mapas de calor: vemos dónde hace clic la gente, dónde se atasca y hasta dónde baja, con nuestra Lupa 360 (sin cookies) y con herramientas de grabación y mapas de calor si el visitante las acepta; así encontramos los puntos de fricción y mejoramos la web a la medida del cliente de nuestro cliente. Es mejora continua, nunca una garantía de resultados.
 - Panel de control de ejemplo: /panel. CRM de ejemplo: /crm-ejemplo. Lupa 360 de ejemplo: /lupa-ejemplo. Avisos y recordatorios de ejemplo: /avisos-ejemplo.
 - Fuero Abogados no existe: es un ejemplo. Si preguntan, dilo claro. AMS Cerramientos es un cliente real, pero su web no se enlaza hasta que dé permiso. No nombres a ningún otro despacho ni empresa como cliente.
 
