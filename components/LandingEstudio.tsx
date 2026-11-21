@@ -18,9 +18,9 @@ const BOTON =
 
 // Portada: tres entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
 const MUESTRA: [string, string, string, string][] = [
-  ["/ejemplo/mejoras-700.webp", "Tu web a examen", "Revisamos la velocidad y los fallos que pueden impedir que te contacten.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
-  ["/ejemplo/web-portada-700.webp", "Tu web rediseñada", "Mira cómo podría quedar antes de decidir si contratas.", "Captura del estudio de ejemplo: la web rediseñada"],
-  ["/ejemplo/guia-700.webp", "Tu plan de 30 días", "Ten claro qué cambiaríamos primero y por qué.", "Captura del estudio de ejemplo: la guía con el plan"],
+  ["/ejemplo/mejoras-700.webp", "Qué mejoraríamos", "Revisión de tu web, de la competencia y del recorrido de tus contactos.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/web-portada-700.webp", "Cómo podría quedar", "Tu web rediseñada de muestra y borradores de anuncios.", "Captura del estudio de ejemplo: la web rediseñada"],
+  ["/ejemplo/guia-700.webp", "Por dónde empezar", "Un plan con prioridades y costes.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
@@ -66,45 +66,30 @@ export function HeroLanding() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/95 via-noche/70 to-noche/30" />
       <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14`}>
         <div>
-          <Etiqueta tono="estrella">Predicamos con el ejemplo</Etiqueta>
-          <p className="mt-3 text-sm font-bold text-white/75">Agencia de marketing digital en Madrid</p>
-          <h1 className="mt-3 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
-            Esta web saca 100 en Google PageSpeed. Si tu marketing no, estás perdiendo <Subrayado>clientes</Subrayado>.
+          <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
+          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
+            ¿Pagas web, anuncios y redes… y no sabes si te traen <Subrayado>clientes</Subrayado>?
           </h1>
-          <ol className="mt-5 max-w-xl space-y-3 text-base text-white/90 sm:text-lg">
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">1</span><span><b className="text-white">Así de exigentes somos.</b> Cuatro 100 en Google PageSpeed (móvil). Compruébalo tú: <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-estrella underline decoration-estrella underline-offset-4">Míralo aquí</a>.</span></li>
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">2</span><span><b className="text-white">Lo mismo falla en el resto.</b> Una web que no convence, anuncios que no traen contactos, consultas que se enfrían sin seguimiento.</span></li>
-            <li className="flex gap-3"><span aria-hidden className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-estrella text-sm font-extrabold text-noche">3</span><span><b className="text-white">Lo coordinamos todo.</b> Web, SEO, anuncios y CRM con un solo equipo y una sola persona que te atiende.</span></li>
-          </ol>
-                    <div className="mt-6">
+          <p className="mt-4 max-w-xl text-lg text-white/90">Un solo equipo coordina tu marketing y el seguimiento de tus contactos. Una persona te guía y te mantiene al día.</p>
+          <ul className="mt-4 flex max-w-xl flex-wrap gap-2 text-sm font-extrabold">
+            {["Web", "SEO y Google", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
+              <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/25">{t}</li>
+            ))}
+          </ul>
+          <p className="mt-5 max-w-xl text-base font-bold text-estrella sm:text-lg">Pide tu estudio gratuito: te enseñamos qué mejoraríamos, cómo podría quedar y qué haríamos primero, con sus costes.</p>
+          <div className="mt-6">
             <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
-            <p className="mt-3 text-sm font-bold text-estrella">¿Pagas web, anuncios y redes y no sabes si te traen clientes? Te hacemos un estudio gratis: qué falla, qué cambiaríamos primero y cuánto costaría.</p>
-            <p className="mt-1 text-sm font-semibold text-white/85">Tres preguntas y tus datos. Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
+            <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
           <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
-            Son tres toques y tus datos. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, tu estudio llega en menos de una semana.
+            Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio en menos de una semana.
           </p>
         </div>
 
         <figure>
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
-            <div className="bg-noche-2 px-5 py-4 sm:px-6">
-              <p className="text-sm font-extrabold uppercase tracking-wide text-estrella">Compruébalo: esta página, medida con PageSpeed Insights</p>
-              <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm font-bold text-white underline decoration-estrella underline-offset-4">Medirla yo mismo, en directo</a>
-              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-3">
-                <div className="flex gap-3">
-                  {NOTAS_HERO.map(([n, t]) => (
-                    <div key={t} className="text-center">
-                      <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border-[4px] border-emerald-400 bg-emerald-400/10 text-base font-extrabold text-emerald-300 sm:h-14 sm:w-14">{n}</div>
-                      <p className="mt-1 text-[0.65rem] font-bold leading-tight text-white/80">{t === "Prácticas recomendadas" ? "Prácticas" : t}</p>
-                    </div>
-                  ))}
-                </div>
-                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3 py-1.5 text-sm font-extrabold text-emerald-200"><span aria-hidden className="h-2.5 w-2.5 rounded-full bg-emerald-400" />3/3 en navegación para IA</p>
-              </div>
-            </div>
             <div className="flex items-center justify-between gap-3 border-b border-tinta/10 px-5 py-3 sm:px-6">
-              <p className="text-sm font-extrabold">Y esto es lo que te llevas: tu estudio gratuito</p>
+              <p className="text-sm font-extrabold">Esto es lo que recibirás</p>
               <span className="rounded-full bg-tinta/10 px-3 py-1 text-xs font-bold">Ejemplo</span>
             </div>
             <ol className="divide-y divide-tinta/10">
@@ -121,8 +106,7 @@ export function HeroLanding() {
             </ol>
           </div>
           <figcaption className="mt-3 text-xs text-white/75">
-            Notas reales de esta misma página, medidas el 20 de noviembre de 2026 en móvil y en ordenador; puedes{" "}
-            <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile" target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">repetirlas tú</a>. Miden la página, no los resultados de tus anuncios. Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.
+            Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.
           </figcaption>
         </figure>
       </div>
@@ -269,7 +253,7 @@ export function SeccionPruebaVelocidad() {
       <div className={ENVOLTORIO}>
         <div className="mx-auto grid max-w-5xl items-center gap-8 rounded-[2rem] bg-noche p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <Etiqueta tono="estrella">Lo medimos primero en la nuestra</Etiqueta>
+            <Etiqueta tono="estrella">Así cuidamos la parte técnica de tu web</Etiqueta>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">¿Tu web saca estos resultados?</h2>
             <p className="mt-3 text-lg text-white/85">Si va lenta, falla en el móvil o las IA no la entienden, hay clientes que no llegan a contactarte.</p>
             <p className="mt-3 text-white/75">En tu estudio la medimos igual y te enseñamos qué cambiar primero.</p>

@@ -14,5 +14,5 @@ export default function BotonBarraTest() {
     return () => o.disconnect();
   }, []);
   if (dentro) return null;
-  return <Link href="#solicitud" className="rounded-full bg-estrella px-5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2">Haz el test</Link>;
+  return <Link href="#solicitud" className="rounded-full bg-estrella px-5 py-2 text-sm font-bold text-tinta hover:bg-estrella-2">Pide tu estudio</Link>;
 }
