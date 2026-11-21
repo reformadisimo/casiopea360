@@ -107,7 +107,7 @@ export function HeroLanding() {
           </div>
           <p className="mt-3 flex items-center gap-3 rounded-full bg-white/10 py-1.5 pl-2 pr-4 text-xs text-white/85 ring-1 ring-white/15">
             <span aria-hidden className="flex shrink-0 gap-1">{NOTAS_HERO.map(([n, t]) => <span key={t} className="grid h-6 w-6 place-items-center rounded-full border-2 border-emerald-400 bg-emerald-400/10 text-[0.6rem] font-extrabold text-emerald-300">{n}</span>)}</span>
-            <span>Esta página saca 100 en Google PageSpeed (móvil). <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">Compruébalo</a>.</span>
+            <span>Esta página saca 100 en Google PageSpeed (móvil) y 3/3 en navegación para IA. <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-white underline decoration-estrella underline-offset-4">Compruébalo</a>.</span>
           </p>
           <figcaption className="mt-3 text-xs text-white/75">
             Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.
