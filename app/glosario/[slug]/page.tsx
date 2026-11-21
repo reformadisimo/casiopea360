@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: tituloCorto(titulo),
     description: descripcion,
     alternates: { canonical: `/glosario/${t.slug}` },
-    openGraph: { type: "article", title: `${titulo} · Casiopea 360`, description: descripcion, url: `/glosario/${t.slug}`, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
+    openGraph: { type: "article", title: `${titulo} · Casiopea 360`, description: descripcion, url: `/glosario/${t.slug}`, images: [{ url: "/og-2.jpg", width: 1200, height: 630 }] },
   };
 }
 

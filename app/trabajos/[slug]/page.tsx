@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Caso ${c.nombre}`,
     description: c.descripcionSeo,
     alternates: { canonical: `/trabajos/${c.slug}` },
-    openGraph: { title: `Caso ${c.nombre} · Casiopea 360`, description: c.descripcionSeo, url: `/trabajos/${c.slug}`, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
+    openGraph: { title: `Caso ${c.nombre} · Casiopea 360`, description: c.descripcionSeo, url: `/trabajos/${c.slug}`, images: [{ url: "/og-2.jpg", width: 1200, height: 630 }] },
   };
 }
 

@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: seguridad },
       { source: "/:dir(marca|logos|ejemplo|antes-despues|correo|panel|fonts|video)/:path*", headers: cacheEstaticos },
-      { source: "/og.jpg", headers: cacheEstaticos },
+      { source: "/og-2.jpg", headers: cacheEstaticos },
     ];
   },
 };
