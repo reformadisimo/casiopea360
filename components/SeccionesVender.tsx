@@ -200,7 +200,7 @@ export function SeccionAtascos() {
         <Etiqueta icono="mano">Te ayudamos en remoto</Etiqueta>
         <h2 id="atascos" className="mt-5 max-w-4xl text-3xl font-extrabold sm:text-5xl">¿Te atascas? Lo resolvemos contigo.</h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          <b className="text-tinta">Lo que a ti te da dolor de cabeza, para nosotros es el día a día.</b> No nos quedamos esperando: primero te guiamos por escrito y, si no sale, nos conectamos a tu ordenador contigo delante, y seguimos avanzando.
+          <b className="text-tinta">Lo que a ti te da dolor de cabeza, para nosotros es el día a día.</b> Primero te guiamos por escrito; si no sale, nos conectamos contigo delante.
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {dolores.map(([ic, t, d], i) => (
@@ -310,7 +310,7 @@ export function SeccionEmpresarios() {
     ["grafica", "Miramos el negocio, no solo el anuncio", "Si vemos que una línea te deja más que otra, o que pierdes clientes por algo que no es marketing, te lo decimos."],
     ["firma", "Opinamos, y decides tú", "Qué servicio empujar, qué probar primero, qué zona abrir. Es nuestra experiencia, no una garantía."],
     ["escudo", "Estrategia, presupuestos y números", "Plan de negocio y de marketing, presupuestos, y también lo que rodea a una empresa: fiscal, contabilidad y temas laborales. Te orientamos en todo."],
-    ["lupa", "Y si te pierdes, te llevamos al profesional", "Cuando algo necesita a un especialista (un asesor fiscal, un abogado laboralista), te decimos cuál y para qué. No sustituimos a tu gestor ni a tu abogado."],
+    ["lupa", "Y si te pierdes, te llevamos al profesional", "Si hace falta un especialista, te decimos cuál. No sustituimos a tu gestor ni a tu abogado."],
     ["sonrisa", "Va dentro de la cuota", "Este asesoramiento de negocio no se cobra aparte: por separado, un asesor estratégico te costaría unos 400 € al mes."],
   ];
   return (
@@ -322,7 +322,7 @@ export function SeccionEmpresarios() {
           Antes de llevar tu marketing, <span className="tono2">hemos llevado empresas.</span>
         </h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Nuestro equipo ha sido socio, accionista y administrador de grandes empresas, de muchos millones de facturación y de más de 100 empleados, durante muchos años y en distintos sectores. Sabemos de lo que hablas cuando hablas de tu negocio.
+          <b className="text-tinta">No somos solo técnicos de SEO, anuncios o diseño.</b> Hemos sido socios y administradores de grandes empresas, de muchos millones y más de 100 empleados. Sabemos de lo que hablas.
         </p>
         <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">Sectores en los que hemos dirigido empresas propias</p>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -421,7 +421,7 @@ export function SeccionAnuncioInforma() {
         <Etiqueta icono="prensa">Publicidad que informa</Etiqueta>
         <h2 id="anuncio-informa" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">El mejor anuncio no es el que más grita. <span className="tono2">Es el que informa.</span></h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          <b className="text-tinta">Gritar llama la atención un momento. Informar hace que vuelvas a confiar.</b> Es lo que hemos visto funcionar en la práctica: cuando el anuncio enseña el trabajo y resuelve una duda, la persona llama sabiendo lo que quiere.
+          <b className="text-tinta">Gritar llama la atención un momento. Informar hace que vuelvas a confiar.</b> Cuando el anuncio enseña el trabajo, la persona llama sabiendo lo que quiere.
         </p>
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {claves.map(([ic, t, d], i) => (
@@ -514,7 +514,7 @@ export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {})
         <Etiqueta icono="euro">Lo que pagas hoy</Etiqueta>
         <h2 id="ahorro-titulo" className="mt-5 max-w-4xl text-3xl font-extrabold text-tinta sm:text-5xl">Por separado, es muchísimo dinero. <span className="tono2">Y cada uno hace solo su parte.</span></h2>
         <p className="mt-5 max-w-3xl text-lg text-gris">
-          Lo normal es que te hagan el SEO, o los anuncios, o el diseño, o las redes. <b className="text-tinta">Nosotros llevamos todo a la vez, con un solo equipo</b>, y por eso lo que se arregla en un frente mejora los demás.
+          Lo normal: cada uno hace solo su parte. <b className="text-tinta">Nosotros llevamos todo a la vez, con un solo equipo.</b>
         </p>
         {compacta ? (
           <>
@@ -694,7 +694,7 @@ export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {})
           </>
         )}
         <p className="mt-6 max-w-3xl text-sm text-gris">
-          Precios orientativos de mercado en España, 2026, sin IVA: dependen del proveedor y del tamaño de tu empresa. No contamos la inversión en anuncios, que es tuya en ambos casos, ni las licencias, el asistente con IA, las reseñas, los vídeos o la vigilancia de tu competencia, que también van dentro. <Link href="/servicios#costes" className="font-bold text-tinta underline underline-offset-4">Calcúlalo con lo que necesitas tú</Link>.
+          Precios orientativos de mercado en España, 2026, sin IVA. No contamos tu inversión en anuncios, que es tuya en ambos casos. <Link href="/servicios#costes" className="font-bold text-tinta underline underline-offset-4">Calcúlalo con lo que necesitas tú</Link>.
         </p>
       </div>
     </section>
@@ -706,13 +706,13 @@ export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {})
 export const PRECIO_CUOTA = "1.800 €";
 export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {}) {
   const valor: [string, string, string][] = [
-    ["grafica", "Optimizamos tus campañas cada semana", "Miramos qué anuncio, qué palabra y qué página traen contactos de verdad, quitamos lo que gasta sin traer y subimos lo que funciona. Lo ves en tu panel."],
-    ["lupa", "Mejoramos tus resultados, con pruebas", "Pruebas A/B en anuncios y en la web, landings para cada campaña y cada ciudad. Lo que funciona se queda; lo que no, fuera."],
-    ["video", "Anuncios con IA o contigo mismo", "Sin actores. Hacemos anuncios y vídeos con IA, o con los dueños y los trabajadores de tu empresa, que son quienes de verdad conocen el trabajo. Los que lleven IA, avisados como tal."],
-    ["pagina", "Web, SEO y visibilidad en las IA", "Tu web nueva en días, mantenida por nosotros, y tu empresa trabajada para salir en Google y cuando alguien pregunta a una IA."],
-    ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok llevados por nosotros, reseñas contestadas y una sola persona que te escribe."],
-    ["chip", "CRM, asistente y automatizaciones", "Tu CRM a medida, el asistente con IA en tu web y en WhatsApp, y los avisos y recordatorios que te ahorran trabajo."],
-    ["escudo", "Un punto de vista de empresarios", "Hemos sido socios y administradores de grandes empresas, de muchos millones de facturación y de más de 100 empleados. Te asesoramos en estrategia, presupuestos y números, y si te pierdes, te llevamos al profesional adecuado. Sin coste aparte."],
+    ["grafica", "Optimizamos tus campañas cada semana", "Quitamos lo que gasta sin traer y subimos lo que funciona."],
+    ["lupa", "Mejoramos tus resultados, con pruebas", "Pruebas A/B en anuncios y web. Lo que funciona se queda."],
+    ["video", "Anuncios con IA o contigo mismo", "Sin actores: con IA o con tu propia gente. Lo hecho con IA, avisado."],
+    ["pagina", "Web, SEO y visibilidad en las IA", "Web nueva en días y trabajada para salir en Google y en las IA."],
+    ["sonrisa", "Redes, reseñas y un solo encargado", "LinkedIn, Facebook, Instagram y TikTok, y una sola persona que te escribe."],
+    ["chip", "CRM, asistente y automatizaciones", "CRM a medida, asistente con IA y avisos que te ahorran trabajo."],
+    ["escudo", "Un punto de vista de empresarios", "Hemos dirigido grandes empresas. Te asesoramos en estrategia y números, sin coste aparte."],
   ];
   return (
     <>
@@ -733,7 +733,7 @@ export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {})
               ))}
             </ul>
             <p className="mt-6 text-sm">
-              Aparte, solo lo que pagas a otros: tu inversión en anuncios (directa a Google y Meta), la grabación con equipo profesional y los medios. Te lo proponemos con su precio y nada se compra sin tu visto bueno.
+              Aparte, solo lo que pagas a otros: anuncios (directo a Google y Meta), grabación profesional y medios. Nada se compra sin tu visto bueno.
             </p>
             <a href="/estudio-gratuito" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-noche px-6 font-bold text-white transition-colors hover:bg-[#1d4ed8]">Pide tu estudio gratuito</a>
           </div>
@@ -744,7 +744,7 @@ export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {})
           </ul>
         </div>
         <p className="mt-8 max-w-3xl text-lg text-white/85">
-          Y todavía más dentro: reservas, reseñas, presupuestos con firma, tienda online, web en varios idiomas, tu marca y la vigilancia de tu competencia. <Link href="/servicios#incluido" className="font-bold text-white underline underline-offset-4">Ver todo lo que entra</Link>. Por separado, esto cuesta bastante más: <Link href="/servicios#costes" className="font-bold text-white underline underline-offset-4">míralo con tus números</Link>.
+          Y más dentro: reservas, presupuestos con firma, tienda online y vigilancia de tu competencia. <Link href="/servicios#incluido" className="font-bold text-white underline underline-offset-4">Ver todo lo que entra</Link>. Por separado cuesta más: <Link href="/servicios#costes" className="font-bold text-white underline underline-offset-4">míralo con tus números</Link>.
         </p>
         <Bocadillo claro className="mt-6 max-w-3xl">Es una experiencia, no una garantía: lo medimos contigo cada semana y te vas cuando quieras.</Bocadillo>
       </div>

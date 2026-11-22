@@ -25,24 +25,29 @@ const MUESTRA: [string, string, string, string][] = [
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
 const INCLUYE: [string, string][] = [
-  ["Entiende qué mejorar en tu web", "Test de velocidad en el móvil y fallos que pueden impedir que te contacten."],
-  ["Mira cómo te encuentran en Google y las IA", "Cómo te encuentran, cómo está tu ficha de Google y tus reseñas, y si las IA te recomiendan."],
-  ["Mira cómo se anuncian otros negocios de tu zona", "Cómo se anuncia en Google, en Maps y en redes."],
-  ["Ve una propuesta antes de decidir", "Rediseño completo de muestra, pensado para tu cliente y no solo para ti."],
-  ["Ve cómo podrían ser tus anuncios", "Ejemplos de lo que anunciaríamos para ti, también anuncios locales para quien busca cerca."],
-  ["Sigue a cada contacto hasta que es cliente", "El recorrido de cada contacto, correo a correo, hasta que es cliente."],
-  ["Ten claro por dónde empezar", "Qué cambiaríamos primero y por qué, en orden."],
-  ["Conoce el coste antes de decidir", "Compara la cuota fija con el coste por separado antes de decidir."],
+  ["Entiende qué mejorar en tu web", "Velocidad en el móvil y fallos que te cuestan contactos."],
+  ["Mira cómo te encuentran", "Google, tu ficha, tus reseñas y las IA."],
+  ["Mira cómo se anuncian otros", "Los negocios de tu zona, en Google, Maps y redes."],
+  ["Ve una propuesta antes de decidir", "Tu web rediseñada, de muestra."],
+  ["Ve cómo podrían ser tus anuncios", "Ejemplos, también locales."],
+  ["Sigue a cada contacto", "Correo a correo, hasta que es cliente."],
+  ["Ten claro por dónde empezar", "Qué cambiaríamos primero, en orden."],
+  ["Conoce el coste", "La cuota fija frente al coste por separado."],
 ];
 const ADEMAS: string[] = [
-  "Tu CRM y tu panel de ejemplo, con tus contactos y tus cifras",
-  "Tu ficha de Google y tus reseñas, repasadas, y qué hacer con las falsas",
-  "Cómo mediríamos dónde se atasca tu cliente en tu web (lupa y mapas de calor) para mejorarla cada mes",
+  "Tu CRM y tu panel de ejemplo",
+  "Tu ficha de Google y tus reseñas repasadas, y qué hacer con las falsas",
+  "Lupa y mapas de calor: dónde se atasca tu cliente",
   "Una muestra de asistente con IA para tu web",
   "Ideas de contenido para tres meses",
-  "Cómo cambiar de web sin perder lo que ya tienes en Google",
+  "Cómo cambiar de web sin perder tu Google",
   "Qué cuentas hacen falta, siempre a tu nombre",
   "Cómo trabajaríamos contigo, por escrito y sin reuniones",
+];
+const ACLARACIONES: [string, string][] = [
+  ["Sin compromiso ni accesos", "Con el test y lo público de tu web."],
+  ["¿Por qué gratis?", "Para que veas cómo trabajamos antes de contratar."],
+  ["¿Para quién es?", "Empresas que ya invierten en marketing y quieren más. Si no encajas, te lo decimos."],
 ];
 
 function Tic() {
@@ -136,7 +141,7 @@ export function SeccionCadaDia({ fuera = false }: { fuera?: boolean } = {}) {
         <div className="mx-auto max-w-5xl">
           <Etiqueta tono="estrella">Cómo trabajamos</Etiqueta>
           <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">Lo medimos todo. Lo mejoramos <Subrayado>cada día</Subrayado>. Con IA, y a la vista.</h2>
-          <p className="mt-4 max-w-3xl text-lg text-white/85">{fuera ? "Cuatro 100 en PageSpeed y 3/3 en navegación para IA en nuestra página del estudio: ese es el listón que nos ponemos en todo lo que hacemos para ti." : "Esos cuatro 100 no son un adorno: son el listón que nos ponemos en todo lo que hacemos para ti."} Y no los conseguimos un día para olvidarnos: cada día medimos, detectamos qué falla, lo probamos y lo mejoramos.</p>
+          <p className="mt-4 max-w-3xl text-lg text-white/85">{fuera ? "Cuatro 100 en PageSpeed y 3/3 en navegación para IA, en nuestra página del estudio: ese es nuestro listón." : "Esos cuatro 100 son el listón que nos ponemos en todo lo que hacemos para ti."} Cada día medimos, probamos y mejoramos.</p>
           {fuera && (
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <span aria-hidden className="flex gap-2">{NOTAS_HERO.map(([n, t]) => <span key={t} className="grid h-14 w-14 place-items-center rounded-full border-4 border-emerald-400 bg-emerald-400/10 text-base font-extrabold text-emerald-300">{n}</span>)}</span>
@@ -161,7 +166,7 @@ export function SeccionCadaDia({ fuera = false }: { fuera?: boolean } = {}) {
           </ul>
           <div className="mt-6 rounded-3xl bg-white p-6 text-tinta sm:p-8">
             <b className="block text-2xl font-extrabold leading-tight">Con IA, y sin esconderlo.</b>
-            <p className="mt-2 text-tinta/80">Estamos conectados a herramientas de IA para medir, detectar y probar a diario, a una velocidad que a mano no se alcanza. Las personas del equipo revisan y deciden, y nada importante sale sin tu visto bueno.</p>
+            <p className="mt-2 text-tinta/80">La IA mide y prueba a diario. Las personas revisan y deciden; nada importante sale sin tu visto bueno.</p>
             <p className="mt-3 text-sm text-tinta/75">Es nuestro objetivo para ti, no una garantía: los resultados dependen de tu negocio, y los cuatro 100 miden esta página, no tus ventas.</p>
             <Link href="#solicitud" className={`${BOTON} mt-5 w-full py-4 text-lg sm:w-auto sm:px-9`}>Quiero mi estudio gratuito</Link>
           </div>
@@ -229,13 +234,13 @@ export function SeccionIncluye() {
             </ul>
             <p className="mt-4 text-sm text-tinta/60">Según tu caso: no todas las empresas necesitan lo mismo.</p>
           </details>
-          <div className="mt-8 rounded-2xl bg-niebla p-5">
-            <b className="block text-lg font-extrabold text-tinta">Sin compromiso y sin pedirte accesos.</b>
-            <p className="mt-1 text-tinta/75">Se hace con el test y con lo que es público de tu web. Lo que depende de tus cifras va como estimación, y te lo decimos.</p>
-            <b className="mt-4 block text-lg font-extrabold text-tinta">¿Por qué preparáis este estudio gratis?</b>
-            <p className="mt-1 text-tinta/75">Para que puedas valorar cómo trabajaríamos en tu empresa antes de contratar. Pedirlo no te compromete a nada.</p>
-            <b className="mt-4 block text-lg font-extrabold text-tinta">¿Para quién es?</b>
-            <p className="mt-1 text-tinta/75">Para empresas que ya tienen clientes y ya invierten en marketing (agencia, anuncios, SEO, redactores…), y quieren que rinda más. Contestamos a todo el mundo en 48 horas laborables; si vemos que no podemos ayudarte, te lo decimos y no preparamos el estudio.</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {ACLARACIONES.map(([t, d]) => (
+              <div key={t} className="rounded-3xl bg-noche p-6 text-white">
+                <h3 className="text-lg font-extrabold text-estrella">{t}</h3>
+                <p className="mt-2 text-sm text-white/80">{d}</p>
+              </div>
+            ))}
           </div>
           <Link href="#solicitud" className={`${BOTON} mt-6 w-full py-4 text-lg`}>Quiero mi estudio gratuito</Link>
           <p className="mt-4 text-center text-sm text-tinta/70">
@@ -317,12 +322,12 @@ export function SeccionVideo() {
 }
 
 const DOLORES: [string, string][] = [
-  ["Pagas y no sabes qué pasa", "Anuncios, web y redes consumen dinero cada mes y nadie te dice con claridad qué te devuelven."],
-  ["Cada proveedor hace su parte", "El de la web, el de los anuncios y el de las redes no hablan entre sí. Y tú haces de coordinador."],
-  ["Tu web no vende", "Está antigua, tarda en cargar o no aparece cuando alguien busca lo que haces."],
-  ["Informes que no entiendes", "Te mandan gráficos y siglas. Tú solo quieres saber si entran clientes."],
-  ["Las cuentas no son tuyas", "Si te vas, se quedan con tu web, tus anuncios o tus contactos. Pedir permiso el día de irte es incómodo."],
-  ["No tienes tiempo", "Reuniones, llamadas y correos cruzados. Tu trabajo es tu negocio, no tu marketing."],
+  ["Pagas y no sabes qué pasa", "Nadie te dice qué te devuelve cada euro."],
+  ["Cada proveedor, a lo suyo", "Y tú haces de coordinador."],
+  ["Tu web no vende", "Antigua, lenta o sin aparecer en Google."],
+  ["Informes que no entiendes", "Tú solo quieres saber si entran clientes."],
+  ["Las cuentas no son tuyas", "Si te vas, se quedan con todo."],
+  ["No tienes tiempo", "Tu trabajo es tu negocio, no tu marketing."],
 ];
 
 export function SeccionDolores() {
@@ -333,9 +338,9 @@ export function SeccionDolores() {
         <h2 className="mt-4 max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Casi nunca falla tu producto. Falla que no te encuentran.</h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {DOLORES.map(([t, d]) => (
-            <div key={t} className="rounded-3xl bg-niebla p-6">
-              <h3 className="text-lg font-extrabold text-tinta">{t}</h3>
-              <p className="mt-2 text-tinta/75">{d}</p>
+            <div key={t} className="rounded-3xl bg-noche p-6 text-white">
+              <h3 className="text-lg font-extrabold text-estrella">{t}</h3>
+              <p className="mt-2 text-sm text-white/80">{d}</p>
             </div>
           ))}
         </div>

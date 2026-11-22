@@ -76,7 +76,7 @@ export default function TuControl() {
           <Etiqueta tono="estrella" icono="escudo">Nuestra regla</Etiqueta>
           <h2 className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-5xl">Nunca tendremos el control de tus cuentas.</h2>
           <p className="mt-5 max-w-3xl text-lg text-white/85">
-            <b className="text-white">No es una oferta: es una condición para trabajar contigo.</b> Solo trabajamos con quien quiere tener el control de todo, y no aceptamos clientes que prefieran que las cuentas las tengamos nosotros.
+            <b className="text-white">No es una oferta: es una condición para trabajar contigo.</b> Solo trabajamos con quien quiere el control de todo.
           </p>
           <ol className="mt-10 grid gap-4 md:grid-cols-3">
             {REGLA.map(([ic, t, d], i) => (
@@ -86,7 +86,7 @@ export default function TuControl() {
           <div className="mt-8 rounded-[1.8rem] border-2 border-estrella bg-estrella/15 p-6 sm:p-8">
             <h3 className="text-2xl font-extrabold sm:text-3xl">Al principio da algo de pereza. Y merece la pena.</h3>
             <p className="mt-3 max-w-3xl text-lg text-white/85">
-              Abrir y ordenar tus cuentas lleva desde media hora hasta uno o dos días, según cuántas tengas. Te acompañamos en cada paso, y si quieres <a href="/ayuda-en-remoto" className="font-bold text-white underline decoration-estrella decoration-2 underline-offset-4">las abrimos contigo en una sola sesión en remoto</a>: tú tecleas las contraseñas y la tarjeta, nosotros el resto. Es muy poco comparado con el día en que quieras cambiar de proveedor y tengas que pedir permiso, o casi perdón, para entrar en lo que es tuyo.
+              Abrir tus cuentas lleva de media hora a uno o dos días. Te acompañamos, y si quieres <a href="/ayuda-en-remoto" className="font-bold text-white underline decoration-estrella decoration-2 underline-offset-4">las abrimos contigo en una sola sesión en remoto</a>: tú tecleas contraseñas y tarjeta. Es poco comparado con pedir permiso el día que quieras irte.
             </p>
             <p className="mt-3 max-w-3xl text-lg text-white/85">
               Vale para todo: cuentas de anuncios, redes, correo, web, y también para cada artículo del blog y cada página que publiquemos. Todo queda en tus manos.

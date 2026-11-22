@@ -30,7 +30,7 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
     <div className="mt-12 rounded-[2rem] bg-white p-5 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 sm:p-8">
       <h3 className="text-2xl font-extrabold text-tinta sm:text-3xl">Elige tú qué contratarías por separado</h3>
       <p className="mt-2 max-w-3xl text-gris">
-        Toca cada cosa para ponerla o quitarla. Verás lo que pagarías el primer año, y lo que te llevas de más con Casiopea 360, que lo lleva todo dentro.
+        Toca cada cosa y mira lo que pagarías el primer año.
       </p>
 
       <ul className="mt-5 flex flex-wrap gap-2" aria-label="Servicios">
@@ -123,7 +123,7 @@ export default function GraficoAhorro({ filas, cuota }: { filas: FilaAhorro[]; c
         )}
       </div>
       <p className="mt-3 text-xs text-gris">
-        Primer año, sin IVA y con la cifra más baja de cada precio (en el SEO y los anuncios el mercado llega a más). La web y el CRM se pagan una sola vez. Una sola cosa suelta, claro, puede salir más barata: la cuota es para quien necesita varias.
+        Primer año, sin IVA y con la cifra más baja. Una sola cosa suelta puede salir más barata: la cuota es para quien necesita varias.
       </p>
     </div>
   );
