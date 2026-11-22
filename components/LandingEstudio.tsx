@@ -47,7 +47,7 @@ const ADEMAS: string[] = [
 const ACLARACIONES: [string, string][] = [
   ["Sin compromiso ni accesos", "Con el test y lo público de tu web."],
   ["¿Por qué gratis?", "Para que veas cómo trabajamos antes de contratar."],
-  ["¿Para quién es?", "Empresas que ya invierten en marketing y quieren más. Si no encajas, te lo decimos."],
+  ["¿Para quién es?", "Empresas que ya tienen web, invierten en marketing y quieren más. Si no encajas, te lo decimos."],
 ];
 
 function Tic() {

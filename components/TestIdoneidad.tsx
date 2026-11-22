@@ -612,8 +612,8 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
               <input name="ciudad" required={variante !== "B"} placeholder="Ciudad o provincia" className={campo} />
             </label>
             <label className="text-sm font-bold">
-              Vuestra web <span className="font-normal text-gris">(si tenéis; nos ayuda a preparar tu revisión)</span>
-              <input name="web" className={campo} />
+              La web de tu empresa <span className="font-normal text-gris">(la necesitamos para preparar tu estudio)</span>
+              <input name="web" required inputMode="url" autoComplete="url" placeholder="www.tuempresa.es" pattern=".*[.].*" title="Escribe la dirección de tu web, por ejemplo www.tuempresa.es" className={campo} />
             </label>
             <details className="group sm:col-span-2">
               <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-noche-3 underline underline-offset-4 [&::-webkit-details-marker]:hidden">
