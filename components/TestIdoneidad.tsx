@@ -10,6 +10,7 @@ import Logo from "@/components/Logo";
 import { COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 import Image from "next/image";
 import BotonDictado from "@/components/BotonDictado";
+import DetalleEstudio from "@/components/DetalleEstudio";
 import { CONTACTO } from "@/lib/contenido";
 import { GASTO, SECTORES, URGE } from "@/lib/testOrden";
 
@@ -435,10 +436,11 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
                 <>
                   <p className="mt-1 text-[0.98rem] leading-snug text-tinta/80">Si podemos ayudarte, esto es lo que preparamos:</p>
                   <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
-                    {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Plan de 30 días con prioridades y costes"].map((e) => (
+                    {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
                       <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
                     ))}
                   </ul>
+                  <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
                 </>
               )}
               {ti === 0 ? (
