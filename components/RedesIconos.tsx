@@ -51,3 +51,22 @@ export default function RedesIconos({ className = "" }: { className?: string }) 
     </ul>
   );
 }
+
+// Solo el icono de Instagram, siempre a la vista en la barra de arriba por debajo de 1536 px (desde ahí van los tres).
+export function InstagramBarra({ className = "" }: { className?: string }) {
+  const r = REDES[2];
+  return (
+    <a
+      href={r.href}
+      target="_blank"
+      rel="noopener me"
+      aria-label="Casiopea 360 en Instagram"
+      title="Casiopea 360 en Instagram"
+      className={`grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/10 hover:text-estrella ${className}`}
+    >
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        {r.dibujo}
+      </svg>
+    </a>
+  );
+}

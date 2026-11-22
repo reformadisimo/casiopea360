@@ -256,15 +256,15 @@ export function SeccionFrentes({ completa = false }: { completa?: boolean }) {
               <article
                 key={f.id}
                 id={f.id}
-                className={`inclina scroll-mt-28 rounded-[2rem] p-7 sm:p-9 ${ancho} ${oscura ? "bg-noche text-white" : "border border-linea bg-white"}`}
+                className={`inclina scroll-mt-28 rounded-[2rem] p-5 sm:p-9 ${ancho} ${oscura ? "bg-noche text-white" : "border border-linea bg-white"}`}
               >
                 <div className="flex items-center gap-3">
                   <Loseta icono={["pagina", "lupa", "diana", "video", "chip"][i % 5]} i={i} />
                   <p className={`font-titular text-sm font-bold ${oscura ? "text-estrella" : "text-noche-3"}`}>Frente {i + 1} de 5</p>
                 </div>
-                <h2 className="mt-4 text-3xl font-extrabold">{f.nombre}</h2>
-                <p className={`mt-3 text-lg ${oscura ? "text-white/80" : "text-gris"}`}>{glosar(f.frase)}</p>
-                <ul className="mt-6 space-y-2.5">
+                <h2 className="mt-3 text-2xl font-extrabold sm:mt-4 sm:text-3xl">{f.nombre}</h2>
+                <p className={`mt-2 text-base sm:mt-3 sm:text-lg ${oscura ? "text-white/80" : "text-gris"}`}>{glosar(f.frase)}</p>
+                <ul className="mt-4 space-y-2 text-[0.95rem] sm:mt-6 sm:space-y-2.5 sm:text-base">
                   {f.servicios.map((s, k) => (
                     <li key={s} className="flex gap-3">
                       <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-white" style={{ background: COLOR_SELLO[(k + i) % COLOR_SELLO.length][0] }}>
@@ -489,14 +489,14 @@ export function SeccionEspecialistas() {
         </p>
 
         <div className="mt-12 overflow-hidden rounded-[2rem] border border-linea">
-          <div className="grid grid-cols-2 bg-niebla text-sm font-extrabold sm:text-base">
+          <div className="hidden grid-cols-2 bg-niebla text-sm font-extrabold sm:grid sm:text-base">
             <p className="p-4 sm:p-6">Un proveedor para cada cosa</p>
             <p className="bg-noche p-4 text-estrella sm:p-6">Casiopea 360</p>
           </div>
           {COMPARA.map(([ellos, nosotros]) => (
-            <div key={ellos} className="grid grid-cols-2 border-t border-linea text-[0.95rem] sm:text-lg">
-              <p className="flex gap-3 p-4 text-gris sm:p-6"><span aria-hidden="true" className="mt-1 text-rose-500">✕</span>{ellos}</p>
-              <p className="flex gap-3 bg-noche/[0.03] p-4 font-bold sm:p-6"><span aria-hidden="true" className="mt-1 text-emerald-600">✓</span>{nosotros}</p>
+            <div key={ellos} className="grid border-t border-linea text-[0.95rem] first:border-t-0 sm:grid-cols-2 sm:text-lg sm:first:border-t">
+              <p className="flex gap-3 px-4 pb-2 pt-4 text-gris sm:p-6"><span aria-hidden="true" className="mt-1 text-rose-500">✕</span>{ellos}</p>
+              <p className="flex gap-3 bg-noche/[0.03] px-4 pb-4 pt-2 font-bold sm:p-6"><span aria-hidden="true" className="mt-1 text-emerald-600">✓</span>{nosotros}</p>
             </div>
           ))}
         </div>

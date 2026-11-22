@@ -6,7 +6,7 @@ import { BarraLanding } from "@/components/LandingEstudio";
 import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import AjustesLectura from "@/components/AjustesLectura";
-import RedesIconos from "@/components/RedesIconos";
+import RedesIconos, { InstagramBarra } from "@/components/RedesIconos";
 import { ICONO_SVG } from "@/components/secciones";
 import { MENU } from "@/lib/navegacion";
 
@@ -227,11 +227,12 @@ export default function Cabecera() {
         <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Redes: solo desde 1536 px (2xl), donde la barra se ensancha para que quepan y también en la pastilla flotante. En el móvil van al final del menú. */}
           <RedesIconos className="hidden 2xl:flex" />
+          <InstagramBarra className="2xl:hidden" />
           <AjustesLectura />
           <Link prefetch={false}
             href="/estudio-gratuito"
             onClick={cerrarTodo}
-            className="whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm xl:px-4 2xl:px-5"
+            className="hidden whitespace-nowrap rounded-full bg-estrella px-3 py-2 text-[0.8rem] min-[430px]:block font-bold text-tinta hover:bg-estrella-2 sm:px-5 sm:text-sm xl:px-4 2xl:px-5"
           >
             Estudio<span className="max-[460px]:hidden"> gratuito</span>
           </Link>
