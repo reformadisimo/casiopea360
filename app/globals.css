@@ -533,8 +533,17 @@ html[data-texto="3"] header { zoom: 0.667; }
 
 /* Móvil: sitio para que la barra fija de abajo (WhatsApp, Chat, Haz el test) no tape el final de la página */
 @media (max-width: 639px) {
-  body { padding-bottom: 4.75rem; }
+  body { padding-bottom: 4rem; }
 }
 
 /* Número decorativo de los pasos: va en pseudoelemento para que no cuente como texto (es solo adorno). */
 .num-paso::before{content:attr(data-n)}
+
+/* 22-nov (cas·v357): menos denso en el móvil. Es maquetación, no texto: menos relleno entre secciones,
+   titulares y párrafos un punto más pequeños, iconos de tarjeta más discretos y subrayados del glosario más finos. */
+@media (max-width: 639px) {
+  main section:is(.py-14, .py-16, .py-20, .py-24, .py-28) { padding-block: 2.5rem; }
+  main section h2 { font-size: 1.7rem; line-height: 1.15; }
+  main section p.text-lg { font-size: 1rem; line-height: 1.55; }
+  .gl-a, .prosa a.gl-a { text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(255,197,61,.55); }
+}

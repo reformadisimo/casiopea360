@@ -578,8 +578,8 @@ export const ICONO_SVG: Record<string, React.ReactNode> = {
 /* Loseta de color, ligeramente girada, con su icono y una estrella: la pieza que da vida a cualquier tarjeta. */
 export function Loseta({ icono, i = 0, tam = "md", className = "" }: { icono: string; i?: number; tam?: "md" | "lg"; className?: string }) {
   const [fondo, sombra] = COLOR_SELLO[i % COLOR_SELLO.length];
-  const caja = tam === "lg" ? "h-[4.5rem] w-[4.5rem] rounded-[1.4rem]" : "h-14 w-14 rounded-2xl";
-  const ic = tam === "lg" ? "h-9 w-9" : "h-7 w-7";
+  const caja = tam === "lg" ? "h-[4.5rem] w-[4.5rem] rounded-[1.4rem]" : "h-11 w-11 rounded-xl sm:h-14 sm:w-14 sm:rounded-2xl";
+  const ic = tam === "lg" ? "h-9 w-9" : "h-6 w-6 sm:h-7 sm:w-7";
   return (
     <span
       aria-hidden="true"

@@ -85,7 +85,7 @@ export default function BarraEstudio() {
     </div>
     <div
       aria-hidden={!ver}
-      className={`fixed inset-x-0 bottom-0 z-40 flex items-end gap-3 border-t border-white/10 bg-noche/95 px-3 pb-[max(0.6rem,env(safe-area-inset-bottom))] pt-2.5 backdrop-blur transition-transform duration-300 sm:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 flex items-end gap-3 border-t border-white/10 bg-noche/95 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur transition-transform duration-300 sm:hidden ${
         ver ? "translate-y-0" : "pointer-events-none translate-y-full"
       }`}
     >
@@ -94,29 +94,27 @@ export default function BarraEstudio() {
         target="_blank"
         rel="noopener"
         tabIndex={t}
-        className="flex w-16 shrink-0 flex-col items-center gap-0.5 text-[0.72rem] font-bold text-white"
+        aria-label="WhatsApp" className="flex shrink-0 items-center text-[0.72rem] font-bold text-white"
       >
         <span className="grid h-11 w-11 place-items-center rounded-full bg-[#25d366] text-white">
           <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.18-3.1.82.83-3.03-.2-.32A8.1 8.1 0 0 1 12.04 3.8zm-3.1 3.9c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.15s.92 2.5 1.05 2.67c.13.17 1.8 2.88 4.45 3.92 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.3-1.54-1.45-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.59-1.42-.8-1.94-.21-.5-.43-.43-.59-.44h-.5z" /></svg>
         </span>
-        WhatsApp
       </a>
       <button
         type="button"
         tabIndex={t}
         onClick={() => window.dispatchEvent(new Event("casiopea:chat"))}
-        className="flex w-14 shrink-0 flex-col items-center gap-0.5 text-[0.72rem] font-bold text-white"
+        aria-label="Chat con Cas" className="flex shrink-0 items-center text-[0.72rem] font-bold text-white"
       >
         <span className="relative grid h-11 w-11 place-items-center rounded-full bg-white/10 ring-2 ring-estrella/70">
           <img src="/marca/icono.svg" alt="" className="h-8 w-8 rounded-[0.5rem]" />
           <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-noche" />
         </span>
-        Chat
       </button>
       <Link
         href={destino}
         tabIndex={t}
-        className="flex min-h-12 min-w-0 flex-1 items-center justify-center gap-2 self-center rounded-full bg-estrella px-4 text-[1.05rem] font-extrabold text-tinta shadow-[0_8px_24px_-8px_rgba(255,197,61,0.7)] active:bg-estrella-2"
+        className="flex min-h-11 min-w-0 flex-1 items-center justify-center gap-2 self-center rounded-full bg-estrella px-4 text-[1.05rem] font-extrabold text-tinta shadow-[0_8px_24px_-8px_rgba(255,197,61,0.7)] active:bg-estrella-2"
       >
         Pide tu estudio
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>

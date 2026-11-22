@@ -101,12 +101,12 @@ export function Nebulosa({ oscura = false, variante = 0 }: { oscura?: boolean; v
 export function TarjetaViva({ icono, i = 0, titulo, texto, claro = false, chip, hijo, className = "", como: Como = "li" }: { icono?: string; i?: number; titulo: string; texto?: ReactNode; claro?: boolean; chip?: string; hijo?: ReactNode; className?: string; como?: "li" | "div" }) {
   const ic = icono ?? iconoPorTexto(titulo, i);
   return (
-    <Como className={`flex flex-col gap-3 rounded-[1.6rem] p-6 ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-white text-tinta shadow-sm ring-1 ring-linea"} ${className}`}>
+    <Como className={`flex flex-col gap-2.5 rounded-[1.6rem] p-5 sm:gap-3 sm:p-6 ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-white text-tinta shadow-sm ring-1 ring-linea"} ${className}`}>
       <div className="flex items-center gap-3">
         <Loseta icono={ic} i={i} />
         {chip && <span className={`rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide ${claro ? "bg-estrella/20 text-estrella" : "bg-estrella/30 text-tinta"}`}>{chip}</span>}
       </div>
-      <h3 className="text-xl font-extrabold leading-snug">{titulo}</h3>
+      <h3 className="text-lg font-extrabold leading-snug sm:text-xl">{titulo}</h3>
       {texto && <p className={claro ? "text-white/85" : "text-gris"}>{texto}</p>}
       {hijo}
     </Como>
@@ -118,7 +118,7 @@ export function ListaViva({ items, render, claro = false, icono, className = "" 
   return (
     <ul className={`lv grid gap-2.5 ${className}`}>
       {items.map((x, i) => (
-        <li key={x} className={`flex items-start gap-3 rounded-2xl p-3.5 sm:p-4 ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-niebla text-tinta"}`}>
+        <li key={x} className={`flex items-start gap-3 rounded-2xl p-3 text-[0.95rem] leading-snug sm:p-4 sm:text-base sm:leading-normal ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-niebla text-tinta"}`}>
           <span aria-hidden="true" className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full text-white" style={{ background: COLOR_SELLO[i % COLOR_SELLO.length][0] }}>
             <Svg className="h-4 w-4" grosor={3}>{icono ? ICONO_SVG[icono] : <path d="m5 12.5 4.5 4.5L19 7" />}</Svg>
           </span>
