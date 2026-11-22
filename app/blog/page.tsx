@@ -39,37 +39,37 @@ export default function Blog() {
         <Nebulosa variante={0} />
         <div className={`${ENVOLTORIO} relative`}>
           <Link href={`/blog/${destacado.slug}`} className="group grid overflow-hidden rounded-[2rem] bg-noche text-white lg:grid-cols-2">
-            <div className="relative min-h-[260px] overflow-hidden" aria-hidden="true">
+            <div className="relative min-h-[170px] overflow-hidden sm:min-h-[260px]" aria-hidden="true">
               <VideoFondo nombre={destacado.video} alt="" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="p-7 sm:p-10">
+            <div className="p-5 sm:p-10">
               <p className="flex items-center gap-3 text-sm font-bold text-estrella">
                 <ChipCategoria c={destacado.categoria} />
                 <span>
                   {destacado.categoria} · {destacado.lectura}
                 </span>
               </p>
-              <h2 className="mt-4 text-3xl font-extrabold group-hover:underline sm:text-4xl">{destacado.titulo}</h2>
-              <p className="mt-4 line-clamp-2 text-lg text-white/80">{destacado.descripcion}</p>
+              <h2 className="mt-3 text-2xl font-extrabold group-hover:underline sm:mt-4 sm:text-4xl">{destacado.titulo}</h2>
+              <p className="mt-3 line-clamp-2 text-base text-white/80 sm:mt-4 sm:text-lg">{destacado.descripcion}</p>
               <p className="mt-6 text-sm text-white/60">{fecha(destacado.fecha)}</p>
             </div>
           </Link>
           <Bocadillo className="mt-8 max-w-3xl">Todo lo que contamos aquí lo aprendemos cada día con nuestras empresas y nuestros clientes. Sin jerga y con ejemplos.</Bocadillo>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-2">
             {resto.map((a) => (
               <Link key={a.slug} href={`/blog/${a.slug}`} className="group flex flex-col overflow-hidden rounded-[2rem] bg-white ring-1 ring-linea transition-shadow hover:ring-noche hover:shadow-[0_24px_48px_-32px_rgba(14,26,61,0.5)]">
-                <div aria-hidden="true" className="relative aspect-[16/8] overflow-hidden">
+                <div aria-hidden="true" className="relative aspect-[16/6] overflow-hidden sm:aspect-[16/8]">
                   <VideoFondo nombre={a.video} alt="" className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />
                 </div>
-                <div className="flex flex-1 flex-col p-7 sm:p-9">
+                <div className="flex flex-1 flex-col p-5 sm:p-9">
                   <p className="flex items-center gap-3 text-sm font-bold text-noche-3">
                     <ChipCategoria c={a.categoria} />
                     <span>
                       {a.categoria} · {a.lectura}
                     </span>
                   </p>
-                  <h2 className="mt-4 text-2xl font-extrabold group-hover:underline">{a.titulo}</h2>
-                  <p className="mt-3 line-clamp-2 flex-1 text-gris">{a.descripcion}</p>
+                  <h2 className="mt-3 text-xl font-extrabold leading-snug group-hover:underline sm:mt-4 sm:text-2xl">{a.titulo}</h2>
+                  <p className="mt-2 line-clamp-2 flex-1 text-[0.95rem] text-gris sm:mt-3 sm:text-base">{a.descripcion}</p>
                 </div>
               </Link>
             ))}
