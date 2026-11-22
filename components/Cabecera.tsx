@@ -82,7 +82,7 @@ export default function Cabecera() {
     setMovil(false);
   };
 
-  if (ruta === "/estudio-gratuito") return <BarraLanding />;
+  if (ruta === "/estudio-gratuito" || ruta === "/agencia-marketing-digital-madrid") return <BarraLanding />;
 
   return (
     <header

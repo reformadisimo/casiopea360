@@ -42,7 +42,7 @@ export default function AvisoSalida() {
       const t = setTimeout(() => setAbierto(true), 600);
       return () => clearTimeout(t);
     }
-    if (ruta?.startsWith("/estudio-gratuito")) return;
+    if (ruta?.startsWith("/estudio-gratuito") || ruta?.startsWith("/agencia-marketing-digital-madrid")) return;
     let visto = false;
     try {
       visto = sessionStorage.getItem(CLAVE) === "1";
