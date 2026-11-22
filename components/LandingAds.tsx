@@ -58,10 +58,11 @@ export function HeroAds() {
         <div className="lg:pt-6">
           <p className="text-sm font-extrabold uppercase tracking-wide text-white/75">Agencia de marketing digital en Madrid</p>
           <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[1.1] sm:text-5xl lg:text-[3rem]">
-            ¿Pagas web, anuncios y redes y no sabes qué te trae <Subrayado>clientes</Subrayado>?
+            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-white/90">
-            <b className="text-white">Pide tu estudio gratuito.</b> Revisamos tu caso y, si podemos ayudarte, te enseñamos qué cambiaríamos y por dónde empezar.
+          <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+          <p className="mt-2 max-w-xl text-lg text-white/90">
+            ¿Pagas web, anuncios y redes y no sabes qué te trae clientes? <b className="text-white">Pide tu estudio gratuito:</b> te enseñamos qué cambiaríamos y por dónde empezar.
           </p>
           <ul className="mt-5 grid max-w-xl gap-2.5">
             {ENTREGAS.map(([t, d]) => (

@@ -43,8 +43,9 @@ export default function Inicio() {
         <div className={`${ENVOLTORIO} relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start`}>
           <div>
             <Etiqueta tono="cristal" icono="fiesta" className="mb-4">Tu marketing digital, al máximo nivel</Etiqueta>
-            <h1 className="text-[2.7rem] font-extrabold sm:text-7xl">Crece en digital sin ir de proveedor <Subrayado>en proveedor</Subrayado>.</h1>
-            <p className="mt-6 max-w-xl text-lg font-extrabold text-white sm:text-xl">Deja de coordinar proveedores. Empieza a crecer.</p>
+            <h1 className="text-[2.4rem] font-extrabold leading-[1.05] sm:text-6xl">¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?</h1>
+            <p className="mt-6 max-w-xl text-lg font-extrabold text-estrella sm:text-xl">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+            <p className="mt-2 max-w-xl text-lg font-extrabold text-white sm:text-xl">Crece en digital sin ir de proveedor en proveedor.</p>
             <p className="mt-2 max-w-xl text-lg text-white/85 sm:text-xl">
               Web, Google, anuncios, redes, CRM e IA: <b className="text-white">un solo contacto y una cuota fija.</b> Cada día sabes qué hemos hecho.
             </p>

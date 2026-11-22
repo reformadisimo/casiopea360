@@ -74,9 +74,10 @@ export function HeroLanding() {
         <div>
           <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
           <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
-            ¿Pagas web, anuncios y redes… y no sabes si te traen <Subrayado>clientes</Subrayado>?
+            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-white/90">Un solo equipo coordina tu marketing y el seguimiento de tus contactos. Una persona te guía y te mantiene al día.</p>
+          <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+          <p className="mt-2 max-w-xl text-lg text-white/90">¿Pagas web, anuncios y redes y no sabes si te traen clientes? Un solo equipo coordina tu marketing y una persona te mantiene al día.</p>
           <ul className="mt-4 flex max-w-xl flex-wrap gap-2 text-sm font-extrabold">
             {["Web", "SEO y Google", "Ficha y reseñas", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
               <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/25">{t}</li>
