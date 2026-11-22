@@ -1666,7 +1666,7 @@ export function SeccionEstudioResumen() {
       <MuestraEstudio />
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</a>
-        <Link href="/estudio-gratuito#estudio" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
+        <Link href="/estudio-gratuito#incluye" className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Ver los {ESTUDIO_TOTAL} apartados</Link>
       </div>
     </section>
   );

@@ -495,7 +495,7 @@ const FILAS_GRAFICO: FilaAhorro[] = [
 const euros = (n: number) => `${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €`;
 const rango = (a: number, b?: number) => (b ? `${euros(a)} a ${euros(b)}` : euros(a));
 
-export function SeccionAhorro() {
+export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {}) {
   const mesMin = AHORRO_MES.reduce((a, f) => a + f.min, 0);
   const mesMax = AHORRO_MES.reduce((a, f) => a + (f.max ?? f.min), 0);
   const unaVez = AHORRO_UNA_VEZ.reduce((a, f) => a + f.min, 0);
@@ -516,6 +516,27 @@ export function SeccionAhorro() {
         <p className="mt-5 max-w-3xl text-lg text-gris">
           Lo normal es que te hagan el SEO, o los anuncios, o el diseño, o las redes. <b className="text-tinta">Nosotros llevamos todo a la vez, con un solo equipo</b>, y por eso lo que se arregla en un frente mejora los demás.
         </p>
+        {compacta ? (
+          <>
+            <div className="mt-8 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
+              <div className="rounded-2xl bg-white p-4 ring-1 ring-black/5">
+                <p className="text-sm font-bold text-gris">Por separado, el primer año</p>
+                <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-tinta sm:text-2xl">{rango(anioMin, anioMax)}</p>
+              </div>
+              <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">−</p>
+              <div className="rounded-2xl bg-estrella p-4 text-tinta">
+                <p className="text-sm font-bold">Con Casiopea 360, con todo dentro</p>
+                <p className="mt-1 text-xl font-extrabold sm:text-2xl">{euros(anioCuota)}</p>
+              </div>
+              <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">=</p>
+              <div className="rounded-2xl bg-noche p-4 text-white">
+                <p className="text-sm font-bold text-white/80">Te ahorras</p>
+                <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-estrella sm:text-2xl">{rango(anioMin - anioCuota, anioMax - anioCuota)}</p>
+              </div>
+            </div>
+            <details className="mt-6 rounded-[1.6rem] bg-white p-4 shadow-sm ring-1 ring-black/5 sm:p-6">
+              <summary className="cursor-pointer text-lg font-extrabold text-tinta">Ver cuánto pagarías por separado, servicio a servicio</summary>
+              <div className="mt-2">
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {dolor.map(([t, d], i) => (
             <TarjetaViva key={t} icono={["sonrisa", "lupa", "euro"][i]} i={i} titulo={t} texto={d} />
@@ -590,6 +611,88 @@ export function SeccionAhorro() {
         </div>
 
         <GraficoAhorro filas={FILAS_GRAFICO} cuota={CUOTA_NUM} />
+              </div>
+            </details>
+            <p className="mt-4 max-w-3xl text-sm text-gris">Precios orientativos de mercado en España, 2026, sin IVA. No contamos la inversión en anuncios.</p>
+          </>
+        ) : (
+          <>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {dolor.map(([t, d], i) => (
+            <TarjetaViva key={t} icono={["sonrisa", "lupa", "euro"][i]} i={i} titulo={t} texto={d} />
+          ))}
+        </ul>
+
+        <div className="mt-10 rounded-[2rem] bg-white p-4 shadow-[0_10px_30px_-18px_rgba(14,26,61,0.35)] ring-1 ring-black/5 sm:p-8">
+          <h3 className="text-2xl font-extrabold text-tinta sm:text-3xl">Lo que pagarías hoy, servicio a servicio</h3>
+          <p className="mt-1 text-gris">Precios de mercado orientativos, sin IVA. La barra clara es lo que sube el precio entre un proveedor barato y uno caro.</p>
+
+          <p className="mt-6 text-sm font-extrabold uppercase tracking-wide text-gris">1 · Cada mes</p>
+          <ul className="mt-3 grid gap-3">
+            {AHORRO_MES.map((f, i) => (
+              <li key={f.que} className="rounded-2xl bg-niebla p-3 sm:p-4" style={{ borderLeft: `6px solid ${COLORES_AHORRO[i]}` }}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <div>
+                    <p className="font-extrabold text-tinta">{f.que}</p>
+                    <p className="text-sm text-gris">{f.quien}</p>
+                  </div>
+                  <p className="text-right text-lg font-extrabold text-tinta sm:text-xl">{rango(f.min, f.max)} <span className="text-sm font-bold text-gris">al mes</span></p>
+                </div>
+                <div className="mt-2 flex h-2.5 overflow-hidden rounded-full bg-white" aria-hidden="true">
+                  <div style={{ width: `${(f.min / 2000) * 100}%`, background: COLORES_AHORRO[i] }} />
+                  {f.max ? <div style={{ width: `${((f.max - f.min) / 2000) * 100}%`, background: COLORES_AHORRO[i], opacity: 0.35 }} /> : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 rounded-2xl bg-noche px-4 py-3 text-white sm:px-5">
+            <p className="font-extrabold">Suma de lo que pagas cada mes</p>
+            <p className="text-xl font-extrabold text-estrella sm:text-2xl">{rango(mesMin, mesMax)} <span className="text-sm font-bold text-white/80">al mes</span></p>
+          </div>
+          <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm text-gris ring-1 ring-black/10">
+            <b className="text-tinta">Y además, dentro de la cuota y sin sumarlo arriba:</b> asesoramiento de negocio (estrategia, planes de marketing y de presupuestos), que por separado costaría unos {euros(AHORRO_EXTRA[0].min)} al mes.
+          </p>
+
+          <p className="mt-8 text-sm font-extrabold uppercase tracking-wide text-gris">2 · Una sola vez</p>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            {AHORRO_UNA_VEZ.map((f, i) => (
+              <li key={f.que} className="rounded-2xl bg-niebla p-3 sm:p-4" style={{ borderLeft: `6px solid ${COLORES_AHORRO[AHORRO_MES.length + i]}` }}>
+                <p className="font-extrabold text-tinta">{f.que}</p>
+                <p className="text-sm text-gris">{f.quien}</p>
+                <p className="mt-1 text-lg font-extrabold text-tinta sm:text-xl">{euros(f.min)} <span className="text-sm font-bold text-gris">una vez</span></p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 rounded-2xl bg-noche px-4 py-3 text-white sm:px-5">
+            <p className="font-extrabold">Suma de lo que pagas una vez</p>
+            <p className="text-xl font-extrabold text-estrella sm:text-2xl">{euros(unaVez)}</p>
+          </div>
+
+          <p className="mt-8 text-sm font-extrabold uppercase tracking-wide text-gris">3 · La cuenta del primer año</p>
+          <div className="mt-3 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
+            <div className="rounded-2xl bg-niebla p-4">
+              <p className="text-sm font-bold text-gris">Por separado</p>
+              <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-tinta sm:text-2xl">{rango(anioMin, anioMax)}</p>
+              <p className="mt-2 text-xs text-gris">12 meses de lo de cada mes ({rango(mesMin * 12, mesMax * 12)}) más lo de una sola vez ({euros(unaVez)}).</p>
+            </div>
+            <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">−</p>
+            <div className="rounded-2xl bg-estrella p-4 text-tinta">
+              <p className="text-sm font-bold">Con Casiopea 360</p>
+              <p className="mt-1 text-xl font-extrabold sm:text-2xl">{euros(anioCuota)}</p>
+              <p className="mt-2 text-xs font-semibold">12 cuotas de {euros(CUOTA_NUM)}, con todo dentro.</p>
+            </div>
+            <p aria-hidden="true" className="self-center text-center text-3xl font-extrabold text-gris">=</p>
+            <div className="rounded-2xl bg-noche p-4 text-white">
+              <p className="text-sm font-bold text-white/80">Te ahorras</p>
+              <p className="mt-1 whitespace-nowrap text-xl font-extrabold text-estrella sm:text-2xl">{rango(anioMin - anioCuota, anioMax - anioCuota)}</p>
+              <p className="mt-2 text-xs text-white/85">Cada mes, entre {euros(mesMin - CUOTA_NUM)} y {euros(mesMax - CUOTA_NUM)} menos.</p>
+            </div>
+          </div>
+        </div>
+
+        <GraficoAhorro filas={FILAS_GRAFICO} cuota={CUOTA_NUM} />
+          </>
+        )}
         <p className="mt-6 max-w-3xl text-sm text-gris">
           Precios orientativos de mercado en España, 2026, sin IVA: dependen del proveedor y del tamaño de tu empresa. No contamos la inversión en anuncios, que es tuya en ambos casos, ni las licencias, el asistente con IA, las reseñas, los vídeos o la vigilancia de tu competencia, que también van dentro. <Link href="/servicios#costes" className="font-bold text-tinta underline underline-offset-4">Calcúlalo con lo que necesitas tú</Link>.
         </p>
@@ -601,7 +704,7 @@ export function SeccionAhorro() {
 /** Precio (18-nov-2026, Ig): una sola cuota, 1.800 € + IVA al mes, sin permanencia. Va con todo lo que incluye.
     Sin garantías de resultados; la postura sobre los anuncios (IA o los propios dueños y trabajadores, sin actores) también va aquí. */
 export const PRECIO_CUOTA = "1.800 €";
-export function SeccionPrecio() {
+export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {}) {
   const valor: [string, string, string][] = [
     ["grafica", "Optimizamos tus campañas cada semana", "Miramos qué anuncio, qué palabra y qué página traen contactos de verdad, quitamos lo que gasta sin traer y subimos lo que funciona. Lo ves en tu panel."],
     ["lupa", "Mejoramos tus resultados, con pruebas", "Pruebas A/B en anuncios y en la web, landings para cada campaña y cada ciudad. Lo que funciona se queda; lo que no, fuera."],
@@ -613,7 +716,7 @@ export function SeccionPrecio() {
   ];
   return (
     <>
-    <SeccionAhorro />
+    <SeccionAhorro compacta={compacta} />
     <section id="precio" className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="precio-titulo">
       <Nebulosa oscura variante={1} />
       <div className={`${ENVOLTORIO} relative`}>

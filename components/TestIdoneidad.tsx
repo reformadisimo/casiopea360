@@ -692,7 +692,7 @@ export default function TestIdoneidad() {
             <div className="mt-6 rounded-2xl bg-white/70 p-4"><Muestra /></div>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/trabajos" className="rounded-full bg-noche px-6 py-3 font-bold text-white hover:bg-noche-2">Ver nuestros trabajos</Link>
-              <Link href="/estudio-gratuito#estudio" className="rounded-full border-2 border-noche px-6 py-3 font-bold hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
+              <Link href="/estudio-gratuito#incluye" className="rounded-full border-2 border-noche px-6 py-3 font-bold hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
             </div>
           </div>
         </div>
