@@ -5,6 +5,7 @@ import Versionante from "@/components/Versionante";
 import AnclaFirme from "@/components/AnclaFirme";
 import Medicion from "@/components/Medicion";
 import AsistenteDiferido from "@/components/AsistenteDiferido";
+import SubirArriba from "@/components/SubirArriba";
 import GlosarioTactil from "@/components/GlosarioTactil";
 import Cabecera from "@/components/Cabecera";
 import Profundidad from "@/components/Profundidad";
@@ -71,6 +72,7 @@ export default function RootLayout({
         <AnclaFirme />
         <Medicion />
         <AsistenteDiferido />
+        <SubirArriba />
         <GlosarioTactil />
         <Revelado />
         {/* Visitas y velocidad real, sin cookies y sin datos personales (Vercel). */}
