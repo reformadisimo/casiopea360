@@ -51,7 +51,7 @@ export function schemaOrganizacion() {
     sameAs: [
       "https://www.linkedin.com/company/casiopea360",
       "https://www.facebook.com/profile.php?id=61596047848304",
-      "https://www.instagram.com/casiopea360.es",
+      "https://www.instagram.com/casiopea360.agencia",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

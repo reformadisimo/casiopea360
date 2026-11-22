@@ -18,7 +18,7 @@ export const REDES = [
   },
   {
     nombre: "Instagram",
-    href: "https://www.instagram.com/casiopea360.es",
+    href: "https://www.instagram.com/casiopea360.agencia",
     dibujo: (
       <>
         <rect x="2" y="2" width="20" height="20" rx="5" />
