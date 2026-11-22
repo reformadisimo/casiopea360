@@ -444,7 +444,7 @@ export default function TestIdoneidad() {
 
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
               {ti === 0 && (
-                <p className="mb-4 text-[0.95rem] leading-snug text-gris">
+                <p className="mb-4 hidden text-[0.95rem] leading-snug text-gris sm:block">
                   <b className="text-tinta">Tu estudio gratuito: propuestas para tu web, tus anuncios y un plan con costes.</b> Sin llamadas comerciales ni accesos.
                 </p>
               )}
@@ -464,9 +464,9 @@ export default function TestIdoneidad() {
                   <span className="pt-1 text-[1.35rem] leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
                 {q.ayuda && <p className="mt-2 text-[0.95rem] font-normal text-gris">{q.ayuda}</p>}
-                <div className="mt-4 grid gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3">
+                <div className={`mt-4 grid gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3 ${q.o.length >= 5 ? "max-sm:grid-cols-2 [&>button:last-child:nth-child(odd)]:max-sm:col-span-2" : ""}`}>
                   {q.o.map((o, j) => (
-                    <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} />
+                    <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} compacta={q.o.length >= 5} />
                   ))}
                 </div>
               </fieldset>

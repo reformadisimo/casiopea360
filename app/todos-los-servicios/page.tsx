@@ -48,15 +48,15 @@ export default function TodosLosServicios() {
             <h2 id={`h-${g.id}`} className="mt-5 max-w-3xl text-3xl font-extrabold sm:text-4xl">{g.frase}</h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {g.servicios.map((s, i) => (
-                <li key={s.t} className="flex flex-col gap-3 rounded-[1.6rem] bg-white p-5 shadow-sm ring-1 ring-linea sm:p-6">
+                <li key={s.t} className={`${s.nuevo ? "flex flex-col" : "grid grid-cols-[auto_1fr] items-center sm:flex sm:flex-col sm:items-stretch"} gap-x-3 gap-y-2 rounded-[1.6rem] bg-white p-4 shadow-sm ring-1 ring-linea sm:gap-3 sm:p-6`}>
                   <div className="flex items-center gap-3">
                     <ChipIcono icono={g.icono} i={gi + i} tam="h-10 w-10" />
                     {s.nuevo && <span className="rounded-full bg-estrella/40 px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide text-tinta">Nuevo en la lista</span>}
                   </div>
                   <h3 className="text-lg font-extrabold leading-snug text-tinta">{s.t}</h3>
-                  <p className="text-gris">{s.d}</p>
+                  <p className="col-span-2 text-[0.95rem] text-gris sm:text-base">{s.d}</p>
                   {s.enlace && (
-                    <Link href={s.enlace.href} className="mt-auto inline-flex min-h-11 items-center font-bold text-tinta underline underline-offset-4">
+                    <Link href={s.enlace.href} className="col-span-2 mt-auto inline-flex min-h-11 items-center font-bold text-tinta underline underline-offset-4">
                       {s.enlace.texto}
                     </Link>
                   )}
