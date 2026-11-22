@@ -14,11 +14,11 @@ export default function NoEncontrada() {
         <div>
           <Etiqueta tono="cristal" icono="mapa">Error 404</Etiqueta>
           <h1 className="mt-5 text-5xl font-extrabold sm:text-7xl">Esta estrella se ha salido de la constelación.</h1>
-          <p className="mt-5 max-w-xl text-lg text-white/85">La página que buscas no existe o la hemos movido.</p>
+          <p className="mt-5 max-w-xl text-lg text-white/85">Puede que la hayamos movido, o que el enlace traiga una errata.</p>
           <Bocadillo claro className="mt-5 max-w-xl">Pero no te vayas: aquí cerca tienes lo importante.</Bocadillo>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/" className={`${BOTON} min-h-11`}>Volver al inicio</Link>
-            <Link href="/test" className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">Hacer el test en 1 minuto</Link>
+            <Link href="/trabajos" className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">Ver nuestros trabajos</Link>
             <Link href="/estudio-gratuito" className="inline-flex min-h-11 items-center justify-center rounded-full bg-white/10 px-7 py-3.5 font-bold hover:bg-white/20">Pedir mi estudio gratuito</Link>
           </div>
         </div>

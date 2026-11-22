@@ -19,12 +19,12 @@ const SI_NO_SIGO: [string, string][] = [
 ];
 
 const FAQ: { p: string; r: string }[] = [
-  { p: "¿De verdad es gratis?", r: "Sí. Ni antes ni después, y sin tarjeta ni firmas." },
-  { p: "¿Me vais a llamar para venderme algo?", r: "No. Trabajamos por escrito; si quieres hablar, nos escribes tú." },
+  { p: "¿De verdad es gratis?", r: "De verdad. Ni ahora ni después, y sin tarjeta ni firmas. Tú lo miras con calma y decides." },
+  { p: "¿Me vais a llamar para venderme algo?", r: "Ni una llamada. Trabajamos por escrito y a tu ritmo; si quieres hablar, escríbenos tú." },
   { p: "¿Cuánto tarda?", r: "Menos de una semana, es un compromiso. Lo normal, tres días." },
   { p: "¿Y si ahora no podéis hacer el mío?", r: "Te escribimos igual y te avisamos cuando haya hueco: hacemos pocos estudios a la vez." },
-  { p: "¿Qué tengo que daros para hacerlo?", r: "Solo lo que contestes en el test. Lo demás se ve desde fuera: tu web, tu ficha, tus anuncios y tu competencia." },
-  { p: "¿Puedo ver un ejemplo antes?", r: "Sí, uno entero, de un despacho inventado, en la página Un ejemplo real." },
+  { p: "¿Qué tengo que daros para hacerlo?", r: "Casi nada: lo que contestes en el test. Lo demás lo miramos nosotros desde fuera: tu web, tu ficha, tus anuncios y tu competencia." },
+  { p: "¿Puedo ver un ejemplo antes?", r: "Claro: uno entero, de un despacho inventado, en la página Un ejemplo real. Míralo con calma." },
 ];
 
 export default function SeccionDudasEstudio() {

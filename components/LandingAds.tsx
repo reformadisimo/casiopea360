@@ -8,6 +8,7 @@ import VideoPulsar from "@/components/VideoPulsar";
 import TestYa from "@/components/TestYa";
 import { ENVOLTORIO } from "@/components/secciones";
 import { PRECIO_CUOTA } from "@/components/SeccionesVender";
+import { PreguntaViva } from "@/components/Vida";
 
 /* Landing corta para los anuncios de búsqueda (22-nov-2026): el dolor arriba, el test en la portada
    y cada bloque en una pantalla. Sin tarjetas largas. No se indexa: la página para Google es /estudio-gratuito. */
@@ -31,11 +32,11 @@ const RECIBES: [string, string, string, string][] = [
 ];
 
 export const FAQ_ADS: { p: string; r: string }[] = [
-  { p: "¿De verdad es gratis?", r: "Sí. Ni antes ni después, y sin tarjeta ni firmas." },
-  { p: "¿Me vais a llamar para venderme algo?", r: "No. Trabajamos por escrito; si quieres hablar, nos escribes tú." },
-  { p: "¿Cuánto tarda?", r: "Te escribimos en 48 horas laborables. Si podemos ayudarte, el estudio llega en menos de una semana." },
-  { p: "¿Qué tengo que daros?", r: "Solo lo que contestes aquí. Lo demás se ve desde fuera: tu web, tu ficha, tus anuncios y tu competencia." },
-  { p: "¿Hay permanencia?", r: "No. Una cuota fija al mes y te vas cuando quieras, con tus cuentas, tu web y tus contactos." },
+  { p: "¿De verdad es gratis?", r: "De verdad. Ni ahora ni después, y sin tarjeta ni firmas. Tú lo miras con calma y decides." },
+  { p: "¿Me vais a llamar para venderme algo?", r: "Ni una llamada. Trabajamos por escrito y a tu ritmo; si quieres hablar, escríbenos tú." },
+  { p: "¿Cuánto tarda?", r: "Te escribimos en 48 horas laborables para decirte si podemos ayudarte. Si es que sí, tu estudio llega en menos de una semana." },
+  { p: "¿Qué tengo que daros?", r: "Casi nada: lo que contestes en el test. Lo demás lo miramos nosotros desde fuera: tu web, tu ficha de Google, tus anuncios y tu competencia." },
+  { p: "¿Hay permanencia?", r: "Ninguna. Una cuota fija al mes y te vas cuando quieras, con tus cuentas, tu web y tus contactos." },
 ];
 
 const GARANTIAS = ["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"];
@@ -215,16 +216,12 @@ export function DudasAds() {
   return (
     <section className="bg-niebla py-10 sm:py-16" aria-labelledby="dudas-ads">
       <div className={`${ENVOLTORIO} max-w-3xl`}>
-        <h2 id="dudas-ads" className="text-2xl font-extrabold text-tinta sm:text-3xl">Lo que nos preguntan</h2>
-        <div className="mt-5 grid gap-2">
-          {FAQ_ADS.map((f) => (
-            <details key={f.p} className="group rounded-2xl bg-white px-4 py-3 ring-1 ring-tinta/10">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-extrabold text-tinta [&::-webkit-details-marker]:hidden">
-                {f.p}
-                <span aria-hidden="true" className="text-xl leading-none text-noche-3 transition-transform group-open:rotate-45">+</span>
-              </summary>
-              <p className="mt-2 text-tinta/75">{f.r}</p>
-            </details>
+        <h2 id="dudas-ads" className="text-2xl font-extrabold text-tinta sm:text-3xl">Lo que más nos preguntan</h2>
+        <div className="mt-5 grid gap-3">
+          {FAQ_ADS.map((f, i) => (
+            <PreguntaViva key={f.p} p={f.p} i={i}>
+              <p className="text-gris">{f.r}</p>
+            </PreguntaViva>
           ))}
         </div>
       </div>
