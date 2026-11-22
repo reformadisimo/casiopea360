@@ -7,7 +7,7 @@ export const URGE = ["Me llegan pocas consultas", "No sé qué me aportan los an
 
 /** Pantallas en el orden en que se ven. El primer tramo son tres toques y los datos; lo demás llega después de enviar. */
 export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" | "despues" | "afinar" | "fin" }[] = [
-  { id: "urge", texto: "¿Qué te gustaría mejorar primero?", fase: "primero" },
+  { id: "urge", texto: "¿Qué quieres mejorar primero?", fase: "primero" },
   { id: "sector", texto: "¿A qué se dedica tu empresa?", fase: "primero" },
   { id: "gasto", texto: "¿Cuánto gastas al mes en marketing, en total?", fase: "primero" },
   { id: "datos", texto: "Pantalla de datos (nombre, empresa, correo…)", fase: "datos" },

@@ -76,27 +76,21 @@ export function Reaccion({ texto, tono = "neutro", claro = false }: { texto: str
 }
 
 // Una opción grande, de color, con su letra.
-export function Opcion({ letra, texto, color, activa, onClick, compacta = false }: { letra: string; texto: string; color: string; activa: boolean; onClick: () => void; compacta?: boolean }) {
+export function Opcion({ texto, activa, onClick }: { letra?: string; texto: string; color?: string; activa: boolean; onClick: () => void; compacta?: boolean }) {
+  // Fila compacta a todo el ancho: texto a la izquierda y flecha a la derecha; la elegida, en amarillo con un tic.
   return (
     <button
       type="button"
       aria-pressed={activa}
       onClick={onClick}
-      className={`group flex w-full items-center gap-3 rounded-2xl border-2 px-3.5 py-2.5 text-left text-base font-bold leading-snug sm:gap-4 sm:py-4 sm:text-[1.05rem] ${compacta ? "max-sm:min-h-[3.5rem] max-sm:justify-center max-sm:px-2.5 max-sm:py-2 max-sm:text-center max-sm:text-[0.9rem] max-sm:leading-tight" : ""} shadow-[0_6px_18px_-10px_rgba(14,26,61,0.35)] transition-all sm:px-5 ${
-        activa ? "border-noche bg-noche text-white" : "border-transparent bg-white text-tinta hover:-translate-y-1 hover:shadow-[0_14px_28px_-14px_rgba(14,26,61,0.45)]"
+      className={`flex min-h-12 w-full items-center justify-between gap-3 rounded-xl border-[1.5px] px-4 py-2.5 text-left text-base font-bold leading-snug transition-colors sm:text-[1.05rem] ${
+        activa ? "border-estrella bg-estrella/25 text-tinta" : "border-linea bg-white text-tinta hover:border-noche hover:bg-niebla"
       }`}
     >
-      <span
-        aria-hidden="true"
-        className={`${compacta ? "max-sm:hidden" : ""} grid h-7 w-7 shrink-0 place-items-center rounded-full text-base font-extrabold sm:h-9 sm:w-9 ${activa ? "bg-white/25 text-white" : "bg-noche/10 text-noche"}`}
-      >
-        {activa ? (
-          <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-        ) : (
-          <span className="h-4 w-4 rounded-full border-[3px] border-current opacity-60 sm:h-5 sm:w-5" />
-        )}
-      </span>
       <span>{texto}</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${activa ? "text-tinta" : "text-gris"}`} fill="none" stroke="currentColor" strokeWidth={activa ? 3 : 2.5} strokeLinecap="round" strokeLinejoin="round">
+        {activa ? <path d="M5 12.5l4.5 4.5L19 7.5" /> : <path d="M9 6l6 6-6 6" />}
+      </svg>
     </button>
   );
 }

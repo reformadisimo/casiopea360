@@ -67,7 +67,7 @@ const TRAMOS: Tramo[] = [
     logos: ["Google Maps", "Google", "LinkedIn"],
     puntua: false,
     preguntas: [
-      { id: "urge", p: "¿Qué te gustaría mejorar primero?", ayuda: "Elige lo que más te preocupa ahora.", o: T(...URGE) },
+      { id: "urge", p: "¿Qué quieres mejorar primero?", ayuda: "Elige una opción para continuar.", o: T(...URGE) },
       { id: "sector", p: "¿A qué se dedica tu empresa?", ayuda: "Elige la opción que mejor describa tu actividad principal.", o: T(...SECTORES) },
       { id: "gasto", p: "¿Cuánto gastas al mes en marketing, en total?", ayuda: "Agencias, herramientas y anuncios, todo junto. Con una cifra aproximada nos vale.", o: T(...GASTO) },
     ],
@@ -434,26 +434,26 @@ export default function TestIdoneidad() {
         const avancePaso = !enNota ? (qi + (resp[q.id] === undefined ? 0 : 1)) / tramo.preguntas.length : Math.min(hechasA / Math.max(totalA, 1), 1);
         return (
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
-            <div className="bg-noche px-5 py-3 text-sm font-extrabold text-white sm:hidden">
-              {tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Tres preguntas y tus datos" : tramo.titulo}
-            </div>
-            <div className="hidden items-center justify-between gap-4 px-9 pt-7 sm:flex">
-              <Logo chico />
-              <p className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">Sin compromiso · sin pedirte accesos</p>
-            </div>
-
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
-              {ti === 0 && (
-                <p className="mb-4 hidden text-[0.95rem] leading-snug text-gris sm:block">
-                  <b className="text-tinta">Tu estudio gratuito: propuestas para tu web, tus anuncios y un plan con costes.</b> Sin llamadas comerciales ni accesos.
-                </p>
-              )}
-              <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
-                <span className="shrink-0">{etiquetaPaso}</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
-                  <div className="h-full rounded-full bg-estrella transition-[width] duration-500" style={{ width: `${avancePaso * 100}%` }} />
+              <p className="text-sm font-extrabold uppercase tracking-wide text-[#9a6700]">{tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Tu estudio gratuito" : tramo.titulo}</p>
+              {ti === 0 && <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>}
+              {ti === 0 ? (
+                <div className="mt-4 flex items-center gap-3" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
+                  <div className="flex flex-1 gap-1.5">
+                    {tramo.preguntas.map((x, k) => (
+                      <span key={x.id} className={`h-2 flex-1 rounded-full ${k <= qi ? "bg-estrella" : "bg-linea"}`} />
+                    ))}
+                  </div>
+                  <p className="shrink-0 text-sm text-gris"><b className="font-extrabold text-tinta">{etiquetaPaso}</b> · Después, tus datos</p>
                 </div>
-              </div>
+              ) : (
+                <div className="mt-4 flex items-center gap-3 text-sm font-extrabold text-gris">
+                  <span className="shrink-0">{etiquetaPaso}</span>
+                  <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
+                    <div className="h-full rounded-full bg-estrella transition-[width] duration-500" style={{ width: `${avancePaso * 100}%` }} />
+                  </div>
+                </div>
+              )}
               <fieldset key={q.id} className="entra mt-5">
                 <legend className="flex items-start gap-3 text-xl font-extrabold sm:text-3xl">
                   {q.logo && (
@@ -464,13 +464,13 @@ export default function TestIdoneidad() {
                   <span className="pt-1 text-[1.35rem] leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
                 {q.ayuda && <p className="mt-2 text-[0.95rem] font-normal text-gris">{q.ayuda}</p>}
-                <div className={`mt-4 grid gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3 ${q.o.length >= 5 ? "max-sm:grid-cols-2 [&>button:last-child:nth-child(odd)]:max-sm:col-span-2" : ""}`}>
+                <div className="mt-4 grid gap-2">
                   {q.o.map((o, j) => (
                     <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} compacta={q.o.length >= 5} />
                   ))}
                 </div>
               </fieldset>
-              {qi === 0 && <p className="mt-4 hidden text-sm text-gris sm:block">{tramo.dato}</p>}
+              {qi === 0 && <p className="mt-4 text-sm text-gris">{tramo.dato}</p>}
               <div className={reaccion ? "mt-5" : "mt-2"}>{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
               <div className="mt-3 flex flex-wrap items-center gap-3">
                 {(ti > 0 || qi > 0) && (
