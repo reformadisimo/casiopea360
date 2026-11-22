@@ -323,11 +323,11 @@ export function SeccionOrigen() {
   return (
     <section className="relative overflow-hidden bg-noche text-white">
       <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[320px] lg:min-h-[560px]">
+        <div className="relative min-h-[190px] sm:min-h-[320px] lg:min-h-[560px]">
           <VideoFondo nombre="papeles" alt="Un despacho con papeles apilados sobre la mesa" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-noche/60 lg:to-noche" />
         </div>
-        <div className="flex items-center px-4 py-16 sm:px-10 lg:px-16">
+        <div className="flex items-center px-4 py-10 sm:py-16 sm:px-10 lg:px-16">
           <div className="max-w-xl">
             <h2 className="text-4xl font-extrabold sm:text-5xl">La empresa que nos habría gustado contratar.</h2>
             <p className="mt-6 text-lg text-white/80">
