@@ -613,7 +613,6 @@ export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {})
         <GraficoAhorro filas={FILAS_GRAFICO} cuota={CUOTA_NUM} />
               </div>
             </details>
-            <p className="mt-4 max-w-3xl text-sm text-gris">Precios orientativos de mercado en España, 2026, sin IVA. No contamos la inversión en anuncios.</p>
           </>
         ) : (
           <>
