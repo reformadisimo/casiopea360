@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const valor = limpio(b.valor, 20);
     const fuente = limpio(b.fuente, 60) || "directo";
     const disp = b.disp === "pc" ? "pc" : "movil";
-    const variante = b.variante === "B" ? "B" : "A";
+    const variante = ["B", "E", "C"].includes(b.variante) ? b.variante : "A";
     await asegurarTablas();
     await sql()`INSERT INTO test_pasos (sesion, tipo, paso, valor, fuente, disp, variante) VALUES (${sesion}, ${tipo}, ${paso}, ${valor}, ${fuente}, ${disp}, ${variante})`;
   } catch (e) {

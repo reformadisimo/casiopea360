@@ -8,6 +8,6 @@ const TestIdoneidad = dynamic(() => import("@/components/TestIdoneidad"), {
   loading: () => <div className="min-h-[560px] rounded-[1.75rem] bg-white/10 sm:min-h-[520px]" aria-hidden="true" />,
 });
 
-export default function TestYa({ entregas = false }: { entregas?: boolean }) {
-  return <div className="min-h-[560px] sm:min-h-[520px]"><TestIdoneidad entregas={entregas} /></div>;
+export default function TestYa({ entregas = false, landing }: { entregas?: boolean; landing?: "E" | "C" }) {
+  return <div className="min-h-[560px] sm:min-h-[520px]"><TestIdoneidad entregas={entregas} landing={landing} /></div>;
 }

@@ -107,7 +107,7 @@ export async function POST(req: Request) {
       const t = (v: unknown, n: number) => String(v ?? "").slice(0, n);
       await sql()`INSERT INTO solicitudes (nombre, empresa, correo, telefono, encaje, novedades, fuente, campana, pagina, aterrizaje, variante, texto, correo_enviado)
         VALUES (${t(datos.nombre, 120)}, ${t(datos.empresa, 160)}, ${correo}, ${t(datos.telefono, 40)}, ${t(datos.encaje, 20)}, ${datos.novedades === true},
-                ${t(datos.fuente, 60) || "directo"}, ${t(datos.campana, 80)}, ${t(datos.pagina, 150)}, ${t(datos.aterrizaje, 150)}, ${datos.variante === "B" ? "B" : "A"}, ${texto}, ${correoListo})`;
+                ${t(datos.fuente, 60) || "directo"}, ${t(datos.campana, 80)}, ${t(datos.pagina, 150)}, ${t(datos.aterrizaje, 150)}, ${["B", "E", "C"].includes(datos.variante ?? "") ? datos.variante : "A"}, ${texto}, ${correoListo})`;
     } catch (e) {
       console.error("[solicitud] no guardada en la base de datos:", e);
     }

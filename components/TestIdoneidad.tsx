@@ -160,7 +160,7 @@ const NOTA_PREGUNTAS = TRAMOS.filter((t) => !t.extra && t.id !== "primero").redu
 const campo =
   "mt-1.5 w-full rounded-xl border-2 border-linea bg-white px-4 py-3 text-base text-tinta placeholder:text-gris/70 focus:border-noche focus:outline-none";
 
-export default function TestIdoneidad({ entregas = false }: { entregas?: boolean } = {}) {
+export default function TestIdoneidad({ entregas = false, landing }: { entregas?: boolean; landing?: "E" | "C" } = {}) {
   const [resp, setResp] = useState<Record<string, number>>({});
   const [ti, setTi] = useState(0); // tramo actual (índice en TRAMOS); "datos" y "fin" van aparte
   const [qi, setQi] = useState(0);
@@ -176,16 +176,10 @@ export default function TestIdoneidad({ entregas = false }: { entregas?: boolean
   const sesion = useRef("");
   const vistas = useRef(new Set<string>());
   const pantallaActual = useRef("urge");
-  // Variante del formulario de datos (A: empresa y ciudad obligatorias; B: «empresa o web» y ciudad opcional). Se reparte al azar por visita y se recuerda en la pestaña.
-  const [variante, setVariante] = useState<"A" | "B">("A");
-  const varRef = useRef<"A" | "B">("A");
-  useEffect(() => {
-    let v: "A" | "B" | null = null;
-    try { const g = sessionStorage.getItem("cas-var-form"); if (g === "A" || g === "B") v = g; } catch {}
-    if (!v) { v = Math.random() < 0.5 ? "A" : "B"; try { sessionStorage.setItem("cas-var-form", v); } catch {} }
-    varRef.current = v;
-    setVariante(v);
-  }, []);
+  // La prueba del formulario (A frente a B, v314) queda congelada en A desde el 22-nov: ahora se prueba el titular de la landing de Google.
+  // `landing` dice qué titular vio la visita (E: «Todo tu marketing digital. Un solo equipo.»; C: el claim) y se apunta en `variante`.
+  const variante = "A" as "A" | "B";
+  const varRef = useRef<string>(landing ?? "A");
   const paso = (tipo: string, p: string, valor = "") => {
     try {
       if (!sesion.current) sesion.current = ((typeof crypto !== "undefined" && crypto.randomUUID?.()) || `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`).replace(/-/g, "");

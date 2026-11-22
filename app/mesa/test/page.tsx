@@ -72,6 +72,13 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
     return { v, empiezan: set("vista", "sector"), datos: set("vista", "datos"), envian: set("envio", "datos", "ok") };
   };
   const variantes = [porVar("A"), porVar("B")];
+  // Titular de la landing de Google: E («Todo tu marketing digital. Un solo equipo.») frente a C (el claim arriba). Desde el 22-nov.
+  const porTitular = (v: string) => {
+    const f = filas.filter((x) => x.variante === v);
+    const set = (tipo: string, paso: string, valor?: string) => new Set(f.filter((x) => x.tipo === tipo && (paso === "*" || x.paso === paso) && (valor === undefined || x.valor === valor)).map((x) => x.sesion)).size;
+    return { v, entran: new Set(f.map((x) => x.sesion)).size, empiezan: set("respuesta", "*"), datos: set("vista", "datos"), envian: set("envio", "datos", "ok") };
+  };
+  const titulares = [porTitular("E"), porTitular("C")];
 
   // Última pantalla vista de quien no envió: dónde se queda cada persona.
   const enviaronSet = new Set(filas.filter((f) => f.tipo === "envio" && f.valor === "ok").map((f) => f.sesion));
@@ -170,7 +177,31 @@ export default async function TestRecorrido({ searchParams }: { searchParams: Pr
           </section>
 
           <section>
-            <h2 className="text-2xl font-extrabold text-tinta">Prueba del formulario: A frente a B</h2>
+            <h2 className="text-2xl font-extrabold text-tinta">Prueba del titular (landing de Google): E frente a C</h2>
+            <p className="mb-3 mt-1 text-[14px] text-tinta/70">E abre con «Todo tu marketing digital. Un solo equipo.» y C con «¿Cuánta gente que te necesita hoy ni sabe que existes?». La misma dirección reparte mitad y mitad. «Entran» son visitas que cargaron el test en esa landing; «Empiezan», las que contestaron al menos una pregunta. Con poco tráfico no decidas antes de unas 150 visitas por titular.</p>
+            <div className="overflow-x-auto rounded-3xl bg-white ring-1 ring-linea">
+              <table className="w-full min-w-[520px] text-left text-[14px]">
+                <thead className="bg-niebla text-[12px] uppercase tracking-wide text-tinta/60">
+                  <tr><th className="px-4 py-3">Titular</th><th className="px-3 py-3 text-right">Entran</th><th className="px-3 py-3 text-right">Empiezan</th><th className="px-3 py-3 text-right">Empiezan / entran</th><th className="px-3 py-3 text-right">Llegan a los datos</th><th className="px-3 py-3 text-right">Envían</th></tr>
+                </thead>
+                <tbody>
+                  {titulares.map((x) => (
+                    <tr key={x.v} className="border-t border-linea">
+                      <td className="px-4 py-2.5 font-bold text-tinta">{x.v === "E" ? "E · Un solo equipo" : "C · Claim"}</td>
+                      <td className="px-3 py-2.5 text-right">{x.entran}</td>
+                      <td className="px-3 py-2.5 text-right">{x.empiezan}</td>
+                      <td className="px-3 py-2.5 text-right text-tinta/70">{pct(x.empiezan, x.entran)}</td>
+                      <td className="px-3 py-2.5 text-right">{x.datos}</td>
+                      <td className="px-3 py-2.5 text-right font-bold">{x.envian}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold text-tinta">Prueba del formulario: A frente a B (congelada en A el 22-nov)</h2>
             <p className="mb-3 mt-1 text-[14px] text-tinta/70">A pide empresa y ciudad. B pide «empresa o web» y deja la ciudad opcional. Se reparte al azar por visita. Con poco tráfico una diferencia pequeña no se puede distinguir del azar: no decidas hasta tener al menos 100 personas que lleguen a los datos en cada una (unas dos semanas). «Ven la tarjeta» cuenta solo a quien tuvo la mitad de la tarjeta en pantalla: {visibles} en total.</p>
             <div className="overflow-x-auto rounded-3xl bg-white ring-1 ring-linea">
               <table className="w-full min-w-[520px] text-left text-[14px]">

@@ -54,7 +54,7 @@ function Icono({ children, className = "" }: { children: React.ReactNode; classN
   );
 }
 
-export function HeroAds() {
+export function HeroAds({ variante = "E" }: { variante?: "E" | "C" }) {
   return (
     <section className="relative overflow-hidden bg-noche pb-10 pt-[4.5rem] text-white sm:pb-16 sm:pt-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50">
@@ -65,13 +65,24 @@ export function HeroAds() {
       <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1fr_1fr] lg:gap-12 [&:has([data-fase=fin])]:lg:grid-cols-1 [&:has([data-fase=fin])>div:first-child]:hidden`}>
         <div className="lg:pt-4">
           <p className="text-sm font-extrabold uppercase tracking-wide text-white/75">Agencia de marketing digital en Madrid</p>
-          <h1 className="mt-3 font-extrabold leading-[1.05]">
+          {variante === "C" ? (
+            <>
+              <h1 className="mt-3 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3.1rem]">
+                ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
+              </h1>
+              <p className="mt-4 max-w-xl text-[1.45rem] font-extrabold leading-tight text-estrella sm:text-[1.9rem]">Todo tu marketing digital. Un solo equipo.</p>
+            </>
+          ) : (
+            <>
+              <h1 className="mt-3 font-extrabold leading-[1.05]">
             <span className="block whitespace-nowrap text-[1.7rem] min-[400px]:text-[1.85rem] sm:whitespace-normal sm:text-5xl lg:text-[3.25rem]">Todo tu marketing digital.</span>
             <span className="mt-1 block text-[2.5rem] text-estrella sm:text-6xl lg:text-[4rem]">Un solo equipo.</span>
           </h1>
           <p className="mt-4 max-w-xl text-[1.45rem] font-extrabold leading-tight text-white sm:text-[1.9rem]">
             ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
           </p>
+            </>
+          )}
           <ul className="mt-6 grid max-w-md grid-cols-2 gap-x-4 gap-y-3">
             {FRENTES_HERO.map(([t, ico]) => (
               <li key={t} className="flex items-center gap-2.5 text-[1.05rem] font-extrabold"><Icono className="h-7 w-7 shrink-0 text-estrella">{ico}</Icono>{t}</li>
@@ -97,7 +108,7 @@ export function HeroAds() {
           <p className="mt-1.5 max-w-xl text-center text-sm text-white/80 sm:text-left">Te respondemos por escrito en 48 horas laborables.</p>
         </div>
         <div id="solicitud" className="scroll-mt-20">
-          <TestYa entregas />
+          <TestYa entregas landing={variante} />
         </div>
       </div>
     </section>
