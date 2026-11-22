@@ -5,6 +5,17 @@ export const SECTORES = ["Servicios a particulares", "Servicios a empresas", "Ti
 export const GASTO = ["Menos de 1.000 € al mes", "De 1.000 a 2.000 € al mes", "De 2.000 a 4.000 € al mes", "Más de 4.000 € al mes", "No lo sé o prefiero no decirlo"];
 export const URGE = ["Necesito más clientes y oportunidades", "Invierto en publicidad, pero no sé si funciona", "Mi web recibe visitas, pero pocos contactos", "Mi ficha de Google y mis reseñas", "Quiero destacar en mi zona", "Coordino demasiados proveedores", "No tengo claro si pago de más"];
 
+/** Una línea de explicación e icono por opción de URGE (mismo orden que URGE). Sin cifras ni promesas. */
+export const URGE_DETALLE: { sub: string; ic: string }[] = [
+  { sub: "Ideas para atraer más demanda", ic: "sube" },
+  { sub: "Revisar qué te aportan de verdad", ic: "diana" },
+  { sub: "Convertir más visitas en consultas", ic: "web" },
+  { sub: "Cómo te ven cuando te buscan", ic: "estrella" },
+  { sub: "Que te encuentren los de tu zona", ic: "pin" },
+  { sub: "Un solo equipo para todo", ic: "capas" },
+  { sub: "Ver si gastas más de lo necesario", ic: "monedas" },
+];
+
 /** Pantallas en el orden en que se ven. El primer tramo son tres toques y los datos; lo demás llega después de enviar. */
 export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" | "despues" | "afinar" | "fin" }[] = [
   { id: "urge", texto: "¿Qué está impidiendo que tu negocio consiga más clientes?", fase: "primero" },

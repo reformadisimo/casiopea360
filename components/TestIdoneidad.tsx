@@ -12,7 +12,7 @@ import Image from "next/image";
 import BotonDictado from "@/components/BotonDictado";
 import DetalleEstudio from "@/components/DetalleEstudio";
 import { CONTACTO } from "@/lib/contenido";
-import { GASTO, SECTORES, URGE } from "@/lib/testOrden";
+import { GASTO, SECTORES, URGE, URGE_DETALLE } from "@/lib/testOrden";
 
 // Muestra de la guía que recibirá (despacho ficticio, difuminada).
 const MUESTRA = [
@@ -42,7 +42,7 @@ function Muestra({ oscuro = false }: { oscuro?: boolean }) {
 // Una pregunta por pantalla, en tramos, con frases, datos curiosos y confeti.
 // Sirve a la vez para dar al cliente su nota y para que sepamos si encaja (etiqueta interna en el correo).
 
-type Opc = { t: string; v: number }; // v: 0 a 3 puntos (solo cuenta en tramos que puntúan)
+type Opc = { t: string; v: number; sub?: string; ic?: string }; // v: 0 a 3 puntos (solo cuenta en tramos que puntúan)
 type Preg = { id: string; p: string; ayuda?: string; o: Opc[]; fallo?: string; arreglo?: string; peso?: number; logo?: string };
 type Tramo = { id: string; titulo: string; intro: string; dato: string; video: string; color: string; logos: string[]; puntua: boolean; preguntas: Preg[]; extra?: boolean };
 
@@ -68,7 +68,7 @@ const TRAMOS: Tramo[] = [
     logos: ["Google Maps", "Google", "LinkedIn"],
     puntua: false,
     preguntas: [
-      { id: "urge", p: "¿Qué está impidiendo que tu negocio consiga más clientes?", ayuda: "Empezamos por lo que más te preocupa.", o: T(...URGE) },
+      { id: "urge", p: "¿Qué está impidiendo que tu negocio consiga más clientes?", ayuda: "Empezamos por lo que más te preocupa.", o: URGE.map((t, i) => ({ t, v: 0, sub: URGE_DETALLE[i].sub, ic: URGE_DETALLE[i].ic })) },
       { id: "sector", p: "¿A qué se dedica tu empresa?", ayuda: "Elige la opción que mejor describa tu actividad principal.", o: T(...SECTORES) },
       { id: "gasto", p: "¿Cuánto gastas al mes en marketing, en total?", ayuda: "Agencias, herramientas y anuncios, todo junto. Con una cifra aproximada nos vale.", o: T(...GASTO) },
     ],
@@ -473,7 +473,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
                 {q.ayuda && <p className="mt-2 text-[0.95rem] font-normal text-gris">{q.ayuda}</p>}
                 <div className="mt-4 grid gap-2">
                   {q.o.map((o, j) => (
-                    <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} compacta={q.o.length >= 5} />
+                    <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} compacta={q.o.length >= 5} sub={o.sub} icono={o.ic} />
                   ))}
                 </div>
               </fieldset>

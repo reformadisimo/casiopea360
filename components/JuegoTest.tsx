@@ -1,4 +1,5 @@
 "use client";
+import type React from "react";
 
 // Piezas compartidas por los tests para que se jueguen y no se rellenen: confeti, estrella, barra con estrella y opciones de colores.
 
@@ -76,18 +77,36 @@ export function Reaccion({ texto, tono = "neutro", claro = false }: { texto: str
 }
 
 // Una opción grande, de color, con su letra.
-export function Opcion({ texto, activa, onClick }: { letra?: string; texto: string; color?: string; activa: boolean; onClick: () => void; compacta?: boolean }) {
-  // Fila compacta a todo el ancho: texto a la izquierda y flecha a la derecha; la elegida, en amarillo con un tic.
+const ICONOS: Record<string, React.ReactNode> = {
+  sube: <><path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" /></>,
+  diana: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></>,
+  web: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M7 6.5h.01M10 6.5h.01" /></>,
+  estrella: <path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" />,
+  pin: <><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></>,
+  capas: <><path d="M12 3l9 5-9 5-9-5z" /><path d="M3 13l9 5 9-5" /></>,
+  monedas: <><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6" /><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" /></>,
+};
+
+export function Opcion({ texto, activa, onClick, sub, icono }: { letra?: string; texto: string; color?: string; activa: boolean; onClick: () => void; compacta?: boolean; sub?: string; icono?: string }) {
+  // Fila compacta a todo el ancho: (icono) texto y, si hay, una línea de explicación; flecha a la derecha; la elegida, en amarillo con un tic.
   return (
     <button
       type="button"
       aria-pressed={activa}
       onClick={onClick}
-      className={`flex min-h-12 w-full items-center justify-between gap-3 rounded-xl border-[1.5px] px-4 py-2.5 text-left text-base font-bold leading-snug transition-colors sm:text-[1.05rem] ${
+      className={`flex w-full items-center gap-2.5 rounded-xl border-[1.5px] px-3 py-2 text-left text-[0.97rem] font-bold leading-snug transition-colors sm:gap-3 sm:px-3.5 sm:py-2.5 sm:text-[1.05rem] ${sub ? "min-h-[3.5rem]" : "min-h-12"} ${
         activa ? "border-estrella bg-estrella/25 text-tinta" : "border-linea bg-white text-tinta hover:border-noche hover:bg-niebla"
       }`}
     >
-      <span>{texto}</span>
+      {icono && ICONOS[icono] && (
+        <span aria-hidden="true" className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl sm:h-10 sm:w-10 ${activa ? "bg-white text-tinta" : "bg-[#eef1ff] text-[#3b4fd8]"}`}>
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">{ICONOS[icono]}</svg>
+        </span>
+      )}
+      <span className="min-w-0 flex-1">
+        <span className="block">{texto}</span>
+        {sub && <span className="mt-0.5 block text-[0.8rem] font-normal sm:text-[0.85rem] leading-snug text-gris">{sub}</span>}
+      </span>
       <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${activa ? "text-tinta" : "text-gris"}`} fill="none" stroke="currentColor" strokeWidth={activa ? 3 : 2.5} strokeLinecap="round" strokeLinejoin="round">
         {activa ? <path d="M5 12.5l4.5 4.5L19 7.5" /> : <path d="M9 6l6 6-6 6" />}
       </svg>
