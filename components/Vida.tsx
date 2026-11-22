@@ -101,14 +101,14 @@ export function Nebulosa({ oscura = false, variante = 0 }: { oscura?: boolean; v
 export function TarjetaViva({ icono, i = 0, titulo, texto, claro = false, chip, hijo, className = "", como: Como = "li" }: { icono?: string; i?: number; titulo: string; texto?: ReactNode; claro?: boolean; chip?: string; hijo?: ReactNode; className?: string; como?: "li" | "div" }) {
   const ic = icono ?? iconoPorTexto(titulo, i);
   return (
-    <Como className={`flex flex-col gap-2.5 rounded-[1.6rem] p-5 sm:gap-3 sm:p-6 ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-white text-tinta shadow-sm ring-1 ring-linea"} ${className}`}>
+    <Como className={`${chip ? "flex flex-col" : "grid grid-cols-[auto_1fr] items-center sm:flex sm:flex-col sm:items-stretch"} gap-x-3 gap-y-2.5 rounded-[1.6rem] p-5 sm:gap-3 sm:p-6 ${claro ? "bg-white/10 text-white ring-1 ring-white/15" : "bg-white text-tinta shadow-sm ring-1 ring-linea"} ${className}`}>
       <div className="flex items-center gap-3">
         <Loseta icono={ic} i={i} />
         {chip && <span className={`rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide ${claro ? "bg-estrella/20 text-estrella" : "bg-estrella/30 text-tinta"}`}>{chip}</span>}
       </div>
       <h3 className="text-lg font-extrabold leading-snug sm:text-xl">{titulo}</h3>
-      {texto && <p className={claro ? "text-white/85" : "text-gris"}>{texto}</p>}
-      {hijo}
+      {texto && <p className={`col-span-2 ${claro ? "text-white/85" : "text-gris"}`}>{texto}</p>}
+      {hijo && <div className="col-span-2">{hijo}</div>}
     </Como>
   );
 }
