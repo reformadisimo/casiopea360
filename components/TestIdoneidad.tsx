@@ -160,7 +160,7 @@ const NOTA_PREGUNTAS = TRAMOS.filter((t) => !t.extra && t.id !== "primero").redu
 const campo =
   "mt-1.5 w-full rounded-xl border-2 border-linea bg-white px-4 py-3 text-base text-tinta placeholder:text-gris/70 focus:border-noche focus:outline-none";
 
-export default function TestIdoneidad() {
+export default function TestIdoneidad({ entregas = false }: { entregas?: boolean } = {}) {
   const [resp, setResp] = useState<Record<string, number>>({});
   const [ti, setTi] = useState(0); // tramo actual (índice en TRAMOS); "datos" y "fin" van aparte
   const [qi, setQi] = useState(0);
@@ -436,7 +436,17 @@ export default function TestIdoneidad() {
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
               <p className="text-sm font-extrabold uppercase tracking-wide text-[#9a6700]">{tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Tu estudio gratuito" : tramo.titulo}</p>
-              {ti === 0 && <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>}
+              {ti === 0 && !entregas && <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>}
+              {ti === 0 && entregas && (
+                <>
+                  <p className="mt-1 text-[0.98rem] leading-snug text-tinta/80">Si podemos ayudarte, esto es lo que preparamos:</p>
+                  <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
+                    {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Plan de 30 días con prioridades y costes"].map((e) => (
+                      <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
+                    ))}
+                  </ul>
+                </>
+              )}
               {ti === 0 ? (
                 <div className="mt-4 flex items-center gap-3" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
                   <div className="flex flex-1 gap-1.5">

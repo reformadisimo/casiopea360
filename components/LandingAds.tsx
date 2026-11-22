@@ -1,3 +1,4 @@
+import type React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ImagenAmpliable } from "@/components/ImagenAmpliable";
@@ -23,13 +24,6 @@ const DOLORES: [string, string][] = [
   ["Informes que no entiendes", "Un panel claro: cuánto gastas y cuántos contactos entran"],
 ];
 
-// Los tres entregables del estudio, en la portada.
-const ENTREGAS: [string, string][] = [
-  ["Tu web a examen.", "Qué mejorar, también en móvil."],
-  ["Propuestas que puedes ver.", "Tu web rediseñada de muestra y borradores de anuncios."],
-  ["Tu plan de 30 días.", "Prioridades y costes."],
-];
-
 const RECIBES: [string, string, string, string][] = [
   ["/ejemplo/mejoras-700.webp", "Revisión", "Tu web, tu Google y tus anuncios, a examen.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
   ["/ejemplo/web-portada-700.webp", "Propuesta", "Tu web rediseñada, de muestra, y borradores de anuncios.", "Captura del estudio de ejemplo: la web rediseñada"],
@@ -46,47 +40,64 @@ export const FAQ_ADS: { p: string; r: string }[] = [
 
 const GARANTIAS = ["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"];
 
+// Los cuatro frentes, con su icono, en la portada.
+const FRENTES_HERO: [string, React.ReactNode][] = [
+  ["Web y diseño", <path key="a" d="M4 6h16v10H4zM2 19h20" />],
+  ["SEO", <path key="b" d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5 21 21" />],
+  ["Google Ads", <path key="c" d="M3 20 12 4l9 16M8 20a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />],
+  ["Redes sociales", <path key="d" d="M4 5h16v11H9l-5 4zM12 13s-3-1.8-3-3.6a1.6 1.6 0 0 1 3-.8 1.6 1.6 0 0 1 3 .8c0 1.8-3 3.6-3 3.6z" />],
+];
+
+function Icono({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>
+  );
+}
+
 export function HeroAds() {
   return (
-    <section id="solicitud" className="relative scroll-mt-16 overflow-hidden bg-noche pb-10 pt-[4.5rem] text-white sm:pb-16 sm:pt-24">
+    <section className="relative overflow-hidden bg-noche pb-10 pt-[4.5rem] text-white sm:pb-16 sm:pt-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50">
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-noche/80" />
       {/* Al terminar el test, el resultado ocupa todo el ancho: se esconde la columna del mensaje. */}
-      <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-12 [&:has([data-fase=fin])]:lg:grid-cols-1 [&:has([data-fase=fin])>div:first-child]:hidden`}>
-        <div className="lg:pt-6">
+      <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1fr_1fr] lg:gap-12 [&:has([data-fase=fin])]:lg:grid-cols-1 [&:has([data-fase=fin])>div:first-child]:hidden`}>
+        <div className="lg:pt-4">
           <p className="text-sm font-extrabold uppercase tracking-wide text-white/75">Agencia de marketing digital en Madrid</p>
-          <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[1.1] sm:text-5xl lg:text-[3rem]">
-            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
+          <h1 className="mt-3 font-extrabold leading-[1.05]">
+            <span className="block whitespace-nowrap text-[1.7rem] min-[400px]:text-[1.85rem] sm:whitespace-normal sm:text-5xl lg:text-[3.25rem]">Todo tu marketing digital.</span>
+            <span className="mt-1 block text-[2.5rem] text-estrella sm:text-6xl lg:text-[4rem]">Un solo equipo.</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
-          <p className="mt-2 max-w-xl text-lg text-white/90">
-            ¿Pagas web, anuncios y redes y no sabes qué te trae clientes? <b className="text-white">Pide tu estudio gratuito:</b> te enseñamos qué cambiaríamos y por dónde empezar.
+          <p className="mt-4 max-w-xl text-[1.45rem] font-extrabold leading-tight text-white sm:text-[1.9rem]">
+            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
           </p>
-          <ul className="mt-5 grid max-w-xl gap-2.5">
-            {ENTREGAS.map(([t, d]) => (
-              <li key={t} className="flex items-start gap-3">
-                <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-500 text-sm font-extrabold text-white">✓</span>
-                <span className="text-[1.05rem]"><b className="font-extrabold text-white">{t}</b> <span className="text-white/85">{d}</span></span>
-              </li>
+          <ul className="mt-6 grid max-w-md grid-cols-2 gap-x-4 gap-y-3">
+            {FRENTES_HERO.map(([t, ico]) => (
+              <li key={t} className="flex items-center gap-2.5 text-[1.05rem] font-extrabold"><Icono className="h-7 w-7 shrink-0 text-estrella">{ico}</Icono>{t}</li>
             ))}
           </ul>
-          <p className="mt-6 hidden max-w-xl text-sm font-semibold text-white/80 lg:block">Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables.</p>
-          <ul className="mt-2 hidden flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-white/90 lg:flex">
-            {GARANTIAS.map((g) => (
-              <li key={g} className="flex items-center gap-2"><span aria-hidden="true" className="text-estrella">✓</span>{g}</li>
-            ))}
+          <ul className="mt-5 grid max-w-xl grid-cols-2 gap-3">
+            <li className="rounded-2xl border border-white/25 bg-white/[0.07] px-3.5 py-3 sm:px-4">
+              <Icono className="float-left mr-2.5 h-6 w-6 text-estrella"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 6.5M18 14.5a6 6 0 0 1 3.5 5.5" /></Icono>
+              <b className="block font-extrabold leading-6">Tu CRM</b><span className="mt-1 block clear-both text-sm leading-snug text-white/85">Cada contacto, con seguimiento.</span>
+            </li>
+            <li className="rounded-2xl border border-white/25 bg-white/[0.07] px-3.5 py-3 sm:px-4">
+              <Icono className="float-left mr-2.5 h-6 w-6 text-estrella"><path d="M5 20v-6M12 20V9M19 20V4" /></Icono>
+              <b className="block font-extrabold leading-6">Tu panel de control</b><span className="mt-1 block clear-both text-sm leading-snug text-white/85">Consultas, inversión y canales.</span>
+            </li>
           </ul>
-        </div>
-        <div>
-          <TestYa />
-          <p className="mt-4 text-center text-sm font-semibold text-white/80 lg:hidden">Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables.</p>
-          <ul className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm font-bold text-white/85 lg:hidden">
+          <p className="mt-5 max-w-xl border-t border-white/20 pt-4 text-lg font-bold">Una persona que conoce tu proyecto y te atiende.</p>
+          <Link href="#solicitud" className={`${BOTON} mt-4 w-full sm:w-auto`}>Quiero mi estudio gratuito</Link>
+          <ul className="mt-4 flex max-w-xl flex-wrap justify-center gap-x-4 gap-y-1 text-sm font-bold text-white/90 sm:justify-start">
             {GARANTIAS.map((g) => (
               <li key={g} className="flex items-center gap-1.5"><span aria-hidden="true" className="text-estrella">✓</span>{g}</li>
             ))}
           </ul>
+          <p className="mt-1.5 max-w-xl text-center text-sm text-white/80 sm:text-left">Te respondemos por escrito en 48 horas laborables.</p>
+        </div>
+        <div id="solicitud" className="scroll-mt-20">
+          <TestYa entregas />
         </div>
       </div>
     </section>
@@ -115,7 +126,8 @@ export function DoloresAds() {
   return (
     <section className="bg-niebla py-10 sm:py-20" aria-labelledby="dolores-ads">
       <div className={ENVOLTORIO}>
-        <h2 id="dolores-ads" className="max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Si trabajamos juntos, <span className="tono2">coordinamos todo esto.</span></h2>
+        <h2 id="dolores-ads" className="mx-auto max-w-5xl text-center text-[2rem] font-extrabold leading-[1.08] text-tinta sm:text-6xl">¿Pagas web, anuncios y redes y <span className="underline decoration-estrella decoration-[5px] underline-offset-[6px] sm:decoration-[7px]">no sabes si te traen clientes?</span></h2>
+        <p className="mx-auto mt-4 max-w-3xl text-center text-lg font-semibold text-tinta/80 sm:text-2xl">Revisamos el recorrido completo: desde el anuncio hasta la consulta y su seguimiento. Y si trabajamos juntos, lo coordinamos todo.</p>
         <ul className="mt-7 grid gap-2.5 sm:mt-10 lg:grid-cols-2 lg:gap-3">
           {DOLORES.map(([mal, bien]) => (
             <li key={mal} className="rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-tinta/10 sm:px-5 sm:py-4">

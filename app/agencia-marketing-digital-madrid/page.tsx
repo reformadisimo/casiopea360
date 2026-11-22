@@ -13,9 +13,9 @@ export default function AgenciaMadrid() {
   return (
     <>
       <HeroAds />
+      <DoloresAds />
       <LogosAds />
       <RecibesAds />
-      <DoloresAds />
       <VideoAds />
       <PrecioAds />
       <DudasAds />
