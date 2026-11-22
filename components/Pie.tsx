@@ -8,8 +8,8 @@ export default function Pie() {
   const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Haz el test"), { texto: "Glosario", href: "/glosario" }, { texto: "Panel de ejemplo", href: "/panel" }];
   return (
     <footer className="bg-noche-2 text-white/85">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
-        <div>
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-x-4 gap-y-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+        <div className="col-span-2 md:col-span-1">
           <Logo claro />
           <p className="mt-3 font-titular text-lg font-extrabold text-estrella">Tu marketing digital, al máximo nivel.</p>
           <p className="mt-2 max-w-xs text-[0.95rem]">
@@ -40,7 +40,7 @@ export default function Pie() {
         </div>
         <div>
           <p className="font-titular font-extrabold text-white">Servicios</p>
-          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
+          <ul className="mt-3 space-y-1 text-[0.95rem] sm:mt-4 sm:space-y-2.5">
             {SERVICIOS_MENU.map((s) => (
               <li key={s.href}>
                 <Link href={s.href} className="inline-block py-1 hover:text-white">
@@ -52,7 +52,7 @@ export default function Pie() {
         </div>
         <div>
           <p className="font-titular font-extrabold text-white">Casiopea 360</p>
-          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
+          <ul className="mt-3 space-y-1 text-[0.95rem] sm:mt-4 sm:space-y-2.5">
             {empresa.map((m) => (
               <li key={m.href}>
                 <Link href={m.href} className="inline-block py-1 hover:text-white">
@@ -69,7 +69,7 @@ export default function Pie() {
         </div>
         <div>
           <p className="font-titular font-extrabold text-white">Legal</p>
-          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
+          <ul className="mt-3 space-y-1 text-[0.95rem] sm:mt-4 sm:space-y-2.5">
             {LEGALES.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="inline-block py-1 hover:text-white">

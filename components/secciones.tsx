@@ -337,8 +337,8 @@ export function SeccionOrigen() {
               Casiopea 360 es lo que entonces no encontramos: un solo contacto que lo hace todo, rápido, y te cuenta cada día lo que pasa.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="trofeo" i={4} className="mb-3" /><p className="text-5xl font-extrabold leading-none tracking-[-0.03em] text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
-              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="diana" i={2} className="mb-3" /><p className="text-5xl font-extrabold leading-none tracking-[-0.03em] text-estrella"><Cifra valor={60000} despues=" €" /></p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="trofeo" i={4} className="mb-2 sm:mb-3" /><p className="text-4xl font-extrabold sm:text-5xl leading-none tracking-[-0.03em] text-estrella"><Cifra valor={22} despues="+" /></p><p className="text-sm text-white/75">años de experiencia</p></div>
+              <div className="rounded-2xl bg-white/10 p-4"><Loseta icono="diana" i={2} className="mb-2 sm:mb-3" /><p className="text-[1.7rem] font-extrabold sm:text-5xl leading-none tracking-[-0.03em] text-estrella"><Cifra valor={60000} despues=" €" /></p><p className="text-sm text-white/75">al mes en Google Ads para una sola empresa</p></div>
             </div>
             <Link href="/quienes-somos" className="mt-6 inline-flex font-bold text-estrella hover:underline">Conoce quiénes somos →</Link>
           </div>
@@ -1492,9 +1492,9 @@ export function SeccionMetodo() {
           <table className="mt-4 w-full text-left">
             <tbody>
               {PLAZOS.map((p, k) => (
-                <tr key={p.que} className="border-b border-linea">
-                  <td className="flex items-center gap-2.5 py-3 pr-4"><ChipIcono icono={iconoPorTexto(p.que, k)} i={k} tam="h-8 w-8" />{p.que}</td>
-                  <td className="py-3 text-right font-bold">{p.cuando}</td>
+                <tr key={p.que} className="block border-b border-linea py-2 sm:table-row sm:py-0">
+                  <td className="flex items-center gap-2.5 pb-0.5 pt-1 sm:table-cell sm:py-3 sm:pr-4"><ChipIcono icono={iconoPorTexto(p.que, k)} i={k} tam="h-8 w-8" />{p.que}</td>
+                  <td className="block pb-1 pl-[2.625rem] font-bold text-noche-3 sm:table-cell sm:py-3 sm:pl-0 sm:text-right sm:text-inherit">{p.cuando}</td>
                 </tr>
               ))}
             </tbody>
