@@ -1,6 +1,7 @@
 import PaginaLegal from "@/components/PaginaLegal";
 import { EMPRESA } from "@/lib/schema";
 import { meta } from "@/lib/meta";
+import { META_PIXEL } from "@/lib/pixel";
 
 export const metadata = meta("Política de privacidad", "Política de privacidad de Casiopea 360: qué datos tratamos, para qué, durante cuánto tiempo, con quién se comparten y cuáles son tus derechos.", "/privacidad");
 
@@ -31,7 +32,7 @@ export default function Privacidad() {
       <p>Guardamos los datos de una solicitud un máximo de dos años si no llegamos a trabajar juntos, o mientras dure la relación y los plazos legales que correspondan si sí. Si nos pides que los borremos antes, lo hacemos.</p>
       <h2>A quién se los damos</h2>
       <p>
-        No vendemos ni cedemos tus datos a nadie. Para que la web funcione usamos proveedores que solo los tratan por encargo nuestro: el alojamiento de la web (Vercel), el envío de correos (Resend) y, si aceptas cookies de medición, Google Analytics y Microsoft Clarity. Algunos están fuera del Espacio Económico Europeo; en ese caso se aplican las garantías que exige la ley, como las cláusulas contractuales tipo de la Comisión Europea.
+        No vendemos ni cedemos tus datos a nadie. Para que la web funcione usamos proveedores que solo los tratan por encargo nuestro: el alojamiento de la web (Vercel), el envío de correos (Resend) y, si aceptas cookies de medición, Google Analytics y Microsoft Clarity{META_PIXEL ? " y el píxel de Meta (Meta Platforms Ireland)" : ""}. Algunos están fuera del Espacio Económico Europeo; en ese caso se aplican las garantías que exige la ley, como las cláusulas contractuales tipo de la Comisión Europea.
       </p>
       <h2>Tus derechos</h2>
       <p>

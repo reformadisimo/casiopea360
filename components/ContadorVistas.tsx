@@ -27,7 +27,12 @@ function origen() {
     Tag Manager no está cargado y esto no hace nada: la medición completa es la del contador propio. */
 export function avisarGTM(evento: string, extra: Record<string, string> = {}) {
   try {
-    const w = window as unknown as { dataLayer?: unknown[] };
+    const w = window as unknown as { dataLayer?: unknown[]; fbq?: (...a: unknown[]) => void };
+    // Píxel de Meta (solo existe si se aceptaron las cookies y hay píxel): test enviado = Lead; WhatsApp = Contact.
+    if (w.fbq) {
+      if (evento === "test_enviado") w.fbq("track", "Lead");
+      else if (evento === "whatsapp_click") w.fbq("track", "Contact");
+    }
     if (!w.dataLayer) return;
     w.dataLayer.push({ event: evento, pagina: window.location.pathname, fuente: leerAtribucion().fuente, ...extra });
   } catch {}

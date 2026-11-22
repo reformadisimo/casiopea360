@@ -1,5 +1,6 @@
 import PaginaLegal from "@/components/PaginaLegal";
 import { meta } from "@/lib/meta";
+import { META_PIXEL } from "@/lib/pixel";
 
 export const metadata = meta("Política de cookies", "Política de cookies de Casiopea 360: qué cookies usa la web, para qué sirve cada una y cómo puedes aceptarlas, rechazarlas o cambiar tu elección.", "/cookies");
 
@@ -17,6 +18,7 @@ export default function Cookies() {
           <tr><td>Lupa propia (clics y bajada en la página, sin cookies)</td><td>Ver dónde se hace clic y hasta dónde se baja en cada página para mejorarla. Se guarda solo la posición de cada toque y el porcentaje de página recorrido: nada de lo que escribes, ni tu IP, ni nada que te identifique. Se borra solo a los 90 días</td><td>No</td></tr>
           <tr><td>Contador propio de visitas (almacenamiento del navegador, sin cookies)</td><td>Contar cuántas personas y visitas recibe la web y de dónde llegan. Solo guarda en tu navegador la fecha de hoy y si ya has abierto la web en esta pestaña; no se envía nada que te identifique</td><td>No</td></tr>
           <tr><td>De medición (Google Analytics)</td><td>Saber cuánta gente entra, de dónde viene y qué páginas funcionan</td><td>Sí</td></tr>
+          {META_PIXEL ? <tr><td>Píxel de Meta</td><td>Saber qué anuncios de Instagram y Facebook traen visitas y solicitudes, y enseñar nuestros anuncios a quien pueda interesarle</td><td>Sí</td></tr> : null}
           <tr><td>Mapas de calor (Microsoft Clarity)</td><td>Ver de forma anónima dónde se pulsa y hasta dónde se lee, para mejorar la web</td><td>Sí</td></tr>
         </tbody>
       </table>
