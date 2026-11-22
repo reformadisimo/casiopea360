@@ -75,31 +75,31 @@ const TRAMOS: Tramo[] = [
   {
     id: "ventas",
     titulo: "Cómo atiendes y vendes",
-    intro: "Lo que pasa cuando alguien te escribe. Aquí se escapan más clientes de los que crees.",
+    intro: "Lo que pasa cuando alguien te escribe.",
     dato: "La mayoría de la gente contrata a la primera empresa que le responde. La rapidez vende más que el precio.",
     video: "neon-llamada",
     color: "from-[#128c7e] to-[#075e54]",
     logos: ["WhatsApp", "Gmail", "Claude"],
     puntua: true,
     preguntas: [
-      { id: "t1", p: "Cuando llega un contacto, ¿cuánto tardáis en responder?", o: [{ t: "Minutos", v: 3 }, { t: "Unas horas", v: 2 }, { t: "Un día o más", v: 0 }, { t: "Depende de quién lo vea", v: 0 }], fallo: "Tardas en responder: el cliente que espera suele contratar al primero que contesta.", arreglo: "Respuesta inmediata y aviso al momento a quien debe atender.", peso: 3, logo: "WhatsApp" },
-      { id: "t3", p: "Si alguien pide presupuesto y no contesta, ¿le hacéis seguimiento?", o: SN("Sí, automático", "A mano, cuando nos acordamos", "No"), fallo: "Los presupuestos sin respuesta se quedan ahí: sin seguimiento, se pierden ventas hechas.", arreglo: "Seguimientos por correo y WhatsApp que salen solos.", peso: 3, logo: "Gmail" },
-      { id: "v1", p: "De cada 10 personas que piden presupuesto, ¿cuántas acaban comprando?", o: [{ t: "Más de 4", v: 3 }, { t: "Entre 2 y 4", v: 2 }, { t: "Menos de 2", v: 0 }, { t: "No lo sé", v: 0 }], fallo: "No sabes cuántos presupuestos cierras, o cierras pocos: ahí hay ventas que se escapan.", arreglo: "Medir el cierre de cada presupuesto y mejorar lo que hace que se caigan.", peso: 3 },
+      { id: "t1", p: "Cuando llega un contacto, ¿cuánto tardáis en responder?", o: [{ t: "Minutos", v: 3 }, { t: "Unas horas", v: 2 }, { t: "Un día o más", v: 0 }, { t: "Depende de quién lo vea", v: 0 }], fallo: "Revisaremos cuánto tardáis en responder a cada contacto: la rapidez suele pesar mucho.", arreglo: "Respuesta inmediata y aviso al momento a quien debe atender.", peso: 3, logo: "WhatsApp" },
+      { id: "t3", p: "Si alguien pide presupuesto y no contesta, ¿le hacéis seguimiento?", o: SN("Sí, automático", "A mano, cuando nos acordamos", "No"), fallo: "Revisaremos cómo organizar y facilitar el seguimiento de los presupuestos.", arreglo: "Seguimientos por correo y WhatsApp que salen solos.", peso: 3, logo: "Gmail" },
+      { id: "v1", p: "De cada 10 personas que piden presupuesto, ¿cuántas acaban comprando?", o: [{ t: "Más de 4", v: 3 }, { t: "Entre 2 y 4", v: 2 }, { t: "Menos de 2", v: 0 }, { t: "No lo sé", v: 0 }], fallo: "Conviene medir qué proporción de presupuestos acaba en venta.", arreglo: "Medir el cierre de cada presupuesto y mejorar lo que hace que se caigan.", peso: 3 },
     ],
   },
   {
     id: "proveedores",
     titulo: "Tus proveedores y lo que pagas",
-    intro: "Con esto calculamos cuánto podrías ahorrar. No hace falta ser exacto.",
+    intro: "Con esto entendemos cómo te organizas hoy. No hace falta ser exacto.",
     dato: "Muchas agencias cobran entre un 10 y un 20 % de lo que inviertes en anuncios. Nosotros, cero.",
     video: "papeles",
     color: "from-[#e8710a] to-[#0e1a3d]",
     logos: ["Google Ads", "Meta", "Semrush"],
     puntua: true,
     preguntas: [
-      { id: "c3", p: "¿Cuántos proveedores distintos llevan tu marketing digital?", o: [{ t: "Uno solo", v: 3 }, { t: "Dos o tres", v: 1 }, { t: "Cuatro o más", v: 0 }, { t: "Lo hacemos en casa como podemos", v: 0 }], fallo: "Tienes varios proveedores y nadie mira el conjunto: tú haces de coordinador.", arreglo: "Un solo equipo para todo, con una sola persona de contacto.", peso: 3 },
-      { id: "w5", p: "¿Tu dominio, tu web y los accesos están a tu nombre?", o: SN("Sí, todo", "Una parte", "No lo sé"), fallo: "Tu web no es del todo tuya: si cambias de proveedor puedes perderla.", arreglo: "Dominio y cuentas a tu nombre desde el primer día.", peso: 2 },
-      { id: "comision", p: "¿Te cobran comisión sobre lo que inviertes en anuncios?", o: [{ t: "No", v: 3 }, { t: "Sí, un porcentaje", v: 0 }, { t: "No lo sé", v: 1 }, { t: "No hago anuncios", v: 3 }], fallo: "Pagas comisión sobre tus anuncios: cuanto más inviertes, más pagas a la agencia.", arreglo: "Cuota fija: cero comisiones sobre lo que inviertas.", peso: 2 },
+      { id: "c3", p: "¿Cuántos proveedores distintos llevan tu marketing digital?", o: [{ t: "Uno solo", v: 3 }, { t: "Dos o tres", v: 1 }, { t: "Cuatro o más", v: 0 }, { t: "Lo hacemos en casa como podemos", v: 0 }], fallo: "Revisaremos cómo se coordina tu marketing y quién supervisa el conjunto.", arreglo: "Un solo equipo para todo, con una sola persona de contacto.", peso: 3 },
+      { id: "w5", p: "¿Tu dominio, tu web y los accesos están a tu nombre?", o: SN("Sí, todo", "Una parte", "No lo sé"), fallo: "Conviene comprobar que el dominio, la web y los accesos están a tu nombre.", arreglo: "Dominio y cuentas a tu nombre desde el primer día.", peso: 2 },
+      { id: "comision", p: "¿Te cobran comisión sobre lo que inviertes en anuncios?", o: [{ t: "No", v: 3 }, { t: "Sí, un porcentaje", v: 0 }, { t: "No lo sé", v: 1 }, { t: "No hago anuncios", v: 3 }], fallo: "Conviene aclarar si pagas comisión sobre lo que inviertes en anuncios.", arreglo: "Cuota fija: cero comisiones sobre lo que inviertas.", peso: 2 },
     ],
   },
   {
@@ -122,14 +122,14 @@ const TRAMOS: Tramo[] = [
 const BASE = TRAMOS.filter((t) => !t.extra);
 const IDX_BUSCAS = TRAMOS.findIndex((t) => t.id === "buscas");
 const REACCION = [
-  { t: "Aquí se te escapan clientes", tono: "mal" as const },
-  { t: "Mejorable, pero tiene arreglo", tono: "medio" as const },
+  { t: "Anotado: esto lo revisaremos", tono: "mal" as const },
+  { t: "Anotado: se puede afinar", tono: "medio" as const },
   { t: "No está mal", tono: "medio" as const },
   { t: "Muy bien, esto suma", tono: "bien" as const },
 ];
 const ANOTADO: Record<string, string> = {
   sector: "Anotado: hablaremos de tu sector",
-  gasto: "Anotado. Con esto vemos cuánto podrías ahorrar",
+  gasto: "Lo tendremos en cuenta al preparar la propuesta",
   zona: "Perfecto, lo tendremos en cuenta",
   valor: "Así sabremos lo que vale cada cliente que te traigamos",
   marketing: "Anotado: con esto calculamos tu ahorro",
@@ -270,7 +270,7 @@ export default function TestIdoneidad() {
     if (tramo.puntua && q.peso) {
       const x = REACCION[q.o[j].v];
       setReaccion({ t: x.t, tono: x.tono });
-    } else setReaccion({ t: ANOTADO[q.id] ?? "Anotado", tono: "neutro" });
+    } else setReaccion({ t: q.id === "gasto" && /^No lo sé/i.test(q.o[j].t) ? "No pasa nada. Podemos empezar revisando lo que ya tienes" : ANOTADO[q.id] ?? "Anotado", tono: "neutro" });
     espera.current = setTimeout(siguiente, 950);
   };
 
@@ -405,13 +405,13 @@ export default function TestIdoneidad() {
   const color = (n: number) => (n >= 75 ? "bg-emerald-500" : n >= 45 ? "bg-estrella" : "bg-rose-500");
   const nivel =
     r.nota >= 75
-      ? { t: "Tu marketing está en forma", d: "Buena base. Aun así, hay puntos donde ganar más clientes con lo mismo." }
+      ? { t: "Buena base", d: "Aun así, veremos contigo dónde se puede ganar más con lo mismo." }
       : r.nota >= 45
-        ? { t: "Vas a medias", d: "Hay piezas que funcionan, pero se te escapan clientes en varios sitios. Tiene arreglo, y rápido." }
-        : { t: "Hay muchísimo margen", d: "Ahora mismo dejas muchos clientes a tu competencia. Es justo donde antes se nota el cambio." };
+        ? { t: "Hay margen de mejora", d: "Hay piezas que funcionan y otras que conviene revisar. Lo miramos contigo en el estudio." }
+        : { t: "Hay mucho margen", d: "Hay varios puntos que conviene revisar. Suelen ser los que antes se notan al cambiarlos." };
 
   return (
-    <div ref={caja} className="relative scroll-mt-28 text-tinta">
+    <div ref={caja} data-fase={fase} className="relative scroll-mt-28 text-tinta">
       {fiesta && typeof document !== "undefined" &&
         createPortal(
           <div aria-live="polite" className="pointer-events-none fixed inset-x-0 top-24 z-50 flex justify-center px-4">
@@ -520,14 +520,14 @@ export default function TestIdoneidad() {
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Tu solicitud ya está enviada.</p>
           <p className="mt-3 max-w-xl text-white/85">Te escribimos por correo en 48 horas laborables.</p>
           <p className="mt-5 max-w-xl text-white/85">
-            <b className="text-white">Opcional:</b> si quieres, mientras tanto te damos <b className="text-white">tu nota de marketing digital</b> y te decimos dónde se te escapan clientes. Son {NOTA_PREGUNTAS} preguntas más, sin escribir, y nos ayudan a preparar mejor tu estudio.
+            <b className="text-white">Opcional:</b> si quieres, cuéntanos cómo atiendes y haces seguimiento a tus contactos. Son {NOTA_PREGUNTAS} preguntas, sin escribir, y nos ayudan a preparar mejor tu estudio.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => { setTi(1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
-              {`Sí, quiero mi nota (${NOTA_PREGUNTAS} preguntas)`}
+              {`Completar información sobre mi negocio (${NOTA_PREGUNTAS} preguntas)`}
             </button>
             <button type="button" onClick={() => { setFase("fin"); subir(); }} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
-              No, gracias
+              Terminar aquí
             </button>
           </div>
           <div className="mt-6 border-t border-white/15 pt-5">
@@ -597,15 +597,23 @@ export default function TestIdoneidad() {
               Vuestra web <span className="font-normal text-gris">(si tenéis; nos ayuda a preparar tu revisión)</span>
               <input name="web" className={campo} />
             </label>
-            <label className="text-sm font-bold">
-              Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
-              <input name="telefono" type="tel" autoComplete="tel" className={campo} />
-            </label>
-            <label className="text-sm font-bold sm:col-span-2">
-              ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
-              <textarea name="mas" ref={masRef} rows={2} maxLength={1000} className={campo} />
-              <BotonDictado destino={masRef} className="mt-2 font-normal" />
-            </label>
+            <details className="group sm:col-span-2">
+              <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-noche-3 underline underline-offset-4 [&::-webkit-details-marker]:hidden">
+                <span aria-hidden="true" className="text-lg leading-none transition-transform group-open:rotate-45">+</span>
+                Añadir información opcional (teléfono o un comentario)
+              </summary>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                <label className="text-sm font-bold">
+                  Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
+                  <input name="telefono" type="tel" autoComplete="tel" className={campo} />
+                </label>
+                <label className="text-sm font-bold sm:col-span-2">
+                  ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
+                  <textarea name="mas" ref={masRef} rows={2} maxLength={1000} className={campo} />
+                  <BotonDictado destino={masRef} className="mt-2 font-normal" />
+                </label>
+              </div>
+            </details>
             <label className="hidden" aria-hidden="true">
               No rellenes esto
               <input name="sitio_web" tabIndex={-1} autoComplete="off" />
@@ -633,13 +641,14 @@ export default function TestIdoneidad() {
               {[[8, 12], [82, 8], [90, 40], [70, 70], [12, 75], [45, 6]].map(([x, y], i) => (
                 <span key={i} aria-hidden="true" className="titila absolute h-2 w-2 rounded-full bg-estrella" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * 0.4}s` }} />
               ))}
-              <p className="text-sm text-white/70">Tu nota de marketing digital</p>
-              <p className="mt-2 text-7xl font-extrabold leading-none text-estrella">
+              <p className="text-sm text-white/70">Resumen de lo que nos has contado</p>
+              <p className="mt-2 whitespace-nowrap text-6xl font-extrabold leading-none text-estrella sm:text-7xl">
                 {r.nota}
                 <span className="text-3xl text-white/50"> / 100</span>
               </p>
               <p className="mt-4 text-2xl font-extrabold">{nivel.t}</p>
               <p className="mt-2 text-white/85">{nivel.d}</p>
+              <p className="mt-4 rounded-2xl bg-white/10 p-3 text-sm text-white/90">La nota solo resume tus respuestas sobre atención, seguimiento y proveedores. <b className="text-white">Tu web, Google y tus anuncios los miramos nosotros en el estudio, con datos reales.</b></p>
             </div>
             <div className="rounded-[2rem] bg-white p-7 ring-1 ring-linea sm:p-9">
               <p className="text-xl font-extrabold">Tu semáforo</p>
@@ -656,17 +665,16 @@ export default function TestIdoneidad() {
                   </li>
                 ))}
               </ul>
-              {!conExtra && <p className="mt-4 text-sm text-gris">Tu web, Google y tus anuncios los miramos nosotros en el estudio, con datos reales.</p>}
             </div>
           </div>
 
           {r.fallos.length > 0 && (
             <div className="rounded-[2rem] bg-white p-7 ring-1 ring-linea sm:p-9">
-              <p className="text-xl font-extrabold">Dónde se te escapan clientes, y cómo lo arreglaríamos</p>
+              <p className="text-xl font-extrabold">Estas son las prioridades que revisaremos contigo</p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {r.fallos.slice(0, 6).map((q) => (
                   <li key={q.id} className="rounded-2xl bg-niebla p-4">
-                    <p className="flex gap-2.5 font-bold"><span aria-hidden="true" className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-500" />{q.fallo}</p>
+                    <p className="flex gap-2.5 font-bold"><span aria-hidden="true" className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-estrella" />{q.fallo}</p>
                     <p className="mt-2 flex gap-2.5 text-[0.95rem] text-gris"><span aria-hidden="true" className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-600" />{q.arreglo}</p>
                   </li>
                 ))}

@@ -5,7 +5,6 @@ import Subrayado from "@/components/Subrayado";
 import VideoFondo from "@/components/VideoFondo";
 import VideoPulsar from "@/components/VideoPulsar";
 import TestYa from "@/components/TestYa";
-import { Etiqueta } from "@/components/Vida";
 import { ENVOLTORIO } from "@/components/secciones";
 import { PRECIO_CUOTA } from "@/components/SeccionesVender";
 
@@ -14,20 +13,27 @@ import { PRECIO_CUOTA } from "@/components/SeccionesVender";
 
 const BOTON = "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-8 py-3.5 text-lg font-bold text-tinta transition-colors hover:bg-estrella-2";
 
-// Dolor a la izquierda, lo que hacemos a la derecha. Una línea cada uno.
+// Lo que hacemos si trabajamos juntos: el problema a la izquierda, cómo lo llevamos a la derecha. Una línea cada uno.
 const DOLORES: [string, string][] = [
-  ["Pagas anuncios y no sabes qué te traen", "Cada contacto medido: de dónde viene y qué pasa con él"],
-  ["Tu web no te trae consultas", "Web nueva en días, pensada para que te escriban"],
+  ["Pagas anuncios y no sabes qué te traen", "Consultas y seguimiento en un mismo panel"],
+  ["Tu web no te trae consultas", "Una web que explique tu oferta y facilite contactarte"],
   ["No sales en Google ni en las IA", "SEO, ficha de Google y reseñas, trabajados cada semana"],
-  ["Cinco proveedores y coordinas tú", "Un solo equipo y una sola persona que te atiende"],
+  ["Varios proveedores y coordinas tú", "Un solo equipo y una sola persona que te atiende"],
   ["Las cuentas no están a tu nombre", "Todo a tu nombre: te vas cuando quieras, con todo"],
   ["Informes que no entiendes", "Un panel claro: cuánto gastas y cuántos contactos entran"],
 ];
 
+// Los tres entregables del estudio, en la portada.
+const ENTREGAS: [string, string][] = [
+  ["Tu web a examen.", "Qué mejorar, también en móvil."],
+  ["Propuestas que puedes ver.", "Tu web rediseñada de muestra y borradores de anuncios."],
+  ["Tu plan de 30 días.", "Prioridades y costes."],
+];
+
 const RECIBES: [string, string, string, string][] = [
-  ["/ejemplo/mejoras-700.webp", "Qué falla hoy", "Tu web, tu Google y tus anuncios, a examen.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
-  ["/ejemplo/web-portada-700.webp", "Cómo podría quedar", "Tu web rediseñada, de muestra.", "Captura del estudio de ejemplo: la web rediseñada"],
-  ["/ejemplo/guia-700.webp", "Por dónde empezar", "Un plan con prioridades y costes.", "Captura del estudio de ejemplo: la guía con el plan"],
+  ["/ejemplo/mejoras-700.webp", "Revisión", "Tu web, tu Google y tus anuncios, a examen.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/web-portada-700.webp", "Propuesta", "Tu web rediseñada, de muestra, y borradores de anuncios.", "Captura del estudio de ejemplo: la web rediseñada"],
+  ["/ejemplo/guia-700.webp", "Plan", "Treinta días, con prioridades y costes.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
 
 export const FAQ_ADS: { p: string; r: string }[] = [
@@ -38,34 +44,44 @@ export const FAQ_ADS: { p: string; r: string }[] = [
   { p: "¿Hay permanencia?", r: "No. Una cuota fija al mes y te vas cuando quieras, con tus cuentas, tu web y tus contactos." },
 ];
 
-const GARANTIAS = ["Gratis", "Sin llamadas comerciales", "Sin pedirte accesos"];
+const GARANTIAS = ["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"];
 
 export function HeroAds() {
   return (
     <section id="solicitud" className="relative scroll-mt-16 overflow-hidden bg-noche pb-10 pt-[4.5rem] text-white sm:pb-16 sm:pt-24">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50">
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-b from-noche/90 via-noche/80 to-noche lg:bg-gradient-to-r lg:from-noche/95 lg:via-noche/75 lg:to-noche/50" />
-      <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-12`}>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-noche/80" />
+      {/* Al terminar el test, el resultado ocupa todo el ancho: se esconde la columna del mensaje. */}
+      <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-12 [&:has([data-fase=fin])]:lg:grid-cols-1 [&:has([data-fase=fin])>div:first-child]:hidden`}>
         <div className="lg:pt-6">
-          <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
-          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3.2rem]">
-            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
+          <p className="text-sm font-extrabold uppercase tracking-wide text-white/75">Agencia de marketing digital en Madrid</p>
+          <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[1.1] sm:text-5xl lg:text-[3rem]">
+            ¿Pagas web, anuncios y redes y no sabes qué te trae <Subrayado>clientes</Subrayado>?
           </h1>
           <p className="mt-4 max-w-xl text-lg text-white/90">
-            Casi nunca falla tu producto: <b className="text-estrella">falla que no te encuentran.</b> Te decimos gratis qué falla y cómo lo arreglaríamos.
+            <b className="text-white">Pide tu estudio gratuito.</b> Revisamos tu caso y, si podemos ayudarte, te enseñamos qué cambiaríamos y por dónde empezar.
           </p>
-          <ul className="mt-5 hidden flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-white/90 lg:flex">
+          <ul className="mt-5 grid max-w-xl gap-2.5">
+            {ENTREGAS.map(([t, d]) => (
+              <li key={t} className="flex items-start gap-3">
+                <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-500 text-sm font-extrabold text-white">✓</span>
+                <span className="text-[1.05rem]"><b className="font-extrabold text-white">{t}</b> <span className="text-white/85">{d}</span></span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 hidden max-w-xl text-sm font-semibold text-white/80 lg:block">Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables.</p>
+          <ul className="mt-2 hidden flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-white/90 lg:flex">
             {GARANTIAS.map((g) => (
               <li key={g} className="flex items-center gap-2"><span aria-hidden="true" className="text-estrella">✓</span>{g}</li>
             ))}
           </ul>
-          <div className="mt-8 hidden max-w-md lg:block"><VideoPulsar titulo="¿Cuánta gente que te necesita ni sabe que existes?" /></div>
         </div>
         <div>
           <TestYa />
-          <ul className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm font-bold text-white/85 lg:hidden">
+          <p className="mt-4 text-center text-sm font-semibold text-white/80 lg:hidden">Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables.</p>
+          <ul className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm font-bold text-white/85 lg:hidden">
             {GARANTIAS.map((g) => (
               <li key={g} className="flex items-center gap-1.5"><span aria-hidden="true" className="text-estrella">✓</span>{g}</li>
             ))}
@@ -98,7 +114,7 @@ export function DoloresAds() {
   return (
     <section className="bg-niebla py-10 sm:py-20" aria-labelledby="dolores-ads">
       <div className={ENVOLTORIO}>
-        <h2 id="dolores-ads" className="max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">¿Te suena? <span className="tono2">Tiene arreglo.</span></h2>
+        <h2 id="dolores-ads" className="max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Si trabajamos juntos, <span className="tono2">coordinamos todo esto.</span></h2>
         <ul className="mt-7 grid gap-2.5 sm:mt-10 lg:grid-cols-2 lg:gap-3">
           {DOLORES.map(([mal, bien]) => (
             <li key={mal} className="rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-tinta/10 sm:px-5 sm:py-4">
@@ -115,9 +131,13 @@ export function DoloresAds() {
 
 export function VideoAds() {
   return (
-    <section className="bg-noche py-10 text-white lg:hidden" aria-label="Vídeo">
-      <div className={`${ENVOLTORIO} mx-auto max-w-md`}>
-        <VideoPulsar titulo="¿Cuánta gente que te necesita ni sabe que existes?" />
+    <section className="bg-noche py-10 text-white sm:py-16" aria-labelledby="video-ads">
+      <div className={`${ENVOLTORIO} grid items-center gap-6 lg:grid-cols-[1fr_1.1fr] lg:gap-12`}>
+        <div>
+          <h2 id="video-ads" className="text-3xl font-extrabold sm:text-4xl">Te lo contamos <span className="text-estrella">en 30 segundos.</span></h2>
+          <p className="mt-3 max-w-xl text-lg text-white/85">Qué solemos encontrar y cómo lo llevamos: un solo equipo y una sola persona que te atiende.</p>
+        </div>
+        <div className="mx-auto w-full max-w-md lg:max-w-none"><VideoPulsar titulo="¿Cuánta gente que te necesita ni sabe que existes?" /></div>
       </div>
     </section>
   );
@@ -127,19 +147,19 @@ export function RecibesAds() {
   return (
     <section className="bg-white py-10 sm:py-20" aria-labelledby="recibes-ads">
       <div className={ENVOLTORIO}>
-        <h2 id="recibes-ads" className="max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Tu estudio, <span className="tono2">en menos de una semana.</span></h2>
+        <h2 id="recibes-ads" className="max-w-3xl text-3xl font-extrabold text-tinta sm:text-5xl">Esto recibirás <span className="tono2">en tu estudio gratuito.</span></h2>
         <ol className="mt-7 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-5">
           {RECIBES.map(([src, t, d, alt], i) => (
             <li key={t} className="flex items-center gap-4 rounded-2xl bg-niebla p-3 ring-1 ring-tinta/10 sm:block sm:p-4">
               <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 360px, 112px" className="h-auto w-28 shrink-0 rounded-xl ring-1 ring-tinta/15 sm:w-full" />
               <div className="sm:mt-4">
-                <b className="block text-lg font-extrabold leading-tight text-tinta"><span className="text-[#9a6700]">{i + 1}.</span> {t}</b>
-                <span className="mt-0.5 block text-sm text-tinta/70">{d}</span>
+                <b className="inline-block rounded-full bg-noche px-3 py-1 text-xs font-extrabold uppercase tracking-wide text-white">{i + 1} · {t}</b>
+                <span className="mt-1.5 block font-bold text-tinta">{d}</span>
               </div>
             </li>
           ))}
         </ol>
-        <p className="mt-4 text-xs text-tinta/60">Capturas de un estudio de ejemplo, de un despacho inventado. El tuyo se prepara con tu empresa.</p>
+        <p className="mt-4 text-xs text-tinta/60">Capturas de un estudio de ejemplo, de un despacho inventado. El tuyo se prepara con tu empresa, en menos de una semana si podemos ayudarte.</p>
       </div>
     </section>
   );
@@ -159,7 +179,7 @@ export function PrecioAds() {
               <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/20">{t}</li>
             ))}
           </ul>
-          <p className="mt-3 text-xs text-white/60">Orientativo y sin IVA. La inversión en anuncios va aparte y la pagas tú directamente a Google o Meta.</p>
+          <p className="mt-3 text-xs text-white/60">Orientativo y sin IVA. La inversión en anuncios va aparte y la pagas tú directamente a Google o Meta. <Link href="/servicios#ahorro" className="font-bold text-white underline underline-offset-4">Ver el desglose, servicio a servicio</Link>.</p>
         </div>
         <Link href="#solicitud" className={BOTON}>Quiero mi estudio gratuito</Link>
       </div>
