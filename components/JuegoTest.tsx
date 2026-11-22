@@ -82,18 +82,18 @@ export function Opcion({ letra, texto, color, activa, onClick }: { letra: string
       type="button"
       aria-pressed={activa}
       onClick={onClick}
-      className={`group flex w-full items-center gap-4 rounded-2xl border-2 px-4 py-4 text-left text-[1.05rem] font-bold shadow-[0_6px_18px_-10px_rgba(14,26,61,0.35)] transition-all sm:px-5 ${
+      className={`group flex w-full items-center gap-3 rounded-2xl border-2 px-3.5 py-2.5 text-left text-base font-bold leading-snug sm:gap-4 sm:py-4 sm:text-[1.05rem] shadow-[0_6px_18px_-10px_rgba(14,26,61,0.35)] transition-all sm:px-5 ${
         activa ? "border-noche bg-noche text-white" : "border-transparent bg-white text-tinta hover:-translate-y-1 hover:shadow-[0_14px_28px_-14px_rgba(14,26,61,0.45)]"
       }`}
     >
       <span
         aria-hidden="true"
-        className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-base font-extrabold ${activa ? "bg-white/25 text-white" : "bg-noche/10 text-noche"}`}
+        className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-base font-extrabold sm:h-9 sm:w-9 ${activa ? "bg-white/25 text-white" : "bg-noche/10 text-noche"}`}
       >
         {activa ? (
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
         ) : (
-          <span className="h-5 w-5 rounded-full border-[3px] border-current opacity-60" />
+          <span className="h-4 w-4 rounded-full border-[3px] border-current opacity-60 sm:h-5 sm:w-5" />
         )}
       </span>
       <span>{texto}</span>

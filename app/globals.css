@@ -547,3 +547,12 @@ html[data-texto="3"] header { zoom: 0.667; }
   main section p.text-lg { font-size: 1rem; line-height: 1.55; }
   .gl-a, .prosa a.gl-a { text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(255,197,61,.55); }
 }
+
+/* cas·v358: artículos y textos largos en el móvil, y test más compacto */
+@media (max-width: 639px) {
+  article.prosa { padding-block: 2.25rem; }
+  .prosa { font-size: 1rem; line-height: 1.6; }
+  .prosa > * + * { margin-top: 1em; }
+  .prosa h2 { margin-top: 1.9em; font-size: 1.45rem; line-height: 1.2; }
+  .prosa h3 { margin-top: 1.5em; font-size: 1.2rem; }
+}

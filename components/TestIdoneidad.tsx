@@ -461,10 +461,10 @@ export default function TestIdoneidad() {
                       <LogoMarca nombre={q.logo} tam={28} />
                     </span>
                   )}
-                  <span className="pt-1 text-2xl leading-tight sm:text-3xl">{q.p}</span>
+                  <span className="pt-1 text-[1.35rem] leading-tight sm:text-3xl">{q.p}</span>
                 </legend>
                 {q.ayuda && <p className="mt-2 text-[0.95rem] font-normal text-gris">{q.ayuda}</p>}
-                <div className="mt-5 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+                <div className="mt-4 grid gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3">
                   {q.o.map((o, j) => (
                     <Opcion key={o.t} letra={letras[j]} texto={o.t} color={COLOR_OPCION[j % COLOR_OPCION.length]} activa={resp[q.id] === j} onClick={() => elegir(q, j)} />
                   ))}
