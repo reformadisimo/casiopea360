@@ -46,6 +46,32 @@ export async function POST(req: Request) {
   const origen = describirOrigen(datos);
   const texto = `De dónde viene: ${origen}\n\n` + String(datos.texto ?? "").slice(0, 12000);
   const correo = String(datos.correo ?? "").slice(0, 200);
+  // Aviso interno legible: arriba, en llano, quién es, qué significa el encaje y qué hay que hacer; debajo, el detalle.
+  const QUE_ES: Record<string, string> = {
+    "PRIMER CONTACTO": "ha dejado sus datos; aún no sabemos el encaje.",
+    "ENCAJE ALTO": "gasta bastante en marketing o quiere cambiar pronto. Prioridad.",
+    "ENCAJE MEDIO": "puede encajar. Mirar su web antes de decidir.",
+    "ENCAJE BAJO": "gasta poco o no tiene prisa. Contestar igual, sin prioridad.",
+    "SOLO CURIOSEA": "dice que solo está mirando o comparando. Contestar igual, sin prioridad.",
+  };
+  const enc = String(datos.encaje ?? "").slice(0, 20);
+  const esPrueba = /prueba/i.test(`${datos.nombre ?? ""} ${datos.empresa ?? ""} ${datos.texto ?? ""}`.slice(0, 3000));
+  const cabeceraAviso = (segunda: boolean) =>
+    [
+      esPrueba ? "OJO: parece una PRUEBA (lleva la palabra «prueba»). Si lo es, descártala en la mesa y no hagas nada." : "",
+      segunda ? "SEGUNDA PARTE DE UN TEST: esta persona ya había enviado sus datos (tienes el primer aviso). Ahora ha contestado las preguntas opcionales." : "NUEVA SOLICITUD DE ESTUDIO",
+      "",
+      `Quién: ${String(datos.nombre ?? "").slice(0, 80) || "(sin nombre)"}${datos.empresa ? ` · ${String(datos.empresa).slice(0, 120)}` : ""}`,
+      `Correo: ${correo}${datos.telefono ? ` · Teléfono: ${String(datos.telefono).slice(0, 40)}` : ""}`,
+      `Encaje: ${enc || "sin etiqueta"}${QUE_ES[enc] ? ` (${QUE_ES[enc]})` : ""}`,
+      `De dónde viene: ${origen}`,
+      "",
+      segunda ? "Qué hacer: nada nuevo. Usa estas respuestas al contestarle (el plazo sigue siendo 48 horas laborables desde el primer aviso)." : "Qué hacer: contestarle por correo en 48 horas laborables (responde a este mismo correo y le llega a él). Está en la mesa, en /mesa/crm.",
+      "",
+      "----- Lo que ha contestado -----",
+      "",
+    ].filter((l, i, t) => !(l === "" && t[i - 1] === "")).join("\n");
+  const cuerpoAviso = (segunda: boolean) => cabeceraAviso(segunda) + String(datos.texto ?? "").slice(0, 12000);
   if (texto.length < 20 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return NextResponse.json({ ok: false }, { status: 400 });
 
   // Ampliación del test (19-nov): la persona ya envió sus datos y ahora ha contestado el resto. Se añade a su misma solicitud
@@ -64,7 +90,7 @@ export async function POST(req: Request) {
     const av = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test AMPLIADO con su nota: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto }),
+      body: JSON.stringify({ from: remitente, to: [destino], reply_to: correo, subject: `${esPrueba ? "[PRUEBA] " : ""}[${enc || "SIN ETIQUETA"}] Segunda parte del test de ${String(datos.nombre ?? "").slice(0, 80)} (ya tenías sus datos)`, text: cuerpoAviso(true) }),
     });
     if (!av.ok) {
       console.error("[solicitud] Resend rechazó el aviso de ampliación:", av.status, (await av.text().catch(() => "")).slice(0, 300));
@@ -95,7 +121,7 @@ export async function POST(req: Request) {
       body: JSON.stringify(cuerpo),
     });
 
-  const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `[${String(datos.encaje ?? "SIN ETIQUETA").slice(0, 20)}] Test de idoneidad: ${String(datos.nombre ?? "").slice(0, 80)}`, text: texto });
+  const aviso = await enviar({ from: remitente, to: [destino], reply_to: correo, subject: `${esPrueba ? "[PRUEBA] " : ""}[${enc || "SIN ETIQUETA"}] Nueva solicitud de estudio: ${String(datos.nombre ?? "").slice(0, 80)}${datos.empresa ? ` (${String(datos.empresa).slice(0, 60)})` : ""}`, text: cuerpoAviso(false) });
   if (!aviso.ok) {
     // Motivo en los registros de Vercel (estado y mensaje de Resend; nunca la clave).
     const detalle = await aviso.text().catch(() => "");

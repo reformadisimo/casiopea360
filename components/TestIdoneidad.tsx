@@ -353,7 +353,7 @@ export default function TestIdoneidad() {
       `AMPLIACIÓN del test (esta persona ya había enviado sus datos).\n` +
       `Nota: ${r.nota}/100 (${r.areas.map((a) => `${a.titulo} ${a.nota}`).join(", ")})\n\n` +
       respuestaTexto() +
-      (r.fallos.length ? `\n\nFallos principales:\n- ${r.fallos.slice(0, 8).map((q) => q.fallo).join("\n- ")}` : "");
+      (r.fallos.length ? `\n\nPrioridades que le hemos enseñado:\n- ${r.fallos.slice(0, 8).map((q) => q.fallo).join("\n- ")}` : "");
     try {
       const res = await fetch("/api/solicitud", {
         method: "POST",
