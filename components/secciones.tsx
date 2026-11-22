@@ -1889,12 +1889,12 @@ export function EjemplosTrabajos({ claro = false }: { claro?: boolean }) {
 /* Solicitud con test de idoneidad. */
 export function SeccionSolicitud({ soloTest = false }: { soloTest?: boolean } = {}) {
   return (
-    <section id="solicitud" className="relative scroll-mt-20 overflow-hidden bg-noche py-12 text-white sm:py-28">
+    <section id="solicitud" className="relative scroll-mt-20 overflow-hidden bg-noche pb-12 pt-6 text-white sm:py-28">
       <Nebulosa oscura variante={3} />
       <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
           <div className="hidden sm:block"><Etiqueta tono="estrella">Una pregunta cada vez</Etiqueta></div>
-          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">{soloTest ? "Empieza el test." : "Pide tu estudio gratuito."}</h2>
+          <h2 className="text-3xl font-extrabold sm:mt-4 sm:text-5xl">{soloTest ? "Empieza el test." : "Pide tu estudio gratuito."}</h2>
           <p className="mt-5 hidden text-lg text-white/80 sm:block">
             <b className="text-white">Si vemos que podemos ayudarte,</b> preparamos el estudio para que puedas valorar cómo trabajaríamos antes de contratar. Después decides tú, sin compromiso.
           </p>

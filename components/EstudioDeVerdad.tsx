@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ConsiguesGaleria } from "@/components/Consigues";
-import { ESTUDIO_TOTAL } from "@/lib/contenido";
 
 // «No te lo pierdas»: lo que preparamos si podemos ayudar, con capturas reales de los ejemplos.
 export default function EstudioDeVerdad() {
@@ -17,8 +16,8 @@ export default function EstudioDeVerdad() {
         ))}
       </ul>
       <ConsiguesGaleria />
-      <Link href="/estudio-gratuito" className="mt-4 inline-flex min-h-10 items-center text-sm font-bold text-white/80 underline underline-offset-4 hover:text-white">
-        Los {ESTUDIO_TOTAL} apartados de la guía, uno a uno →
+      <Link href="/estudio-gratuito#incluye" className="mt-4 inline-flex min-h-10 items-center text-sm font-bold text-white/80 underline underline-offset-4 hover:text-white">
+        Todo lo que incluye tu estudio →
       </Link>
     </div>
   );

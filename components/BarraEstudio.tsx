@@ -15,6 +15,7 @@ const SIN_BARRA = ["/panel", "/crm-ejemplo", "/lupa-ejemplo", "/avisos-ejemplo",
 export default function BarraEstudio() {
   const ruta = usePathname() || "/";
   const [ver, setVer] = useState(false);
+  const [bajado, setBajado] = useState(false);
   const [destino, setDestino] = useState("/test#solicitud");
   const excluida = SIN_BARRA.some((r) => ruta === r || ruta.startsWith(r + "/"));
 
@@ -25,6 +26,7 @@ export default function BarraEstudio() {
     let marco = 0;
     const revisar = () => {
       marco = 0;
+      setBajado(window.scrollY > 500);
       const test = document.getElementById("solicitud");
       let testVisible = false;
       if (test) {
@@ -59,16 +61,16 @@ export default function BarraEstudio() {
     <>
     {/* Escritorio: pastilla fija abajo, centrada, con el estudio gratuito y el WhatsApp. */}
     <div
-      aria-hidden={!ver}
+      aria-hidden={!(ver && bajado)}
       className={`fixed bottom-5 left-1/2 z-40 hidden -translate-x-1/2 items-center gap-3 rounded-full bg-noche/95 py-2 pl-2 pr-2 shadow-[0_18px_40px_-12px_rgba(14,26,61,0.7)] ring-1 ring-white/15 backdrop-blur transition-all duration-300 sm:flex ${
-        ver ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-24 opacity-0"
+        ver && bajado ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-24 opacity-0"
       }`}
     >
       <a
         href={`https://wa.me/${CONTACTO.whatsapp}`}
         target="_blank"
         rel="noopener"
-        tabIndex={t}
+        tabIndex={ver && bajado ? 0 : -1}
         aria-label="Escríbenos por WhatsApp"
         className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366] text-white transition-transform hover:scale-105"
       >
@@ -77,7 +79,7 @@ export default function BarraEstudio() {
       <span className="hidden text-sm font-bold text-white/85 md:block">Sin compromiso. Sin pedirte accesos.</span>
       <Link
         href={destino}
-        tabIndex={t}
+        tabIndex={ver && bajado ? 0 : -1}
         className="boton-brillo inline-flex min-h-11 items-center justify-center rounded-full bg-estrella px-6 text-base font-extrabold text-tinta transition-colors hover:bg-estrella-2"
       >
         Quiero mi estudio gratuito

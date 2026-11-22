@@ -736,7 +736,14 @@ export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {})
             </p>
             <a href="/estudio-gratuito" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-noche px-6 font-bold text-white transition-colors hover:bg-[#1d4ed8]">Pide tu estudio gratuito</a>
           </div>
-          <ul className="grid gap-4 sm:grid-cols-2 sm:[&>li:last-child]:col-span-2">
+          {compacta ? (
+            <ul className="grid grid-cols-2 gap-2 sm:hidden">
+              {valor.map(([, t]) => (
+                <li key={t} className="flex items-start gap-2 rounded-2xl bg-white/[0.07] p-3 text-[0.9rem] font-bold leading-snug ring-1 ring-white/10 last:col-span-2"><span aria-hidden="true" className="text-estrella">✓</span><span>{t}</span></li>
+              ))}
+            </ul>
+          ) : null}
+          <ul className={`${compacta ? "hidden sm:grid" : "grid"} gap-4 sm:grid-cols-2 sm:[&>li:last-child]:col-span-2`}>
             {valor.map(([ic, t, d], i) => (
               <TarjetaViva key={t} icono={ic} i={i} titulo={t} texto={d} claro />
             ))}
