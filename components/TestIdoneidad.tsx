@@ -68,7 +68,7 @@ const TRAMOS: Tramo[] = [
     logos: ["Google Maps", "Google", "LinkedIn"],
     puntua: false,
     preguntas: [
-      { id: "urge", p: "¿Qué quieres mejorar primero?", ayuda: "Elige una opción para continuar.", o: T(...URGE) },
+      { id: "urge", p: "¿Qué está impidiendo que tu negocio consiga más clientes?", ayuda: "Empezamos por lo que más te preocupa.", o: T(...URGE) },
       { id: "sector", p: "¿A qué se dedica tu empresa?", ayuda: "Elige la opción que mejor describa tu actividad principal.", o: T(...SECTORES) },
       { id: "gasto", p: "¿Cuánto gastas al mes en marketing, en total?", ayuda: "Agencias, herramientas y anuncios, todo junto. Con una cifra aproximada nos vale.", o: T(...GASTO) },
     ],
@@ -432,8 +432,9 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
             <div className="bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)] p-5 sm:p-9">
               <p className="text-sm font-extrabold uppercase tracking-wide text-[#9a6700]">{tramo.extra ? "Para afinar tu nota" : ti === 0 ? "Tu estudio gratuito" : tramo.titulo}</p>
               {ti === 0 && !entregas && <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>}
+              {ti === 0 && entregas && <p className="mt-1 text-[0.98rem] font-bold leading-snug text-tinta sm:hidden">Web, anuncios y plan con costes, a tu medida.</p>}
               {ti === 0 && entregas && (
-                <>
+                <div className="hidden sm:block">
                   <p className="mt-1 text-[0.98rem] leading-snug text-tinta/80">Si podemos ayudarte, esto es lo que preparamos:</p>
                   <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
                     {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
@@ -441,7 +442,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
                     ))}
                   </ul>
                   <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
-                </>
+                </div>
               )}
               {ti === 0 ? (
                 <div className="mt-4 flex items-center gap-3" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avancePaso * 100)}>
@@ -476,6 +477,17 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
                   ))}
                 </div>
               </fieldset>
+              {ti === 0 && entregas && qi === 0 && (
+                <div className="mt-4 sm:hidden">
+                  <p className="text-[0.95rem] font-extrabold text-tinta">Si podemos ayudarte, esto es lo que preparamos:</p>
+                  <ul className="mt-2 grid gap-1 text-[0.95rem] font-bold leading-snug text-tinta">
+                    {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
+                      <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
+                    ))}
+                  </ul>
+                  <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
+                </div>
+              )}
               {qi === 0 && <p className="mt-4 text-sm text-gris">{tramo.dato}</p>}
               <div className={reaccion ? "mt-5" : "mt-2"}>{reaccion && <Reaccion texto={reaccion.t} tono={reaccion.tono} />}</div>
               <div className="mt-3 flex flex-wrap items-center gap-3">
