@@ -268,7 +268,7 @@ export default function Asistente() {
     const r = await fetch("/api/asistente", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ accion: "contacto", nombre: f.get("nombre"), contacto: f.get("contacto"), consentimiento: f.get("acepto") === "on", mensajes, ...leerAtribucion() }),
+      body: JSON.stringify({ accion: "contacto", nombre: f.get("nombre"), contacto: f.get("contacto"), web: f.get("web"), consentimiento: f.get("acepto") === "on", mensajes, ...leerAtribucion() }),
     }).catch(() => null);
     setEstadoContacto(r?.ok ? "ok" : "error");
     if (r?.ok) setFormulario(false);
@@ -383,11 +383,15 @@ export default function Asistente() {
                 <p className="font-extrabold">Te contactamos nosotros</p>
                 <label className="block text-sm">
                   Tu nombre
-                  <input name="nombre" autoComplete="name" className="mt-1 w-full rounded-xl border border-linea px-3 py-2" />
+                  <input name="nombre" required autoComplete="name" className="mt-1 w-full rounded-xl border border-linea px-3 py-2" />
                 </label>
                 <label className="block text-sm">
-                  Teléfono o correo
-                  <input name="contacto" required autoComplete="email" className="mt-1 w-full rounded-xl border border-linea px-3 py-2" />
+                  Correo
+                  <input name="contacto" required type="email" autoComplete="email" className="mt-1 w-full rounded-xl border border-linea px-3 py-2" />
+                </label>
+                <label className="block text-sm">
+                  La web de tu empresa
+                  <input name="web" required inputMode="url" autoComplete="url" placeholder="www.tuempresa.es" pattern=".*[.].*" title="Escribe la dirección de tu web, por ejemplo www.tuempresa.es" className="mt-1 w-full rounded-xl border border-linea px-3 py-2" />
                 </label>
                 <label className="flex items-start gap-2 text-xs text-gris">
                   <input type="checkbox" name="acepto" required className="mt-0.5" />

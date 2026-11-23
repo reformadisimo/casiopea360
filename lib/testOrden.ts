@@ -38,11 +38,5 @@ export const PANTALLAS: { id: string; texto: string; fase: "primero" | "datos" |
 export const CAMPOS_DATOS: { id: string; texto: string; obligatorio: boolean }[] = [
   { id: "nombre", texto: "Tu nombre", obligatorio: true },
   { id: "correo", texto: "Correo", obligatorio: true },
-  { id: "empresa", texto: "Empresa", obligatorio: true },
-  { id: "ciudad", texto: "Dónde estáis", obligatorio: true },
-  { id: "telefono", texto: "Teléfono", obligatorio: false },
-  { id: "web", texto: "Vuestra web", obligatorio: false },
-  { id: "mas", texto: "¿Algo más? (texto libre)", obligatorio: false },
-  { id: "imagenes", texto: "Casilla: autorizo usar lo público de mi web", obligatorio: true },
-  { id: "novedades", texto: "Casilla: quiero novedades por correo", obligatorio: false },
+  { id: "web", texto: "La web de tu empresa", obligatorio: true },
 ];

@@ -15,8 +15,8 @@ export default function Privacidad() {
       </p>
       <h2>Qué datos tratamos</h2>
       <ul>
-        <li><strong>Los que nos das en el formulario del estudio gratuito:</strong> nombre y cargo, empresa, web, ciudad, sector, facturación aproximada, número de empleados, cómo lleváis hoy el marketing, inversión en anuncios, teléfono y correo.</li>
-        <li><strong>Los del test de idoneidad:</strong> tus respuestas y los datos de contacto que nos das al final (nombre, empresa, teléfono, correo, web y ciudad). Hasta que no envías el test, no nos llega nada.</li>
+        <li><strong>Los que nos das en el formulario del estudio gratuito:</strong> nombre, correo y la web de tu empresa.</li>
+        <li><strong>Los del test de idoneidad:</strong> tus respuestas y los datos de contacto que nos das al final (nombre, correo y web). Hasta que no envías el test, no nos llega nada.</li>
         <li><strong>Los de navegación:</strong> solo si aceptas las cookies de medición (ver la política de cookies).</li>
       </ul>
       <h2>Para qué los usamos y con qué base legal</h2>

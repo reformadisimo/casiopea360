@@ -9,7 +9,6 @@ import LogoMarca from "@/components/LogoMarca";
 import Logo from "@/components/Logo";
 import { COLOR_OPCION, Confeti, Opcion, Reaccion } from "@/components/JuegoTest";
 import Image from "next/image";
-import BotonDictado from "@/components/BotonDictado";
 import DetalleEstudio from "@/components/DetalleEstudio";
 import { CONTACTO } from "@/lib/contenido";
 import { GASTO, SECTORES, URGE, URGE_DETALLE } from "@/lib/testOrden";
@@ -196,7 +195,6 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
   const [envio, setEnvio] = useState<"" | "enviando" | "enviado" | "sin-canal" | "error">("");
   const espera = useRef<ReturnType<typeof setTimeout> | null>(null);
   const caja = useRef<HTMLDivElement>(null);
-  const masRef = useRef<HTMLTextAreaElement>(null);
 
   const tramo = TRAMOS[ti];
   const preguntasVistas = conExtra ? TRAMOS : BASE;
@@ -296,12 +294,12 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
     e.preventDefault();
     const d = new FormData(e.currentTarget);
     const encaje = "PRIMER CONTACTO";
+    const web = String(d.get("web") ?? "").trim();
     datosRef.current = { correo: String(d.get("correo") ?? ""), nombre: String(d.get("nombre") ?? "") };
     const primeras = TRAMOS[0].preguntas.map((q) => `${q.p} ${resp[q.id] !== undefined ? q.o[resp[q.id]].t : "(sin contestar)"}`).join("\n");
     const texto =
       `Test de idoneidad: PRIMER CONTACTO (datos y tres respuestas; si luego contesta el resto, llegará otro aviso con su nota).\n` +
-      `Nombre y cargo: ${d.get("nombre")}\nEmpresa: ${d.get("empresa")}\nWeb: ${d.get("web") || "-"}\nDónde: ${d.get("ciudad")}\n` +
-      `Teléfono: ${d.get("telefono") || "-"}\nCorreo: ${d.get("correo")}\nAlgo más: ${d.get("mas") || "-"}\n\n` +
+      `Nombre: ${d.get("nombre")}\nWeb: ${web}\nCorreo: ${d.get("correo")}\n\n` +
       primeras;
     setEnvio("enviando");
     let ok = false;
@@ -309,7 +307,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
       const res = await fetch("/api/solicitud", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: d.get("empresa"), telefono: d.get("telefono"), novedades: false, trampa: d.get("sitio_web"), variante: varRef.current, ...leerAtribucion(), pagina: window.location.pathname }),
+        body: JSON.stringify({ texto: `[${encaje}]\n\n${texto}`, encaje, correo: d.get("correo"), nombre: d.get("nombre"), empresa: web.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/.*$/, ""), novedades: false, trampa: d.get("sitio_web"), variante: varRef.current, ...leerAtribucion(), pagina: window.location.pathname }),
       });
       ok = res.ok;
     } catch {}
@@ -603,35 +601,10 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
               Correo
               <input name="correo" required type="email" autoComplete="email" className={campo} />
             </label>
-            <label className="text-sm font-bold">
-              {variante === "B" ? "Tu empresa o su web" : "Empresa"}
-              <input name="empresa" required autoComplete="organization" className={campo} />
-            </label>
-            <label className="text-sm font-bold">
-              Dónde estáis{variante === "B" && <span className="font-normal text-gris"> (opcional)</span>}
-              <input name="ciudad" required={variante !== "B"} placeholder="Ciudad o provincia" className={campo} />
-            </label>
-            <label className="text-sm font-bold">
+            <label className="text-sm font-bold sm:col-span-2">
               La web de tu empresa <span className="font-normal text-gris">(la necesitamos para preparar tu estudio)</span>
               <input name="web" required inputMode="url" autoComplete="url" placeholder="www.tuempresa.es" pattern=".*[.].*" title="Escribe la dirección de tu web, por ejemplo www.tuempresa.es" className={campo} />
             </label>
-            <details className="group sm:col-span-2">
-              <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-noche-3 underline underline-offset-4 [&::-webkit-details-marker]:hidden">
-                <span aria-hidden="true" className="text-lg leading-none transition-transform group-open:rotate-45">+</span>
-                Añadir información opcional (teléfono o un comentario)
-              </summary>
-              <div className="mt-3 grid gap-4 sm:grid-cols-2">
-                <label className="text-sm font-bold">
-                  Teléfono <span className="font-normal text-gris">(opcional; te escribimos por correo)</span>
-                  <input name="telefono" type="tel" autoComplete="tel" className={campo} />
-                </label>
-                <label className="text-sm font-bold sm:col-span-2">
-                  ¿Algo más que debamos saber? <span className="font-normal text-gris">(opcional)</span>
-                  <textarea name="mas" ref={masRef} rows={2} maxLength={1000} className={campo} />
-                  <BotonDictado destino={masRef} className="mt-2 font-normal" />
-                </label>
-              </div>
-            </details>
             <label className="hidden" aria-hidden="true">
               No rellenes esto
               <input name="sitio_web" tabIndex={-1} autoComplete="off" />

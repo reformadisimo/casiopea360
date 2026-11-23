@@ -7,7 +7,7 @@ import { describirOrigen } from "@/lib/origen";
 //   ASISTENTE_MODELO     opcional, modelo preferido
 //   RESEND_API_KEY, SOLICITUD_REMITENTE, SOLICITUD_DESTINO (o ASISTENTE_PARA): para avisar de quien pide que le contacten
 // POST { mensajes: [{ role, content }] }                         -> texto en directo
-// POST { accion: "contacto", nombre, contacto, consentimiento, mensajes } -> { ok }
+// POST { accion: "contacto", nombre, contacto (correo), web, consentimiento, mensajes } -> { ok }
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -39,7 +39,8 @@ export async function POST(req: Request) {
     if (!limite("c" + ip, 4, 3600000)) return json({ ok: false, motivo: "demasiados" }, 429);
     const nombre = limpia(b.nombre, 80);
     const contacto = limpia(b.contacto, 120);
-    const valido = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contacto) || contacto.replace(/\D/g, "").length >= 9;
+    const web = limpia(b.web, 160);
+    const valido = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contacto) && web.includes(".");
     if (!valido) return json({ ok: false, motivo: "contacto" }, 400);
     if (b.consentimiento !== true) return json({ ok: false, motivo: "consentimiento" }, 400);
     const clave = process.env.RESEND_API_KEY;
@@ -58,7 +59,7 @@ export async function POST(req: Request) {
         to: [para],
         reply_to: contacto.includes("@") ? contacto : undefined,
         subject: `Te piden contacto desde el asistente: ${nombre || "sin nombre"}`,
-        text: `Alguien ha pedido que le contactemos desde el asistente de la web.\n\nNombre: ${nombre || "(sin nombre)"}\nContacto: ${contacto}\nDe dónde viene: ${describirOrigen(b)}\n\nConversación:\n${historial}`,
+        text: `Alguien ha pedido que le contactemos desde el asistente de la web.\n\nNombre: ${nombre || "(sin nombre)"}\nCorreo: ${contacto}\nWeb: ${web}\nDe dónde viene: ${describirOrigen(b)}\n\nConversación:\n${historial}`,
       }),
     }).catch(() => null);
     return json({ ok: !!r?.ok }, r?.ok ? 200 : 502);
