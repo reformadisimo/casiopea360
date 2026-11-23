@@ -65,6 +65,22 @@ const NOTAS_HERO: [string, string][] = [["100", "Rendimiento"], ["100", "Accesib
 
 const PSI_URL = "https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.casiopea360.es%2Festudio-gratuito&form_factor=mobile";
 
+// Los cuatro entregables compactos del panel derecho (la web rediseñada va aparte, grande).
+const ENTREGABLES: [string, string, string][] = [
+  ["velocidad", "Diagnóstico de velocidad y SEO", "Fallos y mejoras prioritarias."],
+  ["competencia", "Análisis de tu competencia", "Oportunidades para diferenciarte."],
+  ["anuncios", "Borradores de anuncios", "Mensajes y creatividades de muestra."],
+  ["plan", "Tu plan de 30 días", "Prioridades, acciones y costes."],
+];
+
+function IconoEntregable({ tipo }: { tipo: string }) {
+  const p = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className: "h-8 w-8 shrink-0 text-[#d99a00]", "aria-hidden": true };
+  if (tipo === "velocidad") return <svg {...p}><path d="M4 17a8 8 0 1 1 16 0" /><path d="M12 17l4-5" /><path d="M7 17h.01M17 17h.01M12 9v.01" /></svg>;
+  if (tipo === "competencia") return <svg {...p}><rect x="3.5" y="13" width="4" height="7" rx="1" /><rect x="10" y="9" width="4" height="11" rx="1" /><rect x="16.5" y="4" width="4" height="16" rx="1" /></svg>;
+  if (tipo === "anuncios") return <svg {...p}><path d="M4 10v4a1 1 0 0 0 1 1h2l8 4V5L7 9H5a1 1 0 0 0-1 1z" /><path d="M18.5 9.5a4 4 0 0 1 0 5" /><path d="M8 15l1 5h2.5l-1-4.5" /></svg>;
+  return <svg {...p}><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg>;
+}
+
 export function HeroLanding() {
   return (
     <section className="relative overflow-hidden bg-noche pb-12 pt-20 text-white sm:pb-20 sm:pt-24">
@@ -79,40 +95,50 @@ export function HeroLanding() {
             <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
               ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
             </h1>
-            <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
-            <p className="mt-3 max-w-xl text-lg text-white/90">Pide tu estudio gratuito: te enseñamos qué mejoraríamos, cómo podría quedar y qué haríamos primero, con sus costes.</p>
+            <p className="mt-4 max-w-xl text-xl font-extrabold text-estrella sm:text-2xl">Todo tu marketing digital, con un solo equipo.</p>
+            <p className="mt-3 max-w-xl text-lg text-white/90">Empieza con un estudio gratuito: análisis, propuestas visuales y un plan para tu negocio.</p>
           </div>
           <div className="max-lg:order-3">
-            <a href="#solicitud" className={`${BOTON} mt-6 w-full sm:w-auto`}>Quiero mi estudio gratuito</a>
-            <p className="mt-3 max-w-xl text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
-            <p className="mt-2 max-w-xl text-sm text-white/75">Si podemos ayudarte, te respondemos en 48 horas laborables y tienes el estudio en menos de una semana.</p>
+            <a href="#solicitud" className={`${BOTON} mt-6 w-full sm:w-auto sm:px-10 sm:py-4 sm:text-xl`}>Quiero mi estudio gratuito</a>
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-white">
+              {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><Tic />{t}</li>
+              ))}
+            </ul>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">Te respondemos por escrito en 48 horas laborables.<br />Si podemos ayudarte, tendrás tu estudio en menos de una semana.</p>
           </div>
         </div>
 
         <div className="max-lg:order-2">
-          <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
-            <div className="flex items-center justify-between gap-3 border-b border-tinta/10 px-5 py-3 sm:px-6">
-              <p className="text-base font-extrabold">Esto es lo que recibirás</p>
-              <span className="rounded-full bg-tinta/10 px-3 py-1 text-xs font-bold">Ejemplo</span>
+          <div className="overflow-hidden rounded-[1.75rem] bg-white p-3 text-tinta shadow-2xl ring-1 ring-white/20 sm:p-4">
+            <p className="rounded-full bg-estrella px-4 py-2 text-center text-sm font-extrabold uppercase tracking-wide sm:text-base">Estudio gratuito y personalizado</p>
+            <h2 className="mt-3 px-1 text-xl font-extrabold sm:text-2xl">Esto es lo que recibirás</h2>
+            <div className="mt-3 flex items-start gap-3 px-1">
+              <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-estrella/25 text-[#9a6700]">
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>
+              </span>
+              <div>
+                <b className="block text-lg font-extrabold leading-tight sm:text-xl">Tu web rediseñada de muestra</b>
+                <span className="block text-sm text-tinta/70 sm:text-base">Una propuesta visual para ordenador y móvil.</span>
+              </div>
             </div>
-            <ol className="divide-y divide-tinta/10">
-              {MUESTRA.map(([src, t, d, alt], i) => (
-                <li key={t} className="flex items-center gap-4 p-3.5 sm:gap-5 sm:p-4">
-                  <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 144px, 104px" className="h-auto w-24 rounded-xl ring-1 ring-tinta/15 sm:w-36" />
+            <ImagenAmpliable src="/ejemplo/web-portada-700.webp" grande="/ejemplo/web-portada.webp" alt="Captura del estudio de ejemplo: la web rediseñada" titulo="Tu web rediseñada de muestra" ancho={700} alto={438} sizes="(min-width: 1024px) 480px, 92vw" className="mt-3 h-auto w-full rounded-xl ring-1 ring-tinta/15" />
+            <p className="mt-1.5 text-center text-xs italic text-tinta/65">Ejemplo de propuesta para un negocio ficticio.</p>
+            <ul className="mt-3 grid grid-cols-1 border-t border-tinta/10 sm:grid-cols-2">
+              {ENTREGABLES.map(([tipo, t, d], i) => (
+                <li key={t} className={`flex items-start gap-3 px-1 py-3 ${i % 2 === 1 ? "sm:border-l sm:border-tinta/10 sm:pl-4" : ""} ${i > 1 ? "border-t border-tinta/10" : ""} ${i === 1 ? "max-sm:border-t max-sm:border-tinta/10" : ""}`}>
+                  <IconoEntregable tipo={tipo} />
                   <div>
-                    <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
-                    <b className="block text-base font-extrabold leading-tight sm:text-lg">{t}</b>
+                    <b className="block text-base font-extrabold leading-tight">{t}</b>
                     <span className="mt-0.5 block text-sm text-tinta/70">{d}</span>
                   </div>
                 </li>
               ))}
-            </ol>
-            <div className="border-t border-tinta/10 bg-tinta/[0.03] px-5 py-3 sm:px-6">
-              <p className="text-sm text-tinta/80"><b>Y además, según tu caso:</b> CRM y panel de ejemplo, ficha y reseñas, seguimiento de contactos por correo.</p>
-              <p className="mt-1.5 text-xs text-tinta/65">El estudio incluye análisis y propuestas de muestra. La puesta en marcha se contrata aparte.</p>
-            </div>
+            </ul>
+            <p className="rounded-full bg-tinta/[0.06] px-4 py-2.5 text-center text-sm text-tinta/85"><b>Además:</b> demos de CRM, chat con IA, panel y seguimiento de correos.</p>
+            <p className="mt-3 text-center"><a href="#incluye" className="text-base font-extrabold underline underline-offset-4">Ver todo lo que incluye →</a></p>
+            <p className="mt-2 px-1 text-center text-xs text-tinta/65">Análisis y propuestas de muestra. La puesta en marcha se contrata aparte.</p>
           </div>
-          <p className="mt-3 text-xs text-white/75">Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.</p>
         </div>
       </div>
     </section>
