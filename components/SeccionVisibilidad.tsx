@@ -38,7 +38,7 @@ export default function SeccionVisibilidad() {
           <p className="max-w-2xl text-lg">
             <b className="text-estrella">Lo arreglamos todo a la vez.</b> En nuestra experiencia, ese empujón se nota, y mucho.
           </p>
-          <Link href="/test" className={`${BOTON} shrink-0`}>¿Es tu caso? Haz el test</Link>
+          <Link href="/test" className={`${BOTON} shrink-0`}>¿Es tu caso? Pide tu estudio</Link>
         </div>
       </div>
     </section>

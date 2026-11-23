@@ -5,7 +5,7 @@ import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
 import { CONTACTO } from "@/lib/contenido";
 
 export default function Pie() {
-  const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Haz el test"), { texto: "Glosario", href: "/glosario" }, { texto: "Panel de ejemplo", href: "/panel" }];
+  const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Pide tu estudio"), { texto: "Glosario", href: "/glosario" }, { texto: "Panel de ejemplo", href: "/panel" }];
   return (
     <footer className="bg-noche-2 text-white/85">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-x-4 gap-y-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
@@ -62,7 +62,7 @@ export default function Pie() {
             ))}
             <li>
               <Link href="/test" className="inline-block py-1 hover:text-white">
-                Haz el test
+                Pide tu estudio
               </Link>
             </li>
           </ul>

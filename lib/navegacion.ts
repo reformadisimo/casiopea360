@@ -53,7 +53,7 @@ export const MENU: (Enlace & { hijos?: Enlace[]; soloAncho?: boolean; pastilla?:
   { texto: "Trabajos", href: "/trabajos", pastilla: true },
   { texto: "Nosotros", href: "/quienes-somos" },
   {
-    texto: "Haz el test",
+    texto: "Pide tu estudio",
     href: "/test",
   },
   { texto: "Blog", href: "/blog" },

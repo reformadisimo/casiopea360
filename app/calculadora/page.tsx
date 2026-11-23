@@ -29,9 +29,9 @@ export default function Calculadora() {
           <CalculadoraInversion />
           <div className="mt-10 flex flex-col gap-4 rounded-[1.6rem] bg-white p-6 ring-1 ring-linea sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-2xl text-lg text-gris">
-              <b className="text-tinta">Esto es una estimación con números de ejemplo.</b> Si quieres un plan para tu empresa, haz el test: tocando, sin escribir y sin darnos ningún acceso.
+              <b className="text-tinta">Esto es una estimación con números de ejemplo.</b> Si quieres un plan para tu empresa, pide tu estudio gratuito: solo tu nombre, tu correo y tu web, sin darnos ningún acceso.
             </p>
-            <Link href="/test" className={`${BOTON} shrink-0`}>Haz el test</Link>
+            <Link href="/test" className={`${BOTON} shrink-0`}>Pide tu estudio</Link>
           </div>
         </div>
       </section>

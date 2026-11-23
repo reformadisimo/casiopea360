@@ -35,5 +35,5 @@ export const CORREO_BIENVENIDA_HTML = correoCliente({
   },
   aviso: { titular: "Tú, tranquilo.", texto: "Si quieres contarnos algo, contesta a este correo y lo leemos nosotros. Mientras, puedes ver", enlace: { texto: "cómo trabajamos.", href: "https://www.casiopea360.es/como-trabajamos" } },
   firma: "El equipo de Casiopea 360",
-  pie: "Recibes este correo porque acabas de hacer el test de idoneidad en casiopea360.es.",
+  pie: "Recibes este correo porque acabas de pedir tu estudio gratuito en casiopea360.es.",
 });

@@ -16,14 +16,14 @@ export default function Privacidad() {
       <h2>Qué datos tratamos</h2>
       <ul>
         <li><strong>Los que nos das en el formulario del estudio gratuito:</strong> nombre, correo y la web de tu empresa.</li>
-        <li><strong>Los del test de idoneidad:</strong> tus respuestas y los datos de contacto que nos das al final (nombre, correo y web). Hasta que no envías el test, no nos llega nada.</li>
+        <li><strong>Los del formulario del estudio gratuito:</strong> el nombre, el correo y la web que nos das. Hasta que no lo envías, no nos llega nada.</li>
         <li><strong>Los de navegación:</strong> solo si aceptas las cookies de medición (ver la política de cookies).</li>
       </ul>
       <h2>Para qué los usamos y con qué base legal</h2>
       <ul>
         <li><strong>Estudiar tu solicitud y contestarte</strong>, encaje o no. Base legal: tu consentimiento y la aplicación, a petición tuya, de medidas previas a un contrato.</li>
         <li><strong>Enviarte el estudio y, si lo pides, un presupuesto.</strong> Misma base legal.</li>
-        <li><strong>Estudiar tu test de idoneidad, contestarte y, si podemos ayudarte, preparar tu estudio gratuito.</strong> Base legal: tu solicitud (medidas precontractuales).</li>
+        <li><strong>Estudiar tu solicitud, contestarte y, si podemos ayudarte, preparar tu estudio gratuito.</strong> Base legal: tu solicitud (medidas precontractuales).</li>
         <li><strong>Usar los textos, fotos y logotipo públicos de tu web y de tus perfiles para preparar tu estudio y la web de ejemplo</strong> que nos has pedido al enviar el test. Se usan únicamente para tu estudio, se enseñan en un enlace privado que no se indexa en buscadores y no se publican sin tu permiso. Si no seguimos trabajando juntos, retiramos el acceso al cabo de un mes. Base legal: aplicar medidas precontractuales a petición tuya. Puedes oponerte escribiéndonos.</li>
         <li><strong>Mandarte de vez en cuando correos con consejos o novedades</strong>, solo si lo pides expresamente después de enviar el test (casilla «quiero recibir unos pocos consejos», que viene sin marcar). Puedes darte de baja en cualquier momento desde el propio correo.</li>
         <li><strong>Medir cómo se usa la web para mejorarla</strong>, solo con tu consentimiento de cookies.</li>

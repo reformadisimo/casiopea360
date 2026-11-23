@@ -169,7 +169,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
           </p>
         )}
         <p>
-          <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">haz el test de idoneidad</Link>.
+          <Link href="/estudio-gratuito">Solicita tu estudio gratuito</Link> o <Link href="/test">deja tus datos aquí</Link>.
         </p>
         <p className="text-gris">
           ¿Alguna palabra te ha sonado rara? Las subrayadas llevan a su explicación; el <Link href="/glosario">glosario completo</Link> tiene todas.

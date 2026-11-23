@@ -8,8 +8,8 @@ import { schemaMigas } from "@/lib/schema";
 // Herramienta indexable con texto propio (la que se posiciona por «estudio gratuito» es /estudio-gratuito; aquí no se repite su contenido).
 export const metadata = {
   ...meta(
-    "Test de marketing digital para empresas: tu nota",
-    "Responde tres preguntas tocando, sin escribir, y descubre dónde se te escapan clientes en tu web, tus anuncios y tu posicionamiento en Google.",
+    "Pide tu estudio gratuito de marketing digital",
+    "Déjanos tu nombre, tu correo y la web de tu empresa: te escribimos en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio gratuito.",
     "/test",
   ),
 };
@@ -17,15 +17,12 @@ export const metadata = {
 export default function Test() {
   return (
     <>
-      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Haz el test", ruta: "/test" }])} />
+      <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/test" }])} />
       <CabeceraPagina
-        titulo="¿Cómo está tu marketing digital?"
-        clave="marketing digital"
-        chip={{ grande: "Tocando", chico: "Sin escribir" }}
-        entradilla="Tres toques y tus datos: te decimos dónde se te escapan clientes en tu web, tus anuncios y Google."
-        migas={[{ texto: "Inicio", href: "/" }, { texto: "Haz el test" }]}
-        video="movil-sonrisa"
-        videoAlt="Una mujer sonríe mirando su móvil en la ciudad"
+        titulo="Pide tu estudio gratuito"
+        clave="estudio gratuito"
+        entradilla="Tu nombre, tu correo y la web de tu empresa. Nada más."
+        migas={[{ texto: "Inicio", href: "/" }, { texto: "Estudio gratuito" }]}
       />
       <SeccionSolicitud soloTest />
       <SeccionCadaDia fuera />

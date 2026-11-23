@@ -21,7 +21,7 @@ export default function LoQueConsigues() {
       <CabeceraPagina
         titulo="Un ejemplo real de todo lo que te preparamos gratis."
         clave="ejemplo real"
-        entradilla="Haz el test: si podemos ayudarte, lo recibes gratis, sin compromiso y en menos de una semana."
+        entradilla="Pide tu estudio: si podemos ayudarte, lo recibes gratis, sin compromiso y en menos de una semana."
         migas={[{ texto: "Inicio", href: "/" }, { texto: "Un ejemplo real" }]}
         visual={
           <ul className="grid grid-cols-2 gap-3">

@@ -395,7 +395,7 @@ export function SeccionVentajas() {
 }
 
 const PASOS: [string, string][] = [
-  ["1. Haz el test", "Tres toques y tus datos. Sin darnos accesos ni contraseñas."],
+  ["1. Pide tu estudio", "Tu nombre, tu correo y tu web. Sin darnos accesos ni contraseñas."],
   ["2. Te escribimos en 48 horas laborables", "Te decimos si podemos ayudarte. Si ahora no, te lo decimos igual y te explicamos por qué."],
   ["3. Recibes tu estudio", "Si podemos ayudarte, es gratis: tu situación, tu competencia, tu web rediseñada y tu plan. En menos de una semana."],
   ["4. Decides tú", "Sin compromiso. Si no sigues, tienes un mes para mirarlo con calma y enseñárselo a quien quieras."],

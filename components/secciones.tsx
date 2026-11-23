@@ -1622,11 +1622,11 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
               {i === 0 && (
                 <MiniPantalla
                   className="mt-4"
-                  titulo="Test de idoneidad"
+                  titulo="Pide tu estudio"
                   filas={[
-                    { texto: "A qué te dedicas", marca: "hecho" },
-                    { texto: "Qué tienes hoy", marca: "hecho" },
-                    { texto: "Facturación, por tramos", marca: "o la saltas" },
+                    { texto: "Tu nombre", marca: "hecho" },
+                    { texto: "Tu correo", marca: "hecho" },
+                    { texto: "La web de tu empresa", marca: "hecho" },
                   ]}
                   pie="Ejemplo"
                 />
@@ -1635,7 +1635,7 @@ export function SeccionEmpezamos({ base = "" }: { base?: string }) {
           ))}
         </ol>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link href={`${base}#solicitud`} className={BOTON}>Hacer el test de idoneidad</Link>
+          <Link href={`${base}#solicitud`} className={BOTON}>Quiero mi estudio gratuito</Link>
           <Link href={`${base}#estudio`} className="inline-flex items-center justify-center rounded-full border-2 border-noche px-7 py-3.5 font-bold text-noche hover:bg-noche hover:text-white">Qué incluye el estudio</Link>
         </div>
       </div>
@@ -1893,8 +1893,8 @@ export function SeccionSolicitud({ soloTest = false }: { soloTest?: boolean } = 
       <Nebulosa oscura variante={3} />
       <div className={`${ENVOLTORIO} relative grid items-start gap-6 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]`}>
         <div className="lg:sticky lg:top-28">
-          <div className="hidden sm:block"><Etiqueta tono="estrella">Una pregunta cada vez</Etiqueta></div>
-          <h2 className="text-3xl font-extrabold sm:mt-4 sm:text-5xl">{soloTest ? "Empieza el test." : "Pide tu estudio gratuito."}</h2>
+          <div className="hidden sm:block"><Etiqueta tono="estrella">Tres datos y listo</Etiqueta></div>
+          <h2 className="text-3xl font-extrabold sm:mt-4 sm:text-5xl">{soloTest ? "Déjanos tus datos." : "Pide tu estudio gratuito."}</h2>
           <p className="mt-5 hidden text-lg text-white/80 sm:block">
             <b className="text-white">Si vemos que podemos ayudarte,</b> preparamos el estudio para que puedas valorar cómo trabajaríamos antes de contratar. Después decides tú, sin compromiso.
           </p>
@@ -1934,7 +1934,7 @@ export function LlamadaFinal() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/estudio-gratuito" className={BOTON}>Solicitar estudio</Link>
-            <Link href="/test" className={BOTON_CLARO}>Hacer el test de idoneidad</Link>
+            <Link href="/test" className={BOTON_CLARO}>Quiero mi estudio gratuito</Link>
           </div>
         </div>
       </div>
