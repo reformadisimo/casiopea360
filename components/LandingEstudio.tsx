@@ -3,7 +3,7 @@ import { ImagenAmpliable } from "@/components/ImagenAmpliable";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import Image from "next/image";
-import { CONTACTO } from "@/lib/contenido";
+import { WA_ENLACE } from "@/lib/contenido";
 import VideoHero from "@/components/VideoHero";
 import VideoFondo from "@/components/VideoFondo";
 import BotonBarraTest from "@/components/BotonBarraTest";
@@ -471,7 +471,7 @@ export function BarraLanding() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" aria-label="casiopea360, inicio" className="shrink-0"><Logo claro fundido chico /></Link>
         <div className="flex items-center gap-3">
-          <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
+          <a href={WA_ENLACE} target="_blank" rel="noopener" className="hidden text-sm font-bold text-white/85 hover:text-white sm:inline">WhatsApp</a>
           <BotonBarraTest />
         </div>
       </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CONTACTO } from "@/lib/contenido";
+import { WA_ENLACE } from "@/lib/contenido";
 
 // Móvil (y pastilla en escritorio): barra fija abajo en toda la web, como la de Reformadísimo: WhatsApp, Chat con Cas y el botón
 // amarillo «Haz el test», que es lo que nos interesa. Sin botón de llamar (no atendemos por teléfono).
@@ -67,7 +67,7 @@ export default function BarraEstudio() {
       }`}
     >
       <a
-        href={`https://wa.me/${CONTACTO.whatsapp}`}
+        href={WA_ENLACE}
         target="_blank"
         rel="noopener"
         tabIndex={ver && bajado ? 0 : -1}
@@ -92,7 +92,7 @@ export default function BarraEstudio() {
       }`}
     >
       <a
-        href={`https://wa.me/${CONTACTO.whatsapp}`}
+        href={WA_ENLACE}
         target="_blank"
         rel="noopener"
         tabIndex={t}

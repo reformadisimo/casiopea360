@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import BotonCookies from "@/components/BotonCookies";
 import { LEGALES, MENU, SERVICIOS_MENU } from "@/lib/navegacion";
-import { CONTACTO } from "@/lib/contenido";
+import { CONTACTO, WA_ENLACE } from "@/lib/contenido";
 
 export default function Pie() {
   const empresa = [...MENU.filter((m) => m.texto !== "Servicios" && m.texto !== "Pide tu estudio"), { texto: "Glosario", href: "/glosario" }, { texto: "Panel de ejemplo", href: "/panel" }];
@@ -33,7 +33,7 @@ export default function Pie() {
             </a>
             <br />
             WhatsApp:{" "}
-            <a href={`https://wa.me/${CONTACTO.whatsapp}`} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
+            <a href={WA_ENLACE} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
               619 394 733
             </a>
           </p>

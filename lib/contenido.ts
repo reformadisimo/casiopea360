@@ -6,6 +6,9 @@ export const CONTACTO = {
   correo: "hola@casiopea360.es",
 };
 
+// Enlace de WhatsApp con el primer mensaje ya escrito: quien pulsa solo tiene que enviar.
+export const WA_ENLACE = `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent("Hola, quiero mi estudio gratuito. Mi web es: ")}`;
+
 export type Frente = {
   id: string;
   nombre: string;

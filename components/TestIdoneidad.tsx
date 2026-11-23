@@ -295,7 +295,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
     e.preventDefault();
     const d = new FormData(e.currentTarget);
     const encaje = "PRIMER CONTACTO";
-    const web = String(d.get("web") ?? "").trim();
+    const web = String(d.get("web") ?? "").replace(/\s+/g, "").replace(/\/+$/, "");
     datosRef.current = { correo: String(d.get("correo") ?? ""), nombre: String(d.get("nombre") ?? "") };
     const primeras = TRAMOS[0].preguntas.map((q) => `${q.p} ${resp[q.id] !== undefined ? q.o[resp[q.id]].t : "(sin contestar)"}`).join("\n");
     const texto =
