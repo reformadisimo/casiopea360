@@ -10,7 +10,6 @@ import { ChipIcono, Etiqueta } from "@/components/Vida";
 import { SeccionSonarEnGrande, SeccionEquipo, SeccionEmpresarios, SeccionEncargado, SeccionTiempo, SeccionAtascos, SeccionAnuncioInforma, SeccionPorQueContratarnos, SeccionPrecio } from "@/components/SeccionesVender";
 import {
   BOTON,
-  BOTON_CLARO,
   BandaControl,
   BandaVideo,
   CintaHerramientas,
@@ -51,7 +50,6 @@ export default function Inicio() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href="#solicitud" className={BOTON}>Solicita tu estudio gratuito</a>
-              <Link prefetch={false} href="/panel" className={BOTON_CLARO}>Así lo verás tú</Link>
             </div>
             <VerEjemplo className="mt-6" />
             <ul className="mt-8 grid grid-cols-2 gap-2 text-[0.8rem] font-bold sm:flex sm:flex-wrap sm:text-sm">

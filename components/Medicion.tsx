@@ -82,7 +82,7 @@ export default function Medicion() {
           <div className="sm:min-w-0 sm:flex-1">
           <p className="text-[0.95rem] font-extrabold sm:text-base">¿Nos dejas medir cómo se usa la web?</p>
           <p className="mt-1 text-xs text-gris sm:text-[0.8rem] sm:leading-snug">
-            Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity){META_PIXEL ? " y el píxel de Meta, para medir nuestros anuncios," : ""} solo si aceptas. Nos sirven para saber qué funciona y mejorar la web. <Link prefetch={false} href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.
+            Usamos cookies de medición (Google Analytics) y mapas de calor anónimos (Microsoft Clarity){META_PIXEL ? " y el píxel de Meta, para medir nuestros anuncios," : ""} solo si aceptas. <span className="max-sm:hidden">Nos sirven para saber qué funciona y mejorar la web. </span><Link prefetch={false} href="/cookies" className="font-bold text-tinta underline underline-offset-2">Más sobre las cookies</Link>.
           </p>
           </div>
           {detalle && (

@@ -57,6 +57,8 @@ function ConEnlaces({ texto }: { texto: string }) {
 export default function Asistente() {
   const [abierto, setAbierto] = useState(false);
   const [burbuja, setBurbuja] = useState(false);
+  const [enLanding, setEnLanding] = useState(false);
+  useEffect(() => { setEnLanding(/^\/(estudio-gratuito|test|agencia-marketing-digital-madrid)(\/|$)/.test(window.location.pathname)); }, []);
 
   // Una sola vez por visita, a los 20 segundos, el asistente saluda con una pregunta útil.
   useEffect(() => {
@@ -315,7 +317,7 @@ export default function Asistente() {
         }}
         aria-expanded={abierto}
         aria-controls="asistente"
-        aria-label="Cas, la asistente de Casiopea 360" className="fixed bottom-4 right-4 z-[60] hidden items-center gap-2 sm:flex rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+        aria-label="Cas, la asistente de Casiopea 360" className={`fixed bottom-4 right-4 z-[60] hidden items-center gap-2 ${enLanding && !abierto ? "" : "sm:flex"} rounded-full bg-noche p-2.5 sm:pr-4 font-bold text-white shadow-[0_12px_30px_-8px_rgba(14,26,61,0.6)] ring-2 ring-estrella/70 transition-transform hover:scale-105 sm:bottom-6 sm:right-6`}
       >
         <span aria-hidden="true" className="relative block h-9 w-9">
           <img src="/marca/icono.svg" alt="" className="h-9 w-9 rounded-[0.6rem]" />
