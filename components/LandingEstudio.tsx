@@ -17,11 +17,12 @@ const ID_VIDEO_LARGO = "BaxRMU2nZ-U";
 const BOTON =
   "boton-brillo inline-flex items-center justify-center rounded-full bg-estrella px-7 py-3.5 text-base font-bold text-tinta transition-colors hover:bg-estrella-2";
 
-// Portada: tres entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
+// Portada: cuatro entregables con una captura real del estudio de ejemplo (despacho inventado) cada uno.
 const MUESTRA: [string, string, string, string][] = [
-  ["/ejemplo/mejoras-700.webp", "Qué mejoraríamos", "Revisión de tu web, de la competencia y del recorrido de tus contactos.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
-  ["/ejemplo/web-portada-700.webp", "Cómo podría quedar", "Tu web rediseñada de muestra y borradores de anuncios.", "Captura del estudio de ejemplo: la web rediseñada"],
-  ["/ejemplo/guia-700.webp", "Por dónde empezar", "Un plan con prioridades y costes.", "Captura del estudio de ejemplo: la guía con el plan"],
+  ["/ejemplo/mejoras-700.webp", "Cómo está tu web hoy", "Qué falla, incluida la velocidad en el móvil, y qué te cuesta contactos.", "Captura del estudio de ejemplo: lo que falla en la web actual"],
+  ["/ejemplo/competencia-700.webp", "Cómo te encuentran y cómo se anuncia tu competencia", "Google, tu ficha, tus reseñas y los anuncios de tu zona.", "Captura del estudio de ejemplo: la competencia"],
+  ["/ejemplo/web-portada-700.webp", "Cómo podría quedar", "Tu web rediseñada de muestra, con borradores de anuncios y, cuando tenga sentido para tu negocio, una landing de muestra.", "Captura del estudio de ejemplo: la web rediseñada"],
+  ["/ejemplo/guia-700.webp", "Por dónde empezar", "Un plan de 30 días con prioridades y costes.", "Captura del estudio de ejemplo: la guía con el plan"],
 ];
 
 // Lo que incluye el estudio, sin prometer nada que exija accesos del cliente: lo que depende de sus cifras va como estimación.
@@ -71,43 +72,27 @@ export function HeroLanding() {
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/95 via-noche/70 to-noche/30" />
-      <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1.1fr_1fr] lg:gap-14`}>
+      <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1fr_1.05fr] lg:gap-14`}>
         <div className="max-lg:contents">
           <div className="max-lg:order-1">
-          <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
-          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
-            ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
-          </h1>
-          <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+            <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
+            <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
+              ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
+            </h1>
+            <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+            <p className="mt-3 max-w-xl text-lg text-white/90">Pide tu estudio gratuito: te enseñamos qué mejoraríamos, cómo podría quedar y qué haríamos primero, con sus costes.</p>
           </div>
           <div className="max-lg:order-3">
-          <p className="mt-2 max-w-xl text-lg text-white/90">¿Pagas web, anuncios y redes y no sabes si te traen clientes? Un solo equipo coordina tu marketing y una persona te mantiene al día.</p>
-          <ul className="mt-4 flex max-w-xl flex-wrap gap-2 text-sm font-extrabold">
-            {["Web", "SEO y Google", "Ficha y reseñas", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
-              <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/25">{t}</li>
-            ))}
-          </ul>
-          <p className="mt-5 max-w-xl text-base font-bold text-estrella sm:text-lg">Pide tu estudio gratuito: te enseñamos qué mejoraríamos, cómo podría quedar y qué haríamos primero, con sus costes.</p>
+            <a href="#solicitud" className={`${BOTON} mt-6 w-full sm:w-auto`}>Quiero mi estudio gratuito</a>
+            <p className="mt-3 max-w-xl text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
+            <p className="mt-2 max-w-xl text-sm text-white/75">Si podemos ayudarte, te respondemos en 48 horas laborables y tienes el estudio en menos de una semana.</p>
           </div>
         </div>
 
-        <div id="solicitud" className="scroll-mt-20 max-lg:order-2">
-          <TestYa entregas />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-export function MuestraHero() {
-  return (
-    <section className="bg-noche pb-12 text-white sm:pb-16">
-      <div className={`${ENVOLTORIO} mx-auto max-w-2xl`}>
-        <figure>
+        <div className="max-lg:order-2">
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
             <div className="flex items-center justify-between gap-3 border-b border-tinta/10 px-5 py-3 sm:px-6">
-              <p className="text-sm font-extrabold">Esto es lo que recibirás</p>
+              <p className="text-base font-extrabold">Esto es lo que recibirás</p>
               <span className="rounded-full bg-tinta/10 px-3 py-1 text-xs font-bold">Ejemplo</span>
             </div>
             <ol className="divide-y divide-tinta/10">
@@ -116,21 +101,50 @@ export function MuestraHero() {
                   <ImagenAmpliable src={src} grande={src.replace("-700", "")} alt={alt} titulo={t} ancho={700} alto={438} sizes="(min-width: 640px) 144px, 104px" className="h-auto w-24 rounded-xl ring-1 ring-tinta/15 sm:w-36" />
                   <div>
                     <span className="text-sm font-extrabold text-[#9a6700]">0{i + 1}</span>
-                    <b className="block text-lg font-extrabold leading-tight">{t}</b>
+                    <b className="block text-base font-extrabold leading-tight sm:text-lg">{t}</b>
                     <span className="mt-0.5 block text-sm text-tinta/70">{d}</span>
                   </div>
                 </li>
               ))}
             </ol>
+            <div className="border-t border-tinta/10 bg-tinta/[0.03] px-5 py-3 sm:px-6">
+              <p className="text-sm text-tinta/80"><b>Y además, según tu caso:</b> CRM y panel de ejemplo, ficha y reseñas, seguimiento de contactos por correo.</p>
+              <p className="mt-1.5 text-xs text-tinta/65">El estudio incluye análisis y propuestas de muestra. La puesta en marcha se contrata aparte.</p>
+            </div>
           </div>
-          <p className="mt-3 flex items-center gap-3 rounded-full bg-emerald-50 py-2 pl-2.5 pr-4 text-xs font-semibold text-emerald-900 ring-2 ring-emerald-400">
-            <span aria-hidden className="flex shrink-0 gap-1">{NOTAS_HERO.map(([n, t]) => <span key={t} className="grid h-6 w-6 place-items-center rounded-full border-2 border-emerald-500 bg-white text-[0.6rem] font-extrabold text-emerald-700">{n}</span>)}</span>
-            <span>Esta página saca 100 en Google PageSpeed (móvil) y 3/3 en navegación para IA. <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-extrabold text-emerald-800 underline decoration-emerald-500 underline-offset-4">Compruébalo</a>.</span>
-          </p>
-          <figcaption className="mt-3 text-xs text-white/75">
-            Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.
-          </figcaption>
-        </figure>
+          <p className="mt-3 text-xs text-white/75">Las capturas son de un estudio de ejemplo, de un despacho inventado; el tuyo se prepara con tu empresa.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// El formulario, justo debajo de la portada: el botón de arriba salta aquí.
+export function FormularioEstudio() {
+  return (
+    <section id="solicitud" className="scroll-mt-16 bg-noche pb-12 text-white sm:pb-16">
+      <div className={`${ENVOLTORIO} mx-auto max-w-xl`}>
+        <TestYa />
+      </div>
+    </section>
+  );
+}
+
+// Lo técnico, más abajo: los servicios y la prueba de PageSpeed ya no compiten con la oferta.
+export function MuestraHero() {
+  return (
+    <section className="bg-noche py-10 text-white sm:py-14">
+      <div className={`${ENVOLTORIO} mx-auto max-w-2xl`}>
+        <ul className="flex flex-wrap gap-2 text-sm font-extrabold">
+          {["Web", "SEO y Google", "Ficha y reseñas", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
+            <li key={t} className="rounded-full bg-white/10 px-3.5 py-1.5 ring-1 ring-white/25">{t}</li>
+          ))}
+        </ul>
+        <p className="mt-3 max-w-xl text-base text-white/85">Un solo equipo coordina todo esto y una persona te mantiene al día.</p>
+        <p className="mt-5 flex items-center gap-3 rounded-full bg-emerald-50 py-2 pl-2.5 pr-4 text-xs font-semibold text-emerald-900 ring-2 ring-emerald-400">
+          <span aria-hidden className="flex shrink-0 gap-1">{NOTAS_HERO.map(([n, t]) => <span key={t} className="grid h-6 w-6 place-items-center rounded-full border-2 border-emerald-500 bg-white text-[0.6rem] font-extrabold text-emerald-700">{n}</span>)}</span>
+          <span>Esta página saca 100 en Google PageSpeed (móvil) y 3/3 en navegación para IA. <a href={PSI_URL} target="_blank" rel="noopener noreferrer" className="font-extrabold text-emerald-800 underline decoration-emerald-500 underline-offset-4">Compruébalo</a>.</span>
+        </p>
       </div>
     </section>
   );
