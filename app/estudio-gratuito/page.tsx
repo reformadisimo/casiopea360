@@ -1,8 +1,7 @@
 import DatosEstructurados from "@/components/DatosEstructurados";
-import { SeccionSolicitud } from "@/components/secciones";
 import SeccionDudasEstudio from "@/components/SeccionDudasEstudio";
 import { SeccionPrecio } from "@/components/SeccionesVender";
-import { HeroLanding, SeccionIncluye, SeccionVideo, SeccionDolores, SeccionPasos, SeccionEjemplos, FranjaConfianza } from "@/components/LandingEstudio";
+import { HeroLanding, MuestraHero, SeccionIncluye, SeccionVideo, SeccionDolores, SeccionPasos, SeccionEjemplos, FranjaConfianza } from "@/components/LandingEstudio";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -17,6 +16,7 @@ export default function EstudioGratuito() {
     <>
       <DatosEstructurados datos={schemaMigas([{ texto: "Inicio", ruta: "/" }, { texto: "Estudio gratuito", ruta: "/estudio-gratuito" }])} />
       <HeroLanding />
+      <MuestraHero />
       <FranjaConfianza />
       <SeccionDolores />
       <SeccionIncluye />
@@ -25,7 +25,6 @@ export default function EstudioGratuito() {
       <SeccionEjemplos />
       <SeccionDudasEstudio />
       <SeccionPrecio compacta />
-      <SeccionSolicitud />
     </>
   );
 }

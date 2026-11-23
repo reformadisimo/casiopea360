@@ -1,3 +1,4 @@
+import TestYa from "@/components/TestYa";
 import { ImagenAmpliable } from "@/components/ImagenAmpliable";
 import Link from "next/link";
 import Logo from "@/components/Logo";
@@ -70,13 +71,16 @@ export function HeroLanding() {
         <div className="profundo absolute inset-0"><VideoFondo nombre="constelaciones" alt="" prioridad /></div>
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-noche/95 via-noche/70 to-noche/30" />
-      <div className={`${ENVOLTORIO} relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14`}>
-        <div>
+      <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1.1fr_1fr] lg:gap-14`}>
+        <div className="max-lg:contents">
+          <div className="max-lg:order-1">
           <Etiqueta tono="estrella">Agencia de marketing digital en Madrid</Etiqueta>
           <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3rem]">
             ¿Cuánta gente que te necesita hoy ni sabe que <Subrayado>existes</Subrayado>?
           </h1>
           <p className="mt-4 max-w-xl text-lg font-bold text-estrella">Si tu negocio es bueno y no te conocen, tiene arreglo: te damos visibilidad.</p>
+          </div>
+          <div className="max-lg:order-3">
           <p className="mt-2 max-w-xl text-lg text-white/90">¿Pagas web, anuncios y redes y no sabes si te traen clientes? Un solo equipo coordina tu marketing y una persona te mantiene al día.</p>
           <ul className="mt-4 flex max-w-xl flex-wrap gap-2 text-sm font-extrabold">
             {["Web", "SEO y Google", "Ficha y reseñas", "Anuncios", "Redes", "CRM y contactos"].map((t) => (
@@ -84,15 +88,22 @@ export function HeroLanding() {
             ))}
           </ul>
           <p className="mt-5 max-w-xl text-base font-bold text-estrella sm:text-lg">Pide tu estudio gratuito: te enseñamos qué mejoraríamos, cómo podría quedar y qué haríamos primero, con sus costes.</p>
-          <div className="mt-6">
-            <Link href="#solicitud" className={`${BOTON} w-full px-9 py-3.5 text-lg sm:w-auto`}>Quiero mi estudio gratuito</Link>
-            <p className="mt-3 text-sm font-semibold text-white/85">Sin compromiso. Sin llamadas comerciales. Sin pedirte accesos.</p>
           </div>
-          <p className="mt-6 max-w-xl border-l-2 border-estrella pl-4 text-sm text-white/75">
-            Tres preguntas y tus datos. Te respondemos por escrito en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio en menos de una semana.
-          </p>
         </div>
 
+        <div id="solicitud" className="scroll-mt-20 max-lg:order-2">
+          <TestYa entregas />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+export function MuestraHero() {
+  return (
+    <section className="bg-noche pb-12 text-white sm:pb-16">
+      <div className={`${ENVOLTORIO} mx-auto max-w-2xl`}>
         <figure>
           <div className="overflow-hidden rounded-[1.75rem] bg-white text-tinta shadow-2xl ring-1 ring-white/20">
             <div className="flex items-center justify-between gap-3 border-b border-tinta/10 px-5 py-3 sm:px-6">
