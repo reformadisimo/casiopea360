@@ -64,7 +64,7 @@ export default function DetalleEstudio({ alAbrir }: { alAbrir?: () => void }) {
           </div>
           <p className="mt-4 text-[0.8rem] leading-snug text-tinta/70">El estudio no requiere accesos. Las estimaciones se identifican como tales. Webs y herramientas de muestra. La puesta en marcha forma parte del servicio contratado.</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" onClick={volver} className="rounded-full bg-tinta px-4 py-2 text-[0.9rem] font-extrabold text-white">Volver a las preguntas</button>
+            <button type="button" onClick={volver} className="rounded-full bg-tinta px-4 py-2 text-[0.9rem] font-extrabold text-white">Volver al formulario</button>
             <button type="button" onClick={() => setAbierto(false)} className="rounded-full px-4 py-2 text-[0.9rem] font-extrabold text-tinta ring-1 ring-linea">Cerrar detalles</button>
           </div>
         </div>

@@ -64,7 +64,8 @@ export function HeroAds({ variante = "E" }: { variante?: "E" | "C" }) {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-noche/80" />
       {/* Al terminar el test, el resultado ocupa todo el ancho: se esconde la columna del mensaje. */}
       <div className={`${ENVOLTORIO} relative grid items-start gap-7 lg:grid-cols-[1fr_1fr] lg:gap-12 [&:has([data-fase=fin])]:lg:grid-cols-1 [&:has([data-fase=fin])>div:first-child]:hidden`}>
-        <div className="lg:pt-4">
+        <div className="max-lg:contents lg:pt-4">
+          <div className="max-lg:order-1">
           <p className="text-sm font-extrabold uppercase tracking-wide text-white/75">Agencia de marketing digital en Madrid</p>
           {variante === "C" ? (
             <>
@@ -84,6 +85,8 @@ export function HeroAds({ variante = "E" }: { variante?: "E" | "C" }) {
           </p>
             </>
           )}
+          </div>
+          <div className="max-lg:order-3">
           <ul className="mt-6 grid max-w-md grid-cols-2 gap-x-4 gap-y-3">
             {FRENTES_HERO.map(([t, ico]) => (
               <li key={t} className="flex items-center gap-2.5 text-[1.05rem] font-extrabold"><Icono className="h-7 w-7 shrink-0 text-estrella">{ico}</Icono>{t}</li>
@@ -100,15 +103,10 @@ export function HeroAds({ variante = "E" }: { variante?: "E" | "C" }) {
             </li>
           </ul>
           <p className="mt-5 max-w-xl border-t border-white/20 pt-4 text-lg font-bold">Una persona que conoce tu proyecto y te atiende.</p>
-          <Link href="#solicitud" className={`${BOTON} mt-4 w-full sm:w-auto`}>Quiero mi estudio gratuito</Link>
-          <ul className="mt-4 flex max-w-xl flex-wrap justify-center gap-x-4 gap-y-1 text-sm font-bold text-white/90 sm:justify-start">
-            {GARANTIAS.map((g) => (
-              <li key={g} className="flex items-center gap-1.5"><span aria-hidden="true" className="text-estrella">✓</span>{g}</li>
-            ))}
-          </ul>
-          <p className="mt-1.5 max-w-xl text-center text-sm text-white/80 sm:text-left">Te respondemos por escrito en 48 horas laborables.</p>
+          <Link href="#solicitud" className={`${BOTON} mt-4 w-full max-lg:hidden sm:w-auto`}>Quiero mi estudio gratuito</Link>
+          </div>
         </div>
-        <div id="solicitud" className="scroll-mt-20">
+        <div id="solicitud" className="scroll-mt-20 max-lg:order-2">
           <TestYa entregas landing={variante} />
         </div>
       </div>

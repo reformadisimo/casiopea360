@@ -166,6 +166,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
   const [qi, setQi] = useState(0);
   const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "capturado" | "fin">("datos");
   const [novedadesOk, setNovedadesOk] = useState(false);
+  const [sugCorreo, setSugCorreo] = useState("");
   const pedirNovedades = () => {
     setNovedadesOk(true);
     fetch("/api/solicitud", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ soloNovedades: true, correo: datosRef.current?.correo, nombre: datosRef.current?.nombre }) }).catch(() => undefined);
@@ -566,44 +567,34 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
       {fase === "datos" && (
         <form onSubmit={enviar} onBlurCapture={(e) => { const t = e.target as unknown as HTMLInputElement; if (!t.name || t.name === "sitio_web") return; paso("campo", t.name, t.type === "checkbox" ? (t.checked ? "ok" : "vacio") : t.value.trim() ? "ok" : "vacio"); }} onInvalidCapture={(e) => paso("invalido", (e.target as unknown as HTMLInputElement).name)} className="entra overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-35px_rgba(14,26,61,0.55)] ring-1 ring-linea">
           <div className="px-5 pt-5 sm:px-9 sm:pt-7">
-            <div className="mb-5 hidden items-center justify-between gap-4 sm:flex">
-              <Logo chico />
-              <p className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">Sin compromiso · sin pedirte accesos</p>
-            </div>
-            <p className="text-sm font-extrabold uppercase tracking-wide text-[#9a6700]">Tu estudio gratuito</p>
-            {entregas ? (
-              <div>
-                <p className="mt-1 text-[0.98rem] leading-snug text-tinta/80">Si podemos ayudarte, esto es lo que preparamos:</p>
-                <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
-                  {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
-                    <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
-                  ))}
-                </ul>
-                <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
-              </div>
-            ) : (
-              <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>
-            )}
-            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">Pide tu estudio gratuito</p>
-            <p className="mt-1 text-gris">Déjanos tu nombre, correo y la web. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio en menos de una semana.</p>
-            <ul className="mt-4 hidden flex-wrap gap-x-6 gap-y-2 text-sm font-bold sm:flex">
-              {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
-                <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>{t}</li>
-              ))}
-            </ul>
+            <p className="text-2xl font-extrabold sm:text-3xl">Pide tu estudio gratuito</p>
           </div>
-          <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-9">
+          <div className="grid gap-4 p-5 pt-4 sm:grid-cols-2 sm:p-9 sm:pt-5">
             <label className="text-sm font-bold">
               Tu nombre
               <input name="nombre" required autoComplete="name" placeholder="Ej.: Ana López" className={campo} />
             </label>
             <label className="text-sm font-bold">
               Correo
-              <input name="correo" required type="email" autoComplete="email" className={campo} />
+              <input
+                name="correo" required type="email" autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} className={campo}
+                onChange={() => setSugCorreo("")}
+                onBlur={(e) => {
+                  const v = e.target.value.trim().toLowerCase();
+                  const [u, d] = v.split("@");
+                  const MAL: Record<string, string> = { "gamil.com": "gmail.com", "gmial.com": "gmail.com", "gmail.es": "gmail.com", "gmai.com": "gmail.com", "gmail.co": "gmail.com", "gnail.com": "gmail.com", "hotmial.com": "hotmail.com", "hotmai.com": "hotmail.com", "hotmail.es.": "hotmail.es", "outlok.com": "outlook.com", "yaho.es": "yahoo.es", "yahooo.com": "yahoo.com" };
+                  setSugCorreo(u && d && MAL[d] ? `${u}@${MAL[d]}` : "");
+                }}
+              />
+              {sugCorreo && (
+                <span className="mt-1 block text-sm font-normal text-tinta/80">
+                  ¿Querías decir <button type="button" className="font-extrabold underline" onClick={(ev) => { const f = (ev.currentTarget.closest("label")?.querySelector("input[name=correo]") as HTMLInputElement | null); if (f) f.value = sugCorreo; setSugCorreo(""); }}>{sugCorreo}</button>?
+                </span>
+              )}
             </label>
             <label className="text-sm font-bold sm:col-span-2">
               La web de tu empresa <span className="font-normal text-gris">(la necesitamos para preparar tu estudio)</span>
-              <input name="web" required inputMode="url" autoComplete="url" placeholder="www.tuempresa.es" pattern=".*[.].*" title="Escribe la dirección de tu web, por ejemplo www.tuempresa.es" className={campo} />
+              <input name="web" required inputMode="url" autoComplete="url" autoCapitalize="none" autoCorrect="off" spellCheck={false} placeholder="www.tuempresa.es" pattern=".*[.].*" title="Escribe la dirección de tu web, por ejemplo www.tuempresa.es" className={campo} />
             </label>
             <label className="hidden" aria-hidden="true">
               No rellenes esto
@@ -614,6 +605,23 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
                 {envio === "enviando" ? "Enviando…" : "Solicitar mi estudio gratuito"}
               </button>
             </div>
+            <p className="text-sm text-gris sm:col-span-2">Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio en menos de una semana.</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-1.5 text-sm font-bold sm:col-span-2">
+              {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>{t}</li>
+              ))}
+            </ul>
+            {entregas && (
+              <div className="sm:col-span-2">
+                <p className="text-[0.98rem] font-extrabold text-tinta">Si podemos ayudarte, esto es lo que preparamos:</p>
+                <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
+                  {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
+                    <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
+                  ))}
+                </ul>
+                <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
+              </div>
+            )}
             <p className="text-xs text-gris sm:col-span-2">
               Usamos tus datos y lo público de tu web y de tus perfiles solo para preparar tu estudio y escribirte sobre él. Lo ves en un enlace privado que no aparece en Google. Más información en nuestra <Link href="/privacidad" className="underline">política de privacidad</Link>.
             </p>
