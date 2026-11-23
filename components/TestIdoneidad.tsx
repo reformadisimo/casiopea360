@@ -164,7 +164,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
   const [resp, setResp] = useState<Record<string, number>>({});
   const [ti, setTi] = useState(0); // tramo actual (índice en TRAMOS); "datos" y "fin" van aparte
   const [qi, setQi] = useState(0);
-  const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "capturado" | "fin">("preguntas");
+  const [fase, setFase] = useState<"preguntas" | "elegir" | "datos" | "capturado" | "fin">("datos");
   const [novedadesOk, setNovedadesOk] = useState(false);
   const pedirNovedades = () => {
     setNovedadesOk(true);
@@ -175,7 +175,7 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
   // Recorrido anónimo (sin cookies ni datos personales): una pantalla vista, una respuesta, un campo vacío. Ver /mesa/test.
   const sesion = useRef("");
   const vistas = useRef(new Set<string>());
-  const pantallaActual = useRef("urge");
+  const pantallaActual = useRef("datos");
   // La prueba del formulario (A frente a B, v314) queda congelada en A desde el 22-nov: ahora se prueba el titular de la landing de Google.
   // `landing` dice qué titular vio la visita (E: «Todo tu marketing digital. Un solo equipo.»; C: el claim) y se apunta en `variante`.
   const variante = "A" as "A" | "B";
@@ -535,16 +535,8 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
           <p className="text-sm font-bold text-estrella">Solicitud recibida</p>
           <p className="mt-2 text-3xl font-extrabold sm:text-4xl">Tu solicitud ya está enviada.</p>
           <p className="mt-3 max-w-xl text-white/85">Te escribimos por correo en 48 horas laborables.</p>
-          <p className="mt-5 max-w-xl text-white/85">
-            <b className="text-white">Opcional:</b> si quieres, cuéntanos cómo atiendes y haces seguimiento a tus contactos. Son {NOTA_PREGUNTAS} preguntas, sin escribir, y nos ayudan a preparar mejor tu estudio.
-          </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <button type="button" onClick={() => { setTi(1); setQi(0); setFase("preguntas"); subir(); }} className="rounded-full bg-estrella px-7 py-3.5 font-extrabold text-tinta hover:bg-estrella-2">
-              {`Completar información sobre mi negocio (${NOTA_PREGUNTAS} preguntas)`}
-            </button>
-            <button type="button" onClick={() => { setFase("fin"); subir(); }} className="rounded-full border-2 border-white/40 px-7 py-3.5 font-bold hover:border-white">
-              Terminar aquí
-            </button>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link href="/trabajos" className="rounded-full bg-estrella px-7 py-3.5 text-center font-extrabold text-tinta hover:bg-estrella-2">Ver nuestros trabajos</Link>
           </div>
           <div className="mt-6 border-t border-white/15 pt-5">
             <label className={`flex cursor-pointer items-start gap-3 rounded-2xl border-2 p-4 transition ${novedadesOk ? "border-estrella bg-white/10" : "border-white/30 hover:border-white/60"}`}>
@@ -578,14 +570,22 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
               <Logo chico />
               <p className="rounded-full bg-niebla px-3 py-1 text-xs font-bold text-gris">Sin compromiso · sin pedirte accesos</p>
             </div>
-            <div className="flex items-center gap-3 text-sm font-extrabold text-gris">
-              <span className="shrink-0">Último paso</span>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-linea" role="progressbar" aria-label="Avance del test" aria-valuemin={0} aria-valuemax={100} aria-valuenow={100}>
-                <div className="h-full w-full rounded-full bg-estrella" />
+            <p className="text-sm font-extrabold uppercase tracking-wide text-[#9a6700]">Tu estudio gratuito</p>
+            {entregas ? (
+              <div>
+                <p className="mt-1 text-[0.98rem] leading-snug text-tinta/80">Si podemos ayudarte, esto es lo que preparamos:</p>
+                <ul className="mt-2 grid gap-1 text-[0.98rem] font-bold leading-snug text-tinta">
+                  {["Tu web a examen", "Tu web rediseñada de muestra y borradores de anuncios", "Tu plan de 30 días con prioridades y costes"].map((e) => (
+                    <li key={e} className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-estrella text-xs font-extrabold text-tinta">✓</span><span>{e}</span></li>
+                  ))}
+                </ul>
+                <DetalleEstudio alAbrir={() => paso("vista", "detalle")} />
               </div>
-            </div>
-            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">¿A qué correo te respondemos?</p>
-            <p className="mt-1 text-gris">Revisamos tus respuestas y te contestamos por escrito en 48 horas laborables. Si podemos ayudarte, preparamos tu estudio en menos de una semana.</p>
+            ) : (
+              <p className="mt-1 text-[0.98rem] leading-snug text-tinta sm:text-lg">Revisión de tu web, propuestas y un plan con costes.</p>
+            )}
+            <p className="mt-5 text-2xl font-extrabold sm:text-3xl">Pide tu estudio gratuito</p>
+            <p className="mt-1 text-gris">Déjanos tu nombre, correo y la web. Te contestamos por escrito en 48 horas laborables y, si podemos ayudarte, preparamos tu estudio en menos de una semana.</p>
             <ul className="mt-4 hidden flex-wrap gap-x-6 gap-y-2 text-sm font-bold sm:flex">
               {["Sin compromiso", "Sin llamadas comerciales", "Sin pedirte accesos"].map((t) => (
                 <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white"><svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>{t}</li>
@@ -610,9 +610,6 @@ export default function TestIdoneidad({ entregas = false, landing }: { entregas?
               <input name="sitio_web" tabIndex={-1} autoComplete="off" />
             </label>
             <div className="flex flex-wrap items-center gap-3 sm:col-span-2">
-              <button type="button" onClick={atras} className="rounded-full px-4 py-2.5 font-bold text-gris hover:bg-niebla hover:text-tinta">
-                Atrás
-              </button>
               <button type="submit" disabled={envio === "enviando"} className="flex-1 rounded-full bg-estrella px-7 py-4 text-lg font-extrabold text-tinta hover:bg-estrella-2 disabled:opacity-60 sm:flex-none">
                 {envio === "enviando" ? "Enviando…" : "Solicitar mi estudio gratuito"}
               </button>
