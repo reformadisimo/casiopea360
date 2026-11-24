@@ -537,3 +537,40 @@ export function FranjaConfianza() {
     </section>
   );
 }
+
+// Escritorio: quien abre la página en el ordenador sigue desde el móvil con un código QR que abre el chat con el
+// primer mensaje ya escrito. En móvil no se enseña el QR (no se puede escanear a sí mismo): sale solo el botón.
+export async function SeccionWhatsApp() {
+  const QRCode = (await import("qrcode")).default;
+  const svg = await QRCode.toString(WA_ENLACE, { type: "svg", margin: 1, width: 168, color: { dark: "#0e1a3d", light: "#ffffff" } });
+  return (
+    <section className="bg-white py-12 sm:py-16">
+      <div className={ENVOLTORIO}>
+        <div className="grid items-center gap-6 rounded-3xl bg-noche p-6 text-white sm:grid-cols-[1fr_auto] sm:p-10">
+          <div>
+            <h2 className="text-2xl font-extrabold text-estrella sm:text-3xl">Escríbenos por WhatsApp.</h2>
+            <p className="mt-2 max-w-xl text-white/80">Mándanos la dirección de tu web y empezamos. Te contestamos en 48 horas laborables, sin compromiso.</p>
+            <a
+              href={WA_ENLACE}
+              target="_blank"
+              rel="noopener"
+              className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25d366] px-6 text-base font-extrabold text-white shadow-[0_8px_22px_-8px_rgba(37,211,102,0.9)] transition-colors hover:bg-[#1ebe5a]"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.18-3.1.82.83-3.03-.2-.32A8.1 8.1 0 0 1 12.04 3.8z" /></svg>
+              Abrir WhatsApp
+            </a>
+          </div>
+          <div className="hidden text-center sm:block">
+            <div
+              className="mx-auto rounded-2xl bg-white p-2 [&>svg]:block [&>svg]:h-40 [&>svg]:w-40"
+              role="img"
+              aria-label="Código QR para abrir el chat de WhatsApp de Casiopea 360"
+              dangerouslySetInnerHTML={{ __html: svg }}
+            />
+            <p className="mt-2 text-sm font-bold text-white/80">Escanéalo con el móvil</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

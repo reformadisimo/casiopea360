@@ -1,7 +1,7 @@
 import DatosEstructurados from "@/components/DatosEstructurados";
 import SeccionDudasEstudio from "@/components/SeccionDudasEstudio";
 import { SeccionPrecio } from "@/components/SeccionesVender";
-import { HeroLanding, FormularioEstudio, MuestraHero, SeccionIncluye, SeccionVideo, SeccionDolores, SeccionPasos, SeccionEjemplos, FranjaConfianza } from "@/components/LandingEstudio";
+import { HeroLanding, FormularioEstudio, MuestraHero, SeccionIncluye, SeccionVideo, SeccionDolores, SeccionPasos, SeccionEjemplos, FranjaConfianza, SeccionWhatsApp } from "@/components/LandingEstudio";
 import { meta } from "@/lib/meta";
 import { schemaMigas } from "@/lib/schema";
 
@@ -24,6 +24,7 @@ export default function EstudioGratuito() {
       <SeccionVideo />
       <SeccionPasos />
       <SeccionEjemplos />
+      <SeccionWhatsApp />
       <SeccionDudasEstudio />
       <SeccionPrecio compacta />
     </>

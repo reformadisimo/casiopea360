@@ -72,9 +72,10 @@ export default function BarraEstudio() {
         rel="noopener"
         tabIndex={ver && bajado ? 0 : -1}
         aria-label="Escríbenos por WhatsApp"
-        className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366] text-white transition-transform hover:scale-105"
+        className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-[#25d366] pl-3 pr-4 text-sm font-extrabold text-white shadow-[0_6px_18px_-6px_rgba(37,211,102,0.8)] transition-transform hover:scale-105 hover:bg-[#1ebe5a]"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.18-3.1.82.83-3.03-.2-.32A8.1 8.1 0 0 1 12.04 3.8zm-3.1 3.9c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.15s.92 2.5 1.05 2.67c.13.17 1.8 2.88 4.45 3.92 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.3-1.54-1.45-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.59-1.42-.8-1.94-.21-.5-.43-.43-.59-.44h-.5z" /></svg>
+        WhatsApp
       </a>
       <span className="hidden text-sm font-bold text-white/85 md:block">Sin compromiso. Sin pedirte accesos.</span>
       <Link
@@ -98,8 +99,9 @@ export default function BarraEstudio() {
         tabIndex={t}
         aria-label="WhatsApp" className="flex shrink-0 items-center text-[0.72rem] font-bold text-white"
       >
-        <span className="grid h-11 w-11 place-items-center rounded-full bg-[#25d366] text-white">
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.18-3.1.82.83-3.03-.2-.32A8.1 8.1 0 0 1 12.04 3.8zm-3.1 3.9c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.15s.92 2.5 1.05 2.67c.13.17 1.8 2.88 4.45 3.92 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.3-1.54-1.45-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.59-1.42-.8-1.94-.21-.5-.43-.43-.59-.44h-.5z" /></svg>
+        <span className="relative grid h-12 w-12 place-items-center rounded-full bg-[#25d366] text-white shadow-[0_6px_16px_-4px_rgba(37,211,102,0.9)] ring-2 ring-white/80">
+          <span aria-hidden="true" className="absolute inset-0 rounded-full bg-[#25d366] opacity-60 motion-safe:animate-ping" style={{ animationDuration: "2.6s" }} />
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="relative h-7 w-7" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.18-3.1.82.83-3.03-.2-.32A8.1 8.1 0 0 1 12.04 3.8zm-3.1 3.9c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.15s.92 2.5 1.05 2.67c.13.17 1.8 2.88 4.45 3.92 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.09-1.29-.77-.69-1.3-1.54-1.45-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.59-1.42-.8-1.94-.21-.5-.43-.43-.59-.44h-.5z" /></svg>
         </span>
       </a>
       <a
