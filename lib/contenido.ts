@@ -2,7 +2,7 @@
 
 // Canales de contacto de Casiopea 360. Correo activo desde el 28 oct 2026 (Google Workspace).
 export const CONTACTO = {
-  whatsapp: "34619394733", // 619 394 733 (móvil de Ig), 28 oct 2026
+  whatsapp: "34690922934", // 690 922 934 (eSIM de Movistar, WhatsApp Business), 24 nov 2026
   correo: "hola@casiopea360.es",
 };
 

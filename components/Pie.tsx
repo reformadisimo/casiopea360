@@ -34,7 +34,7 @@ export default function Pie() {
             <br />
             WhatsApp:{" "}
             <a href={WA_ENLACE} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center font-bold text-white underline decoration-estrella underline-offset-4 hover:text-estrella">
-              619 394 733
+              690 922 934
             </a>
           </p>
         </div>

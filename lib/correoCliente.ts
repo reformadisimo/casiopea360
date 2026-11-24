@@ -83,7 +83,7 @@ ${aviso}
 ${c.cierre ? p(fmt(c.cierre)) : ""}
 ${p(`Un abrazo fuerte,<br><b>${esc(c.firma)}</b>`, "margin-bottom:0")}
 </td></tr></table>
-<p style="margin:16px 0 0;${FUENTE};font-size:12px;line-height:1.5;color:${C.gris}">Casiopea 360 · Tu marketing digital, al máximo nivel.<br><a href="https://www.casiopea360.es" style="color:${C.gris}">casiopea360.es</a> · <a href="mailto:hola@casiopea360.es" style="color:${C.gris}">hola@casiopea360.es</a> · WhatsApp 619 394 733${c.pie ? `<br>${esc(c.pie)}` : ""}</p>
+<p style="margin:16px 0 0;${FUENTE};font-size:12px;line-height:1.5;color:${C.gris}">Casiopea 360 · Tu marketing digital, al máximo nivel.<br><a href="https://www.casiopea360.es" style="color:${C.gris}">casiopea360.es</a> · <a href="mailto:hola@casiopea360.es" style="color:${C.gris}">hola@casiopea360.es</a> · WhatsApp 690 922 934${c.pie ? `<br>${esc(c.pie)}` : ""}</p>
 </td></tr></table>
 </body></html>`;
 }

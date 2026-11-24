@@ -12,7 +12,7 @@ export const EMPRESA = {
   registro:
     "Inscrita en el Registro Mercantil de Madrid, tomo 17722, folio 165, sección octava, hoja M-305353, inscripción 1ª",
   correo: "hola@casiopea360.es",
-  telefono: "+34 619 394 733",
+  telefono: "+34 690 922 934",
 };
 
 const url = (ruta = "/") => `${SITIO.url}${ruta}`;
