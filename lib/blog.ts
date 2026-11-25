@@ -1,5 +1,5 @@
 // Artículos del blog. Cada bloque es un párrafo, un subtítulo o una lista.
-export type Bloque = { caja: string; t?: string } | { h2: string } | { h3: string } | { p: string } | { ul: string[] } | { ol: string[] };
+export type Bloque = { caja: string; t?: string } | { h2: string } | { h3: string } | { p: string } | { ul: string[] } | { ol: string[] } | { viz: "ahorro" | "precio" | "catalogo" };
 
 export type Articulo = {
   slug: string;
@@ -24,6 +24,65 @@ export type Articulo = {
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "que-incluye-la-cuota-de-casiopea-360-y-cuanto-costaria-por-separado",
+    relacionados: ["cuanto-cuesta-el-marketing-digital-por-separado", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya"],
+    tituloSeo: "Qué incluye la cuota de 1.800 € de Casiopea 360",
+    video: "calculadora-facturas",
+    apoyo: { video: "papeles", alt: "Facturas y papeles acumulados en una mesa" },
+    titulo: "Todo lo que incluye una cuota de 1.800 €: web, SEO, anuncios, redes y CRM, y lo que costaría por separado",
+    descripcion: "Web, CRM, chat con IA, SEO, anuncios en Google y redes, ficha de Google y landings, dentro de una sola cuota. Servicio a servicio, con precios de mercado.",
+    fecha: "2026-11-25",
+    lectura: "7 minutos",
+    categoria: "Precios",
+    claves: ["qué incluye una agencia de marketing digital", "cuánto cuesta una agencia de marketing digital todo incluido", "precio web SEO anuncios redes y CRM", "agencia de marketing digital cuota fija sin permanencia"],
+    respuesta:
+      "Con Casiopea 360, una cuota de 1.800 € al mes más IVA, sin permanencia, incluye tu web, el CRM, el chat con IA, el SEO, los anuncios en Google, Facebook e Instagram, las redes, la ficha de Google, las landings que necesites y a una persona que te atiende. Contratado por separado, solo SEO, anuncios, redes y diseño cuestan a precios de mercado entre 4.000 y 4.800 € al mes, y la web y el CRM, desde 3.000 € cada uno.",
+    cuerpo: [
+      { h2: "Una cuota. Todo dentro." },
+      { p: "Lo normal es contratar cada cosa por separado: uno para el SEO, otro para los anuncios, otro para las redes, otro para la web." },
+      { p: "Aquí es distinto. Pagas una cuota de 1.800 € al mes más IVA, la misma para cualquier tamaño de empresa, sin permanencia, y dentro va todo lo que sigue." },
+      { h2: "Lo que va dentro, servicio a servicio" },
+      { p: "Seis frentes, una sola cuota. Esto es lo que lleva un solo equipo, sin que tengas que contratar a nadie más:" },
+      { viz: "catalogo" },
+      { h2: "Y lo que costaría por separado" },
+      { p: "Precios de mercado orientativos, sin IVA. En tu caso pueden ser algo más o algo menos, pero el orden de magnitud es este:" },
+      { viz: "ahorro" },
+      { caja: "Marca en el gráfico lo único que necesitas y verás la diferencia. Una sola cosa suelta puede salir más barata que la cuota; pero te quedas sin todo lo demás." },
+      { h2: "La cuota, con todo dentro" },
+      { viz: "precio" },
+      { h2: "Un punto de vista de empresarios, dentro de la cuota" },
+      { p: "Nuestro equipo ha sido socio, accionista y administrador de empresas, y sabemos lo que es llevar un negocio. Por eso opinamos sobre estrategia, planes de marketing y presupuestos." },
+      { p: "En el mercado, un asesoramiento así ronda los 400 € al mes. Aquí va dentro de la cuota. En fiscal, contabilidad y laboral solo orientamos y te derivamos a un profesional: no llevamos tu contabilidad ni tus impuestos." },
+      { h2: "Lo que va aparte" },
+      { ul: [
+        "La inversión en anuncios. Se paga directamente a Google y a Meta, con tu tarjeta, sin comisión nuestra.",
+        "La grabación profesional de vídeo, si la quieres: la organizamos nosotros y se paga aparte, sin comisión.",
+        "Los medios de pago de terceros que quieras sumar.",
+      ] },
+      { h2: "Lo que sigue siendo tuyo" },
+      { ul: [
+        "Tus cuentas de Google, de Meta y de las redes se abren a tu nombre, contigo.",
+        "Nosotros entramos solo por invitación y nos quitas con un clic.",
+        "La web la alojamos y mantenemos mientras seas cliente.",
+        "Si te vas, te llevas una copia completa, tus cuentas y tus contactos. Sin permanencia ni penalización.",
+      ] },
+      { h2: "Cómo empezar" },
+      { p: "El estudio es gratuito. Dejas tu nombre, tu correo y tu web, y te decimos qué mejoraríamos, cómo podría quedar y cuánto costaría. No hace falta darnos ningún acceso." },
+      { p: "Si lo vemos claro, te contestamos en 48 horas laborables. El resto, a tu ritmo y sin compromiso." },
+    ],
+    faq: [
+      { p: "¿Qué incluye la cuota de 1.800 € al mes?", r: "Tu web, el CRM, el chat con IA, el SEO, los anuncios en Google, Facebook e Instagram, las redes, la ficha de Google, las landings que necesites y una persona que te atiende. La inversión en anuncios se paga aparte, directamente a Google y a Meta." },
+      { p: "¿Hay permanencia?", r: "No. No hay permanencia ni penalización por irte. Si te vas, te llevas una copia completa de tu web, tus cuentas y tus contactos." },
+      { p: "¿Por qué sale más barato que contratarlo por separado?", r: "Porque un solo equipo lleva todo y no pagas seis proveedores ni su coordinación. Los precios por separado son orientativos de mercado y pueden variar en tu caso." },
+      { p: "¿Quién es el dueño de mis cuentas?", r: "Tú. Las cuentas se abren a tu nombre, contigo, y nosotros entramos solo por invitación." },
+    ],
+    enlaces: [
+      { texto: "Mira lo que pagarías hoy por separado", href: "/servicios#ahorro" },
+      { texto: "Todos los servicios en una lista", href: "/todos-los-servicios" },
+      { texto: "Pide tu estudio gratuito", href: "/estudio-gratuito" },
+    ],
+  },
   {
     slug: "abrir-las-cuentas-de-tu-empresa-sin-atascarte",
     relacionados: ["ficha-de-google-que-es-y-como-sacarle-partido", "si-tu-web-no-esta-a-tu-nombre-no-es-tuya", "como-pedir-resenas-en-google-whatsapp-correo-y-tarjeta-con-qr"],
@@ -269,7 +328,7 @@ export const ARTICULOS: Articulo[] = [
       { texto: "Ayuda de Search Console: gestionar propietarios, usuarios y permisos", href: "https://support.google.com/webmasters/answer/7687615?hl=es" },
       { texto: "Ayuda de Perfil de Empresa en Google: gestionar los propietarios y administradores", href: "https://support.google.com/business/answer/3403100?hl=es" },
     ],
-    video: "lapiz-medicion",
+    video: "libros-estanteria",
     apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos las cuentas de un negocio en un portátil" },
     titulo: "¿Tienes tú el control de tu marketing? Revisa estas 10 cosas",
     tituloSeo: "¿Tienes el control de tu marketing? 10 cosas",
@@ -351,7 +410,7 @@ export const ARTICULOS: Articulo[] = [
   {
     slug: "por-que-un-director-de-marketing-deja-de-ver-lo-que-no-funciona",
     relacionados: ["como-no-ir-a-ciegas-con-tu-web-y-que-te-ensena-una-lupa", "por-que-contratar-casiopea-360-tiempo-para-tu-trabajo-y-un-solo-equipo", "cuantos-proveedores-necesita-una-web-que-trae-clientes"],
-    video: "lapiz-medicion",
+    video: "director-oficina",
     apoyo: { video: "equipo-portatil", alt: "Dos profesionales revisan juntos los resultados en un portátil" },
     tituloSeo: "Por qué un director de marketing no ve lo que falla",
     titulo: "Por qué un director de marketing deja de ver lo que no funciona (y cómo recuperar la luz)",
@@ -455,6 +514,7 @@ export const ARTICULOS: Articulo[] = [
       { p: "Con seis o diez proveedores, alguien tiene que coordinarlos: reuniones, llamadas, correos repetidos y el clásico «eso es cosa del otro»." },
       { p: "Ese alguien suele ser el director o el dueño de la empresa, y sus horas también cuestan dinero." },
       { p: "Además, nadie ve el conjunto: el de los anuncios no puede tocar la web y el de la web no mira los anuncios." },
+      { caja: "¿Quieres ver la cuenta con todo lo que lleva una sola cuota? Mira [lo que incluye la cuota de Casiopea 360 y lo que costaría por separado](/blog/que-incluye-la-cuota-de-casiopea-360-y-cuanto-costaria-por-separado)." },
       { h2: "Haz tu propia cuenta" },
       { p: "En nuestra calculadora puedes marcar lo que necesitas y ver, según el tamaño de tu empresa:" },
       { ul: ["Lo que te costaría por separado.", "Cuántos proveedores tendrías.", "Cuántas facturas al mes."] },

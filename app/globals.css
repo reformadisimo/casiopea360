@@ -556,3 +556,11 @@ html[data-texto="3"] header { zoom: 0.667; }
   .prosa h2 { margin-top: 1.9em; font-size: 1.45rem; line-height: 1.2; }
   .prosa h3 { margin-top: 1.5em; font-size: 1.2rem; }
 }
+
+/* Bloques visuales dentro de un artículo (cas·v403): la tipografía de .prosa no debe tocar las listas y títulos de esas secciones. */
+.prosa .viz-blog ul:not(.lv), .prosa .viz-blog ol:not(.lv) { list-style: none; padding-left: 0; counter-reset: none; }
+.prosa .viz-blog ul:not(.lv) > li, .prosa .viz-blog ol:not(.lv) > li { padding-left: 0; counter-increment: none; }
+.prosa .viz-blog ul:not(.lv) > li::before, .prosa .viz-blog ol:not(.lv) > li::before { content: none; display: none; }
+.prosa .viz-blog ul:not(.lv) > li + li, .prosa .viz-blog ol:not(.lv) > li + li { margin-top: 0; }
+.prosa .viz-blog h2, .prosa .viz-blog h3 { margin-top: 0; }
+.prosa .viz-blog > * + * { margin-top: 0; }

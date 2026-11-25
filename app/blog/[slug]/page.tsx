@@ -10,6 +10,8 @@ import { ARTICULOS, articuloPorSlug, type Bloque } from "@/lib/blog";
 import { schemaArticulo, schemaFaqArticulo, schemaMigas } from "@/lib/schema";
 import { CajaIdea, ChipIcono, ListaViva, PasosVivos, PreguntaViva, TituloVivo, idDe } from "@/components/ArticuloVisual";
 import { tituloCorto } from "@/lib/meta";
+import { SeccionAhorro, SeccionPrecio } from "@/components/SeccionesVender";
+import VizCatalogo from "@/components/VizCatalogo";
 import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
@@ -59,6 +61,13 @@ function conEnlaces(s: string, g: ContextoGlosario): ReactNode {
 }
 
 function Pinta({ b, g, n }: { b: Bloque; g: ContextoGlosario; n: number }) {
+  if ("viz" in b) {
+    return (
+      <div className="not-prose viz-blog relative left-1/2 my-12 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden">
+        {b.viz === "ahorro" ? <SeccionAhorro /> : b.viz === "precio" ? <SeccionPrecio sinAhorro /> : <VizCatalogo />}
+      </div>
+    );
+  }
   if ("caja" in b) return <CajaIdea t={b.t}>{conEnlaces(b.caja, g)}</CajaIdea>;
   if ("h2" in b) return <TituloVivo t={b.h2} i={n} />;
   if ("h3" in b) return <h3>{b.h3}</h3>;
@@ -85,7 +94,7 @@ export default async function ArticuloBlog({ params }: { params: Promise<{ slug:
     <>
       <DatosEstructurados
         datos={[
-          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("caja" in b ? b.caja : "p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : b.h3)).join(" ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").split(/\s+/).length }),
+          schemaArticulo({ ...a, palabras: a.cuerpo.map((b) => ("caja" in b ? b.caja : "p" in b ? b.p : "ul" in b ? b.ul.join(" ") : "ol" in b ? b.ol.join(" ") : "h2" in b ? b.h2 : "h3" in b ? b.h3 : "")).join(" ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").split(/\s+/).length }),
           ...(a.faq?.length ? [schemaFaqArticulo(a.faq)] : []),
           schemaMigas([
             { texto: "Inicio", ruta: "/" },

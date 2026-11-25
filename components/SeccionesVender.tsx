@@ -703,7 +703,7 @@ export function SeccionAhorro({ compacta = false }: { compacta?: boolean } = {})
 /** Precio (18-nov-2026, Ig): una sola cuota, 1.800 € + IVA al mes, sin permanencia. Va con todo lo que incluye.
     Sin garantías de resultados; la postura sobre los anuncios (IA o los propios dueños y trabajadores, sin actores) también va aquí. */
 export const PRECIO_CUOTA = "1.800 €";
-export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {}) {
+export function SeccionPrecio({ compacta = false, sinAhorro = false }: { compacta?: boolean; sinAhorro?: boolean } = {}) {
   const valor: [string, string, string][] = [
     ["grafica", "Optimizamos tus campañas cada semana", "Quitamos lo que gasta sin traer y subimos lo que funciona."],
     ["lupa", "Mejoramos tus resultados, con pruebas", "Pruebas A/B en anuncios y web. Lo que funciona se queda."],
@@ -715,7 +715,7 @@ export function SeccionPrecio({ compacta = false }: { compacta?: boolean } = {})
   ];
   return (
     <>
-    <SeccionAhorro compacta={compacta} />
+    {sinAhorro ? null : <SeccionAhorro compacta={compacta} />}
     <section id="precio" className="relative overflow-hidden bg-noche py-16 text-white sm:py-24" aria-labelledby="precio-titulo">
       <Nebulosa oscura variante={1} />
       <div className={`${ENVOLTORIO} relative`}>
