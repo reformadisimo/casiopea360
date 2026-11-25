@@ -12,6 +12,7 @@ import { CajaIdea, ChipIcono, ListaViva, PasosVivos, PreguntaViva, TituloVivo, i
 import { tituloCorto } from "@/lib/meta";
 import { SeccionAhorro, SeccionPrecio } from "@/components/SeccionesVender";
 import VizCatalogo from "@/components/VizCatalogo";
+import VizResumen from "@/components/VizResumen";
 import { glosar, type ContextoGlosario } from "@/lib/glosario";
 
 export function generateStaticParams() {
@@ -64,7 +65,7 @@ function Pinta({ b, g, n }: { b: Bloque; g: ContextoGlosario; n: number }) {
   if ("viz" in b) {
     return (
       <div className="not-prose viz-blog relative left-1/2 my-12 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden">
-        {b.viz === "ahorro" ? <SeccionAhorro /> : b.viz === "precio" ? <SeccionPrecio sinAhorro /> : <VizCatalogo />}
+        {b.viz === "ahorro" ? <SeccionAhorro /> : b.viz === "precio" ? <SeccionPrecio sinAhorro /> : b.viz === "resumen" ? <VizResumen /> : <VizCatalogo />}
       </div>
     );
   }
